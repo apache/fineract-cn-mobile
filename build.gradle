@@ -24,7 +24,7 @@ task clean(type: Delete) {
 
 ext {
     // Sdk and tools
-    minSdkVersion = 10
+    minSdkVersion = 11
     targetSdkVersion = 25
     compileSdkVersion = 25
     buildToolsVersion = '24.0.2'
@@ -33,6 +33,7 @@ ext {
     supportLibraryVersion = '24.2.1'
     daggerVersion = '2.5'
     retrofitVersion = '2.2.0'
+    okHttp3Version = '3.3.1'
     butterKnifeVersion = '8.5.1'
 
     // rxjava dependencies
