@@ -8,7 +8,8 @@ import com.mifos.apache.fineract.injection.component.DaggerApplicationComponent;
 import com.mifos.apache.fineract.injection.module.ApplicationModule;
 
 /**
- * Created by Rajan Maurya on 16/03/17.
+ * @author Rajan Maurya
+ * On 16/03/17.
  */
 
 public class MifosApplication extends Application {
