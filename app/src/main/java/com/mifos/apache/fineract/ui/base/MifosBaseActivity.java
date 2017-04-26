@@ -62,7 +62,7 @@ public class MifosBaseActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public ActivityComponent activityComponent() {
+    public ActivityComponent getActivityComponent() {
         return activityComponent;
     }
 
