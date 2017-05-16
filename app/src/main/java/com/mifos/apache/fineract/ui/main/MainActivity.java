@@ -12,5 +12,6 @@ public class MainActivity extends MifosBaseActivity {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
         setContentView(R.layout.activity_main);
+        getActivityComponent().inject(this);
     }
 }
