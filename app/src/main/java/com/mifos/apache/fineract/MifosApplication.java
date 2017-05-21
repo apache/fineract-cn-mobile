@@ -3,9 +3,12 @@ package com.mifos.apache.fineract;
 import android.app.Application;
 import android.content.Context;
 
+import com.crashlytics.android.Crashlytics;
 import com.mifos.apache.fineract.injection.component.ApplicationComponent;
 import com.mifos.apache.fineract.injection.component.DaggerApplicationComponent;
 import com.mifos.apache.fineract.injection.module.ApplicationModule;
+
+import io.fabric.sdk.android.Fabric;
 
 /**
  * @author Rajan Maurya
@@ -19,6 +22,7 @@ public class MifosApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
     }
 
     public static MifosApplication get(Context context) {

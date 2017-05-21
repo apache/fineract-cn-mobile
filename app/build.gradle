@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
 apply from: '../config/quality/quality.gradle'
 
 android {
@@ -75,6 +76,11 @@ dependencies {
     // ButterKnife Dependencies
     compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    // Fabric Crashlytics Dependencies
+    compile('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
+        transitive = true;
+    }
 
     // Instrumentation test dependencies
     androidTestCompile jUnit
