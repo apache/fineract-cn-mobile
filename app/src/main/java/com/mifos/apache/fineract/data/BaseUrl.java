@@ -10,13 +10,16 @@ package com.mifos.apache.fineract.data;
  */
 public class BaseUrl {
 
-    public static final String PROTOCOL_HTTPS = "https://";
-    public static final String API_ENDPOINT = "demo.openmf.org";
-    public static final String API_PATH = "/fineract-provider/api/v1/";
+    public static final String PROTOCOL_HTTPS = "http://";
+    public static final String API_ENDPOINT = "130.211.48.73";
     public static final String PORT = "80";
     // "/" in the last of the base url always
 
     public String getName() {
         return "mifos";
+    }
+
+    public static String getDefaultBaseUrl() {
+        return PROTOCOL_HTTPS + API_ENDPOINT;
     }
 }

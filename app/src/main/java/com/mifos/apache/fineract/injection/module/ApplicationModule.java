@@ -37,7 +37,7 @@ public class ApplicationModule {
     @Provides
     @Singleton
     BaseApiManager provideBaseApiManager() {
-        return new BaseApiManager();
+        return new BaseApiManager(mApplication);
     }
 
 }

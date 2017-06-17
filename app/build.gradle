@@ -39,6 +39,10 @@ android {
         abortOnError false
         warning 'InvalidPackage'
     }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
 }
 
 dependencies {
@@ -56,13 +60,13 @@ dependencies {
     compile "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
 
     // Rx Dependencies
-    compile "io.reactivex:rxjava:$rootProject.rxjavaVersion"
-    compile "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
+    compile "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    compile "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
 
     // Square Dependencies
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
     compile "com.squareup.okhttp3:okhttp:$rootProject.okHttp3Version"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttp3Version"
 
