@@ -11,7 +11,7 @@ package com.mifos.apache.fineract.data;
 public class BaseUrl {
 
     public static final String PROTOCOL_HTTPS = "http://";
-    public static final String API_ENDPOINT = "130.211.48.73";
+    public static final String API_ENDPOINT = "pilot.kuelap.io";
     public static final String PORT = "80";
     // "/" in the last of the base url always
 

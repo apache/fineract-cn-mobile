@@ -50,7 +50,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
         getMvpView().showProgressDialog();
         compositeDisposable.add(dataManagerAuth.login(username, password)
                 .subscribeOn(Schedulers.io())
-               .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableObserver<User>() {
                     @Override
                     public void onNext(User user) {

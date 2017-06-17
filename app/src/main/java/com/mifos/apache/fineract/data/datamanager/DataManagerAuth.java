@@ -6,6 +6,8 @@ import com.mifos.apache.fineract.data.BaseApiManager;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.models.User;
 
+import java.nio.charset.Charset;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -28,6 +30,6 @@ public class DataManagerAuth {
 
     public Observable<User> login(String username, String password) {
         return baseApiManager.getAuthApi().login(username,
-                Base64.encodeToString(password.getBytes(), Base64.NO_WRAP));
+                Base64.encodeToString(password.getBytes(Charset.forName("UTF-8")), Base64.NO_WRAP));
     }
 }
