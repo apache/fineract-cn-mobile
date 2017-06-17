@@ -3,6 +3,9 @@ package com.mifos.apache.fineract.injection.component;
 import android.app.Application;
 import android.content.Context;
 
+import com.mifos.apache.fineract.MifosApplication;
+import com.mifos.apache.fineract.data.BaseApiManager;
+import com.mifos.apache.fineract.data.MifosInterceptor;
 import com.mifos.apache.fineract.data.datamanager.DataManagerAuth;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.injection.ApplicationContext;
@@ -20,5 +23,9 @@ public interface ApplicationComponent {
     Context context();
     Application application();
     DataManagerAuth dataManager();
+    BaseApiManager baseApiManager();
     PreferencesHelper preferencesHelper();
+
+    void inject(MifosInterceptor mifosInterceptor);
+    void inject(MifosApplication mifosApplication);
 }

@@ -34,13 +34,13 @@ ext {
     // App dependencies
     supportLibraryVersion = '24.2.1'
     daggerVersion = '2.5'
-    retrofitVersion = '2.2.0'
-    okHttp3Version = '3.3.1'
+    retrofitVersion = '2.3.0'
+    okHttp3Version = '3.8.0'
     butterKnifeVersion = '8.5.1'
 
     // rxjava dependencies
-    rxjavaVersion = '1.1.8'
-    rxandroidVersion = '1.2.1'
+    rxjavaVersion = '2.0.1'
+    rxandroidVersion = '2.0.1'
 
     junitVersion = '4.12'
     mockitoVersion = '2.6.2'
