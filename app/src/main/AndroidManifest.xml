@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:name=".MifosApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity">
+
+        <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
