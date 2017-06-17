@@ -1,5 +1,7 @@
 package com.mifos.apache.fineract.ui.base;
 
+import android.content.Context;
+
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
@@ -7,7 +9,12 @@ package com.mifos.apache.fineract.ui.base;
  */
 public class BasePresenter<T extends MvpView> implements Presenter<T> {
 
+    protected Context context;
     private T mvpView;
+
+    protected BasePresenter(Context context) {
+        this.context = context;
+    }
 
     @Override
     public void attachView(T mvpView) {
