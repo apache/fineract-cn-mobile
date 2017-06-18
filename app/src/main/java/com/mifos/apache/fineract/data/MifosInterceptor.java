@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.mifos.apache.fineract.MifosApplication;
-import com.mifos.apache.fineract.data.local.PreferenceKey;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 
 import java.io.IOException;
@@ -46,8 +45,8 @@ public class MifosInterceptor implements Interceptor {
         Builder builder = chainRequest.newBuilder();
 
         //TODO fix call single time instead of calling every request
-        String authToken = preferencesHelper.getString(PreferenceKey.ACCESS_TOKEN, "");
-        String tenantIdentifier = preferencesHelper.getString(PreferenceKey.TENANT_IDENTIFIER, "");
+        String authToken = preferencesHelper.getAccessToken();
+        String tenantIdentifier = preferencesHelper.getTenantIdentifier();
 
         builder.header(HEADER_ACCEPT_JSON, "application/json");
         builder.header(HEADER_CONTENT_TYPE, "application/json");
@@ -59,9 +58,6 @@ public class MifosInterceptor implements Interceptor {
         if (!TextUtils.isEmpty(tenantIdentifier)) {
             builder.header(HEADER_TENANT, tenantIdentifier);
         }
-
-        //TODO fix avoid "=" encoding
-        builder.url(chainRequest.url().toString().replace("%3D", "="));
 
         Request request = builder.build();
         return chain.proceed(request);
