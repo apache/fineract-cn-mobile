@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.mifos.apache.fineract.MifosApplication;
-import com.mifos.apache.fineract.data.BaseApiManager;
-import com.mifos.apache.fineract.data.MifosInterceptor;
+import com.mifos.apache.fineract.data.remote.BaseApiManager;
+import com.mifos.apache.fineract.data.remote.MifosInterceptor;
 import com.mifos.apache.fineract.data.datamanager.DataManagerAuth;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.injection.ApplicationContext;

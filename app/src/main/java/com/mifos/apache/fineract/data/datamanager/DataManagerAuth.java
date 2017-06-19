@@ -2,7 +2,7 @@ package com.mifos.apache.fineract.data.datamanager;
 
 import android.util.Base64;
 
-import com.mifos.apache.fineract.data.BaseApiManager;
+import com.mifos.apache.fineract.data.remote.BaseApiManager;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.models.User;
 
@@ -26,6 +26,10 @@ public class DataManagerAuth {
     public DataManagerAuth(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper) {
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
+    }
+
+    public PreferencesHelper getPreferencesHelper() {
+        return preferencesHelper;
     }
 
     public Observable<User> login(String username, String password) {

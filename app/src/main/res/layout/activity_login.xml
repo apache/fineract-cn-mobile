@@ -1,102 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <include layout="@layout/toolbar"/>
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:padding="@dimen/layout_padding_30dp"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/layout_padding_30dp">
 
-            <ImageView
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/mifos_logo_image"
-                android:layout_gravity="center"
-                android:layout_height="@dimen/layout_passing_75dp"
-                android:layout_width="wrap_content"
-                android:src="@drawable/mifos_logo"/>
-
-            <TextView
-                android:gravity="center"
+            <LinearLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:text="@string/enter_you_credentials"/>
+                android:orientation="vertical">
+
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/mifos_logo_image"
+                    android:layout_gravity="center"
+                    android:layout_height="@dimen/layout_passing_75dp"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/mifos_logo"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="@string/enter_you_credentials"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_padding_30dp"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <EditText
+                        style="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:drawableLeft="@drawable/ic_tenant_black_24dp"
+                        android:drawableStart="@drawable/ic_tenant_black_24dp"
+                        android:hint="@string/tenant"
+                        android:id="@+id/et_tenant"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <EditText
+                        style="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:drawableLeft="@drawable/ic_person_black_24dp"
+                        android:drawableStart="@drawable/ic_person_black_24dp"
+                        android:hint="@string/username"
+                        android:id="@+id/et_username"
+                        android:inputType="text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <EditText
+                        style="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:drawableLeft="@drawable/ic_password_black_24dp"
+                        android:drawableStart="@drawable/ic_password_black_24dp"
+                        android:hint="@string/password"
+                        android:id="@+id/et_password"
+                        android:inputType="textPassword"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_padding_15dp"
+                android:layout_width="match_parent"
+                android:text="@string/login"
+            />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_padding_30dp"
-            android:layout_width="match_parent"
-            android:orientation="vertical">
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-
-                <EditText
-                    style="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:drawableLeft="@drawable/ic_tenant_black_24dp"
-                    android:drawableStart="@drawable/ic_tenant_black_24dp"
-                    android:hint="@string/tenant"
-                    android:id="@+id/et_tenant"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-
-                <EditText
-                    style="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:drawableLeft="@drawable/ic_person_black_24dp"
-                    android:drawableStart="@drawable/ic_person_black_24dp"
-                    android:hint="@string/username"
-                    android:id="@+id/et_username"
-                    android:inputType="text"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-
-                <EditText
-                    style="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:drawableLeft="@drawable/ic_password_black_24dp"
-                    android:drawableStart="@drawable/ic_password_black_24dp"
-                    android:hint="@string/password"
-                    android:id="@+id/et_password"
-                    android:inputType="textPassword"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layout_padding_15dp"
-            android:layout_width="match_parent"
-            android:text="@string/login"
-        />
-
-    </LinearLayout>
-
-</android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

@@ -3,7 +3,7 @@ package com.mifos.apache.fineract.injection.module;
 import android.app.Application;
 import android.content.Context;
 
-import com.mifos.apache.fineract.data.BaseApiManager;
+import com.mifos.apache.fineract.data.remote.BaseApiManager;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 
 import javax.inject.Singleton;

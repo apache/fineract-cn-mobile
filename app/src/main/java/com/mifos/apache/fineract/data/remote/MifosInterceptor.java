@@ -3,7 +3,7 @@
  * See https://github.com/openMF/android-client/blob/master/LICENSE.md
  */
 
-package com.mifos.apache.fineract.data;
+package com.mifos.apache.fineract.data.remote;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

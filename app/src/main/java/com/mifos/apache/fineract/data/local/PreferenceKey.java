@@ -7,6 +7,8 @@ package com.mifos.apache.fineract.data.local;
 
 public class PreferenceKey {
 
-    public static final String TENANT_IDENTIFIER = "tenant_identifier";
-    public static final String ACCESS_TOKEN = "access_token";
+    public static final String PREF_MIFOS = "preferences_mifos";
+    public static final String PREF_KEY_TENANT_IDENTIFIER = "PREF_KEY_TENANT_IDENTIFIER";
+    public static final String PREF_KEY_ACCESS_TOKEN = "PREF_KEY_ACCESS_TOKEN";
+    public static final String PREF_KEY_SIGNED_IN_USER = "PREF_KEY_SIGNED_IN_USER";
 }

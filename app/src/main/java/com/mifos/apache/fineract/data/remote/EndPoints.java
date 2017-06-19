@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.data;
+package com.mifos.apache.fineract.data.remote;
 
 /**
  * @author Rajan Maurya
