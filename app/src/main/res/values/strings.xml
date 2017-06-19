@@ -10,6 +10,10 @@
     <string name="welcome">Welcome</string>
     <string name="no_internet_connection">No Internet Connection!</string>
     <string name="wrong_username_or_password">Wrong username or password</string>
+    <string name="customer">Customer</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
 
     <!--Required Field-->
     <string name="error_tenant_identifier_required">Tenant identifier required</string>

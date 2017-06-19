@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.login.LoginActivity;
-import com.mifos.apache.fineract.ui.main.MainActivity;
 
 import javax.inject.Inject;
 
@@ -25,7 +24,7 @@ public class LauncherActivity extends MifosBaseActivity {
         getActivityComponent().inject(this);
         Intent intent;
         if (preferencesHelper.getAccessToken() != null) {
-            intent = new Intent(this, MainActivity.class);
+            intent = new Intent(this, DashboardActivity.class);
         } else {
             intent = new Intent(this, LoginActivity.class);
         }
