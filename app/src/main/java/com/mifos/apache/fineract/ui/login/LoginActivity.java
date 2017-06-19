@@ -1,15 +1,16 @@
 package com.mifos.apache.fineract.ui.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.local.PreferenceKey;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.models.User;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
+import com.mifos.apache.fineract.ui.main.MainActivity;
 
 import javax.inject.Inject;
 
@@ -46,6 +47,7 @@ public class LoginActivity extends MifosBaseActivity implements LoginContract.Vi
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         loginPresenter.attachView(this);
+        setActionBarTitle(getString(R.string.mifos_account));
     }
 
     @OnClick(R.id.btn_login)
@@ -53,7 +55,7 @@ public class LoginActivity extends MifosBaseActivity implements LoginContract.Vi
 
         String tenantIdentifier = etTenant.getEditableText().toString();
         if (!TextUtils.isEmpty(tenantIdentifier)) {
-            preferencesHelper.putString(PreferenceKey.TENANT_IDENTIFIER, tenantIdentifier);
+            preferencesHelper.putTenantIdentifier(tenantIdentifier);
         } else {
             etTenant.setError(getString(R.string.error_tenant_identifier_required));
             return;
@@ -76,7 +78,11 @@ public class LoginActivity extends MifosBaseActivity implements LoginContract.Vi
 
     @Override
     public void showUserLoginSuccessfully(User user) {
-        Toast.makeText(this, user.getAccessToken(), Toast.LENGTH_LONG).show();
+        preferencesHelper.putAccessToken(user.getAccessToken());
+        preferencesHelper.putSignInUser(user);
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
+        Toast.makeText(this, getString(R.string.welcome), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -86,17 +92,18 @@ public class LoginActivity extends MifosBaseActivity implements LoginContract.Vi
 
     @Override
     public void showProgressDialog() {
-        //TODO Initialize Progress Dialog in the BaseActivity and access here.
+        showMifosProgressDialog(getString(R.string.logging_in));
     }
 
     @Override
     public void hideProgressDialog() {
-        //TODO Initialize Progress Dialog in the BaseActivity and access here.
+        hideMifosProgressDialog();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        hideMifosProgressDialog();
         loginPresenter.detachView();
     }
 }

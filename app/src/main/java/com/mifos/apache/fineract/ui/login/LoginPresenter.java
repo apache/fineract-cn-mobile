@@ -1,12 +1,20 @@
 package com.mifos.apache.fineract.ui.login;
 
-import android.content.Context;
+import static com.mifos.apache.fineract.data.remote.BaseApiManager.retrofit;
 
+import android.content.Context;
+import android.util.Log;
+
+import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.datamanager.DataManagerAuth;
 import com.mifos.apache.fineract.data.models.User;
+import com.mifos.apache.fineract.data.models.error.MifosError;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.injection.ConfigPersistent;
 import com.mifos.apache.fineract.ui.base.BasePresenter;
+
+import java.io.IOException;
+import java.lang.annotation.Annotation;
 
 import javax.inject.Inject;
 
@@ -14,6 +22,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
+import retrofit2.HttpException;
+import retrofit2.Response;
 
 /**
  * @author Rajan Maurya
@@ -22,6 +34,8 @@ import io.reactivex.schedulers.Schedulers;
 @ConfigPersistent
 public class LoginPresenter extends BasePresenter<LoginContract.View>
         implements LoginContract.Presenter {
+
+    private static final String LOG_TAG = LoginPresenter.class.getSimpleName();
 
     private DataManagerAuth dataManagerAuth;
     private CompositeDisposable compositeDisposable;
@@ -59,10 +73,35 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressDialog();
-                        //TODO extract server generic type of error
-                        getMvpView().showError("failed to login");
+                        if (throwable instanceof IOException) {
+                            getMvpView().showError(
+                                    context.getString(R.string.no_internet_connection));
+                        }
+
+                        MifosError mifosError = new MifosError();
+                        Converter<ResponseBody, MifosError> errorConverter =
+                                retrofit.responseBodyConverter(MifosError.class, new Annotation[0]);
+                        if (throwable instanceof HttpException) {
+                            HttpException httpException = (HttpException) throwable;
+                            Response response = httpException.response();
+
+                            if (response.errorBody() != null) {
+                                try {
+                                    mifosError = errorConverter.convert(response.errorBody());
+                                } catch (IOException e) {
+                                    Log.d(LOG_TAG, e.getLocalizedMessage());
+                                }
+                            }
+
+                            if (mifosError.getMessage() == null) {
+                                getMvpView().showError(
+                                        context.getString(R.string.wrong_username_or_password));
+                            } else {
+                                getMvpView().showError(mifosError.getMessage());
+                            }
+                        }
                     }
 
                     @Override

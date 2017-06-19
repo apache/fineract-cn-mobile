@@ -2,7 +2,11 @@ package com.mifos.apache.fineract.data.local;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.Nullable;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.mifos.apache.fineract.data.models.User;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 
 import javax.inject.Inject;
@@ -11,13 +15,15 @@ import javax.inject.Singleton;
 @Singleton
 public class PreferencesHelper {
 
-    public static final String PREF_MIFOS = "preferences_mifos";
-
     private final SharedPreferences preferences;
+    private final Gson gson;
 
     @Inject
     public PreferencesHelper(@ApplicationContext Context context) {
-        preferences = context.getSharedPreferences(PREF_MIFOS, Context.MODE_PRIVATE);
+        preferences = context.getSharedPreferences(PreferenceKey.PREF_MIFOS, Context.MODE_PRIVATE);
+        gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSz")
+                .create();
     }
 
     public SharedPreferences getPreferences() {
@@ -66,5 +72,35 @@ public class PreferencesHelper {
 
     public void putString(String preferenceKey, String preferenceValue) {
         getPreferences().edit().putString(preferenceKey, preferenceValue).apply();
+    }
+
+    public void putAccessToken(String accessToken) {
+        getPreferences().edit().putString(PreferenceKey.PREF_KEY_ACCESS_TOKEN, accessToken).apply();
+    }
+
+    @Nullable
+    public String getAccessToken() {
+        return getPreferences().getString(PreferenceKey.PREF_KEY_ACCESS_TOKEN, null);
+    }
+
+    public void putTenantIdentifier(String tenantIdentifier) {
+        getPreferences().edit().putString(PreferenceKey.PREF_KEY_TENANT_IDENTIFIER,
+                tenantIdentifier).apply();
+    }
+
+    public String getTenantIdentifier() {
+        return getPreferences().getString(PreferenceKey.PREF_KEY_TENANT_IDENTIFIER, null);
+    }
+
+    public void putSignInUser(User user) {
+        getPreferences().edit().putString(PreferenceKey.PREF_KEY_SIGNED_IN_USER,
+                gson.toJson(user)).apply();
+    }
+
+    @Nullable
+    public User getSignedInUser() {
+        String userJson = getPreferences().getString(PreferenceKey.PREF_KEY_SIGNED_IN_USER, null);
+        if (userJson == null) return null;
+        return gson.fromJson(userJson, User.class);
     }
 }

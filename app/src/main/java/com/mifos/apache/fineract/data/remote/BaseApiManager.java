@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.data;
+package com.mifos.apache.fineract.data.remote;
 
 import android.content.Context;
 
@@ -9,6 +9,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 
 /**
@@ -17,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class BaseApiManager {
 
-    private static Retrofit retrofit;
+    public static Retrofit retrofit;
     private static AuthService authApi;
 
     public BaseApiManager(Context context) {
@@ -44,6 +45,8 @@ public class BaseApiManager {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(BaseUrl.getDefaultBaseUrl())
+                .addConverterFactory(new NullOnEmptyConverterFactory())
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(okHttpClient)

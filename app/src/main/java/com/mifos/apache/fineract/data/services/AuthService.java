@@ -1,7 +1,7 @@
 package com.mifos.apache.fineract.data.services;
 
 
-import com.mifos.apache.fineract.data.EndPoints;
+import com.mifos.apache.fineract.data.remote.EndPoints;
 import com.mifos.apache.fineract.data.models.User;
 
 import io.reactivex.Observable;
