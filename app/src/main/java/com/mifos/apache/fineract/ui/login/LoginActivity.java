@@ -8,9 +8,9 @@ import android.widget.Toast;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
-import com.mifos.apache.fineract.data.models.User;
+import com.mifos.apache.fineract.data.models.Authentication;
+import com.mifos.apache.fineract.ui.DashboardActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
-import com.mifos.apache.fineract.ui.main.MainActivity;
 
 import javax.inject.Inject;
 
@@ -77,10 +77,11 @@ public class LoginActivity extends MifosBaseActivity implements LoginContract.Vi
     }
 
     @Override
-    public void showUserLoginSuccessfully(User user) {
+    public void showUserLoginSuccessfully(Authentication user) {
         preferencesHelper.putAccessToken(user.getAccessToken());
         preferencesHelper.putSignInUser(user);
-        startActivity(new Intent(this, MainActivity.class));
+        preferencesHelper.putUserName(etUsername.getEditableText().toString().trim());
+        startActivity(new Intent(this, DashboardActivity.class));
         finish();
         Toast.makeText(this, getString(R.string.welcome), Toast.LENGTH_LONG).show();
     }

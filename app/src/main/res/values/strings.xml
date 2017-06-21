@@ -14,15 +14,20 @@
     <string name="dashboard">Dashboard</string>
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
+    <string name="customers">Customers</string>
+
 
     <!--Required Field-->
     <string name="error_tenant_identifier_required">Tenant identifier required</string>
     <string name="error_username_required">Username required</string>
     <string name="error_password_required">Password required</string>
+    <string name="error_message_server">Error loading response from server</string>
 
     <!--Image Content description-->
     <!--Don't need to translate these strings-->
     <string name="mifos_logo_image">Mifos logo image</string>
+    <string name="status_image">Status Image</string>
+    <string name="customer_image">Customer image</string>
 
     <!--Progress Dialog Message-->
     <string name="please_wait">Please wait &#8230;</string>

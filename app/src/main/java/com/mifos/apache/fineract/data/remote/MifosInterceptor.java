@@ -31,6 +31,7 @@ public class MifosInterceptor implements Interceptor {
     private static final String HEADER_AUTH = "Authorization";
     private static final String HEADER_ACCEPT_JSON = "Accept";
     private static final String HEADER_CONTENT_TYPE = "Content-type";
+    private static final String HEADER_USER = "User";
 
     @Inject
     PreferencesHelper preferencesHelper;
@@ -47,6 +48,7 @@ public class MifosInterceptor implements Interceptor {
         //TODO fix call single time instead of calling every request
         String authToken = preferencesHelper.getAccessToken();
         String tenantIdentifier = preferencesHelper.getTenantIdentifier();
+        String user = preferencesHelper.getUserName();
 
         builder.header(HEADER_ACCEPT_JSON, "application/json");
         builder.header(HEADER_CONTENT_TYPE, "application/json");
@@ -57,6 +59,10 @@ public class MifosInterceptor implements Interceptor {
 
         if (!TextUtils.isEmpty(tenantIdentifier)) {
             builder.header(HEADER_TENANT, tenantIdentifier);
+        }
+
+        if (!TextUtils.isEmpty(user)) {
+            builder.header(HEADER_USER, user);
         }
 
         Request request = builder.build();

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.mifos.apache.fineract.MifosApplication;
+import com.mifos.apache.fineract.data.datamanager.DataManagerCustomer;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 import com.mifos.apache.fineract.data.remote.MifosInterceptor;
 import com.mifos.apache.fineract.data.datamanager.DataManagerAuth;
@@ -23,6 +24,7 @@ public interface ApplicationComponent {
     Context context();
     Application application();
     DataManagerAuth dataManager();
+    DataManagerCustomer dataManagerCustomer();
     BaseApiManager baseApiManager();
     PreferencesHelper preferencesHelper();
 

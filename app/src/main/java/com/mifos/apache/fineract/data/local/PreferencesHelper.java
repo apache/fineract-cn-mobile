@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.mifos.apache.fineract.data.models.User;
+import com.mifos.apache.fineract.data.models.Authentication;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 
 import javax.inject.Inject;
@@ -92,15 +92,23 @@ public class PreferencesHelper {
         return getPreferences().getString(PreferenceKey.PREF_KEY_TENANT_IDENTIFIER, null);
     }
 
-    public void putSignInUser(User user) {
+    public void putSignInUser(Authentication user) {
         getPreferences().edit().putString(PreferenceKey.PREF_KEY_SIGNED_IN_USER,
                 gson.toJson(user)).apply();
     }
 
     @Nullable
-    public User getSignedInUser() {
+    public Authentication getSignedInUser() {
         String userJson = getPreferences().getString(PreferenceKey.PREF_KEY_SIGNED_IN_USER, null);
         if (userJson == null) return null;
-        return gson.fromJson(userJson, User.class);
+        return gson.fromJson(userJson, Authentication.class);
+    }
+
+    public void putUserName(String username) {
+        getPreferences().edit().putString(PreferenceKey.PREF_KEY_USER_NAME, username).apply();
+    }
+
+    public String getUserName() {
+        return getPreferences().getString(PreferenceKey.PREF_KEY_USER_NAME, null);
     }
 }

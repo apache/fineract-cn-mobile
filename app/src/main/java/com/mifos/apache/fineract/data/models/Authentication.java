@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
  * @author Rajan Maurya
  *         On 17/06/17.
  */
-public class User implements Parcelable {
+public class Authentication implements Parcelable {
 
     @SerializedName("tokenType")
     String tokenType;
@@ -81,10 +81,10 @@ public class User implements Parcelable {
         dest.writeString(this.passwordExpiration);
     }
 
-    public User() {
+    public Authentication() {
     }
 
-    protected User(Parcel in) {
+    protected Authentication(Parcel in) {
         this.tokenType = in.readString();
         this.accessToken = in.readString();
         this.accessTokenExpiration = in.readString();
@@ -92,15 +92,16 @@ public class User implements Parcelable {
         this.passwordExpiration = in.readString();
     }
 
-    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel source) {
-            return new User(source);
-        }
+    public static final Parcelable.Creator<Authentication> CREATOR =
+            new Parcelable.Creator<Authentication>() {
+                @Override
+                public Authentication createFromParcel(Parcel source) {
+                    return new Authentication(source);
+                }
 
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
+                @Override
+                public Authentication[] newArray(int size) {
+                    return new Authentication[size];
+                }
+            };
 }

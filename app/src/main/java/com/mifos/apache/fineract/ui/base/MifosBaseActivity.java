@@ -3,6 +3,9 @@ package com.mifos.apache.fineract.ui.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -147,5 +150,41 @@ public class MifosBaseActivity extends AppCompatActivity implements BaseActivity
     @Override
     public void logout() {
 
+    }
+
+    /**
+     * Replace Fragment in FrameLayout Container.
+     *
+     * @param fragment Fragment
+     * @param addToBackStack Add to BackStack
+     * @param containerId Container Id
+     */
+    public void replaceFragment(Fragment fragment, boolean addToBackStack, int containerId) {
+        invalidateOptionsMenu();
+        String backStateName = fragment.getClass().getName();
+        boolean fragmentPopped = getSupportFragmentManager().popBackStackImmediate(backStateName,
+                0);
+
+        if (!fragmentPopped && getSupportFragmentManager().findFragmentByTag(backStateName) ==
+                null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(containerId, fragment, backStateName);
+            if (addToBackStack) {
+                transaction.addToBackStack(backStateName);
+            }
+            transaction.commit();
+        }
+    }
+
+    public void clearFragmentBackStack() {
+        FragmentManager fm = getSupportFragmentManager();
+        int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
+        for (int i = 0; i < backStackCount; i++) {
+            int backStackId = getSupportFragmentManager().getBackStackEntryAt(i).getId();
+            fm.popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
+    public int stackCount() {
+        return getSupportFragmentManager().getBackStackEntryCount();
     }
 }
