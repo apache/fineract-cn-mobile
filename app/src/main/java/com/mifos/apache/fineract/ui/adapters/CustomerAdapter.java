@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.injection.ApplicationContext;
+import com.mifos.apache.fineract.utils.TextDrawable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,12 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Customer customer = customers.get(position);
-        holder.tvCustomerName.setText(customer.getGivenName());
+        holder.tvCustomerName.setText(customer.getGivenName() + " " + customer.getSurname());
+        holder.tvCustomerStatus.setText(customer.getCurrentState());
+
+        TextDrawable drawable = TextDrawable.builder()
+                .buildRound(customer.getGivenName().substring(0, 1), R.color.colorPrimary);
+        holder.ivCustomerImage.setImageDrawable(drawable);
     }
 
     @Override
@@ -60,17 +66,14 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.iv_customer_image)
+        @BindView(R.id.iv_customer_picture)
         ImageView ivCustomerImage;
-
-        @BindView(R.id.iv_customer_status)
-        ImageView ivCustomerStatus;
 
         @BindView(R.id.tv_customer_name)
         TextView tvCustomerName;
 
-        @BindView(R.id.tv_account_number)
-        TextView tvAccountNumber;
+        @BindView(R.id.tv_customer_status)
+        TextView tvCustomerStatus;
 
         public ViewHolder(View v) {
             super(v);

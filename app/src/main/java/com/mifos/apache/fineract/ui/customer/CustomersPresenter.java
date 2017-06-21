@@ -27,7 +27,7 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
     private CompositeDisposable compositeDisposable;
 
     @Inject
-    private CustomersPresenter(@ApplicationContext Context context,
+    public CustomersPresenter(@ApplicationContext Context context,
             DataManagerCustomer dataManager) {
         super(context);
         dataManagerCustomer = dataManager;

@@ -27,6 +27,7 @@
     <!--Don't need to translate these strings-->
     <string name="mifos_logo_image">Mifos logo image</string>
     <string name="status_image">Status Image</string>
+    <string name="customer_image">Customer image</string>
 
     <!--Progress Dialog Message-->
     <string name="please_wait">Please wait &#8230;</string>

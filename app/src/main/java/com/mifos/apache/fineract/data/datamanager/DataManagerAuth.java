@@ -38,6 +38,6 @@ public class DataManagerAuth {
     }
 
     public Observable<Authentication> refreshToken() {
-        return baseApiManager.getAuthApi().refreshToken();
+        return baseApiManager.getAuthApi().refreshToken(preferencesHelper.getAccessToken());
     }
 }

@@ -33,6 +33,8 @@
     <color name="blue_bright">#ff00ddff</color>
     <!-- A really bright Holo shade of gray -->
     <color name="gray_bright">#33CCCCCC</color>
+    <!--Black-->
+    <color name="black">#000000</color>
 
 
     <!--Swipe Refresh Colors-->

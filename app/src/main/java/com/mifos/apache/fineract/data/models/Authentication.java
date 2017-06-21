@@ -92,15 +92,16 @@ public class Authentication implements Parcelable {
         this.passwordExpiration = in.readString();
     }
 
-    public static final Parcelable.Creator<Authentication> CREATOR = new Parcelable.Creator<Authentication>() {
-        @Override
-        public Authentication createFromParcel(Parcel source) {
-            return new Authentication(source);
-        }
+    public static final Parcelable.Creator<Authentication> CREATOR =
+            new Parcelable.Creator<Authentication>() {
+                @Override
+                public Authentication createFromParcel(Parcel source) {
+                    return new Authentication(source);
+                }
 
-        @Override
-        public Authentication[] newArray(int size) {
-            return new Authentication[size];
-        }
-    };
+                @Override
+                public Authentication[] newArray(int size) {
+                    return new Authentication[size];
+                }
+            };
 }

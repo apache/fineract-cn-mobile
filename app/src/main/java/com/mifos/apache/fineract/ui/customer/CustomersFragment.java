@@ -103,7 +103,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
 
     @Override
     public void onRefresh() {
-
+        customerPresenter.fetchCustomers(0, 50);
     }
 
     @Override

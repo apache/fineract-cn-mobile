@@ -17,16 +17,16 @@ import android.widget.RelativeLayout.LayoutParams;
  */
 public class ProgressBarHandler {
 
-    private ProgressBar mProgressBar;
-    private Context mContext;
+    private ProgressBar progressBar;
+    private Context context;
 
     public ProgressBarHandler(Context context) {
-        mContext = context;
+        this.context = context;
 
         ViewGroup layout = (ViewGroup) ((Activity) context).findViewById(id.content).getRootView();
 
-        mProgressBar = new ProgressBar(context, null, attr.progressBarStyleInverse);
-        mProgressBar.setIndeterminate(true);
+        progressBar = new ProgressBar(context, null, attr.progressBarStyleInverse);
+        progressBar.setIndeterminate(true);
 
         LayoutParams params = new
                 LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
@@ -34,7 +34,7 @@ public class ProgressBarHandler {
         RelativeLayout rl = new RelativeLayout(context);
 
         rl.setGravity(Gravity.CENTER);
-        rl.addView(mProgressBar);
+        rl.addView(progressBar);
 
         layout.addView(rl, params);
 
@@ -42,10 +42,10 @@ public class ProgressBarHandler {
     }
 
     public void show() {
-        mProgressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     public void hide() {
-        mProgressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.INVISIBLE);
     }
 }
