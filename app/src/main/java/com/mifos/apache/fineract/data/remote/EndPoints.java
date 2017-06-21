@@ -12,6 +12,7 @@ public class EndPoints {
      * <- This section manage the different type of end points
      */
     public static final String API_IDENTITY_PATH = "/identity/v1";
+    public static final String API_CUSTOMER_PATH = "/api/customer/v1";
 
 
 }
