@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
+import com.mifos.apache.fineract.ui.customer.CustomersFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,7 +71,15 @@ public class DashboardActivity extends MifosBaseActivity implements
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        clearFragmentBackStack();
+
+        switch (item.getItemId()) {
+            case R.id.item_customer:
+                replaceFragment(CustomersFragment.newInstance(), true, R.id.container);
+                break;
+        }
         drawerLayout.closeDrawer(Gravity.START);
+        setTitle(item.getTitle());
         return true;
     }
 

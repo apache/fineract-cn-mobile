@@ -103,4 +103,12 @@ public class PreferencesHelper {
         if (userJson == null) return null;
         return gson.fromJson(userJson, User.class);
     }
+
+    public void putUserName(String username) {
+        getPreferences().edit().putString(PreferenceKey.PREF_KEY_USER_NAME, username).apply();
+    }
+
+    public String getUserName() {
+        return getPreferences().getString(PreferenceKey.PREF_KEY_USER_NAME, null);
+    }
 }
