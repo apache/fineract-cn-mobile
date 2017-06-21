@@ -2,9 +2,9 @@ package com.mifos.apache.fineract.data.datamanager;
 
 import android.util.Base64;
 
+import com.mifos.apache.fineract.data.models.Authentication;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
-import com.mifos.apache.fineract.data.models.User;
 
 import java.nio.charset.Charset;
 
@@ -32,8 +32,12 @@ public class DataManagerAuth {
         return preferencesHelper;
     }
 
-    public Observable<User> login(String username, String password) {
+    public Observable<Authentication> login(String username, String password) {
         return baseApiManager.getAuthApi().login(username,
                 Base64.encodeToString(password.getBytes(Charset.forName("UTF-8")), Base64.NO_WRAP));
+    }
+
+    public Observable<Authentication> refreshToken() {
+        return baseApiManager.getAuthApi().refreshToken();
     }
 }

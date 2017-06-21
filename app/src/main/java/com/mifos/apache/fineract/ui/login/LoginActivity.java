@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
-import com.mifos.apache.fineract.data.models.User;
+import com.mifos.apache.fineract.data.models.Authentication;
 import com.mifos.apache.fineract.ui.DashboardActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 
@@ -77,7 +77,7 @@ public class LoginActivity extends MifosBaseActivity implements LoginContract.Vi
     }
 
     @Override
-    public void showUserLoginSuccessfully(User user) {
+    public void showUserLoginSuccessfully(Authentication user) {
         preferencesHelper.putAccessToken(user.getAccessToken());
         preferencesHelper.putSignInUser(user);
         preferencesHelper.putUserName(etUsername.getEditableText().toString().trim());

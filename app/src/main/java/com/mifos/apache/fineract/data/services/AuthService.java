@@ -1,8 +1,8 @@
 package com.mifos.apache.fineract.data.services;
 
 
+import com.mifos.apache.fineract.data.models.Authentication;
 import com.mifos.apache.fineract.data.remote.EndPoints;
-import com.mifos.apache.fineract.data.models.User;
 
 import io.reactivex.Observable;
 import retrofit2.http.POST;
@@ -15,7 +15,10 @@ import retrofit2.http.Query;
 public interface AuthService {
 
     @POST(EndPoints.API_IDENTITY_PATH + "/token?grant_type=password")
-    Observable<User> login(
+    Observable<Authentication> login(
             @Query("username") String username,
             @Query("password") String password);
+
+    @POST(EndPoints.API_IDENTITY_PATH + "/token?grant_type=refresh_token")
+    Observable<Authentication> refreshToken(@Query("Identity-RefreshToken") String refreshToken);
 }

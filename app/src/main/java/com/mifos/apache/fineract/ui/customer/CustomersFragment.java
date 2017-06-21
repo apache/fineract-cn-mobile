@@ -118,12 +118,12 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
 
     @Override
     public void showProgressbar() {
-
+        swipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hideProgressbar() {
-
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override

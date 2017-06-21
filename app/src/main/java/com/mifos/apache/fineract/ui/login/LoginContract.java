@@ -1,6 +1,6 @@
 package com.mifos.apache.fineract.ui.login;
 
-import com.mifos.apache.fineract.data.models.User;
+import com.mifos.apache.fineract.data.models.Authentication;
 import com.mifos.apache.fineract.ui.base.MvpView;
 
 /**
@@ -12,7 +12,7 @@ public interface LoginContract {
 
     interface View extends MvpView {
 
-        void showUserLoginSuccessfully(User user);
+        void showUserLoginSuccessfully(Authentication user);
 
         void showError(String errorMessage);
 

@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.datamanager.DataManagerAuth;
-import com.mifos.apache.fineract.data.models.User;
+import com.mifos.apache.fineract.data.models.Authentication;
 import com.mifos.apache.fineract.data.models.error.MifosError;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.injection.ConfigPersistent;
@@ -65,9 +65,9 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
         compositeDisposable.add(dataManagerAuth.login(username, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<User>() {
+                .subscribeWith(new DisposableObserver<Authentication>() {
                     @Override
-                    public void onNext(User user) {
+                    public void onNext(Authentication user) {
                         getMvpView().hideProgressDialog();
                         getMvpView().showUserLoginSuccessfully(user);
                     }
