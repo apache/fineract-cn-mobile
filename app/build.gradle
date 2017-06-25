@@ -29,6 +29,16 @@ android {
         }
     }
 
+    sourceSets {
+        def commonTestDir = 'src/commonTest/java'
+        androidTest {
+            java.srcDir commonTestDir
+        }
+        test {
+            java.srcDir commonTestDir
+        }
+    }
+
     // Always show the result of every unit test, even if it passes.
     testOptions.unitTests.all {
         testLogging {
