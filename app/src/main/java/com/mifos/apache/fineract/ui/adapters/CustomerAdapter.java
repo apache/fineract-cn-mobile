@@ -1,6 +1,7 @@
 package com.mifos.apache.fineract.ui.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,8 @@ import android.widget.TextView;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.injection.ApplicationContext;
-import com.mifos.apache.fineract.utils.TextDrawable;
+import com.mifos.apache.fineract.ui.base.OnItemClickListener;
+import com.mifos.apache.fineract.ui.views.TextDrawable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +31,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
 
     private Context context;
     private List<Customer> customers;
+    public OnItemClickListener onItemClickListener;
 
     @Inject
     public CustomerAdapter(@ApplicationContext Context context) {
@@ -64,7 +67,12 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         notifyDataSetChanged();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        onItemClickListener = itemClickListener;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
+            View.OnLongClickListener {
 
         @BindView(R.id.iv_customer_picture)
         ImageView ivCustomerImage;
@@ -75,9 +83,24 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
         @BindView(R.id.tv_customer_status)
         TextView tvCustomerStatus;
 
+        @BindView(R.id.cv_customer)
+        CardView cvCustomer;
+
         public ViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
+            cvCustomer.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            onItemClickListener.onItemClick(v, getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            onItemClickListener.onItemLongPress(v, getAdapterPosition());
+            return true;
         }
     }
 }

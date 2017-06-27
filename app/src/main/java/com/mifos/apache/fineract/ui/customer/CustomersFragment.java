@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,11 +14,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
 import com.mifos.apache.fineract.ui.adapters.CustomerAdapter;
 import com.mifos.apache.fineract.ui.base.EndlessRecyclerViewScrollListener;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
+import com.mifos.apache.fineract.ui.base.OnItemClickListener;
+import com.mifos.apache.fineract.ui.customerdetails.CustomerDetailsActivity;
+import com.mifos.apache.fineract.utils.ConstantKeys;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -29,7 +37,7 @@ import butterknife.ButterKnife;
  *         On 20/06/17.
  */
 public class CustomersFragment extends MifosBaseFragment implements CustomersContract.View,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @BindView(R.id.rv_customers)
     RecyclerView rvCustomers;
@@ -54,6 +62,8 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     @Inject
     CustomerAdapter customerAdapter;
 
+    private List<Customer> customers;
+
     public static CustomersFragment newInstance() {
         CustomersFragment fragment = new CustomersFragment();
         Bundle args = new Bundle();
@@ -65,6 +75,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        customers = new ArrayList<>();
     }
 
     @Override
@@ -88,6 +99,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvCustomers.setLayoutManager(layoutManager);
         rvCustomers.setHasFixedSize(true);
+        customerAdapter.setOnItemClickListener(this);
         rvCustomers.setAdapter(customerAdapter);
         swipeRefreshLayout.setColorSchemeColors(getActivity()
                 .getResources().getIntArray(R.array.swipeRefreshColors));
@@ -108,6 +120,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
 
     @Override
     public void showCustomers(CustomerPage customerPage) {
+        customers = customerPage.getCustomers();
         customerAdapter.setCustomers(customerPage.getCustomers());
     }
 
@@ -135,5 +148,18 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     public void onDestroyView() {
         super.onDestroyView();
         customerPresenter.detachView();
+    }
+
+    @Override
+    public void onItemClick(View childView, int position) {
+        Intent customerDetailsIntent = new Intent(getActivity(), CustomerDetailsActivity.class);
+        customerDetailsIntent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER,
+                customers.get(position).getIdentifier());
+        startActivity(customerDetailsIntent);
+    }
+
+    @Override
+    public void onItemLongPress(View childView, int position) {
+
     }
 }

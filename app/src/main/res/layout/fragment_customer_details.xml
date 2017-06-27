@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/gray_light"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:background="@color/white"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/cv_customer"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_current_status"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:text="@string/current_status"/>
+
+                    <TextView
+                        android:drawableLeft="@drawable/ic_check_circle_black_24dp"
+                        android:drawablePadding="@dimen/layout_padding_4dp"
+                        android:drawableStart="@drawable/ic_check_circle_black_24dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/layout_padding_4dp"
+                        android:text="Active"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_address"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/layout_padding_16dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:text="@string/address"/>
+
+                    <TextView
+                        android:drawableLeft="@drawable/ic_place_black_24dp"
+                        android:drawablePadding="@dimen/layout_padding_4dp"
+                        android:drawableStart="@drawable/ic_place_black_24dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/layout_padding_4dp"
+                        android:text="Lärchenhof 7, Nickenich, 56645, Germany"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_contact_info"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/layout_padding_16dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:text="@string/contact_information"/>
+
+                    <TextView
+                        android:drawableLeft="@drawable/ic_email_black_24dp"
+                        android:drawablePadding="@dimen/layout_padding_4dp"
+                        android:drawableStart="@drawable/ic_email_black_24dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/layout_padding_4dp"
+                        android:paddingBottom="@dimen/layout_padding_4dp"
+                        android:text="example@gmail.com"/>
+
+                    <TextView
+                        android:drawableLeft="@drawable/ic_smartphone_black_24dp"
+                        android:drawablePadding="@dimen/layout_padding_4dp"
+                        android:drawableStart="@drawable/ic_smartphone_black_24dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/layout_padding_4dp"
+                        android:paddingBottom="@dimen/layout_padding_4dp"
+                        android:text="PrefixOperator - NoTelp"/>
+
+                    <TextView
+                        android:drawableLeft="@drawable/ic_phone_black_24dp"
+                        android:drawablePadding="@dimen/layout_padding_4dp"
+                        android:drawableStart="@drawable/ic_phone_black_24dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/layout_padding_4dp"
+                        android:text="KodeArea - Notelp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_birthday"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/layout_padding_16dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="@dimen/text_size_12sp"
+                        tools:text="Address"/>
+
+                    <TextView
+                        android:drawableLeft="@drawable/ic_cake_black_24dp"
+                        android:drawablePadding="@dimen/layout_padding_4dp"
+                        android:drawableStart="@drawable/ic_cake_black_24dp"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/layout_padding_4dp"
+                        tools:text="1974-7-18"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:paddingTop="@dimen/layout_padding_16dp"
+            android:paddingStart="@dimen/layout_padding_8dp"
+            android:paddingLeft="@dimen/layout_padding_8dp"
+            android:paddingBottom="@dimen/layout_padding_8dp"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp"
+            android:text="@string/financial_products" />
+
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:background="@color/white"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/cv_financial_products"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_loan_accounts"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+                    <com.mifos.apache.fineract.ui.views.CircularImageView
+                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_gravity="center"
+                        android:background="@color/gray_light"
+                        app:srcCompat="@drawable/ic_payment_black_24dp"/>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:layout_marginStart="@dimen/layout_padding_8dp"
+                        android:layout_marginLeft="@dimen/layout_padding_8dp">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/loan_accounts"/>
+
+                        <TextView
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:text="@string/manage_loan_accounts"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_deposit_accounts"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/layout_padding_8dp">
+
+                    <com.mifos.apache.fineract.ui.views.CircularImageView
+                        android:layout_height="50dp"
+                        android:layout_width="50dp"
+                        android:layout_gravity="center"
+                        android:background="@color/gray_light"
+                        app:srcCompat="@drawable/ic_attach_money_black_24dp"/>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:layout_marginStart="@dimen/layout_padding_8dp"
+                        android:layout_marginLeft="@dimen/layout_padding_8dp">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/deposit_accounts"/>
+
+                        <TextView
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/text_size_12sp"
+                            android:text="@string/manage_deposit_accounts"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
