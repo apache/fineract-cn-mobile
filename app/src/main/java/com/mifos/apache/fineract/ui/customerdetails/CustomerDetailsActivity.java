@@ -15,7 +15,7 @@ public class CustomerDetailsActivity extends MifosBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_detail);
+        setContentView(R.layout.activity_global_container);
 
         String identifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
 
