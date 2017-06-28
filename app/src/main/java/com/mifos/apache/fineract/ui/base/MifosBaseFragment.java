@@ -34,11 +34,11 @@ public class MifosBaseFragment extends Fragment {
         callback.setToolbarTitle(title);
     }
 
-    protected void showProgressBar() {
+    protected void showMifosProgressBar() {
         progressBarHandler.show();
     }
 
-    protected void hideProgressBar() {
+    protected void hideMifosProgressBar() {
         progressBarHandler.hide();
     }
 

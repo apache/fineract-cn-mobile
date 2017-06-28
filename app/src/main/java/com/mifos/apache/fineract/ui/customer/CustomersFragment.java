@@ -48,10 +48,10 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     @BindView(R.id.rl_error)
     RelativeLayout rlError;
 
-    @BindView(R.id.iv_status)
-    ImageView ivStatus;
+    @BindView(R.id.iv_retry)
+    ImageView ivRetry;
 
-    @BindView(R.id.tv_status)
+    @BindView(R.id.tv_error)
     TextView tvStatus;
 
     View rootView;

@@ -2,23 +2,24 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/iv_status"
+        android:id="@+id/iv_retry"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:layout_gravity="center|center_horizontal"
         android:contentDescription="@string/status_image"
-        android:src="@drawable/ic_assignment_turned_in_black_24dp"/>
+        app:srcCompat="@drawable/ic_rotate_right_black_24dp"/>
 
     <TextView
-        android:id="@+id/tv_status"
+        android:id="@+id/tv_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_status"
+        android:layout_below="@+id/iv_retry"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/error_message_server"/>

@@ -50,7 +50,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         Customer customer = customers.get(position);
         holder.tvCustomerName.setText(customer.getGivenName() + " " + customer.getSurname());
-        holder.tvCustomerStatus.setText(customer.getCurrentState());
+        holder.tvCustomerStatus.setText(customer.getCurrentState().name());
 
         TextDrawable drawable = TextDrawable.builder()
                 .buildRound(customer.getGivenName().substring(0, 1), R.color.colorPrimary);

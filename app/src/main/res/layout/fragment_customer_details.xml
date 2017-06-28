@@ -57,11 +57,13 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/ncv_customer_details"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/gray_light"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -100,6 +102,7 @@
                             android:text="@string/current_status"/>
 
                         <TextView
+                            android:id="@+id/tv_current_status"
                             android:drawableLeft="@drawable/ic_check_circle_black_24dp"
                             android:drawablePadding="@dimen/layout_padding_4dp"
                             android:drawableStart="@drawable/ic_check_circle_black_24dp"
@@ -125,6 +128,7 @@
                             android:text="@string/address"/>
 
                         <TextView
+                            android:id="@+id/tv_address"
                             android:drawableLeft="@drawable/ic_place_black_24dp"
                             android:drawablePadding="@dimen/layout_padding_4dp"
                             android:drawableStart="@drawable/ic_place_black_24dp"
@@ -150,6 +154,16 @@
                             android:text="@string/contact_information"/>
 
                         <TextView
+                            android:id="@+id/tv_no_contact_details_available"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="@dimen/layout_padding_4dp"
+                            android:paddingBottom="@dimen/layout_padding_4dp"
+                            android:text="@string/no_contact_details_available"
+                            android:visibility="gone"/>
+
+                        <TextView
+                            android:id="@+id/tv_email"
                             android:drawableLeft="@drawable/ic_email_black_24dp"
                             android:drawablePadding="@dimen/layout_padding_4dp"
                             android:drawableStart="@drawable/ic_email_black_24dp"
@@ -160,6 +174,7 @@
                             tools:text="example@gmail.com"/>
 
                         <TextView
+                            android:id="@+id/tv_phone_no"
                             android:drawableLeft="@drawable/ic_smartphone_black_24dp"
                             android:drawablePadding="@dimen/layout_padding_4dp"
                             android:drawableStart="@drawable/ic_smartphone_black_24dp"
@@ -170,6 +185,7 @@
                             tools:text="PrefixOperator - NoTelp"/>
 
                         <TextView
+                            android:id="@+id/tv_mobile_no"
                             android:drawableLeft="@drawable/ic_phone_black_24dp"
                             android:drawablePadding="@dimen/layout_padding_4dp"
                             android:drawableStart="@drawable/ic_phone_black_24dp"
@@ -195,6 +211,7 @@
                             android:text="@string/birthday"/>
 
                         <TextView
+                            android:id="@+id/tv_birthday"
                             android:drawableLeft="@drawable/ic_cake_black_24dp"
                             android:drawablePadding="@dimen/layout_padding_4dp"
                             android:drawableStart="@drawable/ic_cake_black_24dp"
@@ -463,6 +480,11 @@
     </android.support.v4.widget.NestedScrollView>
 
     <include
+        android:id="@+id/rl_error"
+        android:visibility="gone"
+        layout="@layout/layout_error" />
+
+    <include
         layout="@layout/layout_collapsing_header_view"
         android:id="@+id/float_header_view"
         android:layout_height="wrap_content"
@@ -471,7 +493,7 @@
     />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fab_upload_profile_photo"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:clickable="true"

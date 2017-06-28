@@ -1,6 +1,7 @@
 package com.mifos.apache.fineract.data.datamanager;
 
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
+import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 
@@ -27,5 +28,9 @@ public class DataManagerCustomer {
 
     public Observable<CustomerPage> fetchCustomers(Integer pageIndex, Integer size) {
         return baseApiManager.getCustomerApi().fetchCustomers(pageIndex, size);
+    }
+
+    public Observable<Customer> fetchCustomer(String identifier) {
+        return baseApiManager.getCustomerApi().fetchCustomer(identifier);
     }
 }

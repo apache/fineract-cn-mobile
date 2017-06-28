@@ -23,6 +23,24 @@
     <string name="contact_information">Contact information</string>
     <string name="address">Address</string>
     <string name="current_status">Current status</string>
+    <string name="management">Management</string>
+    <string name="identification_cards">Identification cards</string>
+    <string name="view_identification_card">View identification cards</string>
+    <string name="tasks">Tasks</string>
+    <string name="change_customer_status">Change the status of customer</string>
+    <string name="activities">Activities</string>
+    <string name="recent_activities">Recent activities</string>
+    <string name="birthday">Birthday</string>
+    <string name="assigned_employee">Assigned Employee: </string>
+    <string name="not_assigned">Not assigned</string>
+    <string name="no_contact_details_available">No Contact details available</string>
+
+
+    <!--Customer Current status-->
+    <string name="active">ACTIVE</string>
+    <string name="pending">PENDING</string>
+    <string name="locked">LOCKED</string>
+    <string name="closed">CLOSED</string>
 
 
     <!--Required Field-->

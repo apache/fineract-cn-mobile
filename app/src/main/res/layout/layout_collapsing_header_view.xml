@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.mifos.apache.fineract.ui.views.HeaderView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/header_view_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        />
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/header_view_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        />
+
+
+</com.mifos.apache.fineract.ui.views.HeaderView>
