@@ -19,10 +19,17 @@ public class MifosApplication extends Application {
 
     ApplicationComponent applicationComponent;
 
+    private static MifosApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         Fabric.with(this, new Crashlytics());
+    }
+
+    public static Context getContext() {
+        return instance;
     }
 
     public static MifosApplication get(Context context) {

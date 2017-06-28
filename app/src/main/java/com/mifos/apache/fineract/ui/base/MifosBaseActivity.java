@@ -93,14 +93,14 @@ public class MifosBaseActivity extends AppCompatActivity implements BaseActivity
         }
     }
 
-    protected void showBackButton() {
+    public void showBackButton() {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setHomeButtonEnabled(true);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
-    protected void setActionBarTitle(int title) {
+    public void setActionBarTitle(int title) {
         setActionBarTitle(getResources().getString(title));
     }
 

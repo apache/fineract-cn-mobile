@@ -1,5 +1,7 @@
 package com.mifos.apache.fineract.data.models.customer;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 public final class Customer {
@@ -10,14 +12,22 @@ public final class Customer {
     }
 
     public enum State {
+
+        @SerializedName("PENDING")
         PENDING,
+
+        @SerializedName("ACTIVE")
         ACTIVE,
+
+        @SerializedName("LOCKED")
         LOCKED,
+
+        @SerializedName("CLOSED")
         CLOSED
     }
 
     private String identifier;
-    private Type type;
+    private String type;
     private String givenName;
     private String middleName;
     private String surname;
@@ -45,14 +55,6 @@ public final class Customer {
 
     public void setIdentifier(final String identifier) {
         this.identifier = identifier;
-    }
-
-    public String getType() {
-        return this.type.name();
-    }
-
-    public void setType(final String type) {
-        this.type = Type.valueOf(type);
     }
 
     public String getGivenName() {
@@ -143,12 +145,20 @@ public final class Customer {
         this.contactDetails = contactDetails;
     }
 
-    public String getCurrentState() {
-        return this.currentState != null ? this.currentState.name() : null;
+    public String getType() {
+        return type;
     }
 
-    public void setCurrentState(final String currentState) {
-        this.currentState = State.valueOf(currentState);
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public State getCurrentState() {
+        return this.currentState;
+    }
+
+    public void setCurrentState(final State currentState) {
+        this.currentState = currentState;
     }
 
     public String getCreatedBy() {

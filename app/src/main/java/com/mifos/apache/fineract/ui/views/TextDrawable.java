@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.utils;
+package com.mifos.apache.fineract.ui.views;
 
 import android.graphics.Canvas;
 import android.graphics.Color;

@@ -24,6 +24,8 @@
 
         <activity android:name=".ui.DashboardActivity" />
 
+        <activity android:name=".ui.customerdetails.CustomerDetailsActivity" />
+
     </application>
 
 </manifest>
