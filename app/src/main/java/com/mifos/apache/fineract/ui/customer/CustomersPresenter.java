@@ -2,11 +2,15 @@ package com.mifos.apache.fineract.ui.customer;
 
 import android.content.Context;
 
+import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.datamanager.DataManagerCustomer;
+import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.injection.ConfigPersistent;
 import com.mifos.apache.fineract.ui.base.BasePresenter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -25,6 +29,9 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
 
     private final DataManagerCustomer dataManagerCustomer;
     private CompositeDisposable compositeDisposable;
+
+    private int customerListSize = 50;
+    private boolean loadmore = false;
 
     @Inject
     public CustomersPresenter(@ApplicationContext Context context,
@@ -46,6 +53,12 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
     }
 
     @Override
+    public void fetchCustomers(Integer pageIndex, Boolean loadmore) {
+        this.loadmore = loadmore;
+        fetchCustomers(pageIndex, customerListSize);
+    }
+
+    @Override
     public void fetchCustomers(Integer pageIndex, Integer size) {
         checkViewAttached();
         getMvpView().showProgressbar();
@@ -56,20 +69,42 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
                     @Override
                     public void onNext(CustomerPage customerPage) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showCustomers(customerPage);
+
+                        if (!loadmore && customerPage.getTotalElements() == 0) {
+                            getMvpView().showEmptyCustomers(
+                                    context.getString(R.string.empty_customer_list));
+                        } else if (loadmore && customerPage.getCustomers().size() == 0) {
+                            getMvpView().showMessage(
+                                    context.getString(R.string.no_more_customer_available));
+                        } else {
+                            showCustomers(customerPage.getCustomers());
+                        }
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError("failed to fetch customers");
+                        if (loadmore) {
+                            getMvpView().showMessage(
+                                    context.getString(R.string.error_loading_customers));
+                        } else {
+                            getMvpView().showError();
+                        }
                     }
 
                     @Override
                     public void onComplete() {
-
                     }
                 })
         );
+    }
+
+    @Override
+    public void showCustomers(List<Customer> customers) {
+        if (loadmore) {
+            getMvpView().showMoreCustomers(customers);
+        } else {
+            getMvpView().showCustomers(customers);
+        }
     }
 }

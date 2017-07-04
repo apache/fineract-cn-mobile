@@ -63,6 +63,11 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     }
 
     public void setCustomers(List<Customer> customerList) {
+        customers = customerList;
+        notifyDataSetChanged();
+    }
+
+    public void setMoreCustomers(List<Customer> customerList) {
         customers.addAll(customerList);
         notifyDataSetChanged();
     }
