@@ -34,7 +34,12 @@
     <string name="assigned_employee">Assigned Employee: </string>
     <string name="not_assigned">Not assigned</string>
     <string name="no_contact_details_available">No Contact details available</string>
+    <string name="empty_customer_list">Empty customer list</string>
+    <string name="no_more_customer_available">No more customer available</string>
 
+
+    <!--Error Message-->
+    <string name="error_loading_customers">Error loading customers</string>
 
     <!--Customer Current status-->
     <string name="active">ACTIVE</string>

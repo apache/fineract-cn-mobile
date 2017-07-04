@@ -15,12 +15,12 @@ import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Customer;
-import com.mifos.apache.fineract.data.models.customer.CustomerPage;
 import com.mifos.apache.fineract.ui.adapters.CustomerAdapter;
 import com.mifos.apache.fineract.ui.base.EndlessRecyclerViewScrollListener;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
+import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.customerdetails.CustomerDetailsActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
@@ -31,6 +31,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
@@ -88,9 +89,19 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
 
         showUserInterface();
 
-        customerPresenter.fetchCustomers(0, 50);
+        customerPresenter.fetchCustomers(0, false);
 
         return rootView;
+    }
+
+    @Override
+    public void onRefresh() {
+        customerPresenter.fetchCustomers(0, false);
+    }
+
+    @OnClick(R.id.iv_retry)
+    void onRetry() {
+        customerPresenter.fetchCustomers(0, false);
     }
 
     @Override
@@ -108,25 +119,41 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
         rvCustomers.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                // logic for load more
+                customerPresenter.fetchCustomers(page, true);
             }
         });
     }
 
     @Override
-    public void onRefresh() {
-        customerPresenter.fetchCustomers(0, 50);
+    public void showCustomers(List<Customer> customers) {
+        showRecyclerView(true);
+        this.customers = customers;
+        customerAdapter.setCustomers(customers);
     }
 
     @Override
-    public void showCustomers(CustomerPage customerPage) {
-        customers = customerPage.getCustomers();
-        customerAdapter.setCustomers(customerPage.getCustomers());
+    public void showMoreCustomers(List<Customer> customers) {
+        showRecyclerView(true);
+        this.customers.addAll(customers);
+        customerAdapter.setMoreCustomers(customers);
     }
 
     @Override
-    public void showMoreCustomers(CustomerPage customerPage) {
+    public void showEmptyCustomers(String message) {
+        showRecyclerView(false);
+        tvStatus.setText(getString(R.string.empty_customer_list));
+        showMessage(getString(R.string.empty_customer_list));
+    }
 
+    @Override
+    public void showRecyclerView(boolean status) {
+        if (status) {
+            rvCustomers.setVisibility(View.VISIBLE);
+            rlError.setVisibility(View.GONE);
+        } else {
+            rvCustomers.setVisibility(View.GONE);
+            rlError.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -140,8 +167,15 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     }
 
     @Override
-    public void showError(String errorMessage) {
+    public void showMessage(String errorMessage) {
+        Toaster.show(rootView, errorMessage);
+    }
 
+    @Override
+    public void showError() {
+        showRecyclerView(false);
+        tvStatus.setText(getString(R.string.error_loading_customers));
+        showMessage(getString(R.string.error_loading_customers));
     }
 
     @Override

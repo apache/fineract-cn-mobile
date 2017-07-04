@@ -1,7 +1,9 @@
 package com.mifos.apache.fineract.ui.customer;
 
-import com.mifos.apache.fineract.data.models.customer.CustomerPage;
+import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MvpView;
+
+import java.util.List;
 
 /**
  * @author Rajan Maurya
@@ -13,19 +15,29 @@ public interface CustomersContract {
 
         void showUserInterface();
 
-        void showCustomers(CustomerPage customerPage);
+        void showCustomers(List<Customer> customers);
 
-        void showMoreCustomers(CustomerPage customerPage);
+        void showMoreCustomers(List<Customer> customers);
+
+        void showEmptyCustomers(String message);
+
+        void showRecyclerView(boolean visible);
 
         void showProgressbar();
 
         void hideProgressbar();
 
-        void showError(String errorMessage);
+        void showMessage(String message);
+
+        void showError();
     }
 
     interface Presenter {
 
+        void fetchCustomers(Integer pageIndex, Boolean loadmore);
+
         void fetchCustomers(Integer pageIndex, Integer size);
+
+        void showCustomers(List<Customer> customers);
     }
 }
