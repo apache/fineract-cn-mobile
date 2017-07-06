@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.injection.ApplicationContext;
-import com.mifos.apache.fineract.ui.base.DateUtils;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
+import com.mifos.apache.fineract.utils.DateUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +52,7 @@ public class CustomerLoanAdapter extends RecyclerView.Adapter<CustomerLoanAdapte
 
         holder.tvLoanIdentifier.setText(loanAccount.getIdentifier());
 
-        String modifiedOn = context.getString(R.string.last_modified_by) + context.getString(
+        String modifiedOn = context.getString(R.string.last_modified_on) + context.getString(
                 R.string.colon) + DateUtils.getDateTime(loanAccount.getLastModifiedOn());
         holder.tvModifiedOn.setText(modifiedOn);
 
