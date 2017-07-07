@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.customerdetails;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -19,6 +20,7 @@ import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.customerdeposit.CustomerDepositActivity;
 import com.mifos.apache.fineract.ui.views.HeaderView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
@@ -124,6 +126,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
         ncvCustomerDetails.setVisibility(View.GONE);
         rlError.setVisibility(View.GONE);
         customerDetailsPresenter.loanCustomerDetails(customerIdentifier);
+    }
+
+    @OnClick(R.id.ll_deposit_accounts)
+    void viewDepositAccounts() {
+        Intent intent = new Intent(getActivity(), CustomerDepositActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        startActivity(intent);
     }
 
     @Override

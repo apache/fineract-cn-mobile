@@ -28,7 +28,7 @@
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/mifos_logo_image"
                     android:layout_gravity="center"
-                    android:layout_height="@dimen/layout_passing_75dp"
+                    android:layout_height="@dimen/layout_padding_75dp"
                     android:layout_width="wrap_content"
                     android:src="@drawable/mifos_logo"/>
 

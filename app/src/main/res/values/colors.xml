@@ -35,6 +35,13 @@
     <color name="gray_bright">#33CCCCCC</color>
     <!--Black-->
     <color name="black">#000000</color>
+    <color name="light_grey">#ffd1d1d1</color>
+
+    <color name="deposit_green">#ff14c416</color>
+    <color name="light_green">#ff8bf98a</color>
+    <color name="light_yellow">#fff9ac06</color>
+    <color name="light_blue">#FF87DBF9</color>
+    <color name="light_red">#fff9393c</color>
 
 
     <!--Swipe Refresh Colors-->

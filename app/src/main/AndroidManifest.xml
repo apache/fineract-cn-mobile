@@ -26,6 +26,8 @@
 
         <activity android:name=".ui.customerdetails.CustomerDetailsActivity" />
 
+        <activity android:name=".ui.customerdeposit.CustomerDepositActivity" />
+
     </application>
 
 </manifest>
