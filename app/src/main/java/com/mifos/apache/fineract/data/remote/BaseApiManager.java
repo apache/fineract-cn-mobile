@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.mifos.apache.fineract.data.services.AuthService;
 import com.mifos.apache.fineract.data.services.CustomerService;
+import com.mifos.apache.fineract.data.services.DepositService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -22,6 +23,7 @@ public class BaseApiManager {
     public static Retrofit retrofit;
     private static AuthService authApi;
     private static CustomerService customerApi;
+    private static DepositService depositApi;
 
     public BaseApiManager(Context context) {
         createService(context);
@@ -30,6 +32,7 @@ public class BaseApiManager {
     private static void init() {
         authApi = createApi(AuthService.class);
         customerApi = createApi(CustomerService.class);
+        depositApi = createApi(DepositService.class);
     }
 
     private static <T> T createApi(Class<T> clazz) {
@@ -63,5 +66,9 @@ public class BaseApiManager {
 
     public CustomerService getCustomerApi() {
         return customerApi;
+    }
+
+    public DepositService getDepositApi() {
+        return depositApi;
     }
 }

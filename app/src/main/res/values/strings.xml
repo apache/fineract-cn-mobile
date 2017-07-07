@@ -36,6 +36,7 @@
     <string name="no_contact_details_available">No Contact details available</string>
     <string name="empty_customer_list">Empty customer list</string>
     <string name="no_more_customer_available">No more customer available</string>
+    <string name="account_identifier">Account identifier</string>
 
 
     <!--Error Message-->
@@ -53,6 +54,7 @@
     <string name="error_username_required">Username required</string>
     <string name="error_password_required">Password required</string>
     <string name="error_message_server">Error loading response from server</string>
+    <string name="error_fetching_deposit_accounts">Error while fetching deposit account</string>
 
     <!--Image Content description-->
     <!--Don't need to translate these strings-->
