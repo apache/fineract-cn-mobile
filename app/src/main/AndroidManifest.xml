@@ -28,6 +28,8 @@
 
         <activity android:name=".ui.customerdeposit.CustomerDepositActivity" />
 
+        <activity android:name=".ui.customerloans.CustomerLoansActivity" />
+
     </application>
 
 </manifest>

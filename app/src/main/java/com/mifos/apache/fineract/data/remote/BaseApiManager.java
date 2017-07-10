@@ -5,6 +5,7 @@ import android.content.Context;
 import com.mifos.apache.fineract.data.services.AuthService;
 import com.mifos.apache.fineract.data.services.CustomerService;
 import com.mifos.apache.fineract.data.services.DepositService;
+import com.mifos.apache.fineract.data.services.LoanService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -24,6 +25,7 @@ public class BaseApiManager {
     private static AuthService authApi;
     private static CustomerService customerApi;
     private static DepositService depositApi;
+    private static LoanService loanApi;
 
     public BaseApiManager(Context context) {
         createService(context);
@@ -33,6 +35,7 @@ public class BaseApiManager {
         authApi = createApi(AuthService.class);
         customerApi = createApi(CustomerService.class);
         depositApi = createApi(DepositService.class);
+        loanApi = createApi(LoanService.class);
     }
 
     private static <T> T createApi(Class<T> clazz) {
@@ -70,5 +73,9 @@ public class BaseApiManager {
 
     public DepositService getDepositApi() {
         return depositApi;
+    }
+
+    public LoanService getLoanApi() {
+        return loanApi;
     }
 }

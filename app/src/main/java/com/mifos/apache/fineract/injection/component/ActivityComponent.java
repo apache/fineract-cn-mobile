@@ -6,6 +6,7 @@ import com.mifos.apache.fineract.ui.LauncherActivity;
 import com.mifos.apache.fineract.ui.customer.CustomersFragment;
 import com.mifos.apache.fineract.ui.customerdeposit.CustomerDepositFragment;
 import com.mifos.apache.fineract.ui.customerdetails.CustomerDetailsFragment;
+import com.mifos.apache.fineract.ui.customerloans.CustomerLoansFragment;
 import com.mifos.apache.fineract.ui.login.LoginActivity;
 
 import dagger.Subcomponent;
@@ -27,4 +28,5 @@ public interface ActivityComponent {
 
     void inject(CustomerDepositFragment customerDepositFragment);
 
+    void inject(CustomerLoansFragment customerLoansFragment);
 }

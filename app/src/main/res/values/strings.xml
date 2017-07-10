@@ -35,12 +35,17 @@
     <string name="not_assigned">Not assigned</string>
     <string name="no_contact_details_available">No Contact details available</string>
     <string name="empty_customer_list">Empty customer list</string>
+    <string name="empty_customer_loans">Empty customer loans list</string>
     <string name="no_more_customer_available">No more customer available</string>
+    <string name="no_more_loans_available">No more loans available</string>
     <string name="account_identifier">Account identifier</string>
+    <string name="last_modified_on">Last modified on</string>
+    <string name="last_modified_by">Last modified by</string>
 
 
     <!--Error Message-->
     <string name="error_loading_customers">Error loading customers</string>
+    <string name="error_loading_customer_loans">Error loading customer loans</string>
 
     <!--Customer Current status-->
     <string name="active">ACTIVE</string>
@@ -61,6 +66,7 @@
     <string name="mifos_logo_image">Mifos logo image</string>
     <string name="status_image">Status Image</string>
     <string name="customer_image">Customer image</string>
+    <string name="colon">:&#160;</string>
 
     <!--Progress Dialog Message-->
     <string name="please_wait">Please wait &#8230;</string>
