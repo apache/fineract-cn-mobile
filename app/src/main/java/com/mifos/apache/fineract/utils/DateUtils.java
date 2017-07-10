@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.base;
+package com.mifos.apache.fineract.utils;
 
 import android.util.Log;
 
@@ -10,7 +10,7 @@ import java.util.Locale;
 
 /**
  * @author Rajan Maurya
- *         On 10/07/17.
+ *         On 06/07/17.
  */
 public class DateUtils {
 
@@ -36,5 +36,19 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return format.format(calendar.getTime());
+    }
+
+    public static boolean isTokenExpired(String tokenExpiration) {
+        SimpleDateFormat format = new SimpleDateFormat(STANDARD_DATE_TIME_FORMAT, Locale.ENGLISH);
+        Date date;
+        try {
+            date = format.parse(tokenExpiration);
+            if (System.currentTimeMillis() > date.getTime()) {
+                return true;
+            }
+        } catch (ParseException e) {
+            Log.d(LOG_TAG, e.getLocalizedMessage());
+        }
+        return false;
     }
 }

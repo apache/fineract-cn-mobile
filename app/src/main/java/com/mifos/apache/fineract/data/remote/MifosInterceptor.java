@@ -10,9 +10,11 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.mifos.apache.fineract.MifosApplication;
+import com.mifos.apache.fineract.data.local.PreferenceKey;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 import javax.inject.Inject;
 
@@ -49,20 +51,33 @@ public class MifosInterceptor implements Interceptor {
         String authToken = preferencesHelper.getAccessToken();
         String tenantIdentifier = preferencesHelper.getTenantIdentifier();
         String user = preferencesHelper.getUserName();
+        Boolean refreshTokenStatus = preferencesHelper.getBoolean(
+                PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, false);
 
         builder.header(HEADER_ACCEPT_JSON, "application/json");
         builder.header(HEADER_CONTENT_TYPE, "application/json");
 
-        if (!TextUtils.isEmpty(authToken)) {
-            builder.header(HEADER_AUTH, authToken);
+        if (refreshTokenStatus) {
+            //Add Cookies
+            HashSet<String> cookies = (HashSet<String>) preferencesHelper.getStringSet(
+                            PreferenceKey.PREF_KEY_COOKIES);
+            if (cookies != null) {
+                for (String cookie : cookies) {
+                    builder.addHeader("Cookie", cookie);
+                }
+            }
+        } else {
+            if (!TextUtils.isEmpty(authToken)) {
+                builder.header(HEADER_AUTH, authToken);
+            }
+
+            if (!TextUtils.isEmpty(user)) {
+                builder.header(HEADER_USER, user);
+            }
         }
 
         if (!TextUtils.isEmpty(tenantIdentifier)) {
             builder.header(HEADER_TENANT, tenantIdentifier);
-        }
-
-        if (!TextUtils.isEmpty(user)) {
-            builder.header(HEADER_USER, user);
         }
 
         Request request = builder.build();

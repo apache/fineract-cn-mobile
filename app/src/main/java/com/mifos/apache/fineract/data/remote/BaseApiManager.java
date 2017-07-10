@@ -49,6 +49,7 @@ public class BaseApiManager {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new MifosInterceptor(context))
+                .addInterceptor(new ReceivedCookiesInterceptor(context))
                 .addInterceptor(interceptor)
                 .build();
 

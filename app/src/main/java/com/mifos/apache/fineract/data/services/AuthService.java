@@ -20,5 +20,6 @@ public interface AuthService {
             @Query("password") String password);
 
     @POST(EndPoints.API_IDENTITY_PATH + "/token?grant_type=refresh_token")
-    Observable<Authentication> refreshToken(@Query("Identity-RefreshToken") String refreshToken);
+    Observable<Authentication> refreshToken();
+
 }

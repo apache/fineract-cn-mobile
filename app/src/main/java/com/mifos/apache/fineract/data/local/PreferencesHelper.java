@@ -9,6 +9,8 @@ import com.google.gson.GsonBuilder;
 import com.mifos.apache.fineract.data.models.Authentication;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 
+import java.util.Set;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -74,6 +76,14 @@ public class PreferencesHelper {
         getPreferences().edit().putString(preferenceKey, preferenceValue).apply();
     }
 
+    public void putStringSet(String preferenceKey, Set<String> stringSet) {
+        getPreferences().edit().putStringSet(preferenceKey, stringSet).apply();
+    }
+
+    public Set<String> getStringSet(String preferenceKey) {
+        return getPreferences().getStringSet(preferenceKey, null);
+    }
+
     public void putAccessToken(String accessToken) {
         getPreferences().edit().putString(PreferenceKey.PREF_KEY_ACCESS_TOKEN, accessToken).apply();
     }
@@ -97,7 +107,6 @@ public class PreferencesHelper {
                 gson.toJson(user)).apply();
     }
 
-    @Nullable
     public Authentication getSignedInUser() {
         String userJson = getPreferences().getString(PreferenceKey.PREF_KEY_SIGNED_IN_USER, null);
         if (userJson == null) return null;
