@@ -1,6 +1,7 @@
 package com.mifos.apache.fineract.data.datamanager;
 
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
+import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.data.models.loan.LoanAccountPage;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 
@@ -29,5 +30,11 @@ public class DataManagerLoans {
             String customeridentifier, Integer pageIndex, Integer size) {
         return baseApiManager.getLoanApi()
                 .fetchCustomerLoanAccounts(customeridentifier, pageIndex, size);
+    }
+
+    public Observable<LoanAccount> fetchCustomerLoanDetails(
+            String productIdentifier, String caseIdentifier) {
+        return baseApiManager.getLoanApi()
+                .fetchCustomerLoanDetails(productIdentifier, caseIdentifier);
     }
 }

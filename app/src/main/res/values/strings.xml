@@ -41,11 +41,25 @@
     <string name="account_identifier">Account identifier</string>
     <string name="last_modified_on">Last modified on</string>
     <string name="last_modified_by">Last modified by</string>
+    <string name="disburse_loan">DISBURSE LOAN</string>
+    <string name="details">Details</string>
+    <string name="principal_amount">Principal amount</string>
+    <string name="payment_cycle">Payment cycle</string>
+    <string name="term">Term</string>
+    <string name="planned_payment">Planned Payment</string>
+    <string name="view_payments">View payments</string>
+    <string name="debt_income_report">Debt Income Report</string>
+    <string name="view_debt_income_report">View debt income report</string>
+    <string name="customer_loan_approved">Customer loan approved</string>
+    <string name="to_activate_loan_disburse">To activate this loan you need to disburse</string>
+    <string name="payment_cycle_value">Repay every %1$d %2$s on the %3$d day</string>
+
 
 
     <!--Error Message-->
     <string name="error_loading_customers">Error loading customers</string>
     <string name="error_loading_customer_loans">Error loading customer loans</string>
+    <string name="error_loading_customer_loan_details">Error loading loan details</string>
 
     <!--Customer Current status-->
     <string name="active">ACTIVE</string>

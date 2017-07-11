@@ -19,8 +19,10 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -57,6 +59,7 @@ public class CustomerLoansFragment extends MifosBaseFragment implements Customer
     View rootView;
 
     private String customerIdentifier;
+    private List<LoanAccount> loanAccounts;
 
     public static CustomerLoansFragment newInstance(String customerIdentifier) {
         CustomerLoansFragment fragment = new CustomerLoansFragment();
@@ -72,6 +75,7 @@ public class CustomerLoansFragment extends MifosBaseFragment implements Customer
         if (getArguments() != null) {
             customerIdentifier = getArguments().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
         }
+        loanAccounts = new ArrayList<>();
     }
 
     @Override
@@ -123,12 +127,14 @@ public class CustomerLoansFragment extends MifosBaseFragment implements Customer
     @Override
     public void showLoanAccounts(List<LoanAccount> loanAccounts) {
         showRecyclerView(true);
+        this.loanAccounts = loanAccounts;
         customerLoanAdapter.setCustomerLoanAccounts(loanAccounts);
     }
 
     @Override
     public void showMoreLoanAccounts(List<LoanAccount> loanAccounts) {
         showRecyclerView(true);
+        this.loanAccounts.addAll(loanAccounts);
         customerLoanAdapter.setMoreCustomerLoanAccounts(loanAccounts);
     }
 
@@ -180,7 +186,9 @@ public class CustomerLoansFragment extends MifosBaseFragment implements Customer
 
     @Override
     public void onItemClick(View childView, int position) {
-
+        ((MifosBaseActivity) getActivity()).replaceFragment(CustomerLoanDetailsFragment.newInstance(
+                        loanAccounts.get(position).getProductIdentifier(),
+                        loanAccounts.get(position).getIdentifier()), true, R.id.container);
     }
 
     @Override
