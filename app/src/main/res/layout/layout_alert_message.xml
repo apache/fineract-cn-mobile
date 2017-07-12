@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_alert_message"
+    android:background="@color/blue_light_alert_background"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/layout_padding_8dp">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:padding="@dimen/layout_padding_4dp">
+
+            <ImageView
+                android:contentDescription="@string/status_image"
+                android:layout_gravity="center"
+                android:layout_height="@dimen/layout_padding_30dp"
+                android:layout_width="@dimen/layout_padding_30dp"
+                app:srcCompat="@drawable/ic_error_black_24dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:paddingEnd="@dimen/layout_padding_4dp"
+            android:paddingLeft="@dimen/layout_padding_4dp"
+            android:paddingStart="@dimen/layout_padding_4dp">
+
+            <TextView
+                android:id="@+id/tv_alert_text_1"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_medium"
+                tools:text="@string/customer_loan_approved"/>
+
+            <TextView
+                android:id="@+id/tv_alert_text_2"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@color/blue"
+                android:textSize="@dimen/text_medium"
+                tools:text="@string/to_activate_loan_disburse"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

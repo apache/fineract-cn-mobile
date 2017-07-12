@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_customer_loan_details"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:visibility="invisible"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/gray_light"
+        android:id="@+id/ncv_customer_loan_details"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/layout_padding_64dp">
+
+            <include
+                layout="@layout/layout_alert_message"
+                android:id="@+id/cl_alert_message"
+                android:visibility="gone"/>
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/cv_customer"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_current_status"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/current_status"
+                            android:textColor="@color/colorSecondaryText"
+                            android:textSize="@dimen/text_size_12sp"/>
+
+                        <TextView
+                            android:drawableLeft="@drawable/ic_check_circle_black_24dp"
+                            android:drawablePadding="@dimen/layout_padding_4dp"
+                            android:drawableStart="@drawable/ic_check_circle_black_24dp"
+                            android:id="@+id/tv_loan_current_status"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:paddingTop="@dimen/layout_padding_4dp"
+                            tools:text="Active"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_address"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/layout_padding_16dp">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:paddingBottom="@dimen/layout_padding_4dp"
+                            android:text="@string/details"
+                            android:textColor="@color/colorSecondaryText"
+                            android:textSize="@dimen/text_size_12sp"/>
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_principal_amount"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/layout_padding_16dp">
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:layout_height="30dp"
+                                android:layout_width="30dp"
+                                app:srcCompat="@drawable/ic_account_balance_black_24dp"/>
+
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/layout_padding_8dp"
+                                android:layout_marginStart="@dimen/layout_padding_8dp"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/principal_amount"/>
+
+                                <TextView
+                                    style="@style/Base.TextAppearance.AppCompat.Small"
+                                    android:id="@+id/tv_principal_amount"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:textSize="@dimen/text_size_12sp"
+                                    tools:text="1400"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_payment_cycle"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:paddingBottom="@dimen/layout_padding_16dp">
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:layout_height="30dp"
+                                android:layout_width="30dp"
+                                app:srcCompat="@drawable/ic_access_time_black_24dp"/>
+
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/layout_padding_8dp"
+                                android:layout_marginStart="@dimen/layout_padding_8dp"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/payment_cycle"/>
+
+                                <TextView
+                                    style="@style/Base.TextAppearance.AppCompat.Small"
+                                    android:id="@+id/tv_repayment_cycle"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:textSize="@dimen/text_size_12sp"
+                                    tools:text="Repay every 1 months on the 1. day"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_term"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_gravity="center"
+                                android:layout_height="30dp"
+                                android:layout_width="30dp"
+                                app:srcCompat="@drawable/ic_event_black_24dp"/>
+
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/layout_padding_8dp"
+                                android:layout_marginStart="@dimen/layout_padding_8dp"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/term"/>
+
+                                <TextView
+                                    style="@style/Base.TextAppearance.AppCompat.Small"
+                                    android:id="@+id/tv_term"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:textSize="@dimen/text_size_12sp"
+                                    tools:text="12 MONTHS"/>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/layout_padding_8dp"
+                android:paddingEnd="0dp"
+                android:paddingLeft="@dimen/layout_padding_8dp"
+                android:paddingRight="0dp"
+                android:paddingStart="@dimen/layout_padding_8dp"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:text="@string/management"/>
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
+                android:id="@+id/cv_management"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:id="@+id/ll_planned_payment"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_height="30dp"
+                            android:layout_width="30dp"
+                            app:srcCompat="@drawable/ic_payment_black_24dp"/>
+
+                        <LinearLayout
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/planned_payment"/>
+
+                            <TextView
+                                style="@style/Base.TextAppearance.AppCompat.Small"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content"
+                                android:text="@string/view_payments"
+                                android:textSize="@dimen/text_size_12sp"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:id="@+id/ll_tasks"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_height="30dp"
+                            android:layout_width="30dp"
+                            app:srcCompat="@drawable/ic_task_black_24dp"/>
+
+                        <LinearLayout
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/tasks"/>
+
+                            <TextView
+                                style="@style/Base.TextAppearance.AppCompat.Small"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content"
+                                android:text="@string/change_customer_status"
+                                android:textSize="@dimen/text_size_12sp"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:id="@+id/ll_debt_income_report"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_16dp">
+
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_height="30dp"
+                            android:layout_width="30dp"
+                            app:srcCompat="@drawable/ic_show_chart_black_24dp"/>
+
+                        <LinearLayout
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/debt_income_report"/>
+
+                            <TextView
+                                style="@style/Base.TextAppearance.AppCompat.Small"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content"
+                                android:text="@string/view_debt_income_report"
+                                android:textSize="@dimen/text_size_12sp"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include
+        layout="@layout/layout_bottom_content"
+        android:id="@+id/layout_disburse_btn"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:visibility="gone"/>
+
+    <include
+        layout="@layout/layout_error"
+        android:id="@+id/rl_error"
+        android:visibility="gone"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:clickable="true"
+        android:id="@+id/fab_edit_customer_loan"
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_width="wrap_content"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_edit_black_24dp"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

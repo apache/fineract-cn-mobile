@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.data.models.loan;
 
+import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -20,8 +21,9 @@ public class LoanAccount {
     private String createdBy;
     private String lastModifiedOn;
     private String lastModifiedBy;
+    private LoanParameters loanParameters;
 
-    private enum State {
+    public enum State {
 
         @SerializedName("CREATED")
         CREATED,
@@ -111,4 +113,12 @@ public class LoanAccount {
     public void setLastModifiedBy(String lastModifiedBy) {
         this.lastModifiedBy = lastModifiedBy;
     }
+
+    public LoanParameters getLoanParameters() {
+        return new Gson().fromJson(parameters, LoanParameters.class);
+    }
+
+    /*public void setLoanParameters() {
+        this.loanParameters = gson.fromJson(parameters, LoanParameters.class);;
+    }*/
 }

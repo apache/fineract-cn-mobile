@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.data.services;
 
+import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.data.models.loan.LoanAccountPage;
 import com.mifos.apache.fineract.data.remote.EndPoints;
 
@@ -19,4 +20,9 @@ public interface LoanService {
             @Path("customeridentifier") String customerIdentifier,
             @Query("pageIndex") Integer pageIndex,
             @Query("size") Integer size);
+
+    @GET(EndPoints.API_LOAN_PATH + "/products/{productidentifier}/cases/{caseidentifier}")
+    Observable<LoanAccount> fetchCustomerLoanDetails(
+            @Path("productidentifier") String productIdentifier,
+            @Path("caseidentifier") String caseIdentifier);
 }
