@@ -53,6 +53,10 @@
     <string name="customer_loan_approved">Customer loan approved</string>
     <string name="to_activate_loan_disburse">To activate this loan you need to disburse</string>
     <string name="payment_cycle_value">Repay every %1$d %2$s on the %3$d day</string>
+    <string name="account">Account</string>
+    <string name="balance">Balance</string>
+    <string name="beneficiaries">Beneficiaries</string>
+    <string name="deposit_account">Deposit account</string>
 
 
 
@@ -60,6 +64,7 @@
     <string name="error_loading_customers">Error loading customers</string>
     <string name="error_loading_customer_loans">Error loading customer loans</string>
     <string name="error_loading_customer_loan_details">Error loading loan details</string>
+    <string name="error_loading_deposit_details">Error loading deposit details</string>
 
     <!--Customer Current status-->
     <string name="active">ACTIVE</string>

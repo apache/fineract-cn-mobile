@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_customer_deposit_details"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:visibility="invisible">
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/white"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/cv_customer_deposit_details"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:id="@+id/ll_current_status"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/current_status"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="@dimen/text_size_12sp"/>
+
+                <TextView
+                    android:drawableLeft="@drawable/ic_check_circle_black_24dp"
+                    android:drawablePadding="@dimen/layout_padding_4dp"
+                    android:drawableStart="@drawable/ic_check_circle_black_24dp"
+                    android:id="@+id/tv_deposit_current_status"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingTop="@dimen/layout_padding_4dp"
+                    tools:text="Active"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_address"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/layout_padding_16dp">
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingBottom="@dimen/layout_padding_4dp"
+                    android:text="@string/details"
+                    android:textColor="@color/colorSecondaryText"
+                    android:textSize="@dimen/text_size_12sp"/>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_account"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/layout_padding_16dp">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
+                        app:srcCompat="@drawable/ic_account_balance_black_24dp"/>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/layout_padding_8dp"
+                        android:layout_marginStart="@dimen/layout_padding_8dp"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/account"/>
+
+                        <TextView
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:id="@+id/tv_account"
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/text_size_12sp"
+                            tools:text="47110815.9100.00003"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_balance"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/layout_padding_16dp">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
+                        app:srcCompat="@drawable/ic_account_balance_wallet_black_24dp"/>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/layout_padding_8dp"
+                        android:layout_marginStart="@dimen/layout_padding_8dp"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/balance"/>
+
+                        <TextView
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:id="@+id/tv_balance"
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/text_size_12sp"
+                            tools:text="400.00"/>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_beneficiaries"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
+                        app:srcCompat="@drawable/ic_people_black_24dp"/>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/layout_padding_8dp"
+                        android:layout_marginStart="@dimen/layout_padding_8dp"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/beneficiaries"/>
+
+                        <TextView
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:id="@+id/tv_beneficiaries"
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:textSize="@dimen/text_size_12sp"
+                            tools:text="47110815, 1007764, 8749"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <include
+        layout="@layout/layout_error"
+        android:id="@+id/rl_error"
+        android:visibility="gone"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:clickable="true"
+        android:id="@+id/fab_edit_customer_deposit"
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_width="wrap_content"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_edit_black_24dp"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

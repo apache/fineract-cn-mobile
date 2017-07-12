@@ -17,8 +17,10 @@ import com.mifos.apache.fineract.ui.adapters.CustomerDepositAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
+import com.mifos.apache.fineract.ui.depositdetails.CustomerDepositDetailsFragment;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -55,6 +57,7 @@ public class CustomerDepositFragment extends MifosBaseFragment
     View rootView;
 
     private String customerIdentifier;
+    private List<CustomerDepositAccounts> customerDepositAccounts;
 
     public static CustomerDepositFragment newInstance(String customerIdentifier) {
         CustomerDepositFragment fragment = new CustomerDepositFragment();
@@ -70,6 +73,7 @@ public class CustomerDepositFragment extends MifosBaseFragment
         if (getArguments() != null) {
             customerIdentifier = getArguments().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
         }
+        customerDepositAccounts = new ArrayList<>();
     }
 
     @Override
@@ -108,6 +112,7 @@ public class CustomerDepositFragment extends MifosBaseFragment
     @Override
     public void showCustomerDeposits(List<CustomerDepositAccounts> customerDepositAccounts) {
         showRecyclerView(true);
+        this.customerDepositAccounts = customerDepositAccounts;
         customerDepositAdapter.setCustomerDepositAccounts(customerDepositAccounts);
     }
 
@@ -147,7 +152,9 @@ public class CustomerDepositFragment extends MifosBaseFragment
 
     @Override
     public void onItemClick(View childView, int position) {
-
+        ((MifosBaseActivity) getActivity()).replaceFragment(
+                CustomerDepositDetailsFragment.newInstance(customerDepositAccounts.get(position)
+                        .getAccountIdentifier()), true, R.id.container);
     }
 
     @Override

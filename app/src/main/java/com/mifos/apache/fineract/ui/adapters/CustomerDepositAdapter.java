@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.State;
 import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
@@ -57,21 +56,21 @@ public class CustomerDepositAdapter extends
         holder.tvAccountBalance.setText(String.valueOf(customerDepositAccount.getBalance()));
 
         switch (customerDepositAccount.getState()) {
-            case State.ACTIVE:
+            case ACTIVE:
                 holder.ivStatusIndicator.setColorFilter(
                         ContextCompat.getColor(context, R.color.deposit_green));
                 holder.tvAccountBalance.setTextColor(
                         ContextCompat.getColor(context, R.color.deposit_green));
                 break;
-            case State.CLOSED:
+            case CLOSED:
                 holder.ivStatusIndicator.setColorFilter(
                         ContextCompat.getColor(context, R.color.black));
                 break;
-            case State.LOCKED:
+            case LOCKED:
                 holder.ivStatusIndicator.setColorFilter(
                         ContextCompat.getColor(context, R.color.black));
                 break;
-            case State.PENDING:
+            case PENDING:
                 holder.ivStatusIndicator.setColorFilter(
                         ContextCompat.getColor(context, R.color.light_yellow));
                 break;

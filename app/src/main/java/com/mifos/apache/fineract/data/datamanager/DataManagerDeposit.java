@@ -31,4 +31,9 @@ public class DataManagerDeposit {
             String customerIdentifier) {
         return baseApiManager.getDepositApi().fetchCustomersDeposits(customerIdentifier);
     }
+
+    public Observable<CustomerDepositAccounts> getCustomerDepositAccountDetails(
+            String accountIdentifier) {
+        return baseApiManager.getDepositApi().fetchCustomerDepositDetails(accountIdentifier);
+    }
 }

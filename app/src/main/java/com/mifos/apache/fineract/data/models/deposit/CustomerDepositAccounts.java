@@ -1,5 +1,7 @@
 package com.mifos.apache.fineract.data.models.deposit;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +15,29 @@ public class CustomerDepositAccounts {
     private String productIdentifier;
     private String accountIdentifier;
     private List<String> beneficiaries = new ArrayList<>();
-    private String state;
+    private State state;
     private Double balance;
+
+    public enum State {
+
+        @SerializedName("CREATED")
+        CREATED,
+
+        @SerializedName("PENDING")
+        PENDING,
+
+        @SerializedName("APPROVED")
+        APPROVED,
+
+        @SerializedName("ACTIVE")
+        ACTIVE,
+
+        @SerializedName("LOCKED")
+        LOCKED,
+
+        @SerializedName("CLOSED")
+        CLOSED
+    }
 
     public String getCustomerIdentifier() {
         return customerIdentifier;
@@ -48,11 +71,11 @@ public class CustomerDepositAccounts {
         this.beneficiaries = beneficiaries;
     }
 
-    public String getState() {
+    public State getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(State state) {
         this.state = state;
     }
 
