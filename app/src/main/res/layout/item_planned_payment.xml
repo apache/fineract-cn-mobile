@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_customer_deposit_details"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+    <android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/white"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/cv_customer_deposit_details"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_account"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:contentDescription="@string/calender_image"
+                    android:layout_gravity="center"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:tint="@color/colorPrimary"
+                    app:srcCompat="@drawable/ic_perm_contact_calendar_black_24dp"/>
+
+                <TextView
+                    android:id="@+id/tv_payment_date"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/layout_padding_8dp"
+                    android:layout_marginStart="@dimen/layout_padding_8dp"
+                    android:layout_width="wrap_content"
+                    tools:text="Aug 1, 2017"/>
+
+            </LinearLayout>
+
+            <include layout="@layout/item_panned_payment_sub" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.design.widget.CoordinatorLayout>

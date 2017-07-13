@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_payment_info"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:background="#D2D2D2"
+        android:layout_height="1dp"
+        android:layout_width="match_parent"/>
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="@dimen/layout_padding_8dp">
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_padding_8dp"
+            android:layout_marginStart="@dimen/layout_padding_8dp"
+            android:layout_width="wrap_content"
+            tools:text="Processing fee"/>
+
+        <TextView
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_padding_8dp"
+            android:layout_marginStart="@dimen/layout_padding_8dp"
+            android:layout_width="match_parent"
+            android:paddingEnd="@dimen/layout_padding_8dp"
+            android:paddingLeft="@dimen/layout_padding_8dp"
+            android:paddingRight="@dimen/layout_padding_8dp"
+            tools:text="14"/>
+
+    </LinearLayout>
+
+</LinearLayout>

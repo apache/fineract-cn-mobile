@@ -85,6 +85,7 @@
     <string name="mifos_logo_image">Mifos logo image</string>
     <string name="status_image">Status Image</string>
     <string name="customer_image">Customer image</string>
+    <string name="calender_image">Calender image</string>
     <string name="colon">:&#160;</string>
 
     <!--Progress Dialog Message-->
