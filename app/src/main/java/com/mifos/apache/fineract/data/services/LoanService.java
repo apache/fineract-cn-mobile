@@ -15,13 +15,13 @@ import retrofit2.http.Query;
  */
 public interface LoanService {
 
-    @GET(EndPoints.API_LOAN_PATH + "/individuallending/customers/{customeridentifier}/cases")
+    @GET(EndPoints.API_PORTFOLIO_PATH + "/individuallending/customers/{customeridentifier}/cases")
     Observable<LoanAccountPage> fetchCustomerLoanAccounts(
             @Path("customeridentifier") String customerIdentifier,
             @Query("pageIndex") Integer pageIndex,
             @Query("size") Integer size);
 
-    @GET(EndPoints.API_LOAN_PATH + "/products/{productidentifier}/cases/{caseidentifier}")
+    @GET(EndPoints.API_PORTFOLIO_PATH + "/products/{productidentifier}/cases/{caseidentifier}")
     Observable<LoanAccount> fetchCustomerLoanDetails(
             @Path("productidentifier") String productIdentifier,
             @Path("caseidentifier") String caseIdentifier);
