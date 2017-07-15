@@ -98,6 +98,9 @@ dependencies {
         transitive = true;
     }
 
+    //Sticky header RecyclerView
+    compile 'org.zakariya.stickyheaders:stickyheaders:0.7.6'
+
     // Instrumentation test dependencies
     androidTestCompile jUnit
     androidTestCompile mockito

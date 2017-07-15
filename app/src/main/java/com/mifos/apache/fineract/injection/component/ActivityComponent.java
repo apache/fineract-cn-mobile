@@ -10,6 +10,7 @@ import com.mifos.apache.fineract.ui.customerdetails.CustomerDetailsFragment;
 import com.mifos.apache.fineract.ui.customerloans.CustomerLoansFragment;
 import com.mifos.apache.fineract.ui.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.ui.login.LoginActivity;
+import com.mifos.apache.fineract.ui.plannedpayment.PlannedPaymentFragment;
 
 import dagger.Subcomponent;
 
@@ -35,4 +36,6 @@ public interface ActivityComponent {
     void inject(CustomerLoanDetailsFragment customerLoanDetailsFragment);
 
     void inject(CustomerDepositDetailsFragment customerDepositDetailsFragment);
+
+    void inject(PlannedPaymentFragment plannedPaymentFragment);
 }

@@ -2,9 +2,8 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_customer_deposit_details"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:visibility="visible">
@@ -26,33 +25,65 @@
             android:layout_width="match_parent"
             android:orientation="vertical">
 
+            <View
+                android:background="#D2D2D2"
+                android:layout_height="1dp"
+                android:layout_width="match_parent"/>
+
             <LinearLayout
-                android:id="@+id/ll_account"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:id="@+id/ll_planned_payment"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
                 <ImageView
-                    android:contentDescription="@string/calender_image"
                     android:layout_gravity="center"
                     android:layout_height="30dp"
                     android:layout_width="30dp"
                     android:tint="@color/colorPrimary"
                     app:srcCompat="@drawable/ic_perm_contact_calendar_black_24dp"/>
 
-                <TextView
-                    android:id="@+id/tv_payment_date"
-                    android:layout_gravity="center"
+                <LinearLayout
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/layout_padding_8dp"
                     android:layout_marginStart="@dimen/layout_padding_8dp"
                     android:layout_width="wrap_content"
-                    tools:text="Aug 1, 2017"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_payment_date"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/planned_payment"/>
+
+                    <TextView
+                        android:id="@+id/tv_remaining_principal"
+                        style="@style/Base.TextAppearance.AppCompat.Small"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:text="@string/remaining_principal"
+                        android:textSize="@dimen/text_size_12sp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:gravity="end"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent">
+
+                    <ImageView
+                        android:id="@+id/iv_collapse"
+                        android:layout_gravity="center"
+                        android:layout_height="30dp"
+                        android:layout_width="30dp"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp"/>
+
+                </LinearLayout>
 
             </LinearLayout>
-
-            <include layout="@layout/item_panned_payment_sub" />
 
         </LinearLayout>
 

@@ -18,6 +18,8 @@ public class DateUtils {
 
     public static final String STANDARD_DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
     public static final String DATE_TIME_FORMAT = "yyyy MMM dd HH:mm:ss";
+    public static final String OUTPUT_DATE_FORMAT = "dd MMM yyyy";
+    public static final String INPUT_DATE_FORMAT = "yyyy-MM-dd'Z'";
 
     /**
      * Format date time string into "2013 Feb 28 13:24:56" format.
@@ -50,5 +52,19 @@ public class DateUtils {
             Log.d(LOG_TAG, e.getLocalizedMessage());
         }
         return false;
+    }
+
+    public static String getDate(String dateString, String inputFormat, String outFormat) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(inputFormat, Locale.ENGLISH);
+        Date date = new Date();
+        try {
+            date = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            Log.d(LOG_TAG, e.getLocalizedMessage());
+        }
+        dateFormat = new SimpleDateFormat(outFormat, Locale.ENGLISH);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return dateFormat.format(calendar.getTime());
     }
 }
