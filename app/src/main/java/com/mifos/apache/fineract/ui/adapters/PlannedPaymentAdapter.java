@@ -2,6 +2,8 @@ package com.mifos.apache.fineract.ui.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ import butterknife.ButterKnife;
 public class PlannedPaymentAdapter extends SectioningAdapter {
 
     private Context context;
+    private boolean showCollapsingSectionControls = true;
 
     @Inject
     public PlannedPaymentAdapter(@ApplicationContext Context context) {
@@ -57,7 +60,8 @@ public class PlannedPaymentAdapter extends SectioningAdapter {
         }
     }
 
-    public class HeaderViewHolder extends SectioningAdapter.HeaderViewHolder {
+    public class HeaderViewHolder extends SectioningAdapter.HeaderViewHolder
+            implements View.OnClickListener {
 
         @BindView(R.id.tv_payment_date)
         TextView tvPaymentDate;
@@ -71,10 +75,35 @@ public class PlannedPaymentAdapter extends SectioningAdapter {
         public HeaderViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            ivCollapse.setOnClickListener(this);
+            if (!showCollapsingSectionControls) {
+                ivCollapse.setVisibility(View.GONE);
+            }
+        }
+
+        void updateSectionCollapseToggle(boolean sectionIsCollapsed) {
+            @DrawableRes int id = sectionIsCollapsed
+                    ? R.drawable.ic_arrow_drop_down_black_24dp
+                    : R.drawable.ic_arrow_drop_up_black_24dp;
+            ivCollapse.setImageDrawable(ContextCompat.getDrawable(context, id));
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            final int section = PlannedPaymentAdapter.this.getSectionForAdapterPosition(position);
+            if (v == ivCollapse) {
+                PlannedPaymentAdapter.this.onToggleSectionCollapse(section);
+                updateSectionCollapseToggle(PlannedPaymentAdapter.this.isSectionCollapsed(section));
+            }
         }
     }
 
-    ArrayList<Section> sections = new ArrayList<>();
+    private void onToggleSectionCollapse(int sectionIndex) {
+        setSectionIsCollapsed(sectionIndex, !isSectionCollapsed(sectionIndex));
+    }
+
+    private ArrayList<Section> sections = new ArrayList<>();
 
     public void setPlannedPayment(List<PlannedPayment> plannedPayments) {
         sections.clear();
@@ -156,5 +185,7 @@ public class PlannedPaymentAdapter extends SectioningAdapter {
                 DateUtils.OUTPUT_DATE_FORMAT));
         hvh.tvRemainingPrincipal.setText(context.getString(R.string.remaining_principal)
                 + context.getString(R.string.colon) + section.remainingPrincipal);
+
+        hvh.updateSectionCollapseToggle(isSectionCollapsed(sectionIndex));
     }
 }
