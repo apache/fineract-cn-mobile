@@ -5,8 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
-import org.zakariya.stickyheaders.StickyHeaderLayoutManager;
-
 /**
  * Created by rajanmaurya
  */

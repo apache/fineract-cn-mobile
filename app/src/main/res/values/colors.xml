@@ -47,6 +47,8 @@
     <color name="light_blue">#FF87DBF9</color>
     <color name="light_red">#fff9393c</color>
 
+    <color name="collapse_image">#bbbbbb</color>
+
 
     <!--Swipe Refresh Colors-->
     <array name="swipeRefreshColors">

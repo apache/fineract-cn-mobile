@@ -1,6 +1,7 @@
 package com.mifos.apache.fineract.ui.plannedpayment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -20,10 +22,12 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.utils.ConstantKeys;
+import com.mifos.apache.fineract.utils.DateUtils;
 
 import org.zakariya.stickyheaders.PagedLoadScrollListener;
 import org.zakariya.stickyheaders.StickyHeaderLayoutManager;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,7 +41,8 @@ import butterknife.OnClick;
  *         On 13/07/17.
  */
 public class PlannedPaymentFragment extends MifosBaseFragment
-        implements PlannedPaymentContract.View, SwipeRefreshLayout.OnRefreshListener {
+        implements PlannedPaymentContract.View, SwipeRefreshLayout.OnRefreshListener,
+        CalendarView.OnDateChangeListener {
 
     public static final String LOG_TAG = PlannedPaymentFragment.class.getSimpleName();
 
@@ -58,6 +63,12 @@ public class PlannedPaymentFragment extends MifosBaseFragment
 
     @BindView(R.id.tv_error)
     TextView tvError;
+
+    @BindView(R.id.tv_toolbar_date)
+    TextView tvToolbarDate;
+
+    @BindView(R.id.calender_view_payment)
+    CalendarView calenderViewPayment;
 
     @Inject
     PlannedPaymentAdapter plannedPaymentAdapter;
@@ -130,6 +141,8 @@ public class PlannedPaymentFragment extends MifosBaseFragment
                         initialDisbursalDate, true);
             }
         });
+        calenderViewPayment.setOnDateChangeListener(this);
+        tvToolbarDate.setText(DateUtils.getCurrentDate());
     }
 
     @OnClick(R.id.ll_toolbar_date)
@@ -137,8 +150,12 @@ public class PlannedPaymentFragment extends MifosBaseFragment
         if (!isCalenderVisible) {
             cvCalenderPlannedPayment.setVisibility(View.VISIBLE);
             isCalenderVisible = true;
+            tvToolbarDate.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, R.drawable.ic_arrow_drop_up_black_24dp, 0);
         } else {
             cvCalenderPlannedPayment.setVisibility(View.GONE);
+            tvToolbarDate.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, R.drawable.ic_arrow_drop_down_black_24dp, 0);
             isCalenderVisible = false;
         }
     }
@@ -153,6 +170,24 @@ public class PlannedPaymentFragment extends MifosBaseFragment
     public void onRefresh() {
         plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
                 initialDisbursalDate, false);
+    }
+
+    @OnClick(R.id.btn_load_planned_payment)
+    void loadPlannedPaymentAccordingToDate() {
+        isCalenderVisible = false;
+        cvCalenderPlannedPayment.setVisibility(View.GONE);
+        plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
+                initialDisbursalDate, false);
+    }
+
+    @Override
+    public void onSelectedDayChange(@NonNull CalendarView view, int year, int month,
+            int dayOfMonth) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, dayOfMonth);
+        tvToolbarDate.setText(DateUtils.getDate(DateUtils.getDateInUTC(calendar),
+                DateUtils.STANDARD_DATE_TIME_FORMAT, DateUtils.OUTPUT_DATE_FORMAT));
+        initialDisbursalDate = DateUtils.getDateInUTC(calendar);
     }
 
 

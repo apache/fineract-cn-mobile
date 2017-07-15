@@ -33,13 +33,13 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/tv_toolbar_date"
                         android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
                         android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
                         android:gravity="center"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:text="14 July 2017"
                         android:textColor="@color/white"
                         android:textStyle="bold"/>
 
@@ -71,6 +71,7 @@
                     android:layout_width="match_parent" />
 
                 <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_load_planned_payment"
                     android:layout_gravity="end"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

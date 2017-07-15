@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * @author Rajan Maurya
@@ -23,6 +24,7 @@ public class DateUtils {
 
     /**
      * Format date time string into "2013 Feb 28 13:24:56" format.
+     *
      * @param dateString Standard Date Time String from server
      * @return String of Date time format 2013 Feb 28 13:24:56
      */
@@ -66,5 +68,19 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         return dateFormat.format(calendar.getTime());
+    }
+
+    public static String getDateInUTC(Calendar time) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(STANDARD_DATE_TIME_FORMAT,
+                Locale.ENGLISH);
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        return simpleDateFormat.format(time.getTime());
+    }
+
+    public static String getCurrentDate() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(OUTPUT_DATE_FORMAT,
+                Locale.ENGLISH);
+        Calendar calendar = Calendar.getInstance();
+        return simpleDateFormat.format(calendar.getTime());
     }
 }

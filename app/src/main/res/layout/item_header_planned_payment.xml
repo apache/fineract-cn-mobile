@@ -76,7 +76,7 @@
                         android:layout_height="30dp"
                         android:layout_width="30dp"
                         android:clickable="true"
-                        android:tint="#bbbbbb"
+                        android:tint="@color/collapse_image"
                         android:foreground="?android:attr/selectableItemBackground"
                         app:srcCompat="@drawable/ic_arrow_drop_up_black_24dp"/>
 
