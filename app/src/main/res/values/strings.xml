@@ -36,8 +36,10 @@
     <string name="no_contact_details_available">No Contact details available</string>
     <string name="empty_customer_list">Empty customer list</string>
     <string name="empty_customer_loans">Empty customer loans list</string>
+    <string name="empty_planned_payments">Empty planned payment list</string>
     <string name="no_more_customer_available">No more customer available</string>
     <string name="no_more_loans_available">No more loans available</string>
+    <string name="no_more_planned_payment_available">No more planned payment available</string>
     <string name="account_identifier">Account identifier</string>
     <string name="last_modified_on">Last modified on</string>
     <string name="last_modified_by">Last modified by</string>
@@ -57,6 +59,8 @@
     <string name="balance">Balance</string>
     <string name="beneficiaries">Beneficiaries</string>
     <string name="deposit_account">Deposit account</string>
+    <string name="remaining_principal">Remaining principal</string>
+    <string name="load_payment">Load Payment</string>
 
 
 
@@ -65,6 +69,7 @@
     <string name="error_loading_customer_loans">Error loading customer loans</string>
     <string name="error_loading_customer_loan_details">Error loading loan details</string>
     <string name="error_loading_deposit_details">Error loading deposit details</string>
+    <string name="error_loading_planned_payment">Error loading planned payment</string>
 
     <!--Customer Current status-->
     <string name="active">ACTIVE</string>
@@ -85,6 +90,7 @@
     <string name="mifos_logo_image">Mifos logo image</string>
     <string name="status_image">Status Image</string>
     <string name="customer_image">Customer image</string>
+    <string name="calender_image">Calender image</string>
     <string name="colon">:&#160;</string>
 
     <!--Progress Dialog Message-->

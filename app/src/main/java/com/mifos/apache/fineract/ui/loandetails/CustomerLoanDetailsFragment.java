@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.loandetails;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -16,6 +17,7 @@ import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.plannedpayment.PlannedPaymentActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
 import javax.inject.Inject;
@@ -112,6 +114,14 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
         clCustomerLoanDetails.setVisibility(View.GONE);
         rlError.setVisibility(View.GONE);
         customerLoanDetailsPresenter.fetchCustomerLoanDetails(productIdentifier, caseIdentifier);
+    }
+
+    @OnClick(R.id.ll_planned_payment)
+    void showPlannedPayment() {
+        Intent intent = new Intent(getActivity(), PlannedPaymentActivity.class);
+        intent.putExtra(ConstantKeys.PRODUCT_IDENTIFIER, productIdentifier);
+        intent.putExtra(ConstantKeys.CASE_IDENTIFIER, caseIdentifier);
+        startActivity(intent);
     }
 
     @Override

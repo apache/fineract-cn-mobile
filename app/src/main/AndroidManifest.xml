@@ -30,6 +30,8 @@
 
         <activity android:name=".ui.customerloans.CustomerLoansActivity" />
 
+        <activity android:name=".ui.plannedpayment.PlannedPaymentActivity" />
+
     </application>
 
 </manifest>
