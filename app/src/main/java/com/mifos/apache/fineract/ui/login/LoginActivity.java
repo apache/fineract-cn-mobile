@@ -48,6 +48,7 @@ public class LoginActivity extends MifosBaseActivity implements LoginContract.Vi
         ButterKnife.bind(this);
         loginPresenter.attachView(this);
         setActionBarTitle(getString(R.string.mifos_account));
+        preferencesHelper.clear();
     }
 
     @OnClick(R.id.btn_login)
