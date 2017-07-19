@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.customerloans;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -19,6 +20,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.loanapplication.LoanApplicationActivity;
 import com.mifos.apache.fineract.ui.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
@@ -102,6 +104,12 @@ public class CustomerLoansFragment extends MifosBaseFragment implements Customer
     @OnClick(R.id.iv_retry)
     void onRetry() {
         customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, 0, false);
+    }
+
+    @OnClick(R.id.fab_add_customer_loan)
+    void createNewLoan() {
+        Intent intent = new Intent(getActivity(), LoanApplicationActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -1,0 +1,71 @@
+package com.mifos.apache.fineract.ui.loanapplication;
+
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
+import com.stepstone.stepper.Step;
+import com.stepstone.stepper.VerificationError;
+
+/**
+ * @author Rajan Maurya
+ *         On 17/07/17.
+ */
+
+public class LoanDetailsFragment extends MifosBaseFragment implements Step {
+
+    private OnNavigationBarListener onNavigationBarListener;
+
+    View rootView;
+
+    public static LoanDetailsFragment newInstance() {
+        LoanDetailsFragment fragment = new LoanDetailsFragment();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_loan_details, container, false);
+
+        return rootView;
+    }
+
+    @Override
+    public VerificationError verifyStep() {
+        //check conditions and verify everything is good, if not then pass VerificationError in Activity
+        return null;
+    }
+
+    @Override
+    public void onSelected() {
+        // when every condition will fine in verifyStep();
+    }
+
+    @Override
+    public void onError(@NonNull VerificationError error) {
+        // Make changes on UI, If error occurred
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity = context instanceof Activity ? (Activity) context : null;
+        try {
+            onNavigationBarListener = (OnNavigationBarListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnNavigationBarListener");
+        }
+    }
+
+}

@@ -61,6 +61,10 @@
     <string name="deposit_account">Deposit account</string>
     <string name="remaining_principal">Remaining principal</string>
     <string name="load_payment">Load Payment</string>
+    <string name="short_name">Short name</string>
+    <string name="repay_every">Repay every</string>
+    <string name="amount">Amount</string>
+    <string name="description">Description</string>
 
 
 
@@ -96,4 +100,11 @@
     <!--Progress Dialog Message-->
     <string name="please_wait">Please wait &#8230;</string>
     <string name="logging_in">Logging</string>
+
+    <string-array name="loan_application_steps">
+        <item>Loan details</item>
+        <item>Debt to income ratio</item>
+        <item>Co-signer</item>
+        <item>Documents</item>
+    </string-array>
 </resources>
