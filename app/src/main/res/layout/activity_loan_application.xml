@@ -23,6 +23,7 @@
             app:ms_inactiveStepColor="#cccccc"
             app:ms_nextButtonColor="#FFFFFF"
             app:ms_stepperType="tabs"
+            app:ms_tabNavigationEnabled="false"
             app:ms_tabStepDividerWidth="138dp"/>
 
     </LinearLayout>

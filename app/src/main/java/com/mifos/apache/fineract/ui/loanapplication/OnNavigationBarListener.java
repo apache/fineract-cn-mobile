@@ -1,5 +1,8 @@
 package com.mifos.apache.fineract.ui.loanapplication;
 
+import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
+import com.mifos.apache.fineract.data.models.loan.TermRange;
+
 /**
  * @author Rajan Maurya
  *         On 17/07/17.
@@ -7,5 +10,8 @@ package com.mifos.apache.fineract.ui.loanapplication;
 
 public interface OnNavigationBarListener {
 
-    void onChangeEndButtonsEnabled(boolean enable);
+    interface LoanDetailsData {
+        void setLoanDetails(String currentState, String identifier, String productIdentifier,
+                Double maximumBalance, PaymentCycle paymentCycle, TermRange termRange);
+    }
 }

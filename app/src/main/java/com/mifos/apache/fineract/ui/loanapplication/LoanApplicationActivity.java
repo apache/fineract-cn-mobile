@@ -4,8 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
+import com.mifos.apache.fineract.data.models.loan.TermRange;
 import com.mifos.apache.fineract.ui.adapters.LoanApplicationStepAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
+import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
@@ -17,7 +21,7 @@ import butterknife.ButterKnife;
  *         On 17/07/17.
  */
 public class LoanApplicationActivity extends MifosBaseActivity
-        implements  StepperLayout.StepperListener, OnNavigationBarListener{
+        implements StepperLayout.StepperListener, OnNavigationBarListener.LoanDetailsData {
 
     private static final String CURRENT_STEP_POSITION = "position";
 
@@ -32,11 +36,17 @@ public class LoanApplicationActivity extends MifosBaseActivity
         setContentView(R.layout.activity_loan_application);
         ButterKnife.bind(this);
 
+        String customerIdentifier = getIntent().getExtras().getString(
+                ConstantKeys.CUSTOMER_IDENTIFIER);
+
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(CURRENT_STEP_POSITION);
         }
-        stepperLayout.setAdapter(new LoanApplicationStepAdapter(getSupportFragmentManager(), this), currentPosition);
+        LoanApplicationStepAdapter stepAdapter = new LoanApplicationStepAdapter(
+                getSupportFragmentManager(), this);
+        stepperLayout.setAdapter(stepAdapter, currentPosition);
         stepperLayout.setListener(this);
+        stepperLayout.setOffscreenPageLimit(stepAdapter.getCount());
         setToolbarTitle("Create new loan");
         showBackButton();
     }
@@ -60,6 +70,9 @@ public class LoanApplicationActivity extends MifosBaseActivity
 
     @Override
     public void onError(VerificationError verificationError) {
+        if (verificationError.getErrorMessage() != null) {
+            Toaster.show(findViewById(android.R.id.content), verificationError.getErrorMessage());
+        }
         // If any condition failed during the verification, show error to user or change UI
     }
 
@@ -74,7 +87,8 @@ public class LoanApplicationActivity extends MifosBaseActivity
     }
 
     @Override
-    public void onChangeEndButtonsEnabled(boolean enable) {
+    public void setLoanDetails(String currentState, String identifier, String productIdentifier,
+            Double maximumBalance, PaymentCycle paymentCycle, TermRange termRange) {
 
     }
 }

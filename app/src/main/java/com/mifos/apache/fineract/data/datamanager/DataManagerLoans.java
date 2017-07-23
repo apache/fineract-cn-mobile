@@ -3,6 +3,7 @@ package com.mifos.apache.fineract.data.datamanager;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.data.models.loan.LoanAccountPage;
+import com.mifos.apache.fineract.data.models.product.ProductPage;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 
 import javax.inject.Inject;
@@ -36,5 +37,9 @@ public class DataManagerLoans {
             String productIdentifier, String caseIdentifier) {
         return baseApiManager.getLoanApi()
                 .fetchCustomerLoanDetails(productIdentifier, caseIdentifier);
+    }
+
+    public Observable<ProductPage> getProducts(Integer pageIndex, Integer size) {
+        return baseApiManager.getLoanApi().getProducts(pageIndex, size, false);
     }
 }

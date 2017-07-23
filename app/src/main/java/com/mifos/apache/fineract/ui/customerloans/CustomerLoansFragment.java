@@ -109,6 +109,7 @@ public class CustomerLoansFragment extends MifosBaseFragment implements Customer
     @OnClick(R.id.fab_add_customer_loan)
     void createNewLoan() {
         Intent intent = new Intent(getActivity(), LoanApplicationActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         startActivity(intent);
     }
 

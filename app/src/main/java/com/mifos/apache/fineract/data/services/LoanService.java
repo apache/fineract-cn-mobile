@@ -2,6 +2,7 @@ package com.mifos.apache.fineract.data.services;
 
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.data.models.loan.LoanAccountPage;
+import com.mifos.apache.fineract.data.models.product.ProductPage;
 import com.mifos.apache.fineract.data.remote.EndPoints;
 
 import io.reactivex.Observable;
@@ -25,4 +26,10 @@ public interface LoanService {
     Observable<LoanAccount> fetchCustomerLoanDetails(
             @Path("productidentifier") String productIdentifier,
             @Path("caseidentifier") String caseIdentifier);
+
+    @GET(EndPoints.API_PORTFOLIO_PATH + "/products/")
+    Observable<ProductPage> getProducts(
+            @Query("pageIndex") Integer pageIndex,
+            @Query("size") Integer size,
+            @Query("includeDisabled") Boolean includeDisabled);
 }

@@ -7,7 +7,12 @@ package com.mifos.apache.fineract.data.models.loan;
 public class TermRange {
 
     private String temporalUnit;
-    private Integer maximum;
+    private Double maximum;
+
+    public TermRange(String temporalUnit, Double maximum) {
+        this.temporalUnit = temporalUnit;
+        this.maximum = maximum;
+    }
 
     public String getTemporalUnit() {
         return temporalUnit;
@@ -17,11 +22,11 @@ public class TermRange {
         this.temporalUnit = temporalUnit;
     }
 
-    public Integer getMaximum() {
+    public Double getMaximum() {
         return maximum;
     }
 
-    public void setMaximum(Integer maximum) {
+    public void setMaximum(Double maximum) {
         this.maximum = maximum;
     }
 }

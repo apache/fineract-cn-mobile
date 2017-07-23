@@ -1,7 +1,5 @@
 package com.mifos.apache.fineract.ui.loanapplication;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,7 +18,7 @@ import com.stepstone.stepper.VerificationError;
  */
 public class LoanDocumentsFragment extends MifosBaseFragment implements Step {
 
-    private OnNavigationBarListener onNavigationBarListener;
+    //private OnNavigationBarListener onNavigationBarListener;
 
     View rootView;
 
@@ -55,7 +53,7 @@ public class LoanDocumentsFragment extends MifosBaseFragment implements Step {
 
     }
 
-    @Override
+    /*@Override
     public void onAttach(Context context) {
         super.onAttach(context);
         Activity activity = context instanceof Activity ? (Activity) context : null;
@@ -65,5 +63,5 @@ public class LoanDocumentsFragment extends MifosBaseFragment implements Step {
             throw new ClassCastException(activity.toString()
                     + " must implement OnNavigationBarListener");
         }
-    }
+    }*/
 }
