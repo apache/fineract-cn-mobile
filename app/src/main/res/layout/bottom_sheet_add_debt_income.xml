@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/layout_padding_24dp">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_header"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingLeft="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_24dp"
+                android:paddingStart="@dimen/layout_padding_24dp"
+                android:paddingBottom="@dimen/layout_padding_30dp"
+                android:paddingTop="@dimen/layout_padding_24dp"
+                android:text="@string/add_debt"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingLeft="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_24dp">
+
+                <EditText
+                    android:hint="@string/amount"
+                    android:id="@+id/et_amount"
+                    android:inputType="numberDecimal"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:paddingLeft="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_24dp">
+
+                <EditText
+                    android:hint="@string/description"
+                    android:id="@+id/et_description"
+                    android:scrollbars="vertical"
+                    android:scrollHorizontally="false"
+                    android:inputType="textMultiLine"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="end"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/layout_padding_30dp"
+            android:paddingEnd="@dimen/layout_padding_24dp"
+            android:paddingLeft="@dimen/layout_padding_30dp"
+            android:paddingRight="@dimen/layout_padding_24dp"
+            android:paddingStart="@dimen/layout_padding_30dp"
+            android:paddingTop="@dimen/layout_padding_16dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                android:layout_marginRight="@dimen/layout_padding_16dp"
+                android:layout_width="wrap_content"
+                android:text="@string/cancel"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/btn_add_debt_income"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/add_debt"
+                android:textAllCaps="false"
+            />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+

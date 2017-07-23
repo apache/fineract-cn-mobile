@@ -69,6 +69,17 @@
     <string name="day">Day</string>
     <string name="in">In</string>
     <string name="required">Required</string>
+    <string name="add_debt">Add Debt</string>
+    <string name="add_income">Add Income</string>
+    <string name="cancel">Cancel</string>
+    <string name="total_debt">Debts(Total: %1$s)</string>
+    <string name="total_income">Income(Total: %1$s)</string>
+    <string name="no_debt_to_show">No debts to show. add debt</string>
+    <string name="no_income_to_show">No income to show. add income</string>
+    <string name="ratio">Ratio: %1$s</string>
+    <string name="edit_debt">Edit Debt</string>
+    <string name="edit_income">Edit Income</string>
+    <string name="debt_income">Debt Income</string>
 
 
 
@@ -78,6 +89,8 @@
     <!--Edit Text validations-->
     <string name="value_must_greater_or_equal_to">Value must be greater than or equal to&#160; %1$f</string>
     <string name="value_must_less_than_or_equal_to">Value must be less than or equal to&#160; %1$f</string>
+    <string name="amount_should_be_not_empty">Amount should not be empty</string>
+    <string name="description_should_not_be_empty">Description should not be empty</string>
 
 
     <!--Error Message-->
@@ -111,6 +124,8 @@
     <string name="customer_image">Customer image</string>
     <string name="calender_image">Calender image</string>
     <string name="colon">:&#160;</string>
+    <string name="debt_income_edit_image">Debt edit delete image</string>
+    <string name="debt_income_delete_image">Debt income delete image</string>
 
     <!--Progress Dialog Message-->
     <string name="please_wait">Please wait &#8230;</string>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.data.models.loan.CreditWorthinessFactor;
 import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
 import com.mifos.apache.fineract.data.models.loan.TermRange;
 import com.mifos.apache.fineract.ui.adapters.LoanApplicationStepAdapter;
@@ -13,6 +14,8 @@ import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -21,7 +24,8 @@ import butterknife.ButterKnife;
  *         On 17/07/17.
  */
 public class LoanApplicationActivity extends MifosBaseActivity
-        implements StepperLayout.StepperListener, OnNavigationBarListener.LoanDetailsData {
+        implements StepperLayout.StepperListener, OnNavigationBarListener.LoanDetailsData,
+        OnNavigationBarListener.LoanDebtIncomeData {
 
     private static final String CURRENT_STEP_POSITION = "position";
 
@@ -89,6 +93,12 @@ public class LoanApplicationActivity extends MifosBaseActivity
     @Override
     public void setLoanDetails(String currentState, String identifier, String productIdentifier,
             Double maximumBalance, PaymentCycle paymentCycle, TermRange termRange) {
+
+    }
+
+    @Override
+    public void setDebtIncome(List<CreditWorthinessFactor> debts,
+            List<CreditWorthinessFactor> income) {
 
     }
 }
