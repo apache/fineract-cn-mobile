@@ -17,4 +17,8 @@ public interface OnBottomSheetDialogListener {
         void addIncome(CreditWorthinessFactor creditWorthinessFactor);
         void editIncome(CreditWorthinessFactor creditWorthinessFactor, int position);
     }
+
+    interface AddDocument {
+        void addDocument();
+    }
 }

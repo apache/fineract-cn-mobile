@@ -1,10 +1,8 @@
 package com.mifos.apache.fineract.ui.loanapplication;
 
-import com.mifos.apache.fineract.data.models.loan.CreditWorthinessFactor;
+import com.mifos.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
 import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
 import com.mifos.apache.fineract.data.models.loan.TermRange;
-
-import java.util.List;
 
 /**
  * @author Rajan Maurya
@@ -19,6 +17,12 @@ public interface OnNavigationBarListener {
     }
 
     interface LoanDebtIncomeData {
-        void setDebtIncome(List<CreditWorthinessFactor> debts, List<CreditWorthinessFactor> income);
+        void setDebtIncome(CreditWorthinessSnapshot debtIncome);
+    }
+
+    interface LoanCoSignerData {
+        void setCoSignerDebtIncome(CreditWorthinessSnapshot coSignerDebtIncome);
+        void showProgressbar();
+        void hideProgressbar();
     }
 }

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent" xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/layout_padding_24dp">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:paddingEnd="@dimen/layout_padding_16dp"
+                android:paddingStart="0dp"
+                android:weightSum="2"
+                android:paddingRight="@dimen/layout_padding_16dp"
+                android:paddingLeft="0dp">
+
+                <TextView
+                    android:id="@+id/tv_header"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingBottom="@dimen/layout_padding_30dp"
+                    android:paddingLeft="@dimen/layout_padding_24dp"
+                    android:paddingRight="@dimen/layout_padding_24dp"
+                    android:paddingStart="@dimen/layout_padding_24dp"
+                    android:paddingTop="@dimen/layout_padding_16dp"
+                    android:text="@string/add_document"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:layout_weight="1"
+                    android:textStyle="bold"/>
+
+                <Button
+                    android:id="@+id/btn_browse_document"
+                    android:layout_gravity="end"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/browse"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:drawableStart="@drawable/ic_folder_black_24dp"
+                    android:drawableLeft="@drawable/ic_folder_black_24dp"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingLeft="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_24dp">
+
+                <EditText
+                    android:hint="@string/description"
+                    android:id="@+id/et_amount"
+                    android:scrollbars="vertical"
+                    android:scrollHorizontally="false"
+                    android:inputType="textMultiLine"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_document_name"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:paddingStart="@dimen/layout_padding_30dp"
+                android:paddingEnd="0dp"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/layout_padding_30dp"
+                android:paddingRight="0dp">
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/name"
+                    android:textSize="@dimen/text_size_12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_document_name"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/text_medium"
+                    android:paddingTop="@dimen/layout_padding_4dp"
+                    tools:text="This is the description"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="end"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/layout_padding_30dp"
+            android:paddingEnd="@dimen/layout_padding_16dp"
+            android:paddingLeft="@dimen/layout_padding_30dp"
+            android:paddingRight="@dimen/layout_padding_16dp"
+            android:paddingStart="@dimen/layout_padding_30dp"
+            android:paddingTop="@dimen/layout_padding_16dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                android:layout_marginRight="@dimen/layout_padding_16dp"
+                android:layout_width="wrap_content"
+                android:text="@string/cancel"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/btn_add_debt_income"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/add_document"
+                android:textAllCaps="false"
+            />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+

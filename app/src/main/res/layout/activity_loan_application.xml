@@ -24,7 +24,8 @@
             app:ms_nextButtonColor="#FFFFFF"
             app:ms_stepperType="tabs"
             app:ms_tabNavigationEnabled="false"
-            app:ms_tabStepDividerWidth="138dp"/>
+            app:ms_tabStepDividerWidth="138dp"
+            app:ms_stepperFeedbackType="tabs|content|disabled_bottom_navigation"/>
 
     </LinearLayout>
 

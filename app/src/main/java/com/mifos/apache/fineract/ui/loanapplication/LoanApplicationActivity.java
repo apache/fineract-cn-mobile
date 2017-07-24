@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.loan.CreditWorthinessFactor;
+import com.mifos.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
 import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
 import com.mifos.apache.fineract.data.models.loan.TermRange;
 import com.mifos.apache.fineract.ui.adapters.LoanApplicationStepAdapter;
@@ -13,8 +13,6 @@ import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,7 +23,7 @@ import butterknife.ButterKnife;
  */
 public class LoanApplicationActivity extends MifosBaseActivity
         implements StepperLayout.StepperListener, OnNavigationBarListener.LoanDetailsData,
-        OnNavigationBarListener.LoanDebtIncomeData {
+        OnNavigationBarListener.LoanDebtIncomeData, OnNavigationBarListener.LoanCoSignerData {
 
     private static final String CURRENT_STEP_POSITION = "position";
 
@@ -90,6 +88,14 @@ public class LoanApplicationActivity extends MifosBaseActivity
         finish();
     }
 
+    public void showProgressbar() {
+        stepperLayout.showProgress("fetching customer please wait...");
+    }
+
+    public void hideProgressbar() {
+        stepperLayout.hideProgress();
+    }
+
     @Override
     public void setLoanDetails(String currentState, String identifier, String productIdentifier,
             Double maximumBalance, PaymentCycle paymentCycle, TermRange termRange) {
@@ -97,8 +103,12 @@ public class LoanApplicationActivity extends MifosBaseActivity
     }
 
     @Override
-    public void setDebtIncome(List<CreditWorthinessFactor> debts,
-            List<CreditWorthinessFactor> income) {
+    public void setDebtIncome(CreditWorthinessSnapshot debtIncome) {
+
+    }
+
+    @Override
+    public void setCoSignerDebtIncome(CreditWorthinessSnapshot coSignerDebtIncome) {
 
     }
 }

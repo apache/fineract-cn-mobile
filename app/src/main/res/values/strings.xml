@@ -70,6 +70,7 @@
     <string name="in">In</string>
     <string name="required">Required</string>
     <string name="add_debt">Add Debt</string>
+    <string name="add_document">Add Document</string>
     <string name="add_income">Add Income</string>
     <string name="cancel">Cancel</string>
     <string name="total_debt">Debts(Total: %1$s)</string>
@@ -80,6 +81,8 @@
     <string name="edit_debt">Edit Debt</string>
     <string name="edit_income">Edit Income</string>
     <string name="debt_income">Debt Income</string>
+    <string name="name">Name</string>
+    <string name="browse">Browse</string>
 
 
 
@@ -91,6 +94,7 @@
     <string name="value_must_less_than_or_equal_to">Value must be less than or equal to&#160; %1$f</string>
     <string name="amount_should_be_not_empty">Amount should not be empty</string>
     <string name="description_should_not_be_empty">Description should not be empty</string>
+    <string name="customer_name_should_not_be_empty">Customer name should not be empty</string>
 
 
     <!--Error Message-->

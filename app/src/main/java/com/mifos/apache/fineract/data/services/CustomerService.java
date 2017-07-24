@@ -16,11 +16,17 @@ import retrofit2.http.Query;
 
 public interface CustomerService {
 
-    @GET(EndPoints.API_CUSTOMER_PATH + "/customers" )
+    @GET(EndPoints.API_CUSTOMER_PATH + "/customers")
     Observable<CustomerPage> fetchCustomers(
             @Query("pageIndex") Integer integer,
             @Query("size") Integer size);
 
     @GET(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}")
     Observable<Customer> fetchCustomer(@Path("identifier") String identifier);
+
+    @GET(EndPoints.API_CUSTOMER_PATH + "/customers")
+    Observable<CustomerPage> searchCustomer(
+            @Query("pageIndex") Integer pageIndex,
+            @Query("size") Integer size,
+            @Query("term") String term);
 }

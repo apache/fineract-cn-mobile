@@ -33,4 +33,8 @@ public class DataManagerCustomer {
     public Observable<Customer> fetchCustomer(String identifier) {
         return baseApiManager.getCustomerApi().fetchCustomer(identifier);
     }
+
+    public Observable<CustomerPage> searchCustomer(Integer pageIndex, Integer size, String term) {
+        return baseApiManager.getCustomerApi().searchCustomer(pageIndex, size, term);
+    }
 }
