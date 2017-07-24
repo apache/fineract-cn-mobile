@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="@dimen/layout_padding_8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:baselineAligned="false"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/layout_padding_4dp"
+            android:paddingStart="@dimen/layout_padding_16dp"
+            android:paddingEnd="0dp"
+            android:paddingLeft="@dimen/layout_padding_16dp"
+            android:paddingRight="0dp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="@string/amount"
+                    android:textSize="@dimen/text_size_12sp"/>
+
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:textSize="@dimen/text_medium"
+                    android:paddingTop="@dimen/layout_padding_4dp"
+                    tools:text="10000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="end"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_edit"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/layout_padding_16dp"
+                    android:layout_marginRight="@dimen/layout_padding_16dp"
+                    android:layout_width="wrap_content"
+                    android:tint="@color/colorAccent"
+                    android:clickable="true"
+                    android:contentDescription="@string/debt_income_edit_image"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:srcCompat="@drawable/ic_edit_black_24dp"
+                   />
+
+                <ImageView
+                    android:id="@+id/iv_delete"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/layout_padding_8dp"
+                    android:layout_marginRight="@dimen/layout_padding_8dp"
+                    android:layout_width="wrap_content"
+                    android:tint="@color/colorAccent"
+                    android:clickable="true"
+                    android:contentDescription="@string/debt_income_delete_image"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:srcCompat="@drawable/ic_delete_black_24dp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingTop="@dimen/layout_padding_16dp"
+            android:paddingStart="@dimen/layout_padding_16dp"
+            android:paddingEnd="0dp"
+            android:paddingLeft="@dimen/layout_padding_16dp"
+            android:paddingRight="0dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/description"
+                android:textSize="@dimen/text_size_12sp"/>
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:textSize="@dimen/text_medium"
+                android:paddingTop="@dimen/layout_padding_4dp"
+                tools:text="This is the description"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/layout_padding_16dp"
+            android:background="@color/collapse_image"/>
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>

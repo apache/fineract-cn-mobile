@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/gray_light"
+        android:id="@+id/ncv_customer_details"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_debt_income_ratio"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/layout_padding_8dp"
+                android:paddingEnd="0dp"
+                android:paddingLeft="@dimen/layout_padding_8dp"
+                android:paddingRight="0dp"
+                android:paddingStart="@dimen/layout_padding_8dp"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:text="@string/ratio"/>
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
+                android:id="@+id/cv_financial_products"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:id="@+id/ll_loan_accounts"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_4dp">
+
+                        <TextView
+                            android:id="@+id/tv_total_debt"
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_16dp"
+                            android:layout_marginStart="@dimen/layout_padding_16dp"
+                            android:layout_marginTop="@dimen/layout_padding_16dp"
+                            android:layout_width="wrap_content"
+                            android:text="@string/total_debt"/>
+
+                        <Button
+                            android:id="@+id/btn_add_debt"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:text="@string/add_debt"
+                            android:textAllCaps="false"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:background="@color/collapse_image"
+                        android:layout_height="1dp"
+                        android:layout_width="wrap_content"/>
+
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_empty_debt_list"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:padding="@dimen/layout_padding_24dp"
+                            android:text="@string/no_debt_to_show"
+                            android:textSize="@dimen/text_small"
+                            android:visibility="visible"/>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_debt"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/layout_padding_30dp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"/>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/layout_padding_8dp"
+                android:layout_marginTop="@dimen/layout_padding_8dp"
+                android:layout_width="match_parent"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_4dp">
+
+                        <TextView
+                            android:id="@+id/tv_total_income"
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_16dp"
+                            android:layout_marginStart="@dimen/layout_padding_16dp"
+                            android:layout_marginTop="@dimen/layout_padding_16dp"
+                            android:layout_width="wrap_content"
+                            android:text="@string/total_income"/>
+
+                        <Button
+                            android:id="@+id/btn_add_income"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:text="@string/add_income"
+                            android:textAllCaps="false"
+                            android:textSize="12sp" />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:background="@color/collapse_image"
+                        android:layout_height="1dp"
+                        android:layout_width="wrap_content"/>
+
+
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_empty_income_list"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:padding="@dimen/layout_padding_24dp"
+                            android:text="@string/no_income_to_show"
+                            android:textSize="@dimen/text_small"
+                            android:visibility="visible"/>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_income"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="@dimen/layout_padding_30dp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -55,4 +55,15 @@ public class LoanParameters {
     public void setPaymentCycle(PaymentCycle paymentCycle) {
         this.paymentCycle = paymentCycle;
     }
+
+    @Override
+    public String toString() {
+        return "LoanParameters{" +
+                "customerIdentifier='" + customerIdentifier + '\'' +
+                ", creditWorthinessSnapshots=" + creditWorthinessSnapshots +
+                ", maximumBalance=" + maximumBalance +
+                ", termRange=" + termRange +
+                ", paymentCycle=" + paymentCycle +
+                '}';
+    }
 }
