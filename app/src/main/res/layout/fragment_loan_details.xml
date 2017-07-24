@@ -140,7 +140,7 @@
                 <LinearLayout
                     android:id="@+id/ll_repay_unit_week"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:layout_marginTop="@dimen/layout_padding_8dp"
                     android:layout_width="match_parent"
                     android:orientation="vertical"
                     android:visibility="visible">
@@ -151,7 +151,7 @@
                         android:layout_marginLeft="@dimen/layout_padding_8dp"
                         android:layout_marginStart="@dimen/layout_padding_8dp"
                         android:layout_width="match_parent"
-                        tools:text="on"/>
+                        android:text="@string/on"/>
 
                     <android.support.v7.widget.AppCompatSpinner
                         style="@style/Widget.AppCompat.Spinner.Underlined"
@@ -182,12 +182,13 @@
                                 android:id="@+id/rb_repay_on_day"
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
-                                android:layout_marginTop="@dimen/layout_padding_8dp"
+                                android:layout_marginTop="@dimen/layout_padding_24dp"
                                 android:layout_marginBottom="@dimen/layout_padding_8dp" />
 
                             <RadioButton
                                 android:id="@+id/rb_repay_on_specific_week_day"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/layout_padding_16dp"
                                 android:layout_width="wrap_content" />
 
                         </RadioGroup>
@@ -199,6 +200,14 @@
                         android:layout_height="wrap_content"
                         android:layout_width="fill_parent"
                         android:orientation="vertical">
+
+                        <TextView
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/on_the"/>
 
                         <LinearLayout
                             android:layout_height="wrap_content"
@@ -223,6 +232,14 @@
                                 android:text="@string/day"/>
 
                         </LinearLayout>
+
+                        <TextView
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_width="match_parent"
+                            android:text="@string/on_the"/>
 
                         <LinearLayout
                             android:layout_height="wrap_content"

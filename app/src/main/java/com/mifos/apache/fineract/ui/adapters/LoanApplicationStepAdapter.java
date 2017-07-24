@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.ui.loanapplication.LoanDebtIncomeFragment;
-import com.mifos.apache.fineract.ui.loanapplication.loandocument.LoanDocumentsFragment;
 import com.mifos.apache.fineract.ui.loanapplication.loancosigner.LoanCoSignerFragment;
 import com.mifos.apache.fineract.ui.loanapplication.loandetails.LoanDetailsFragment;
 import com.stepstone.stepper.Step;
@@ -20,11 +19,12 @@ import com.stepstone.stepper.viewmodel.StepViewModel;
  */
 public class LoanApplicationStepAdapter extends AbstractFragmentStepAdapter {
 
-    String[] loanApplicationSteps;
+    private String[] loanApplicationSteps;
 
     public LoanApplicationStepAdapter(@NonNull FragmentManager fm, @NonNull Context context) {
         super(fm, context);
-        loanApplicationSteps = context.getResources().getStringArray(R.array.loan_application_steps);
+        loanApplicationSteps = context.getResources().getStringArray(
+                R.array.loan_application_steps);
     }
 
     @NonNull
@@ -38,10 +38,12 @@ public class LoanApplicationStepAdapter extends AbstractFragmentStepAdapter {
     @Override
     public Step createStep(@IntRange(from = 0L) int position) {
         switch (position) {
-            case 0: return LoanDetailsFragment.newInstance();
-            case 1: return LoanDebtIncomeFragment.newInstance();
-            case 2: return LoanCoSignerFragment.newInstance();
-            case 3: return LoanDocumentsFragment.newInstance();
+            case 0:
+                return LoanDetailsFragment.newInstance();
+            case 1:
+                return LoanDebtIncomeFragment.newInstance();
+            case 2:
+                return LoanCoSignerFragment.newInstance();
         }
         return null;
     }

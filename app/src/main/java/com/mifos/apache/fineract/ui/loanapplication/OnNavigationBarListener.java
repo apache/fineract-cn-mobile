@@ -1,6 +1,7 @@
 package com.mifos.apache.fineract.ui.loanapplication;
 
 import com.mifos.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
+import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
 import com.mifos.apache.fineract.data.models.loan.TermRange;
 
@@ -12,8 +13,9 @@ import com.mifos.apache.fineract.data.models.loan.TermRange;
 public interface OnNavigationBarListener {
 
     interface LoanDetailsData {
-        void setLoanDetails(String currentState, String identifier, String productIdentifier,
-                Double maximumBalance, PaymentCycle paymentCycle, TermRange termRange);
+        void setLoanDetails(LoanAccount.State currentState, String identifier,
+                String productIdentifier, Double maximumBalance, PaymentCycle paymentCycle,
+                TermRange termRange);
     }
 
     interface LoanDebtIncomeData {
@@ -22,7 +24,9 @@ public interface OnNavigationBarListener {
 
     interface LoanCoSignerData {
         void setCoSignerDebtIncome(CreditWorthinessSnapshot coSignerDebtIncome);
-        void showProgressbar();
+
+        void showProgressbar(String message);
+
         void hideProgressbar();
     }
 }

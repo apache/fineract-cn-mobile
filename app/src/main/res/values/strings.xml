@@ -83,6 +83,10 @@
     <string name="debt_income">Debt Income</string>
     <string name="name">Name</string>
     <string name="browse">Browse</string>
+    <string name="fetching_customer_please_wait">Fetching customer please wait…</string>
+    <string name="creating_loan_please_wait">Creating loan please wait…</string>
+    <string name="on">on</string>
+    <string name="on_the">on the</string>
 
 
 
@@ -104,7 +108,8 @@
     <string name="error_loading_deposit_details">Error loading deposit details</string>
     <string name="error_loading_planned_payment">Error loading planned payment</string>
     <string name="error_should_contain_only">should contain only</string>
-    <string name="error_loading_products">error while fetching products</string>
+    <string name="error_loading_products">Error while fetching products</string>
+    <string name="error_while_creating_loan">Error while creating loan</string>
 
 
     <!--Customer Current status-->
@@ -139,7 +144,6 @@
         <item>Loan details</item>
         <item>Debt to income ratio</item>
         <item>Co-signer</item>
-        <item>Documents</item>
     </string-array>
 
     <string-array name="repay_unit_type">

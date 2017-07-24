@@ -203,7 +203,7 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
                     paymentCycle.setAlignmentMonth(spRepayYearMonth.getSelectedItemPosition());
                     break;
             }
-            onNavigationBarListener.setLoanDetails(LoanAccount.State.CREATED.name(),
+            onNavigationBarListener.setLoanDetails(LoanAccount.State.CREATED,
                     etShortName.getText().toString().trim(), product.getIdentifier(),
                     Double.parseDouble(etPrincipalAmount.getText().toString().trim()),
                     paymentCycle, new TermRange(product.getTermRange().getTemporalUnit(),

@@ -9,6 +9,7 @@ import com.mifos.apache.fineract.data.remote.BaseApiManager;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 /**
@@ -41,5 +42,9 @@ public class DataManagerLoans {
 
     public Observable<ProductPage> getProducts(Integer pageIndex, Integer size) {
         return baseApiManager.getLoanApi().getProducts(pageIndex, size, false);
+    }
+
+    public Completable createLoan(String productIdentifier, LoanAccount loanAccount) {
+        return baseApiManager.getLoanApi().createLoan(productIdentifier, loanAccount);
     }
 }

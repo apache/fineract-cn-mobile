@@ -32,7 +32,7 @@
 
         <activity android:name=".ui.plannedpayment.PlannedPaymentActivity" />
 
-        <activity android:name=".ui.loanapplication.LoanApplicationActivity" />
+        <activity android:name=".ui.loanapplication.loanactivity.LoanApplicationActivity" />
 
     </application>
 

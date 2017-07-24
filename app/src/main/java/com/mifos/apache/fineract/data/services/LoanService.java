@@ -5,8 +5,11 @@ import com.mifos.apache.fineract.data.models.loan.LoanAccountPage;
 import com.mifos.apache.fineract.data.models.product.ProductPage;
 import com.mifos.apache.fineract.data.remote.EndPoints;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -32,4 +35,9 @@ public interface LoanService {
             @Query("pageIndex") Integer pageIndex,
             @Query("size") Integer size,
             @Query("includeDisabled") Boolean includeDisabled);
+
+    @POST(EndPoints.API_PORTFOLIO_PATH + "/products/{productidentifier}/cases/")
+    Completable createLoan(
+            @Path("productidentifier") String productidentifier,
+            @Body LoanAccount loanAccount);
 }

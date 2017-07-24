@@ -9,6 +9,7 @@ import com.mifos.apache.fineract.ui.customerloans.CustomerLoansFragment;
 import com.mifos.apache.fineract.ui.depositdetails.CustomerDepositDetailsFragment;
 import com.mifos.apache.fineract.ui.launcher.LauncherActivity;
 import com.mifos.apache.fineract.ui.loanapplication.BaseFragmentDebtIncome;
+import com.mifos.apache.fineract.ui.loanapplication.loanactivity.LoanApplicationActivity;
 import com.mifos.apache.fineract.ui.loanapplication.loancosigner.LoanCoSignerFragment;
 import com.mifos.apache.fineract.ui.loanapplication.loandetails.LoanDetailsFragment;
 import com.mifos.apache.fineract.ui.loandetails.CustomerLoanDetailsFragment;
@@ -41,6 +42,8 @@ public interface ActivityComponent {
     void inject(CustomerDepositDetailsFragment customerDepositDetailsFragment);
 
     void inject(PlannedPaymentFragment plannedPaymentFragment);
+
+    void inject(LoanApplicationActivity loanApplicationActivity);
 
     void inject(LoanDetailsFragment loanDetailsFragment);
 

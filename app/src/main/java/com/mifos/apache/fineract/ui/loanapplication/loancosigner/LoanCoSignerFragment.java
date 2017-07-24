@@ -81,11 +81,9 @@ public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step
     @Override
     public VerificationError verifyStep() {
         CreditWorthinessSnapshot creditWorthinessSnapshot = getCreditWorthinessSnapshot();
-        if (!TextUtils.isEmpty(etCustomer.getText().toString().trim())) {
-            if (loanCoSignerPresenter.findCustomer(etCustomer.getText().toString().trim(),
-                    customers)) {
-                creditWorthinessSnapshot.setForCustomer(etCustomer.getText().toString().trim());
-            }
+        if (!TextUtils.isEmpty(etCustomer.getText().toString().trim()) && loanCoSignerPresenter
+                .findCustomer(etCustomer.getText().toString().trim(), customers)) {
+            creditWorthinessSnapshot.setForCustomer(etCustomer.getText().toString().trim());
         }
         onNavigationBarListener.setCoSignerDebtIncome(creditWorthinessSnapshot);
         return null;
@@ -111,7 +109,7 @@ public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step
 
     @Override
     public void showProgressbar() {
-        onNavigationBarListener.showProgressbar();
+        onNavigationBarListener.showProgressbar(getString(R.string.fetching_customer_please_wait));
     }
 
     @Override

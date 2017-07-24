@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.data.models.loan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ public class CreditWorthinessSnapshot {
 
     private String forCustomer;
     private List<CreditWorthinessFactor> incomeSources;
-    private List<CreditWorthinessFactor> assets;
+    private List<CreditWorthinessFactor> assets = new ArrayList<>();
     private List<CreditWorthinessFactor> debts;
 
     public String getForCustomer() {

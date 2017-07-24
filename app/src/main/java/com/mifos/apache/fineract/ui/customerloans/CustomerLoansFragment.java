@@ -20,7 +20,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
-import com.mifos.apache.fineract.ui.loanapplication.LoanApplicationActivity;
+import com.mifos.apache.fineract.ui.loanapplication.loanactivity.LoanApplicationActivity;
 import com.mifos.apache.fineract.ui.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
@@ -91,9 +91,13 @@ public class CustomerLoansFragment extends MifosBaseFragment implements Customer
 
         showUserInterface();
 
-        customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, 0, false);
-
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, 0, false);
     }
 
     @Override
