@@ -12,7 +12,7 @@
         android:name=".MifosApplication"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.launcher.LauncherActivity">
+        <activity android:name=".ui.online.launcher.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -20,19 +20,19 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.login.LoginActivity" />
+        <activity android:name=".ui.online.login.LoginActivity" />
 
-        <activity android:name=".ui.DashboardActivity" />
+        <activity android:name=".ui.online.DashboardActivity" />
 
-        <activity android:name=".ui.customerdetails.CustomerDetailsActivity" />
+        <activity android:name=".ui.online.customerdetails.CustomerDetailsActivity" />
 
-        <activity android:name=".ui.customerdeposit.CustomerDepositActivity" />
+        <activity android:name=".ui.online.customerdeposit.CustomerDepositActivity" />
 
-        <activity android:name=".ui.customerloans.CustomerLoansActivity" />
+        <activity android:name=".ui.online.customerloans.CustomerLoansActivity" />
 
-        <activity android:name=".ui.plannedpayment.PlannedPaymentActivity" />
+        <activity android:name=".ui.online.plannedpayment.PlannedPaymentActivity" />
 
-        <activity android:name=".ui.loanapplication.loanactivity.LoanApplicationActivity" />
+        <activity android:name=".ui.online.loanapplication.loanactivity.LoanApplicationActivity" />
 
     </application>
 
