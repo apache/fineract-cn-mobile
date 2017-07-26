@@ -34,6 +34,8 @@
 
         <activity android:name=".ui.online.loanapplication.loanactivity.LoanApplicationActivity" />
 
+        <activity android:name=".ui.online.createcustomer.customeractivity.CreateCustomerActivity" />
+
     </application>
 
 </manifest>

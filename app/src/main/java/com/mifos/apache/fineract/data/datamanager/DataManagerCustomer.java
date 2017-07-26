@@ -8,6 +8,7 @@ import com.mifos.apache.fineract.data.remote.BaseApiManager;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 /**
@@ -36,5 +37,9 @@ public class DataManagerCustomer {
 
     public Observable<CustomerPage> searchCustomer(Integer pageIndex, Integer size, String term) {
         return baseApiManager.getCustomerApi().searchCustomer(pageIndex, size, term);
+    }
+
+    public Completable createCustomer(Customer customer) {
+        return baseApiManager.getCustomerApi().createCustomer(customer);
     }
 }

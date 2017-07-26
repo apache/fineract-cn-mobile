@@ -2,6 +2,7 @@ package com.mifos.apache.fineract.data.remote;
 
 import android.content.Context;
 
+import com.mifos.apache.fineract.data.services.AnonymousService;
 import com.mifos.apache.fineract.data.services.AuthService;
 import com.mifos.apache.fineract.data.services.CustomerService;
 import com.mifos.apache.fineract.data.services.DepositService;
@@ -23,14 +24,18 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class BaseApiManager {
 
     public static Retrofit retrofit;
+    public static Retrofit anonyMousRetrofit;
     private static AuthService authApi;
     private static CustomerService customerApi;
     private static DepositService depositApi;
     private static LoanService loanApi;
     private static IndividualLendingService individualLendingService;
+    private static AnonymousService anonymousService;
+
 
     public BaseApiManager(Context context) {
         createService(context);
+        createAnonymousService();
     }
 
     private static void init() {
@@ -39,6 +44,10 @@ public class BaseApiManager {
         depositApi = createApi(DepositService.class);
         loanApi = createApi(LoanService.class);
         individualLendingService = createApi(IndividualLendingService.class);
+    }
+
+    private static void initAnonymous() {
+        anonymousService = anonyMousRetrofit.create(AnonymousService.class);
     }
 
     private static <T> T createApi(Class<T> clazz) {
@@ -67,6 +76,24 @@ public class BaseApiManager {
         init();
     }
 
+    private static void createAnonymousService() {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .addInterceptor(interceptor)
+                .build();
+
+        anonyMousRetrofit = new Retrofit.Builder()
+                .baseUrl(BaseUrl.getDefaultBaseUrl())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(okHttpClient)
+                .build();
+        initAnonymous();
+    }
+
     public AuthService getAuthApi() {
         return authApi;
     }
@@ -85,5 +112,9 @@ public class BaseApiManager {
 
     public IndividualLendingService getIndividualLendingService() {
         return individualLendingService;
+    }
+
+    public AnonymousService getAnonymousService() {
+        return anonymousService;
     }
 }

@@ -7,7 +7,11 @@ import java.util.List;
 public final class Customer {
 
     public enum Type {
+
+        @SerializedName("PERSON")
         PERSON,
+
+        @SerializedName("BUSINESS")
         BUSINESS
     }
 

@@ -2,6 +2,9 @@ package com.mifos.apache.fineract.injection.component;
 
 import com.mifos.apache.fineract.injection.PerActivity;
 import com.mifos.apache.fineract.injection.module.ActivityModule;
+import com.mifos.apache.fineract.ui.online.createcustomer.customeractivity.CreateCustomerActivity;
+import com.mifos.apache.fineract.ui.online.createcustomer.formcustomeraddress
+        .FormCustomerAddressFragment;
 import com.mifos.apache.fineract.ui.online.customer.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositFragment;
 import com.mifos.apache.fineract.ui.online.customerdetails.CustomerDetailsFragment;
@@ -50,4 +53,8 @@ public interface ActivityComponent {
     void inject(BaseFragmentDebtIncome loanDebtIncomeFragment);
 
     void inject(LoanCoSignerFragment loanCoSignerFragment);
+
+    void inject(CreateCustomerActivity createCustomerActivity);
+
+    void inject(FormCustomerAddressFragment formCustomerAddressFragment);
 }

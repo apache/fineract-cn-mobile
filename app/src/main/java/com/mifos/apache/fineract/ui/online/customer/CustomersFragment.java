@@ -21,6 +21,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.createcustomer.customeractivity.CreateCustomerActivity;
 import com.mifos.apache.fineract.ui.online.customerdetails.CustomerDetailsActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
@@ -122,6 +123,12 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
                 customerPresenter.fetchCustomers(page, true);
             }
         });
+    }
+
+    @OnClick(R.id.fab_add_customer)
+    void addCustomer() {
+        Intent intent = new Intent(getActivity(), CreateCustomerActivity.class);
+        startActivity(intent);
     }
 
     @Override
