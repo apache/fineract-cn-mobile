@@ -85,10 +85,30 @@
     <string name="browse">Browse</string>
     <string name="fetching_customer_please_wait">Fetching customer please wait…</string>
     <string name="creating_loan_please_wait">Creating loan please wait…</string>
+    <string name="creating_customer_please_wait">Creating customer please wait</string>
     <string name="on">on</string>
     <string name="on_the">on the</string>
+    <string name="is_member">Is member?</string>
+    <string name="create_customer">Create Customer</string>
+    <string name="unique_required">Unique, Required</string>
 
 
+    <!--Edit Text hint required-->
+    <string name="required_account">Account*</string>
+    <string name="required_first_name">First name*</string>
+    <string name="required_last_name">Last name*</string>
+    <string name="required_date_of_birth">Date of birth*</string>
+    <string name="required_street">Street*</string>
+    <string name="required_city">City*</string>
+    <string name="required_country">Country*</string>
+
+    <!--Edit Text Optional fields -->
+    <string name="optional_middle_name">Middle name (optional)</string>
+    <string name="optional_postal_code">Postal code (optional)</string>
+    <string name="optional_region">Region (optional)</string>
+    <string name="optional_email">Email (optional)</string>
+    <string name="optional_phone">Phone (optional)</string>
+    <string name="optional_mobile">Mobile (optional)</string>
 
     <!--Empty data-->
     <string name="empty_create_loan_products">Oops there are no products, please create at least one to apply for loan</string>
@@ -99,6 +119,12 @@
     <string name="amount_should_be_not_empty">Amount should not be empty</string>
     <string name="description_should_not_be_empty">Description should not be empty</string>
     <string name="customer_name_should_not_be_empty">Customer name should not be empty</string>
+    <string name="must_be_at_least_three_characters">Must be at least %1$d characters</string>
+    <string name="only_thirty_two_character_allowed">Only 32 character allowed</string>
+    <string name="only_alphabetic_decimal_digits_characters_allowed">Only alphabetic, decimal digits,\'-\' \'_\' \'.\' \'!\' \'~\' \'*\' \'(\' \')\' characters allowed</string>
+    <string name="two_warning_message">%1$s \n %1$s</string>
+    <string name="invalid_country">Invalid country</string>
+    <string name="invalid_email">Invalid email</string>
 
 
     <!--Error Message-->
@@ -110,6 +136,8 @@
     <string name="error_should_contain_only">should contain only</string>
     <string name="error_loading_products">Error while fetching products</string>
     <string name="error_while_creating_loan">Error while creating loan</string>
+    <string name="error_loading_countries">Error while fetching countries</string>
+    <string name="error_creating_customer">Error while creating customer</string>
 
 
     <!--Customer Current status-->
@@ -144,6 +172,12 @@
         <item>Loan details</item>
         <item>Debt to income ratio</item>
         <item>Co-signer</item>
+    </string-array>
+
+    <string-array name="create_customer_steps">
+        <item>Customer details</item>
+        <item>Customer address</item>
+        <item>Customer contact</item>
     </string-array>
 
     <string-array name="repay_unit_type">

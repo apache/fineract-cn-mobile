@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cl_loan_details"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:visibility="visible">
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/gray_light"
+        android:id="@+id/ncv_loan_details"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.CardView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cv_financial_products"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_padding_8dp"
+            android:layout_marginTop="@dimen/layout_padding_8dp"
+            android:layout_width="match_parent"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/layout_padding_16dp" >
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_account"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:paddingTop="@dimen/layout_padding_16dp"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:hint="@string/required_account"
+                            android:id="@+id/et_account"
+                            android:inputType="text"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_first_name"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:hint="@string/required_first_name"
+                            android:id="@+id/et_first_name"
+                            android:inputType="text"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_middle_name"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:hint="@string/optional_middle_name"
+                            android:id="@+id/et_middle_name"
+                            android:inputType="text"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_last_name"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        app:errorEnabled="true">
+
+                        <EditText
+                            android:hint="@string/required_last_name"
+                            android:id="@+id/et_last_name"
+                            android:inputType="text"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_date_of_birth"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent" >
+
+                        <EditText
+                            android:drawableLeft="@drawable/ic_cake_black_24dp"
+                            android:drawablePadding="@dimen/layout_padding_16dp"
+                            android:drawableStart="@drawable/ic_cake_black_24dp"
+                            android:hint="@string/required_date_of_birth"
+                            android:id="@+id/et_date_of_birth"
+                            android:inputType="date"
+                            android:focusable="false"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingBottom="@dimen/layout_padding_16dp"
+                    android:paddingLeft="@dimen/layout_padding_16dp"
+                    android:paddingRight="@dimen/layout_padding_16dp">
+
+                    <CheckBox
+                        android:id="@+id/cb_is_member"
+                        android:layout_height="wrap_content"
+                        android:text="@string/is_member"
+                        android:paddingStart="@dimen/layout_padding_16dp"
+                        android:paddingRight="@dimen/layout_padding_16dp"
+                        android:checked="true"
+                        android:layout_width="wrap_content"
+                        android:paddingLeft="@dimen/layout_padding_16dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

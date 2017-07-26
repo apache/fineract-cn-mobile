@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.mifos.apache.fineract.MifosApplication;
+import com.mifos.apache.fineract.data.datamanager.DataManagerAnonymous;
 import com.mifos.apache.fineract.data.datamanager.DataManagerCustomer;
 import com.mifos.apache.fineract.data.datamanager.DataManagerDeposit;
 import com.mifos.apache.fineract.data.datamanager.DataManagerIndividualLending;
@@ -32,6 +33,7 @@ public interface ApplicationComponent {
     DataManagerDeposit dataManagerDeposit();
     DataManagerLoans dataManagerLoans();
     DataManagerIndividualLending dataManagerIndividualLending();
+    DataManagerAnonymous dataManagerAnonymous();
     BaseApiManager baseApiManager();
     PreferencesHelper preferencesHelper();
 

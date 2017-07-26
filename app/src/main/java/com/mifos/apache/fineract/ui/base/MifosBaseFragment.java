@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.mifos.apache.fineract.utils.ProgressBarHandler;
 
@@ -28,6 +30,13 @@ public class MifosBaseFragment extends Fragment {
         if (callback != null) {
             callback.hideMifosProgressDialog();
         }
+    }
+
+    public void hideKeyboard(View view, Context context) {
+        InputMethodManager inputManager = (InputMethodManager)
+                context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager
+                .RESULT_UNCHANGED_SHOWN);
     }
 
     protected void setToolbarTitle(String title) {

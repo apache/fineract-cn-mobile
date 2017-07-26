@@ -1,15 +1,26 @@
 package com.mifos.apache.fineract.data.models.customer;
 
+import com.google.gson.annotations.SerializedName;
+
 public final class ContactDetail {
 
     public enum Type {
+        @SerializedName("EMAIL")
         EMAIL,
+
+        @SerializedName("PHONE")
         PHONE,
+
+        @SerializedName("MOBILE")
         MOBILE
     }
 
     public enum Group {
+
+        @SerializedName("BUSINESS")
         BUSINESS,
+
+        @SerializedName("PRIVATE")
         PRIVATE
     }
 
@@ -27,8 +38,8 @@ public final class ContactDetail {
         return this.type.name();
     }
 
-    public void setType(final String type) {
-        this.type = Type.valueOf(type.toUpperCase());
+    public void setType(final Type type) {
+        this.type = type;
     }
 
     public String getValue() {
@@ -39,8 +50,8 @@ public final class ContactDetail {
         return this.group.name();
     }
 
-    public void setGroup(final String group) {
-        this.group = Group.valueOf(group);
+    public void setGroup(final Group group) {
+        this.group = group;
     }
 
     public void setValue(final String value) {
