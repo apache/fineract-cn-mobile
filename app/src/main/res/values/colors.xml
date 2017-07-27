@@ -48,6 +48,9 @@
     <color name="light_red">#fff9393c</color>
 
     <color name="collapse_image">#bbbbbb</color>
+    <color name="grey_500">#9e9e9e</color>
+    <color name="icon_image_background">#E9E2E2</color>
+    <color name="status">#049314</color>
 
 
     <!--Swipe Refresh Colors-->

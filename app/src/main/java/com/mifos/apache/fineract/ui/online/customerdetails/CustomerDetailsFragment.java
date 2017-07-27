@@ -22,6 +22,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositActivity;
 import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansActivity;
+import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
 import com.mifos.apache.fineract.ui.views.HeaderView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
@@ -83,13 +84,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     @BindView(R.id.tv_error)
     TextView tvError;
 
-
     @Inject
     CustomerDetailsPresenter customerDetailsPresenter;
 
     private View rootView;
     private String customerIdentifier;
     private boolean isHideToolbarView = false;
+    private Customer customer;
 
     public static CustomerDetailsFragment newInstance(String identifier) {
         CustomerDetailsFragment fragment = new CustomerDetailsFragment();
@@ -143,6 +144,14 @@ public class CustomerDetailsFragment extends MifosBaseFragment
         startActivity(intent);
     }
 
+    @OnClick(R.id.ll_tasks)
+    void updateCustomerStatus() {
+        TasksBottomSheetFragment tasksBottomSheet = new TasksBottomSheetFragment();
+        tasksBottomSheet.setCustomerStatus(customer.getCurrentState());
+        tasksBottomSheet.setCustomerIdentifier(customerIdentifier);
+        tasksBottomSheet.show(getChildFragmentManager(), getString(R.string.tasks));
+    }
+
     @Override
     public void showUserInterface() {
         if (toolbar != null) {
@@ -156,6 +165,7 @@ public class CustomerDetailsFragment extends MifosBaseFragment
 
     @Override
     public void showCustomerDetails(Customer customer) {
+        this.customer = customer;
         ncvCustomerDetails.setVisibility(View.VISIBLE);
 
         tvCurrentStatus.setText(customer.getCurrentState().name());

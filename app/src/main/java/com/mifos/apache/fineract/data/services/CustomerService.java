@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.data.services;
 
+import com.mifos.apache.fineract.data.models.customer.Command;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
 import com.mifos.apache.fineract.data.remote.EndPoints;
@@ -35,4 +36,7 @@ public interface CustomerService {
 
     @POST(EndPoints.API_CUSTOMER_PATH + "/customers")
     Completable createCustomer(@Body Customer customer);
+
+    @POST(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/commands")
+    Completable customerCommand(@Path("identifier") String identifier, @Body Command command);
 }
