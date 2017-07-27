@@ -18,6 +18,7 @@ import com.mifos.apache.fineract.ui.online.loanapplication.loandetails.LoanDetai
 import com.mifos.apache.fineract.ui.online.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.ui.online.login.LoginActivity;
 import com.mifos.apache.fineract.ui.online.plannedpayment.PlannedPaymentFragment;
+import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
 
 import dagger.Subcomponent;
 
@@ -57,4 +58,6 @@ public interface ActivityComponent {
     void inject(CreateCustomerActivity createCustomerActivity);
 
     void inject(FormCustomerAddressFragment formCustomerAddressFragment);
+
+    void inject(TasksBottomSheetFragment tasksBottomSheetFragment);
 }

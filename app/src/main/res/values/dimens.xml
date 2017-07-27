@@ -7,6 +7,7 @@
     <dimen name="layout_padding_4dp">4dp</dimen>
     <dimen name="layout_padding_8dp">8dp</dimen>
     <dimen name="layout_padding_5dp">5dp</dimen>
+    <dimen name="layout_padding_7dp">7dp</dimen>
     <dimen name="layout_padding_10dp">10dp</dimen>
     <dimen name="layout_padding_15dp">15dp</dimen>
     <dimen name="layout_padding_16dp">16dp</dimen>

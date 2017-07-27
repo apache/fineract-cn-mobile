@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_task_list"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/layout_padding_24dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/layout_padding_24dp"
+                    android:text="@string/tasks"
+                    android:textColor="@color/gray_dark"
+                    android:textStyle="bold"/>
+
+                <View
+                    android:background="@color/grey_500"
+                    android:layout_height="0.2dp"
+                    android:layout_width="match_parent"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/layout_padding_24dp">
+
+                    <LinearLayout
+                        style="@style/circleLayout"
+                        android:id="@+id/ll_task1"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_task1"
+                            android:layout_height="35dp"
+                            android:layout_width="35dp"
+                            android:tint="@color/red_dark"
+                            app:srcCompat="@drawable/ic_lock_black_24dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_task1"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/layout_padding_8dp"
+                        android:textSize="@dimen/text_medium"
+                        tools:text="Lock"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/layout_padding_24dp">
+
+                    <LinearLayout
+                        style="@style/circleLayout"
+                        android:id="@+id/ll_task2"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_task2"
+                            android:layout_height="35dp"
+                            android:layout_width="35dp"
+                            android:tint="@color/red_dark"
+                            app:srcCompat="@drawable/ic_close_black_24dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_task2"
+                        android:layout_gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:paddingTop="@dimen/layout_padding_8dp"
+                        android:textSize="@dimen/text_medium"
+                        tools:text="Close"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_task_form"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/layout_padding_24dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/layout_padding_24dp">
+
+                <TextView
+                    android:id="@+id/tv_header"
+                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:text="@string/tasks"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tv_sub_header"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:paddingTop="@dimen/layout_padding_8dp"
+                    android:text="@string/please_verify_following_task"
+                    android:textSize="@dimen/text_size_12sp"/>
+
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingEnd="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_16dp"
+                android:paddingStart="@dimen/layout_padding_24dp">
+
+                <EditText
+                    android:hint="@string/enter_your_comment_here"
+                    android:id="@+id/et_comment"
+                    android:inputType="textMultiLine"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:scrollHorizontally="false"
+                    android:scrollbars="vertical"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="end"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/layout_padding_30dp"
+            android:paddingEnd="@dimen/layout_padding_16dp"
+            android:paddingLeft="@dimen/layout_padding_30dp"
+            android:paddingRight="@dimen/layout_padding_16dp"
+            android:paddingStart="@dimen/layout_padding_30dp"
+            android:paddingTop="@dimen/layout_padding_16dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                android:layout_marginRight="@dimen/layout_padding_16dp"
+                android:layout_width="wrap_content"
+                android:text="@string/cancel"
+                android:textAllCaps="false"/>
+
+            <Button
+                android:id="@+id/btn_submit_task"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/tasks"
+                android:textAllCaps="false"
+            />
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+

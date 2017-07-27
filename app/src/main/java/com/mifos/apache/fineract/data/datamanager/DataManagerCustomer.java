@@ -1,6 +1,7 @@
 package com.mifos.apache.fineract.data.datamanager;
 
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
+import com.mifos.apache.fineract.data.models.customer.Command;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
@@ -41,5 +42,9 @@ public class DataManagerCustomer {
 
     public Completable createCustomer(Customer customer) {
         return baseApiManager.getCustomerApi().createCustomer(customer);
+    }
+
+    public Completable customerCommand(String identifier, Command command) {
+        return baseApiManager.getCustomerApi().customerCommand(identifier, command);
     }
 }
