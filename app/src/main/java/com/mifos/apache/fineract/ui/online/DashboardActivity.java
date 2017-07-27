@@ -13,6 +13,7 @@ import android.view.View;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.online.customer.CustomersFragment;
+import com.mifos.apache.fineract.ui.online.dashboard.DashboardFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +38,8 @@ public class DashboardActivity extends MifosBaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         ButterKnife.bind(this);
+
+        replaceFragment(DashboardFragment.newInstance(), false, R.id.container);
 
         setupNavigationBar();
     }
@@ -74,6 +77,9 @@ public class DashboardActivity extends MifosBaseActivity implements
         clearFragmentBackStack();
 
         switch (item.getItemId()) {
+            case R.id.item_dashboard:
+                replaceFragment(DashboardFragment.newInstance(), true, R.id.container);
+                break;
             case R.id.item_customer:
                 replaceFragment(CustomersFragment.newInstance(), true, R.id.container);
                 break;
