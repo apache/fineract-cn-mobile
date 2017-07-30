@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/gray_light"
+        android:id="@+id/ncv_customer_details"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_debt_ratio"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/layout_padding_8dp"
+                android:paddingEnd="0dp"
+                android:paddingLeft="@dimen/layout_padding_8dp"
+                android:paddingRight="0dp"
+                android:paddingStart="@dimen/layout_padding_8dp"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:text="@string/total_debt"/>
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
+                android:id="@+id/cv_financial_products"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/layout_padding_16dp"
+                android:layout_width="match_parent"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/layout_padding_16dp"
+                        android:paddingRight="@dimen/layout_padding_16dp"
+                        android:paddingTop="@dimen/layout_padding_8dp">
+
+                        <LinearLayout
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:id="@+id/ll_customer_deposit_accounts"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:ellipsize="end"
+                                    android:id="@+id/tv_description"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/gray_dark"
+                                    android:text="@string/description"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_amount"
+                                android:layout_gravity="top"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/gray_dark"
+                                android:text="@string/amount"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:background="#D2D2D2"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/layout_padding_4dp"
+                            android:layout_width="match_parent"/>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_debt"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:paddingBottom="@dimen/layout_padding_8dp"/>
+
+                    <include
+                        layout="@layout/layout_error"
+                        android:id="@+id/rl_is_empty_debt"
+                        android:paddingBottom="@dimen/layout_padding_8dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_income_ratio"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:paddingBottom="@dimen/layout_padding_8dp"
+                android:paddingEnd="0dp"
+                android:paddingLeft="@dimen/layout_padding_8dp"
+                android:paddingRight="0dp"
+                android:paddingStart="@dimen/layout_padding_8dp"
+                android:paddingTop="@dimen/layout_padding_8dp"
+                android:text="@string/total_income"/>
+
+            <android.support.v7.widget.CardView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/white"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/layout_padding_8dp"
+                android:layout_width="match_parent"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="@dimen/layout_padding_16dp"
+                        android:paddingRight="@dimen/layout_padding_16dp"
+                        android:paddingTop="@dimen/layout_padding_8dp">
+
+                        <LinearLayout
+                            xmlns:android="http://schemas.android.com/apk/res/android"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:layout_width="0dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:ellipsize="end"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/gray_dark"
+                                    android:text="@string/description"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_gravity="top"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/gray_dark"
+                                android:text="@string/amount"/>
+
+                        </LinearLayout>
+
+                        <View
+                            android:background="#D2D2D2"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/layout_padding_4dp"
+                            android:layout_width="match_parent"/>
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_income"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:paddingBottom="@dimen/layout_padding_8dp"/>
+
+                    <include
+                        layout="@layout/layout_error"
+                        android:id="@+id/rl_is_empty_income"
+                        android:paddingBottom="@dimen/layout_padding_8dp"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

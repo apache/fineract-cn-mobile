@@ -103,7 +103,6 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
         if (getArguments() != null) {
             customerIdentifier = getArguments().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
         }
@@ -113,6 +112,7 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_details, container, false);
+        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         customerDetailsPresenter.attachView(this);
 

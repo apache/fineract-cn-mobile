@@ -9,6 +9,7 @@ import com.mifos.apache.fineract.ui.online.customer.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositFragment;
 import com.mifos.apache.fineract.ui.online.customerdetails.CustomerDetailsFragment;
 import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansFragment;
+import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportFragment;
 import com.mifos.apache.fineract.ui.online.depositdetails.CustomerDepositDetailsFragment;
 import com.mifos.apache.fineract.ui.online.launcher.LauncherActivity;
 import com.mifos.apache.fineract.ui.online.loanapplication.BaseFragmentDebtIncome;
@@ -60,4 +61,6 @@ public interface ActivityComponent {
     void inject(FormCustomerAddressFragment formCustomerAddressFragment);
 
     void inject(TasksBottomSheetFragment tasksBottomSheetFragment);
+
+    void inject(DebtIncomeReportFragment debtIncomeReportFragment);
 }

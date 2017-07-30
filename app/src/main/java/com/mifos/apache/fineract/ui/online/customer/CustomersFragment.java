@@ -76,7 +76,6 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
         customers = new ArrayList<>();
     }
 
@@ -84,6 +83,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_list, container, false);
+        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         customerPresenter.attachView(this);
         setToolbarTitle(getString(R.string.customers));

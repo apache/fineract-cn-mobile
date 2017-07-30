@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportActivity;
 import com.mifos.apache.fineract.ui.online.plannedpayment.PlannedPaymentActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
@@ -76,6 +78,7 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
 
     private String productIdentifier;
     private String caseIdentifier;
+    private LoanAccount loanAccount;
 
     public static CustomerLoanDetailsFragment newInstance(String productIdentifier,
             String caseIdentifier) {
@@ -124,8 +127,17 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
         startActivity(intent);
     }
 
+    @OnClick(R.id.ll_debt_income_report)
+    void showDebtIncomeReport() {
+        Intent intent = new Intent(getActivity(), DebtIncomeReportActivity.class);
+        intent.putExtra(ConstantKeys.LOAN_CREDITWORTHINESSSNAPSHOTS, (new Gson()).toJson(
+                loanAccount.getLoanParameters().getCreditWorthinessSnapshots()));
+        startActivity(intent);
+    }
+
     @Override
     public void showLoanAccountDetails(LoanAccount loanAccount) {
+        this.loanAccount = loanAccount;
         clCustomerLoanDetails.setVisibility(View.VISIBLE);
         rlError.setVisibility(View.GONE);
         setToolbarTitle(loanAccount.getIdentifier());

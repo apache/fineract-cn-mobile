@@ -9,6 +9,8 @@ import com.mifos.apache.fineract.data.services.DepositService;
 import com.mifos.apache.fineract.data.services.IndividualLendingService;
 import com.mifos.apache.fineract.data.services.LoanService;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -63,6 +65,8 @@ public class BaseApiManager {
                 .addInterceptor(new MifosInterceptor(context))
                 .addInterceptor(new ReceivedCookiesInterceptor(context))
                 .addInterceptor(interceptor)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
                 .build();
 
         retrofit = new Retrofit.Builder()
