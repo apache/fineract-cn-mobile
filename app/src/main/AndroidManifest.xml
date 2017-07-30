@@ -36,6 +36,8 @@
 
         <activity android:name=".ui.online.createcustomer.customeractivity.CreateCustomerActivity" />
 
+        <activity android:name=".ui.online.debtincomereport.DebtIncomeReportActivity" />
+
     </application>
 
 </manifest>

@@ -102,6 +102,9 @@
     <string name="please_verify_following_task">Please verify the following tasks before you can %1$s this customer</string>
     <string name="updating_status">Updating status</string>
     <string name="task_updated_successfully">Task updated successfully</string>
+    <string name="view_debt_income_ratio">View debt income ratio</string>
+    <string name="customer_ratio">Customer \n (Ratio: %1$s)</string>
+    <string name="co_signer_ratio">Co-signer \n (Ratio: %1$s)</string>
 
 
     <!--Edit Text hint required-->
@@ -124,6 +127,8 @@
 
     <!--Empty data-->
     <string name="empty_create_loan_products">Oops there are no products, please create at least one to apply for loan</string>
+    <string name="empty_debts_to_show">There is no debts to show</string>
+    <string name="empty_income_to_show">There is no income to show</string>
 
     <!--Edit Text validations-->
     <string name="value_must_greater_or_equal_to">Value must be greater than or equal to&#160; %1$f</string>
