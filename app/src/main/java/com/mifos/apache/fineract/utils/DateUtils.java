@@ -83,4 +83,10 @@ public class DateUtils {
         Calendar calendar = Calendar.getInstance();
         return simpleDateFormat.format(calendar.getTime());
     }
+
+    public static String convertServerDate(Calendar calendar) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(OUTPUT_DATE_FORMAT,
+                Locale.ENGLISH);
+        return simpleDateFormat.format(calendar.getTime());
+    }
 }

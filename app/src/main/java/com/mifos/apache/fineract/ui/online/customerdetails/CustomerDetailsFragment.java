@@ -22,6 +22,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositActivity;
 import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansActivity;
+import com.mifos.apache.fineract.ui.online.identification.identificationlist.IdentificationsActivity;
 import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
 import com.mifos.apache.fineract.ui.views.HeaderView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
@@ -150,6 +151,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
         tasksBottomSheet.setCustomerStatus(customer.getCurrentState());
         tasksBottomSheet.setCustomerIdentifier(customerIdentifier);
         tasksBottomSheet.show(getChildFragmentManager(), getString(R.string.tasks));
+    }
+
+    @OnClick(R.id.ll_identifier_cards)
+    void showIdentificationCards() {
+        Intent intent = new Intent(getActivity(), IdentificationsActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        startActivity(intent);
     }
 
     @Override

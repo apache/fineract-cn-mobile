@@ -4,7 +4,10 @@ import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.models.customer.Command;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
+import com.mifos.apache.fineract.data.models.customer.identification.Identification;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -46,5 +49,9 @@ public class DataManagerCustomer {
 
     public Completable customerCommand(String identifier, Command command) {
         return baseApiManager.getCustomerApi().customerCommand(identifier, command);
+    }
+
+    public Observable<List<Identification>> fetchIdentifications(String customerIdentifier) {
+        return baseApiManager.getCustomerApi().fetchIdentification(customerIdentifier);
     }
 }
