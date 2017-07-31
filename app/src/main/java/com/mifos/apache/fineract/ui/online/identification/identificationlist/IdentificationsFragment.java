@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.online.identification.identificationlist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -18,6 +19,8 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.identification.createidentification
+        .identificationactivity.CreateIdentificationActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
@@ -27,6 +30,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
@@ -88,6 +92,13 @@ public class IdentificationsFragment extends MifosBaseFragment implements
         showUserInterface();
 
         return rootView;
+    }
+
+    @OnClick(R.id.fab_add_identification_card)
+    void createIdentifier() {
+        Intent intent = new Intent(getActivity(), CreateIdentificationActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        startActivity(intent);
     }
 
     @Override

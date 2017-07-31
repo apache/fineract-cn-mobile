@@ -54,4 +54,8 @@ public class DataManagerCustomer {
     public Observable<List<Identification>> fetchIdentifications(String customerIdentifier) {
         return baseApiManager.getCustomerApi().fetchIdentification(customerIdentifier);
     }
+
+    public Completable createIdentificationCard(String identifier, Identification identification) {
+        return baseApiManager.getCustomerApi().createIdentificationCard(identifier, identification);
+    }
 }
