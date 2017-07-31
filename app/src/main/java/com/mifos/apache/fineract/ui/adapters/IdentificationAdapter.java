@@ -54,9 +54,9 @@ public class IdentificationAdapter extends RecyclerView.Adapter<IdentificationAd
                 identification.getIssuer()));
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(identification.getExpirationDate().getYear(),
-                identification.getExpirationDate().getMonth(),
-                identification.getExpirationDate().getDay());
+        calendar.set(Calendar.YEAR, identification.getExpirationDate().getYear());
+        calendar.set(Calendar.MONTH, identification.getExpirationDate().getMonth() - 1);
+        calendar.set(Calendar.DAY_OF_MONTH, identification.getExpirationDate().getDay());
         holder.tvExpirationDate.setText(DateUtils.convertServerDate(calendar));
     }
 

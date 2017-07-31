@@ -46,4 +46,8 @@ public interface CustomerService {
     @GET(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/identifications")
     Observable<List<Identification>> fetchIdentification(
             @Path("identifier") String identifier);
+
+    @POST(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/identifications")
+    Completable createIdentificationCard(@Path("identifier") String identifier,
+            @Body Identification identification);
 }
