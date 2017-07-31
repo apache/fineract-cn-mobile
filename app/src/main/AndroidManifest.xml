@@ -38,6 +38,9 @@
 
         <activity android:name=".ui.online.debtincomereport.DebtIncomeReportActivity" />
 
+        <activity
+            android:name=".ui.online.identification.identificationlist.IdentificationsActivity" />
+
     </application>
 
 </manifest>

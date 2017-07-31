@@ -105,6 +105,7 @@
     <string name="view_debt_income_ratio">View debt income ratio</string>
     <string name="customer_ratio">Customer \n (Ratio: %1$s)</string>
     <string name="co_signer_ratio">Co-signer \n (Ratio: %1$s)</string>
+    <string name="identification_issuer">Issuer: %1$s</string>
 
 
     <!--Edit Text hint required-->
@@ -127,6 +128,7 @@
 
     <!--Empty data-->
     <string name="empty_create_loan_products">Oops there are no products, please create at least one to apply for loan</string>
+    <string name="empty_identification_list">Oops there is no identification cards to show</string>
     <string name="empty_debts_to_show">There is no debts to show</string>
     <string name="empty_income_to_show">There is no income to show</string>
 
@@ -156,6 +158,7 @@
     <string name="error_loading_countries">Error while fetching countries</string>
     <string name="error_creating_customer">Error while creating customer</string>
     <string name="error_updating_status">Error while updating customer</string>
+    <string name="error_fetching_identification_list">Error while fetching identification cards</string>
 
 
     <!--Customer Current status-->

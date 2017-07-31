@@ -3,7 +3,10 @@ package com.mifos.apache.fineract.data.services;
 import com.mifos.apache.fineract.data.models.customer.Command;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
+import com.mifos.apache.fineract.data.models.customer.identification.Identification;
 import com.mifos.apache.fineract.data.remote.EndPoints;
+
+import java.util.List;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -39,4 +42,8 @@ public interface CustomerService {
 
     @POST(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/commands")
     Completable customerCommand(@Path("identifier") String identifier, @Body Command command);
+
+    @GET(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/identifications")
+    Observable<List<Identification>> fetchIdentification(
+            @Path("identifier") String identifier);
 }

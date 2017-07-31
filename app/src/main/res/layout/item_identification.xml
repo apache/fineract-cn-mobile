@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:baselineAligned="false"
+        android:id="@+id/ll_identifier_card"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:minHeight="?attr/listPreferredItemHeight"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/layout_padding_16dp">
+
+            <LinearLayout
+                style="@style/circleLayout"
+                android:id="@+id/ll_task1"
+                android:layout_height="56dp"
+                android:layout_width="56dp">
+
+                <ImageView
+                    android:id="@+id/iv_task1"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:tint="@color/icon_color"
+                    app:srcCompat="@drawable/ic_description_black_24dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:paddingTop="@dimen/layout_padding_16dp">
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:ellipsize="end"
+                    android:id="@+id/tv_identification_type"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/black"
+                    tools:text="Customer Name"/>
+
+                <TextView
+                    android:id="@+id/tv_expiration_date"
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:gravity="end"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:paddingEnd="@dimen/layout_padding_16dp"
+                    android:paddingStart="@dimen/layout_padding_16dp"
+                    tools:text="Expiration Date"
+                    android:paddingRight="@dimen/layout_padding_16dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:id="@+id/tv_identification_issuer"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingTop="@dimen/layout_padding_4dp"
+                android:textColor="@color/gray_dark"
+                tools:text="Issuer: Government"/>
+
+            <View
+                android:layout_width="wrap_content"
+                android:background="@color/grey_500"
+                android:layout_marginTop="@dimen/layout_padding_16dp"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                android:layout_marginRight="@dimen/layout_padding_16dp"
+                android:layout_height="0.2dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
