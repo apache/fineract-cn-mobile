@@ -21,6 +21,8 @@ import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.identification.createidentification
         .identificationactivity.CreateIdentificationActivity;
+import com.mifos.apache.fineract.ui.online.identification.identificationdetails
+        .IdentificationDetailsFragment;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
@@ -36,7 +38,6 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 31/07/17.
  */
-
 public class IdentificationsFragment extends MifosBaseFragment implements
         IdentificationsContract.View, OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
@@ -164,7 +165,9 @@ public class IdentificationsFragment extends MifosBaseFragment implements
 
     @Override
     public void onItemClick(View childView, int position) {
-
+        ((MifosBaseActivity) getActivity()).replaceFragment(
+                IdentificationDetailsFragment.newInstance(customerIdentifier,
+                        identificationAdapter.getItem(position)), true, R.id.container);
     }
 
     @Override

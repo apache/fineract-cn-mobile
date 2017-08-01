@@ -12,6 +12,9 @@ import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansFragment;
 import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportFragment;
 import com.mifos.apache.fineract.ui.online.depositdetails.CustomerDepositDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
+
+import com.mifos.apache.fineract.ui.online.identification.identificationdetails
+        .IdentificationDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.identificationlist
         .IdentificationsFragment;
 import com.mifos.apache.fineract.ui.online.launcher.LauncherActivity;
@@ -70,4 +73,6 @@ public interface ActivityComponent {
     void inject(IdentificationsFragment identificationsFragment);
 
     void inject(CreateIdentificationActivity createIdentificationActivity);
+
+    void inject(IdentificationDetailsFragment identificationDetailsFragment);
 }

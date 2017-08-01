@@ -65,6 +65,10 @@ public class IdentificationAdapter extends RecyclerView.Adapter<IdentificationAd
         return identifications.size();
     }
 
+    public Identification getItem(int position) {
+        return identifications.get(position);
+    }
+
     public void setIdentifications(List<Identification> identifications) {
         this.identifications = identifications;
         notifyDataSetChanged();

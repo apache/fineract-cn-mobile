@@ -4,6 +4,7 @@ import com.mifos.apache.fineract.data.models.customer.Command;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
 import com.mifos.apache.fineract.data.models.customer.identification.Identification;
+import com.mifos.apache.fineract.data.models.customer.identification.ScanCard;
 import com.mifos.apache.fineract.data.remote.EndPoints;
 
 import java.util.List;
@@ -50,4 +51,10 @@ public interface CustomerService {
     @POST(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/identifications")
     Completable createIdentificationCard(@Path("identifier") String identifier,
             @Body Identification identification);
+
+    @GET(EndPoints.API_CUSTOMER_PATH +
+            "/customers/{identifier}/identifications/{identificationnumber}/scans")
+    Observable<List<ScanCard>> fetchIdentificationScanCards(
+            @Path("identifier") String identifier,
+            @Path("identificationnumber") String identificationnumber);
 }

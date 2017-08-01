@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:baselineAligned="false"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/ll_identifier_card"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/listPreferredItemHeight"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/layout_padding_16dp">
+
+            <LinearLayout
+                style="@style/circleLayout"
+                android:gravity="center"
+                android:id="@+id/ll_task1"
+                android:layout_height="48dp"
+                android:layout_width="48dp">
+
+                <ImageView
+                    android:id="@+id/iv_task1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:tint="@color/icon_color"
+                    app:srcCompat="@drawable/ic_description_black_24dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:weightSum="1"
+                android:paddingTop="@dimen/layout_padding_16dp">
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:id="@+id/tv_identifier"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"
+                    tools:text="Scan card"/>
+
+                <LinearLayout
+                    android:gravity="end"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:layout_width="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_delete_scan_card"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="@dimen/layout_padding_16dp"
+                        android:layout_marginRight="@dimen/layout_padding_16dp"
+                        android:layout_width="56dp"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:srcCompat="@drawable/ic_delete_black_24dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:ellipsize="end"
+                android:id="@+id/tv_description"
+                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/layout_padding_24dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="@dimen/layout_padding_24dp"
+                android:paddingStart="0dp"
+                android:paddingTop="@dimen/layout_padding_4dp"
+                android:textColor="@color/gray_dark"
+                tools:text="This is my passport"/>
+
+            <View
+                android:background="@color/grey_500"
+                android:layout_height="0.2dp"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                android:layout_marginRight="@dimen/layout_padding_16dp"
+                android:layout_marginTop="@dimen/layout_padding_16dp"
+                android:layout_width="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
