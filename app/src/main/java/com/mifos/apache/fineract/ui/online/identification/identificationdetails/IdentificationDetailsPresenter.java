@@ -1,10 +1,10 @@
-package com.mifos.apache.fineract.ui.online.identification.identificationlist;
+package com.mifos.apache.fineract.ui.online.identification.identificationdetails;
 
 import android.content.Context;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.datamanager.DataManagerCustomer;
-import com.mifos.apache.fineract.data.models.customer.identification.Identification;
+import com.mifos.apache.fineract.data.models.customer.identification.ScanCard;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.injection.ConfigPersistent;
 import com.mifos.apache.fineract.ui.base.BasePresenter;
@@ -20,17 +20,18 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Rajan Maurya
- *         On 31/07/17.
+ *         On 01/08/17.
  */
 @ConfigPersistent
-public class IdentificationsPresenter extends BasePresenter<IdentificationsContract.View>
-        implements IdentificationsContract.Presenter {
+public class IdentificationDetailsPresenter extends
+        BasePresenter<IdentificationDetailsContract.View>
+        implements IdentificationDetailsContract.Presenter {
 
     private DataManagerCustomer dataManagerCustomer;
     private final CompositeDisposable compositeDisposable;
 
     @Inject
-    public IdentificationsPresenter(@ApplicationContext Context context,
+    public IdentificationDetailsPresenter(@ApplicationContext Context context,
             DataManagerCustomer dataManagerCustomer) {
         super(context);
         this.dataManagerCustomer = dataManagerCustomer;
@@ -38,7 +39,7 @@ public class IdentificationsPresenter extends BasePresenter<IdentificationsContr
     }
 
     @Override
-    public void attachView(IdentificationsContract.View mvpView) {
+    public void attachView(IdentificationDetailsContract.View mvpView) {
         super.attachView(mvpView);
     }
 
@@ -49,30 +50,28 @@ public class IdentificationsPresenter extends BasePresenter<IdentificationsContr
     }
 
     @Override
-    public void fetchIdentifications(String customerIdentifier) {
+    public void fetchIdentificationScanCards(String customerIdentifier,
+            String identificationNumber) {
         checkViewAttached();
-        getMvpView().showProgressbar();
-        compositeDisposable.add(dataManagerCustomer.fetchIdentifications(customerIdentifier)
+        compositeDisposable.add(dataManagerCustomer
+                .fetchIdentificationScanCards(customerIdentifier, identificationNumber)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<List<Identification>>() {
+                .subscribeWith(new DisposableObserver<List<ScanCard>>() {
                     @Override
-                    public void onNext(List<Identification> identifications) {
-                        getMvpView().hideProgressbar();
-
-                        if (identifications.size() == 0) {
-                            getMvpView().showMessage(
-                                    context.getString(R.string.empty_identification_list));
+                    public void onNext(List<ScanCard> scanCards) {
+                        if (scanCards.size() == 0) {
+                            getMvpView().showScansStatus(
+                                    context.getString(R.string.empty_scans_to_show));
                         } else {
-                            getMvpView().showIdentification(identifications);
+                            getMvpView().showScanCards(scanCards);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        getMvpView().hideProgressbar();
-                        getMvpView().showMessage(
-                                context.getString(R.string.error_fetching_identification_list));
+                        getMvpView().showError(
+                                context.getString(R.string.error_fetching_scans));
                     }
 
                     @Override

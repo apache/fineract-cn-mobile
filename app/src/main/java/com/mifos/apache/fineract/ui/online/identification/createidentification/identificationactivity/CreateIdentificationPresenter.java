@@ -38,6 +38,17 @@ public class CreateIdentificationPresenter extends BasePresenter<CreateIdentific
     }
 
     @Override
+    public void attachView(CreateIdentificationContract.View mvpView) {
+        super.attachView(mvpView);
+    }
+
+    @Override
+    public void detachView() {
+        super.detachView();
+        compositeDisposable.clear();
+    }
+
+    @Override
     public void createIdentification(String identifier, Identification identification) {
         checkViewAttached();
         getMvpView().showProgressbar();

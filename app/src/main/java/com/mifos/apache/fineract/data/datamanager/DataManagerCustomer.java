@@ -5,6 +5,7 @@ import com.mifos.apache.fineract.data.models.customer.Command;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.CustomerPage;
 import com.mifos.apache.fineract.data.models.customer.identification.Identification;
+import com.mifos.apache.fineract.data.models.customer.identification.ScanCard;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 
 import java.util.List;
@@ -57,5 +58,11 @@ public class DataManagerCustomer {
 
     public Completable createIdentificationCard(String identifier, Identification identification) {
         return baseApiManager.getCustomerApi().createIdentificationCard(identifier, identification);
+    }
+
+    public Observable<List<ScanCard>> fetchIdentificationScanCards(String customerIdentifier,
+            String identificationNumber) {
+        return baseApiManager.getCustomerApi().fetchIdentificationScanCards(customerIdentifier,
+                identificationNumber);
     }
 }

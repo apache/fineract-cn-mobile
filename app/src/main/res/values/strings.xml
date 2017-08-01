@@ -112,6 +112,8 @@
     <string name="type">Type</string>
     <string name="issuer">Issuer</string>
     <string name="expiration_date">Expiration date</string>
+    <string name="scans_uploaded">Scans uploaded</string>
+    <string name="loading_scans_please_wait">Loading scans please wait…</string>
 
 
     <!--Edit Text hint required-->
@@ -141,6 +143,7 @@
     <string name="empty_identification_list">Oops there is no identification cards to show</string>
     <string name="empty_debts_to_show">There is no debts to show</string>
     <string name="empty_income_to_show">There is no income to show</string>
+    <string name="empty_scans_to_show">There is no scans to show</string>
 
     <!--Edit Text validations-->
     <string name="value_must_greater_or_equal_to">Value must be greater than or equal to&#160; %1$f</string>
@@ -170,6 +173,7 @@
     <string name="error_updating_status">Error while updating customer</string>
     <string name="error_fetching_identification_list">Error while fetching identification cards</string>
     <string name="error_creating_identification_card">Error while creating identification card</string>
+    <string name="error_fetching_scans">Error while fetching scan cards</string>
 
 
     <!--Customer Current status-->

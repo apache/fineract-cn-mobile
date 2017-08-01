@@ -11,4 +11,5 @@ public class ConstantKeys {
     public static final String CASE_IDENTIFIER = "case_identifier";
     public static final String ACCOUNT_IDENTIFIER = "account_identifier";
     public static final String LOAN_CREDITWORTHINESSSNAPSHOTS = "loan_creditWorthinessSnapshots";
+    public static final String IDENTIFICATION_CARD = "identification_card";
 }
