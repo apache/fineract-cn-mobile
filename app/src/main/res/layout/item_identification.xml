@@ -29,14 +29,15 @@
 
             <LinearLayout
                 style="@style/circleLayout"
+                android:gravity="center"
                 android:id="@+id/ll_task1"
-                android:layout_height="56dp"
-                android:layout_width="56dp">
+                android:layout_height="48dp"
+                android:layout_width="48dp">
 
                 <ImageView
                     android:id="@+id/iv_task1"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:tint="@color/icon_color"
                     app:srcCompat="@drawable/ic_description_black_24dp"/>
 
