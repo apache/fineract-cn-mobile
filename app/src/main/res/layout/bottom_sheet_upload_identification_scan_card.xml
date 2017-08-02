@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/layout_padding_24dp">
+
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Large"
+                    android:id="@+id/tv_header"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/layout_padding_30dp"
+                    android:paddingLeft="@dimen/layout_padding_24dp"
+                    android:paddingRight="@dimen/layout_padding_24dp"
+                    android:paddingStart="@dimen/layout_padding_24dp"
+                    android:paddingTop="@dimen/layout_padding_24dp"
+                    android:text="@string/upload_new_identification_card_scan"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_identifier"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/layout_padding_24dp"
+                    android:paddingRight="@dimen/layout_padding_24dp">
+
+                    <EditText
+                        android:hint="@string/identifier"
+                        android:id="@+id/et_identifier"
+                        android:inputType="text"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/til_description"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="@dimen/layout_padding_24dp"
+                    android:paddingRight="@dimen/layout_padding_24dp"
+                    android:paddingTop="@dimen/layout_padding_16dp">
+
+                    <EditText
+                        android:hint="@string/description"
+                        android:id="@+id/et_description"
+                        android:inputType="textMultiLine"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:scrollHorizontally="false"
+                        android:scrollbars="vertical"/>
+                </android.support.design.widget.TextInputLayout>
+
+
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/layout_padding_24dp"
+                    android:paddingRight="@dimen/layout_padding_24dp"
+                    android:paddingTop="@dimen/layout_padding_16dp"
+                    android:weightSum="1">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/til_selected_file"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".7"
+                        android:layout_width="wrap_content"
+                        android:paddingEnd="@dimen/layout_padding_8dp"
+                        android:paddingLeft="0dp"
+                        android:paddingRight="@dimen/layout_padding_8dp"
+                        android:paddingStart="0dp">
+                        <EditText
+                            android:hint="@string/selected_file"
+                            android:id="@+id/et_selected_file"
+                            android:inputType="text"
+                            android:lines="1"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:scrollHorizontally="false"
+                            android:enabled="false"
+                            android:scrollbars="vertical"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                    <Button
+                        android:drawableLeft="@drawable/ic_folder_black_24dp"
+                        android:drawableStart="@drawable/ic_folder_black_24dp"
+                        android:id="@+id/btn_browse_document"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".3"
+                        android:layout_width="wrap_content"
+                        android:text="@string/browse"
+                        android:textAllCaps="true"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_gravity="end"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:paddingEnd="@dimen/layout_padding_24dp"
+                android:paddingLeft="@dimen/layout_padding_64dp"
+                android:paddingRight="@dimen/layout_padding_24dp"
+                android:paddingStart="@dimen/layout_padding_64dp"
+                android:paddingTop="@dimen/layout_padding_24dp"
+                android:weightSum="1">
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/layout_padding_16dp"
+                    android:layout_marginRight="@dimen/layout_padding_16dp"
+                    android:layout_weight=".5"
+                    android:layout_width="wrap_content"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"/>
+
+                <Button
+                    android:id="@+id/btn_upload_identification_card_scan"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".5"
+                    android:layout_width="wrap_content"
+                    android:text="@string/upload"
+                    android:textAllCaps="false"
+                />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+

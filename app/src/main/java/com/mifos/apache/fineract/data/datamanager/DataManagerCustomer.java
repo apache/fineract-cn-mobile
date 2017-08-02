@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 
 /**
  * @author Rajan Maurya
@@ -64,5 +65,12 @@ public class DataManagerCustomer {
             String identificationNumber) {
         return baseApiManager.getCustomerApi().fetchIdentificationScanCards(customerIdentifier,
                 identificationNumber);
+    }
+
+    public Completable uploadIdentificationCardScan(String customerIdentifier,
+            String identificationNumber, String scanIdentifier, String description,
+            MultipartBody.Part file) {
+        return baseApiManager.getCustomerApi().uploadIdentificationCardScan(customerIdentifier,
+                identificationNumber, scanIdentifier, description, file);
     }
 }

@@ -235,7 +235,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:clickable="true"
-        android:id="@+id/fab_edit_customer_loan"
+        android:id="@+id/fab_upload_identification_scan_card"
         android:layout_gravity="bottom|end"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/layout_padding_16dp"

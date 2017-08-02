@@ -1,5 +1,11 @@
 package com.mifos.apache.fineract.utils;
 
+import android.content.Context;
+import android.support.design.widget.TextInputLayout;
+import android.text.TextUtils;
+
+import com.mifos.apache.fineract.R;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -31,6 +37,16 @@ public class ValidationUtil {
         } catch (UnsupportedEncodingException e) {
             return false;
         }
+        return true;
+    }
+
+    public static boolean isEmpty(Context context, String string, TextInputLayout inputLayout) {
+        if (TextUtils.isEmpty(string)) {
+            ValidateIdentifierUtil.showTextInputLayoutError(inputLayout,
+                    context.getString(R.string.required));
+            return false;
+        }
+        ValidateIdentifierUtil.showTextInputLayoutError(inputLayout, null);
         return true;
     }
 }

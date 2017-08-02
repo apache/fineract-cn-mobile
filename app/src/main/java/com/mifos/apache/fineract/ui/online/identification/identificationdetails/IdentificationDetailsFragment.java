@@ -16,6 +16,8 @@ import com.mifos.apache.fineract.data.models.customer.identification.ScanCard;
 import com.mifos.apache.fineract.ui.adapters.IdentificationScanAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
+import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan
+        .UploadIdentificationCardBottomSheet;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.DateUtils;
 
@@ -102,6 +104,14 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
         showUserInterface();
 
         return rootView;
+    }
+
+    @OnClick(R.id.fab_upload_identification_scan_card)
+    void addIdentificationCard() {
+        UploadIdentificationCardBottomSheet uploadIdentificationCardBottomSheet =
+                new UploadIdentificationCardBottomSheet();
+        uploadIdentificationCardBottomSheet.show(getChildFragmentManager(),
+                getString(R.string.upload_new_identification_card_scan));
     }
 
     @OnClick(R.id.iv_retry)

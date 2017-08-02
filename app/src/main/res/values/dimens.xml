@@ -13,6 +13,7 @@
     <dimen name="layout_padding_16dp">16dp</dimen>
     <dimen name="layout_padding_24dp">24dp</dimen>
     <dimen name="layout_padding_30dp">30dp</dimen>
+    <dimen name="layout_padding_50dp">50dp</dimen>
     <dimen name="layout_padding_64dp">64dp</dimen>
     <dimen name="layout_padding_75dp">75dp</dimen>
 
