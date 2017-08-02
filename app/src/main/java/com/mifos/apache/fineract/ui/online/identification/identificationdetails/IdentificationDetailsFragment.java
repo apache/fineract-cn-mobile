@@ -16,6 +16,10 @@ import com.mifos.apache.fineract.data.models.customer.identification.ScanCard;
 import com.mifos.apache.fineract.ui.adapters.IdentificationScanAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
+import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan
+        .AddScanIdentificationListener;
+import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan
+        .UploadIdentificationCardBottomSheet;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.DateUtils;
 
@@ -34,7 +38,7 @@ import butterknife.OnClick;
  */
 public class IdentificationDetailsFragment extends MifosBaseFragment
         implements IdentificationDetailsContract.View,
-        IdentificationScanAdapter.OnItemClickListener {
+        IdentificationScanAdapter.OnItemClickListener, AddScanIdentificationListener {
 
     @BindView(R.id.tv_number)
     TextView tvNumber;
@@ -104,6 +108,17 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
         return rootView;
     }
 
+    @OnClick(R.id.fab_upload_identification_scan_card)
+    void addIdentificationCard() {
+        UploadIdentificationCardBottomSheet uploadIdentificationCardBottomSheet =
+                new UploadIdentificationCardBottomSheet();
+        uploadIdentificationCardBottomSheet.setIdentifierAndNumber(customerIdentifier,
+                identificationCard.getNumber());
+        uploadIdentificationCardBottomSheet.setAddScanIdentificationListener(this);
+        uploadIdentificationCardBottomSheet.show(getChildFragmentManager(),
+                getString(R.string.upload_new_identification_card_scan));
+    }
+
     @OnClick(R.id.iv_retry)
     void onRetry() {
         identificationDetailsPresenter.fetchIdentificationScanCards(customerIdentifier,
@@ -113,6 +128,15 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
     @Override
     public void onResume() {
         super.onResume();
+        identificationDetailsPresenter.fetchIdentificationScanCards(customerIdentifier,
+                identificationCard.getNumber());
+    }
+
+    @Override
+    public void updateScanUploadedIdentification() {
+        tvScansStatus.setVisibility(View.VISIBLE);
+        rvScansUploaded.setVisibility(View.GONE);
+        rlError.setVisibility(View.GONE);
         identificationDetailsPresenter.fetchIdentificationScanCards(customerIdentifier,
                 identificationCard.getNumber());
     }

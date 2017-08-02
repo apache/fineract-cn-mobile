@@ -82,7 +82,7 @@
     <string name="edit_income">Edit Income</string>
     <string name="debt_income">Debt Income</string>
     <string name="name">Name</string>
-    <string name="browse">Browse</string>
+    <string name="browse">Browse…</string>
     <string name="fetching_customer_please_wait">Fetching customer please wait…</string>
     <string name="creating_loan_please_wait">Creating loan please wait…</string>
     <string name="creating_customer_please_wait">Creating customer please wait…</string>
@@ -114,6 +114,13 @@
     <string name="expiration_date">Expiration date</string>
     <string name="scans_uploaded">Scans uploaded</string>
     <string name="loading_scans_please_wait">Loading scans please wait…</string>
+    <string name="identifier">Identifier</string>
+    <string name="selected_file">Selected file</string>
+    <string name="upload_new_identification_card_scan">Upload new Identification card scan</string>
+    <string name="upload">Upload</string>
+    <string name="package_name" translatable="false">package</string>
+    <string name="scan_file">scanFile.png</string>
+    <string name="uploading_identification_scan_card">Uploading identification scan card…</string>
 
 
     <!--Edit Text hint required-->
@@ -174,7 +181,27 @@
     <string name="error_fetching_identification_list">Error while fetching identification cards</string>
     <string name="error_creating_identification_card">Error while creating identification card</string>
     <string name="error_fetching_scans">Error while fetching scan cards</string>
+    <string name="error_uploading_identification_scan_card">Error while uploading identification scan card</string>
 
+
+    <!--Material Dialog-->
+    <string name="dialog_action_ok">OK</string>
+    <string name="dialog_action_cancel">Cancel</string>
+    <string name="dialog_action_back">Back</string>
+    <string name="dialog_permission_denied">Permission Denied</string>
+    <string name="dialog_action_i_am_sure">I\'M Sure</string>
+    <string name="dialog_action_re_try">Retry</string>
+    <string name="dialog_action_app_settings">App Settings</string>
+    <string name="dialog_message_camera_permission_denied_prompt">Without camera permission you will
+        not be able to scan the document. Are you sure you want to deny this
+        permission?</string>
+    <string name="dialog_message_camera_permission_never_ask_again">You have denied permission to
+        use camera, without this permission you will not be able to scan the document.
+        Please enable it in settings</string>
+    <string name="msg_setting_activity_not_found">Something went wrong finding Settings activity.
+        \nGo to \'Settings\' and grant permission manually.
+    </string>
+    <string name="permission_denied_camera">Permission Denied to use Camera</string>
 
     <!--Customer Current status-->
     <string name="active">ACTIVE</string>
