@@ -5,12 +5,10 @@ import static android.app.Activity.RESULT_OK;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Dialog;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,6 +18,7 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -32,8 +31,11 @@ import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.ValidateIdentifierUtil;
 import com.mifos.apache.fineract.utils.ValidationUtil;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,6 +47,8 @@ import butterknife.OnClick;
  */
 public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDialogFragment
         implements UploadIdentificationCardContract.View, TextWatcher {
+
+    public static final String LOG_TAG = UploadIdentificationCardBottomSheet.class.getSimpleName();
 
     public static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -66,10 +70,17 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
     @BindView(R.id.til_selected_file)
     TextInputLayout tilSelectedFile;
 
+    @Inject
+    UploadIdentificationCardPresenter uploadIdentificationCardPresenter;
+
     View rootView;
 
     private BottomSheetBehavior behavior;
-    private File capturedImage;
+    private File cachePath;
+    private String customerIdentifier;
+    private String identificationNumber;
+
+    private AddScanIdentificationListener addScanIdentificationListener;
 
     @NonNull
     @Override
@@ -79,6 +90,8 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
                 R.layout.bottom_sheet_upload_identification_scan_card, null);
         dialog.setContentView(rootView);
         behavior = BottomSheetBehavior.from((View) rootView.getParent());
+        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        uploadIdentificationCardPresenter.attachView(this);
         ButterKnife.bind(this, rootView);
 
         showUserInterface();
@@ -97,6 +110,9 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
     public void onUploadIdentificationCard() {
         if (validateIdentifier() && validateDescription() && validateSelectFile()) {
 
+            uploadIdentificationCardPresenter.uploadIdentificationCardScan(customerIdentifier,
+                    identificationNumber, etIdentifier.getText().toString().trim(),
+                    etDescription.getText().toString().trim(), cachePath);
         }
     }
 
@@ -107,7 +123,7 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
 
     @OnClick(R.id.btn_browse_document)
     void browseDocument() {
-       checkCameraPermission();
+        checkCameraPermission();
     }
 
     @Override
@@ -134,28 +150,8 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             etSelectFile.setText(getString(R.string.scan_file));
-
-            // CALL THIS METHOD TO GET THE URI FROM THE BITMAP
-            Uri tempUri = getImageUri(getActivity(), imageBitmap);
-
-            // CALL THIS METHOD TO GET THE ACTUAL PATH
-            capturedImage = new File(getRealPathFromURI(tempUri));
+            saveImageInCache(imageBitmap);
         }
-    }
-
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage,
-                "Title", null);
-        return Uri.parse(path);
-    }
-
-    public String getRealPathFromURI(Uri uri) {
-        Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
-        cursor.moveToFirst();
-        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
-        return cursor.getString(idx);
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -172,13 +168,29 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
     }
 
     @Override
+    public void saveImageInCache(Bitmap bitmap) {
+        try {
+            File outputDir = getActivity().getCacheDir();
+            File outputFile = File.createTempFile("scan", "png", outputDir);
+            cachePath = outputFile;
+
+            // overwrites this image every time
+            FileOutputStream stream = new FileOutputStream(outputFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            stream.close();
+        } catch (IOException e) {
+            Log.d(LOG_TAG, e.getLocalizedMessage());
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
             @NonNull int[] grantResults) {
         switch (requestCode) {
-            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA : {
+            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                   openCamera();
+                    openCamera();
                 } else {
                     Toaster.show(rootView, getString(R.string.permission_denied_camera));
                 }
@@ -188,12 +200,13 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
 
     @Override
     public void showScanUploadedSuccessfully() {
-
+        addScanIdentificationListener.updateScanUploadedIdentification();
+        dismiss();
     }
 
     @Override
     public void showProgressDialog() {
-        showMifosProgressDialog("Uploading identification scan card...");
+        showMifosProgressDialog(getString(R.string.uploading_identification_scan_card));
     }
 
     @Override
@@ -204,6 +217,15 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
     @Override
     public void showError(String message) {
         Toaster.show(rootView, message);
+    }
+
+    public void setIdentifierAndNumber(String identifier, String identificationNumber) {
+        customerIdentifier = identifier;
+        this.identificationNumber = identificationNumber;
+    }
+
+    public void setAddScanIdentificationListener(AddScanIdentificationListener listener) {
+        addScanIdentificationListener = listener;
     }
 
     @Override
@@ -247,5 +269,17 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
     public void onDestroyView() {
         super.onDestroyView();
         hideMifosProgressDialog();
+        uploadIdentificationCardPresenter.detachView();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
     }
 }

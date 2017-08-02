@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 
 import com.mifos.apache.fineract.ui.base.MvpView;
 
+import java.io.File;
+
 /**
  * @author Rajan Maurya
  *         On 01/08/17.
@@ -19,6 +21,8 @@ public interface UploadIdentificationCardContract {
         void openCamera();
 
         void requestPermission();
+
+        void saveImageInCache(Bitmap bitmap);
 
         void showScanUploadedSuccessfully();
 
@@ -39,6 +43,6 @@ public interface UploadIdentificationCardContract {
 
         void uploadIdentificationCardScan(String customerIdentifier,
                 String identificationNumber, String scanIdentifier, String description,
-                Bitmap bitmap);
+                File file);
     }
 }

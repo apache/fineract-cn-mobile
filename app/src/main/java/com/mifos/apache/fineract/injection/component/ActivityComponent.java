@@ -17,6 +17,8 @@ import com.mifos.apache.fineract.ui.online.identification.identificationdetails
         .IdentificationDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.identificationlist
         .IdentificationsFragment;
+import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan
+        .UploadIdentificationCardBottomSheet;
 import com.mifos.apache.fineract.ui.online.launcher.LauncherActivity;
 import com.mifos.apache.fineract.ui.online.loanapplication.BaseFragmentDebtIncome;
 import com.mifos.apache.fineract.ui.online.loanapplication.loanactivity.LoanApplicationActivity;
@@ -75,4 +77,6 @@ public interface ActivityComponent {
     void inject(CreateIdentificationActivity createIdentificationActivity);
 
     void inject(IdentificationDetailsFragment identificationDetailsFragment);
+
+    void inject(UploadIdentificationCardBottomSheet uploadIdentificationCardBottomSheet);
 }

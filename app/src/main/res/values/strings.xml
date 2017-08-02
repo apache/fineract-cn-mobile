@@ -120,6 +120,7 @@
     <string name="upload">Upload</string>
     <string name="package_name" translatable="false">package</string>
     <string name="scan_file">scanFile.png</string>
+    <string name="uploading_identification_scan_card">Uploading identification scan card…</string>
 
 
     <!--Edit Text hint required-->
@@ -180,6 +181,7 @@
     <string name="error_fetching_identification_list">Error while fetching identification cards</string>
     <string name="error_creating_identification_card">Error while creating identification card</string>
     <string name="error_fetching_scans">Error while fetching scan cards</string>
+    <string name="error_uploading_identification_scan_card">Error while uploading identification scan card</string>
 
 
     <!--Material Dialog-->
