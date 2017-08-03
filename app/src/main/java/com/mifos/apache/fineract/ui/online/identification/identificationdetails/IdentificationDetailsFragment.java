@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.online.identification.identificationdetails;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.identification.Identification;
 import com.mifos.apache.fineract.data.models.customer.identification.ScanCard;
@@ -20,6 +22,7 @@ import com.mifos.apache.fineract.ui.online.identification.uploadidentificationsc
         .AddScanIdentificationListener;
 import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan
         .UploadIdentificationCardBottomSheet;
+import com.mifos.apache.fineract.ui.online.identification.viewscancard.ViewScanCardActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.DateUtils;
 
@@ -74,6 +77,7 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
 
     private String customerIdentifier;
     private Identification identificationCard;
+    private List<ScanCard> scanCards;
 
     public static IdentificationDetailsFragment newInstance(String identifier,
             Identification identification) {
@@ -163,6 +167,7 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
 
     @Override
     public void showScanCards(List<ScanCard> scanCards) {
+        this.scanCards = scanCards;
         showRecyclerView(true);
         identificationScanAdapter.setScanCards(scanCards);
     }
@@ -194,7 +199,12 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
 
     @Override
     public void onItemClick(View view, int position) {
-
+        Intent intent = new Intent(getActivity(), ViewScanCardActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.putExtra(ConstantKeys.IDENTIFICATION_NUMBER, identificationCard.getNumber());
+        intent.putExtra(ConstantKeys.IDENTIFICATION_SCAN_CARD, (new Gson()).toJson(scanCards));
+        intent.putExtra(ConstantKeys.POSITION, position);
+        startActivity(intent);
     }
 
     @Override

@@ -29,11 +29,11 @@ import okhttp3.Response;
  */
 public class MifosInterceptor implements Interceptor {
 
-    private static final String HEADER_TENANT = "X-Tenant-Identifier";
-    private static final String HEADER_AUTH = "Authorization";
+    public static final String HEADER_TENANT = "X-Tenant-Identifier";
+    public static final String HEADER_AUTH = "Authorization";
     private static final String HEADER_ACCEPT_JSON = "Accept";
     private static final String HEADER_CONTENT_TYPE = "Content-type";
-    private static final String HEADER_USER = "User";
+    public static final String HEADER_USER = "User";
 
     @Inject
     PreferencesHelper preferencesHelper;

@@ -5,14 +5,14 @@ import android.content.Context;
 
 import com.mifos.apache.fineract.MifosApplication;
 import com.mifos.apache.fineract.data.datamanager.DataManagerAnonymous;
+import com.mifos.apache.fineract.data.datamanager.DataManagerAuth;
 import com.mifos.apache.fineract.data.datamanager.DataManagerCustomer;
 import com.mifos.apache.fineract.data.datamanager.DataManagerDeposit;
 import com.mifos.apache.fineract.data.datamanager.DataManagerIndividualLending;
 import com.mifos.apache.fineract.data.datamanager.DataManagerLoans;
+import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 import com.mifos.apache.fineract.data.remote.MifosInterceptor;
-import com.mifos.apache.fineract.data.datamanager.DataManagerAuth;
-import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.remote.ReceivedCookiesInterceptor;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.injection.module.ApplicationModule;
@@ -41,4 +41,5 @@ public interface ApplicationComponent {
     void inject(MifosApplication mifosApplication);
 
     void inject(ReceivedCookiesInterceptor receivedCookiesInterceptor);
+
 }
