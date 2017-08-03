@@ -1,15 +1,20 @@
 package com.mifos.apache.fineract.ui.online.identification.identificationdetails;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.mifos.apache.fineract.R;
@@ -25,6 +30,8 @@ import com.mifos.apache.fineract.ui.online.identification.uploadidentificationsc
 import com.mifos.apache.fineract.ui.online.identification.viewscancard.ViewScanCardActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.DateUtils;
+import com.mifos.apache.fineract.utils.MaterialDialog;
+import com.mifos.apache.fineract.utils.Utils;
 
 import java.util.Calendar;
 import java.util.List;
@@ -96,6 +103,7 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
             customerIdentifier = getArguments().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
             identificationCard = getArguments().getParcelable(ConstantKeys.IDENTIFICATION_CARD);
         }
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -192,6 +200,23 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
     }
 
     @Override
+    public void showIdentifierDeletedSuccessfully() {
+        Toast.makeText(getActivity(), R.string.identification_deleted_successfully,
+                Toast.LENGTH_SHORT).show();
+        getActivity().getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void showProgressDialog() {
+        showMifosProgressDialog(getString(R.string.deleting_identification_card));
+    }
+
+    @Override
+    public void hideProgressDialog() {
+        hideMifosProgressDialog();
+    }
+
+    @Override
     public void showError(String message) {
         showRecyclerView(false);
         tvError.setText(message);
@@ -213,8 +238,44 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
     }
 
     @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_identification_card, menu);
+        Utils.setToolbarIconColor(getActivity(), menu, R.color.white);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_identification_edit:
+                return true;
+            case R.id.menu_identification_delete:
+                new MaterialDialog.Builder()
+                        .init(getActivity())
+                        .setTitle(getString(R.string.dialog_title_confirm_deletion))
+                        .setMessage(getString(
+                                R.string.dialog_message_confirmation_delete_identification_card))
+                        .setPositiveButton(getString(R.string.dialog_action_delete),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        identificationDetailsPresenter.deleteIdentificationCard(
+                                                customerIdentifier, identificationCard.getNumber());
+                                    }
+                                })
+                        .setNegativeButton(getString(R.string.dialog_action_cancel))
+                        .createMaterialDialog()
+                        .show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
+        hideMifosProgressDialog();
         identificationDetailsPresenter.detachView();
     }
 }

@@ -73,4 +73,10 @@ public class DataManagerCustomer {
         return baseApiManager.getCustomerApi().uploadIdentificationCardScan(customerIdentifier,
                 identificationNumber, scanIdentifier, description, file);
     }
+
+    public Completable deleteIdentificationCard(
+            String customerIdentifier, String identificationnumber) {
+        return baseApiManager.getCustomerApi()
+                .deleteIdentificationCard(customerIdentifier, identificationnumber);
+    }
 }
