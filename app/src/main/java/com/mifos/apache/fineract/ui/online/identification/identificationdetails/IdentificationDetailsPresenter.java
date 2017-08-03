@@ -15,6 +15,7 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -77,6 +78,31 @@ public class IdentificationDetailsPresenter extends
                     @Override
                     public void onComplete() {
 
+                    }
+                })
+        );
+    }
+
+    @Override
+    public void deleteIdentificationCard(String customerIdentifier, String identificationNumber) {
+        checkViewAttached();
+        getMvpView().showProgressDialog();
+        compositeDisposable.add(dataManagerCustomer
+                .deleteIdentificationCard(customerIdentifier, identificationNumber)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableCompletableObserver() {
+                    @Override
+                    public void onComplete() {
+                        getMvpView().hideProgressDialog();
+                        getMvpView().showIdentifierDeletedSuccessfully();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getMvpView().hideProgressDialog();
+                        getMvpView().showError(
+                                context.getString(R.string.error_deleting_identification_card));
                     }
                 })
         );

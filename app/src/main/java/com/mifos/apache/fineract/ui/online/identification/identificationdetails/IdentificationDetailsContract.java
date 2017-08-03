@@ -21,11 +21,19 @@ public interface IdentificationDetailsContract {
 
         void showScansStatus(String message);
 
+        void showIdentifierDeletedSuccessfully();
+
+        void showProgressDialog();
+
+        void hideProgressDialog();
+
         void showError(String message);
     }
 
     interface Presenter {
 
         void fetchIdentificationScanCards(String customerIdentifier, String identificationNumber);
+
+        void deleteIdentificationCard(String customerIdentifier, String identificationNumber);
     }
 }

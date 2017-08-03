@@ -13,6 +13,7 @@ import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -70,4 +71,10 @@ public interface CustomerService {
             @Query("scanIdentifier") String scanIdentifier,
             @Query("description") String description,
             @Part MultipartBody.Part file);
+
+    @DELETE(EndPoints.API_CUSTOMER_PATH +
+            "/customers/{identifier}/identifications/{identificationnumber}")
+    Completable deleteIdentificationCard(
+            @Path("identifier") String identifier,
+            @Path("identificationnumber") String identificationnumber);
 }
