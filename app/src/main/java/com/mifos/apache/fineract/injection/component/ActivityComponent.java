@@ -3,8 +3,7 @@ package com.mifos.apache.fineract.injection.component;
 import com.mifos.apache.fineract.injection.PerActivity;
 import com.mifos.apache.fineract.injection.module.ActivityModule;
 import com.mifos.apache.fineract.ui.online.createcustomer.customeractivity.CreateCustomerActivity;
-import com.mifos.apache.fineract.ui.online.createcustomer.formcustomeraddress
-        .FormCustomerAddressFragment;
+import com.mifos.apache.fineract.ui.online.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
 import com.mifos.apache.fineract.ui.online.customer.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositFragment;
 import com.mifos.apache.fineract.ui.online.customerdetails.CustomerDetailsFragment;
@@ -12,13 +11,9 @@ import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansFragment;
 import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportFragment;
 import com.mifos.apache.fineract.ui.online.depositdetails.CustomerDepositDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
-
-import com.mifos.apache.fineract.ui.online.identification.identificationdetails
-        .IdentificationDetailsFragment;
-import com.mifos.apache.fineract.ui.online.identification.identificationlist
-        .IdentificationsFragment;
-import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan
-        .UploadIdentificationCardBottomSheet;
+import com.mifos.apache.fineract.ui.online.identification.identificationdetails.IdentificationDetailsFragment;
+import com.mifos.apache.fineract.ui.online.identification.identificationlist.IdentificationsFragment;
+import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan.UploadIdentificationCardBottomSheet;
 import com.mifos.apache.fineract.ui.online.launcher.LauncherActivity;
 import com.mifos.apache.fineract.ui.online.loanapplication.BaseFragmentDebtIncome;
 import com.mifos.apache.fineract.ui.online.loanapplication.loanactivity.LoanApplicationActivity;

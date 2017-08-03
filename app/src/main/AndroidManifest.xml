@@ -55,6 +55,8 @@
 
         <activity android:name=".ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity" />
 
+        <activity android:name=".ui.online.identification.viewscancard.ViewScanCardActivity" />
+
     </application>
 
 </manifest>
