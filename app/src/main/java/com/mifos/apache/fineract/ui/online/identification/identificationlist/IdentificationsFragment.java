@@ -19,6 +19,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.identification.createidentification.Action;
 import com.mifos.apache.fineract.ui.online.identification.createidentification
         .identificationactivity.CreateIdentificationActivity;
 import com.mifos.apache.fineract.ui.online.identification.identificationdetails
@@ -99,6 +100,7 @@ public class IdentificationsFragment extends MifosBaseFragment implements
     void createIdentifier() {
         Intent intent = new Intent(getActivity(), CreateIdentificationActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.putExtra(ConstantKeys.IDENTIFICATION_ACTION, Action.CREATE);
         startActivity(intent);
     }
 

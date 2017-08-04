@@ -15,6 +15,8 @@ public interface IdentificationDetailsContract {
 
         void showUserInterface();
 
+        void initializeRecyclerView();
+
         void showScanCards(List<ScanCard> scanCards);
 
         void showRecyclerView(boolean status);

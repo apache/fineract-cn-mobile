@@ -15,6 +15,7 @@ public class ConstantKeys {
     public static final String IDENTIFICATION_SCAN_CARD = "identification_scan_card";
     public static final String IDENTIFICATION_NUMBER = "identification_number";
     public static final String POSITION = "position";
+    public static final String IDENTIFICATION_ACTION = "identification_action";
 
     public static final int REQUEST_PERMISSION_SETTING = 254;
 

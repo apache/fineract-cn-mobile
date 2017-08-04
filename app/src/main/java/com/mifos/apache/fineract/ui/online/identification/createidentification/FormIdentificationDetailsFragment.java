@@ -20,6 +20,7 @@ import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.identification.ExpirationDate;
 import com.mifos.apache.fineract.data.models.customer.identification.Identification;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
+import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
@@ -68,13 +69,18 @@ public class FormIdentificationDetailsFragment extends MifosBaseFragment impleme
 
     private Calendar calendar = Calendar.getInstance();
     private ExpirationDate expirationDate;
+    private Action action;
+    private Identification identification;
 
     private DatePickerDialog.OnDateSetListener date;
     private OnNavigationBarListener.IdentificationCard onNavigationBarListener;
 
-    public static FormIdentificationDetailsFragment newInstance() {
+    public static FormIdentificationDetailsFragment newInstance(Action action,
+            Identification identification) {
         FormIdentificationDetailsFragment fragment = new FormIdentificationDetailsFragment();
         Bundle args = new Bundle();
+        args.putSerializable(ConstantKeys.IDENTIFICATION_ACTION, action);
+        args.putParcelable(ConstantKeys.IDENTIFICATION_CARD, identification);
         fragment.setArguments(args);
         return fragment;
     }
@@ -83,6 +89,8 @@ public class FormIdentificationDetailsFragment extends MifosBaseFragment impleme
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         expirationDate = new ExpirationDate();
+        action = (Action) getArguments().getSerializable(ConstantKeys.IDENTIFICATION_ACTION);
+        identification = getArguments().getParcelable(ConstantKeys.IDENTIFICATION_CARD);
     }
 
     @Nullable
@@ -94,6 +102,10 @@ public class FormIdentificationDetailsFragment extends MifosBaseFragment impleme
         ButterKnife.bind(this, rootView);
 
         showUserInterface();
+
+        if (action == Action.EDIT) {
+            editIdentificationCardDetails(identification);
+        }
 
         return rootView;
     }
@@ -115,6 +127,18 @@ public class FormIdentificationDetailsFragment extends MifosBaseFragment impleme
                 setDateOfBirth();
             }
         };
+    }
+
+    public void editIdentificationCardDetails(Identification identification) {
+        etNumber.setText(identification.getNumber());
+        etIssuer.setText(identification.getIssuer());
+        etType.setText(identification.getType());
+        expirationDate = identification.getExpirationDate();
+        calendar.set(Calendar.YEAR, identification.getExpirationDate().getYear());
+        calendar.set(Calendar.MONTH, identification.getExpirationDate().getMonth());
+        calendar.set(Calendar.DAY_OF_MONTH, identification.getExpirationDate().getDay());
+        setDateOfBirth();
+        etNumber.setEnabled(false);
     }
 
     @OnClick(R.id.et_expiration_date)

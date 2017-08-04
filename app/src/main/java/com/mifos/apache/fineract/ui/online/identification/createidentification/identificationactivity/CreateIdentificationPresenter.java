@@ -73,4 +73,30 @@ public class CreateIdentificationPresenter extends BasePresenter<CreateIdentific
                         })
         );
     }
+
+    @Override
+    public void updateIdentificationCard(String identifier, String identificationNumber,
+            Identification identification) {
+        checkViewAttached();
+        getMvpView().showProgressbar();
+        compositeDisposable.add(dataManagerCustomer
+                .updateIdentificationCard(identifier, identificationNumber, identification)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableCompletableObserver() {
+                    @Override
+                    public void onComplete() {
+                        getMvpView().hideProgressbar();
+                        getMvpView().identificationCardEditedSuccessfully();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getMvpView().hideProgressbar();
+                        getMvpView().showError(
+                                context.getString(R.string.error_editing_identification_card));
+                    }
+                })
+        );
+    }
 }
