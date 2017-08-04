@@ -1,6 +1,9 @@
-package com.mifos.apache.fineract.ui.online.identification.createidentification.identificationactivity;
+package com.mifos.apache.fineract.ui.online.identification.createidentification
+        .identificationactivity;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,6 +12,7 @@ import com.mifos.apache.fineract.data.models.customer.identification.Identificat
 import com.mifos.apache.fineract.ui.adapters.CreateIdentificationStepAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.identification.createidentification.Action;
 import com.mifos.apache.fineract.ui.online.identification.createidentification
         .OnNavigationBarListener;
 import com.mifos.apache.fineract.ui.online.identification.createidentification.OverViewContract;
@@ -43,6 +47,7 @@ public class CreateIdentificationActivity extends MifosBaseActivity
     private Identification identification;
     private CreateIdentificationStepAdapter stepAdapter;
     private String customerIdentifier;
+    private Action action;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +59,28 @@ public class CreateIdentificationActivity extends MifosBaseActivity
         identification = new Identification();
 
         customerIdentifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
+        action = (Action) getIntent().getSerializableExtra(ConstantKeys.IDENTIFICATION_ACTION);
+        identification = getIntent().getExtras().getParcelable(ConstantKeys.IDENTIFICATION_CARD);
 
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(CURRENT_STEP_POSITION);
         }
 
         stepAdapter = new CreateIdentificationStepAdapter(
-                getSupportFragmentManager(), this);
+                getSupportFragmentManager(), this, action, identification);
         stepperLayout.setAdapter(stepAdapter, currentPosition);
         stepperLayout.setListener(this);
         stepperLayout.setOffscreenPageLimit(stepAdapter.getCount());
-        setToolbarTitle(getString(R.string.create_new_identification));
+
+
+        switch (action) {
+            case CREATE:
+                setToolbarTitle(getString(R.string.create_new_identification));
+                break;
+            case EDIT:
+                setToolbarTitle(getString(R.string.edit_identification));
+                break;
+        }
 
         showBackButton();
     }
@@ -83,7 +99,16 @@ public class CreateIdentificationActivity extends MifosBaseActivity
 
     @Override
     public void onCompleted(View completeButton) {
-        createIdentificationPresenter.createIdentification(customerIdentifier, identification);
+        switch (action) {
+            case CREATE:
+                createIdentificationPresenter.createIdentification(customerIdentifier,
+                        identification);
+                break;
+            case EDIT:
+                createIdentificationPresenter.updateIdentificationCard(customerIdentifier,
+                        identification.getNumber(), identification);
+                break;
+        }
         stepperLayout.setNextButtonEnabled(false);
         stepperLayout.setBackButtonEnabled(false);
     }
@@ -106,6 +131,14 @@ public class CreateIdentificationActivity extends MifosBaseActivity
 
     @Override
     public void identificationCreatedSuccessfully() {
+        finish();
+    }
+
+    @Override
+    public void identificationCardEditedSuccessfully() {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra(ConstantKeys.IDENTIFICATION_CARD, identification);
+        setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }
 

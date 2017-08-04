@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
 import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.data.models.customer.identification.Identification;
+import com.mifos.apache.fineract.ui.online.identification.createidentification.Action;
 import com.mifos.apache.fineract.ui.online.identification.createidentification
         .FormIdentificationDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.createidentification
@@ -21,11 +23,16 @@ import com.stepstone.stepper.viewmodel.StepViewModel;
 public class CreateIdentificationStepAdapter extends AbstractFragmentStepAdapter {
 
     private String[] createCustomerSteps;
+    private Action action;
+    private Identification identification;
 
-    public CreateIdentificationStepAdapter(@NonNull FragmentManager fm, @NonNull Context context) {
+    public CreateIdentificationStepAdapter(@NonNull FragmentManager fm, @NonNull Context context,
+            Action action, Identification identification) {
         super(fm, context);
         createCustomerSteps =
                 context.getResources().getStringArray(R.array.create_identification_steps);
+        this.action = action;
+        this.identification = identification;
     }
 
     @NonNull
@@ -40,7 +47,7 @@ public class CreateIdentificationStepAdapter extends AbstractFragmentStepAdapter
     public Step createStep(@IntRange(from = 0L) int position) {
         switch (position) {
             case 0:
-                return FormIdentificationDetailsFragment.newInstance();
+                return FormIdentificationDetailsFragment.newInstance(action, identification);
             case 1:
                 return FormOverViewIdentificationFragment.newInstance();
 

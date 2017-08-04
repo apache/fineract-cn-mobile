@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.online.identification.identificationdetails;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,9 @@ import com.mifos.apache.fineract.data.models.customer.identification.ScanCard;
 import com.mifos.apache.fineract.ui.adapters.IdentificationScanAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
+import com.mifos.apache.fineract.ui.online.identification.createidentification.Action;
+import com.mifos.apache.fineract.ui.online.identification.createidentification
+        .identificationactivity.CreateIdentificationActivity;
 import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan
         .AddScanIdentificationListener;
 import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan
@@ -49,6 +53,8 @@ import butterknife.OnClick;
 public class IdentificationDetailsFragment extends MifosBaseFragment
         implements IdentificationDetailsContract.View,
         IdentificationScanAdapter.OnItemClickListener, AddScanIdentificationListener {
+
+    private static final Integer ACTION_EDIT_IDENTIFICATION_CARD = 1;
 
     @BindView(R.id.tv_number)
     TextView tvNumber;
@@ -86,11 +92,11 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
     private Identification identificationCard;
     private List<ScanCard> scanCards;
 
-    public static IdentificationDetailsFragment newInstance(String identifier,
+    public static IdentificationDetailsFragment newInstance(String customerIdentifier,
             Identification identification) {
         IdentificationDetailsFragment fragment = new IdentificationDetailsFragment();
         Bundle args = new Bundle();
-        args.putString(ConstantKeys.CUSTOMER_IDENTIFIER, identifier);
+        args.putString(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         args.putParcelable(ConstantKeys.IDENTIFICATION_CARD, identification);
         fragment.setArguments(args);
         return fragment;
@@ -116,6 +122,7 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
         identificationDetailsPresenter.attachView(this);
 
         showUserInterface();
+        initializeRecyclerView();
 
         return rootView;
     }
@@ -164,7 +171,10 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
         calendar.set(Calendar.MONTH, identificationCard.getExpirationDate().getMonth() - 1);
         calendar.set(Calendar.DAY_OF_MONTH, identificationCard.getExpirationDate().getDay());
         tvExpirationDate.setText(DateUtils.convertServerDate(calendar));
+    }
 
+    @Override
+    public void initializeRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rvScansUploaded.setLayoutManager(layoutManager);
@@ -248,6 +258,11 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_identification_edit:
+                Intent intent = new Intent(getActivity(), CreateIdentificationActivity.class);
+                intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+                intent.putExtra(ConstantKeys.IDENTIFICATION_ACTION, Action.EDIT);
+                intent.putExtra(ConstantKeys.IDENTIFICATION_CARD, identificationCard);
+                startActivityForResult(intent, ACTION_EDIT_IDENTIFICATION_CARD);
                 return true;
             case R.id.menu_identification_delete:
                 new MaterialDialog.Builder()
@@ -269,6 +284,14 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ACTION_EDIT_IDENTIFICATION_CARD && resultCode == Activity.RESULT_OK) {
+            identificationCard = data.getParcelableExtra(ConstantKeys.IDENTIFICATION_CARD);
+            showUserInterface();
         }
     }
 

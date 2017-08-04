@@ -61,6 +61,12 @@ public class DataManagerCustomer {
         return baseApiManager.getCustomerApi().createIdentificationCard(identifier, identification);
     }
 
+    public Completable updateIdentificationCard(String customerIdentifier,
+            String identificationNumber, Identification identification) {
+        return baseApiManager.getCustomerApi().updateIdentificationCard(customerIdentifier,
+                identificationNumber, identification);
+    }
+
     public Observable<List<ScanCard>> fetchIdentificationScanCards(String customerIdentifier,
             String identificationNumber) {
         return baseApiManager.getCustomerApi().fetchIdentificationScanCards(customerIdentifier,

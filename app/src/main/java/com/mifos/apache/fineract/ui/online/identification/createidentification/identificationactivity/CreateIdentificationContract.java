@@ -14,6 +14,8 @@ public interface CreateIdentificationContract {
 
         void identificationCreatedSuccessfully();
 
+        void identificationCardEditedSuccessfully();
+
         void showProgressbar();
 
         void hideProgressbar();
@@ -24,5 +26,8 @@ public interface CreateIdentificationContract {
     interface Presenter {
 
         void createIdentification(String identifier, Identification identification);
+
+        void updateIdentificationCard(String identifier, String identificationNumber,
+                Identification identification);
     }
 }

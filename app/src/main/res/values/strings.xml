@@ -92,6 +92,7 @@
     <string name="is_member">Is member?</string>
     <string name="create_customer">Create Customer</string>
     <string name="create_new_identification">Create new Identification</string>
+    <string name="edit_identification">Edit Identification</string>
     <string name="unique_required">Unique, Required</string>
     <string name="create_edit_customer_for_offices">create/edit customer for your offices</string>
     <string name="view_customer">View Customer</string>
@@ -182,6 +183,7 @@
     <string name="error_updating_status">Error while updating customer</string>
     <string name="error_fetching_identification_list">Error while fetching identification cards</string>
     <string name="error_creating_identification_card">Error while creating identification card</string>
+    <string name="error_editing_identification_card">Error while editing identification card</string>
     <string name="error_fetching_scans">Error while fetching scan cards</string>
     <string name="error_uploading_identification_scan_card">Error while uploading identification scan card</string>
     <string name="error_deleting_identification_card">Error while deleting identification card</string>
