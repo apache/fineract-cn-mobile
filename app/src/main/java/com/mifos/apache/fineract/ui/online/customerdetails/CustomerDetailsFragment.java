@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Address;
+import com.mifos.apache.fineract.data.models.customer.ContactDetail;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
@@ -202,9 +203,9 @@ public class CustomerDetailsFragment extends MifosBaseFragment
             tvPhoneNo.setVisibility(View.GONE);
             tvMobileNo.setVisibility(View.GONE);
         } else {
-            tvEmail.setText(customer.getContactDetails().get(0).getValue());
-            tvPhoneNo.setText(customer.getContactDetails().get(1).getValue());
-            tvMobileNo.setText(customer.getContactDetails().get(2).getValue());
+            for (ContactDetail contactDetail : customer.getContactDetails()) {
+                showContactDetails(contactDetail);
+            }
         }
 
         tvBirthDay.setText(customer.getDateOfBirth().getYear() + "-" +
@@ -219,6 +220,24 @@ public class CustomerDetailsFragment extends MifosBaseFragment
             subtitle = getString(R.string.assigned_employee) + " " + customer.getAssignedEmployee();
         }
         showToolbarTitleSubtitle(title, subtitle);
+    }
+
+    @Override
+    public void showContactDetails(ContactDetail contactDetail) {
+        switch (contactDetail.getType()) {
+            case EMAIL:
+                tvEmail.setText(contactDetail.getValue());
+                tvEmail.setVisibility(View.VISIBLE);
+                break;
+            case MOBILE:
+                tvMobileNo.setText(contactDetail.getValue());
+                tvMobileNo.setVisibility(View.VISIBLE);
+                break;
+            case PHONE:
+                tvPhoneNo.setText(contactDetail.getValue());
+                tvPhoneNo.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
     @Override

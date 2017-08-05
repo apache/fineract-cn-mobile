@@ -171,27 +171,30 @@
                             android:layout_width="wrap_content"
                             android:paddingBottom="@dimen/layout_padding_4dp"
                             android:paddingTop="@dimen/layout_padding_4dp"
+                            android:visibility="gone"
                             tools:text="example@gmail.com"/>
 
                         <TextView
-                            android:drawableLeft="@drawable/ic_smartphone_black_24dp"
-                            android:drawablePadding="@dimen/layout_padding_4dp"
-                            android:drawableStart="@drawable/ic_smartphone_black_24dp"
+                            android:drawableStart="@drawable/ic_phone_black_24dp"
+                            android:drawableLeft="@drawable/ic_phone_black_24dp"
                             android:id="@+id/tv_phone_no"
+                            android:drawablePadding="@dimen/layout_padding_4dp"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:paddingBottom="@dimen/layout_padding_4dp"
                             android:paddingTop="@dimen/layout_padding_4dp"
+                            android:visibility="gone"
                             tools:text="PrefixOperator - NoTelp"/>
 
                         <TextView
-                            android:drawableLeft="@drawable/ic_phone_black_24dp"
                             android:drawablePadding="@dimen/layout_padding_4dp"
-                            android:drawableStart="@drawable/ic_phone_black_24dp"
+                            android:drawableLeft="@drawable/ic_smartphone_black_24dp"
+                            android:drawableStart="@drawable/ic_smartphone_black_24dp"
                             android:id="@+id/tv_mobile_no"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:paddingTop="@dimen/layout_padding_4dp"
+                            android:visibility="gone"
                             tools:text="KodeArea - Notelp"/>
 
                     </LinearLayout>
