@@ -9,7 +9,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.remote.BaseUrl;
 import com.mifos.apache.fineract.data.remote.EndPoints;
@@ -39,6 +38,12 @@ public class ImageLoaderUtils {
                 + identificationNumber + "/scans/" + scanIdentifier + "/image";
     }
 
+    public String buildCustomerPortraitImageUrl(String customerIdentifier) {
+        return BaseUrl.getDefaultBaseUrl() +
+                EndPoints.API_CUSTOMER_PATH + "/customers/"
+                + customerIdentifier  + "/portrait";
+    }
+
     public GlideUrl buildGlideUrl(String imageUrl) {
         return new GlideUrl(imageUrl, new LazyHeaders.Builder()
                 .addHeader(MifosInterceptor.HEADER_TENANT, preferencesHelper.getTenantIdentifier())
@@ -47,12 +52,12 @@ public class ImageLoaderUtils {
                 .build());
     }
 
-    public void loadImage(String imageUrl, final ImageView imageView) {
+    public void loadImage(String imageUrl, final ImageView imageView, int placeHolder) {
         Glide.with(context)
                 .load(buildGlideUrl(imageUrl))
                 .asBitmap()
-                .placeholder(R.drawable.ic_autorenew_black_24dp)
-                .error(R.drawable.ic_autorenew_black_24dp)
+                .placeholder(placeHolder)
+                .error(placeHolder)
                 .into(new BitmapImageViewTarget(imageView) {
                     @Override
                     protected void setResource(Bitmap result) {

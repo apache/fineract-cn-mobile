@@ -32,6 +32,7 @@
     <string name="recent_activities">Recent activities</string>
     <string name="birthday">Birthday</string>
     <string name="assigned_employee">Assigned Employee: </string>
+    <string name="assigned_employee_list">Assigned Employee: %1$s</string>
     <string name="not_assigned">Not assigned</string>
     <string name="no_contact_details_available">No Contact details available</string>
     <string name="empty_customer_list">Empty customer list</string>

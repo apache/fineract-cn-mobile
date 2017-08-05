@@ -84,6 +84,7 @@ dependencies {
 
     //Glide for loading the images
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 
     // Dagger 2 Dependencies
     compile "com.google.dagger:dagger:$rootProject.daggerVersion"
