@@ -11,10 +11,11 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.widget.ImageView;
 
 import com.mifos.apache.fineract.R;
 
-public class CircularImageView extends android.support.v7.widget.AppCompatImageView {
+public class CircularImageView extends ImageView {
     private int borderWidth;
     private int canvasSize;
     private Bitmap image;
@@ -48,9 +49,8 @@ public class CircularImageView extends android.support.v7.widget.AppCompatImageV
                     .WHITE));
         }
 
-        if (attributes.getBoolean(R.styleable.CircularImageView_shadow, false)) {
+        if (attributes.getBoolean(R.styleable.CircularImageView_shadow, false))
             addShadow();
-        }
     }
 
     public void setBorderWidth(int borderWidth) {
@@ -60,9 +60,8 @@ public class CircularImageView extends android.support.v7.widget.AppCompatImageV
     }
 
     public void setBorderColor(int borderColor) {
-        if (paintBorder != null) {
+        if (paintBorder != null)
             paintBorder.setColor(borderColor);
-        }
         this.invalidate();
     }
 
@@ -80,9 +79,8 @@ public class CircularImageView extends android.support.v7.widget.AppCompatImageV
         if (image != null) {
 
             canvasSize = canvas.getWidth();
-            if (canvas.getHeight() < canvasSize) {
+            if (canvas.getHeight() < canvasSize)
                 canvasSize = canvas.getHeight();
-            }
 
             BitmapShader shader = new BitmapShader(Bitmap.createScaledBitmap(image, canvasSize,
                     canvasSize, false), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -144,19 +142,13 @@ public class CircularImageView extends android.support.v7.widget.AppCompatImageV
     }
 
     public Bitmap drawableToBitmap(Drawable drawable) {
-        Bitmap bitmap;
         if (drawable == null) {
             return null;
         } else if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
         }
-        if (drawable.getIntrinsicWidth() > 0 && drawable
-                .getIntrinsicHeight() > 0) {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable
-                    .getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        } else {
-            bitmap = Bitmap.createBitmap(20, 20, Bitmap.Config.ARGB_8888);
-        }
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable
+                .getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         Bitmap bitmapScaled = Bitmap.createScaledBitmap(bitmap, bitmap.getHeight() / 5, bitmap
                 .getHeight() / 5, true);
         Canvas canvas = new Canvas(bitmapScaled);
@@ -164,4 +156,5 @@ public class CircularImageView extends android.support.v7.widget.AppCompatImageV
         drawable.draw(canvas);
         return bitmapScaled;
     }
+
 }

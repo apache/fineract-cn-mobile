@@ -1,19 +1,20 @@
 package com.mifos.apache.fineract.ui.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
-import com.mifos.apache.fineract.ui.views.TextDrawable;
+import com.mifos.apache.fineract.utils.ImageLoaderUtils;
+import com.mifos.apache.fineract.utils.StatusUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * @author Rajan Maurya
@@ -50,11 +52,21 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         Customer customer = customers.get(position);
         holder.tvCustomerName.setText(customer.getGivenName() + " " + customer.getSurname());
-        holder.tvCustomerStatus.setText(customer.getCurrentState().name());
 
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRound(customer.getGivenName().substring(0, 1), R.color.colorPrimary);
-        holder.ivCustomerImage.setImageDrawable(drawable);
+        if (customer.getAssignedEmployee() != null) {
+            holder.tvAssignedEmployee.setText(context.getString(R.string.assigned_employee_list,
+                    customer.getAssignedEmployee()));
+        } else {
+            holder.tvAssignedEmployee.setText(context.getString(R.string.assigned_employee_list,
+                    context.getString(R.string.not_assigned)));
+        }
+
+        ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(context);
+        imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
+                customer.getIdentifier()), holder.ivCustomerImage,
+                R.drawable.ic_account_circle_black_24dp);
+
+        StatusUtils.setCustomerStatus(customer.getCurrentState(), holder.ivStausIndicator, context);
     }
 
     @Override
@@ -80,21 +92,24 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
             View.OnLongClickListener {
 
         @BindView(R.id.iv_customer_picture)
-        ImageView ivCustomerImage;
+        CircleImageView ivCustomerImage;
 
         @BindView(R.id.tv_customer_name)
         TextView tvCustomerName;
 
-        @BindView(R.id.tv_customer_status)
-        TextView tvCustomerStatus;
+        @BindView(R.id.tv_assigned_employee)
+        TextView tvAssignedEmployee;
 
-        @BindView(R.id.cv_customer)
-        CardView cvCustomer;
+        @BindView(R.id.ll_customer)
+        LinearLayout llCustomer;
+
+        @BindView(R.id.iv_status_indicator)
+        AppCompatImageView ivStausIndicator;
 
         public ViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
-            cvCustomer.setOnClickListener(this);
+            llCustomer.setOnClickListener(this);
         }
 
         @Override

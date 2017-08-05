@@ -61,7 +61,8 @@ public class ViewScanCardFragment extends MifosBaseFragment {
         ivScanCard.setVisibility(View.VISIBLE);
         ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(getActivity());
         imageLoaderUtils.loadImage(imageLoaderUtils.buildIdentificationScanCardImageUrl(
-                customerIdentifier, identifierNumber, scanIdentifier), ivScanCard);
+                customerIdentifier, identifierNumber, scanIdentifier), ivScanCard,
+                R.drawable.ic_autorenew_black_24dp);
 
         return rootView;
     }

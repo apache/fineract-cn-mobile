@@ -1,76 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cv_customer"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    app:cardUseCompatPadding="true">
+    android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/ll_customer"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/layout_padding_8dp">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/layout_padding_8dp"
+        android:layout_width="match_parent"
         android:minHeight="?attr/listPreferredItemHeight"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:id="@+id/linearLayout">
+        android:orientation="horizontal">
 
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/iv_status_indicator"
+            android:layout_height="match_parent"
+            android:layout_width="@dimen/side_bar_width"
+            app:srcCompat="@drawable/round_corner"/>
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:contentDescription="@string/customer_image"
             android:id="@+id/iv_customer_picture"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:contentDescription="@string/customer_image"/>
+            android:layout_height="56dp"
+            android:layout_marginLeft="@dimen/layout_padding_16dp"
+            android:layout_marginStart="@dimen/layout_padding_16dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#FF000000"
+            app:srcCompat="@drawable/ic_account_circle_black_24dp"
+            android:layout_width="56dp" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:gravity="center_vertical"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:layout_width="0dp"
             android:orientation="vertical"
-            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingLeft="16dp">
+            android:paddingStart="16dp">
 
             <TextView
-                android:id="@+id/tv_customer_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
                 android:ellipsize="end"
+                android:id="@+id/tv_customer_name"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
                 android:lines="1"
-                tools:text="Customer Name"
                 android:textColor="@color/black"
-                android:textSize="16sp"/>
-
+                tools:text="Customer Name"/>
 
             <TextView
-                android:id="@+id/tv_customer_status"
-                android:layout_width="wrap_content"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:id="@+id/tv_assigned_employee"
                 android:layout_height="wrap_content"
-                tools:text="Status"
+                android:layout_width="wrap_content"
                 android:textColor="@color/gray_dark"
-                android:textSize="14sp"/>
+                android:textSize="@dimen/text_size_12sp"
+                tools:text="Status"/>
 
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/iv_sync_status"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
             android:gravity="center"
+            android:id="@+id/iv_sync_status"
+            android:layout_gravity="center_vertical"
+            android:layout_height="24dp"
+            android:layout_marginEnd="@dimen/layout_padding_16dp"
+            android:layout_marginRight="@dimen/layout_padding_16dp"
+            android:layout_width="24dp"
             android:visibility="gone"
-            app:srcCompat="@drawable/ic_assignment_turned_in_black_24dp"
-        />
+            app:srcCompat="@drawable/ic_assignment_turned_in_black_24dp"/>
 
     </LinearLayout>
 
-</android.support.v7.widget.CardView>
+    <View
+        android:background="#979797"
+        android:layout_height="0.2dp"
+        android:layout_marginEnd="@dimen/layout_padding_8dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginRight="@dimen/layout_padding_8dp"
+        android:layout_marginStart="95dp"
+        android:layout_width="wrap_content"/>
+
+</LinearLayout>
