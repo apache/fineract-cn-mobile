@@ -17,7 +17,7 @@ public class ValidateIdentifierUtil {
 
     public static boolean isValid(Context context, String string, TextInputLayout textInputLayout) {
         if (TextUtils.isEmpty(string)) {
-            showTextInputLayoutError(textInputLayout, context.getString(R.string.required));
+            showTextInputLayoutError(textInputLayout, context.getString(R.string.unique_required));
             return false;
         }
         return validate(context, string, textInputLayout);
