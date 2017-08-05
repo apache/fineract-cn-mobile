@@ -34,8 +34,8 @@ public final class ContactDetail {
         super();
     }
 
-    public String getType() {
-        return this.type.name();
+    public Type getType() {
+        return this.type;
     }
 
     public void setType(final Type type) {

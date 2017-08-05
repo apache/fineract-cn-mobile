@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.online.customerdetails;
 
+import com.mifos.apache.fineract.data.models.customer.ContactDetail;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MvpView;
 
@@ -14,6 +15,8 @@ public interface CustomerDetailsContract {
         void showUserInterface();
 
         void showCustomerDetails(Customer customer);
+
+        void showContactDetails(ContactDetail contactDetail);
 
         void showToolbarTitleSubtitle(String title, String subtitle);
 
