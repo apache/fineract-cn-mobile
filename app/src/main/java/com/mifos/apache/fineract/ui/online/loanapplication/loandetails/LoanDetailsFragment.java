@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,12 +24,11 @@ import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.data.models.loan.PaymentCycle;
 import com.mifos.apache.fineract.data.models.loan.TermRange;
 import com.mifos.apache.fineract.data.models.product.Product;
-import com.mifos.apache.fineract.exceptions.InvalidTextInputException;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.loanapplication.OnNavigationBarListener;
-import com.mifos.apache.fineract.utils.ValidationUtil;
+import com.mifos.apache.fineract.utils.ValidateIdentifierUtil;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
@@ -57,6 +56,9 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
 
     @BindView(R.id.sp_products)
     AppCompatSpinner spProducts;
+
+    @BindView(R.id.til_short_name)
+    TextInputLayout tilShortName;
 
     @BindView(R.id.et_short_name)
     EditText etShortName;
@@ -350,22 +352,8 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
 
     @Override
     public boolean validateShortName() {
-        if (TextUtils.isEmpty(etShortName.getText().toString())) {
-            etShortName.setError(getString(R.string.required));
-            etShortName.requestFocus();
-            return false;
-        } else if (!ValidationUtil.isNameValid(etShortName.getText().toString())) {
-            try {
-                throw new InvalidTextInputException(getResources().getString(R.string.short_name),
-                        getResources().getString(R.string.error_should_contain_only),
-                        InvalidTextInputException.TYPE_ALPHABETS);
-            } catch (InvalidTextInputException e) {
-                e.notifyUserWithToast(getActivity());
-                etShortName.requestFocus();
-                return false;
-            }
-        }
-        return true;
+        return ValidateIdentifierUtil.isValid(getActivity(),
+                etShortName.getText().toString().trim(), tilShortName);
     }
 
     @Override
