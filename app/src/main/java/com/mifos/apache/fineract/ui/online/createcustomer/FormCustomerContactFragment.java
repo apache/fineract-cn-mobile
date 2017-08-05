@@ -71,28 +71,36 @@ public class FormCustomerContactFragment extends MifosBaseFragment implements St
         if (!validateEmail()) {
             return new VerificationError(null);
         } else {
-            ContactDetail emailContactDetail = new ContactDetail();
-            emailContactDetail.setGroup(ContactDetail.Group.BUSINESS);
-            emailContactDetail.setType(ContactDetail.Type.EMAIL);
-            emailContactDetail.setPreferenceLevel(1);
-            emailContactDetail.setValue(etEmail.getText().toString().trim());
-
-            ContactDetail phoneContactDetail = new ContactDetail();
-            phoneContactDetail.setGroup(ContactDetail.Group.BUSINESS);
-            phoneContactDetail.setType(ContactDetail.Type.PHONE);
-            phoneContactDetail.setPreferenceLevel(1);
-            phoneContactDetail.setValue(etPhone.getText().toString().trim());
-
-            ContactDetail mobileContactDetail = new ContactDetail();
-            mobileContactDetail.setGroup(ContactDetail.Group.BUSINESS);
-            mobileContactDetail.setType(ContactDetail.Type.MOBILE);
-            mobileContactDetail.setPreferenceLevel(1);
-            mobileContactDetail.setValue(etMobile.getText().toString().trim());
 
             List<ContactDetail> contactDetails = new ArrayList<>();
-            contactDetails.add(emailContactDetail);
-            contactDetails.add(phoneContactDetail);
-            contactDetails.add(mobileContactDetail);
+
+            if (!TextUtils.isEmpty(etEmail.getText().toString().trim())) {
+                ContactDetail emailContactDetail = new ContactDetail();
+                emailContactDetail.setGroup(ContactDetail.Group.BUSINESS);
+                emailContactDetail.setType(ContactDetail.Type.EMAIL);
+                emailContactDetail.setPreferenceLevel(1);
+                emailContactDetail.setValue(etEmail.getText().toString().trim());
+                contactDetails.add(emailContactDetail);
+            }
+
+            if (!TextUtils.isEmpty(etPhone.getText().toString().trim())) {
+                ContactDetail phoneContactDetail = new ContactDetail();
+                phoneContactDetail.setGroup(ContactDetail.Group.BUSINESS);
+                phoneContactDetail.setType(ContactDetail.Type.PHONE);
+                phoneContactDetail.setPreferenceLevel(1);
+                phoneContactDetail.setValue(etPhone.getText().toString().trim());
+                contactDetails.add(phoneContactDetail);
+            }
+
+            if (!TextUtils.isEmpty(etMobile.getText().toString().trim())) {
+                ContactDetail mobileContactDetail = new ContactDetail();
+                mobileContactDetail.setGroup(ContactDetail.Group.BUSINESS);
+                mobileContactDetail.setType(ContactDetail.Type.MOBILE);
+                mobileContactDetail.setPreferenceLevel(1);
+                mobileContactDetail.setValue(etMobile.getText().toString().trim());
+                contactDetails.add(mobileContactDetail);
+            }
+
             onNavigationBarListener.setContactDetails(contactDetails);
         }
         return null;
