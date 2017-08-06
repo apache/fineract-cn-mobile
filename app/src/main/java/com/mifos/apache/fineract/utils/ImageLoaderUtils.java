@@ -52,12 +52,13 @@ public class ImageLoaderUtils {
                 .build());
     }
 
-    public void loadImage(String imageUrl, final ImageView imageView, int placeHolder) {
+    public void loadImage(String imageUrl, final ImageView imageView, Integer placeHolder) {
         Glide.with(context)
                 .load(buildGlideUrl(imageUrl))
                 .asBitmap()
                 .placeholder(placeHolder)
                 .error(placeHolder)
+                .centerCrop()
                 .into(new BitmapImageViewTarget(imageView) {
                     @Override
                     protected void setResource(Bitmap result) {
