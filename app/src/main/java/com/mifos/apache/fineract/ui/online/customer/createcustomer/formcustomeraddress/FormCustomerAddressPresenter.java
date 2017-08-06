@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.createcustomer.formcustomeraddress;
+package com.mifos.apache.fineract.ui.online.customer.createcustomer.formcustomeraddress;
 
 import android.content.Context;
 

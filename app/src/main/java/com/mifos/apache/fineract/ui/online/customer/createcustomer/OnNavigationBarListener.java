@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.createcustomer;
+package com.mifos.apache.fineract.ui.online.customer.createcustomer;
 
 import com.mifos.apache.fineract.data.models.customer.Address;
 import com.mifos.apache.fineract.data.models.customer.ContactDetail;

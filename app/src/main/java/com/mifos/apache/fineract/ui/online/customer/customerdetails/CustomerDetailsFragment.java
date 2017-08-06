@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.customerdetails;
+package com.mifos.apache.fineract.ui.online.customer.customerdetails;
 
 import android.content.Intent;
 import android.os.Bundle;

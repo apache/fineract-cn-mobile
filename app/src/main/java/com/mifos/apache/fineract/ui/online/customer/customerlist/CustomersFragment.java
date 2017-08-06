@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.customer;
+package com.mifos.apache.fineract.ui.online.customer.customerlist;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,8 +21,8 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
-import com.mifos.apache.fineract.ui.online.createcustomer.customeractivity.CreateCustomerActivity;
-import com.mifos.apache.fineract.ui.online.customerdetails.CustomerDetailsActivity;
+import com.mifos.apache.fineract.ui.online.customer.createcustomer.customeractivity.CreateCustomerActivity;
+import com.mifos.apache.fineract.ui.online.customer.customerdetails.CustomerDetailsActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.createcustomer.customeractivity;
+package com.mifos.apache.fineract.ui.online.customer.createcustomer.customeractivity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +11,7 @@ import com.mifos.apache.fineract.data.models.customer.DateOfBirth;
 import com.mifos.apache.fineract.ui.adapters.CreateCustomerStepAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.Toaster;
-import com.mifos.apache.fineract.ui.online.createcustomer.OnNavigationBarListener;
+import com.mifos.apache.fineract.ui.online.customer.createcustomer.OnNavigationBarListener;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 

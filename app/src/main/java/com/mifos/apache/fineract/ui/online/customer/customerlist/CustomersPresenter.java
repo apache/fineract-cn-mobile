@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.customer;
+package com.mifos.apache.fineract.ui.online.customer.customerlist;
 
 import android.content.Context;
 
