@@ -3,6 +3,7 @@ package com.mifos.apache.fineract.utils;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
+import android.widget.ImageView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Customer;
@@ -31,6 +32,36 @@ public class StatusUtils {
             case PENDING:
                 imageView.setColorFilter(
                         ContextCompat.getColor(context, R.color.light_yellow));
+                break;
+        }
+    }
+
+    public static void setCustomerStatusIcon(Customer.State state, ImageView imageView,
+            Context context) {
+        switch (state) {
+            case ACTIVE:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_check_circle_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+            case CLOSED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_close_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+            case LOCKED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_lock_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+            case PENDING:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_hourglass_empty_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
                 break;
         }
     }
