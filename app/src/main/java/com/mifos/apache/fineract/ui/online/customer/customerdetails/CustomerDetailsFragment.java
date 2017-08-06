@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,10 +24,12 @@ import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositActivity;
 import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansActivity;
-import com.mifos.apache.fineract.ui.online.identification.identificationlist.IdentificationsActivity;
+import com.mifos.apache.fineract.ui.online.identification.identificationlist
+        .IdentificationsActivity;
 import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
 import com.mifos.apache.fineract.ui.views.HeaderView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
+import com.mifos.apache.fineract.utils.StatusUtils;
 
 import javax.inject.Inject;
 
@@ -85,6 +88,18 @@ public class CustomerDetailsFragment extends MifosBaseFragment
 
     @BindView(R.id.tv_error)
     TextView tvError;
+
+    @BindView(R.id.rl_email)
+    RelativeLayout rlEmail;
+
+    @BindView(R.id.rl_phone_no)
+    RelativeLayout rlPhoneNo;
+
+    @BindView(R.id.rl_mobile_no)
+    RelativeLayout rlMobileNo;
+
+    @BindView(R.id.iv_current_status)
+    ImageView ivCurrentStatus;
 
     @Inject
     CustomerDetailsPresenter customerDetailsPresenter;
@@ -174,24 +189,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
 
     @Override
     public void showCustomerDetails(Customer customer) {
+        appBarLayout.setExpanded(true, true);
         this.customer = customer;
         ncvCustomerDetails.setVisibility(View.VISIBLE);
 
         tvCurrentStatus.setText(customer.getCurrentState().name());
-        switch (customer.getCurrentState()) {
-            case ACTIVE:
-                tvCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_check_circle_black_24dp, 0, 0, 0);
-                break;
-            case PENDING:
-                tvCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_hourglass_empty_black_24dp, 0, 0, 0);
-                break;
-            case LOCKED:
-                break;
-            case CLOSED:
-                break;
-        }
+        StatusUtils.setCustomerStatusIcon(customer.getCurrentState(),
+                ivCurrentStatus, getActivity());
 
         Address address = customer.getAddress();
         tvAddress.setText(address.getRegion() + " " + address.getCity()
@@ -227,15 +231,15 @@ public class CustomerDetailsFragment extends MifosBaseFragment
         switch (contactDetail.getType()) {
             case EMAIL:
                 tvEmail.setText(contactDetail.getValue());
-                tvEmail.setVisibility(View.VISIBLE);
+                rlEmail.setVisibility(View.VISIBLE);
                 break;
             case MOBILE:
                 tvMobileNo.setText(contactDetail.getValue());
-                tvMobileNo.setVisibility(View.VISIBLE);
+                rlMobileNo.setVisibility(View.VISIBLE);
                 break;
             case PHONE:
                 tvPhoneNo.setText(contactDetail.getValue());
-                tvPhoneNo.setVisibility(View.VISIBLE);
+                rlPhoneNo.setVisibility(View.VISIBLE);
                 break;
         }
     }
