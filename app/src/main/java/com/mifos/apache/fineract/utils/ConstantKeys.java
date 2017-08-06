@@ -22,4 +22,7 @@ public class ConstantKeys {
     public static final int PERMISSIONS_REQUEST_CAMERA = 1;
     public static final String PERMISSIONS_CAMERA_STATUS = "camera_status";
 
+    public static final int PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    public static final String PERMISSIONS_WRITE_EXTERNAL_STORAGE_STATUS = "write_status";
+
 }

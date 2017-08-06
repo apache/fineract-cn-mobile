@@ -22,6 +22,7 @@ import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.customer.customerprofile.CustomerProfileActivity;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositActivity;
 import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansActivity;
 import com.mifos.apache.fineract.ui.online.identification.identificationlist
@@ -176,6 +177,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     @OnClick(R.id.ll_identifier_cards)
     void showIdentificationCards() {
         Intent intent = new Intent(getActivity(), IdentificationsActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.iv_customer_profile)
+    void showCustomerProfileImage() {
+        Intent intent = new Intent(getActivity(), CustomerProfileActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         startActivity(intent);
     }

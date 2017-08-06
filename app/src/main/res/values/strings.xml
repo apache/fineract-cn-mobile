@@ -125,6 +125,8 @@
     <string name="uploading_identification_scan_card">Uploading identification scan card…</string>
     <string name="identification_deleted_successfully">Identification card deleted successfully</string>
     <string name="deleting_identification_card">Deleting identification card</string>
+    <string name="share_customer_profile">Share profile</string>
+    <string name="edit_customer_profile">Edit customer profile</string>
 
 
     <!--Edit Text hint required-->
@@ -211,6 +213,13 @@
         \nGo to \'Settings\' and grant permission manually.
     </string>
     <string name="permission_denied_camera">Permission Denied to use Camera</string>
+    <string name="permission_denied_write">Permission Denied to use external storage</string>
+    <string name="dialog_message_write_permission_denied_prompt">Without write permission you will
+        not be able to share the image. Are you sure you want to deny this
+        permission?</string>
+    <string name="dialog_message_write_permission_never_ask_again">You have denied permission to
+        write in external storage, without this permission you will not be able to share image.
+        Please enable it in settings</string>
 
     <!--Customer Current status-->
     <string name="active">ACTIVE</string>
