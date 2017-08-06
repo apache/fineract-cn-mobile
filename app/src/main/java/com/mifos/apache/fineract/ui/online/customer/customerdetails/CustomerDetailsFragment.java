@@ -29,6 +29,7 @@ import com.mifos.apache.fineract.ui.online.identification.identificationlist
 import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
 import com.mifos.apache.fineract.ui.views.HeaderView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
+import com.mifos.apache.fineract.utils.ImageLoaderUtils;
 import com.mifos.apache.fineract.utils.StatusUtils;
 
 import javax.inject.Inject;
@@ -100,6 +101,9 @@ public class CustomerDetailsFragment extends MifosBaseFragment
 
     @BindView(R.id.iv_current_status)
     ImageView ivCurrentStatus;
+
+    @BindView(R.id.iv_customer_profile)
+    ImageView ivCustomerProfile;
 
     @Inject
     CustomerDetailsPresenter customerDetailsPresenter;
@@ -192,6 +196,10 @@ public class CustomerDetailsFragment extends MifosBaseFragment
         appBarLayout.setExpanded(true, true);
         this.customer = customer;
         ncvCustomerDetails.setVisibility(View.VISIBLE);
+
+        ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(getActivity());
+        imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
+                customer.getIdentifier()), ivCustomerProfile, R.drawable.mifos_logo_new);
 
         tvCurrentStatus.setText(customer.getCurrentState().name());
         StatusUtils.setCustomerStatusIcon(customer.getCurrentState(),
