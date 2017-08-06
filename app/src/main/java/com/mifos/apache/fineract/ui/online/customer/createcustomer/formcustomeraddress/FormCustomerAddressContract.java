@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.createcustomer.formcustomeraddress;
+package com.mifos.apache.fineract.ui.online.customer.createcustomer.formcustomeraddress;
 
 import com.mifos.apache.fineract.data.models.customer.Country;
 import com.mifos.apache.fineract.ui.base.MvpView;

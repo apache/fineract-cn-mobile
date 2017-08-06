@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
-import com.mifos.apache.fineract.ui.online.createcustomer.customeractivity.CreateCustomerActivity;
-import com.mifos.apache.fineract.ui.online.customer.CustomersFragment;
+import com.mifos.apache.fineract.ui.online.customer.createcustomer.customeractivity.CreateCustomerActivity;
+import com.mifos.apache.fineract.ui.online.customer.customerlist.CustomersFragment;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

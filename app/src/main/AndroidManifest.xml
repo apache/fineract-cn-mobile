@@ -37,7 +37,7 @@
 
         <activity android:name=".ui.online.DashboardActivity" />
 
-        <activity android:name=".ui.online.customerdetails.CustomerDetailsActivity" />
+        <activity android:name=".ui.online.customer.customerdetails.CustomerDetailsActivity" />
 
         <activity android:name=".ui.online.customerdeposit.CustomerDepositActivity" />
 
@@ -47,7 +47,7 @@
 
         <activity android:name=".ui.online.loanapplication.loanactivity.LoanApplicationActivity" />
 
-        <activity android:name=".ui.online.createcustomer.customeractivity.CreateCustomerActivity" />
+        <activity android:name=".ui.online.customer.createcustomer.customeractivity.CreateCustomerActivity" />
 
         <activity android:name=".ui.online.debtincomereport.DebtIncomeReportActivity" />
 

@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.createcustomer;
+package com.mifos.apache.fineract.ui.online.customer.createcustomer;
 
 import android.app.Activity;
 import android.content.Context;

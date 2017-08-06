@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.customer;
+package com.mifos.apache.fineract.ui.online.customer.customerlist;
 
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MvpView;

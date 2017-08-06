@@ -1,7 +1,8 @@
-package com.mifos.apache.fineract.ui.online.customerdetails;
+package com.mifos.apache.fineract.ui.online.customer.createcustomer.customeractivity;
 
 import android.content.Context;
 
+import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.datamanager.DataManagerCustomer;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.injection.ApplicationContext;
@@ -12,64 +13,49 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableObserver;
+import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Rajan Maurya
- *         On 26/06/17.
+ *         On 27/07/17.
  */
 @ConfigPersistent
-public class CustomerDetailsPresenter extends BasePresenter<CustomerDetailsContract.View>
-        implements CustomerDetailsContract.Presenter {
+public class CreateCustomerPresenter extends BasePresenter<CreateCustomerContract.View>
+        implements CreateCustomerContract.Presenter {
 
     private DataManagerCustomer dataManagerCustomer;
     private final CompositeDisposable compositeDisposable;
 
     @Inject
-    public CustomerDetailsPresenter(@ApplicationContext Context context,
-            DataManagerCustomer dataManager) {
+    public CreateCustomerPresenter(@ApplicationContext Context context,
+            DataManagerCustomer dataManagerCustomer) {
         super(context);
-        dataManagerCustomer = dataManager;
+        this.dataManagerCustomer = dataManagerCustomer;
         compositeDisposable = new CompositeDisposable();
     }
 
     @Override
-    public void attachView(CustomerDetailsContract.View mvpView) {
-        super.attachView(mvpView);
-    }
-
-    @Override
-    public void detachView() {
-        super.detachView();
-        compositeDisposable.clear();
-    }
-
-    @Override
-    public void loanCustomerDetails(String identifier) {
+    public void createCustomer(final Customer customer) {
         checkViewAttached();
         getMvpView().showProgressbar();
-        compositeDisposable.add(dataManagerCustomer.fetchCustomer(identifier)
+        compositeDisposable.add(dataManagerCustomer.createCustomer(customer)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<Customer>() {
+                .subscribeWith(new DisposableCompletableObserver() {
                     @Override
-                    public void onNext(Customer customer) {
+                    public void onComplete() {
                         getMvpView().hideProgressbar();
-                        getMvpView().showCustomerDetails(customer);
+                        getMvpView().customerCreatedSuccessfully();
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError("Failed to fetch customer details");
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                        getMvpView().showError(context.getString(R.string.error_creating_customer));
                     }
                 })
+
         );
     }
 }
