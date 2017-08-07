@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_edit_actions"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/layout_padding_64dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:padding="@dimen/layout_padding_16dp"
+                            android:text="@string/customer_image"
+                            android:textColor="@color/gray_dark"
+                            android:textStyle="bold"/>
+
+                        <View
+                            android:background="@color/grey_500"
+                            android:layout_height="0.2dp"
+                            android:layout_width="match_parent"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/layout_padding_24dp">
+
+                            <LinearLayout
+                                style="@style/circleLayout"
+                                android:id="@+id/ll_camera"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/iv_camera"
+                                    android:layout_height="35dp"
+                                    android:layout_width="35dp"
+                                    android:tint="@color/ms_errorColor"
+                                    app:srcCompat="@drawable/ic_camera_enhance_black_24dp"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_camera"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:paddingTop="@dimen/layout_padding_8dp"
+                                android:text="@string/camera"
+                                android:textSize="@dimen/text_medium"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/layout_padding_24dp">
+
+                            <LinearLayout
+                                style="@style/circleLayout"
+                                android:id="@+id/ll_gallery"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/iv_gallery"
+                                    android:layout_height="35dp"
+                                    android:layout_width="35dp"
+                                    android:tint="@color/purple"
+                                    app:srcCompat="@drawable/ic_panorama_black_24dp"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_gallery"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:paddingTop="@dimen/layout_padding_8dp"
+                                android:text="@string/gallery"
+                                android:textSize="@dimen/text_medium"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/layout_padding_24dp">
+
+                            <LinearLayout
+                                style="@style/circleLayout"
+                                android:id="@+id/ll_delete"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/iv_delete"
+                                    android:layout_height="35dp"
+                                    android:layout_width="35dp"
+                                    android:tint="@color/red_dark"
+                                    app:srcCompat="@drawable/ic_delete_black_24dp"/>
+
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tv_delete"
+                                android:layout_gravity="center"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:paddingTop="@dimen/layout_padding_8dp"
+                                android:text="@string/delete"
+                                android:textSize="@dimen/text_medium"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_edit_action_form"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:padding="@dimen/layout_padding_24dp"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Large"
+                    android:id="@+id/tv_header"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:paddingBottom="@dimen/layout_padding_16dp"
+                    android:textStyle="bold"
+                    tools:text="Camera"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_customer_picture"
+                    android:layout_width="220dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    app:civ_border_width="2dp"
+                    app:civ_border_color="@color/black"
+                    app:srcCompat="@drawable/mifos_logo_new"/>
+
+                <TextView
+                    android:id="@+id/tv_select_file"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/layout_padding_4dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/edit_selected_file"/>
+
+                <TextView
+                    android:id="@+id/tv_image_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/no_file_selected_yet"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"/>
+
+                <Button
+                    android:drawableLeft="@drawable/ic_attach_file_black_24dp"
+                    android:drawableStart="@drawable/ic_attach_file_black_24dp"
+                    android:id="@+id/btn_choose_select_photo"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:drawablePadding="@dimen/layout_padding_8dp"
+                    android:gravity="start|center"
+                    android:layout_gravity="center"
+                    android:theme="@style/AppTheme.Normal.Button"
+                    tools:text="Choose a file (max size 512 KB)"
+                    android:textAllCaps="false"/>
+
+                <TextView
+                    android:id="@+id/tv_image_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:textColor="@color/red_light"
+                    android:text="@string/portrait_size_can_not_exceed"
+                    android:layout_marginTop="@dimen/layout_padding_8dp"
+                    android:visibility="gone"
+                    android:layout_marginBottom="@dimen/layout_padding_8dp"/>
+
+                <LinearLayout
+                    android:layout_gravity="end"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/layout_padding_8dp"
+                    android:weightSum="1">
+
+                    <Button
+                        android:id="@+id/btn_cancel"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_16dp"
+                        android:layout_marginRight="@dimen/layout_padding_16dp"
+                        android:layout_weight=".5"
+                        android:layout_width="wrap_content"
+                        android:text="@string/cancel"
+                        android:theme="@style/AppTheme"
+                        android:textAllCaps="false"/>
+
+                    <Button
+                        android:id="@+id/btn_upload_photo"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:layout_width="wrap_content"
+                        android:text="@string/upload"
+                        android:theme="@style/AppTheme"
+                        android:textAllCaps="false"
+                    />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+

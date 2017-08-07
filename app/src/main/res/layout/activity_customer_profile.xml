@@ -19,6 +19,8 @@
             android:src="@drawable/mifos_logo_new"
             android:layout_marginTop="@dimen/layout_padding_64dp"
             android:layout_marginBottom="@dimen/layout_padding_64dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
             android:contentDescription="@string/customer_image"/>
 
     </LinearLayout>

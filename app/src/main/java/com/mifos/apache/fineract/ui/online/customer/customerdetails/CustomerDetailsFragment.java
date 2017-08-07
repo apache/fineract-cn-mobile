@@ -205,9 +205,7 @@ public class CustomerDetailsFragment extends MifosBaseFragment
         this.customer = customer;
         ncvCustomerDetails.setVisibility(View.VISIBLE);
 
-        ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(getActivity());
-        imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
-                customer.getIdentifier()), ivCustomerProfile, R.drawable.mifos_logo_new);
+        loadCustomerPortrait();
 
         tvCurrentStatus.setText(customer.getCurrentState().name());
         StatusUtils.setCustomerStatusIcon(customer.getCurrentState(),
@@ -264,6 +262,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     public void showToolbarTitleSubtitle(String title, String subtitle) {
         toolbarHeaderView.bindTo(title, subtitle);
         floatHeaderView.bindTo(title, subtitle);
+    }
+
+    @Override
+    public void loadCustomerPortrait() {
+        ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(getActivity());
+        imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
+                customer.getIdentifier()), ivCustomerProfile, R.drawable.mifos_logo_new);
     }
 
     @Override

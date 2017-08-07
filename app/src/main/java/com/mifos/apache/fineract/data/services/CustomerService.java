@@ -85,4 +85,13 @@ public interface CustomerService {
     Completable deleteIdentificationCard(
             @Path("identifier") String identifier,
             @Path("identificationnumber") String identificationnumber);
+
+    @Multipart
+    @POST(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/portrait")
+    Completable uploadCustomerPortrait(
+            @Path("identifier") String customerIdentifier,
+            @Part MultipartBody.Part file);
+
+    @DELETE(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/portrait")
+    Completable deleteCustomerPortrait(@Path("identifier") String customerIdentifier);
 }

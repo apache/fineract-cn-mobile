@@ -5,6 +5,8 @@ import com.mifos.apache.fineract.injection.module.ActivityModule;
 import com.mifos.apache.fineract.ui.online.customer.createcustomer.customeractivity.CreateCustomerActivity;
 import com.mifos.apache.fineract.ui.online.customer.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
 import com.mifos.apache.fineract.ui.online.customer.customerlist.CustomersFragment;
+import com.mifos.apache.fineract.ui.online.customer.customerprofile
+        .editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositFragment;
 import com.mifos.apache.fineract.ui.online.customer.customerdetails.CustomerDetailsFragment;
 import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansFragment;
@@ -74,4 +76,6 @@ public interface ActivityComponent {
     void inject(IdentificationDetailsFragment identificationDetailsFragment);
 
     void inject(UploadIdentificationCardBottomSheet uploadIdentificationCardBottomSheet);
+
+    void inject(EditCustomerProfileBottomSheet editCustomerProfileBottomSheet);
 }

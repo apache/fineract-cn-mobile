@@ -19,6 +19,9 @@ import android.widget.ImageView;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.customer.customerprofile
+        .editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
+import com.mifos.apache.fineract.ui.refreshcallback.RefreshProfileImage;
 import com.mifos.apache.fineract.utils.CheckSelfPermissionAndRequest;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.ImageLoaderUtils;
@@ -34,7 +37,7 @@ import butterknife.ButterKnife;
  *         On 06/08/17.
  */
 public class CustomerProfileActivity extends MifosBaseActivity
-        implements CustomerProfileContract.View {
+        implements CustomerProfileContract.View, RefreshProfileImage {
 
     @BindView(R.id.iv_customer_picture)
     ImageView ivCustomerProfile;
@@ -49,9 +52,7 @@ public class CustomerProfileActivity extends MifosBaseActivity
 
         customerIdentifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
 
-        ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(this);
-        imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
-                customerIdentifier), ivCustomerProfile, R.drawable.mifos_logo_new);
+        loadCustomerPortrait();
 
         showBackButton();
         setToolbarTitle(getString(R.string.customer_image));
@@ -68,6 +69,12 @@ public class CustomerProfileActivity extends MifosBaseActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_customer_profile_edit:
+                EditCustomerProfileBottomSheet profileBottomSheet =
+                        new EditCustomerProfileBottomSheet();
+                profileBottomSheet.setCustomerIdentifier(customerIdentifier);
+                profileBottomSheet.setRefreshProfileImage(this);
+                profileBottomSheet.show(getSupportFragmentManager(),
+                        getString(R.string.customer_image));
                 return true;
             case R.id.menu_customer_profile_share:
                 checkCameraPermission();
@@ -82,7 +89,8 @@ public class CustomerProfileActivity extends MifosBaseActivity
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/jpg");
         shareIntent.putExtra(Intent.EXTRA_STREAM, bitmapUri);
-        startActivity(Intent.createChooser(shareIntent, "Share image using"));
+        startActivity(Intent.createChooser(shareIntent,
+                getString(R.string.share_customer_profile)));
     }
 
     public static Bitmap getBitmapFromView(ImageView view) {
@@ -123,9 +131,17 @@ public class CustomerProfileActivity extends MifosBaseActivity
                 this, Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 ConstantKeys.PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE,
                 getResources().getString(
-                        R.string.dialog_message_write_permission_denied_prompt),
-                getResources().getString(R.string.dialog_message_write_permission_never_ask_again),
+                        R.string.dialog_message_write_permission_for_share_denied_prompt),
+                getResources().getString(
+                        R.string.dialog_message_write_permission_for_share_never_ask_again),
                 ConstantKeys.PERMISSIONS_WRITE_EXTERNAL_STORAGE_STATUS);
+    }
+
+    @Override
+    public void loadCustomerPortrait() {
+        ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(this);
+        imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
+                customerIdentifier), ivCustomerProfile, R.drawable.mifos_logo_new);
     }
 
     @Override
@@ -142,5 +158,10 @@ public class CustomerProfileActivity extends MifosBaseActivity
                 }
             }
         }
+    }
+
+    @Override
+    public void refreshUI() {
+        loadCustomerPortrait();
     }
 }

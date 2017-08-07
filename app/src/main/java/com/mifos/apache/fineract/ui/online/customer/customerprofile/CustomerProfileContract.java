@@ -14,5 +14,6 @@ public interface CustomerProfileContract {
 
         void requestPermission();
 
+        void loadCustomerPortrait();
     }
 }

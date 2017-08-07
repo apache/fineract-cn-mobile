@@ -85,4 +85,12 @@ public class DataManagerCustomer {
         return baseApiManager.getCustomerApi()
                 .deleteIdentificationCard(customerIdentifier, identificationnumber);
     }
+
+    public Completable uploadCustomerPortrait(String customerIdentifier, MultipartBody.Part file) {
+        return baseApiManager.getCustomerApi().uploadCustomerPortrait(customerIdentifier, file);
+    }
+
+    public Completable deleteCustomerPortrait(String customerIdentifier) {
+        return baseApiManager.getCustomerApi().deleteCustomerPortrait(customerIdentifier);
+    }
 }
