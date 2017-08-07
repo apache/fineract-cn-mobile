@@ -22,6 +22,7 @@ import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.customer.customerprofile.CustomerProfileActivity;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositActivity;
 import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansActivity;
 import com.mifos.apache.fineract.ui.online.identification.identificationlist
@@ -180,6 +181,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
         startActivity(intent);
     }
 
+    @OnClick(R.id.iv_customer_profile)
+    void showCustomerProfileImage() {
+        Intent intent = new Intent(getActivity(), CustomerProfileActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        startActivity(intent);
+    }
+
     @Override
     public void showUserInterface() {
         if (toolbar != null) {
@@ -197,9 +205,7 @@ public class CustomerDetailsFragment extends MifosBaseFragment
         this.customer = customer;
         ncvCustomerDetails.setVisibility(View.VISIBLE);
 
-        ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(getActivity());
-        imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
-                customer.getIdentifier()), ivCustomerProfile, R.drawable.mifos_logo_new);
+        loadCustomerPortrait();
 
         tvCurrentStatus.setText(customer.getCurrentState().name());
         StatusUtils.setCustomerStatusIcon(customer.getCurrentState(),
@@ -256,6 +262,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     public void showToolbarTitleSubtitle(String title, String subtitle) {
         toolbarHeaderView.bindTo(title, subtitle);
         floatHeaderView.bindTo(title, subtitle);
+    }
+
+    @Override
+    public void loadCustomerPortrait() {
+        ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(getActivity());
+        imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
+                customer.getIdentifier()), ivCustomerProfile, R.drawable.mifos_logo_new);
     }
 
     @Override

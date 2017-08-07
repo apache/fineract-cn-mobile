@@ -20,6 +20,8 @@ public interface CustomerDetailsContract {
 
         void showToolbarTitleSubtitle(String title, String subtitle);
 
+        void loadCustomerPortrait();
+
         void showProgressbar();
 
         void hideProgressbar();

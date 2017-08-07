@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Android-Client 2.0</string>
+    <string name="app_name">Fineract 2.0</string>
 
     <string name="enter_you_credentials">Please enter your credentials</string>
     <string name="tenant">Tenant</string>
+    <string name="fineract">Fineract</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -125,6 +126,22 @@
     <string name="uploading_identification_scan_card">Uploading identification scan card…</string>
     <string name="identification_deleted_successfully">Identification card deleted successfully</string>
     <string name="deleting_identification_card">Deleting identification card</string>
+    <string name="share_customer_profile">Share profile</string>
+    <string name="edit_customer_profile">Edit customer profile</string>
+    <string name="remove">Remove</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="edit_selected_file">Selected file:</string>
+    <string name="no_file_selected_yet">No file selected yet.</string>
+    <string name="choose_file">Choose a file (max size 512 KB)</string>
+    <string name="take_photo">Take photo (max size 512 KB)</string>
+    <string name="are_sure_want_remove_portrait">Are you sure? you want to delete portrait.</string>
+    <string name="delete">Delete</string>
+    <string name="uploading_portrait">Uploading portrait please wait…</string>
+    <string name="deleting_portrait">Deleting portrait please wait…</string>
+    <string name="portrait_uploaded_successfully">Portrait uploaded successfully</string>
+    <string name="portrait_deleted_successfully">Portrait deleted successfully</string>
+    <string name="portrait_size_can_not_exceed">Portrait can\'t exceed size of 512KB.</string>
 
 
     <!--Edit Text hint required-->
@@ -188,6 +205,8 @@
     <string name="error_fetching_scans">Error while fetching scan cards</string>
     <string name="error_uploading_identification_scan_card">Error while uploading identification scan card</string>
     <string name="error_deleting_identification_card">Error while deleting identification card</string>
+    <string name="error_deleting_customer_portrait">Error deleting customer portrait</string>
+    <string name="error_uploading_customer_portrait">Error uploading customer portrait</string>
 
 
     <!--Material Dialog-->
@@ -211,6 +230,27 @@
         \nGo to \'Settings\' and grant permission manually.
     </string>
     <string name="permission_denied_camera">Permission Denied to use Camera</string>
+    <string name="permission_denied_write">Permission Denied to use external storage</string>
+    <string name="permission_denied_read">Permission Denied to read external storage</string>
+    <string name="dialog_message_write_permission_for_share_denied_prompt">Without write permission you will
+        not be able to share the image. Are you sure you want to deny this
+        permission?</string>
+    <string name="dialog_message_write_permission_for_share_never_ask_again">You have denied permission to
+        write in external storage, without this permission you will not be able to share image.
+        Please enable it in settings</string>
+    <string name="dialog_message_write_permission_denied_prompt">Without write permission you will
+        not be able to upload the image to server. Are you sure you want to deny this
+        permission?</string>
+    <string name="dialog_message_write_permission_never_ask_again">You have denied permission to
+        write in external storage, without this permission you will not be able to upload image.
+        Please enable it in settings</string>
+    <string name="dialog_message_read_permission_denied_prompt">Without read permission you will
+        not be able to view the image from gallery. Are you sure you want to deny this
+        permission?</string>
+    <string name="dialog_message_read_permission_never_ask_again">You have denied permission to
+        read in external storage, without this permission you will not be able to view image from gallery.
+        Please enable it in settings</string>
+
 
     <!--Customer Current status-->
     <string name="active">ACTIVE</string>
