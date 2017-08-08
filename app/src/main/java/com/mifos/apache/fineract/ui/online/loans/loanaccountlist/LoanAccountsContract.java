@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.customerloans;
+package com.mifos.apache.fineract.ui.online.loans.loanaccountlist;
 
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.ui.base.MvpView;
@@ -9,7 +9,7 @@ import java.util.List;
  * @author Rajan Maurya
  *         On 07/07/17.
  */
-public interface CustomerLoansContract {
+public interface LoanAccountsContract {
 
     interface View extends MvpView {
 

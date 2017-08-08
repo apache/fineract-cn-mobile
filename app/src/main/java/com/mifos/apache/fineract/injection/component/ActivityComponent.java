@@ -9,7 +9,7 @@ import com.mifos.apache.fineract.ui.online.customer.customerprofile
         .editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
 import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositFragment;
 import com.mifos.apache.fineract.ui.online.customer.customerdetails.CustomerDetailsFragment;
-import com.mifos.apache.fineract.ui.online.customerloans.CustomerLoansFragment;
+import com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsFragment;
 import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportFragment;
 import com.mifos.apache.fineract.ui.online.depositdetails.CustomerDepositDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
@@ -17,11 +17,11 @@ import com.mifos.apache.fineract.ui.online.identification.identificationdetails.
 import com.mifos.apache.fineract.ui.online.identification.identificationlist.IdentificationsFragment;
 import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan.UploadIdentificationCardBottomSheet;
 import com.mifos.apache.fineract.ui.online.launcher.LauncherActivity;
-import com.mifos.apache.fineract.ui.online.loanapplication.BaseFragmentDebtIncome;
-import com.mifos.apache.fineract.ui.online.loanapplication.loanactivity.LoanApplicationActivity;
-import com.mifos.apache.fineract.ui.online.loanapplication.loancosigner.LoanCoSignerFragment;
-import com.mifos.apache.fineract.ui.online.loanapplication.loandetails.LoanDetailsFragment;
-import com.mifos.apache.fineract.ui.online.loandetails.CustomerLoanDetailsFragment;
+import com.mifos.apache.fineract.ui.online.loans.loanapplication.BaseFragmentDebtIncome;
+import com.mifos.apache.fineract.ui.online.loans.loanapplication.loanactivity.LoanApplicationActivity;
+import com.mifos.apache.fineract.ui.online.loans.loanapplication.loancosigner.LoanCoSignerFragment;
+import com.mifos.apache.fineract.ui.online.loans.loanapplication.loandetails.LoanDetailsFragment;
+import com.mifos.apache.fineract.ui.online.loans.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.ui.online.login.LoginActivity;
 import com.mifos.apache.fineract.ui.online.plannedpayment.PlannedPaymentFragment;
 import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
@@ -45,7 +45,7 @@ public interface ActivityComponent {
 
     void inject(CustomerDepositFragment customerDepositFragment);
 
-    void inject(CustomerLoansFragment customerLoansFragment);
+    void inject(LoanAccountsFragment customerLoansFragment);
 
     void inject(CustomerLoanDetailsFragment customerLoanDetailsFragment);
 

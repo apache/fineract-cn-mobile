@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.customerloans;
+package com.mifos.apache.fineract.ui.online.loans.loanaccountlist;
 
 import android.content.Context;
 
@@ -24,8 +24,8 @@ import io.reactivex.schedulers.Schedulers;
  *         On 07/07/17.
  */
 @ConfigPersistent
-public class CustomerLoansPresenter extends BasePresenter<CustomerLoansContract.View>
-        implements CustomerLoansContract.Presenter {
+public class LoanAccountsPresenter extends BasePresenter<LoanAccountsContract.View>
+        implements LoanAccountsContract.Presenter {
 
     private final DataManagerLoans dataManagerLoans;
     private final CompositeDisposable compositeDisposable;
@@ -34,7 +34,7 @@ public class CustomerLoansPresenter extends BasePresenter<CustomerLoansContract.
     private boolean loadmore = false;
 
     @Inject
-    public CustomerLoansPresenter(@ApplicationContext Context context,
+    public LoanAccountsPresenter(@ApplicationContext Context context,
             DataManagerLoans dataManagerLoans) {
         super(context);
         this.dataManagerLoans = dataManagerLoans;
@@ -42,7 +42,7 @@ public class CustomerLoansPresenter extends BasePresenter<CustomerLoansContract.
     }
 
     @Override
-    public void attachView(CustomerLoansContract.View mvpView) {
+    public void attachView(LoanAccountsContract.View mvpView) {
         super.attachView(mvpView);
     }
 

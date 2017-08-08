@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.loanapplication.loanactivity;
+package com.mifos.apache.fineract.ui.online.loans.loanapplication.loanactivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,7 +14,7 @@ import com.mifos.apache.fineract.data.models.loan.TermRange;
 import com.mifos.apache.fineract.ui.adapters.LoanApplicationStepAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.Toaster;
-import com.mifos.apache.fineract.ui.online.loanapplication.OnNavigationBarListener;
+import com.mifos.apache.fineract.ui.online.loans.loanapplication.OnNavigationBarListener;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;

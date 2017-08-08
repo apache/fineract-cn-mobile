@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.loanapplication;
+package com.mifos.apache.fineract.ui.online.loans.loanapplication;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

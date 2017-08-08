@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.loanapplication.loanactivity;
+package com.mifos.apache.fineract.ui.online.loans.loanapplication.loanactivity;
 
 import android.content.Context;
 

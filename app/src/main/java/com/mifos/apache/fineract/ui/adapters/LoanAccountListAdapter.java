@@ -1,11 +1,12 @@
 package com.mifos.apache.fineract.ui.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
+import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
@@ -13,6 +14,7 @@ import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.utils.DateUtils;
+import com.mifos.apache.fineract.utils.StatusUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +28,15 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 10/07/17.
  */
-public class CustomerLoanAdapter extends RecyclerView.Adapter<CustomerLoanAdapter.ViewHolder> {
+public class LoanAccountListAdapter extends
+        RecyclerView.Adapter<LoanAccountListAdapter.ViewHolder> {
 
     private Context context;
     private List<LoanAccount> customerLoanAccounts;
     public OnItemClickListener onItemClickListener;
 
     @Inject
-    public CustomerLoanAdapter(@ApplicationContext Context context) {
+    public LoanAccountListAdapter(@ApplicationContext Context context) {
         this.context = context;
         customerLoanAccounts = new ArrayList<>();
     }
@@ -53,17 +56,19 @@ public class CustomerLoanAdapter extends RecyclerView.Adapter<CustomerLoanAdapte
         holder.tvLoanIdentifier.setText(loanAccount.getIdentifier());
 
         String modifiedOn = context.getString(R.string.last_modified_on) + context.getString(
-                R.string.colon) + DateUtils.getDateTime(loanAccount.getLastModifiedOn());
+                R.string.colon) + DateUtils.getDate(loanAccount.getCreatedOn(),
+                DateUtils.INPUT_DATE_FORMAT, DateUtils.OUTPUT_DATE_FORMAT);
         holder.tvModifiedOn.setText(modifiedOn);
 
         String modifiedBy = context.getString(R.string.last_modified_by) + context.getString(
                 R.string.colon) + loanAccount.getLastModifiedBy();
         holder.tvModifiedBy.setText(modifiedBy);
 
-        String loanCurrentStatus = context.getString(R.string.current_status) + context.getString(
-                R.string.colon) + loanAccount.getCurrentState();
-        holder.tvLoanCurrentStatus.setText(loanCurrentStatus);
+        StatusUtils.setLoanAccountStatus(loanAccount.getCurrentState(),
+                holder.ivStatusIndicator, context);
 
+        holder.tvAccountBalance.setText(String.valueOf(
+                loanAccount.getLoanParameters().getMaximumBalance()));
     }
 
     @Override
@@ -91,11 +96,11 @@ public class CustomerLoanAdapter extends RecyclerView.Adapter<CustomerLoanAdapte
         @BindView(R.id.tv_loan_identifier)
         TextView tvLoanIdentifier;
 
-        @BindView(R.id.tv_loan_current_status)
-        TextView tvLoanCurrentStatus;
+        @BindView(R.id.iv_status_indicator)
+        AppCompatImageView ivStatusIndicator;
 
-        @BindView(R.id.tv_balance)
-        TextView tvBalance;
+        @BindView(R.id.tv_account_balance)
+        TextView tvAccountBalance;
 
         @BindView(R.id.tv_modified_by)
         TextView tvModifiedBy;
@@ -103,13 +108,13 @@ public class CustomerLoanAdapter extends RecyclerView.Adapter<CustomerLoanAdapte
         @BindView(R.id.tv_modified_on)
         TextView tvModifiedOn;
 
-        @BindView(R.id.cv_customer_loan)
-        CardView cvCustomerLoan;
+        @BindView(R.id.ll_loan_accounts)
+        LinearLayout llLoanAccount;
 
         public ViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
-            cvCustomerLoan.setOnClickListener(this);
+            llLoanAccount.setOnClickListener(this);
         }
 
         @Override
