@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Customer;
+import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 
 /**
  * @author Rajan Maurya
@@ -63,6 +64,36 @@ public class StatusUtils {
                 imageView.setColorFilter(
                         ContextCompat.getColor(context, R.color.blue));
                 break;
+        }
+    }
+
+    public static void setLoanAccountStatus (LoanAccount.State state, AppCompatImageView imageView,
+            Context context) {
+        switch (state) {
+            case CREATED:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
+                break;
+            case PENDING:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
+                break;
+
+            case APPROVED:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.deposit_green));
+                break;
+
+            case ACTIVE:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.deposit_green));
+                break;
+
+            case CLOSED:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.loandetails;
+package com.mifos.apache.fineract.ui.online.loans.loandetails;
 
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 import com.mifos.apache.fineract.ui.base.MvpView;

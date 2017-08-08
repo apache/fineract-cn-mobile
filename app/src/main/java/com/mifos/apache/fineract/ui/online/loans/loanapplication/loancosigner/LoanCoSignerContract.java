@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.loanapplication.loancosigner;
+package com.mifos.apache.fineract.ui.online.loans.loanapplication.loancosigner;
 
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MvpView;

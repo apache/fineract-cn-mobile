@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.customerloans;
+package com.mifos.apache.fineract.ui.online.loans.loanaccountlist;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +14,14 @@ import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
-import com.mifos.apache.fineract.ui.adapters.CustomerLoanAdapter;
+import com.mifos.apache.fineract.ui.adapters.LoanAccountListAdapter;
 import com.mifos.apache.fineract.ui.base.EndlessRecyclerViewScrollListener;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
-import com.mifos.apache.fineract.ui.online.loanapplication.loanactivity.LoanApplicationActivity;
-import com.mifos.apache.fineract.ui.online.loandetails.CustomerLoanDetailsFragment;
+import com.mifos.apache.fineract.ui.online.loans.loanapplication.loanactivity.LoanApplicationActivity;
+import com.mifos.apache.fineract.ui.online.loans.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 07/07/17.
  */
-public class CustomerLoansFragment extends MifosBaseFragment implements CustomerLoansContract.View,
+public class LoanAccountsFragment extends MifosBaseFragment implements LoanAccountsContract.View,
         SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @BindView(R.id.rv_customers_loans)
@@ -53,18 +53,18 @@ public class CustomerLoansFragment extends MifosBaseFragment implements Customer
     TextView tvErrorMessage;
 
     @Inject
-    CustomerLoansPresenter customerLoansPresenter;
+    LoanAccountsPresenter customerLoansPresenter;
 
     @Inject
-    CustomerLoanAdapter customerLoanAdapter;
+    LoanAccountListAdapter customerLoanAdapter;
 
     View rootView;
 
     private String customerIdentifier;
     private List<LoanAccount> loanAccounts;
 
-    public static CustomerLoansFragment newInstance(String customerIdentifier) {
-        CustomerLoansFragment fragment = new CustomerLoansFragment();
+    public static LoanAccountsFragment newInstance(String customerIdentifier) {
+        LoanAccountsFragment fragment = new LoanAccountsFragment();
         Bundle args = new Bundle();
         args.putString(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         fragment.setArguments(args);
