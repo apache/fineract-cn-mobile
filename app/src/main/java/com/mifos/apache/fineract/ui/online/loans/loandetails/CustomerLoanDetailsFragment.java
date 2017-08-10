@@ -94,6 +94,7 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
     private String productIdentifier;
     private String caseIdentifier;
     private LoanAccount loanAccount;
+    private String[] weeksName, repayOnMonths, timeSlots, monthsName;
 
     public static CustomerLoanDetailsFragment newInstance(String productIdentifier,
             String caseIdentifier) {
@@ -112,6 +113,10 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
             productIdentifier = getArguments().getString(ConstantKeys.PRODUCT_IDENTIFIER);
             caseIdentifier = getArguments().getString(ConstantKeys.CASE_IDENTIFIER);
         }
+        weeksName = getActivity().getResources().getStringArray(R.array.week_names);
+        repayOnMonths = getActivity().getResources().getStringArray(R.array.repay_on_months);
+        timeSlots = getActivity().getResources().getStringArray(R.array.time_slots);
+        monthsName = getActivity().getResources().getStringArray(R.array.month_names);
         setHasOptionsMenu(true);
     }
 
@@ -165,8 +170,47 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
         tvTerm.setText(term);
 
         PaymentCycle paymentCycle = loanAccount.getLoanParameters().getPaymentCycle();
-        tvPaymentCycle.setText(getString(R.string.payment_cycle_value, paymentCycle.getPeriod(),
-                paymentCycle.getTemporalUnit(), (paymentCycle.getAlignmentDay() + 1)));
+        LoanAccount.RepayUnitType repayUnitType =
+                LoanAccount.RepayUnitType.valueOf(paymentCycle.getTemporalUnit());
+        switch (repayUnitType) {
+            case WEEKS:
+                tvPaymentCycle.setText(
+                        getString(R.string.payment_cycle_week, paymentCycle.getPeriod(),
+                                paymentCycle.getTemporalUnit().toLowerCase(),
+                                weeksName[paymentCycle.getAlignmentDay()]));
+                break;
+            case MONTHS:
+                if (paymentCycle.getAlignmentWeek() == null) {
+                    tvPaymentCycle.setText(
+                            getString(R.string.payment_cycle_month_day, paymentCycle.getPeriod(),
+                                    paymentCycle.getTemporalUnit().toLowerCase(),
+                                    repayOnMonths[paymentCycle.getAlignmentDay()]));
+                } else {
+                    tvPaymentCycle.setText(
+                            getString(R.string.payment_cycle_month_day_week,
+                                    paymentCycle.getPeriod(),
+                                    paymentCycle.getTemporalUnit().toLowerCase(),
+                                    timeSlots[paymentCycle.getAlignmentWeek()],
+                                    weeksName[paymentCycle.getAlignmentDay()]));
+                }
+                break;
+            case YEARS:
+                if (paymentCycle.getAlignmentWeek() == null) {
+                    tvPaymentCycle.setText(
+                            getString(R.string.payment_cycle_month_day, paymentCycle.getPeriod(),
+                                    paymentCycle.getTemporalUnit().toLowerCase(),
+                                    repayOnMonths[paymentCycle.getAlignmentDay()]));
+                } else {
+                    tvPaymentCycle.setText(
+                            getString(R.string.payment_cycle_year_day_week,
+                                    paymentCycle.getPeriod(),
+                                    paymentCycle.getTemporalUnit().toLowerCase(),
+                                    timeSlots[paymentCycle.getAlignmentWeek()],
+                                    weeksName[paymentCycle.getAlignmentDay()],
+                                    monthsName[paymentCycle.getAlignmentMonth()]));
+                }
+                break;
+        }
 
         tvLoanCurrentStatus.setText(loanAccount.getCurrentState().name());
         StatusUtils.setLoanAccountStatusIcon(loanAccount.getCurrentState(),

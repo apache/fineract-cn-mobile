@@ -121,7 +121,7 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
     private List<String> timeSlots;
     private List<String> weeks;
     private List<String> months;
-    private List<Integer> monthsNumber;
+    private List<String> monthsNumber;
     private Product product;
 
     private ArrayAdapter<String> productsAdapter;
@@ -149,10 +149,8 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
                 getActivity().getResources().getStringArray(R.array.week_names)));
         months = new ArrayList<>(Arrays.asList(
                 getActivity().getResources().getStringArray(R.array.month_names)));
-        monthsNumber = new ArrayList<>();
-        for (int i = 0; i < 31; ++i) {
-            monthsNumber.add(++i);
-        }
+        monthsNumber = new ArrayList<>(Arrays.asList(
+                getActivity().getResources().getStringArray(R.array.repay_on_months)));
     }
 
     @Override
@@ -285,7 +283,7 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
         spRepayYearMonth.setAdapter(repayUnitTypeYearMonthsAdapter);
         spRepayYearMonth.setOnItemSelectedListener(this);
 
-        ArrayAdapter<Integer> repayMonthDayInNumberAdapter = new ArrayAdapter<>(getActivity(),
+        ArrayAdapter<String> repayMonthDayInNumberAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_gallery_item, monthsNumber);
         repayMonthDayInNumberAdapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);

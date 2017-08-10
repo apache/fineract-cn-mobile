@@ -181,8 +181,12 @@ public class PlannedPaymentAdapter extends SectioningAdapter {
             int sectionIndex, int headerType) {
         Section section = sections.get(sectionIndex);
         HeaderViewHolder hvh = (HeaderViewHolder) viewHolder;
-        hvh.tvPaymentDate.setText(DateUtils.getDate(section.date, DateUtils.INPUT_DATE_FORMAT,
-                DateUtils.OUTPUT_DATE_FORMAT));
+        if (section.date != null) {
+            hvh.tvPaymentDate.setText(DateUtils.getDate(section.date, DateUtils.INPUT_DATE_FORMAT,
+                    DateUtils.OUTPUT_DATE_FORMAT));
+        } else {
+            hvh.tvPaymentDate.setText(context.getString(R.string.planned_payment));
+        }
         hvh.tvRemainingPrincipal.setText(context.getString(R.string.remaining_principal)
                 + context.getString(R.string.colon) + section.remainingPrincipal);
 

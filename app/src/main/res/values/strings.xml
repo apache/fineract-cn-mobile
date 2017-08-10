@@ -57,6 +57,12 @@
     <string name="customer_loan_approved">Customer loan approved</string>
     <string name="to_activate_loan_disburse">To activate this loan you need to disburse</string>
     <string name="payment_cycle_value">Repay every %1$d %2$s on the %3$d day</string>
+    <string name="payment_cycle_month_day">Repay every %1$d %2$s on the %3$s day</string>
+    <string name="payment_cycle_month_day_week">Repay every %1$d %2$s on the %3$s %4$s</string>
+    <string name="payment_cycle_week">Repay every %1$d %2$s on %3$s</string>
+    <string name="payment_cycle_year_day">Repay every %1$d %2$s on the %3$s day in %4$s</string>
+    <string name="payment_cycle_year_day_week">Repay every %1$d %2$s on the %3$s %4$s in %5$s</string>
+
     <string name="account">Account</string>
     <string name="balance">Balance</string>
     <string name="beneficiaries">Beneficiaries</string>
@@ -338,5 +344,38 @@
         <item>Friday</item>
         <item>Saturday</item>
         <item>Sunday</item>
+    </string-array>
+
+    <string-array name="repay_on_months">
+        <item>1.</item>
+        <item>2.</item>
+        <item>3.</item>
+        <item>4.</item>
+        <item>5.</item>
+        <item>6.</item>
+        <item>7.</item>
+        <item>8.</item>
+        <item>9.</item>
+        <item>10.</item>
+        <item>11.</item>
+        <item>12.</item>
+        <item>13.</item>
+        <item>14.</item>
+        <item>15.</item>
+        <item>16.</item>
+        <item>17.</item>
+        <item>18.</item>
+        <item>19.</item>
+        <item>20.</item>
+        <item>21.</item>
+        <item>22.</item>
+        <item>23.</item>
+        <item>24.</item>
+        <item>25.</item>
+        <item>26.</item>
+        <item>27.</item>
+        <item>28.</item>
+        <item>29.</item>
+        <item>30.</item>
     </string-array>
 </resources>
