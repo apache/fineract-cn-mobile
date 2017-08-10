@@ -41,6 +41,18 @@ public class LoanAccount {
         CLOSED
     }
 
+    public enum RepayUnitType {
+
+        @SerializedName("WEEKS")
+        WEEKS,
+
+        @SerializedName("MONTHS")
+        MONTHS,
+
+        @SerializedName("YEARS")
+        YEARS,
+    }
+
     public String getIdentifier() {
         return identifier;
     }
