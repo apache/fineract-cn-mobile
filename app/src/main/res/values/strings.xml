@@ -81,6 +81,7 @@
     <string name="no_income_to_show">No income to show. add income</string>
     <string name="ratio">Ratio: %1$s</string>
     <string name="edit_debt">Edit Debt</string>
+    <string name="edit_loan">Edit loan</string>
     <string name="edit_income">Edit Income</string>
     <string name="debt_income">Debt Income</string>
     <string name="name">Name</string>
@@ -142,7 +143,11 @@
     <string name="portrait_uploaded_successfully">Portrait uploaded successfully</string>
     <string name="portrait_deleted_successfully">Portrait deleted successfully</string>
     <string name="portrait_size_can_not_exceed">Portrait can\'t exceed size of 512KB.</string>
-
+    <string name="customer_deposit_account">Customer deposit account</string>
+    <string name="created_by">Created by</string>
+    <string name="no_deposit_account">No deposit account</string>
+    <string name="loan_last_modified_by">%1$s %2$s</string>
+    <string name="loan_created_by">%1$s %2$s</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>

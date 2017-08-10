@@ -96,5 +96,41 @@ public class StatusUtils {
 
         }
     }
+
+    public static void setLoanAccountStatusIcon(LoanAccount.State state, ImageView imageView,
+            Context context) {
+        switch (state) {
+            case ACTIVE:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_check_circle_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+            case CLOSED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_close_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+            case APPROVED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_done_all_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+            case PENDING:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_hourglass_empty_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
+                break;
+            case CREATED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_hourglass_empty_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
+                break;
+        }
+    }
 }
 
