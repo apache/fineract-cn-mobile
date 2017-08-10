@@ -6,8 +6,8 @@
     android:id="@+id/cl_customer_loan_details"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:visibility="invisible"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:visibility="invisible">
 
     <android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -59,15 +59,37 @@
                             android:textColor="@color/colorSecondaryText"
                             android:textSize="@dimen/text_size_12sp"/>
 
-                        <TextView
-                            android:drawableLeft="@drawable/ic_check_circle_black_24dp"
-                            android:drawablePadding="@dimen/layout_padding_4dp"
-                            android:drawableStart="@drawable/ic_check_circle_black_24dp"
-                            android:id="@+id/tv_loan_current_status"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content"
+                        <RelativeLayout
+                            android:id="@+id/rl_mobile_no"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
                             android:paddingTop="@dimen/layout_padding_4dp"
-                            tools:text="Active"/>
+                            android:visibility="visible">
+
+                            <ImageView
+                                style="@style/circleLayout"
+                                android:id="@+id/iv_loan_current_status"
+                                android:layout_height="35dp"
+                                android:layout_width="35dp"
+                                app:srcCompat="@drawable/ic_check_circle_black_24dp"/>
+
+                            <TextView
+                                android:foregroundGravity="center"
+                                android:id="@+id/tv_loan_current_status"
+                                android:isScrollContainer="false"
+                                android:layout_centerInParent="true"
+                                android:layout_height="match_parent"
+                                android:layout_toEndOf="@+id/iv_loan_current_status"
+                                android:layout_toRightOf="@+id/iv_loan_current_status"
+                                android:layout_width="match_parent"
+                                android:paddingEnd="0dp"
+                                android:paddingLeft="@dimen/layout_padding_8dp"
+                                android:paddingRight="0dp"
+                                android:paddingStart="@dimen/layout_padding_8dp"
+                                tools:text="Active"/>
+
+                        </RelativeLayout>
 
                     </LinearLayout>
 
@@ -89,15 +111,16 @@
 
                         <LinearLayout
                             android:id="@+id/ll_principal_amount"
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
                             android:orientation="horizontal"
                             android:paddingBottom="@dimen/layout_padding_16dp">
 
                             <ImageView
+                                style="@style/circleLayout"
                                 android:layout_gravity="center"
-                                android:layout_height="30dp"
-                                android:layout_width="30dp"
+                                android:layout_height="35dp"
+                                android:layout_width="35dp"
                                 app:srcCompat="@drawable/ic_account_balance_black_24dp"/>
 
                             <LinearLayout
@@ -127,15 +150,16 @@
 
                         <LinearLayout
                             android:id="@+id/ll_payment_cycle"
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
                             android:orientation="horizontal"
                             android:paddingBottom="@dimen/layout_padding_16dp">
 
                             <ImageView
+                                style="@style/circleLayout"
                                 android:layout_gravity="center"
-                                android:layout_height="30dp"
-                                android:layout_width="30dp"
+                                android:layout_height="35dp"
+                                android:layout_width="35dp"
                                 app:srcCompat="@drawable/ic_access_time_black_24dp"/>
 
                             <LinearLayout
@@ -165,14 +189,15 @@
 
                         <LinearLayout
                             android:id="@+id/ll_term"
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
                             android:orientation="horizontal">
 
                             <ImageView
+                                style="@style/circleLayout"
                                 android:layout_gravity="center"
-                                android:layout_height="30dp"
-                                android:layout_width="30dp"
+                                android:layout_height="35dp"
+                                android:layout_width="35dp"
                                 app:srcCompat="@drawable/ic_event_black_24dp"/>
 
                             <LinearLayout
@@ -197,6 +222,106 @@
 
                             </LinearLayout>
 
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.2dp"
+                        android:background="#E7DFDF"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"/>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/layout_padding_8dp"
+                        android:paddingBottom="@dimen/layout_padding_16dp">
+
+                        <LinearLayout
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/customer_deposit_account"/>
+
+                            <TextView
+                                style="@style/Base.TextAppearance.AppCompat.Small"
+                                android:id="@+id/tv_customer_deposit_account"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content"
+                                android:textSize="@dimen/text_size_12sp"
+                                tools:text="8766106.9100.00001"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/layout_padding_16dp">
+
+                        <LinearLayout
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/created_by"/>
+
+                            <TextView
+                                style="@style/Base.TextAppearance.AppCompat.Small"
+                                android:id="@+id/tv_create_by"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content"
+                                android:textSize="@dimen/text_size_12sp"
+                                tools:text="Dharp - Aug 3, 2017, 6:41:21 PM"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingBottom="@dimen/layout_padding_8dp">
+
+                        <LinearLayout
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_width="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="@string/last_modified_by"/>
+
+                            <TextView
+                                style="@style/Base.TextAppearance.AppCompat.Small"
+                                android:id="@+id/tv_last_modified_by"
+                                android:layout_height="match_parent"
+                                android:layout_width="wrap_content"
+                                android:textSize="@dimen/text_size_12sp"
+                                tools:text="Dharp - Aug 3, 2017, 6:41:21 PM"/>
 
                         </LinearLayout>
 
@@ -235,38 +360,45 @@
                         android:clickable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:id="@+id/ll_planned_payment"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
                         android:padding="16dp">
 
-                        <ImageView
-                            android:layout_gravity="center"
-                            android:layout_height="30dp"
-                            android:layout_width="30dp"
-                            app:srcCompat="@drawable/ic_payment_black_24dp"/>
-
                         <LinearLayout
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/layout_padding_8dp"
-                            android:layout_marginStart="@dimen/layout_padding_8dp"
-                            android:layout_width="match_parent"
-                            android:orientation="vertical">
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <ImageView
+                                style="@style/circleLayout"
+                                android:layout_gravity="center"
+                                android:layout_height="35dp"
+                                android:layout_width="35dp"
+                                app:srcCompat="@drawable/ic_payment_black_24dp"/>
+
+                            <LinearLayout
                                 android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="@string/planned_payment"/>
+                                android:layout_marginLeft="@dimen/layout_padding_8dp"
+                                android:layout_marginStart="@dimen/layout_padding_8dp"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical">
 
-                            <TextView
-                                style="@style/Base.TextAppearance.AppCompat.Small"
-                                android:layout_height="match_parent"
-                                android:layout_width="wrap_content"
-                                android:text="@string/view_payments"
-                                android:textSize="@dimen/text_size_12sp"/>
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/planned_payment"/>
+
+                                <TextView
+                                    style="@style/Base.TextAppearance.AppCompat.Small"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/view_payments"
+                                    android:textSize="@dimen/text_size_12sp"/>
+
+                            </LinearLayout>
 
                         </LinearLayout>
-
 
                     </LinearLayout>
 
@@ -279,33 +411,40 @@
                         android:orientation="horizontal"
                         android:padding="16dp">
 
-                        <ImageView
-                            android:layout_gravity="center"
-                            android:layout_height="30dp"
-                            android:layout_width="30dp"
-                            app:srcCompat="@drawable/ic_task_black_24dp"/>
-
                         <LinearLayout
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/layout_padding_8dp"
-                            android:layout_marginStart="@dimen/layout_padding_8dp"
-                            android:layout_width="match_parent"
-                            android:orientation="vertical">
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <ImageView
+                                style="@style/circleLayout"
+                                android:layout_gravity="center"
+                                android:layout_height="35dp"
+                                android:layout_width="35dp"
+                                app:srcCompat="@drawable/ic_task_black_24dp"/>
+
+                            <LinearLayout
                                 android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="@string/tasks"/>
+                                android:layout_marginLeft="@dimen/layout_padding_8dp"
+                                android:layout_marginStart="@dimen/layout_padding_8dp"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical">
 
-                            <TextView
-                                style="@style/Base.TextAppearance.AppCompat.Small"
-                                android:layout_height="match_parent"
-                                android:layout_width="wrap_content"
-                                android:text="@string/change_customer_status"
-                                android:textSize="@dimen/text_size_12sp"/>
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/tasks"/>
+
+                                <TextView
+                                    style="@style/Base.TextAppearance.AppCompat.Small"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/change_customer_status"
+                                    android:textSize="@dimen/text_size_12sp"/>
+
+                            </LinearLayout>
 
                         </LinearLayout>
-
 
                     </LinearLayout>
 
@@ -318,34 +457,41 @@
                         android:orientation="horizontal"
                         android:padding="@dimen/layout_padding_16dp">
 
-                        <ImageView
-                            android:layout_gravity="center"
-                            android:layout_height="30dp"
-                            android:layout_width="30dp"
-                            app:srcCompat="@drawable/ic_show_chart_black_24dp"/>
-
                         <LinearLayout
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/layout_padding_8dp"
-                            android:layout_marginStart="@dimen/layout_padding_8dp"
-                            android:layout_width="match_parent"
-                            android:orientation="vertical">
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <ImageView
+                                style="@style/circleLayout"
+                                android:layout_gravity="center"
+                                android:layout_height="35dp"
+                                android:layout_width="35dp"
+                                app:srcCompat="@drawable/ic_show_chart_black_24dp"/>
+
+                            <LinearLayout
                                 android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="@string/debt_income_report"/>
+                                android:layout_marginLeft="@dimen/layout_padding_8dp"
+                                android:layout_marginStart="@dimen/layout_padding_8dp"
+                                android:layout_width="match_parent"
+                                android:orientation="vertical">
 
-                            <TextView
-                                style="@style/Base.TextAppearance.AppCompat.Small"
-                                android:layout_height="match_parent"
-                                android:layout_width="wrap_content"
-                                android:text="@string/view_debt_income_report"
-                                android:textSize="@dimen/text_size_12sp"/>
+                                <TextView
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/debt_income_report"/>
+
+                                <TextView
+                                    style="@style/Base.TextAppearance.AppCompat.Small"
+                                    android:layout_height="match_parent"
+                                    android:layout_width="wrap_content"
+                                    android:text="@string/view_debt_income_report"
+                                    android:textSize="@dimen/text_size_12sp"/>
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
-
-
                     </LinearLayout>
 
                 </LinearLayout>
@@ -368,16 +514,5 @@
         layout="@layout/layout_error"
         android:id="@+id/rl_error"
         android:visibility="gone"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:clickable="true"
-        android:id="@+id/fab_edit_customer_loan"
-        android:layout_gravity="bottom|end"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:layout_width="wrap_content"
-        android:tint="@color/white"
-        app:srcCompat="@drawable/ic_edit_black_24dp"/>
-
 
 </android.support.design.widget.CoordinatorLayout>

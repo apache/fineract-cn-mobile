@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +24,9 @@ import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportActivity;
 import com.mifos.apache.fineract.ui.online.plannedpayment.PlannedPaymentActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
+import com.mifos.apache.fineract.utils.DateUtils;
+import com.mifos.apache.fineract.utils.StatusUtils;
+import com.mifos.apache.fineract.utils.Utils;
 
 import javax.inject.Inject;
 
@@ -34,6 +40,9 @@ import butterknife.OnClick;
  */
 public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
         CustomerLoanDetailsContract.View {
+
+    @BindView(R.id.iv_loan_current_status)
+    ImageView ivLoanCurrentStatus;
 
     @BindView(R.id.tv_principal_amount)
     TextView tvPaymentAmount;
@@ -68,8 +77,14 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
     @BindView(R.id.tv_error)
     TextView tvError;
 
-    @BindView(R.id.fab_edit_customer_loan)
-    FloatingActionButton fabEditCustomerLoan;
+    @BindView(R.id.tv_customer_deposit_account)
+    TextView tvCustomerDepositAccount;
+
+    @BindView(R.id.tv_create_by)
+    TextView tvCreatedBy;
+
+    @BindView(R.id.tv_last_modified_by)
+    TextView tvLastModifiedBy;
 
     @Inject
     CustomerLoanDetailsPresenter customerLoanDetailsPresenter;
@@ -97,6 +112,7 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
             productIdentifier = getArguments().getString(ConstantKeys.PRODUCT_IDENTIFIER);
             caseIdentifier = getArguments().getString(ConstantKeys.CASE_IDENTIFIER);
         }
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -153,33 +169,28 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
                 paymentCycle.getTemporalUnit(), (paymentCycle.getAlignmentDay() + 1)));
 
         tvLoanCurrentStatus.setText(loanAccount.getCurrentState().name());
+        StatusUtils.setLoanAccountStatusIcon(loanAccount.getCurrentState(),
+                ivLoanCurrentStatus, getActivity());
 
-        switch (loanAccount.getCurrentState()) {
-            case ACTIVE:
-                tvLoanCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_check_circle_black_24dp, 0, 0, 0);
-                layoutDisburseButton.setVisibility(View.VISIBLE);
-                break;
-            case APPROVED:
-                clAlertMessage.setVisibility(View.VISIBLE);
-                tvAlertText1.setText(getString(R.string.customer_loan_approved));
-                tvAlertText2.setText(getString(R.string.to_activate_loan_disburse));
-                fabEditCustomerLoan.setVisibility(View.GONE);
-                tvLoanCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_done_all_black_24dp, 0, 0, 0);
-                layoutDisburseButton.setVisibility(View.VISIBLE);
-                break;
-            case CLOSED:
-                break;
-            case PENDING:
-                tvLoanCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_hourglass_empty_black_24dp, 0, 0, 0);
-                break;
-            case CREATED:
-                tvLoanCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_hourglass_empty_black_24dp, 0, 0, 0);
-                break;
+        if (loanAccount.getCurrentState() == LoanAccount.State.APPROVED) {
+            clAlertMessage.setVisibility(View.VISIBLE);
+            tvAlertText1.setText(getString(R.string.customer_loan_approved));
+            tvAlertText2.setText(getString(R.string.to_activate_loan_disburse));
         }
+
+        if (loanAccount.getAccountAssignments().size() != 0) {
+            tvCustomerDepositAccount.setText(
+                    loanAccount.getAccountAssignments().get(0).getAccountIdentifier());
+        } else {
+            tvCustomerDepositAccount.setText(R.string.no_deposit_account);
+        }
+
+        tvCreatedBy.setText(getString(R.string.loan_created_by, loanAccount.getCreatedBy(),
+                DateUtils.getDateTime(loanAccount.getCreatedOn())));
+
+        tvLastModifiedBy.setText(getString(R.string.loan_last_modified_by,
+                loanAccount.getLastModifiedBy(),
+                DateUtils.getDateTime(loanAccount.getLastModifiedOn())));
     }
 
     @Override
@@ -198,6 +209,24 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
         rlError.setVisibility(View.VISIBLE);
         tvError.setText(message);
         Toaster.show(rootView, message);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_loan_account_details, menu);
+        Utils.setToolbarIconColor(getActivity(), menu, R.color.white);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_loan_account_edit:
+                Toaster.show(rootView, "Under construction");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
