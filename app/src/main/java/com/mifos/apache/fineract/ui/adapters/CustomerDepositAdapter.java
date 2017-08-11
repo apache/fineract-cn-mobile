@@ -106,13 +106,13 @@ public class CustomerDepositAdapter extends
         @BindView(R.id.tv_account_balance)
         TextView tvAccountBalance;
 
-        @BindView(R.id.ll_customer_deposit_accounts)
-        LinearLayout llCustomerDepositAccounts;
+        @BindView(R.id.ll_deposit_accounts)
+        LinearLayout llDepositAccounts;
 
         public ViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
-            llCustomerDepositAccounts.setOnClickListener(this);
+            llDepositAccounts.setOnClickListener(this);
         }
 
         @Override
