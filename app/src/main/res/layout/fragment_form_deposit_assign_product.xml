@@ -33,6 +33,7 @@
                 android:padding="@dimen/layout_padding_16dp">
 
                 <TextView
+                    android:id="@+id/tv_select_product_header"
                     style="@style/Base.TextAppearance.AppCompat.Small"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/layout_padding_4dp"

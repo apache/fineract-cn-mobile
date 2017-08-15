@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Customer;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
 
 /**
@@ -129,6 +130,48 @@ public class StatusUtils {
                         R.drawable.ic_hourglass_empty_black_24dp));
                 imageView.setColorFilter(
                         ContextCompat.getColor(context, R.color.blue));
+                break;
+        }
+    }
+
+    public static void setDepositAccountStatusIcon(DepositAccount.State state, ImageView imageView,
+            Context context) {
+        switch (state) {
+            case ACTIVE:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_check_circle_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+            case CLOSED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_close_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+            case APPROVED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_done_all_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+            case PENDING:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_hourglass_empty_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
+                break;
+            case CREATED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_hourglass_empty_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
+                break;
+            case LOCKED:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_lock_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
                 break;
         }
     }

@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.formdepositassignproduct.FormDepositAssignProductFragment;
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.FormDepositOverviewFragment;
@@ -22,10 +22,10 @@ public class CreateDepositStepAdapter  extends AbstractFragmentStepAdapter {
 
     private String[] createDepositSteps;
     private DepositAction depositAction;
-    private CustomerDepositAccounts depositAccounts;
+    private DepositAccount depositAccounts;
 
     public CreateDepositStepAdapter(@NonNull FragmentManager fm, @NonNull Context context,
-            DepositAction action, CustomerDepositAccounts depositAccounts) {
+            DepositAction action, DepositAccount depositAccounts) {
         super(fm, context);
         createDepositSteps = context.getResources().getStringArray(R.array.create_deposit_steps);
         this.depositAction = action;

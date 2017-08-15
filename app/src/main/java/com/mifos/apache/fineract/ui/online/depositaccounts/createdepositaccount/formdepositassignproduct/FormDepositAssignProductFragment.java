@@ -1,4 +1,5 @@
-package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.formdepositassignproduct;
+package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .formdepositassignproduct;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,17 +17,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Customer;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
-import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.adapters.BeneficiaryAdapter;
 import com.mifos.apache.fineract.ui.adapters.BeneficiaryAutoCompleteAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
-import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositOnNavigationBarListener;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .DepositOnNavigationBarListener;
 import com.mifos.apache.fineract.ui.views.DelayAutoCompleteTextView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.Step;
@@ -52,6 +54,9 @@ public class FormDepositAssignProductFragment extends MifosBaseFragment implemen
 
     @BindView(R.id.sp_products)
     Spinner spProducts;
+
+    @BindView(R.id.tv_select_product_header)
+    TextView tvSelectProductHeader;
 
     @BindView(R.id.et_search_beneficiary)
     DelayAutoCompleteTextView etSearchBeneficiary;
@@ -80,14 +85,14 @@ public class FormDepositAssignProductFragment extends MifosBaseFragment implemen
     View rootView;
 
     private DepositAction depositAction;
-    private CustomerDepositAccounts depositAccount;
+    private DepositAccount depositAccount;
     private List<String> products;
     private ArrayAdapter<String> productsAdapter;
     private String productIdentifier;
     private DepositOnNavigationBarListener.ProductInstanceDetails onNavigationBarListener;
 
     public static FormDepositAssignProductFragment newInstance(DepositAction action,
-            CustomerDepositAccounts depositAccounts) {
+            DepositAccount depositAccounts) {
         FormDepositAssignProductFragment fragment = new FormDepositAssignProductFragment();
         Bundle args = new Bundle();
         args.putSerializable(ConstantKeys.DEPOSIT_ACTION, action);
@@ -101,6 +106,7 @@ public class FormDepositAssignProductFragment extends MifosBaseFragment implemen
         super.onCreate(savedInstanceState);
         ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
         products = new ArrayList<>();
+        depositAccount = new DepositAccount();
         if (getArguments() != null) {
             depositAction = (DepositAction) getArguments().getSerializable(
                     ConstantKeys.DEPOSIT_ACTION);
@@ -119,30 +125,44 @@ public class FormDepositAssignProductFragment extends MifosBaseFragment implemen
 
         showUserInterface();
 
-        formDepositAssignProductPresenter.fetchProductDefinitions();
+        switch (depositAction) {
+            case CREATE:
+                formDepositAssignProductPresenter.fetchProductDefinitions();
+                break;
+            case EDIT:
+                editDepositAccountDetails(depositAccount);
+                break;
+        }
 
         return rootView;
     }
 
     @Override
     public VerificationError verifyStep() {
-        if (spProducts.getSelectedItem() == null) {
+        if (productIdentifier == null) {
             return new VerificationError(null);
         } else {
-            ProductInstance productInstance = new ProductInstance();
-            productInstance.setBeneficiaries(beneficiaryAdapter.getAllBeneficiary());
-            productInstance.setProductIdentifier(productIdentifier);
-            onNavigationBarListener.setProductInstance(productInstance,
-                    spProducts.getSelectedItem().toString());
+            if (depositAction == DepositAction.CREATE) {
+                DepositAccount depositAccount = new DepositAccount();
+                depositAccount.setBeneficiaries(beneficiaryAdapter.getAllBeneficiary());
+                depositAccount.setProductIdentifier(productIdentifier);
+                onNavigationBarListener.setProductInstance(depositAccount,
+                        spProducts.getSelectedItem().toString());
+            } else {
+                depositAccount.setBeneficiaries(beneficiaryAdapter.getAllBeneficiary());
+                onNavigationBarListener.setProductInstance(depositAccount, null);
+            }
         }
         return null;
     }
 
     @Override
-    public void onSelected() {}
+    public void onSelected() {
+    }
 
     @Override
-    public void onError(@NonNull VerificationError error) {}
+    public void onError(@NonNull VerificationError error) {
+    }
 
     @Override
     public void showUserInterface() {
@@ -162,6 +182,15 @@ public class FormDepositAssignProductFragment extends MifosBaseFragment implemen
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rvBeneficiary.setLayoutManager(staggeredGridLayoutManager);
         rvBeneficiary.setAdapter(beneficiaryAdapter);
+    }
+
+    @Override
+    public void editDepositAccountDetails(DepositAccount depositAccount) {
+        clDepositAssignProduct.setVisibility(View.VISIBLE);
+        beneficiaryAdapter.setAllBeneficiary(depositAccount.getBeneficiaries());
+        spProducts.setVisibility(View.GONE);
+        tvSelectProductHeader.setVisibility(View.GONE);
+        productIdentifier = depositAccount.getProductIdentifier();
     }
 
     @Override
@@ -192,7 +221,8 @@ public class FormDepositAssignProductFragment extends MifosBaseFragment implemen
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {}
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

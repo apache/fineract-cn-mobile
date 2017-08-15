@@ -1,17 +1,19 @@
-package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity;
+package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .createdepositactivity;
 
 import android.os.Bundle;
 import android.view.View;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
-import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.adapters.CreateDepositStepAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
-import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositOnNavigationBarListener;
-import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositOverViewContract;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .DepositOnNavigationBarListener;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .DepositOverViewContract;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
@@ -42,9 +44,8 @@ public class CreateDepositActivity extends MifosBaseActivity implements
 
     private String customerIdentifier;
     private DepositAction depositAction;
-    private CustomerDepositAccounts depositAccount;
+    private DepositAccount depositAccount;
     private CreateDepositStepAdapter stepAdapter;
-    private ProductInstance productInstance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,8 @@ public class CreateDepositActivity extends MifosBaseActivity implements
         createDepositPresenter.attachView(this);
 
         customerIdentifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
-        depositAction = (DepositAction) getIntent().getSerializableExtra(ConstantKeys.DEPOSIT_ACTION);
+        depositAction = (DepositAction) getIntent().getSerializableExtra(
+                ConstantKeys.DEPOSIT_ACTION);
         depositAccount = getIntent().getExtras().getParcelable(ConstantKeys.DEPOSIT_ACCOUNT);
 
         if (savedInstanceState != null) {
@@ -96,9 +98,11 @@ public class CreateDepositActivity extends MifosBaseActivity implements
     public void onCompleted(View completeButton) {
         switch (depositAction) {
             case CREATE:
-                createDepositPresenter.createDepositAccount(productInstance);
+                createDepositPresenter.createDepositAccount(depositAccount);
                 break;
             case EDIT:
+                createDepositPresenter.updateDepositAccount(depositAccount.getAccountIdentifier(),
+                        depositAccount);
                 break;
         }
         stepperLayout.setNextButtonEnabled(false);
@@ -122,11 +126,11 @@ public class CreateDepositActivity extends MifosBaseActivity implements
     }
 
     @Override
-    public void setProductInstance(ProductInstance productInstance, String productName) {
-        productInstance.setCustomerIdentifier(customerIdentifier);
-        this.productInstance = productInstance;
+    public void setProductInstance(DepositAccount depositAccount, String productName) {
+        depositAccount.setCustomerIdentifier(customerIdentifier);
+        this.depositAccount = depositAccount;
         ((DepositOverViewContract) stepAdapter.findStep(1))
-                .setProductInstance(productInstance, productName);
+                .setProductInstance(depositAccount, productName, depositAction);
     }
 
     @Override

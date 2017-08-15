@@ -1,10 +1,11 @@
-package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity;
+package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .createdepositactivity;
 
 import android.content.Context;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.datamanager.DataManagerDeposit;
-import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.injection.ConfigPersistent;
 import com.mifos.apache.fineract.ui.base.BasePresenter;
@@ -47,10 +48,10 @@ public class CreateDepositPresenter extends BasePresenter<CreateDepositContract.
     }
 
     @Override
-    public void createDepositAccount(ProductInstance productInstance) {
+    public void createDepositAccount(DepositAccount depositAccount) {
         checkViewAttached();
         getMvpView().showProgressbar();
-        compositeDisposable.add(dataManagerDeposit.createDepositAccount(productInstance)
+        compositeDisposable.add(dataManagerDeposit.createDepositAccount(depositAccount)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableCompletableObserver() {
@@ -71,7 +72,27 @@ public class CreateDepositPresenter extends BasePresenter<CreateDepositContract.
     }
 
     @Override
-    public void updateDepositAccount(ProductInstance productInstance) {
+    public void updateDepositAccount(String accountIdentifier, DepositAccount depositAccount) {
+        checkViewAttached();
+        getMvpView().showProgressbar();
+        compositeDisposable.add(
+                dataManagerDeposit.updateDepositAccount(accountIdentifier, depositAccount)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableCompletableObserver() {
+                            @Override
+                            public void onComplete() {
+                                getMvpView().hideProgressbar();
+                                getMvpView().depositUpdatedSuccessfully();
+                            }
 
+                            @Override
+                            public void onError(Throwable e) {
+                                getMvpView().hideProgressbar();
+                                getMvpView().showError(
+                                        context.getString(R.string.error_updating_deposit_account));
+                            }
+                        })
+        );
     }
 }

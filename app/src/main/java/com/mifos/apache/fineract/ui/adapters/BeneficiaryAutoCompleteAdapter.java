@@ -60,7 +60,8 @@ public class BeneficiaryAutoCompleteAdapter extends BaseAdapter implements Filte
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(android.R.layout.simple_list_item_multiple_choice, parent, false);
+            convertView = inflater.inflate(android.R.layout.simple_list_item_multiple_choice,
+                    parent, false);
         }
         ((TextView) convertView.findViewById(android.R.id.text1))
                 .setTextColor(ContextCompat.getColor(context, R.color.black));

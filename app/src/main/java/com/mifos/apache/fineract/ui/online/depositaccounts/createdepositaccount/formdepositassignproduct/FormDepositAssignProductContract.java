@@ -1,5 +1,6 @@
 package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.formdepositassignproduct;
 
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.data.models.deposit.ProductDefinition;
 import com.mifos.apache.fineract.ui.base.MvpView;
 
@@ -14,6 +15,8 @@ public interface FormDepositAssignProductContract {
     interface View extends MvpView {
 
         void showUserInterface();
+
+        void editDepositAccountDetails(DepositAccount depositAccount);
 
         void showProductDefinitions(List<String> products);
 

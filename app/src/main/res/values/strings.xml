@@ -226,6 +226,7 @@
     <string name="error_deleting_customer_portrait">Error deleting customer portrait</string>
     <string name="error_uploading_customer_portrait">Error uploading customer portrait</string>
     <string name="error_creating_deposit_account">Error creating deposit account</string>
+    <string name="error_updating_deposit_account">Error updating deposit account</string>
 
 
     <!--Material Dialog-->

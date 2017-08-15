@@ -1,6 +1,6 @@
 package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount;
 
-import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 
 /**
  * @author Rajan Maurya
@@ -8,5 +8,6 @@ import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
  */
 public interface DepositOverViewContract {
 
-    void setProductInstance(ProductInstance productInstance, String productName);
+    void setProductInstance(DepositAccount depositAccount, String productName,
+            DepositAction depositAction);
 }

@@ -1,6 +1,6 @@
 package com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist;
 
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.base.MvpView;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public interface DepositAccountsContract {
 
         void showUserInterface();
 
-        void showCustomerDeposits(List<CustomerDepositAccounts> customerDepositAccounts);
+        void showCustomerDeposits(List<DepositAccount> customerDepositAccounts);
 
         void showError(String errorMessage);
 

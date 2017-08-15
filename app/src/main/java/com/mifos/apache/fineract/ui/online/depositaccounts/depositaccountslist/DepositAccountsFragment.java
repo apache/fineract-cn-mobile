@@ -13,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.adapters.CustomerDepositAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
@@ -60,7 +60,7 @@ public class DepositAccountsFragment extends MifosBaseFragment
     View rootView;
 
     private String customerIdentifier;
-    private List<CustomerDepositAccounts> customerDepositAccounts;
+    private List<DepositAccount> customerDepositAccounts;
 
     public static DepositAccountsFragment newInstance(String customerIdentifier) {
         DepositAccountsFragment fragment = new DepositAccountsFragment();
@@ -127,7 +127,7 @@ public class DepositAccountsFragment extends MifosBaseFragment
     }
 
     @Override
-    public void showCustomerDeposits(List<CustomerDepositAccounts> customerDepositAccounts) {
+    public void showCustomerDeposits(List<DepositAccount> customerDepositAccounts) {
         showRecyclerView(true);
         this.customerDepositAccounts = customerDepositAccounts;
         customerDepositAdapter.setCustomerDepositAccounts(customerDepositAccounts);

@@ -1,6 +1,8 @@
 package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount;
 
-import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
+import android.support.annotation.Nullable;
+
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 
 /**
  * @author Rajan Maurya
@@ -9,6 +11,6 @@ import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
 public interface DepositOnNavigationBarListener {
 
     interface ProductInstanceDetails {
-        void setProductInstance(ProductInstance identificationDetails, String productName);
+        void setProductInstance(DepositAccount depositAccount, @Nullable String productName);
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
  * @author Rajan Maurya
  *         On 07/07/17.
  */
-public class CustomerDepositAccounts implements Parcelable {
+public class DepositAccount implements Parcelable {
 
     private String customerIdentifier;
     private String productIdentifier;
@@ -105,10 +105,10 @@ public class CustomerDepositAccounts implements Parcelable {
         dest.writeValue(this.balance);
     }
 
-    public CustomerDepositAccounts() {
+    public DepositAccount() {
     }
 
-    protected CustomerDepositAccounts(Parcel in) {
+    protected DepositAccount(Parcel in) {
         this.customerIdentifier = in.readString();
         this.productIdentifier = in.readString();
         this.accountIdentifier = in.readString();
@@ -118,16 +118,16 @@ public class CustomerDepositAccounts implements Parcelable {
         this.balance = (Double) in.readValue(Double.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<CustomerDepositAccounts> CREATOR =
-            new Parcelable.Creator<CustomerDepositAccounts>() {
+    public static final Parcelable.Creator<DepositAccount> CREATOR =
+            new Parcelable.Creator<DepositAccount>() {
                 @Override
-                public CustomerDepositAccounts createFromParcel(Parcel source) {
-                    return new CustomerDepositAccounts(source);
+                public DepositAccount createFromParcel(Parcel source) {
+                    return new DepositAccount(source);
                 }
 
                 @Override
-                public CustomerDepositAccounts[] newArray(int size) {
-                    return new CustomerDepositAccounts[size];
+                public DepositAccount[] newArray(int size) {
+                    return new DepositAccount[size];
                 }
             };
 }

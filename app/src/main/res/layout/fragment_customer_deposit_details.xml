@@ -40,15 +40,37 @@
                     android:textColor="@color/colorSecondaryText"
                     android:textSize="@dimen/text_size_12sp"/>
 
-                <TextView
-                    android:drawableLeft="@drawable/ic_check_circle_black_24dp"
-                    android:drawablePadding="@dimen/layout_padding_4dp"
-                    android:drawableStart="@drawable/ic_check_circle_black_24dp"
-                    android:id="@+id/tv_deposit_current_status"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/rl_mobile_no"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
                     android:paddingTop="@dimen/layout_padding_4dp"
-                    tools:text="Active"/>
+                    android:visibility="visible">
+
+                    <ImageView
+                        style="@style/circleLayout"
+                        android:id="@+id/iv_deposit_current_status"
+                        android:layout_height="35dp"
+                        android:layout_width="35dp"
+                        app:srcCompat="@drawable/ic_check_circle_black_24dp"/>
+
+                    <TextView
+                        android:foregroundGravity="center"
+                        android:id="@+id/tv_deposit_current_status"
+                        android:isScrollContainer="false"
+                        android:layout_centerInParent="true"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/iv_deposit_current_status"
+                        android:layout_toRightOf="@+id/iv_deposit_current_status"
+                        android:layout_width="match_parent"
+                        android:paddingEnd="0dp"
+                        android:paddingLeft="@dimen/layout_padding_8dp"
+                        android:paddingRight="0dp"
+                        android:paddingStart="@dimen/layout_padding_8dp"
+                        tools:text="Active"/>
+
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -70,15 +92,16 @@
 
                 <LinearLayout
                     android:id="@+id/ll_account"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:orientation="horizontal"
                     android:paddingBottom="@dimen/layout_padding_16dp">
 
                     <ImageView
+                        style="@style/circleLayout"
                         android:layout_gravity="center"
-                        android:layout_height="30dp"
-                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_width="35dp"
                         app:srcCompat="@drawable/ic_account_balance_black_24dp"/>
 
                     <LinearLayout
@@ -108,15 +131,16 @@
 
                 <LinearLayout
                     android:id="@+id/ll_balance"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:orientation="horizontal"
                     android:paddingBottom="@dimen/layout_padding_16dp">
 
                     <ImageView
+                        style="@style/circleLayout"
                         android:layout_gravity="center"
-                        android:layout_height="30dp"
-                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_width="35dp"
                         app:srcCompat="@drawable/ic_account_balance_wallet_black_24dp"/>
 
                     <LinearLayout
@@ -146,14 +170,15 @@
 
                 <LinearLayout
                     android:id="@+id/ll_beneficiaries"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
                     android:orientation="horizontal">
 
                     <ImageView
+                        style="@style/circleLayout"
                         android:layout_gravity="center"
-                        android:layout_height="30dp"
-                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:layout_width="35dp"
                         app:srcCompat="@drawable/ic_people_black_24dp"/>
 
                     <LinearLayout
@@ -193,7 +218,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:clickable="true"
-        android:id="@+id/fab_edit_customer_deposit"
+        android:id="@+id/fab_edit_deposit_account"
         android:layout_gravity="bottom|end"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"

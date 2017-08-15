@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.datamanager.DataManagerDeposit;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.injection.ConfigPersistent;
 import com.mifos.apache.fineract.ui.base.BasePresenter;
@@ -55,9 +55,9 @@ public class DepositAccountDetailsPresenter extends
                 accountIdentifier)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<CustomerDepositAccounts>() {
+                .subscribeWith(new DisposableObserver<DepositAccount>() {
                     @Override
-                    public void onNext(CustomerDepositAccounts customerDepositAccounts) {
+                    public void onNext(DepositAccount customerDepositAccounts) {
                         getMvpView().hideProgressbar();
                         getMvpView().showDepositDetails(customerDepositAccounts);
                     }

@@ -1,6 +1,6 @@
 package com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity;
 
-import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.base.MvpView;
 
 /**
@@ -24,8 +24,8 @@ public interface CreateDepositContract {
 
     interface Presenter {
 
-        void createDepositAccount(ProductInstance productInstance);
+        void createDepositAccount(DepositAccount depositAccount);
 
-        void updateDepositAccount(ProductInstance productInstance);
+        void updateDepositAccount(String accountIdentifier, DepositAccount depositAccount);
     }
 }

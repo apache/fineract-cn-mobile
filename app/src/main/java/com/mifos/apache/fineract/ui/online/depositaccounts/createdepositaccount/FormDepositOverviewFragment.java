@@ -8,10 +8,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.adapters.BeneficiaryAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
@@ -38,6 +39,9 @@ public class FormDepositOverviewFragment extends MifosBaseFragment implements St
 
     @BindView(R.id.tv_no_beneficiary)
     TextView tvNoBeneficiary;
+
+    @BindView(R.id.ll_product_overview)
+    LinearLayout llProductOverView;
 
     @Inject
     BeneficiaryAdapter beneficiaryAdapter;
@@ -74,12 +78,17 @@ public class FormDepositOverviewFragment extends MifosBaseFragment implements St
     }
 
     @Override
-    public void setProductInstance(ProductInstance productInstance, String productName) {
-        tvProduct.setText(productName);
+    public void setProductInstance(DepositAccount depositAccount, String productName,
+            DepositAction depositAction) {
 
-        beneficiaryAdapter.setAllBeneficiary(productInstance.getBeneficiaries());
+        if (depositAction == DepositAction.CREATE) {
+            tvProduct.setText(productName);
+            llProductOverView.setVisibility(View.VISIBLE);
+        }
 
-        if (productInstance.getBeneficiaries().size() == 0) {
+        beneficiaryAdapter.setAllBeneficiary(depositAccount.getBeneficiaries());
+
+        if (depositAccount.getBeneficiaries().size() == 0) {
             tvNoBeneficiary.setVisibility(View.VISIBLE);
             rvBeneficiary.setVisibility(View.GONE);
         } else {

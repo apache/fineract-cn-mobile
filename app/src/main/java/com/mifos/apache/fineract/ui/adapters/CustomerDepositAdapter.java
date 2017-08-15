@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 
@@ -31,7 +31,7 @@ public class CustomerDepositAdapter extends
         RecyclerView.Adapter<CustomerDepositAdapter.ViewHolder> {
 
     private Context context;
-    private List<CustomerDepositAccounts> customerDepositAccounts;
+    private List<DepositAccount> customerDepositAccounts;
     public OnItemClickListener onItemClickListener;
 
     @Inject
@@ -49,7 +49,7 @@ public class CustomerDepositAdapter extends
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        CustomerDepositAccounts customerDepositAccount = customerDepositAccounts.get(position);
+        DepositAccount customerDepositAccount = customerDepositAccounts.get(position);
 
         holder.tvCustomerAccountIdentifier.setText(customerDepositAccount.getAccountIdentifier());
         holder.tvDepositProduct.setText(customerDepositAccount.getProductIdentifier());
@@ -82,7 +82,7 @@ public class CustomerDepositAdapter extends
         return customerDepositAccounts.size();
     }
 
-    public void setCustomerDepositAccounts(List<CustomerDepositAccounts> customerDepositAccounts) {
+    public void setCustomerDepositAccounts(List<DepositAccount> customerDepositAccounts) {
         this.customerDepositAccounts = customerDepositAccounts;
         notifyDataSetChanged();
     }
