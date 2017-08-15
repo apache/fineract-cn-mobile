@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.customerdeposit;
+package com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import com.mifos.apache.fineract.utils.ConstantKeys;
  *         On 07/07/17.
  */
 
-public class CustomerDepositActivity extends MifosBaseActivity {
+public class DepositAccountsActivity extends MifosBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class CustomerDepositActivity extends MifosBaseActivity {
 
         String identifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
 
-        replaceFragment(CustomerDepositFragment.newInstance(identifier), false,
+        replaceFragment(DepositAccountsFragment.newInstance(identifier), false,
                 R.id.container);
 
         showBackButton();

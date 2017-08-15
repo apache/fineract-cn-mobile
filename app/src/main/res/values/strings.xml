@@ -96,11 +96,15 @@
     <string name="creating_loan_please_wait">Creating loan please wait…</string>
     <string name="creating_customer_please_wait">Creating customer please wait…</string>
     <string name="creating_identification_card_please_wait">Creating identification card please wait…</string>
+    <string name="creating_deposit_account">Creating deposit account please wait…</string>
+    <string name="updating_deposit_account">Updating deposit account please wait…</string>
     <string name="on">on</string>
     <string name="on_the">on the</string>
     <string name="is_member">Is member?</string>
     <string name="create_customer">Create Customer</string>
     <string name="create_new_identification">Create new Identification</string>
+    <string name="create_new_deposit">Create new deposit</string>
+    <string name="update_deposit">Update deposit</string>
     <string name="edit_identification">Edit Identification</string>
     <string name="unique_required">Unique, Required</string>
     <string name="create_edit_customer_for_offices">create/edit customer for your offices</string>
@@ -154,6 +158,9 @@
     <string name="no_deposit_account">No deposit account</string>
     <string name="loan_last_modified_by">%1$s %2$s</string>
     <string name="loan_created_by">%1$s %2$s</string>
+    <string name="search_beneficiary">Search beneficiary</string>
+    <string name="select_product">Select product</string>
+    <string name="no_beneficiary">No beneficiaries</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>
@@ -218,6 +225,7 @@
     <string name="error_deleting_identification_card">Error while deleting identification card</string>
     <string name="error_deleting_customer_portrait">Error deleting customer portrait</string>
     <string name="error_uploading_customer_portrait">Error uploading customer portrait</string>
+    <string name="error_creating_deposit_account">Error creating deposit account</string>
 
 
     <!--Material Dialog-->
@@ -306,6 +314,11 @@
         <item>Customer details</item>
         <item>Customer address</item>
         <item>Customer contact</item>
+    </string-array>
+
+    <string-array name="create_deposit_steps">
+        <item>Assign product</item>
+        <item>Overview</item>
     </string-array>
 
     <string-array name="repay_unit_type">

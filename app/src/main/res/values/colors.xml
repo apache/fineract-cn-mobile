@@ -52,6 +52,8 @@
     <color name="icon_image_background">#E9E2E2</color>
     <color name="status">#049314</color>
     <color name="icon_color">#787171</color>
+    <color name="base10">#eaeaea</color>
+    <color name="base30">#c1c1c1</color>
 
 
     <!--Swipe Refresh Colors-->

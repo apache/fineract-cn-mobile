@@ -2,6 +2,8 @@ package com.mifos.apache.fineract.data.datamanager;
 
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.ProductDefinition;
+import com.mifos.apache.fineract.data.models.deposit.ProductInstance;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 /**
@@ -35,5 +38,13 @@ public class DataManagerDeposit {
     public Observable<CustomerDepositAccounts> getCustomerDepositAccountDetails(
             String accountIdentifier) {
         return baseApiManager.getDepositApi().fetchCustomerDepositDetails(accountIdentifier);
+    }
+
+    public Observable<List<ProductDefinition>> fetchProductDefinitions() {
+        return baseApiManager.getDepositApi().fetchProductDefinitions();
+    }
+
+    public Completable createDepositAccount(ProductInstance productInstance) {
+        return baseApiManager.getDepositApi().createDepositAccount(productInstance);
     }
 }

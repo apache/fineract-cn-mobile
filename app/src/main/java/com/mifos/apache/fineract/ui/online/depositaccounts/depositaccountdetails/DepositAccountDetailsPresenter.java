@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.depositdetails;
+package com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails;
 
 import android.content.Context;
 
@@ -21,15 +21,15 @@ import io.reactivex.schedulers.Schedulers;
  *         On 12/07/17.
  */
 @ConfigPersistent
-public class CustomerDepositDetailsPresenter extends
-        BasePresenter<CustomerDepositDetailsContract.View> implements
-        CustomerDepositDetailsContract.Presenter {
+public class DepositAccountDetailsPresenter extends
+        BasePresenter<DepositAccountDetailsContract.View> implements
+        DepositAccountDetailsContract.Presenter {
 
     private final DataManagerDeposit dataManagerDeposit;
     private final CompositeDisposable compositeDisposable;
 
     @Inject
-    public CustomerDepositDetailsPresenter(@ApplicationContext Context context,
+    public DepositAccountDetailsPresenter(@ApplicationContext Context context,
             DataManagerDeposit dataManagerDeposit) {
         super(context);
         this.dataManagerDeposit = dataManagerDeposit;
@@ -37,7 +37,7 @@ public class CustomerDepositDetailsPresenter extends
     }
 
     @Override
-    public void attachView(CustomerDepositDetailsContract.View mvpView) {
+    public void attachView(DepositAccountDetailsContract.View mvpView) {
         super.attachView(mvpView);
     }
 

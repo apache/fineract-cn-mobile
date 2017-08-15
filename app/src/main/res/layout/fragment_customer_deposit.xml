@@ -19,7 +19,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:clickable="true"
-        android:id="@+id/fab_add_customer_deposit_accounts"
+        android:id="@+id/fab_add_deposit_accounts"
         android:layout_gravity="bottom|end"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/layout_padding_16dp"

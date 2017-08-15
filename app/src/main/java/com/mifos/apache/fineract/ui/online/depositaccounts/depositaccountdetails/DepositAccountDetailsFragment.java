@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.depositdetails;
+package com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,8 +26,8 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 12/07/17.
  */
-public class CustomerDepositDetailsFragment extends MifosBaseFragment
-        implements CustomerDepositDetailsContract.View {
+public class DepositAccountDetailsFragment extends MifosBaseFragment
+        implements DepositAccountDetailsContract.View {
 
     @BindView(R.id.cl_customer_deposit_details)
     CoordinatorLayout clCustomerDepositDetails;
@@ -51,14 +51,14 @@ public class CustomerDepositDetailsFragment extends MifosBaseFragment
     TextView tvError;
 
     @Inject
-    CustomerDepositDetailsPresenter customerDepositDetailsPresenter;
+    DepositAccountDetailsPresenter customerDepositDetailsPresenter;
 
     View rootView;
 
     private String accountIdentifier;
 
-    public static CustomerDepositDetailsFragment newInstance(String accountIdentifier) {
-        CustomerDepositDetailsFragment fragment = new CustomerDepositDetailsFragment();
+    public static DepositAccountDetailsFragment newInstance(String accountIdentifier) {
+        DepositAccountDetailsFragment fragment = new DepositAccountDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ConstantKeys.ACCOUNT_IDENTIFIER, accountIdentifier);
         fragment.setArguments(args);

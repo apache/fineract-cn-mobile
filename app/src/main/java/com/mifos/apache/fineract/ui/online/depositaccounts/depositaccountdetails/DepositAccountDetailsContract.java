@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.depositdetails;
+package com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails;
 
 import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
 import com.mifos.apache.fineract.ui.base.MvpView;
@@ -8,7 +8,7 @@ import com.mifos.apache.fineract.ui.base.MvpView;
  *         On 12/07/17.
  */
 
-public interface CustomerDepositDetailsContract {
+public interface DepositAccountDetailsContract {
 
     interface View extends MvpView {
 
