@@ -130,28 +130,28 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
     void onClickTask1() {
         switch (state) {
             case ACTIVE:
-                command.setAction(Command.Action.LOCK.name());
+                command.setAction(Command.Action.LOCK);
                 tvHeader.setText(getString(R.string.lock));
                 tvSubHeader.setText(
                         getString(R.string.please_verify_following_task, getString(R.string.lock)));
                 btnSubmitTask.setText(getString(R.string.lock));
                 break;
             case PENDING:
-                command.setAction(Command.Action.ACTIVATE.name());
+                command.setAction(Command.Action.ACTIVATE);
                 tvHeader.setText(getString(R.string.activate));
                 tvSubHeader.setText(getString(R.string.please_verify_following_task,
                         getString(R.string.activate)));
                 btnSubmitTask.setText(getString(R.string.activate));
                 break;
             case LOCKED:
-                command.setAction(Command.Action.UNLOCK.name());
+                command.setAction(Command.Action.UNLOCK);
                 tvHeader.setText(getString(R.string.un_lock));
                 tvSubHeader.setText(getString(R.string.please_verify_following_task,
                         getString(R.string.un_lock)));
                 btnSubmitTask.setText(getString(R.string.un_lock));
                 break;
             case CLOSED:
-                command.setAction(Command.Action.REOPEN.name());
+                command.setAction(Command.Action.REOPEN);
                 tvHeader.setText(getString(R.string.reopen));
                 tvSubHeader.setText(getString(R.string.please_verify_following_task,
                         getString(R.string.reopen)));
@@ -164,7 +164,7 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
 
     @OnClick(R.id.iv_task2)
     void onClickTask2() {
-        command.setAction(Command.Action.CLOSE.name());
+        command.setAction(Command.Action.CLOSE);
         tvHeader.setText(getString(R.string.close));
         tvSubHeader.setText(getString(R.string.please_verify_following_task,
                 getString(R.string.close)));

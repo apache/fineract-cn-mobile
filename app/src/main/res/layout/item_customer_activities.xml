@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/ll_customer"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/layout_padding_8dp">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linearLayout"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/layout_padding_4dp"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/listPreferredItemHeight"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_command_status"
+                style="@style/circleLayout"
+                android:contentDescription="@string/customer_image"
+                android:layout_gravity="center_vertical"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/layout_padding_16dp"
+                android:layout_marginStart="@dimen/layout_padding_16dp"
+                android:layout_width="40dp"
+                app:srcCompat="@drawable/ic_done_all_black_24dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp">
+
+            <TextView
+                android:id="@+id/tv_activity"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:ellipsize="end"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:lines="1"
+                android:textColor="@color/black"
+                tools:text="Activity"/>
+
+            <TextView
+                android:id="@+id/tv_status_change_date_time"
+                style="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="@color/gray_dark"
+                android:textSize="@dimen/text_size_12sp"
+                tools:text="rajan, Aug 15 2017, 11:20 PM"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:background="#979797"
+        android:layout_height="0.2dp"
+        android:layout_marginEnd="@dimen/layout_padding_8dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginRight="@dimen/layout_padding_8dp"
+        android:layout_width="wrap_content"/>
+
+</LinearLayout>

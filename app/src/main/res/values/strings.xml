@@ -161,6 +161,7 @@
     <string name="search_beneficiary">Search beneficiary</string>
     <string name="select_product">Select product</string>
     <string name="no_beneficiary">No beneficiaries</string>
+    <string name="activities_created_by_on">%1$s, %2$s</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>
@@ -190,6 +191,7 @@
     <string name="empty_debts_to_show">There is no debts to show</string>
     <string name="empty_income_to_show">There is no income to show</string>
     <string name="empty_scans_to_show">There is no scans to show</string>
+    <string name="empty_customer_activities">There is no activities to show</string>
 
     <!--Edit Text validations-->
     <string name="value_must_greater_or_equal_to">Value must be greater than or equal to&#160; %1$f</string>
@@ -227,6 +229,7 @@
     <string name="error_uploading_customer_portrait">Error uploading customer portrait</string>
     <string name="error_creating_deposit_account">Error creating deposit account</string>
     <string name="error_updating_deposit_account">Error updating deposit account</string>
+    <string name="error_fetching_customer_activities">Error fetching customer activities</string>
 
 
     <!--Material Dialog-->

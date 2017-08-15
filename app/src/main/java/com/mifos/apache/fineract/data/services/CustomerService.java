@@ -49,6 +49,10 @@ public interface CustomerService {
     @POST(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/commands")
     Completable customerCommand(@Path("identifier") String identifier, @Body Command command);
 
+    @GET(EndPoints.API_CUSTOMER_PATH + "/customers/{customerIdentifier}/commands")
+    Observable<List<Command>> fetchCustomerCommands(
+            @Path("customerIdentifier") String customerIdentifier);
+
     @GET(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}/identifications")
     Observable<List<Identification>> fetchIdentification(
             @Path("identifier") String identifier);

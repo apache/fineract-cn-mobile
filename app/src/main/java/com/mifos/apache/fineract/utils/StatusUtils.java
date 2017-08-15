@@ -5,7 +5,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.widget.ImageView;
 
+import com.google.gson.annotations.SerializedName;
 import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.data.models.customer.Command;
 import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.data.models.loan.LoanAccount;
@@ -173,6 +175,61 @@ public class StatusUtils {
                 imageView.setColorFilter(
                         ContextCompat.getColor(context, R.color.red_dark));
                 break;
+        }
+    }
+
+    public enum Action {
+
+        @SerializedName("ACTIVATE")
+        ACTIVATE,
+
+        @SerializedName("LOCK")
+        LOCK,
+
+        @SerializedName("UNLOCK")
+        UNLOCK,
+
+        @SerializedName("CLOSE")
+        CLOSE,
+
+        @SerializedName("REOPEN")
+        REOPEN
+    }
+
+    public static void setCustomerActivitiesStatusIcon(Command.Action action, ImageView imageView,
+            Context context) {
+        switch (action) {
+            case ACTIVATE:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_check_circle_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+            case CLOSE:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_close_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+            case LOCK:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_lock_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+            case UNLOCK:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_lock_open_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+            case REOPEN:
+                imageView.setImageDrawable(ContextCompat.getDrawable(context,
+                        R.drawable.ic_lock_open_black_24dp));
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+
         }
     }
 }
