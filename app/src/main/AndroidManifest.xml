@@ -66,6 +66,8 @@
         <activity android:name=".ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity"
                   android:windowSoftInputMode="adjustPan"/>
 
+        <activity android:name=".ui.online.customer.customeractivities.CustomerActivitiesActivity" />
+
     </application>
 
 </manifest>

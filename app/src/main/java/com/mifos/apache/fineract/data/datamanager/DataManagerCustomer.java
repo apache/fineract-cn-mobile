@@ -53,6 +53,10 @@ public class DataManagerCustomer {
         return baseApiManager.getCustomerApi().customerCommand(identifier, command);
     }
 
+    public Observable<List<Command>> fetchCustomerCommands(String customerIdentifier) {
+        return baseApiManager.getCustomerApi().fetchCustomerCommands(customerIdentifier);
+    }
+
     public Observable<List<Identification>> fetchIdentifications(String customerIdentifier) {
         return baseApiManager.getCustomerApi().fetchIdentification(customerIdentifier);
     }

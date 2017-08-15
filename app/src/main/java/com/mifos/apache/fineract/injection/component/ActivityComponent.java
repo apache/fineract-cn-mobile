@@ -4,6 +4,8 @@ import com.mifos.apache.fineract.injection.PerActivity;
 import com.mifos.apache.fineract.injection.module.ActivityModule;
 import com.mifos.apache.fineract.ui.online.customer.createcustomer.customeractivity.CreateCustomerActivity;
 import com.mifos.apache.fineract.ui.online.customer.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
+
+import com.mifos.apache.fineract.ui.online.customer.customeractivities.CustomerActivitiesFragment;
 import com.mifos.apache.fineract.ui.online.customer.customerlist.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.customer.customerprofile
         .editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
@@ -90,4 +92,6 @@ public interface ActivityComponent {
     void inject(FormDepositOverviewFragment formDepositOverviewFragment);
 
     void inject(CreateDepositActivity createDepositActivity);
+
+    void inject(CustomerActivitiesFragment customerActivitiesFragment);
 }

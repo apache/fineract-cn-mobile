@@ -22,11 +22,11 @@ import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.customer.customeractivities.CustomerActivitiesActivity;
 import com.mifos.apache.fineract.ui.online.customer.customerprofile.CustomerProfileActivity;
 import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity;
+import com.mifos.apache.fineract.ui.online.identification.identificationlist.IdentificationsActivity;
 import com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsActivity;
-import com.mifos.apache.fineract.ui.online.identification.identificationlist
-        .IdentificationsActivity;
 import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
 import com.mifos.apache.fineract.ui.views.HeaderView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
@@ -184,6 +184,13 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     @OnClick(R.id.iv_customer_profile)
     void showCustomerProfileImage() {
         Intent intent = new Intent(getActivity(), CustomerProfileActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.ll_activities)
+    void showCustomerActivities() {
+        Intent intent = new Intent(getActivity(), CustomerActivitiesActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         startActivity(intent);
     }

@@ -21,6 +21,7 @@ public class DateUtils {
     public static final String DATE_TIME_FORMAT = "yyyy MMM dd HH:mm:ss";
     public static final String OUTPUT_DATE_FORMAT = "dd MMM yyyy";
     public static final String INPUT_DATE_FORMAT = "yyyy-MM-dd'Z'";
+    public static final String ACTIVITIES_DATE_FORMAT = "MMM dd, yyyy, HH:mm:ss a";
 
     /**
      * Format date time string into "2013 Feb 28 13:24:56" format.

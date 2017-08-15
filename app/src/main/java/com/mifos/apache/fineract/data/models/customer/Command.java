@@ -31,12 +31,12 @@ public class Command {
         super();
     }
 
-    public String getAction() {
-        return this.action.name();
+    public Action getAction() {
+        return this.action;
     }
 
-    public void setAction(final String action) {
-        this.action = Action.valueOf(action.toUpperCase());
+    public void setAction(Action action) {
+        this.action = action;
     }
 
     public String getComment() {
