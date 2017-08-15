@@ -41,7 +41,7 @@
 
         <activity android:name=".ui.online.customer.customerdetails.CustomerDetailsActivity" />
 
-        <activity android:name=".ui.online.customerdeposit.CustomerDepositActivity" />
+        <activity android:name=".ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity" />
 
         <activity android:name="com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsActivity" />
 
@@ -62,6 +62,9 @@
         <activity
             android:name=".ui.online.customer.customerprofile.CustomerProfileActivity"
             android:theme="@style/AppTheme.Black"/>
+
+        <activity android:name=".ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity"
+                  android:windowSoftInputMode="adjustPan"/>
 
     </application>
 

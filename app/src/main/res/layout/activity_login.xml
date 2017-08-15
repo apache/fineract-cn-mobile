@@ -30,7 +30,7 @@
                     android:layout_gravity="center"
                     android:layout_height="@dimen/layout_padding_75dp"
                     android:layout_width="wrap_content"
-                    android:src="@drawable/mifos_logo"/>
+                    android:src="@drawable/mifos_logo_new"/>
 
                 <TextView
                     android:gravity="center"

@@ -1,20 +1,27 @@
-package com.mifos.apache.fineract.ui.online.depositdetails;
+package com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .createdepositactivity.CreateDepositActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
+import com.mifos.apache.fineract.utils.StatusUtils;
 
 import javax.inject.Inject;
 
@@ -26,14 +33,17 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 12/07/17.
  */
-public class CustomerDepositDetailsFragment extends MifosBaseFragment
-        implements CustomerDepositDetailsContract.View {
+public class DepositAccountDetailsFragment extends MifosBaseFragment
+        implements DepositAccountDetailsContract.View {
 
     @BindView(R.id.cl_customer_deposit_details)
     CoordinatorLayout clCustomerDepositDetails;
 
     @BindView(R.id.tv_deposit_current_status)
     TextView tvDepositCurrentStatus;
+
+    @BindView(R.id.iv_deposit_current_status)
+    ImageView ivDepositCurrentStatus;
 
     @BindView(R.id.tv_account)
     TextView tvAccount;
@@ -50,15 +60,19 @@ public class CustomerDepositDetailsFragment extends MifosBaseFragment
     @BindView(R.id.tv_error)
     TextView tvError;
 
+    @BindView(R.id.fab_edit_deposit_account)
+    FloatingActionButton fabEditDepositAccount;
+
     @Inject
-    CustomerDepositDetailsPresenter customerDepositDetailsPresenter;
+    DepositAccountDetailsPresenter customerDepositDetailsPresenter;
 
     View rootView;
 
     private String accountIdentifier;
+    private DepositAccount depositAccount;
 
-    public static CustomerDepositDetailsFragment newInstance(String accountIdentifier) {
-        CustomerDepositDetailsFragment fragment = new CustomerDepositDetailsFragment();
+    public static DepositAccountDetailsFragment newInstance(String accountIdentifier) {
+        DepositAccountDetailsFragment fragment = new DepositAccountDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ConstantKeys.ACCOUNT_IDENTIFIER, accountIdentifier);
         fragment.setArguments(args);
@@ -82,9 +96,14 @@ public class CustomerDepositDetailsFragment extends MifosBaseFragment
         customerDepositDetailsPresenter.attachView(this);
         setToolbarTitle(getString(R.string.deposit_account));
 
-        customerDepositDetailsPresenter.fetchDepositAccountDetails(accountIdentifier);
-
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        clCustomerDepositDetails.setVisibility(View.GONE);
+        customerDepositDetailsPresenter.fetchDepositAccountDetails(accountIdentifier);
     }
 
     @OnClick(R.id.iv_retry)
@@ -94,38 +113,38 @@ public class CustomerDepositDetailsFragment extends MifosBaseFragment
         customerDepositDetailsPresenter.fetchDepositAccountDetails(accountIdentifier);
     }
 
+    @OnClick(R.id.fab_edit_deposit_account)
+    void editDepositAccount() {
+        Intent intent = new Intent(getActivity(), CreateDepositActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, depositAccount.getCustomerIdentifier());
+        intent.putExtra(ConstantKeys.DEPOSIT_ACCOUNT, depositAccount);
+        intent.putExtra(ConstantKeys.DEPOSIT_ACTION, DepositAction.EDIT);
+        startActivity(intent);
+    }
+
     @Override
-    public void showDepositDetails(CustomerDepositAccounts customerDepositAccounts) {
+    public void showDepositDetails(DepositAccount depositAccount) {
+        this.depositAccount = depositAccount;
         clCustomerDepositDetails.setVisibility(View.VISIBLE);
         rlError.setVisibility(View.GONE);
 
-        switch (customerDepositAccounts.getState()) {
-            case ACTIVE:
-                tvDepositCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_check_circle_black_24dp, 0, 0, 0);
-                break;
-            case APPROVED:
-                tvDepositCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_done_all_black_24dp, 0, 0, 0);
-                break;
-            case CLOSED:
-                tvDepositCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_close_black_24dp, 0, 0, 0);
-                break;
-            case PENDING:
-                tvDepositCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_hourglass_empty_black_24dp, 0, 0, 0);
-                break;
-            case CREATED:
-                tvDepositCurrentStatus.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_hourglass_empty_black_24dp, 0, 0, 0);
-                break;
+        StatusUtils.setDepositAccountStatusIcon(depositAccount.getState(),
+                ivDepositCurrentStatus, getActivity());
+        tvDepositCurrentStatus.setText(depositAccount.getState().name());
+        tvAccount.setText(depositAccount.getAccountIdentifier());
+        tvBalance.setText(String.valueOf(depositAccount.getBalance()));
+
+        if (depositAccount.getBeneficiaries().size() == 0) {
+            tvBeneficiaries.setText(R.string.no_beneficiary);
+        } else {
+            tvBeneficiaries.setText(depositAccount.getBeneficiaries().toString());
         }
 
-        tvDepositCurrentStatus.setText(customerDepositAccounts.getState().name());
-        tvAccount.setText(customerDepositAccounts.getAccountIdentifier());
-        tvBalance.setText(String.valueOf(customerDepositAccounts.getBalance()));
-        tvBeneficiaries.setText(customerDepositAccounts.getBeneficiaries().toString());
+        if (depositAccount.getState() == DepositAccount.State.PENDING) {
+            fabEditDepositAccount.setVisibility(View.VISIBLE);
+        } else {
+            fabEditDepositAccount.setVisibility(View.GONE);
+        }
     }
 
     @Override

@@ -1,12 +1,17 @@
 package com.mifos.apache.fineract.data.services;
 
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
+import com.mifos.apache.fineract.data.models.deposit.ProductDefinition;
 import com.mifos.apache.fineract.data.remote.EndPoints;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -18,11 +23,21 @@ import retrofit2.http.Query;
 public interface DepositService {
 
     @GET(EndPoints.API_DEPOSIT_PATH + "/instances")
-    Observable<List<CustomerDepositAccounts>> fetchCustomersDeposits(
+    Observable<List<DepositAccount>> fetchCustomersDeposits(
             @Query("customer") String customerIdentifier);
 
     @GET(EndPoints.API_DEPOSIT_PATH + "/instances/{accountIdentifier}")
-    Observable<CustomerDepositAccounts> fetchCustomerDepositDetails(
+    Observable<DepositAccount> fetchCustomerDepositDetails(
             @Path("accountIdentifier") String accountIdentifier);
 
+    @GET(EndPoints.API_DEPOSIT_PATH + "/definitions")
+    Observable<List<ProductDefinition>> fetchProductDefinitions();
+
+    @POST(EndPoints.API_DEPOSIT_PATH + "/instances")
+    Completable createDepositAccount(@Body DepositAccount depositAccount);
+
+    @PUT(EndPoints.API_DEPOSIT_PATH + "/instances/{accountIdentifier}")
+    Completable updateDepositAccount(
+            @Path("accountIdentifier") String accountIdentifier,
+            @Body DepositAccount depositAccount);
 }

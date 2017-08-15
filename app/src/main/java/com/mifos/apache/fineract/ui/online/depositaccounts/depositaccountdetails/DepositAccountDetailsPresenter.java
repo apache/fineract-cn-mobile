@@ -1,10 +1,10 @@
-package com.mifos.apache.fineract.ui.online.depositdetails;
+package com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails;
 
 import android.content.Context;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.datamanager.DataManagerDeposit;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.injection.ApplicationContext;
 import com.mifos.apache.fineract.injection.ConfigPersistent;
 import com.mifos.apache.fineract.ui.base.BasePresenter;
@@ -21,15 +21,15 @@ import io.reactivex.schedulers.Schedulers;
  *         On 12/07/17.
  */
 @ConfigPersistent
-public class CustomerDepositDetailsPresenter extends
-        BasePresenter<CustomerDepositDetailsContract.View> implements
-        CustomerDepositDetailsContract.Presenter {
+public class DepositAccountDetailsPresenter extends
+        BasePresenter<DepositAccountDetailsContract.View> implements
+        DepositAccountDetailsContract.Presenter {
 
     private final DataManagerDeposit dataManagerDeposit;
     private final CompositeDisposable compositeDisposable;
 
     @Inject
-    public CustomerDepositDetailsPresenter(@ApplicationContext Context context,
+    public DepositAccountDetailsPresenter(@ApplicationContext Context context,
             DataManagerDeposit dataManagerDeposit) {
         super(context);
         this.dataManagerDeposit = dataManagerDeposit;
@@ -37,7 +37,7 @@ public class CustomerDepositDetailsPresenter extends
     }
 
     @Override
-    public void attachView(CustomerDepositDetailsContract.View mvpView) {
+    public void attachView(DepositAccountDetailsContract.View mvpView) {
         super.attachView(mvpView);
     }
 
@@ -55,9 +55,9 @@ public class CustomerDepositDetailsPresenter extends
                 accountIdentifier)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<CustomerDepositAccounts>() {
+                .subscribeWith(new DisposableObserver<DepositAccount>() {
                     @Override
-                    public void onNext(CustomerDepositAccounts customerDepositAccounts) {
+                    public void onNext(DepositAccount customerDepositAccounts) {
                         getMvpView().hideProgressbar();
                         getMvpView().showDepositDetails(customerDepositAccounts);
                     }

@@ -16,6 +16,9 @@ public class ConstantKeys {
     public static final String IDENTIFICATION_NUMBER = "identification_number";
     public static final String POSITION = "position";
     public static final String IDENTIFICATION_ACTION = "identification_action";
+    public static final String DEPOSIT_ACTION = "deposit_action";
+    public static final String DEPOSIT_ACCOUNT = "deposit";
+
 
     public static final int REQUEST_PERMISSION_SETTING = 254;
 

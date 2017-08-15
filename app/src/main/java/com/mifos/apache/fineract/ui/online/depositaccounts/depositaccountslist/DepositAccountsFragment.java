@@ -1,5 +1,6 @@
-package com.mifos.apache.fineract.ui.online.customerdeposit;
+package com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,12 +13,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.data.models.deposit.CustomerDepositAccounts;
+import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
 import com.mifos.apache.fineract.ui.adapters.CustomerDepositAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
-import com.mifos.apache.fineract.ui.online.depositdetails.CustomerDepositDetailsFragment;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
+import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails.DepositAccountDetailsFragment;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
@@ -33,8 +36,8 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 07/07/17.
  */
-public class CustomerDepositFragment extends MifosBaseFragment
-        implements CustomerDepositContract.View, OnItemClickListener {
+public class DepositAccountsFragment extends MifosBaseFragment
+        implements DepositAccountsContract.View, OnItemClickListener {
 
     @BindView(R.id.rv_customers_deposit_accounts)
     RecyclerView rvCustomerDepositAccounts;
@@ -49,7 +52,7 @@ public class CustomerDepositFragment extends MifosBaseFragment
     TextView tvError;
 
     @Inject
-    CustomerDepositPresenter customerDepositPresenter;
+    DepositAccountsPresenter customerDepositPresenter;
 
     @Inject
     CustomerDepositAdapter customerDepositAdapter;
@@ -57,10 +60,10 @@ public class CustomerDepositFragment extends MifosBaseFragment
     View rootView;
 
     private String customerIdentifier;
-    private List<CustomerDepositAccounts> customerDepositAccounts;
+    private List<DepositAccount> customerDepositAccounts;
 
-    public static CustomerDepositFragment newInstance(String customerIdentifier) {
-        CustomerDepositFragment fragment = new CustomerDepositFragment();
+    public static DepositAccountsFragment newInstance(String customerIdentifier) {
+        DepositAccountsFragment fragment = new DepositAccountsFragment();
         Bundle args = new Bundle();
         args.putString(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         fragment.setArguments(args);
@@ -88,15 +91,29 @@ public class CustomerDepositFragment extends MifosBaseFragment
 
         showUserInterface();
 
-        customerDepositPresenter.fetchCustomerDepositAccounts(customerIdentifier);
-
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        rvCustomerDepositAccounts.setVisibility(View.GONE);
+        rlError.setVisibility(View.GONE);
+        customerDepositPresenter.fetchCustomerDepositAccounts(customerIdentifier);
     }
 
     @OnClick(R.id.iv_retry)
     void onRetry() {
         showRecyclerView(true);
         customerDepositPresenter.fetchCustomerDepositAccounts(customerIdentifier);
+    }
+
+    @OnClick(R.id.fab_add_deposit_accounts)
+    void createDepositAccount() {
+        Intent intent = new Intent(getActivity(), CreateDepositActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.putExtra(ConstantKeys.DEPOSIT_ACTION, DepositAction.CREATE);
+        startActivity(intent);
     }
 
     @Override
@@ -110,7 +127,7 @@ public class CustomerDepositFragment extends MifosBaseFragment
     }
 
     @Override
-    public void showCustomerDeposits(List<CustomerDepositAccounts> customerDepositAccounts) {
+    public void showCustomerDeposits(List<DepositAccount> customerDepositAccounts) {
         showRecyclerView(true);
         this.customerDepositAccounts = customerDepositAccounts;
         customerDepositAdapter.setCustomerDepositAccounts(customerDepositAccounts);
@@ -153,7 +170,7 @@ public class CustomerDepositFragment extends MifosBaseFragment
     @Override
     public void onItemClick(View childView, int position) {
         ((MifosBaseActivity) getActivity()).replaceFragment(
-                CustomerDepositDetailsFragment.newInstance(customerDepositAccounts.get(position)
+                DepositAccountDetailsFragment.newInstance(customerDepositAccounts.get(position)
                         .getAccountIdentifier()), true, R.id.container);
     }
 

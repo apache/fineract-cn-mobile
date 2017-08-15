@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/rectangular_background"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/layout_padding_8dp"
+    android:layout_marginStart="@dimen/layout_padding_8dp"
+    android:layout_marginTop="@dimen/layout_padding_8dp"
+    android:layout_width="wrap_content"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_customer_picture"
+        android:layout_height="40dp"
+        android:layout_width="40dp"
+        android:padding="@dimen/layout_padding_8dp"
+        android:tint="@color/white"
+        android:contentDescription="@string/customer_image"/>
+
+    <TextView
+        android:id="@+id/tv_identifier"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        tools:text="Rajan Maurya"
+    />
+
+    <ImageView
+        android:id="@+id/iv_remove_identifier"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:padding="@dimen/layout_padding_8dp"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_cancel_black_24dp"/>
+
+</LinearLayout>

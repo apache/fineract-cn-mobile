@@ -7,11 +7,17 @@ import com.mifos.apache.fineract.ui.online.customer.createcustomer.formcustomera
 import com.mifos.apache.fineract.ui.online.customer.customerlist.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.customer.customerprofile
         .editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
-import com.mifos.apache.fineract.ui.online.customerdeposit.CustomerDepositFragment;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.FormDepositOverviewFragment;
+
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity
+        .CreateDepositActivity;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.formdepositassignproduct
+        .FormDepositAssignProductFragment;
+import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
 import com.mifos.apache.fineract.ui.online.customer.customerdetails.CustomerDetailsFragment;
 import com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsFragment;
 import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportFragment;
-import com.mifos.apache.fineract.ui.online.depositdetails.CustomerDepositDetailsFragment;
+import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails.DepositAccountDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
 import com.mifos.apache.fineract.ui.online.identification.identificationdetails.IdentificationDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.identificationlist.IdentificationsFragment;
@@ -43,13 +49,13 @@ public interface ActivityComponent {
 
     void inject(CustomerDetailsFragment customerDetailsFragment);
 
-    void inject(CustomerDepositFragment customerDepositFragment);
+    void inject(DepositAccountsFragment customerDepositFragment);
 
     void inject(LoanAccountsFragment customerLoansFragment);
 
     void inject(CustomerLoanDetailsFragment customerLoanDetailsFragment);
 
-    void inject(CustomerDepositDetailsFragment customerDepositDetailsFragment);
+    void inject(DepositAccountDetailsFragment customerDepositDetailsFragment);
 
     void inject(PlannedPaymentFragment plannedPaymentFragment);
 
@@ -78,4 +84,10 @@ public interface ActivityComponent {
     void inject(UploadIdentificationCardBottomSheet uploadIdentificationCardBottomSheet);
 
     void inject(EditCustomerProfileBottomSheet editCustomerProfileBottomSheet);
+
+    void inject(FormDepositAssignProductFragment formDepositAssignProductFragment);
+
+    void inject(FormDepositOverviewFragment formDepositOverviewFragment);
+
+    void inject(CreateDepositActivity createDepositActivity);
 }
