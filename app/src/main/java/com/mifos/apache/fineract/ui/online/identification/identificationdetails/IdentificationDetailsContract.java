@@ -25,6 +25,8 @@ public interface IdentificationDetailsContract {
 
         void showIdentifierDeletedSuccessfully();
 
+        void showIdentificationCardScanDeletedSuccessfully(ScanCard scanCard);
+
         void showProgressDialog();
 
         void hideProgressDialog();
@@ -37,5 +39,8 @@ public interface IdentificationDetailsContract {
         void fetchIdentificationScanCards(String customerIdentifier, String identificationNumber);
 
         void deleteIdentificationCard(String customerIdentifier, String identificationNumber);
+
+        void deleteIdentificationCardScan(String customerIdentifier, String identificationNumber,
+                ScanCard scanCard);
     }
 }

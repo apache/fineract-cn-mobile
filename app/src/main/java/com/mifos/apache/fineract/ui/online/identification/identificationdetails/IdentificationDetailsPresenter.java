@@ -107,4 +107,30 @@ public class IdentificationDetailsPresenter extends
                 })
         );
     }
+
+    @Override
+    public void deleteIdentificationCardScan(String customerIdentifier, String identificationNumber,
+            final ScanCard scanCard) {
+        checkViewAttached();
+        getMvpView().showProgressDialog();
+        compositeDisposable.add(dataManagerCustomer.deleteIdentificationCardScan(
+                customerIdentifier, identificationNumber, scanCard.getIdentifier())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableCompletableObserver() {
+                    @Override
+                    public void onComplete() {
+                        getMvpView().hideProgressDialog();
+                        getMvpView().showIdentificationCardScanDeletedSuccessfully(scanCard);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getMvpView().hideProgressDialog();
+                        getMvpView().showError(context.getString(
+                                R.string.error_deleting_identification_scan_card));
+                    }
+                })
+        );
+    }
 }
