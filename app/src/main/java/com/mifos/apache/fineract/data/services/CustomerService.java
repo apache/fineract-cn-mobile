@@ -85,6 +85,13 @@ public interface CustomerService {
             @Part MultipartBody.Part file);
 
     @DELETE(EndPoints.API_CUSTOMER_PATH +
+            "/customers/{identifier}/identifications/{identificationnumber}/scans/{scanIdentifier}")
+    Completable deleteIdentificationCardScan(
+            @Path("identifier") String identifier,
+            @Path("identificationnumber") String identificationnumber,
+            @Path("scanIdentifier") String scanIdentifier);
+
+    @DELETE(EndPoints.API_CUSTOMER_PATH +
             "/customers/{identifier}/identifications/{identificationnumber}")
     Completable deleteIdentificationCard(
             @Path("identifier") String identifier,

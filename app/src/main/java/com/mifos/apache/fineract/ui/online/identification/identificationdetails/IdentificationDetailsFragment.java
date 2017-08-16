@@ -217,6 +217,18 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
     }
 
     @Override
+    public void showIdentificationCardScanDeletedSuccessfully(ScanCard scanCard) {
+        scanCards.remove(scanCard);
+        identificationScanAdapter.notifyDataSetChanged();
+        if (scanCards.size() == 0) {
+            showScansStatus(getString(R.string.empty_scans_to_show));
+        }
+        Toast.makeText(getActivity(), R.string.identification_card_scan_deleted_successfully,
+                Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
     public void showProgressDialog() {
         showMifosProgressDialog(getString(R.string.deleting_identification_card));
     }
@@ -243,7 +255,24 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
     }
 
     @Override
-    public void onItemDelete(View view, int position) {
+    public void onItemDelete(View view, final int position) {
+        new MaterialDialog.Builder()
+                .init(getActivity())
+                .setTitle(getString(R.string.dialog_title_confirm_deletion))
+                .setMessage(getString(
+                        R.string.dialog_message_confirmation_delete_identification_card_scan))
+                .setPositiveButton(getString(R.string.dialog_action_delete),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                identificationDetailsPresenter.deleteIdentificationCardScan(
+                                        customerIdentifier, identificationCard.getNumber(),
+                                        scanCards.get(position));
+                            }
+                        })
+                .setNegativeButton(getString(R.string.dialog_action_cancel))
+                .createMaterialDialog()
+                .show();
 
     }
 
