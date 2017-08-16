@@ -150,7 +150,16 @@ public class CreateIdentificationActivity extends MifosBaseActivity
 
     @Override
     public void showProgressbar() {
-        stepperLayout.showProgress(getString(R.string.creating_identification_card_please_wait));
+        switch (action) {
+            case CREATE:
+                stepperLayout.showProgress(
+                        getString(R.string.creating_identification_card_please_wait));
+                break;
+            case EDIT:
+                stepperLayout.showProgress(
+                        getString(R.string.updating_identification_card_please_wait));
+                break;
+        }
     }
 
     @Override

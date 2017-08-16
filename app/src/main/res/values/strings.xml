@@ -96,6 +96,7 @@
     <string name="creating_loan_please_wait">Creating loan please wait…</string>
     <string name="creating_customer_please_wait">Creating customer please wait…</string>
     <string name="creating_identification_card_please_wait">Creating identification card please wait…</string>
+    <string name="updating_identification_card_please_wait">Updating identification card please wait…</string>
     <string name="creating_deposit_account">Creating deposit account please wait…</string>
     <string name="updating_deposit_account">Updating deposit account please wait…</string>
     <string name="on">on</string>
