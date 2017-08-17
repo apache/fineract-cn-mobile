@@ -22,6 +22,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.customer.createcustomer.OnNavigationBarListener;
+import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
@@ -73,6 +74,8 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
 
     @Inject
     FormCustomerAddressPresenter formCustomerAddressPresenter;
+
+    private String [] countries;
 
     private OnNavigationBarListener.CustomerAddress onNavigationBarListener;
 
@@ -149,8 +152,13 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         if ((etCountry.getText().hashCode() == s.hashCode())) {
-            etCountry.showDropDown();
-            validateCountry();
+            etCountry.post(new Runnable() {
+                @Override
+                public void run() {
+                    etCountry.showDropDown();
+                    validateCountry();
+                }
+            });
         }
     }
 
@@ -203,8 +211,9 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
 
     @Override
     public void showCounties(List<String> countries) {
+        this.countries = countries.toArray(new String[0]);
         ArrayAdapter<String> customerAdapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_1, countries.toArray(new String[0]));
+                android.R.layout.simple_list_item_1, this.countries);
         etCountry.setAdapter(customerAdapter);
     }
 
@@ -229,7 +238,26 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
     public void onFocusChange(View v, boolean hasFocus) {
         if (hasFocus) {
             hideKeyboard(etCountry, getActivity());
-            etCountry.showDropDown();
+            etCountry.post(new Runnable() {
+                @Override
+                public void run() {
+                    etCountry.showDropDown();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putStringArray(ConstantKeys.COUNTRIES, countries);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            countries = savedInstanceState.getStringArray(ConstantKeys.COUNTRIES);
         }
     }
 
