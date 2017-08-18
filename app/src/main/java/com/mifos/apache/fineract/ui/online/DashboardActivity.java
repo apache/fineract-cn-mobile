@@ -12,7 +12,7 @@ import android.view.View;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
-import com.mifos.apache.fineract.ui.online.customer.customerlist.CustomersFragment;
+import com.mifos.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.dashboard.DashboardFragment;
 
 import butterknife.BindView;

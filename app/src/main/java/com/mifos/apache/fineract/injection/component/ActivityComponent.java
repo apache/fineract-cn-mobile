@@ -2,12 +2,12 @@ package com.mifos.apache.fineract.injection.component;
 
 import com.mifos.apache.fineract.injection.PerActivity;
 import com.mifos.apache.fineract.injection.module.ActivityModule;
-import com.mifos.apache.fineract.ui.online.customer.createcustomer.customeractivity.CreateCustomerActivity;
-import com.mifos.apache.fineract.ui.online.customer.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
 
-import com.mifos.apache.fineract.ui.online.customer.customeractivities.CustomerActivitiesFragment;
-import com.mifos.apache.fineract.ui.online.customer.customerlist.CustomersFragment;
-import com.mifos.apache.fineract.ui.online.customer.customerprofile
+import com.mifos.apache.fineract.ui.online.customers.customeractivities.CustomerActivitiesFragment;
+import com.mifos.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
+import com.mifos.apache.fineract.ui.online.customers.customerprofile
         .editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.FormDepositOverviewFragment;
 
@@ -16,7 +16,7 @@ import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.formdepositassignproduct
         .FormDepositAssignProductFragment;
 import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
-import com.mifos.apache.fineract.ui.online.customer.customerdetails.CustomerDetailsFragment;
+import com.mifos.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsFragment;
 import com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsFragment;
 import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportFragment;
 import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails.DepositAccountDetailsFragment;

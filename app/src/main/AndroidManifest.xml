@@ -40,7 +40,7 @@
 
         <activity android:name=".ui.online.DashboardActivity" />
 
-        <activity android:name=".ui.online.customer.customerdetails.CustomerDetailsActivity" />
+        <activity android:name=".ui.online.customers.customerdetails.CustomerDetailsActivity" />
 
         <activity android:name=".ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity" />
 
@@ -50,7 +50,7 @@
 
         <activity android:name="com.mifos.apache.fineract.ui.online.loans.loanapplication.loanactivity.LoanApplicationActivity" />
 
-        <activity android:name=".ui.online.customer.createcustomer.customeractivity.CreateCustomerActivity" />
+        <activity android:name=".ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity" />
 
         <activity android:name=".ui.online.debtincomereport.DebtIncomeReportActivity" />
 
@@ -61,13 +61,13 @@
         <activity android:name=".ui.online.identification.viewscancard.ViewScanCardActivity" />
 
         <activity
-            android:name=".ui.online.customer.customerprofile.CustomerProfileActivity"
+            android:name=".ui.online.customers.customerprofile.CustomerProfileActivity"
             android:theme="@style/AppTheme.Black"/>
 
         <activity android:name=".ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity"
                   android:windowSoftInputMode="adjustPan"/>
 
-        <activity android:name=".ui.online.customer.customeractivities.CustomerActivitiesActivity" />
+        <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
 
     </application>
 
