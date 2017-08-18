@@ -2,6 +2,7 @@ package com.mifos.apache.fineract.injection.component;
 
 import com.mifos.apache.fineract.injection.PerActivity;
 import com.mifos.apache.fineract.injection.module.ActivityModule;
+import com.mifos.apache.fineract.ui.online.DashboardActivity;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
 
@@ -94,4 +95,6 @@ public interface ActivityComponent {
     void inject(CreateDepositActivity createDepositActivity);
 
     void inject(CustomerActivitiesFragment customerActivitiesFragment);
+
+    void inject(DashboardActivity dashboardActivity);
 }

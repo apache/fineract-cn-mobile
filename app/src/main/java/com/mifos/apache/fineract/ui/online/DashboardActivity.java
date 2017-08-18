@@ -1,5 +1,7 @@
 package com.mifos.apache.fineract.ui.online;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -11,9 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.dashboard.DashboardFragment;
+import com.mifos.apache.fineract.ui.online.launcher.LauncherActivity;
+import com.mifos.apache.fineract.utils.MaterialDialog;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,10 +40,14 @@ public class DashboardActivity extends MifosBaseActivity implements
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        getActivityComponent().inject(this);
         ButterKnife.bind(this);
 
         replaceFragment(DashboardFragment.newInstance(), false, R.id.container);
@@ -63,8 +74,9 @@ public class DashboardActivity extends MifosBaseActivity implements
 
             @Override
             public void onDrawerSlide(View drawerView, float slideOffset) {
-                if (slideOffset != 0)
+                if (slideOffset != 0) {
                     hideKeyboard(drawerLayout);
+                }
                 super.onDrawerSlide(drawerView, slideOffset);
             }
         };
@@ -83,6 +95,9 @@ public class DashboardActivity extends MifosBaseActivity implements
             case R.id.item_customer:
                 replaceFragment(CustomersFragment.newInstance(), true, R.id.container);
                 break;
+            case R.id.item_logout:
+                logout();
+                break;
         }
         drawerLayout.closeDrawer(Gravity.START);
         setTitle(item.getTitle());
@@ -97,5 +112,27 @@ public class DashboardActivity extends MifosBaseActivity implements
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void logout() {
+        new MaterialDialog.Builder()
+                .init(this)
+                .setTitle(getString(R.string.dialog_title_confirm_logout))
+                .setMessage(getString(
+                        R.string.dialog_message_confirmation_logout))
+                .setPositiveButton(getString(R.string.dialog_action_logout),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                preferencesHelper.clear();
+                                Intent intent = new Intent(DashboardActivity.this,
+                                        LauncherActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        })
+                .setNegativeButton(getString(R.string.dialog_action_cancel))
+                .createMaterialDialog()
+                .show();
     }
 }
