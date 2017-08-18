@@ -1,5 +1,7 @@
 package com.mifos.apache.fineract.ui.online.customers.customerlist;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +23,8 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
-import com.mifos.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.customeractivity
+        .CreateCustomerActivity;
 import com.mifos.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
@@ -40,6 +43,8 @@ import butterknife.OnClick;
  */
 public class CustomersFragment extends MifosBaseFragment implements CustomersContract.View,
         SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
+
+    private static final Integer CUSTOMER_STATUS = 1;
 
     @BindView(R.id.rv_customers)
     RecyclerView rvCustomers;
@@ -65,6 +70,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     CustomerAdapter customerAdapter;
 
     private List<Customer> customers;
+    private Integer detailsCustomerPosition;
 
     public static CustomersFragment newInstance() {
         CustomersFragment fragment = new CustomersFragment();
@@ -193,14 +199,26 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
 
     @Override
     public void onItemClick(View childView, int position) {
+        detailsCustomerPosition = position;
         Intent customerDetailsIntent = new Intent(getActivity(), CustomerDetailsActivity.class);
         customerDetailsIntent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER,
                 customers.get(position).getIdentifier());
-        startActivity(customerDetailsIntent);
+        startActivityForResult(customerDetailsIntent, CUSTOMER_STATUS);
     }
 
     @Override
     public void onItemLongPress(View childView, int position) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if ((requestCode == CUSTOMER_STATUS) && (resultCode == RESULT_OK)) {
+            Customer.State state = (Customer.State) data.getSerializableExtra(
+                    ConstantKeys.CUSTOMER_STATUS);
+            customers.get(detailsCustomerPosition).setCurrentState(state);
+            customerAdapter.notifyItemChanged(detailsCustomerPosition);
+        }
     }
 }

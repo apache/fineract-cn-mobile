@@ -22,6 +22,8 @@ public interface CustomerDetailsContract {
 
         void loadCustomerPortrait();
 
+        Customer.State getCustomerStatus();
+
         void showProgressbar();
 
         void hideProgressbar();

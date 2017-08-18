@@ -290,6 +290,11 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     }
 
     @Override
+    public Customer.State getCustomerStatus() {
+        return customer.getCurrentState();
+    }
+
+    @Override
     public void showProgressbar() {
         showMifosProgressBar();
     }

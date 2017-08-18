@@ -20,7 +20,8 @@ import io.reactivex.schedulers.Schedulers;
  *         On 28/07/17.
  */
 @ConfigPersistent
-public class CustomerTasksBottomSheetPresenter extends BasePresenter<CustomerTasksBottomSheetContract.View>
+public class CustomerTasksBottomSheetPresenter
+        extends BasePresenter<CustomerTasksBottomSheetContract.View>
         implements CustomerTasksBottomSheetContract.Presenter {
 
     private DataManagerCustomer dataManagerCustomer;
