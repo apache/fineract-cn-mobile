@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.tasks;
+package com.mifos.apache.fineract.ui.online.customers.customertasks;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Command;
@@ -31,8 +32,8 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 27/07/17.
  */
-public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
-        implements TasksBottomSheetContract.View {
+public class CustomerTasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
+        implements CustomerTasksBottomSheetContract.View {
 
     @BindView(R.id.iv_task1)
     ImageView ivTask1;
@@ -68,7 +69,7 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
     Button btnSubmitTask;
 
     @Inject
-    TasksBottomSheetPresenter tasksBottomSheetPresenter;
+    CustomerTasksBottomSheetPresenter tasksBottomSheetPresenter;
 
     View rootView;
 
@@ -76,6 +77,7 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
     private Customer.State state;
     private Command command;
     private String customerIdentifier;
+    private OnTasksChangeListener onTasksChangeListener;
 
     @NonNull
     @Override
@@ -135,6 +137,7 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
                 tvSubHeader.setText(
                         getString(R.string.please_verify_following_task, getString(R.string.lock)));
                 btnSubmitTask.setText(getString(R.string.lock));
+                state = Customer.State.LOCKED;
                 break;
             case PENDING:
                 command.setAction(Command.Action.ACTIVATE);
@@ -142,6 +145,7 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
                 tvSubHeader.setText(getString(R.string.please_verify_following_task,
                         getString(R.string.activate)));
                 btnSubmitTask.setText(getString(R.string.activate));
+                state = Customer.State.ACTIVE;
                 break;
             case LOCKED:
                 command.setAction(Command.Action.UNLOCK);
@@ -149,6 +153,7 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
                 tvSubHeader.setText(getString(R.string.please_verify_following_task,
                         getString(R.string.un_lock)));
                 btnSubmitTask.setText(getString(R.string.un_lock));
+                state = Customer.State.ACTIVE;
                 break;
             case CLOSED:
                 command.setAction(Command.Action.REOPEN);
@@ -156,6 +161,7 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
                 tvSubHeader.setText(getString(R.string.please_verify_following_task,
                         getString(R.string.reopen)));
                 btnSubmitTask.setText(getString(R.string.reopen));
+                state = Customer.State.ACTIVE;
                 break;
         }
         llTaskList.setVisibility(View.GONE);
@@ -169,7 +175,7 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
         tvSubHeader.setText(getString(R.string.please_verify_following_task,
                 getString(R.string.close)));
         btnSubmitTask.setText(getString(R.string.close));
-
+        state = Customer.State.CLOSED;
         llTaskList.setVisibility(View.GONE);
         llTaskForm.setVisibility(View.VISIBLE);
     }
@@ -194,9 +200,14 @@ public class TasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
         dismiss();
     }
 
+    public void setCustomerTasksChangeListener(OnTasksChangeListener onTasksChangeListener) {
+        this.onTasksChangeListener = onTasksChangeListener;
+    }
+
     @Override
     public void statusChangedSuccessfully() {
-        Toaster.show(rootView, getString(R.string.task_updated_successfully));
+        Toast.makeText(getActivity(), R.string.task_updated_successfully, Toast.LENGTH_LONG).show();
+        onTasksChangeListener.changeCustomerStatus(state);
         dismiss();
     }
 

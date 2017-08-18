@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.tasks;
+package com.mifos.apache.fineract.ui.online.customers.customertasks;
 
 import com.mifos.apache.fineract.data.models.customer.Command;
 import com.mifos.apache.fineract.ui.base.MvpView;
@@ -8,7 +8,7 @@ import com.mifos.apache.fineract.ui.base.MvpView;
  *         On 27/07/17.
  */
 
-public interface TasksBottomSheetContract {
+public interface CustomerTasksBottomSheetContract {
 
     interface View extends MvpView {
 

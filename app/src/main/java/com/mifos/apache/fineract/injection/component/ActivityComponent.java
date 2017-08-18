@@ -10,6 +10,7 @@ import com.mifos.apache.fineract.ui.online.customers.customeractivities.Customer
 import com.mifos.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.customers.customerprofile
         .editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
+import com.mifos.apache.fineract.ui.online.customers.customertasks.CustomerTasksBottomSheetFragment;
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.FormDepositOverviewFragment;
 
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity
@@ -33,7 +34,6 @@ import com.mifos.apache.fineract.ui.online.loans.loanapplication.loandetails.Loa
 import com.mifos.apache.fineract.ui.online.loans.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.ui.online.login.LoginActivity;
 import com.mifos.apache.fineract.ui.online.plannedpayment.PlannedPaymentFragment;
-import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
 
 import dagger.Subcomponent;
 
@@ -74,7 +74,7 @@ public interface ActivityComponent {
 
     void inject(FormCustomerAddressFragment formCustomerAddressFragment);
 
-    void inject(TasksBottomSheetFragment tasksBottomSheetFragment);
+    void inject(CustomerTasksBottomSheetFragment tasksBottomSheetFragment);
 
     void inject(DebtIncomeReportFragment debtIncomeReportFragment);
 
