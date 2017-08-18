@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.ui.online.customer.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
-import com.mifos.apache.fineract.ui.online.customer.createcustomer.FormCustomerContactFragment;
-import com.mifos.apache.fineract.ui.online.customer.createcustomer.FormCustomerDetailsFragment;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.FormCustomerContactFragment;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.FormCustomerDetailsFragment;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
