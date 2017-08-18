@@ -164,6 +164,7 @@
     <string name="select_product">Select product</string>
     <string name="no_beneficiary">No beneficiaries</string>
     <string name="activities_created_by_on">%1$s, %2$s</string>
+    <string name="logout">Logout</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>
@@ -244,9 +245,12 @@
     <string name="dialog_action_re_try">Retry</string>
     <string name="dialog_action_app_settings">App Settings</string>
     <string name="dialog_action_delete">Delete</string>
+    <string name="dialog_action_logout">Logout</string>
     <string name="dialog_title_confirm_deletion">Confirm deletion</string>
+    <string name="dialog_title_confirm_logout">Confirm logout</string>
     <string name="dialog_message_confirmation_delete_identification_card">Do you want to delete this identification card?</string>
     <string name="dialog_message_confirmation_delete_identification_card_scan">Do you want to delete this identification card scan?</string>
+    <string name="dialog_message_confirmation_logout">Are you sure? you want to logout</string>
     <string name="dialog_message_camera_permission_denied_prompt">Without camera permission you will
         not be able to scan the document. Are you sure you want to deny this
         permission?</string>
