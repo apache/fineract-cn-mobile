@@ -1,4 +1,4 @@
-package com.mifos.apache.fineract.ui.online.tasks;
+package com.mifos.apache.fineract.ui.online.customers.customertasks;
 
 import android.content.Context;
 
@@ -20,14 +20,15 @@ import io.reactivex.schedulers.Schedulers;
  *         On 28/07/17.
  */
 @ConfigPersistent
-public class TasksBottomSheetPresenter extends BasePresenter<TasksBottomSheetContract.View>
-        implements TasksBottomSheetContract.Presenter {
+public class CustomerTasksBottomSheetPresenter
+        extends BasePresenter<CustomerTasksBottomSheetContract.View>
+        implements CustomerTasksBottomSheetContract.Presenter {
 
     private DataManagerCustomer dataManagerCustomer;
     private final CompositeDisposable compositeDisposable;
 
     @Inject
-    public TasksBottomSheetPresenter(@ApplicationContext Context context,
+    public CustomerTasksBottomSheetPresenter(@ApplicationContext Context context,
             DataManagerCustomer dataManagerCustomer) {
         super(context);
         this.dataManagerCustomer = dataManagerCustomer;
@@ -35,7 +36,7 @@ public class TasksBottomSheetPresenter extends BasePresenter<TasksBottomSheetCon
     }
 
     @Override
-    public void attachView(TasksBottomSheetContract.View mvpView) {
+    public void attachView(CustomerTasksBottomSheetContract.View mvpView) {
         super.attachView(mvpView);
     }
 

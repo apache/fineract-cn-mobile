@@ -24,10 +24,11 @@ import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.customers.customeractivities.CustomerActivitiesActivity;
 import com.mifos.apache.fineract.ui.online.customers.customerprofile.CustomerProfileActivity;
+import com.mifos.apache.fineract.ui.online.customers.customertasks.CustomerTasksBottomSheetFragment;
+import com.mifos.apache.fineract.ui.online.customers.customertasks.OnTasksChangeListener;
 import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity;
 import com.mifos.apache.fineract.ui.online.identification.identificationlist.IdentificationsActivity;
 import com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsActivity;
-import com.mifos.apache.fineract.ui.online.tasks.TasksBottomSheetFragment;
 import com.mifos.apache.fineract.ui.views.HeaderView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.ImageLoaderUtils;
@@ -44,7 +45,8 @@ import butterknife.OnClick;
  *         On 26/06/17.
  */
 public class CustomerDetailsFragment extends MifosBaseFragment
-        implements AppBarLayout.OnOffsetChangedListener, CustomerDetailsContract.View {
+        implements AppBarLayout.OnOffsetChangedListener, CustomerDetailsContract.View,
+        OnTasksChangeListener {
 
     @BindView(R.id.app_bar_layout)
     AppBarLayout appBarLayout;
@@ -168,9 +170,10 @@ public class CustomerDetailsFragment extends MifosBaseFragment
 
     @OnClick(R.id.ll_tasks)
     void updateCustomerStatus() {
-        TasksBottomSheetFragment tasksBottomSheet = new TasksBottomSheetFragment();
+        CustomerTasksBottomSheetFragment tasksBottomSheet = new CustomerTasksBottomSheetFragment();
         tasksBottomSheet.setCustomerStatus(customer.getCurrentState());
         tasksBottomSheet.setCustomerIdentifier(customerIdentifier);
+        tasksBottomSheet.setCustomerTasksChangeListener(this);
         tasksBottomSheet.show(getChildFragmentManager(), getString(R.string.tasks));
     }
 
@@ -287,6 +290,11 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     }
 
     @Override
+    public Customer.State getCustomerStatus() {
+        return customer.getCurrentState();
+    }
+
+    @Override
     public void showProgressbar() {
         showMifosProgressBar();
     }
@@ -323,5 +331,12 @@ public class CustomerDetailsFragment extends MifosBaseFragment
             toolbarHeaderView.setVisibility(View.GONE);
             isHideToolbarView = !isHideToolbarView;
         }
+    }
+
+    @Override
+    public void changeCustomerStatus(Customer.State state) {
+        customer.setCurrentState(state);
+        tvCurrentStatus.setText(state.name());
+        StatusUtils.setCustomerStatusIcon(state, ivCurrentStatus, getActivity());
     }
 }
