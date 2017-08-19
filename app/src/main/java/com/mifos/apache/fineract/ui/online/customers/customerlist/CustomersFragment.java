@@ -71,6 +71,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
 
     private List<Customer> customers;
     private Integer detailsCustomerPosition;
+    private boolean isNewCustomer = false;
 
     public static CustomersFragment newInstance() {
         CustomersFragment fragment = new CustomersFragment();
@@ -99,6 +100,14 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
         customerPresenter.fetchCustomers(0, false);
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isNewCustomer) {
+            customerPresenter.fetchCustomers(0, false);
+        }
     }
 
     @Override
@@ -133,6 +142,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
 
     @OnClick(R.id.fab_add_customer)
     void addCustomer() {
+        isNewCustomer = true;
         Intent intent = new Intent(getActivity(), CreateCustomerActivity.class);
         startActivity(intent);
     }

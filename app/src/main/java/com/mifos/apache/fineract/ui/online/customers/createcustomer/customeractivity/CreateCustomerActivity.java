@@ -1,7 +1,9 @@
 package com.mifos.apache.fineract.ui.online.customers.createcustomer.customeractivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Address;
@@ -12,6 +14,8 @@ import com.mifos.apache.fineract.ui.adapters.CreateCustomerStepAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.OnNavigationBarListener;
+import com.mifos.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsActivity;
+import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.StepperLayout;
 import com.stepstone.stepper.VerificationError;
 
@@ -124,6 +128,11 @@ public class CreateCustomerActivity extends MifosBaseActivity
 
     @Override
     public void customerCreatedSuccessfully() {
+        Toast.makeText(this, getString(R.string.customer_created_successfully,
+                customer.getGivenName()), Toast.LENGTH_LONG).show();
+        Intent customerDetailsIntent = new Intent(this, CustomerDetailsActivity.class);
+        customerDetailsIntent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customer.getIdentifier());
+        startActivity(customerDetailsIntent);
         finish();
     }
 
