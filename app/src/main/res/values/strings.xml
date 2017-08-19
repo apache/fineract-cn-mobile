@@ -156,6 +156,7 @@
     <string name="portrait_deleted_successfully">Portrait deleted successfully</string>
     <string name="portrait_size_can_not_exceed">Portrait can\'t exceed size of 512KB.</string>
     <string name="customer_deposit_account">Customer deposit account</string>
+    <string name="customer_created_successfully">%1$s created successfully</string>
     <string name="created_by">Created by</string>
     <string name="no_deposit_account">No deposit account</string>
     <string name="loan_last_modified_by">%1$s %2$s</string>

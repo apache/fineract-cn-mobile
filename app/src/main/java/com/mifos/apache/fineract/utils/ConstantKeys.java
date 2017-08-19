@@ -8,6 +8,7 @@ public class ConstantKeys {
 
     public static final String CUSTOMER_IDENTIFIER  = "customer_identifier";
     public static final String CUSTOMER_STATUS = "customer_status";
+    public static final String IS_NEW_CUSTOMER = "is_new_customer";
     public static final String PRODUCT_IDENTIFIER = "product_identifier";
     public static final String CASE_IDENTIFIER = "case_identifier";
     public static final String ACCOUNT_IDENTIFIER = "account_identifier";
