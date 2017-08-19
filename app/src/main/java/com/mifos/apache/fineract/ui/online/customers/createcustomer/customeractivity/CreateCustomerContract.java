@@ -13,6 +13,8 @@ public interface CreateCustomerContract {
 
         void customerCreatedSuccessfully();
 
+        void customerUpdatedSuccessfully();
+
         void showProgressbar();
 
         void hideProgressbar();
@@ -23,5 +25,7 @@ public interface CreateCustomerContract {
     interface Presenter {
 
         void createCustomer(Customer customer);
+
+        void updateCustomer(String customerIdentifier, Customer customer);
     }
 }

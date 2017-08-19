@@ -654,13 +654,13 @@
 
     <android.support.design.widget.FloatingActionButton
         android:clickable="true"
-        android:id="@+id/fab_upload_profile_photo"
+        android:id="@+id/fab_edit_customer"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:layout_width="wrap_content"
         android:tint="@color/white"
         app:layout_anchor="@+id/app_bar_layout"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_file_download_black_24dp"/>
+        app:srcCompat="@drawable/ic_edit_black_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

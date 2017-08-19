@@ -18,9 +18,11 @@ import android.widget.EditText;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.Address;
+import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.OnNavigationBarListener;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.Step;
@@ -76,12 +78,17 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
     FormCustomerAddressPresenter formCustomerAddressPresenter;
 
     private String [] countries;
+    private Customer customer;
+    private CustomerAction customerAction;
 
     private OnNavigationBarListener.CustomerAddress onNavigationBarListener;
 
-    public static FormCustomerAddressFragment newInstance() {
+    public static FormCustomerAddressFragment newInstance(Customer customer,
+            CustomerAction action) {
         FormCustomerAddressFragment fragment = new FormCustomerAddressFragment();
         Bundle args = new Bundle();
+        args.putParcelable(ConstantKeys.CUSTOMER, customer);
+        args.putSerializable(ConstantKeys.CUSTOMER_ACTION, action);
         fragment.setArguments(args);
         return fragment;
     }
@@ -91,6 +98,11 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
         super.onCreate(savedInstanceState);
         ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
         setRetainInstance(true);
+        if (getArguments() != null) {
+            customer = getArguments().getParcelable(ConstantKeys.CUSTOMER);
+            customerAction = (CustomerAction) getArguments().getSerializable(
+                    ConstantKeys.CUSTOMER_ACTION);
+        }
     }
 
     @Nullable
@@ -103,6 +115,10 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
 
         showUserInterface();
 
+        if (customerAction == CustomerAction.EDIT) {
+            showPreviousAddress();
+        }
+
         formCustomerAddressPresenter.fetchCountries();
 
         return rootView;
@@ -113,6 +129,20 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
         etCity.addTextChangedListener(this);
         etCountry.addTextChangedListener(this);
         etCountry.setOnFocusChangeListener(this);
+    }
+
+    public void showPreviousAddress() {
+        Address address = customer.getAddress();
+        etStreet.setText(address.getStreet());
+        etCity.setText(address.getCity());
+        if (address.getPostalCode() != null) {
+            etPostalCode.setText(address.getPostalCode());
+        }
+        etCountry.setText(address.getCountry());
+        showTextInputLayoutError(tilCountry, null);
+        if (address.getRegion() != null) {
+            etRegion.setText(address.getRegion());
+        }
     }
 
     @Override

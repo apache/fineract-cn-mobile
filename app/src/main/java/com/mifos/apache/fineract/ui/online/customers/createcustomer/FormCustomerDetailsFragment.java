@@ -18,8 +18,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.data.models.customer.DateOfBirth;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
+import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.ValidationUtil;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
@@ -77,13 +79,18 @@ public class FormCustomerDetailsFragment extends MifosBaseFragment implements St
 
     private Calendar calendar = Calendar.getInstance();
     private DateOfBirth dateOfBirth;
+    private Customer customer;
+    private CustomerAction customerAction;
 
     private OnNavigationBarListener.CustomerDetails onNavigationBarListener;
     private DatePickerDialog.OnDateSetListener date;
 
-    public static FormCustomerDetailsFragment newInstance() {
+    public static FormCustomerDetailsFragment newInstance(Customer customer,
+            CustomerAction action) {
         FormCustomerDetailsFragment fragment = new FormCustomerDetailsFragment();
         Bundle args = new Bundle();
+        args.putParcelable(ConstantKeys.CUSTOMER, customer);
+        args.putSerializable(ConstantKeys.CUSTOMER_ACTION, action);
         fragment.setArguments(args);
         return fragment;
     }
@@ -92,6 +99,11 @@ public class FormCustomerDetailsFragment extends MifosBaseFragment implements St
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dateOfBirth = new DateOfBirth();
+        if (getArguments() != null) {
+            customer = getArguments().getParcelable(ConstantKeys.CUSTOMER);
+            customerAction = (CustomerAction) getArguments().getSerializable(
+                    ConstantKeys.CUSTOMER_ACTION);
+        }
     }
 
     @Nullable
@@ -102,6 +114,10 @@ public class FormCustomerDetailsFragment extends MifosBaseFragment implements St
         ButterKnife.bind(this, rootView);
 
         showUserInterface();
+
+        if (customerAction == CustomerAction.EDIT) {
+            showPreviousCustomerDetails();
+        }
 
         return rootView;
     }
@@ -124,6 +140,23 @@ public class FormCustomerDetailsFragment extends MifosBaseFragment implements St
                 setDateOfBirth();
             }
         };
+    }
+
+    public void showPreviousCustomerDetails() {
+        etAccount.setText(customer.getIdentifier());
+        etAccount.setEnabled(false);
+        etFirstName.setText(customer.getGivenName());
+        if (customer.getMiddleName() != null) {
+            etMiddleName.setText(customer.getMiddleName());
+        }
+        etLastName.setText(customer.getSurname());
+        cbIsmember.setChecked(customer.getMember());
+        dateOfBirth = customer.getDateOfBirth();
+
+        calendar.set(Calendar.YEAR, dateOfBirth.getYear());
+        calendar.set(Calendar.MONTH, dateOfBirth.getMonth());
+        calendar.set(Calendar.DAY_OF_MONTH, dateOfBirth.getDay());
+        setDateOfBirth();
     }
 
     @OnClick(R.id.et_date_of_birth)

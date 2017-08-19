@@ -37,6 +37,11 @@ public interface CustomerService {
     @GET(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}")
     Observable<Customer> fetchCustomer(@Path("identifier") String identifier);
 
+    @PUT(EndPoints.API_CUSTOMER_PATH + "/customers/{identifier}")
+    Completable updateCustomer(
+            @Path("identifier") String identifier,
+            @Body Customer customer);
+
     @GET(EndPoints.API_CUSTOMER_PATH + "/customers")
     Observable<CustomerPage> searchCustomer(
             @Query("pageIndex") Integer pageIndex,

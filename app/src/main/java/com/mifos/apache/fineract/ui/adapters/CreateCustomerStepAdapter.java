@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
 import com.mifos.apache.fineract.R;
+import com.mifos.apache.fineract.data.models.customer.Customer;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.FormCustomerContactFragment;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.FormCustomerDetailsFragment;
@@ -20,9 +22,14 @@ import com.stepstone.stepper.viewmodel.StepViewModel;
 public class CreateCustomerStepAdapter extends AbstractFragmentStepAdapter {
 
     private String[] createCustomerSteps;
+    private Customer customer;
+    private CustomerAction customerAction;
 
-    public CreateCustomerStepAdapter(@NonNull FragmentManager fm, @NonNull Context context) {
+    public CreateCustomerStepAdapter(@NonNull FragmentManager fm, @NonNull Context context,
+            Customer customer, CustomerAction customerAction) {
         super(fm, context);
+        this.customer = customer;
+        this.customerAction = customerAction;
         createCustomerSteps = context.getResources().getStringArray(R.array.create_customer_steps);
     }
 
@@ -38,11 +45,11 @@ public class CreateCustomerStepAdapter extends AbstractFragmentStepAdapter {
     public Step createStep(@IntRange(from = 0L) int position) {
         switch (position) {
             case 0:
-                return FormCustomerDetailsFragment.newInstance();
+                return FormCustomerDetailsFragment.newInstance(customer, customerAction);
             case 1:
-                return FormCustomerAddressFragment.newInstance();
+                return FormCustomerAddressFragment.newInstance(customer, customerAction);
             case 2:
-                return FormCustomerContactFragment.newInstance();
+                return FormCustomerContactFragment.newInstance(customer, customerAction);
 
         }
         return null;

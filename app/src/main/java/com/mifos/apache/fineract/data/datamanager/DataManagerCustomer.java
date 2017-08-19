@@ -41,6 +41,10 @@ public class DataManagerCustomer {
         return baseApiManager.getCustomerApi().fetchCustomer(identifier);
     }
 
+    public Completable updateCustomer(String customerIdentifier, Customer customer) {
+        return baseApiManager.getCustomerApi().updateCustomer(customerIdentifier, customer);
+    }
+
     public Observable<CustomerPage> searchCustomer(Integer pageIndex, Integer size, String term) {
         return baseApiManager.getCustomerApi().searchCustomer(pageIndex, size, term);
     }

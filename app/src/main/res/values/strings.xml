@@ -94,6 +94,7 @@
     <string name="browse">Browse…</string>
     <string name="fetching_customer_please_wait">Fetching customer please wait…</string>
     <string name="creating_loan_please_wait">Creating loan please wait…</string>
+    <string name="updating_customer_please_wait">Updating customer please wait…</string>
     <string name="creating_customer_please_wait">Creating customer please wait…</string>
     <string name="creating_identification_card_please_wait">Creating identification card please wait…</string>
     <string name="updating_identification_card_please_wait">Updating identification card please wait…</string>
@@ -103,6 +104,7 @@
     <string name="on_the">on the</string>
     <string name="is_member">Is member?</string>
     <string name="create_customer">Create Customer</string>
+    <string name="edit_customer">Edit customer</string>
     <string name="create_new_identification">Create new Identification</string>
     <string name="create_new_deposit">Create new deposit</string>
     <string name="update_deposit">Update deposit</string>
@@ -157,6 +159,7 @@
     <string name="portrait_size_can_not_exceed">Portrait can\'t exceed size of 512KB.</string>
     <string name="customer_deposit_account">Customer deposit account</string>
     <string name="customer_created_successfully">%1$s created successfully</string>
+    <string name="customer_updated_successfully">%1$s updated successfully</string>
     <string name="created_by">Created by</string>
     <string name="no_deposit_account">No deposit account</string>
     <string name="loan_last_modified_by">%1$s %2$s</string>
@@ -222,6 +225,7 @@
     <string name="error_while_creating_loan">Error while creating loan</string>
     <string name="error_loading_countries">Error while fetching countries</string>
     <string name="error_creating_customer">Error while creating customer</string>
+    <string name="error_updating_customer">Error while updating customer</string>
     <string name="error_updating_status">Error while updating customer</string>
     <string name="error_fetching_identification_list">Error while fetching identification cards</string>
     <string name="error_creating_identification_card">Error while creating identification card</string>

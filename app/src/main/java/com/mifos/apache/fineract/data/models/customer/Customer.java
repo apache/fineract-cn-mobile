@@ -1,10 +1,14 @@
 package com.mifos.apache.fineract.data.models.customer;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public final class Customer {
+public final class Customer implements Parcelable {
 
     public enum Type {
 
@@ -196,4 +200,67 @@ public final class Customer {
     public void setLastModifiedOn(final String lastModifiedOn) {
         this.lastModifiedOn = lastModifiedOn;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.identifier);
+        dest.writeString(this.type);
+        dest.writeString(this.givenName);
+        dest.writeString(this.middleName);
+        dest.writeString(this.surname);
+        dest.writeParcelable(this.dateOfBirth, flags);
+        dest.writeValue(this.member);
+        dest.writeString(this.accountBeneficiary);
+        dest.writeString(this.referenceCustomer);
+        dest.writeString(this.assignedOffice);
+        dest.writeString(this.assignedEmployee);
+        dest.writeParcelable(this.address, flags);
+        dest.writeList(this.contactDetails);
+        dest.writeInt(this.currentState == null ? -1 : this.currentState.ordinal());
+        dest.writeString(this.createdBy);
+        dest.writeString(this.createdOn);
+        dest.writeString(this.lastModifiedBy);
+        dest.writeString(this.lastModifiedOn);
+    }
+
+    protected Customer(Parcel in) {
+        this.identifier = in.readString();
+        this.type = in.readString();
+        this.givenName = in.readString();
+        this.middleName = in.readString();
+        this.surname = in.readString();
+        this.dateOfBirth = in.readParcelable(DateOfBirth.class.getClassLoader());
+        this.member = (Boolean) in.readValue(Boolean.class.getClassLoader());
+        this.accountBeneficiary = in.readString();
+        this.referenceCustomer = in.readString();
+        this.assignedOffice = in.readString();
+        this.assignedEmployee = in.readString();
+        this.address = in.readParcelable(Address.class.getClassLoader());
+        this.contactDetails = new ArrayList<>();
+        in.readList(this.contactDetails, ContactDetail.class.getClassLoader());
+        int tmpCurrentState = in.readInt();
+        this.currentState = tmpCurrentState == -1 ? null : State.values()[tmpCurrentState];
+        this.createdBy = in.readString();
+        this.createdOn = in.readString();
+        this.lastModifiedBy = in.readString();
+        this.lastModifiedOn = in.readString();
+    }
+
+    public static final Parcelable.Creator<Customer> CREATOR = new Parcelable.Creator<Customer>() {
+        @Override
+        public Customer createFromParcel(Parcel source) {
+            return new Customer(source);
+        }
+
+        @Override
+        public Customer[] newArray(int size) {
+            return new Customer[size];
+        }
+    };
 }
