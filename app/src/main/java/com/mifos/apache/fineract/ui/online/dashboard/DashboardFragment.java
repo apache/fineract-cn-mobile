@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
-import com.mifos.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.customeractivity
+        .CreateCustomerActivity;
 import com.mifos.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
+import com.mifos.apache.fineract.utils.ConstantKeys;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -49,6 +52,7 @@ public class DashboardFragment extends MifosBaseFragment {
     @OnClick(R.id.btn_create_customer)
     void createCustomer() {
         Intent intent = new Intent(getActivity(), CreateCustomerActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_ACTION, CustomerAction.CREATE);
         startActivity(intent);
     }
 }

@@ -16,7 +16,9 @@ import android.widget.EditText;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.customer.ContactDetail;
+import com.mifos.apache.fineract.data.models.customer.Customer;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
+import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
@@ -46,13 +48,29 @@ public class FormCustomerContactFragment extends MifosBaseFragment implements St
 
     View rootView;
 
+    private Customer customer;
+    private CustomerAction customerAction;
+
     private OnNavigationBarListener.CustomerContactDetails onNavigationBarListener;
 
-    public static FormCustomerContactFragment newInstance() {
+    public static FormCustomerContactFragment newInstance(Customer customer,
+            CustomerAction action) {
         FormCustomerContactFragment fragment = new FormCustomerContactFragment();
         Bundle args = new Bundle();
+        args.putParcelable(ConstantKeys.CUSTOMER, customer);
+        args.putSerializable(ConstantKeys.CUSTOMER_ACTION, action);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            customer = getArguments().getParcelable(ConstantKeys.CUSTOMER);
+            customerAction = (CustomerAction) getArguments().getSerializable(
+                    ConstantKeys.CUSTOMER_ACTION);
+        }
     }
 
     @Nullable
@@ -63,7 +81,33 @@ public class FormCustomerContactFragment extends MifosBaseFragment implements St
         ButterKnife.bind(this, rootView);
         etEmail.addTextChangedListener(this);
 
+        if (customerAction == CustomerAction.EDIT) {
+            showPreviousContactDetails();
+        }
+
         return rootView;
+    }
+
+    public void showPreviousContactDetails() {
+        if (customer.getContactDetails().size() != 0) {
+            for (ContactDetail contactDetail : customer.getContactDetails()) {
+                showContactDetails(contactDetail);
+            }
+        }
+    }
+
+    public void showContactDetails(ContactDetail contactDetail) {
+        switch (contactDetail.getType()) {
+            case EMAIL:
+                etEmail.setText(contactDetail.getValue());
+                break;
+            case MOBILE:
+                etMobile.setText(contactDetail.getValue());
+                break;
+            case PHONE:
+                etPhone.setText(contactDetail.getValue());
+                break;
+        }
     }
 
     @Override

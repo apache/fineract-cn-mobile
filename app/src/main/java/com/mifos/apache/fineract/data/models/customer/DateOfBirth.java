@@ -1,6 +1,9 @@
 package com.mifos.apache.fineract.data.models.customer;
 
-public final class DateOfBirth {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public final class DateOfBirth implements Parcelable {
 
     private Integer year;
     private Integer month;
@@ -33,4 +36,35 @@ public final class DateOfBirth {
     public void setDay(final Integer day) {
         this.day = day;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.year);
+        dest.writeValue(this.month);
+        dest.writeValue(this.day);
+    }
+
+    protected DateOfBirth(Parcel in) {
+        this.year = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.month = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.day = (Integer) in.readValue(Integer.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<DateOfBirth> CREATOR =
+            new Parcelable.Creator<DateOfBirth>() {
+                @Override
+                public DateOfBirth createFromParcel(Parcel source) {
+                    return new DateOfBirth(source);
+                }
+
+                @Override
+                public DateOfBirth[] newArray(int size) {
+                    return new DateOfBirth[size];
+                }
+            };
 }

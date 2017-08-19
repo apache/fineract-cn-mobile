@@ -58,4 +58,27 @@ public class CreateCustomerPresenter extends BasePresenter<CreateCustomerContrac
 
         );
     }
+
+    @Override
+    public void updateCustomer(String customerIdentifier, Customer customer) {
+        checkViewAttached();
+        getMvpView().showProgressbar();
+        compositeDisposable.add(dataManagerCustomer.updateCustomer(customerIdentifier, customer)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableCompletableObserver() {
+                    @Override
+                    public void onComplete() {
+                        getMvpView().hideProgressbar();
+                        getMvpView().customerUpdatedSuccessfully();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        getMvpView().hideProgressbar();
+                        getMvpView().showError(context.getString(R.string.error_updating_customer));
+                    }
+                })
+        );
+    }
 }

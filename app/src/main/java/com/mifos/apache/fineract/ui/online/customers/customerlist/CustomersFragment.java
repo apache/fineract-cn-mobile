@@ -23,6 +23,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.customeractivity
         .CreateCustomerActivity;
 import com.mifos.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsActivity;
@@ -106,6 +107,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     public void onResume() {
         super.onResume();
         if (isNewCustomer) {
+            isNewCustomer = false;
             customerPresenter.fetchCustomers(0, false);
         }
     }
@@ -144,6 +146,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     void addCustomer() {
         isNewCustomer = true;
         Intent intent = new Intent(getActivity(), CreateCustomerActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_ACTION, CustomerAction.CREATE);
         startActivity(intent);
     }
 

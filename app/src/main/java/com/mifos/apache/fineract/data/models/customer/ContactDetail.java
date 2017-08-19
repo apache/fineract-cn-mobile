@@ -1,8 +1,11 @@
 package com.mifos.apache.fineract.data.models.customer;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public final class ContactDetail {
+public final class ContactDetail implements Parcelable {
 
     public enum Type {
         @SerializedName("EMAIL")
@@ -73,4 +76,42 @@ public final class ContactDetail {
     public void setPreferenceLevel(final Integer preferenceLevel) {
         this.preferenceLevel = preferenceLevel;
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.type == null ? -1 : this.type.ordinal());
+        dest.writeInt(this.group == null ? -1 : this.group.ordinal());
+        dest.writeString(this.value);
+        dest.writeValue(this.preferenceLevel);
+        dest.writeValue(this.validated);
+    }
+
+    protected ContactDetail(Parcel in) {
+        int tmpType = in.readInt();
+        this.type = tmpType == -1 ? null : Type.values()[tmpType];
+        int tmpGroup = in.readInt();
+        this.group = tmpGroup == -1 ? null : Group.values()[tmpGroup];
+        this.value = in.readString();
+        this.preferenceLevel = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.validated = (Boolean) in.readValue(Boolean.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<ContactDetail> CREATOR =
+            new Parcelable.Creator<ContactDetail>() {
+                @Override
+                public ContactDetail createFromParcel(Parcel source) {
+                    return new ContactDetail(source);
+                }
+
+                @Override
+                public ContactDetail[] newArray(int size) {
+                    return new ContactDetail[size];
+                }
+            };
 }

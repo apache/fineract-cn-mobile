@@ -13,6 +13,7 @@ import com.mifos.apache.fineract.data.models.customer.DateOfBirth;
 import com.mifos.apache.fineract.ui.adapters.CreateCustomerStepAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.Toaster;
+import com.mifos.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import com.mifos.apache.fineract.ui.online.customers.createcustomer.OnNavigationBarListener;
 import com.mifos.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsActivity;
 import com.mifos.apache.fineract.utils.ConstantKeys;
@@ -47,6 +48,8 @@ public class CreateCustomerActivity extends MifosBaseActivity
     private int currentPosition = 0;
 
     private Customer customer;
+    private CustomerAction customerAction;
+    private String customerIdentifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +58,32 @@ public class CreateCustomerActivity extends MifosBaseActivity
         setContentView(R.layout.activity_create_customer);
         ButterKnife.bind(this);
         createCustomerPresenter.attachView(this);
-        customer = new Customer();
+
+        customerAction = (CustomerAction) getIntent().getSerializableExtra(
+                ConstantKeys.CUSTOMER_ACTION);
+        customer = getIntent().getExtras().getParcelable(ConstantKeys.CUSTOMER);
+        customerIdentifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
 
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(CURRENT_STEP_POSITION);
         }
+
         CreateCustomerStepAdapter stepAdapter = new CreateCustomerStepAdapter(
-                getSupportFragmentManager(), this);
+                getSupportFragmentManager(), this, customer, customerAction);
         stepperLayout.setAdapter(stepAdapter, currentPosition);
         stepperLayout.setListener(this);
         stepperLayout.setOffscreenPageLimit(stepAdapter.getCount());
-        setToolbarTitle(getString(R.string.create_customer));
+
+        switch (customerAction) {
+            case CREATE:
+                customer = new Customer();
+                setToolbarTitle(getString(R.string.create_customer));
+                break;
+            case EDIT:
+                setToolbarTitle(getString(R.string.edit_customer));
+                break;
+        }
+
         showBackButton();
     }
 
@@ -86,7 +104,14 @@ public class CreateCustomerActivity extends MifosBaseActivity
     public void onCompleted(View completeButton) {
         stepperLayout.setNextButtonEnabled(false);
         customer.setType(Customer.Type.PERSON.name());
-        createCustomerPresenter.createCustomer(customer);
+        switch (customerAction) {
+            case CREATE:
+                createCustomerPresenter.createCustomer(customer);
+                break;
+            case EDIT:
+                createCustomerPresenter.updateCustomer(customerIdentifier, customer);
+                break;
+        }
     }
 
     @Override
@@ -137,8 +162,22 @@ public class CreateCustomerActivity extends MifosBaseActivity
     }
 
     @Override
+    public void customerUpdatedSuccessfully() {
+        Toast.makeText(this, getString(R.string.customer_updated_successfully,
+                customer.getGivenName()), Toast.LENGTH_LONG).show();
+        finish();
+    }
+
+    @Override
     public void showProgressbar() {
-        stepperLayout.showProgress(getString(R.string.creating_customer_please_wait));
+        switch (customerAction) {
+            case CREATE:
+                stepperLayout.showProgress(getString(R.string.creating_customer_please_wait));
+                break;
+            case EDIT:
+                stepperLayout.showProgress(getString(R.string.updating_customer_please_wait));
+                break;
+        }
     }
 
     @Override
