@@ -22,18 +22,17 @@ import okhttp3.MultipartBody;
  *         On 20/06/17.
  */
 @Singleton
-public class DataManagerCustomer {
+public class DataManagerCustomer extends MifosBaseDataManager {
 
     private final BaseApiManager baseApiManager;
-    private final DataManagerAuth mDataManagerAuth;
     private final PreferencesHelper preferencesHelper;
 
     @Inject
     public DataManagerCustomer(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper,
             DataManagerAuth dataManagerAuth) {
+        super(dataManagerAuth, preferencesHelper);
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
-        mDataManagerAuth = dataManagerAuth;
     }
 
     public Observable<CustomerPage> fetchCustomers(Integer pageIndex, Integer size) {
@@ -41,14 +40,12 @@ public class DataManagerCustomer {
     }
 
     public Observable<Customer> fetchCustomer(String identifier) {
-        return baseApiManager.getCustomerApi().fetchCustomer(identifier)
-                .onErrorResumeNext(mDataManagerAuth
-                        .refreshTokenAndRetry(
-                                baseApiManager.getCustomerApi().fetchCustomer(identifier)));
+        return authenticatedApi(baseApiManager.getCustomerApi().fetchCustomer(identifier));
     }
 
     public Completable updateCustomer(String customerIdentifier, Customer customer) {
-        return baseApiManager.getCustomerApi().updateCustomer(customerIdentifier, customer);
+        return authenticatedVoidApi(baseApiManager.getCustomerApi()
+                .updateCustomer(customerIdentifier, customer));
     }
 
     public Observable<CustomerPage> searchCustomer(Integer pageIndex, Integer size, String term) {
