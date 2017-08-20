@@ -25,12 +25,15 @@ import okhttp3.MultipartBody;
 public class DataManagerCustomer {
 
     private final BaseApiManager baseApiManager;
+    private final DataManagerAuth mDataManagerAuth;
     private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public DataManagerCustomer(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper) {
+    public DataManagerCustomer(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper,
+            DataManagerAuth dataManagerAuth) {
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
+        mDataManagerAuth = dataManagerAuth;
     }
 
     public Observable<CustomerPage> fetchCustomers(Integer pageIndex, Integer size) {
@@ -38,7 +41,10 @@ public class DataManagerCustomer {
     }
 
     public Observable<Customer> fetchCustomer(String identifier) {
-        return baseApiManager.getCustomerApi().fetchCustomer(identifier);
+        return baseApiManager.getCustomerApi().fetchCustomer(identifier)
+                .onErrorResumeNext(mDataManagerAuth
+                        .refreshTokenAndRetry(
+                                baseApiManager.getCustomerApi().fetchCustomer(identifier)));
     }
 
     public Completable updateCustomer(String customerIdentifier, Customer customer) {
