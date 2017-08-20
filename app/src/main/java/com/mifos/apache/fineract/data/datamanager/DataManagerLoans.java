@@ -17,34 +17,38 @@ import io.reactivex.Observable;
  *         On 07/07/17.
  */
 @Singleton
-public class DataManagerLoans {
+public class DataManagerLoans extends MifosBaseDataManager {
 
     private final BaseApiManager baseApiManager;
     private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public DataManagerLoans(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper) {
+    public DataManagerLoans(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper,
+            DataManagerAuth dataManagerAuth) {
+        super(dataManagerAuth, preferencesHelper);
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
     }
 
     public Observable<LoanAccountPage> fetchCustomerLoanAccounts(
             String customeridentifier, Integer pageIndex, Integer size) {
-        return baseApiManager.getLoanApi()
-                .fetchCustomerLoanAccounts(customeridentifier, pageIndex, size);
+        return authenticatedObservableApi(baseApiManager.getLoanApi()
+                .fetchCustomerLoanAccounts(customeridentifier, pageIndex, size));
     }
 
     public Observable<LoanAccount> fetchCustomerLoanDetails(
             String productIdentifier, String caseIdentifier) {
-        return baseApiManager.getLoanApi()
-                .fetchCustomerLoanDetails(productIdentifier, caseIdentifier);
+        return authenticatedObservableApi(baseApiManager.getLoanApi()
+                .fetchCustomerLoanDetails(productIdentifier, caseIdentifier));
     }
 
     public Observable<ProductPage> getProducts(Integer pageIndex, Integer size) {
-        return baseApiManager.getLoanApi().getProducts(pageIndex, size, false);
+        return authenticatedObservableApi(baseApiManager.getLoanApi()
+                .getProducts(pageIndex, size, false));
     }
 
     public Completable createLoan(String productIdentifier, LoanAccount loanAccount) {
-        return baseApiManager.getLoanApi().createLoan(productIdentifier, loanAccount);
+        return authenticatedCompletableApi(baseApiManager.getLoanApi()
+                .createLoan(productIdentifier, loanAccount));
     }
 }

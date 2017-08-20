@@ -26,20 +26,20 @@ public class MifosBaseDataManager {
         this.preferencesHelper = preferencesHelper;
     }
 
-    public <T> Observable<T> authenticatedApi(Observable<T> observable) {
-        return observable.onErrorResumeNext(refreshTokenAndRetry(observable));
+    public <T> Observable<T> authenticatedObservableApi(Observable<T> observable) {
+        return observable.onErrorResumeNext(refreshTokenAndRetryObser(observable));
     }
 
-    public Completable authenticatedVoidApi(Completable completable) {
+    public Completable authenticatedCompletableApi(Completable completable) {
         return completable.onErrorResumeNext(refreshTokenAndRetryCompletable(completable));
     }
 
-    public <T> Function<Throwable, ? extends Observable<? extends T>> refreshTokenAndRetry(
+    public <T> Function<Throwable, ? extends Observable<? extends T>> refreshTokenAndRetryObser(
             final Observable<T> toBeResumed) {
         return new Function<Throwable, Observable<? extends T>>() {
             @Override
             public Observable<? extends T> apply(Throwable throwable) throws Exception {
-                // Here check if the error thrown really is a 401
+                // Here check if the error thrown really is a 403
                 if (ExceptionStatusCode.isHttp401Error(throwable)) {
                     preferencesHelper.putBoolean(PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, true);
                     return dataManagerAuth.refreshToken().concatMap(new Function<Authentication,
@@ -67,7 +67,7 @@ public class MifosBaseDataManager {
         return new Function<Throwable, CompletableSource>() {
             @Override
             public CompletableSource apply(Throwable throwable) throws Exception {
-                // Here check if the error thrown really is a 401
+                // Here check if the error thrown really is a 403
                 if (ExceptionStatusCode.isHttp401Error(throwable)) {
                     preferencesHelper.putBoolean(PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, true);
                     return dataManagerAuth.refreshToken().flatMapCompletable(
