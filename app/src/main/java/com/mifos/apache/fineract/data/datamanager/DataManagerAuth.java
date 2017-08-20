@@ -45,22 +45,27 @@ public class DataManagerAuth {
         return baseApiManager.getAuthApi().refreshToken();
     }
 
-    public  <T> Function<Throwable,? extends Observable<? extends T>> refreshTokenAndRetry(final Observable<T> toBeResumed) {
+    public <T> Function<Throwable, ? extends Observable<? extends T>> refreshTokenAndRetry(
+            final Observable<T> toBeResumed) {
         return new Function<Throwable, Observable<? extends T>>() {
             @Override
             public Observable<? extends T> apply(Throwable throwable) throws Exception {
                 // Here check if the error thrown really is a 401
                 if (ExceptionStatusCode.isHttp401Error(throwable)) {
                     preferencesHelper.putBoolean(PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, true);
-                    return refreshToken().concatMap(new Function<Authentication, ObservableSource<? extends T>>() {
-                                @Override
-                                public ObservableSource<? extends T> apply(Authentication authentication) throws Exception {
-                                    preferencesHelper.putBoolean(PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, false);
-                                    preferencesHelper.putAccessToken(authentication.getAccessToken());
-                                    preferencesHelper.putSignInUser(authentication);
-                                    return toBeResumed;
-                                }
-                            });
+                    return refreshToken().concatMap(new Function<Authentication,
+                            ObservableSource<? extends T>>() {
+                        @Override
+                        public ObservableSource<? extends T> apply(
+                                Authentication authentication) throws Exception {
+                            preferencesHelper.putBoolean(
+                                    PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, false);
+                            preferencesHelper.putAccessToken(
+                                    authentication.getAccessToken());
+                            preferencesHelper.putSignInUser(authentication);
+                            return toBeResumed;
+                        }
+                    });
                 }
                 // re-throw this error because it's not recoverable from here
                 return Observable.error(throwable);
