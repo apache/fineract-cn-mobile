@@ -14,21 +14,23 @@ import io.reactivex.Observable;
  *         On 13/07/17.
  */
 @Singleton
-public class DataManagerIndividualLending {
+public class DataManagerIndividualLending extends MifosBaseDataManager {
 
     private final BaseApiManager baseApiManager;
     private final PreferencesHelper preferencesHelper;
 
     @Inject
     public DataManagerIndividualLending(BaseApiManager baseApiManager,
-            PreferencesHelper preferencesHelper) {
+            PreferencesHelper preferencesHelper, DataManagerAuth dataManagerAuth) {
+        super(dataManagerAuth, preferencesHelper);
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
     }
 
     public Observable<PlannedPaymentPage> getPaymentScheduleForCase(String productIdentifier,
             String caseIdentifier, Integer pageIndex, Integer size, String initialDisbursalDate) {
-        return baseApiManager.getIndividualLendingService().getPaymentScheduleForCase(
-                productIdentifier, caseIdentifier, pageIndex, size, initialDisbursalDate);
+        return authenticatedObservableApi(baseApiManager
+                .getIndividualLendingService().getPaymentScheduleForCase(
+                        productIdentifier, caseIdentifier, pageIndex, size, initialDisbursalDate));
     }
 }

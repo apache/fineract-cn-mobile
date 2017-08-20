@@ -22,89 +22,104 @@ import okhttp3.MultipartBody;
  *         On 20/06/17.
  */
 @Singleton
-public class DataManagerCustomer {
+public class DataManagerCustomer extends MifosBaseDataManager {
 
     private final BaseApiManager baseApiManager;
     private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public DataManagerCustomer(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper) {
+    public DataManagerCustomer(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper,
+            DataManagerAuth dataManagerAuth) {
+        super(dataManagerAuth, preferencesHelper);
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
     }
 
     public Observable<CustomerPage> fetchCustomers(Integer pageIndex, Integer size) {
-        return baseApiManager.getCustomerApi().fetchCustomers(pageIndex, size);
+        return authenticatedObservableApi(baseApiManager.getCustomerApi()
+                .fetchCustomers(pageIndex, size));
     }
 
     public Observable<Customer> fetchCustomer(String identifier) {
-        return baseApiManager.getCustomerApi().fetchCustomer(identifier);
+        return authenticatedObservableApi(baseApiManager.getCustomerApi()
+                .fetchCustomer(identifier));
     }
 
     public Completable updateCustomer(String customerIdentifier, Customer customer) {
-        return baseApiManager.getCustomerApi().updateCustomer(customerIdentifier, customer);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi()
+                .updateCustomer(customerIdentifier, customer));
     }
 
     public Observable<CustomerPage> searchCustomer(Integer pageIndex, Integer size, String term) {
-        return baseApiManager.getCustomerApi().searchCustomer(pageIndex, size, term);
+        return authenticatedObservableApi(baseApiManager.getCustomerApi()
+                .searchCustomer(pageIndex, size, term));
     }
 
     public Completable createCustomer(Customer customer) {
-        return baseApiManager.getCustomerApi().createCustomer(customer);
+        return authenticatedCompletableApi(
+                baseApiManager.getCustomerApi().createCustomer(customer));
     }
 
     public Completable customerCommand(String identifier, Command command) {
-        return baseApiManager.getCustomerApi().customerCommand(identifier, command);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi()
+                .customerCommand(identifier, command));
     }
 
     public Observable<List<Command>> fetchCustomerCommands(String customerIdentifier) {
-        return baseApiManager.getCustomerApi().fetchCustomerCommands(customerIdentifier);
+        return authenticatedObservableApi(baseApiManager.getCustomerApi()
+                .fetchCustomerCommands(customerIdentifier));
     }
 
     public Observable<List<Identification>> fetchIdentifications(String customerIdentifier) {
-        return baseApiManager.getCustomerApi().fetchIdentification(customerIdentifier);
+        return authenticatedObservableApi(baseApiManager.getCustomerApi()
+                .fetchIdentification(customerIdentifier));
     }
 
     public Completable createIdentificationCard(String identifier, Identification identification) {
-        return baseApiManager.getCustomerApi().createIdentificationCard(identifier, identification);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi()
+                .createIdentificationCard(identifier, identification));
     }
 
     public Completable updateIdentificationCard(String customerIdentifier,
             String identificationNumber, Identification identification) {
-        return baseApiManager.getCustomerApi().updateIdentificationCard(customerIdentifier,
-                identificationNumber, identification);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi().updateIdentificationCard(
+                customerIdentifier, identificationNumber, identification));
     }
 
     public Observable<List<ScanCard>> fetchIdentificationScanCards(String customerIdentifier,
             String identificationNumber) {
-        return baseApiManager.getCustomerApi().fetchIdentificationScanCards(customerIdentifier,
-                identificationNumber);
+        return authenticatedObservableApi(baseApiManager.getCustomerApi()
+                .fetchIdentificationScanCards(customerIdentifier, identificationNumber));
     }
 
     public Completable uploadIdentificationCardScan(String customerIdentifier,
             String identificationNumber, String scanIdentifier, String description,
             MultipartBody.Part file) {
-        return baseApiManager.getCustomerApi().uploadIdentificationCardScan(customerIdentifier,
-                identificationNumber, scanIdentifier, description, file);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi()
+                .uploadIdentificationCardScan(customerIdentifier, identificationNumber,
+                        scanIdentifier, description, file));
     }
 
     public Completable deleteIdentificationCardScan(String customerIdentifier,
             String identificationNumber, String scanIdentifier) {
-        return baseApiManager.getCustomerApi().deleteIdentificationCardScan(
-                customerIdentifier, identificationNumber, scanIdentifier);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi()
+                .deleteIdentificationCardScan(customerIdentifier, identificationNumber,
+                        scanIdentifier));
     }
 
     public Completable deleteIdentificationCard(
             String customerIdentifier, String identificationnumber) {
-        return baseApiManager.getCustomerApi()
-                .deleteIdentificationCard(customerIdentifier, identificationnumber);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi()
+                .deleteIdentificationCard(customerIdentifier, identificationnumber));
     }
 
     public Completable uploadCustomerPortrait(String customerIdentifier, MultipartBody.Part file) {
-        return baseApiManager.getCustomerApi().uploadCustomerPortrait(customerIdentifier, file);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi()
+                .uploadCustomerPortrait(customerIdentifier, file));
     }
 
     public Completable deleteCustomerPortrait(String customerIdentifier) {
-        return baseApiManager.getCustomerApi().deleteCustomerPortrait(customerIdentifier);
+        return authenticatedCompletableApi(baseApiManager.getCustomerApi()
+                .deleteCustomerPortrait(customerIdentifier));
     }
 }

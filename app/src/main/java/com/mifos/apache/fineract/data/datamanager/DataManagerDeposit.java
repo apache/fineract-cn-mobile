@@ -18,38 +18,43 @@ import io.reactivex.Observable;
  *         On 07/07/17.
  */
 @Singleton
-public class DataManagerDeposit {
+public class DataManagerDeposit extends MifosBaseDataManager {
 
     private final BaseApiManager baseApiManager;
     private final PreferencesHelper preferencesHelper;
 
     @Inject
-    public DataManagerDeposit(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper) {
+    public DataManagerDeposit(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper,
+            DataManagerAuth dataManagerAuth) {
+        super(dataManagerAuth, preferencesHelper);
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
     }
 
     public Observable<List<DepositAccount>> getCustomerDepositAccounts(
             String customerIdentifier) {
-        return baseApiManager.getDepositApi().fetchCustomersDeposits(customerIdentifier);
+        return authenticatedObservableApi(baseApiManager.getDepositApi()
+                .fetchCustomersDeposits(customerIdentifier));
     }
 
     public Observable<DepositAccount> getCustomerDepositAccountDetails(
             String accountIdentifier) {
-        return baseApiManager.getDepositApi().fetchCustomerDepositDetails(accountIdentifier);
+        return authenticatedObservableApi(baseApiManager.getDepositApi()
+                .fetchCustomerDepositDetails(accountIdentifier));
     }
 
     public Observable<List<ProductDefinition>> fetchProductDefinitions() {
-        return baseApiManager.getDepositApi().fetchProductDefinitions();
+        return authenticatedObservableApi(baseApiManager.getDepositApi().fetchProductDefinitions());
     }
 
     public Completable createDepositAccount(DepositAccount depositAccount) {
-        return baseApiManager.getDepositApi().createDepositAccount(depositAccount);
+        return authenticatedCompletableApi(baseApiManager.getDepositApi()
+                .createDepositAccount(depositAccount));
     }
 
     public Completable updateDepositAccount(String accountIdentifier,
             DepositAccount depositAccount) {
-        return baseApiManager.getDepositApi().updateDepositAccount(accountIdentifier,
-                depositAccount);
+        return authenticatedCompletableApi(baseApiManager.getDepositApi()
+                .updateDepositAccount(accountIdentifier, depositAccount));
     }
 }

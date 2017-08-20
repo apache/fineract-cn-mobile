@@ -2,9 +2,9 @@ package com.mifos.apache.fineract.data.datamanager;
 
 import android.util.Base64;
 
+import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.models.Authentication;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
-import com.mifos.apache.fineract.data.local.PreferencesHelper;
 
 import java.nio.charset.Charset;
 
