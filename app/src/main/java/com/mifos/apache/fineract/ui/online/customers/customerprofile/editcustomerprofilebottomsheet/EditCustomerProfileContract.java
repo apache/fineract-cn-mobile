@@ -29,7 +29,7 @@ public interface EditCustomerProfileContract {
 
         void showImageSizeExceededOrNot();
 
-        void requestWriteExternalStoragePermission();
+        void requestWriteExternalStorageAndCameraPermission();
 
         void requestReadExternalStoragePermission();
 
