@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.loan.CreditWorthinessFactor;
-import com.mifos.apache.fineract.ui.online.loans.loanapplication.CreditWorthinessSource;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.CreditWorthinessSource;
 
 import java.util.ArrayList;
 import java.util.List;

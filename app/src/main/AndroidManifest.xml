@@ -44,15 +44,15 @@
 
         <activity android:name=".ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity" />
 
-        <activity android:name="com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsActivity" />
+        <activity android:name="com.mifos.apache.fineract.ui.online.loanaccounts.loanaccountlist.LoanAccountsActivity" />
 
-        <activity android:name=".ui.online.plannedpayment.PlannedPaymentActivity" />
+        <activity android:name=".ui.online.loanaccounts.plannedpayment.PlannedPaymentActivity" />
 
-        <activity android:name="com.mifos.apache.fineract.ui.online.loans.loanapplication.loanactivity.LoanApplicationActivity" />
+        <activity android:name="com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity" />
 
         <activity android:name=".ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity" />
 
-        <activity android:name=".ui.online.debtincomereport.DebtIncomeReportActivity" />
+        <activity android:name=".ui.online.loanaccounts.debtincomereport.DebtIncomeReportActivity" />
 
         <activity android:name=".ui.online.identification.identificationlist.IdentificationsActivity" />
 

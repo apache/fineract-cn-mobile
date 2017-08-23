@@ -46,7 +46,18 @@ public class ValidationUtil {
                     context.getString(R.string.required));
             return false;
         }
-        ValidateIdentifierUtil.showTextInputLayoutError(inputLayout, null);
+        hideTextInputLayoutError(inputLayout);
         return true;
+    }
+
+    public static void showTextInputLayoutError(TextInputLayout textInputLayout,
+            String errorMessage) {
+        textInputLayout.setErrorEnabled(true);
+        textInputLayout.setError(errorMessage);
+    }
+
+    public static void hideTextInputLayoutError(TextInputLayout textInputLayout) {
+        textInputLayout.setErrorEnabled(false);
+        textInputLayout.setError(null);
     }
 }
