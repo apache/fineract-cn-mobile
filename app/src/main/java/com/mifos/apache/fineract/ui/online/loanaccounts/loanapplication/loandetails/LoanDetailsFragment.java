@@ -28,7 +28,9 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.Toaster;
 import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
+import com.mifos.apache.fineract.utils.Utils;
 import com.mifos.apache.fineract.utils.ValidateIdentifierUtil;
+import com.mifos.apache.fineract.utils.ValidationUtil;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
@@ -66,14 +68,23 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
     @BindView(R.id.et_principal_amount)
     EditText etPrincipalAmount;
 
+    @BindView(R.id.til_principal_amount)
+    TextInputLayout tilPrincipalAmount;
+
     @BindView(R.id.et_term)
     EditText etTerm;
+
+    @BindView(R.id.til_term)
+    TextInputLayout tilTerm;
 
     @BindView(R.id.sp_term_unit_type)
     AppCompatSpinner spTermUnitType;
 
     @BindView(R.id.et_repay)
     EditText etRepay;
+
+    @BindView(R.id.til_repay)
+    TextInputLayout tilRepay;
 
     @BindView(R.id.sp_repay_unit_type)
     AppCompatSpinner spRepayUnitType;
@@ -362,23 +373,25 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
             Double value = Double.parseDouble(etTerm.getText().toString());
 
             if (etTerm.getText().toString().equals("")) {
-                etTerm.setError(getString(R.string.required));
-                etTerm.requestFocus();
+                ValidationUtil.showTextInputLayoutError(tilTerm, getString(R.string.required));
                 return false;
             } else if (!(minimum <= value)) {
-                etTerm.setError(getString(R.string.value_must_greater_or_equal_to, minimum));
-                etTerm.requestFocus();
+                ValidationUtil.showTextInputLayoutError(tilTerm,
+                        getString(R.string.value_must_greater_or_equal_to,
+                                Utils.getPrecision(minimum)));
                 return false;
             } else if (!(value <= maximum)) {
-                etTerm.setError(getString(R.string.value_must_less_than_or_equal_to, maximum));
-                etTerm.requestFocus();
+                ValidationUtil.showTextInputLayoutError(tilTerm,
+                        getString(R.string.value_must_less_than_or_equal_to,
+                                Utils.getPrecision(maximum)));
                 return false;
             }
         } catch (NumberFormatException e) {
-            etTerm.setError(getString(R.string.required));
-            etTerm.requestFocus();
+            ValidationUtil.showTextInputLayoutError(tilTerm,
+                    getString(R.string.required));
             return false;
         }
+        ValidationUtil.hideTextInputLayoutError(tilTerm);
         return true;
     }
 
@@ -390,36 +403,33 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
             Double value = Double.parseDouble(etPrincipalAmount.getText().toString());
 
             if (etPrincipalAmount.getText().toString().equals("")) {
-                etPrincipalAmount.setError(getString(R.string.required));
-                etPrincipalAmount.requestFocus();
+                ValidationUtil.isEmpty(getActivity(),
+                        etPrincipalAmount.getText().toString().trim(), tilPrincipalAmount);
                 return false;
             } else if (!(minimum <= value)) {
-                etPrincipalAmount.setError(
-                        getString(R.string.value_must_greater_or_equal_to, minimum));
-                etPrincipalAmount.requestFocus();
+                ValidationUtil.showTextInputLayoutError(tilPrincipalAmount,
+                        getString(R.string.value_must_greater_or_equal_to,
+                                Utils.getPrecision(minimum)));
                 return false;
             } else if (!(value <= maximum)) {
-                etPrincipalAmount.setError(
-                        getString(R.string.value_must_less_than_or_equal_to, maximum));
-                etPrincipalAmount.requestFocus();
+                ValidationUtil.showTextInputLayoutError(tilPrincipalAmount,
+                        getString(R.string.value_must_less_than_or_equal_to,
+                                Utils.getPrecision(maximum)));
                 return false;
             }
         } catch (NumberFormatException e) {
-            etPrincipalAmount.setError(getString(R.string.required));
-            etPrincipalAmount.requestFocus();
+            ValidationUtil.showTextInputLayoutError(tilPrincipalAmount,
+                    getString(R.string.required));
             return false;
         }
+        ValidationUtil.hideTextInputLayoutError(tilPrincipalAmount);
         return true;
     }
 
     @Override
     public boolean validateRepay() {
-        if (etRepay.getText().toString().equals("")) {
-            etRepay.setError(getString(R.string.required));
-            etRepay.requestFocus();
-            return false;
-        }
-        return true;
+        return ValidationUtil.isEmpty(getActivity(),
+                etRepay.getText().toString().trim(), tilRepay);
     }
 
     @Override
