@@ -19,21 +19,21 @@ import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.
         .FormDepositAssignProductFragment;
 import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
 import com.mifos.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsFragment;
-import com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsFragment;
-import com.mifos.apache.fineract.ui.online.debtincomereport.DebtIncomeReportFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanaccountlist.LoanAccountsFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportFragment;
 import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails.DepositAccountDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
 import com.mifos.apache.fineract.ui.online.identification.identificationdetails.IdentificationDetailsFragment;
 import com.mifos.apache.fineract.ui.online.identification.identificationlist.IdentificationsFragment;
 import com.mifos.apache.fineract.ui.online.identification.uploadidentificationscan.UploadIdentificationCardBottomSheet;
 import com.mifos.apache.fineract.ui.online.launcher.LauncherActivity;
-import com.mifos.apache.fineract.ui.online.loans.loanapplication.BaseFragmentDebtIncome;
-import com.mifos.apache.fineract.ui.online.loans.loanapplication.loanactivity.LoanApplicationActivity;
-import com.mifos.apache.fineract.ui.online.loans.loanapplication.loancosigner.LoanCoSignerFragment;
-import com.mifos.apache.fineract.ui.online.loans.loanapplication.loandetails.LoanDetailsFragment;
-import com.mifos.apache.fineract.ui.online.loans.loandetails.CustomerLoanDetailsFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.BaseFragmentDebtIncome;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.loancosigner.LoanCoSignerFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails.LoanDetailsFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.ui.online.login.LoginActivity;
-import com.mifos.apache.fineract.ui.online.plannedpayment.PlannedPaymentFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentFragment;
 
 import dagger.Subcomponent;
 

@@ -33,7 +33,7 @@ import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountslist
         .DepositAccountsActivity;
 import com.mifos.apache.fineract.ui.online.identification.identificationlist
         .IdentificationsActivity;
-import com.mifos.apache.fineract.ui.online.loans.loanaccountlist.LoanAccountsActivity;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanaccountlist.LoanAccountsActivity;
 import com.mifos.apache.fineract.ui.views.HeaderView;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 import com.mifos.apache.fineract.utils.ImageLoaderUtils;

@@ -6,9 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 
 import com.mifos.apache.fineract.R;
-import com.mifos.apache.fineract.ui.online.loans.loanapplication.LoanDebtIncomeFragment;
-import com.mifos.apache.fineract.ui.online.loans.loanapplication.loancosigner.LoanCoSignerFragment;
-import com.mifos.apache.fineract.ui.online.loans.loanapplication.loandetails.LoanDetailsFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.LoanDebtIncomeFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.loancosigner.LoanCoSignerFragment;
+import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails.LoanDetailsFragment;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter;
 import com.stepstone.stepper.viewmodel.StepViewModel;
