@@ -40,7 +40,7 @@ public class MifosBaseDataManager {
             @Override
             public Observable<? extends T> apply(Throwable throwable) throws Exception {
                 // Here check if the error thrown really is a 403
-                if (ExceptionStatusCode.isHttp401Error(throwable)) {
+                if (ExceptionStatusCode.isHttp403Error(throwable)) {
                     preferencesHelper.putBoolean(PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, true);
                     return dataManagerAuth.refreshToken().concatMap(new Function<Authentication,
                             ObservableSource<? extends T>>() {
@@ -68,7 +68,7 @@ public class MifosBaseDataManager {
             @Override
             public CompletableSource apply(Throwable throwable) throws Exception {
                 // Here check if the error thrown really is a 403
-                if (ExceptionStatusCode.isHttp401Error(throwable)) {
+                if (ExceptionStatusCode.isHttp403Error(throwable)) {
                     preferencesHelper.putBoolean(PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, true);
                     return dataManagerAuth.refreshToken().flatMapCompletable(
                             new Function<Authentication, CompletableSource>() {
@@ -85,7 +85,7 @@ public class MifosBaseDataManager {
                             });
                 }
                 // re-throw this error because it's not recoverable from here
-                return null;
+                return Completable.error(throwable);
             }
         };
     }
