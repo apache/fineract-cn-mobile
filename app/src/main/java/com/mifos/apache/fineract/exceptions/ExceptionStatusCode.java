@@ -8,7 +8,7 @@ import retrofit2.HttpException;
  */
 public class ExceptionStatusCode {
 
-    public static Boolean isHttp401Error(Throwable throwable) {
+    public static Boolean isHttp403Error(Throwable throwable) {
         return ((HttpException) throwable).code() == 403;
     }
 }
