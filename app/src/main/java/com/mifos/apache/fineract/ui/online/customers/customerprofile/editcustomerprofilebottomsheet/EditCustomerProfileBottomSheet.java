@@ -1,4 +1,5 @@
-package com.mifos.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet;
+package com.mifos.apache.fineract.ui.online.customers.customerprofile
+        .editcustomerprofilebottomsheet;
 
 
 import android.Manifest;
@@ -139,11 +140,11 @@ public class EditCustomerProfileBottomSheet extends MifosBaseBottomSheetDialogFr
 
     @Override
     public void checkWriteExternalStoragePermission() {
-        if (CheckSelfPermissionAndRequest.checkSelfPermission(getActivity(),
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+        if (CheckSelfPermissionAndRequest.checkMultiplePermissions(getActivity(),
+                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)) {
             openCamera();
         } else {
-            requestWriteExternalStoragePermission();
+            requestWriteExternalStorageAndCameraPermission();
         }
     }
 
@@ -186,14 +187,26 @@ public class EditCustomerProfileBottomSheet extends MifosBaseBottomSheetDialogFr
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
-    public void requestWriteExternalStoragePermission() {
-        CheckSelfPermissionAndRequest.requestPermission(
-                (MifosBaseActivity) getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                ConstantKeys.PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE,
-                getResources().getString(
-                        R.string.dialog_message_write_permission_denied_prompt),
-                getResources().getString(R.string.dialog_message_write_permission_never_ask_again),
-                ConstantKeys.PERMISSIONS_WRITE_EXTERNAL_STORAGE_STATUS);
+    public void requestWriteExternalStorageAndCameraPermission() {
+        CheckSelfPermissionAndRequest.requestPermissions(
+                (MifosBaseActivity) getActivity(),
+                new String[]{
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA},
+                ConstantKeys.PERMISSION_REQUEST_ALL,
+                new String[]{
+                        getString(R.string.dialog_message_write_permission_denied_prompt),
+                        getString(R.string.
+                                dialog_message_camera_permission_for_portrait_denied_prompt)}
+                ,
+                new String[]{
+                        getString(R.string.dialog_message_write_permission_never_ask_again),
+                        getString(R.string
+                                .dialog_message_camera_permission_for_portrait_never_ask_again)}
+                ,
+                new String[]{ConstantKeys.PERMISSIONS_WRITE_EXTERNAL_STORAGE_STATUS,
+                        ConstantKeys.PERMISSIONS_CAMERA_STATUS}
+        );
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -243,12 +256,14 @@ public class EditCustomerProfileBottomSheet extends MifosBaseBottomSheetDialogFr
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
             @NonNull int[] grantResults) {
         switch (requestCode) {
-            case ConstantKeys.PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE:
+            case ConstantKeys.PERMISSION_REQUEST_ALL:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openCamera();
                 } else {
-                    Toaster.show(rootView, getString(R.string.permission_denied_write));
+                    String permissionDeniedMessage = getString(R.string.permission_denied_write) +
+                            getString(R.string.permission_denied_camera);
+                    Toaster.show(rootView, permissionDeniedMessage);
                 }
                 break;
 

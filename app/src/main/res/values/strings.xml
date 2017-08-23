@@ -268,6 +268,13 @@
     <string name="permission_denied_camera">Permission Denied to use Camera</string>
     <string name="permission_denied_write">Permission Denied to use external storage</string>
     <string name="permission_denied_read">Permission Denied to read external storage</string>
+    <string name="permission_denied">%1$s</string>
+    <string name="dialog_message_camera_permission_for_portrait_denied_prompt">Without camera permission you will
+        not be able to click photo. Are you sure you want to deny this
+        permission?</string>
+    <string name="dialog_message_camera_permission_for_portrait_never_ask_again">You have denied permission to
+        use camera, without this permission you will not be able to click photo.
+        Please enable it in settings</string>
     <string name="dialog_message_write_permission_for_share_denied_prompt">Without write permission you will
         not be able to share the image. Are you sure you want to deny this
         permission?</string>
