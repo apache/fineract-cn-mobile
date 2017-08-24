@@ -34,6 +34,7 @@ import com.mifos.apache.fineract.ui.online.loanaccounts.loanapplication.loandeta
 import com.mifos.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetailsFragment;
 import com.mifos.apache.fineract.ui.online.login.LoginActivity;
 import com.mifos.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentFragment;
+import com.mifos.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 
 import dagger.Subcomponent;
 
@@ -97,4 +98,6 @@ public interface ActivityComponent {
     void inject(CustomerActivitiesFragment customerActivitiesFragment);
 
     void inject(DashboardActivity dashboardActivity);
+
+    void inject(RolesFragment rolesFragment);
 }

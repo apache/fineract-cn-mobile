@@ -20,6 +20,7 @@
     <string name="manage_loan_accounts">Manage loan accounts</string>
     <string name="loan_accounts">Loan accounts</string>
     <string name="deposit_accounts">Deposit accounts</string>
+    <string name="roles_and_permissions">Roles/Permissions</string>
     <string name="manage_deposit_accounts">Manage deposit accounts</string>
     <string name="contact_information">Contact information</string>
     <string name="address">Address</string>
@@ -169,6 +170,7 @@
     <string name="no_beneficiary">No beneficiaries</string>
     <string name="activities_created_by_on">%1$s, %2$s</string>
     <string name="logout">Logout</string>
+    <string name="manage_roles">Manage roles</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>
@@ -199,6 +201,7 @@
     <string name="empty_income_to_show">There is no income to show</string>
     <string name="empty_scans_to_show">There is no scans to show</string>
     <string name="empty_customer_activities">There is no activities to show</string>
+    <string name="empty_roles">There is no roles to show</string>
 
     <!--Edit Text validations-->
     <string name="value_must_greater_or_equal_to">Value must be greater than or equal to&#160; %1$s</string>
@@ -239,6 +242,7 @@
     <string name="error_creating_deposit_account">Error creating deposit account</string>
     <string name="error_updating_deposit_account">Error updating deposit account</string>
     <string name="error_fetching_customer_activities">Error fetching customer activities</string>
+    <string name="error_fetching_roles">Error fetching roles</string>
 
 
     <!--Material Dialog-->
@@ -314,6 +318,7 @@
     <string name="mifos_logo_image">Mifos logo image</string>
     <string name="status_image">Status Image</string>
     <string name="customer_image">Customer image</string>
+    <string name="roles">Roles</string>
     <string name="calender_image">Calender image</string>
     <string name="colon">:&#160;</string>
     <string name="debt_income_edit_image">Debt edit delete image</string>

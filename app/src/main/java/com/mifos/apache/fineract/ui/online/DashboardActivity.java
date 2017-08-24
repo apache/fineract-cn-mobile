@@ -18,6 +18,7 @@ import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import com.mifos.apache.fineract.ui.online.dashboard.DashboardFragment;
 import com.mifos.apache.fineract.ui.online.launcher.LauncherActivity;
+import com.mifos.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import com.mifos.apache.fineract.utils.MaterialDialog;
 
 import javax.inject.Inject;
@@ -91,6 +92,9 @@ public class DashboardActivity extends MifosBaseActivity implements
         switch (item.getItemId()) {
             case R.id.item_dashboard:
                 replaceFragment(DashboardFragment.newInstance(), true, R.id.container);
+                break;
+            case R.id.item_roles:
+                replaceFragment(RolesFragment.newInstance(), true, R.id.container);
                 break;
             case R.id.item_customer:
                 replaceFragment(CustomersFragment.newInstance(), true, R.id.container);

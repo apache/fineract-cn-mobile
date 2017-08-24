@@ -26,6 +26,12 @@
         <Bug pattern="MS_MUTABLE_COLLECTION" />
     </Match>
 
+    <!--Ignore RV_ABSOLUTE_VALUE_OF_HASHCODE in ColorGenerator-->
+    <Match>
+        <Class name="com.mifos.apache.fineract.utils.ColorGenerator"/>
+        <Bug pattern="RV_ABSOLUTE_VALUE_OF_HASHCODE" />
+    </Match>
+
     <!-- Ignore DM_DEFAULT_ENCODING in TestDataFactory-->
     <Match>
         <Class name="com.mifos.apache.fineract.TestDataFactory" />
