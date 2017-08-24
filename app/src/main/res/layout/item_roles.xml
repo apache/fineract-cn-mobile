@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:id="@+id/ll_role"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/layout_padding_8dp">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/linearLayout"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/layout_padding_8dp"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/listPreferredItemHeight"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:contentDescription="@string/roles"
+            android:id="@+id/iv_role"
+            android:layout_gravity="center_vertical"
+            android:layout_height="45dp"
+            android:layout_width="45dp"
+            android:layout_marginLeft="@dimen/layout_padding_16dp"
+            android:layout_marginStart="@dimen/layout_padding_16dp"
+            app:srcCompat="@drawable/ic_account_circle_black_24dp"
+            />
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp">
+
+            <TextView
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                android:ellipsize="end"
+                android:id="@+id/tv_role_name"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:lines="1"
+                android:textColor="@color/black"
+                tools:text="Role Name"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:background="#c7c6c6"
+        android:layout_height="0.2dp"
+        android:layout_width="wrap_content"/>
+
+</LinearLayout>

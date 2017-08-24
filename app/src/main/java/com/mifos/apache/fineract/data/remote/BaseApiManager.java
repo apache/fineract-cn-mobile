@@ -8,6 +8,7 @@ import com.mifos.apache.fineract.data.services.CustomerService;
 import com.mifos.apache.fineract.data.services.DepositService;
 import com.mifos.apache.fineract.data.services.IndividualLendingService;
 import com.mifos.apache.fineract.data.services.LoanService;
+import com.mifos.apache.fineract.data.services.RolesService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,6 +34,7 @@ public class BaseApiManager {
     private static LoanService loanApi;
     private static IndividualLendingService individualLendingService;
     private static AnonymousService anonymousService;
+    private static RolesService rolesService;
 
 
     public BaseApiManager(Context context) {
@@ -46,6 +48,7 @@ public class BaseApiManager {
         depositApi = createApi(DepositService.class);
         loanApi = createApi(LoanService.class);
         individualLendingService = createApi(IndividualLendingService.class);
+        rolesService = createApi(RolesService.class);
     }
 
     private static void initAnonymous() {
@@ -120,5 +123,9 @@ public class BaseApiManager {
 
     public AnonymousService getAnonymousService() {
         return anonymousService;
+    }
+
+    public RolesService getRolesAndPermissionsService() {
+        return rolesService;
     }
 }

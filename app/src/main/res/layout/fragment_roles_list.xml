@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_roles"
+            android:layout_centerHorizontal="true"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <include
+        layout="@layout/layout_error"
+        android:id="@+id/rl_error"
+        android:visibility="gone"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:clickable="true"
+        android:id="@+id/fab_add_role"
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_padding_16dp"
+        android:layout_width="wrap_content"
+        app:layout_behavior="com.mifos.apache.fineract.utils.ScrollFabBehavior"
+        app:srcCompat="@drawable/ic_add_black_24dp"/>
+
+</android.support.design.widget.CoordinatorLayout>

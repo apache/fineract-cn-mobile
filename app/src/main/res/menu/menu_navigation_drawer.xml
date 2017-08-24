@@ -10,6 +10,13 @@
             android:icon="@drawable/ic_dashboard_black_24dp"
             android:id="@+id/item_dashboard"
             android:title="@string/dashboard"/>
+
+        <item
+            android:checked="true"
+            android:icon="@drawable/ic_lock_black_24dp"
+            android:id="@+id/item_roles"
+            android:title="@string/roles_and_permissions"/>
+
         <item
             android:checked="true"
             android:icon="@drawable/ic_customer_black_24dp"

@@ -10,6 +10,7 @@ import com.mifos.apache.fineract.data.datamanager.DataManagerCustomer;
 import com.mifos.apache.fineract.data.datamanager.DataManagerDeposit;
 import com.mifos.apache.fineract.data.datamanager.DataManagerIndividualLending;
 import com.mifos.apache.fineract.data.datamanager.DataManagerLoans;
+import com.mifos.apache.fineract.data.datamanager.DataManagerRoles;
 import com.mifos.apache.fineract.data.local.PreferencesHelper;
 import com.mifos.apache.fineract.data.remote.BaseApiManager;
 import com.mifos.apache.fineract.data.remote.MifosInterceptor;
@@ -34,6 +35,7 @@ public interface ApplicationComponent {
     DataManagerLoans dataManagerLoans();
     DataManagerIndividualLending dataManagerIndividualLending();
     DataManagerAnonymous dataManagerAnonymous();
+    DataManagerRoles dataManagerRolesAndPermissions();
     BaseApiManager baseApiManager();
     PreferencesHelper preferencesHelper();
 
