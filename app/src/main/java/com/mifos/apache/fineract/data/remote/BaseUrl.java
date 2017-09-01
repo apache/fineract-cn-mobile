@@ -10,7 +10,7 @@ package com.mifos.apache.fineract.data.remote;
  */
 public class BaseUrl {
 
-    public static final String PROTOCOL_HTTPS = "http://";
+    public static final String PROTOCOL_HTTPS = "https://";
     public static final String API_ENDPOINT = "pilot.kuelap.io";
     public static final String PORT = "80";
     // "/" in the last of the base url always
