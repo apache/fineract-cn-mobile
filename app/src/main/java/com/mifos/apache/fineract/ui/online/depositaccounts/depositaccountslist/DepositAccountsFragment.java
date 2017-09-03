@@ -8,9 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.mifos.apache.fineract.R;
 import com.mifos.apache.fineract.data.models.deposit.DepositAccount;
@@ -18,9 +15,13 @@ import com.mifos.apache.fineract.ui.adapters.CustomerDepositAdapter;
 import com.mifos.apache.fineract.ui.base.MifosBaseActivity;
 import com.mifos.apache.fineract.ui.base.MifosBaseFragment;
 import com.mifos.apache.fineract.ui.base.OnItemClickListener;
-import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity;
+import com.mifos.apache.fineract.ui.uierrorhandler.MifosUIErrorHandler;
+import com.mifos.apache.fineract.ui.uierrorhandler.UIType;
 import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
-import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails.DepositAccountDetailsFragment;
+import com.mifos.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .createdepositactivity.CreateDepositActivity;
+import com.mifos.apache.fineract.ui.online.depositaccounts.depositaccountdetails
+        .DepositAccountDetailsFragment;
 import com.mifos.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
@@ -42,14 +43,8 @@ public class DepositAccountsFragment extends MifosBaseFragment
     @BindView(R.id.rv_customers_deposit_accounts)
     RecyclerView rvCustomerDepositAccounts;
 
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
-
-    @BindView(R.id.iv_retry)
-    ImageView ivRetry;
-
-    @BindView(R.id.tv_error)
-    TextView tvError;
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @Inject
     DepositAccountsPresenter customerDepositPresenter;
@@ -61,6 +56,7 @@ public class DepositAccountsFragment extends MifosBaseFragment
 
     private String customerIdentifier;
     private List<DepositAccount> customerDepositAccounts;
+    private MifosUIErrorHandler mifosUIErrorHandler;
 
     public static DepositAccountsFragment newInstance(String customerIdentifier) {
         DepositAccountsFragment fragment = new DepositAccountsFragment();
@@ -85,6 +81,7 @@ public class DepositAccountsFragment extends MifosBaseFragment
         rootView = inflater.inflate(R.layout.fragment_customer_deposit, container, false);
         ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
+        mifosUIErrorHandler = new MifosUIErrorHandler(getActivity(), rootView);
         setToolbarTitle(getString(R.string.deposit_accounts));
 
         customerDepositPresenter.attachView(this);
@@ -98,12 +95,12 @@ public class DepositAccountsFragment extends MifosBaseFragment
     public void onResume() {
         super.onResume();
         rvCustomerDepositAccounts.setVisibility(View.GONE);
-        rlError.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
         customerDepositPresenter.fetchCustomerDepositAccounts(customerIdentifier);
     }
 
-    @OnClick(R.id.iv_retry)
-    void onRetry() {
+    @OnClick(R.id.btn_try_again)
+    public void reTry() {
         showRecyclerView(true);
         customerDepositPresenter.fetchCustomerDepositAccounts(customerIdentifier);
     }
@@ -134,19 +131,30 @@ public class DepositAccountsFragment extends MifosBaseFragment
     }
 
     @Override
+    public void showEmptyDepositAccounts() {
+        showRecyclerView(false);
+        mifosUIErrorHandler.showEmptyOrErrorUI(UIType.EMPTY_UI,
+                getString(R.string.deposit_accounts),
+                getString(R.string.deposit_account),
+                R.drawable.ic_monetization_on_black_24dp);
+    }
+
+    @Override
     public void showError(String errorMessage) {
         showRecyclerView(false);
-        tvError.setText(errorMessage);
+        mifosUIErrorHandler.showEmptyOrErrorUI(UIType.ERROR_UI,
+                getString(R.string.deposit_accounts),
+                null, null);
     }
 
     @Override
     public void showRecyclerView(boolean status) {
         if (status) {
             rvCustomerDepositAccounts.setVisibility(View.VISIBLE);
-            rlError.setVisibility(View.GONE);
+            layoutError.setVisibility(View.GONE);
         } else {
             rvCustomerDepositAccounts.setVisibility(View.GONE);
-            rlError.setVisibility(View.VISIBLE);
+            layoutError.setVisibility(View.VISIBLE);
         }
     }
 

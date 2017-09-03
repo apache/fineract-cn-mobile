@@ -171,6 +171,9 @@
     <string name="activities_created_by_on">%1$s, %2$s</string>
     <string name="logout">Logout</string>
     <string name="manage_roles">Manage roles</string>
+    <string name="try_again">Try Again</string>
+    <string name="empty_ui_message">No %1$s Found</string>
+    <string name="empty_ui_sub_message">Tap to add %1$s</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>
@@ -243,6 +246,7 @@
     <string name="error_updating_deposit_account">Error updating deposit account</string>
     <string name="error_fetching_customer_activities">Error fetching customer activities</string>
     <string name="error_fetching_roles">Error fetching roles</string>
+    <string name="error_sorry_not_able_to_load">Sorry we weren\'t able to load</string>
 
 
     <!--Material Dialog-->
