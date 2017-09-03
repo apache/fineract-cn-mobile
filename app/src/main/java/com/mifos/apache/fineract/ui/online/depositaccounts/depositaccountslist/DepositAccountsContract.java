@@ -17,6 +17,8 @@ public interface DepositAccountsContract {
 
         void showCustomerDeposits(List<DepositAccount> customerDepositAccounts);
 
+        void showEmptyDepositAccounts();
+
         void showError(String errorMessage);
 
         void showRecyclerView(boolean status);

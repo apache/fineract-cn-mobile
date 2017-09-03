@@ -59,7 +59,11 @@ public class DepositAccountsPresenter extends BasePresenter<DepositAccountsContr
                     @Override
                     public void onNext(List<DepositAccount> customerDepositAccounts) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showCustomerDeposits(customerDepositAccounts);
+                        if (!customerDepositAccounts.isEmpty()) {
+                            getMvpView().showCustomerDeposits(customerDepositAccounts);
+                        } else {
+                            getMvpView().showEmptyDepositAccounts();
+                        }
                     }
 
                     @Override
