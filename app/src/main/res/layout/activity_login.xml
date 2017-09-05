@@ -26,7 +26,7 @@
 
                 <ImageView
                     android:adjustViewBounds="true"
-                    android:contentDescription="@string/mifos_logo_image"
+                    android:contentDescription="@string/fineract_logo_image"
                     android:layout_gravity="center"
                     android:layout_height="@dimen/layout_padding_75dp"
                     android:layout_width="wrap_content"

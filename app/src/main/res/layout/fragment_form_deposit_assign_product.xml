@@ -65,7 +65,7 @@
                         android:layout_width="match_parent"
                         android:paddingBottom="@dimen/layout_padding_16dp">
 
-                        <com.mifos.apache.fineract.ui.views.DelayAutoCompleteTextView
+                        <org.apache.fineract.ui.views.DelayAutoCompleteTextView
                             android:hint="@string/search_beneficiary"
                             android:id="@+id/et_search_beneficiary"
                             android:inputType="textCapSentences"

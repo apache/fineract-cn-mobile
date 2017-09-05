@@ -649,7 +649,7 @@
         android:id="@+id/float_header_view"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        app:layout_behavior="com.mifos.apache.fineract.ui.views.ViewBehavior"
+        app:layout_behavior="org.apache.fineract.ui.views.ViewBehavior"
     />
 
     <android.support.design.widget.FloatingActionButton
