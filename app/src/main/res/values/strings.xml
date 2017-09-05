@@ -7,7 +7,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="mifos_account">Mifos Account</string>
+    <string name="fineract_account">Fineract Account</string>
     <string name="welcome">Welcome</string>
     <string name="no_internet_connection">No Internet Connection!</string>
     <string name="wrong_username_or_password">Wrong username or password</string>
@@ -319,7 +319,7 @@
 
     <!--Image Content description-->
     <!--Don't need to translate these strings-->
-    <string name="mifos_logo_image">Mifos logo image</string>
+    <string name="fineract_logo_image">Fineract logo image</string>
     <string name="status_image">Status Image</string>
     <string name="customer_image">Customer image</string>
     <string name="roles">Roles</string>

@@ -3,14 +3,14 @@ package org.apache.fineract.ui.online.customers.customeractivities;
 import android.os.Bundle;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.utils.ConstantKeys;
 
 /**
  * @author Rajan Maurya
  *         On 15/08/17.
  */
-public class CustomerActivitiesActivity extends MifosBaseActivity {
+public class CustomerActivitiesActivity extends FineractBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

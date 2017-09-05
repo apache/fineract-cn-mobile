@@ -23,8 +23,8 @@ import android.view.View;
 import android.widget.EditText;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseBottomSheetDialogFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseBottomSheetDialogFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.utils.CheckSelfPermissionAndRequest;
 import org.apache.fineract.utils.ConstantKeys;
@@ -45,7 +45,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 01/08/17.
  */
-public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDialogFragment
+public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheetDialogFragment
         implements UploadIdentificationCardContract.View, TextWatcher {
 
     public static final String LOG_TAG = UploadIdentificationCardBottomSheet.class.getSimpleName();
@@ -90,7 +90,7 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
                 R.layout.bottom_sheet_upload_identification_scan_card, null);
         dialog.setContentView(rootView);
         behavior = BottomSheetBehavior.from((View) rootView.getParent());
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         uploadIdentificationCardPresenter.attachView(this);
         ButterKnife.bind(this, rootView);
 
@@ -158,7 +158,7 @@ public class UploadIdentificationCardBottomSheet extends MifosBaseBottomSheetDia
     @Override
     public void requestPermission() {
         CheckSelfPermissionAndRequest.requestPermission(
-                (MifosBaseActivity) getActivity(),
+                (FineractBaseActivity) getActivity(),
                 Manifest.permission.CAMERA,
                 ConstantKeys.PERMISSIONS_REQUEST_CAMERA,
                 getResources().getString(

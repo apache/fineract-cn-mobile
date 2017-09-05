@@ -27,8 +27,8 @@ import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.PaymentCycle;
 import org.apache.fineract.data.models.loan.TermRange;
 import org.apache.fineract.data.models.product.Product;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
 import org.apache.fineract.utils.Utils;
@@ -49,7 +49,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 17/07/17.
  */
-public class LoanDetailsFragment extends MifosBaseFragment implements Step,
+public class LoanDetailsFragment extends FineractBaseFragment implements Step,
         LoanDetailsContract.View, AdapterView.OnItemSelectedListener, TextWatcher {
 
     public static final String LOG_TAG = LoanDetailsFragment.class.getSimpleName();
@@ -149,7 +149,7 @@ public class LoanDetailsFragment extends MifosBaseFragment implements Step,
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         setRetainInstance(true);
         products = new ArrayList<>();
         ternUnitType = new ArrayList<>();

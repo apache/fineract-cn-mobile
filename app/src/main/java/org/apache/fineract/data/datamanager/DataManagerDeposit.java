@@ -18,7 +18,7 @@ import io.reactivex.Observable;
  *         On 07/07/17.
  */
 @Singleton
-public class DataManagerDeposit extends MifosBaseDataManager {
+public class DataManagerDeposit extends FineractBaseDataManager {
 
     private final BaseApiManager baseApiManager;
     private final PreferencesHelper preferencesHelper;

@@ -19,8 +19,8 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Address;
 import org.apache.fineract.data.models.customer.ContactDetail;
 import org.apache.fineract.data.models.customer.Customer;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
@@ -47,7 +47,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 26/06/17.
  */
-public class CustomerDetailsFragment extends MifosBaseFragment
+public class CustomerDetailsFragment extends FineractBaseFragment
         implements AppBarLayout.OnOffsetChangedListener, CustomerDetailsContract.View,
         OnTasksChangeListener {
 
@@ -139,7 +139,7 @@ public class CustomerDetailsFragment extends MifosBaseFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_details, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         customerDetailsPresenter.attachView(this);
 

@@ -14,8 +14,8 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.CreditWorthinessFactor;
 import org.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
 import org.apache.fineract.ui.adapters.DebtIncomeReportAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.Utils;
 
@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 30/07/17.
  */
-public class DebtIncomeReportFragment extends MifosBaseFragment {
+public class DebtIncomeReportFragment extends FineractBaseFragment {
 
     @BindView(R.id.rv_debt)
     RecyclerView rvDebt;
@@ -82,7 +82,7 @@ public class DebtIncomeReportFragment extends MifosBaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_debt_income_report, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
 
         showUserInterface();

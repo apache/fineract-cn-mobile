@@ -9,7 +9,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import org.apache.fineract.utils.ProgressBarHandler;
 
-public class MifosBaseFragment extends Fragment {
+public class FineractBaseFragment extends Fragment {
 
     private BaseActivityCallback callback;
     private ProgressBarHandler progressBarHandler;

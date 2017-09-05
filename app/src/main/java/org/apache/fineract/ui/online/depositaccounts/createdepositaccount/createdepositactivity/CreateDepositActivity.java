@@ -9,7 +9,7 @@ import com.stepstone.stepper.VerificationError;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.deposit.DepositAccount;
 import org.apache.fineract.ui.adapters.CreateDepositStepAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 13/08/17.
  */
-public class CreateDepositActivity extends MifosBaseActivity implements
+public class CreateDepositActivity extends FineractBaseActivity implements
         StepperLayout.StepperListener, DepositOnNavigationBarListener.ProductInstanceDetails,
         CreateDepositContract.View {
 

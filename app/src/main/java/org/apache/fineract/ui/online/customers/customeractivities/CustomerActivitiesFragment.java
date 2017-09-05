@@ -16,8 +16,8 @@ import android.widget.TextView;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.ui.adapters.CustomerActivitiesAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.utils.ConstantKeys;
 
 import java.util.List;
@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 15/08/17.
  */
-public class CustomerActivitiesFragment extends MifosBaseFragment implements
+public class CustomerActivitiesFragment extends FineractBaseFragment implements
         CustomerActivitiesContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.rv_customer_activities)
@@ -71,7 +71,7 @@ public class CustomerActivitiesFragment extends MifosBaseFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         if (getArguments() != null) {
             customerIdentifier = getArguments().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
         }

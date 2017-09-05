@@ -13,7 +13,7 @@ import com.stepstone.stepper.VerificationError;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.identification.Identification;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 31/07/17.
  */
-public class FormOverViewIdentificationFragment extends MifosBaseFragment implements Step,
+public class FormOverViewIdentificationFragment extends FineractBaseFragment implements Step,
         OverViewContract {
 
     public static final String DATE_FORMAT = "dd MMM yyyy";

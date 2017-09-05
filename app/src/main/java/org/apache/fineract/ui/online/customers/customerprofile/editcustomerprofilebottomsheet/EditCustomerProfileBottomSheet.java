@@ -25,8 +25,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseBottomSheetDialogFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseBottomSheetDialogFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.refreshcallback.RefreshProfileImage;
 import org.apache.fineract.utils.CheckSelfPermissionAndRequest;
@@ -47,7 +47,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * @author Rajan Maurya
  *         On 06/08/17.
  */
-public class EditCustomerProfileBottomSheet extends MifosBaseBottomSheetDialogFragment
+public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialogFragment
         implements EditCustomerProfileContract.View, View.OnClickListener {
 
     public static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -108,7 +108,7 @@ public class EditCustomerProfileBottomSheet extends MifosBaseBottomSheetDialogFr
                 R.layout.bottom_sheet_edit_customer_profile, null);
         dialog.setContentView(rootView);
         behavior = BottomSheetBehavior.from((View) rootView.getParent());
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         editCustomerProfilePresenter.attachView(this);
         ButterKnife.bind(this, rootView);
 
@@ -189,7 +189,7 @@ public class EditCustomerProfileBottomSheet extends MifosBaseBottomSheetDialogFr
     @Override
     public void requestWriteExternalStorageAndCameraPermission() {
         CheckSelfPermissionAndRequest.requestPermissions(
-                (MifosBaseActivity) getActivity(),
+                (FineractBaseActivity) getActivity(),
                 new String[]{
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.CAMERA},
@@ -213,7 +213,7 @@ public class EditCustomerProfileBottomSheet extends MifosBaseBottomSheetDialogFr
     @Override
     public void requestReadExternalStoragePermission() {
         CheckSelfPermissionAndRequest.requestPermission(
-                (MifosBaseActivity) getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE,
+                (FineractBaseActivity) getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE,
                 ConstantKeys.PERMISSION_REQUEST_READ_EXTERNAL_STORAGE,
                 getResources().getString(
                         R.string.dialog_message_read_permission_denied_prompt),

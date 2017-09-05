@@ -10,7 +10,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.CreditWorthinessFactor;
 import org.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
 import org.apache.fineract.ui.adapters.ViewPagerAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.Utils;
 
@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 30/07/17.
  */
-public class DebtIncomeReportActivity extends MifosBaseActivity {
+public class DebtIncomeReportActivity extends FineractBaseActivity {
 
     @BindView(R.id.tl_debt_income)
     TabLayout tlDebtIncome;

@@ -9,7 +9,7 @@ import android.widget.Toast;
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.Authentication;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.online.DashboardActivity;
 
 import javax.inject.Inject;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
  *         On 17/06/17.
  */
 //TODO Write documentation
-public class LoginActivity extends MifosBaseActivity implements LoginContract.View {
+public class LoginActivity extends FineractBaseActivity implements LoginContract.View {
 
     @BindView(R.id.et_tenant)
     EditText etTenant;
@@ -47,7 +47,7 @@ public class LoginActivity extends MifosBaseActivity implements LoginContract.Vi
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         loginPresenter.attachView(this);
-        setActionBarTitle(getString(R.string.mifos_account));
+        setActionBarTitle(getString(R.string.fineract_account));
         preferencesHelper.clear();
     }
 

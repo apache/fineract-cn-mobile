@@ -22,7 +22,7 @@ import okhttp3.MultipartBody;
  *         On 20/06/17.
  */
 @Singleton
-public class DataManagerCustomer extends MifosBaseDataManager {
+public class DataManagerCustomer extends FineractBaseDataManager {
 
     private final BaseApiManager baseApiManager;
     private final PreferencesHelper preferencesHelper;

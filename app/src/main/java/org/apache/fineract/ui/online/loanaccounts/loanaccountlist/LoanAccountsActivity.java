@@ -3,14 +3,14 @@ package org.apache.fineract.ui.online.loanaccounts.loanaccountlist;
 import android.os.Bundle;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.utils.ConstantKeys;
 
 /**
  * @author Rajan Maurya
  *         On 07/07/17.
  */
-public class LoanAccountsActivity extends MifosBaseActivity {
+public class LoanAccountsActivity extends FineractBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

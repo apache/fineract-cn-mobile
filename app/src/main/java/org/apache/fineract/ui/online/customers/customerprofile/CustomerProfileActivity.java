@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet
         .EditCustomerProfileBottomSheet;
@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 06/08/17.
  */
-public class CustomerProfileActivity extends MifosBaseActivity
+public class CustomerProfileActivity extends FineractBaseActivity
         implements CustomerProfileContract.View, RefreshProfileImage {
 
     @BindView(R.id.iv_customer_picture)

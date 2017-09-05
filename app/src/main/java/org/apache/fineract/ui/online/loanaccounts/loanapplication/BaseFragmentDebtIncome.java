@@ -13,8 +13,8 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.CreditWorthinessFactor;
 import org.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
 import org.apache.fineract.ui.adapters.LoanDebtIncomeAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 19/07/17.
  */
-public abstract class BaseFragmentDebtIncome extends MifosBaseFragment implements
+public abstract class BaseFragmentDebtIncome extends FineractBaseFragment implements
         OnBottomSheetDialogListener.AddDebt, OnBottomSheetDialogListener.AddIncome,
         LoanDebtIncomeAdapter.OnClickEditDeleteListener {
 
@@ -84,7 +84,7 @@ public abstract class BaseFragmentDebtIncome extends MifosBaseFragment implement
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(getFragmentLayout(), container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
 
         showUserInterface();

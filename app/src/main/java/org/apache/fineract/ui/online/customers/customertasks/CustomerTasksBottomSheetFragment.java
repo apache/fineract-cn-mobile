@@ -18,8 +18,8 @@ import android.widget.Toast;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.customer.Customer;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseBottomSheetDialogFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseBottomSheetDialogFragment;
 import org.apache.fineract.ui.base.Toaster;
 
 import javax.inject.Inject;
@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 27/07/17.
  */
-public class CustomerTasksBottomSheetFragment extends MifosBaseBottomSheetDialogFragment
+public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDialogFragment
         implements CustomerTasksBottomSheetContract.View {
 
     @BindView(R.id.iv_task1)
@@ -86,7 +86,7 @@ public class CustomerTasksBottomSheetFragment extends MifosBaseBottomSheetDialog
         rootView = View.inflate(getContext(), R.layout.bottom_sheet_task_list, null);
         dialog.setContentView(rootView);
         behavior = BottomSheetBehavior.from((View) rootView.getParent());
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         tasksBottomSheetPresenter.attachView(this);
         ButterKnife.bind(this, rootView);
         command = new Command();

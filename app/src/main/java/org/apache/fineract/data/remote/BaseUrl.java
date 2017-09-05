@@ -16,7 +16,7 @@ public class BaseUrl {
     // "/" in the last of the base url always
 
     public String getName() {
-        return "mifos";
+        return "fineract";
     }
 
     public static String getDefaultBaseUrl() {

@@ -14,7 +14,7 @@ import org.apache.fineract.data.models.customer.ContactDetail;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.customer.DateOfBirth;
 import org.apache.fineract.ui.adapters.CreateCustomerStepAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.OnNavigationBarListener;
@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 25/07/17.
  */
-public class CreateCustomerActivity extends MifosBaseActivity
+public class CreateCustomerActivity extends FineractBaseActivity
         implements StepperLayout.StepperListener, OnNavigationBarListener.CustomerDetails,
         OnNavigationBarListener.CustomerAddress, CreateCustomerContract.View,
         OnNavigationBarListener.CustomerContactDetails {

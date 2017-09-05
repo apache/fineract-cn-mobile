@@ -15,7 +15,7 @@ import org.apache.fineract.data.models.loan.LoanParameters;
 import org.apache.fineract.data.models.loan.PaymentCycle;
 import org.apache.fineract.data.models.loan.TermRange;
 import org.apache.fineract.ui.adapters.LoanApplicationStepAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
 import org.apache.fineract.utils.ConstantKeys;
@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 17/07/17.
  */
-public class LoanApplicationActivity extends MifosBaseActivity
+public class LoanApplicationActivity extends FineractBaseActivity
         implements StepperLayout.StepperListener, OnNavigationBarListener.LoanDetailsData,
         OnNavigationBarListener.LoanDebtIncomeData, OnNavigationBarListener.LoanCoSignerData,
         LoanApplicationContract.View {

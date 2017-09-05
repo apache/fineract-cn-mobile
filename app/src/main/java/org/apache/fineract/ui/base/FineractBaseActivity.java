@@ -12,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import org.apache.fineract.MifosApplication;
+import org.apache.fineract.FineractApplication;
 import org.apache.fineract.R;
 import org.apache.fineract.injection.component.ActivityComponent;
 import org.apache.fineract.injection.component.ConfigPersistentComponent;
@@ -29,7 +29,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * creation of Dagger components and makes sure that instances of ConfigPersistentComponent survive
  * across configuration changes.
  */
-public class MifosBaseActivity extends AppCompatActivity implements BaseActivityCallback {
+public class FineractBaseActivity extends AppCompatActivity implements BaseActivityCallback {
 
     private static final String KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID";
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
@@ -60,7 +60,7 @@ public class MifosBaseActivity extends AppCompatActivity implements BaseActivity
         ConfigPersistentComponent configPersistentComponent;
         if (!sComponentsMap.containsKey(activityId)) {
             configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(MifosApplication.get(this).getComponent())
+                    .applicationComponent(FineractApplication.get(this).getComponent())
                     .build();
             sComponentsMap.put(activityId, configPersistentComponent);
         } else {

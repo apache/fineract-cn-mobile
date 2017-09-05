@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.identification.identificationlist;
 import android.os.Bundle;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.utils.ConstantKeys;
 
 /**
@@ -11,7 +11,7 @@ import org.apache.fineract.utils.ConstantKeys;
  *         On 31/07/17.
  */
 
-public class IdentificationsActivity extends MifosBaseActivity {
+public class IdentificationsActivity extends FineractBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

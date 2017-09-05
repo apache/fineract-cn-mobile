@@ -12,7 +12,7 @@ import com.stepstone.stepper.VerificationError;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.identification.Identification;
 import org.apache.fineract.ui.adapters.CreateIdentificationStepAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.identification.createidentification.Action;
 import org.apache.fineract.ui.online.identification.createidentification.OnNavigationBarListener;
@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 31/07/17.
  */
-public class CreateIdentificationActivity extends MifosBaseActivity
+public class CreateIdentificationActivity extends FineractBaseActivity
         implements StepperLayout.StepperListener, CreateIdentificationContract.View,
         OnNavigationBarListener.IdentificationCard {
 

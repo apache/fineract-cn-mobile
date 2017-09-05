@@ -23,8 +23,8 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.identification.Identification;
 import org.apache.fineract.data.models.customer.identification.ScanCard;
 import org.apache.fineract.ui.adapters.IdentificationScanAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.online.identification.createidentification.Action;
 import org.apache.fineract.ui.online.identification.createidentification.identificationactivity
         .CreateIdentificationActivity;
@@ -51,7 +51,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 01/08/17.
  */
-public class IdentificationDetailsFragment extends MifosBaseFragment
+public class IdentificationDetailsFragment extends FineractBaseFragment
         implements IdentificationDetailsContract.View,
         IdentificationScanAdapter.OnItemClickListener, AddScanIdentificationListener {
 
@@ -118,7 +118,7 @@ public class IdentificationDetailsFragment extends MifosBaseFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_identification_details, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         identificationDetailsPresenter.attachView(this);
 

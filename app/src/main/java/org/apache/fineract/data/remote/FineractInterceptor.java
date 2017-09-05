@@ -9,7 +9,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
-import org.apache.fineract.MifosApplication;
+import org.apache.fineract.FineractApplication;
 import org.apache.fineract.data.local.PreferenceKey;
 import org.apache.fineract.data.local.PreferencesHelper;
 
@@ -27,7 +27,7 @@ import okhttp3.Response;
  * @author Rajan Maurya
  * @since 17/03/2017
  */
-public class MifosInterceptor implements Interceptor {
+public class FineractInterceptor implements Interceptor {
 
     public static final String HEADER_TENANT = "X-Tenant-Identifier";
     public static final String HEADER_AUTH = "Authorization";
@@ -38,8 +38,8 @@ public class MifosInterceptor implements Interceptor {
     @Inject
     PreferencesHelper preferencesHelper;
 
-    public MifosInterceptor(Context context) {
-        MifosApplication.get(context).getComponent().inject(this);
+    public FineractInterceptor(Context context) {
+        FineractApplication.get(context).getComponent().inject(this);
     }
 
     @Override

@@ -15,8 +15,8 @@ import android.widget.TextView;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.identification.Identification;
 import org.apache.fineract.ui.adapters.IdentificationAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.identification.createidentification.Action;
@@ -39,7 +39,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 31/07/17.
  */
-public class IdentificationsFragment extends MifosBaseFragment implements
+public class IdentificationsFragment extends FineractBaseFragment implements
         IdentificationsContract.View, OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.rv_identifications)
@@ -87,7 +87,7 @@ public class IdentificationsFragment extends MifosBaseFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_identification_list, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         identificationsPresenter.attachView(this);
         ButterKnife.bind(this, rootView);
 
@@ -167,7 +167,7 @@ public class IdentificationsFragment extends MifosBaseFragment implements
 
     @Override
     public void onItemClick(View childView, int position) {
-        ((MifosBaseActivity) getActivity()).replaceFragment(
+        ((FineractBaseActivity) getActivity()).replaceFragment(
                 IdentificationDetailsFragment.newInstance(customerIdentifier,
                         identificationAdapter.getItem(position)), true, R.id.container);
     }

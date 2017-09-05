@@ -65,7 +65,7 @@ public class BaseApiManager {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(new MifosOkHttpClient(context).getMifosOkHttpClient())
+                .client(new FineractOkHttpClient(context).getFineractOkHttpClient())
                 .build();
         init();
     }

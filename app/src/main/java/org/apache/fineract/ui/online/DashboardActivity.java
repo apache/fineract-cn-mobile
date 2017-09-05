@@ -14,7 +14,7 @@ import android.view.View;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
@@ -30,7 +30,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 19/06/17.
  */
-public class DashboardActivity extends MifosBaseActivity implements
+public class DashboardActivity extends FineractBaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
     public static final String LOG_TAG = DashboardActivity.class.getSimpleName();

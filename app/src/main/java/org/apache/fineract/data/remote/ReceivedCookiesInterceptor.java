@@ -2,7 +2,7 @@ package org.apache.fineract.data.remote;
 
 import android.content.Context;
 
-import org.apache.fineract.MifosApplication;
+import org.apache.fineract.FineractApplication;
 import org.apache.fineract.data.local.PreferenceKey;
 import org.apache.fineract.data.local.PreferencesHelper;
 
@@ -20,7 +20,7 @@ public class ReceivedCookiesInterceptor implements Interceptor {
     PreferencesHelper preferencesHelper;
 
     public ReceivedCookiesInterceptor(Context context) {
-        MifosApplication.get(context).getComponent().inject(this);
+        FineractApplication.get(context).getComponent().inject(this);
     }
 
     @Override

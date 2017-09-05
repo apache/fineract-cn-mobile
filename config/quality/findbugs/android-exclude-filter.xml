@@ -16,13 +16,13 @@
 
     <!--Ignore the static App.java instance initialization-->
     <Match>
-        <Class name="org.apache.fineract.MifosApplication"/>
+        <Class name="org.apache.fineract.FineractApplication"/>
         <Bug pattern="ST_WRITE_TO_STATIC_FROM_INSTANCE_METHOD" />
     </Match>
 
     <!--Ignore MS_MUTABLE_COLLECTION in App.java-->
     <Match>
-        <Class name="org.apache.fineract.MifosApplication"/>
+        <Class name="org.apache.fineract.FineractApplication"/>
         <Bug pattern="MS_MUTABLE_COLLECTION" />
     </Match>
 

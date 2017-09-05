@@ -18,8 +18,8 @@ import android.widget.TextView;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.payment.PlannedPayment;
 import org.apache.fineract.ui.adapters.PlannedPaymentAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.DateUtils;
@@ -39,7 +39,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 13/07/17.
  */
-public class PlannedPaymentFragment extends MifosBaseFragment
+public class PlannedPaymentFragment extends FineractBaseFragment
         implements PlannedPaymentContract.View, SwipeRefreshLayout.OnRefreshListener,
         CalendarView.OnDateChangeListener {
 
@@ -105,7 +105,7 @@ public class PlannedPaymentFragment extends MifosBaseFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_planned_payment, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         plannedPaymentPresenter.attachView(this);
 

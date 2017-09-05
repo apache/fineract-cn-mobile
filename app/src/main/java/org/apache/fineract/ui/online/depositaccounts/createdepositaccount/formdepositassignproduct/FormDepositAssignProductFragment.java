@@ -26,8 +26,8 @@ import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.deposit.DepositAccount;
 import org.apache.fineract.ui.adapters.BeneficiaryAdapter;
 import org.apache.fineract.ui.adapters.BeneficiaryAutoCompleteAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
         .DepositOnNavigationBarListener;
@@ -46,7 +46,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 13/08/17.
  */
-public class FormDepositAssignProductFragment extends MifosBaseFragment implements Step,
+public class FormDepositAssignProductFragment extends FineractBaseFragment implements Step,
         FormDepositAssignProductContract.View, AdapterView.OnItemSelectedListener,
         AdapterView.OnItemClickListener {
 
@@ -104,7 +104,7 @@ public class FormDepositAssignProductFragment extends MifosBaseFragment implemen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         products = new ArrayList<>();
         depositAccount = new DepositAccount();
         if (getArguments() != null) {

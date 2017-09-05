@@ -22,7 +22,7 @@ import com.stepstone.stepper.VerificationError;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.identification.ExpirationDate;
 import org.apache.fineract.data.models.customer.identification.Identification;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.utils.ConstantKeys;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 31/07/17.
  */
-public class FormIdentificationDetailsFragment extends MifosBaseFragment implements Step,
+public class FormIdentificationDetailsFragment extends FineractBaseFragment implements Step,
         TextWatcher {
 
     public static final String DATE_FORMAT = "dd MMM yyyy";

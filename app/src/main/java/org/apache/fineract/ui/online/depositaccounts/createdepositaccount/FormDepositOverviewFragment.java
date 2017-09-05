@@ -17,8 +17,8 @@ import com.stepstone.stepper.VerificationError;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.deposit.DepositAccount;
 import org.apache.fineract.ui.adapters.BeneficiaryAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 
 import javax.inject.Inject;
 
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 13/08/17.
  */
-public class FormDepositOverviewFragment extends MifosBaseFragment implements Step,
+public class FormDepositOverviewFragment extends FineractBaseFragment implements Step,
         DepositOverViewContract {
 
     @BindView(R.id.tv_product)
@@ -59,7 +59,7 @@ public class FormDepositOverviewFragment extends MifosBaseFragment implements St
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
     }
 
     @Nullable

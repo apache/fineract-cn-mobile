@@ -14,8 +14,8 @@ import android.widget.TextView;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.deposit.DepositAccount;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity
@@ -33,7 +33,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 12/07/17.
  */
-public class DepositAccountDetailsFragment extends MifosBaseFragment
+public class DepositAccountDetailsFragment extends FineractBaseFragment
         implements DepositAccountDetailsContract.View {
 
     @BindView(R.id.cl_customer_deposit_details)
@@ -91,7 +91,7 @@ public class DepositAccountDetailsFragment extends MifosBaseFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_deposit_details, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         customerDepositDetailsPresenter.attachView(this);
         setToolbarTitle(getString(R.string.deposit_account));

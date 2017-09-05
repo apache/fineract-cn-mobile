@@ -14,7 +14,7 @@ import org.apache.fineract.utils.ProgressBarHandler;
  * @author Rajan Maurya
  *         On 28/07/17.
  */
-public class MifosBaseBottomSheetDialogFragment extends BottomSheetDialogFragment {
+public class FineractBaseBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
     private BaseActivityCallback callback;
     private ProgressBarHandler progressBarHandler;

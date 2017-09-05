@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
         .CreateCustomerActivity;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 27/07/17.
  */
-public class DashboardFragment extends MifosBaseFragment {
+public class DashboardFragment extends FineractBaseFragment {
 
     View rootView;
 
@@ -45,7 +45,8 @@ public class DashboardFragment extends MifosBaseFragment {
 
     @OnClick(R.id.btn_view_customer)
     void viewCustomer() {
-        ((MifosBaseActivity) getActivity()).replaceFragment(CustomersFragment.newInstance(), true,
+        ((FineractBaseActivity) getActivity()).replaceFragment(CustomersFragment.newInstance(),
+                true,
                 R.id.container);
     }
 

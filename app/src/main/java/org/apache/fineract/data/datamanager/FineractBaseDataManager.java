@@ -15,12 +15,12 @@ import io.reactivex.functions.Function;
  * @author Rajan Maurya
  *         On 20/08/17.
  */
-public class MifosBaseDataManager {
+public class FineractBaseDataManager {
 
     private DataManagerAuth dataManagerAuth;
     private PreferencesHelper preferencesHelper;
 
-    public MifosBaseDataManager(DataManagerAuth dataManagerAuth,
+    public FineractBaseDataManager(DataManagerAuth dataManagerAuth,
             PreferencesHelper preferencesHelper) {
         this.dataManagerAuth = dataManagerAuth;
         this.preferencesHelper = preferencesHelper;

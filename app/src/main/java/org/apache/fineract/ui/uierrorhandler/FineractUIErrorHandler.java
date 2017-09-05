@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 03/09/17.
  */
-public class MifosUIErrorHandler {
+public class FineractUIErrorHandler {
 
     private ImageView ivEmptyFeatureImage;
     private TextView tvFeatureName;
@@ -27,7 +27,7 @@ public class MifosUIErrorHandler {
     private Context context;
     private View view;
 
-    public MifosUIErrorHandler(Context context, View view) {
+    public FineractUIErrorHandler(Context context, View view) {
         this.context = context;
         this.view = view;
         initializeUI();

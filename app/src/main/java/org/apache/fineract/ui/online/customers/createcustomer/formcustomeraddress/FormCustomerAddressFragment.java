@@ -22,8 +22,8 @@ import com.stepstone.stepper.VerificationError;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Address;
 import org.apache.fineract.data.models.customer.Customer;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.OnNavigationBarListener;
@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 25/07/17.
  */
-public class FormCustomerAddressFragment extends MifosBaseFragment implements Step, TextWatcher,
+public class FormCustomerAddressFragment extends FineractBaseFragment implements Step, TextWatcher,
         FormCustomerAddressContract.View, View.OnFocusChangeListener {
 
     @BindView(R.id.til_street)
@@ -97,7 +97,7 @@ public class FormCustomerAddressFragment extends MifosBaseFragment implements St
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         setRetainInstance(true);
         if (getArguments() != null) {
             customer = getArguments().getParcelable(ConstantKeys.CUSTOMER);

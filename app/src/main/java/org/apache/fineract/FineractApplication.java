@@ -16,11 +16,11 @@ import io.fabric.sdk.android.Fabric;
  * On 16/03/17.
  */
 
-public class MifosApplication extends Application {
+public class FineractApplication extends Application {
 
     ApplicationComponent applicationComponent;
 
-    private static MifosApplication instance;
+    private static FineractApplication instance;
 
     @Override
     public void onCreate() {
@@ -33,8 +33,8 @@ public class MifosApplication extends Application {
         return instance;
     }
 
-    public static MifosApplication get(Context context) {
-        return (MifosApplication) context.getApplicationContext();
+    public static FineractApplication get(Context context) {
+        return (FineractApplication) context.getApplicationContext();
     }
 
     public ApplicationComponent getComponent() {

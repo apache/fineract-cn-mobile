@@ -7,7 +7,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferenceKey;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.Authentication;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.online.DashboardActivity;
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.utils.DateUtils;
@@ -18,7 +18,7 @@ import javax.inject.Inject;
  * @author Rajan Maurya
  *         On 18/06/17.
  */
-public class LauncherActivity extends MifosBaseActivity implements LauncherContract.View {
+public class LauncherActivity extends FineractBaseActivity implements LauncherContract.View {
 
     public static final String LOG_TAG = LauncherActivity.class.getSimpleName();
 

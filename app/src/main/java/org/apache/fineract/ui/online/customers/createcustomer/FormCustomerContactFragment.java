@@ -20,7 +20,7 @@ import com.stepstone.stepper.VerificationError;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.ContactDetail;
 import org.apache.fineract.data.models.customer.Customer;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 25/07/17.
  */
-public class FormCustomerContactFragment extends MifosBaseFragment implements Step, TextWatcher {
+public class FormCustomerContactFragment extends FineractBaseFragment implements Step, TextWatcher {
 
     @BindView(R.id.til_email)
     TextInputLayout tilEmail;

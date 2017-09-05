@@ -19,8 +19,8 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.adapters.CustomerAdapter;
 import org.apache.fineract.ui.base.EndlessRecyclerViewScrollListener;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
@@ -42,7 +42,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 20/06/17.
  */
-public class CustomersFragment extends MifosBaseFragment implements CustomersContract.View,
+public class CustomersFragment extends FineractBaseFragment implements CustomersContract.View,
         SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     private static final Integer CUSTOMER_STATUS = 1;
@@ -91,7 +91,7 @@ public class CustomersFragment extends MifosBaseFragment implements CustomersCon
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_list, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         customerPresenter.attachView(this);
         setToolbarTitle(getString(R.string.customers));

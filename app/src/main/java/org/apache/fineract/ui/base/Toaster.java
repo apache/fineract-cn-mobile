@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import org.apache.fineract.MifosApplication;
+import org.apache.fineract.FineractApplication;
 
 public class Toaster {
 
@@ -54,7 +54,7 @@ public class Toaster {
     }
 
     public static void show(View view, int res, int duration) {
-        show(view, MifosApplication.getContext().getResources().getString(res), duration);
+        show(view, FineractApplication.getContext().getResources().getString(res), duration);
     }
 
     public static void show(View view, String text) {
@@ -62,6 +62,6 @@ public class Toaster {
     }
 
     public static void show(View view, int res) {
-        show(view, MifosApplication.getContext().getResources().getString(res));
+        show(view, FineractApplication.getContext().getResources().getString(res));
     }
 }

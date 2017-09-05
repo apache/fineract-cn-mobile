@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.identification.ScanCard;
 import org.apache.fineract.ui.adapters.ViewPagerAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.Utils;
 
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 03/08/17.
  */
-public class ViewScanCardActivity extends MifosBaseActivity implements
+public class ViewScanCardActivity extends FineractBaseActivity implements
         ViewPager.OnPageChangeListener {
 
     @BindView(R.id.vp_view_scan_card)

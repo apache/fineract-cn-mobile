@@ -20,15 +20,15 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import okhttp3.logging.HttpLoggingInterceptor.Level;
 
-public class MifosOkHttpClient {
+public class FineractOkHttpClient {
 
     private Context context;
 
-    public MifosOkHttpClient(Context context) {
+    public FineractOkHttpClient(Context context) {
         this.context = context;
     }
 
-    public OkHttpClient getMifosOkHttpClient() {
+    public OkHttpClient getFineractOkHttpClient() {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
@@ -99,7 +99,7 @@ public class MifosOkHttpClient {
 
         //Interceptor :> Full Body Logger and ApiRequest Header
         builder.addInterceptor(logger);
-        builder.addInterceptor(new MifosInterceptor(context));
+        builder.addInterceptor(new FineractInterceptor(context));
         builder.addInterceptor(new ReceivedCookiesInterceptor(context));
 
         return builder.build();

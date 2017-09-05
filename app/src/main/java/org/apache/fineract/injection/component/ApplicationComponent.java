@@ -3,7 +3,7 @@ package org.apache.fineract.injection.component;
 import android.app.Application;
 import android.content.Context;
 
-import org.apache.fineract.MifosApplication;
+import org.apache.fineract.FineractApplication;
 import org.apache.fineract.data.datamanager.DataManagerAnonymous;
 import org.apache.fineract.data.datamanager.DataManagerAuth;
 import org.apache.fineract.data.datamanager.DataManagerCustomer;
@@ -13,7 +13,7 @@ import org.apache.fineract.data.datamanager.DataManagerLoans;
 import org.apache.fineract.data.datamanager.DataManagerRoles;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.remote.BaseApiManager;
-import org.apache.fineract.data.remote.MifosInterceptor;
+import org.apache.fineract.data.remote.FineractInterceptor;
 import org.apache.fineract.data.remote.ReceivedCookiesInterceptor;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.module.ApplicationModule;
@@ -39,8 +39,8 @@ public interface ApplicationComponent {
     BaseApiManager baseApiManager();
     PreferencesHelper preferencesHelper();
 
-    void inject(MifosInterceptor mifosInterceptor);
-    void inject(MifosApplication mifosApplication);
+    void inject(FineractInterceptor mifosInterceptor);
+    void inject(FineractApplication mifosApplication);
 
     void inject(ReceivedCookiesInterceptor receivedCookiesInterceptor);
 

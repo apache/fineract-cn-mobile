@@ -16,7 +16,7 @@ import com.stepstone.stepper.VerificationError;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
-import org.apache.fineract.ui.base.MifosBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.BaseFragmentDebtIncome;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
@@ -60,7 +60,7 @@ public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         loanCoSignerPresenter.attachView(this);
         rootView = view;
     }

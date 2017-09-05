@@ -12,15 +12,15 @@ import android.view.ViewGroup;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.deposit.DepositAccount;
 import org.apache.fineract.ui.adapters.CustomerDepositAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity
         .CreateDepositActivity;
 import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails
         .DepositAccountDetailsFragment;
-import org.apache.fineract.ui.uierrorhandler.MifosUIErrorHandler;
+import org.apache.fineract.ui.uierrorhandler.FineractUIErrorHandler;
 import org.apache.fineract.ui.uierrorhandler.UIType;
 import org.apache.fineract.utils.ConstantKeys;
 
@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 07/07/17.
  */
-public class DepositAccountsFragment extends MifosBaseFragment
+public class DepositAccountsFragment extends FineractBaseFragment
         implements DepositAccountsContract.View, OnItemClickListener {
 
     @BindView(R.id.rv_customers_deposit_accounts)
@@ -56,7 +56,7 @@ public class DepositAccountsFragment extends MifosBaseFragment
 
     private String customerIdentifier;
     private List<DepositAccount> customerDepositAccounts;
-    private MifosUIErrorHandler mifosUIErrorHandler;
+    private FineractUIErrorHandler mifosUIErrorHandler;
 
     public static DepositAccountsFragment newInstance(String customerIdentifier) {
         DepositAccountsFragment fragment = new DepositAccountsFragment();
@@ -79,9 +79,9 @@ public class DepositAccountsFragment extends MifosBaseFragment
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_deposit, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
-        mifosUIErrorHandler = new MifosUIErrorHandler(getActivity(), rootView);
+        mifosUIErrorHandler = new FineractUIErrorHandler(getActivity(), rootView);
         setToolbarTitle(getString(R.string.deposit_accounts));
 
         customerDepositPresenter.attachView(this);
@@ -177,7 +177,7 @@ public class DepositAccountsFragment extends MifosBaseFragment
 
     @Override
     public void onItemClick(View childView, int position) {
-        ((MifosBaseActivity) getActivity()).replaceFragment(
+        ((FineractBaseActivity) getActivity()).replaceFragment(
                 DepositAccountDetailsFragment.newInstance(customerDepositAccounts.get(position)
                         .getAccountIdentifier()), true, R.id.container);
     }

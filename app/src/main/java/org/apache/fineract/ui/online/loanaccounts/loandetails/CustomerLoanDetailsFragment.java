@@ -19,8 +19,8 @@ import com.google.gson.Gson;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.PaymentCycle;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportActivity;
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentActivity;
@@ -39,7 +39,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 11/07/17.
  */
-public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
+public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         CustomerLoanDetailsContract.View {
 
     @BindView(R.id.iv_loan_current_status)
@@ -125,7 +125,7 @@ public class CustomerLoanDetailsFragment extends MifosBaseFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_loan_details, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         customerLoanDetailsPresenter.attachView(this);
 

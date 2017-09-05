@@ -10,10 +10,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.load.model.LazyHeaders;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.remote.BaseUrl;
 import org.apache.fineract.data.remote.EndPoints;
-import org.apache.fineract.data.remote.MifosInterceptor;
+import org.apache.fineract.data.remote.FineractInterceptor;
 
 
 /**
@@ -42,14 +43,15 @@ public class ImageLoaderUtils {
     public String buildCustomerPortraitImageUrl(String customerIdentifier) {
         return BaseUrl.getDefaultBaseUrl() +
                 EndPoints.API_CUSTOMER_PATH + "/customers/"
-                + customerIdentifier  + "/portrait";
+                + customerIdentifier + "/portrait";
     }
 
     public GlideUrl buildGlideUrl(String imageUrl) {
         return new GlideUrl(imageUrl, new LazyHeaders.Builder()
-                .addHeader(MifosInterceptor.HEADER_TENANT, preferencesHelper.getTenantIdentifier())
-                .addHeader(MifosInterceptor.HEADER_AUTH, preferencesHelper.getAccessToken())
-                .addHeader(MifosInterceptor.HEADER_USER, preferencesHelper.getUserName())
+                .addHeader(FineractInterceptor.HEADER_TENANT,
+                        preferencesHelper.getTenantIdentifier())
+                .addHeader(FineractInterceptor.HEADER_AUTH, preferencesHelper.getAccessToken())
+                .addHeader(FineractInterceptor.HEADER_USER, preferencesHelper.getUserName())
                 .build());
     }
 
@@ -66,8 +68,9 @@ public class ImageLoaderUtils {
                     @Override
                     protected void setResource(Bitmap result) {
                         // check a valid bitmap is downloaded
-                        if (result == null || result.getWidth() == 0)
+                        if (result == null || result.getWidth() == 0) {
                             return;
+                        }
                         // set to image view
                         imageView.setImageBitmap(result);
                         imageView.setVisibility(View.VISIBLE);

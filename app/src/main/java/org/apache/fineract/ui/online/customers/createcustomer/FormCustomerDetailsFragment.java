@@ -23,7 +23,7 @@ import com.stepstone.stepper.VerificationError;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.customer.DateOfBirth;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.ValidationUtil;
 
@@ -39,7 +39,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 25/07/17.
  */
-public class FormCustomerDetailsFragment extends MifosBaseFragment implements Step, TextWatcher {
+public class FormCustomerDetailsFragment extends FineractBaseFragment implements Step, TextWatcher {
 
     public static final String DATE_FORMAT = "dd MMM yyyy";
 

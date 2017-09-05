@@ -16,8 +16,8 @@ import android.widget.TextView;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.rolesandpermission.Role;
 import org.apache.fineract.ui.adapters.RolesAdapter;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 
 import java.util.List;
@@ -32,7 +32,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 24/08/17.
  */
-public class RolesFragment extends MifosBaseFragment implements RolesContract.View,
+public class RolesFragment extends FineractBaseFragment implements RolesContract.View,
         OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.rv_roles)
@@ -70,7 +70,7 @@ public class RolesFragment extends MifosBaseFragment implements RolesContract.Vi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_roles_list, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         rolesPresenter.attachView(this);
         setToolbarTitle(getString(R.string.manage_roles));

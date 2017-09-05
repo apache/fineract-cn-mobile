@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.ImageLoaderUtils;
 
@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
  * @author Rajan Maurya
  *         On 03/08/17.
  */
-public class ViewScanCardFragment extends MifosBaseFragment {
+public class ViewScanCardFragment extends FineractBaseFragment {
 
     @BindView(R.id.iv_scan_card)
     ImageView ivScanCard;

@@ -16,8 +16,8 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.ui.adapters.LoanAccountListAdapter;
 import org.apache.fineract.ui.base.EndlessRecyclerViewScrollListener;
-import org.apache.fineract.ui.base.MifosBaseActivity;
-import org.apache.fineract.ui.base.MifosBaseFragment;
+import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity
@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * @author Rajan Maurya
  *         On 07/07/17.
  */
-public class LoanAccountsFragment extends MifosBaseFragment implements LoanAccountsContract.View,
+public class LoanAccountsFragment extends FineractBaseFragment implements LoanAccountsContract.View,
         SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @BindView(R.id.rv_customers_loans)
@@ -85,7 +85,7 @@ public class LoanAccountsFragment extends MifosBaseFragment implements LoanAccou
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_loans, container, false);
-        ((MifosBaseActivity) getActivity()).getActivityComponent().inject(this);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
         customerLoansPresenter.attachView(this);
         setToolbarTitle(getString(R.string.loan_accounts));
@@ -200,7 +200,8 @@ public class LoanAccountsFragment extends MifosBaseFragment implements LoanAccou
 
     @Override
     public void onItemClick(View childView, int position) {
-        ((MifosBaseActivity) getActivity()).replaceFragment(CustomerLoanDetailsFragment.newInstance(
+        ((FineractBaseActivity) getActivity()).replaceFragment(
+                CustomerLoanDetailsFragment.newInstance(
                         loanAccounts.get(position).getProductIdentifier(),
                         loanAccounts.get(position).getIdentifier()), true, R.id.container);
     }
