@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/layout_padding_16dp"
         android:layout_width="wrap_content"
+        app:layout_behavior="org.apache.fineract.utils.ScrollFabBehavior"
         app:srcCompat="@drawable/ic_add_black_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>
