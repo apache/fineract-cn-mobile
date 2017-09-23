@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.widget.NestedScrollView;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -23,8 +23,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
-import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
-        .CreateCustomerActivity;
+import org.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
 import org.apache.fineract.ui.online.customers.customeractivities.CustomerActivitiesActivity;
 import org.apache.fineract.ui.online.customers.customerprofile.CustomerProfileActivity;
 import org.apache.fineract.ui.online.customers.customertasks.CustomerTasksBottomSheetFragment;
@@ -87,8 +86,8 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     @BindView(R.id.tv_no_contact_details_available)
     TextView tvNoContactDetailsAvailable;
 
-    @BindView(R.id.ncv_customer_details)
-    NestedScrollView ncvCustomerDetails;
+    @BindView(R.id.cl_customer_details)
+    CoordinatorLayout clCustomerDetails;
 
     @BindView(R.id.rl_error)
     RelativeLayout rlError;
@@ -151,15 +150,14 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     @Override
     public void onResume() {
         super.onResume();
-        ncvCustomerDetails.setVisibility(View.GONE);
-        appBarLayout.setExpanded(false, true);
+        clCustomerDetails.setVisibility(View.GONE);
         collapsingToolbarLayout.setTitle(" ");
         customerDetailsPresenter.loanCustomerDetails(customerIdentifier);
     }
 
     @OnClick(R.id.iv_retry)
     void onRetry() {
-        ncvCustomerDetails.setVisibility(View.GONE);
+        clCustomerDetails.setVisibility(View.GONE);
         rlError.setVisibility(View.GONE);
         customerDetailsPresenter.loanCustomerDetails(customerIdentifier);
     }
@@ -230,9 +228,8 @@ public class CustomerDetailsFragment extends FineractBaseFragment
 
     @Override
     public void showCustomerDetails(Customer customer) {
-        appBarLayout.setExpanded(true, true);
         this.customer = customer;
-        ncvCustomerDetails.setVisibility(View.VISIBLE);
+        clCustomerDetails.setVisibility(View.VISIBLE);
 
         loadCustomerPortrait();
 
