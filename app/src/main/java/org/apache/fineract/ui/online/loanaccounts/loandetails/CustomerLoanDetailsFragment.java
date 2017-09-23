@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -60,23 +61,17 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     @BindView(R.id.tv_loan_current_status)
     TextView tvLoanCurrentStatus;
 
-    @BindView(R.id.cl_customer_loan_details)
-    CoordinatorLayout clCustomerLoanDetails;
+    @BindView(R.id.ncv_customer_loan_details)
+    NestedScrollView ncvCustomerLoanDetails;
 
     @BindView(R.id.layout_disburse_btn)
     RelativeLayout layoutDisburseButton;
-
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
 
     @BindView(R.id.tv_alert_text_1)
     TextView tvAlertText1;
 
     @BindView(R.id.tv_alert_text_2)
     TextView tvAlertText2;
-
-    @BindView(R.id.tv_error)
-    TextView tvError;
 
     @BindView(R.id.tv_customer_deposit_account)
     TextView tvCustomerDepositAccount;
@@ -86,6 +81,9 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
 
     @BindView(R.id.tv_last_modified_by)
     TextView tvLastModifiedBy;
+
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @Inject
     CustomerLoanDetailsPresenter customerLoanDetailsPresenter;
@@ -127,6 +125,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         rootView = inflater.inflate(R.layout.fragment_customer_loan_details, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         customerLoanDetailsPresenter.attachView(this);
 
         customerLoanDetailsPresenter.fetchCustomerLoanDetails(productIdentifier, caseIdentifier);
@@ -134,10 +133,10 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         return rootView;
     }
 
-    @OnClick(R.id.iv_retry)
-    void onRetry() {
-        clCustomerLoanDetails.setVisibility(View.GONE);
-        rlError.setVisibility(View.GONE);
+    @OnClick(R.id.btn_try_again)
+    void tryAgainOnError() {
+        ncvCustomerLoanDetails.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
         customerLoanDetailsPresenter.fetchCustomerLoanDetails(productIdentifier, caseIdentifier);
     }
 
@@ -160,8 +159,8 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     @Override
     public void showLoanAccountDetails(LoanAccount loanAccount) {
         this.loanAccount = loanAccount;
-        clCustomerLoanDetails.setVisibility(View.VISIBLE);
-        rlError.setVisibility(View.GONE);
+        ncvCustomerLoanDetails.setVisibility(View.VISIBLE);
+        layoutError.setVisibility(View.GONE);
         setToolbarTitle(loanAccount.getIdentifier());
 
         tvPaymentAmount.setText(
@@ -250,10 +249,9 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
 
     @Override
     public void showError(String message) {
-        clCustomerLoanDetails.setVisibility(View.GONE);
-        rlError.setVisibility(View.VISIBLE);
-        tvError.setText(message);
-        Toaster.show(rootView, message);
+        ncvCustomerLoanDetails.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractErrorUI(getString(R.string.loan_account));
     }
 
     @Override
