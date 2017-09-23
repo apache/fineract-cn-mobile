@@ -6,8 +6,7 @@
     android:id="@+id/cl_customer_loan_details"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:visibility="invisible">
+    android:orientation="vertical">
 
     <android.support.v4.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,6 +15,7 @@
         android:id="@+id/ncv_customer_loan_details"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -229,17 +229,17 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.2dp"
                         android:background="#E7DFDF"
-                        android:layout_marginTop="@dimen/layout_padding_16dp"/>
+                        android:layout_height="0.2dp"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:layout_width="match_parent"/>
 
                     <LinearLayout
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingTop="@dimen/layout_padding_8dp"
-                        android:paddingBottom="@dimen/layout_padding_16dp">
+                        android:paddingBottom="@dimen/layout_padding_16dp"
+                        android:paddingTop="@dimen/layout_padding_8dp">
 
                         <LinearLayout
                             android:layout_height="wrap_content"
@@ -511,8 +511,8 @@
         android:visibility="gone"/>
 
     <include
-        layout="@layout/layout_error"
-        android:id="@+id/rl_error"
+        layout="@layout/layout_exception_handler"
+        android:id="@+id/layout_error"
         android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>

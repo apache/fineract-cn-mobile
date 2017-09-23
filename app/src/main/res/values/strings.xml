@@ -9,7 +9,8 @@
     <string name="login">Login</string>
     <string name="fineract_account">Fineract Account</string>
     <string name="welcome">Welcome</string>
-    <string name="no_internet_connection">No Internet Connection!</string>
+    <string name="no_internet_connection">No Internet found. Check your connection</string>
+    <string name="or_try_again">or try again</string>
     <string name="wrong_username_or_password">Wrong username or password</string>
     <string name="customer">Customer</string>
     <string name="dashboard">Dashboard</string>
@@ -19,6 +20,7 @@
     <string name="financial_products">Financial products</string>
     <string name="manage_loan_accounts">Manage loan accounts</string>
     <string name="loan_accounts">Loan accounts</string>
+    <string name="loan_account">Loan account</string>
     <string name="deposit_accounts">Deposit accounts</string>
     <string name="roles_and_permissions">Roles/Permissions</string>
     <string name="manage_deposit_accounts">Manage deposit accounts</string>
@@ -172,6 +174,8 @@
     <string name="logout">Logout</string>
     <string name="manage_roles">Manage roles</string>
     <string name="try_again">Try Again</string>
+    <string name="retry">Retry</string>
+    <string name="oh_no">Oh no!</string>
     <string name="empty_ui_message">No %1$s Found</string>
     <string name="empty_ui_sub_message">Tap to add %1$s</string>
 

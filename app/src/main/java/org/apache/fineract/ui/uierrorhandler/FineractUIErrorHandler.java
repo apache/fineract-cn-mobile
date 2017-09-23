@@ -3,6 +3,7 @@ package org.apache.fineract.ui.uierrorhandler;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,8 +21,11 @@ public class FineractUIErrorHandler {
     private ImageView ivEmptyFeatureImage;
     private TextView tvFeatureName;
     private TextView tvSubFeatureName;
+    private Button btnTryAgain;
     private LinearLayout llEmptyUI;
     private LinearLayout llErrorToLoad;
+    private LinearLayout llNoInternet;
+    private LinearLayout llError;
     private TextView tvErrorFeatureName;
 
     private Context context;
@@ -33,7 +37,7 @@ public class FineractUIErrorHandler {
         initializeUI();
     }
 
-    public void showEmptyOrErrorUI(UIType errorType, String featureName,
+    public void showEmptyOrErrorOrNoConnectionUI(UIType errorType, String featureName,
             @Nullable String subFeatureName, @Nullable Integer featureImage) {
         switch (errorType) {
             case EMPTY_UI:
@@ -45,9 +49,19 @@ public class FineractUIErrorHandler {
                 llErrorToLoad.setVisibility(View.GONE);
                 break;
             case ERROR_UI:
-                llErrorToLoad.setVisibility(View.VISIBLE);
-                tvErrorFeatureName.setText(featureName);
                 llEmptyUI.setVisibility(View.GONE);
+                llNoInternet.setVisibility(View.GONE);
+                llError.setVisibility(View.VISIBLE);
+                llErrorToLoad.setVisibility(View.VISIBLE);
+                btnTryAgain.setText(context.getString(R.string.try_again));
+                tvErrorFeatureName.setText(featureName);
+                break;
+            case NO_INTERNET:
+                llEmptyUI.setVisibility(View.GONE);
+                llError.setVisibility(View.GONE);
+                llNoInternet.setVisibility(View.VISIBLE);
+                llErrorToLoad.setVisibility(View.VISIBLE);
+                btnTryAgain.setText(context.getString(R.string.retry));
                 break;
         }
     }
@@ -58,6 +72,9 @@ public class FineractUIErrorHandler {
         tvSubFeatureName = ButterKnife.findById(view, R.id.tv_empty_sub_feature_name);
         llEmptyUI = ButterKnife.findById(view, R.id.ll_empty_ui);
         llErrorToLoad = ButterKnife.findById(view, R.id.ll_error_to_load);
+        llNoInternet = ButterKnife.findById(view, R.id.ll_no_internet);
+        llError = ButterKnife.findById(view, R.id.ll_error);
+        btnTryAgain = ButterKnife.findById(view, R.id.btn_try_again);
         tvErrorFeatureName = ButterKnife.findById(view, R.id.tv_error_feature_name);
     }
 }
