@@ -3,16 +3,21 @@ package org.apache.fineract.ui.base;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import org.apache.fineract.ui.uierrorhandler.FineractUIErrorHandler;
+import org.apache.fineract.ui.uierrorhandler.UIType;
 import org.apache.fineract.utils.ProgressBarHandler;
 
 public class FineractBaseFragment extends Fragment {
 
     private BaseActivityCallback callback;
     private ProgressBarHandler progressBarHandler;
+    private FineractUIErrorHandler fineractUIErrorHandler;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,26 @@ public class FineractBaseFragment extends Fragment {
 
     protected void hideMifosProgressBar() {
         progressBarHandler.hide();
+    }
+
+    protected void initializeFineractUIErrorHandler(Context context, View view) {
+        fineractUIErrorHandler = new FineractUIErrorHandler(context, view);
+    }
+
+    protected void showFineractEmptyUI(@NonNull String featureName, @Nullable String subFeatureName,
+            @NonNull Integer featureImage) {
+        fineractUIErrorHandler.showEmptyOrErrorOrNoConnectionUI(UIType.EMPTY_UI, featureName,
+                subFeatureName, featureImage);
+    }
+
+    protected void showFineractErrorUI(@NonNull String featureName) {
+        fineractUIErrorHandler.showEmptyOrErrorOrNoConnectionUI(UIType.ERROR_UI, featureName, null,
+                null);
+    }
+
+    protected void showFineractNoInternetUI() {
+        fineractUIErrorHandler.showEmptyOrErrorOrNoConnectionUI(UIType.NO_INTERNET, null, null,
+                null);
     }
 
     @Override

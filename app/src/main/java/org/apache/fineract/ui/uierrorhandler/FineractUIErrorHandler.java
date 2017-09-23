@@ -22,6 +22,7 @@ public class FineractUIErrorHandler {
     private TextView tvSubFeatureName;
     private LinearLayout llEmptyUI;
     private LinearLayout llErrorToLoad;
+    private LinearLayout llNoInternet;
     private TextView tvErrorFeatureName;
 
     private Context context;
@@ -33,7 +34,7 @@ public class FineractUIErrorHandler {
         initializeUI();
     }
 
-    public void showEmptyOrErrorUI(UIType errorType, String featureName,
+    public void showEmptyOrErrorOrNoConnectionUI(UIType errorType, String featureName,
             @Nullable String subFeatureName, @Nullable Integer featureImage) {
         switch (errorType) {
             case EMPTY_UI:
@@ -43,11 +44,18 @@ public class FineractUIErrorHandler {
                 tvSubFeatureName.setText(
                         context.getString(R.string.empty_ui_sub_message, subFeatureName));
                 llErrorToLoad.setVisibility(View.GONE);
+                llNoInternet.setVisibility(View.GONE);
                 break;
             case ERROR_UI:
                 llErrorToLoad.setVisibility(View.VISIBLE);
                 tvErrorFeatureName.setText(featureName);
                 llEmptyUI.setVisibility(View.GONE);
+                llNoInternet.setVisibility(View.GONE);
+                break;
+            case NO_INTERNET:
+                llEmptyUI.setVisibility(View.GONE);
+                llErrorToLoad.setVisibility(View.GONE);
+                llNoInternet.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -58,6 +66,7 @@ public class FineractUIErrorHandler {
         tvSubFeatureName = ButterKnife.findById(view, R.id.tv_empty_sub_feature_name);
         llEmptyUI = ButterKnife.findById(view, R.id.ll_empty_ui);
         llErrorToLoad = ButterKnife.findById(view, R.id.ll_error_to_load);
+        llNoInternet = ButterKnife.findById(view, R.id.ll_no_internet);
         tvErrorFeatureName = ButterKnife.findById(view, R.id.tv_error_feature_name);
     }
 }

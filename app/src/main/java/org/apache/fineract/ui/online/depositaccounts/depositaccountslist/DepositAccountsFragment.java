@@ -16,12 +16,8 @@ import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity
-        .CreateDepositActivity;
-import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails
-        .DepositAccountDetailsFragment;
-import org.apache.fineract.ui.uierrorhandler.FineractUIErrorHandler;
-import org.apache.fineract.ui.uierrorhandler.UIType;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity;
+import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails.DepositAccountDetailsFragment;
 import org.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
@@ -56,7 +52,6 @@ public class DepositAccountsFragment extends FineractBaseFragment
 
     private String customerIdentifier;
     private List<DepositAccount> customerDepositAccounts;
-    private FineractUIErrorHandler mifosUIErrorHandler;
 
     public static DepositAccountsFragment newInstance(String customerIdentifier) {
         DepositAccountsFragment fragment = new DepositAccountsFragment();
@@ -81,7 +76,7 @@ public class DepositAccountsFragment extends FineractBaseFragment
         rootView = inflater.inflate(R.layout.fragment_customer_deposit, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
-        mifosUIErrorHandler = new FineractUIErrorHandler(getActivity(), rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         setToolbarTitle(getString(R.string.deposit_accounts));
 
         customerDepositPresenter.attachView(this);
@@ -133,8 +128,7 @@ public class DepositAccountsFragment extends FineractBaseFragment
     @Override
     public void showEmptyDepositAccounts() {
         showRecyclerView(false);
-        mifosUIErrorHandler.showEmptyOrErrorUI(UIType.EMPTY_UI,
-                getString(R.string.deposit_accounts),
+        showFineractEmptyUI(getString(R.string.deposit_accounts),
                 getString(R.string.deposit_account),
                 R.drawable.ic_monetization_on_black_24dp);
     }
@@ -142,9 +136,7 @@ public class DepositAccountsFragment extends FineractBaseFragment
     @Override
     public void showError(String errorMessage) {
         showRecyclerView(false);
-        mifosUIErrorHandler.showEmptyOrErrorUI(UIType.ERROR_UI,
-                getString(R.string.deposit_accounts),
-                null, null);
+        showFineractErrorUI(getString(R.string.deposit_accounts));
     }
 
     @Override

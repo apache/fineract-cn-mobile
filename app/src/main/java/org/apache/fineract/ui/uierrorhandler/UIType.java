@@ -8,5 +8,7 @@ public enum UIType {
 
     EMPTY_UI,
 
-    ERROR_UI
+    ERROR_UI,
+
+    NO_INTERNET
 }
