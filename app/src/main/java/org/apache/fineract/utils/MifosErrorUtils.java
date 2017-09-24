@@ -32,6 +32,10 @@ public class MifosErrorUtils {
         return gson.fromJson(serverResponse, MifosError.class);
     }
 
+    public static String getFineractError(Throwable throwable, String message) {
+        return message;
+    }
+
     public static String getErrorMessage(Context context, Throwable throwable) {
         MifosError mifosError = new MifosError();
         Converter<ResponseBody, MifosError> errorConverter =

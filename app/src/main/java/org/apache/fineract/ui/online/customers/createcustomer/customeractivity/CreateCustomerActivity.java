@@ -187,6 +187,13 @@ public class CreateCustomerActivity extends FineractBaseActivity
     }
 
     @Override
+    public void showNoInternetConnection() {
+        stepperLayout.setNextButtonEnabled(true);
+        Toaster.show(findViewById(android.R.id.content),
+                getString(R.string.no_internet_connection));
+    }
+
+    @Override
     public void showError(String message) {
         stepperLayout.setNextButtonEnabled(true);
         Toaster.show(findViewById(android.R.id.content), message);

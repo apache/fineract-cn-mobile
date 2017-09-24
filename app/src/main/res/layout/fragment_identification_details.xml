@@ -213,16 +213,15 @@
                         android:layout_height="200dp"
                         android:textSize="@dimen/text_size_12sp"
                         android:clickable="true"
+                        android:focusable="true"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="@string/loading_scans_please_wait"/>
 
                     <include
-                        layout="@layout/layout_error"
-                        android:id="@+id/rl_error"
+                        android:layout_height="300dp"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:clickable="true"
-                        android:foreground="?android:attr/selectableItemBackground"
+                        layout="@layout/layout_exception_handler"
+                        android:id="@+id/layout_error"
                         android:visibility="gone"/>
 
                 </FrameLayout>
@@ -235,6 +234,7 @@
 
     <android.support.design.widget.FloatingActionButton
         android:clickable="true"
+        android:focusable="true"
         android:id="@+id/fab_upload_identification_scan_card"
         android:layout_gravity="bottom|end"
         android:layout_height="wrap_content"

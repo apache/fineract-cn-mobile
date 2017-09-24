@@ -69,9 +69,10 @@ public class LoanCoSignerPresenter extends BasePresenter<LoanCoSignerContract.Vi
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(context.getString(R.string.error_loading_customers));
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_loading_customers));
                     }
 
                     @Override

@@ -6,6 +6,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.datamanager.DataManagerIndividualLending;
 import org.apache.fineract.data.models.payment.PlannedPayment;
 import org.apache.fineract.data.models.payment.PlannedPaymentPage;
+import org.apache.fineract.exceptions.NoConnectivityException;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;
 import org.apache.fineract.ui.base.BasePresenter;
@@ -87,13 +88,17 @@ public class PlannedPaymentPresenter extends BasePresenter<PlannedPaymentContrac
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        if (loadmore) {
+                        if (loadmore && !(throwable instanceof NoConnectivityException)) {
                             getMvpView().showMessage(
                                     context.getString(R.string.error_loading_planned_payment));
+                        } else if (loadmore && (throwable instanceof NoConnectivityException)) {
+                            getMvpView().showMessage(
+                                    context.getString(R.string.no_internet_connection));
                         } else {
-                            getMvpView().showError();
+                            showExceptionError(throwable,
+                                    context.getString(R.string.error_loading_planned_payment));
                         }
                     }
 

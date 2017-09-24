@@ -61,9 +61,9 @@ public class CreateDepositPresenter extends BasePresenter<CreateDepositContract.
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(
+                        showExceptionError(throwable,
                                 context.getString(R.string.error_creating_deposit_account));
                     }
                 })
@@ -86,9 +86,9 @@ public class CreateDepositPresenter extends BasePresenter<CreateDepositContract.
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(Throwable throwable) {
                                 getMvpView().hideProgressbar();
-                                getMvpView().showError(
+                                showExceptionError(throwable,
                                         context.getString(R.string.error_updating_deposit_account));
                             }
                         })

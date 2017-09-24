@@ -2,6 +2,7 @@ package org.apache.fineract.ui.online.customers.customerdetails;
 
 import android.content.Context;
 
+import org.apache.fineract.R;
 import org.apache.fineract.data.datamanager.DataManagerCustomer;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.injection.ApplicationContext;
@@ -60,9 +61,10 @@ public class CustomerDetailsPresenter extends BasePresenter<CustomerDetailsContr
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError("Failed to fetch customer details");
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_fetching_customer_details));
                     }
 
                     @Override

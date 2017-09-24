@@ -21,7 +21,6 @@ import org.apache.fineract.data.models.customer.ContactDetail;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
-import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
 import org.apache.fineract.ui.online.customers.customeractivities.CustomerActivitiesActivity;
@@ -89,11 +88,8 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     @BindView(R.id.cl_customer_details)
     CoordinatorLayout clCustomerDetails;
 
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
-
-    @BindView(R.id.tv_error)
-    TextView tvError;
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @BindView(R.id.rl_email)
     RelativeLayout rlEmail;
@@ -140,6 +136,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
         rootView = inflater.inflate(R.layout.fragment_customer_details, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         customerDetailsPresenter.attachView(this);
 
         showUserInterface();
@@ -155,10 +152,10 @@ public class CustomerDetailsFragment extends FineractBaseFragment
         customerDetailsPresenter.loanCustomerDetails(customerIdentifier);
     }
 
-    @OnClick(R.id.iv_retry)
+    @OnClick(R.id.btn_try_again)
     void onRetry() {
         clCustomerDetails.setVisibility(View.GONE);
-        rlError.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
         customerDetailsPresenter.loanCustomerDetails(customerIdentifier);
     }
 
@@ -230,6 +227,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     public void showCustomerDetails(Customer customer) {
         this.customer = customer;
         clCustomerDetails.setVisibility(View.VISIBLE);
+        layoutError.setVisibility(View.GONE);
 
         loadCustomerPortrait();
 
@@ -321,10 +319,17 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     }
 
     @Override
+    public void showNoInternetConnection() {
+        clCustomerDetails.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractNoInternetUI();
+    }
+
+    @Override
     public void showError(String errorMessage) {
-        rlError.setVisibility(View.VISIBLE);
-        tvError.setText(errorMessage);
-        Toaster.show(rootView, errorMessage);
+        clCustomerDetails.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractErrorUI(getString(R.string.customer_details));
     }
 
     @Override

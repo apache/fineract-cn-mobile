@@ -74,7 +74,7 @@ public class LoanApplicationActivity extends FineractBaseActivity
         stepperLayout.setAdapter(stepAdapter, currentPosition);
         stepperLayout.setListener(this);
         stepperLayout.setOffscreenPageLimit(stepAdapter.getCount());
-        setToolbarTitle("Create new loan");
+        setToolbarTitle(getString(R.string.create_new_loan));
         showBackButton();
     }
 
@@ -126,6 +126,12 @@ public class LoanApplicationActivity extends FineractBaseActivity
 
     public void hideProgressbar() {
         stepperLayout.hideProgress();
+    }
+
+    @Override
+    public void showNoInternetConnection() {
+        Toaster.show(findViewById(android.R.id.content),
+                getString(R.string.no_internet_connection));
     }
 
     @Override

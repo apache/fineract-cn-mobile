@@ -8,4 +8,7 @@ package org.apache.fineract.ui.base;
  */
 public interface MvpView {
 
+    void showNoInternetConnection();
+
+    void showError(String message);
 }

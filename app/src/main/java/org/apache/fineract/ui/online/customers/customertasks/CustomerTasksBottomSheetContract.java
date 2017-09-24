@@ -17,8 +17,6 @@ public interface CustomerTasksBottomSheetContract {
         void showProgressbar();
 
         void hideProgressbar();
-
-        void showError();
     }
 
     interface Presenter {

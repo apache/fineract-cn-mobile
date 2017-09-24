@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.identification.Identification;
@@ -20,10 +18,8 @@ import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.identification.createidentification.Action;
-import org.apache.fineract.ui.online.identification.createidentification.identificationactivity
-        .CreateIdentificationActivity;
-import org.apache.fineract.ui.online.identification.identificationdetails
-        .IdentificationDetailsFragment;
+import org.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
+import org.apache.fineract.ui.online.identification.identificationdetails.IdentificationDetailsFragment;
 import org.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
@@ -48,11 +44,8 @@ public class IdentificationsFragment extends FineractBaseFragment implements
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
-
-    @BindView(R.id.tv_error)
-    TextView tvError;
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @Inject
     IdentificationsPresenter identificationsPresenter;
@@ -90,6 +83,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         identificationsPresenter.attachView(this);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
 
         showUserInterface();
 
@@ -151,18 +145,35 @@ public class IdentificationsFragment extends FineractBaseFragment implements
     public void showRecyclerView(boolean status) {
         if (status) {
             rvIdentifications.setVisibility(View.VISIBLE);
-            rlError.setVisibility(View.GONE);
+            layoutError.setVisibility(View.GONE);
         } else {
             rvIdentifications.setVisibility(View.GONE);
-            rlError.setVisibility(View.VISIBLE);
+            layoutError.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
-    public void showMessage(String message) {
+    public void showEmptyIdentifications() {
         showRecyclerView(false);
-        tvError.setText(message);
+        showFineractEmptyUI(getString(R.string.identification_cards),
+                getString(R.string.identification_card), R.drawable.ic_person_outline_black_24dp);
+    }
+
+    @Override
+    public void showMessage(String message) {
         Toaster.show(rootView, message);
+    }
+
+    @Override
+    public void showNoInternetConnection() {
+        showRecyclerView(false);
+        showFineractNoInternetUI();
+    }
+
+    @Override
+    public void showError(String message) {
+        showRecyclerView(false);
+        showFineractErrorUI(getString(R.string.identification_cards));
     }
 
     @Override

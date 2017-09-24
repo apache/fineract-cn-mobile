@@ -5,8 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -29,8 +29,7 @@ import org.apache.fineract.ui.adapters.BeneficiaryAutoCompleteAdapter;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
-        .DepositOnNavigationBarListener;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositOnNavigationBarListener;
 import org.apache.fineract.ui.views.DelayAutoCompleteTextView;
 import org.apache.fineract.utils.ConstantKeys;
 
@@ -41,6 +40,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
@@ -67,8 +67,11 @@ public class FormDepositAssignProductFragment extends FineractBaseFragment imple
     @BindView(R.id.rv_beneficiary)
     RecyclerView rvBeneficiary;
 
-    @BindView(R.id.cl_deposit_assign_product)
-    CoordinatorLayout clDepositAssignProduct;
+    @BindView(R.id.ncv_deposit_assign_product)
+    NestedScrollView ncvDepositAssignProduct;
+
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @BindView(R.id.pb_search_beneficiary)
     ProgressBar pbSearchBeneficiary;
@@ -121,6 +124,7 @@ public class FormDepositAssignProductFragment extends FineractBaseFragment imple
         rootView = inflater.inflate(R.layout.fragment_form_deposit_assign_product,
                 container, false);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         formDepositAssignProductPresenter.attachView(this);
 
         showUserInterface();
@@ -135,6 +139,13 @@ public class FormDepositAssignProductFragment extends FineractBaseFragment imple
         }
 
         return rootView;
+    }
+
+    @OnClick(R.id.btn_try_again)
+    void onRetry() {
+        ncvDepositAssignProduct.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
+        formDepositAssignProductPresenter.fetchProductDefinitions();
     }
 
     @Override
@@ -186,7 +197,7 @@ public class FormDepositAssignProductFragment extends FineractBaseFragment imple
 
     @Override
     public void editDepositAccountDetails(DepositAccount depositAccount) {
-        clDepositAssignProduct.setVisibility(View.VISIBLE);
+        ncvDepositAssignProduct.setVisibility(View.VISIBLE);
         beneficiaryAdapter.setAllBeneficiary(depositAccount.getBeneficiaries());
         spProducts.setVisibility(View.GONE);
         tvSelectProductHeader.setVisibility(View.GONE);
@@ -195,7 +206,8 @@ public class FormDepositAssignProductFragment extends FineractBaseFragment imple
 
     @Override
     public void showProductDefinitions(List<String> products) {
-        clDepositAssignProduct.setVisibility(View.VISIBLE);
+        ncvDepositAssignProduct.setVisibility(View.VISIBLE);
+        layoutError.setVisibility(View.GONE);
         this.products.addAll(products);
         productsAdapter.notifyDataSetChanged();
     }
@@ -211,8 +223,17 @@ public class FormDepositAssignProductFragment extends FineractBaseFragment imple
     }
 
     @Override
+    public void showNoInternetConnection() {
+        ncvDepositAssignProduct.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractNoInternetUI();
+    }
+
+    @Override
     public void showError(String message) {
-        clDepositAssignProduct.setVisibility(View.VISIBLE);
+        ncvDepositAssignProduct.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractErrorUI(getString(R.string.deposit_product));
     }
 
     @Override

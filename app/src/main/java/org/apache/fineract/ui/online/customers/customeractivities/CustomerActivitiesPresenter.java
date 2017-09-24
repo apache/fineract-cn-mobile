@@ -68,9 +68,9 @@ public class CustomerActivitiesPresenter extends BasePresenter<CustomerActivitie
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(
+                        showExceptionError(throwable,
                                 context.getString(R.string.error_fetching_customer_activities));
                     }
 
@@ -81,4 +81,5 @@ public class CustomerActivitiesPresenter extends BasePresenter<CustomerActivitie
                 })
         );
     }
+
 }

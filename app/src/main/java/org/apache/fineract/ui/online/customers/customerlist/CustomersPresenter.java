@@ -88,7 +88,8 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
                             getMvpView().showMessage(
                                     context.getString(R.string.error_loading_customers));
                         } else {
-                            getMvpView().showError();
+                            showExceptionError(throwable,
+                                    context.getString(R.string.error_loading_customers));
                         }
                     }
 

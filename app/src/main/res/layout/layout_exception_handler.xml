@@ -13,9 +13,10 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ImageView
+            android:id="@+id/iv_error_no_connection"
             android:contentDescription="@string/status_image"
             android:layout_gravity="center|center_horizontal"
             android:layout_height="70dp"

@@ -61,9 +61,9 @@ public class LoanApplicationPresenter extends BasePresenter<LoanApplicationContr
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(
+                        showExceptionError(throwable,
                                 context.getString(R.string.error_while_creating_loan));
                     }
                 })

@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.LoanAccount;
@@ -20,8 +18,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.base.Toaster;
-import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity
-        .LoanApplicationActivity;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity;
 import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetailsFragment;
 import org.apache.fineract.utils.ConstantKeys;
 
@@ -47,11 +44,8 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
-
-    @BindView(R.id.tv_error)
-    TextView tvErrorMessage;
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @Inject
     LoanAccountsPresenter customerLoansPresenter;
@@ -87,6 +81,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
         rootView = inflater.inflate(R.layout.fragment_customer_loans, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         customerLoansPresenter.attachView(this);
         setToolbarTitle(getString(R.string.loan_accounts));
 
@@ -106,8 +101,10 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
         customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, 0, false);
     }
 
-    @OnClick(R.id.iv_retry)
+    @OnClick(R.id.btn_try_again)
     void onRetry() {
+        rvCustomerLoans.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
         customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, 0, false);
     }
 
@@ -155,18 +152,18 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
     @Override
     public void showEmptyLoanAccounts(String message) {
         showRecyclerView(false);
-        tvErrorMessage.setText(getString(R.string.empty_customer_loans));
-        showMessage(getString(R.string.empty_customer_loans));
+        showFineractEmptyUI(getString(R.string.loan_accounts), getString(R.string.loan_account),
+                R.drawable.ic_payment_black_24dp);
     }
 
     @Override
     public void showRecyclerView(boolean status) {
         if (status) {
             rvCustomerLoans.setVisibility(View.VISIBLE);
-            rlError.setVisibility(View.GONE);
+            layoutError.setVisibility(View.GONE);
         } else {
             rvCustomerLoans.setVisibility(View.GONE);
-            rlError.setVisibility(View.VISIBLE);
+            layoutError.setVisibility(View.VISIBLE);
         }
     }
 
@@ -176,10 +173,16 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
     }
 
     @Override
-    public void showError() {
+    public void showNoInternetConnection() {
         showRecyclerView(false);
-        tvErrorMessage.setText(getString(R.string.error_loading_customer_loans));
-        showMessage(getString(R.string.error_loading_customer_loans));
+        showFineractNoInternetUI();
+    }
+
+    @Override
+    public void showError(String message) {
+        showRecyclerView(false);
+        showMessage(message);
+        showFineractErrorUI(getString(R.string.loan_accounts));
     }
 
     @Override

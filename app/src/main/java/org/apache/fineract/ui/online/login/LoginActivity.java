@@ -10,6 +10,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.Authentication;
 import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.DashboardActivity;
 
 import javax.inject.Inject;
@@ -85,6 +86,11 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
         startActivity(new Intent(this, DashboardActivity.class));
         finish();
         Toast.makeText(this, getString(R.string.welcome), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showNoInternetConnection() {
+        Toaster.show(findViewById(android.R.id.content), R.string.no_internet_connection);
     }
 
     @Override

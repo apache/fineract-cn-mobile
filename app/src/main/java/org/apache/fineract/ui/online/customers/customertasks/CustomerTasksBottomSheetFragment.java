@@ -222,7 +222,13 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
     }
 
     @Override
-    public void showError() {
+    public void showNoInternetConnection() {
+        etComment.setEnabled(true);
+        Toaster.show(rootView, getString(R.string.no_internet_connection));
+    }
+
+    @Override
+    public void showError(String message) {
         etComment.setEnabled(true);
         Toaster.show(rootView, getString(R.string.error_updating_status));
     }

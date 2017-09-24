@@ -96,4 +96,14 @@ public class LauncherActivity extends FineractBaseActivity implements LauncherCo
         super.onDestroy();
         launcherPresenter.detachView();
     }
+
+    @Override
+    public void showNoInternetConnection() {
+
+    }
+
+    @Override
+    public void showError(String message) {
+
+    }
 }

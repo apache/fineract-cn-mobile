@@ -378,4 +378,14 @@ public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialo
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
     }
+
+    @Override
+    public void showNoInternetConnection() {
+        Toaster.show(rootView, getString(R.string.no_internet_connection));
+    }
+
+    @Override
+    public void showError(String message) {
+        Toaster.show(rootView, message);
+    }
 }

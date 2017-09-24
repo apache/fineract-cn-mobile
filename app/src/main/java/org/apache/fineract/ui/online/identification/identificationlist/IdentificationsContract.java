@@ -23,6 +23,8 @@ public interface IdentificationsContract {
 
         void showRecyclerView(boolean status);
 
+        void showEmptyIdentifications();
+
         void showMessage(String message);
     }
 

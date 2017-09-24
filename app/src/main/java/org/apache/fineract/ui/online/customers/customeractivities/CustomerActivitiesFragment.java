@@ -2,16 +2,12 @@ package org.apache.fineract.ui.online.customers.customeractivities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Command;
@@ -41,14 +37,8 @@ public class CustomerActivitiesFragment extends FineractBaseFragment implements
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipeRefreshLayout;
 
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
-
-    @BindView(R.id.iv_retry)
-    ImageView ivRetry;
-
-    @BindView(R.id.tv_error)
-    TextView tvStatus;
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @Inject
     CustomerActivitiesPresenter customerActivitiesPresenter;
@@ -84,6 +74,7 @@ public class CustomerActivitiesFragment extends FineractBaseFragment implements
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_activities, container, false);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getContext(), rootView);
         customerActivitiesPresenter.attachView(this);
 
         showUserInterface();
@@ -102,10 +93,10 @@ public class CustomerActivitiesFragment extends FineractBaseFragment implements
         customerActivitiesPresenter.fetchCustomerCommands(customerIdentifier);
     }
 
-    @OnClick(R.id.iv_retry)
+    @OnClick(R.id.btn_try_again)
     void onRetry() {
         rvCustomerActivities.setVisibility(View.GONE);
-        rlError.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
         customerActivitiesPresenter.fetchCustomerCommands(customerIdentifier);
     }
 
@@ -130,20 +121,18 @@ public class CustomerActivitiesFragment extends FineractBaseFragment implements
     @Override
     public void showEmptyCommands(String message) {
         showRecyclerView(false);
-        tvStatus.setText(message);
-        ivRetry.setImageDrawable(ContextCompat.getDrawable(getActivity(),
-                R.drawable.ic_assignment_turned_in_black_24dp));
-        ivRetry.setEnabled(false);
+        showFineractEmptyUI(getString(R.string.activities), getString(R.string.activities),
+                R.drawable.ic_event_black_24dp);
     }
 
     @Override
     public void showRecyclerView(boolean status) {
         if (status) {
             rvCustomerActivities.setVisibility(View.VISIBLE);
-            rlError.setVisibility(View.GONE);
+            layoutError.setVisibility(View.GONE);
         } else {
             rvCustomerActivities.setVisibility(View.GONE);
-            rlError.setVisibility(View.VISIBLE);
+            layoutError.setVisibility(View.VISIBLE);
         }
     }
 
@@ -158,9 +147,15 @@ public class CustomerActivitiesFragment extends FineractBaseFragment implements
     }
 
     @Override
+    public void showNoInternetConnection() {
+        showRecyclerView(false);
+        showFineractNoInternetUI();
+    }
+
+    @Override
     public void showError(String message) {
         showRecyclerView(false);
-        tvStatus.setText(message);
+        showFineractErrorUI(getString(R.string.activities));
     }
 
     @Override
