@@ -2,12 +2,12 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent" >
+    android:layout_width="match_parent">
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:animateLayoutChanges="true"
-        style="@style/LinearLayout.Base">
+        style="@style/LinearLayout.Base"
+        android:animateLayoutChanges="true">
 
         <LinearLayout
             android:layout_height="wrap_content"
@@ -25,6 +25,7 @@
 
                 <LinearLayout
                     android:clickable="true"
+                    android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
                     android:id="@+id/ll_toolbar_date"
                     android:layout_height="match_parent"
@@ -33,10 +34,10 @@
                     android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/tv_toolbar_date"
                         android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
                         android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
                         android:gravity="center"
+                        android:id="@+id/tv_toolbar_date"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
@@ -54,6 +55,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:background="@color/white"
             android:clickable="true"
+            android:focusable="true"
             android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/cv_planned_payment"
             android:layout_height="wrap_content"
@@ -68,39 +70,46 @@
                 <CalendarView
                     android:id="@+id/calender_view_payment"
                     android:layout_height="300dp"
-                    android:layout_width="match_parent" />
+                    android:layout_width="match_parent"/>
 
                 <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_load_planned_payment"
                     android:layout_gravity="end"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/layout_padding_8dp"
-                    android:textAllCaps="false"
-                    android:text="@string/load_payment"/>
+                    android:layout_width="wrap_content"
+                    android:text="@string/load_payment"
+                    android:textAllCaps="false"/>
 
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/swipe_container"
+        <android.support.design.widget.CoordinatorLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_height="match_parent"
             android:layout_width="match_parent">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv_planned_payment"
-                android:layout_centerHorizontal="true"
-                android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/layout_padding_30dp"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"/>
-        </android.support.v4.widget.SwipeRefreshLayout>
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swipe_container"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
 
-        <include
-            layout="@layout/layout_error"
-            android:id="@+id/rl_error"
-            android:visibility="gone"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_planned_payment"
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/layout_padding_30dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"/>
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+            <include
+                layout="@layout/layout_exception_handler"
+                android:id="@+id/layout_error"
+                android:visibility="gone"/>
+
+        </android.support.design.widget.CoordinatorLayout>
 
     </LinearLayout>
 

@@ -248,6 +248,13 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     }
 
     @Override
+    public void showNoInternetConnection() {
+        ncvCustomerLoanDetails.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractNoInternetUI();
+    }
+
+    @Override
     public void showError(String message) {
         ncvCustomerLoanDetails.setVisibility(View.GONE);
         layoutError.setVisibility(View.VISIBLE);

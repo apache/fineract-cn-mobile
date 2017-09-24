@@ -51,7 +51,8 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Customer customer = customers.get(position);
-        holder.tvCustomerName.setText(customer.getGivenName() + " " + customer.getSurname());
+        holder.tvCustomerName.setText(context.getString(R.string.customer_name,
+                customer.getGivenName(), customer.getSurname() ));
 
         if (customer.getAssignedEmployee() != null) {
             holder.tvAssignedEmployee.setText(context.getString(R.string.assigned_employee_list,

@@ -212,12 +212,13 @@
     </android.support.v7.widget.CardView>
 
     <include
-        layout="@layout/layout_error"
-        android:id="@+id/rl_error"
+        layout="@layout/layout_exception_handler"
+        android:id="@+id/layout_error"
         android:visibility="gone"/>
 
     <android.support.design.widget.FloatingActionButton
         android:clickable="true"
+        android:focusable="true"
         android:id="@+id/fab_edit_deposit_account"
         android:layout_gravity="bottom|end"
         android:layout_height="wrap_content"

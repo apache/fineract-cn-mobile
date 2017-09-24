@@ -14,6 +14,8 @@ public interface PlannedPaymentContract {
 
     interface View extends MvpView {
 
+        void fetchPlannedPayment();
+
         void showUserInterface();
 
         void showPlannedPayment(List<PlannedPayment> plannedPayments);
@@ -29,9 +31,6 @@ public interface PlannedPaymentContract {
         void hideProgressbar();
 
         void showMessage(String message);
-
-        void showError();
-
     }
 
     interface Presenter {

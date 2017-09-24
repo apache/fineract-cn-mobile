@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.fineract.R;
@@ -57,11 +56,8 @@ public class PlannedPaymentFragment extends FineractBaseFragment
     @BindView(R.id.cv_planned_payment)
     CardView cvCalenderPlannedPayment;
 
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
-
-    @BindView(R.id.tv_error)
-    TextView tvError;
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @BindView(R.id.tv_toolbar_date)
     TextView tvToolbarDate;
@@ -107,14 +103,22 @@ public class PlannedPaymentFragment extends FineractBaseFragment
         rootView = inflater.inflate(R.layout.fragment_planned_payment, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         plannedPaymentPresenter.attachView(this);
 
         showUserInterface();
 
-        plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
-                initialDisbursalDate, false);
+        fetchPlannedPayment();
 
         return rootView;
+    }
+
+    @Override
+    public void fetchPlannedPayment() {
+        rvPlannedPayment.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
+        plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
+                initialDisbursalDate, false);
     }
 
     @Override
@@ -159,10 +163,9 @@ public class PlannedPaymentFragment extends FineractBaseFragment
         }
     }
 
-    @OnClick(R.id.iv_retry)
+    @OnClick(R.id.btn_try_again)
     void onRetry() {
-        plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
-                initialDisbursalDate, false);
+        fetchPlannedPayment();
     }
 
     @Override
@@ -205,18 +208,18 @@ public class PlannedPaymentFragment extends FineractBaseFragment
     @Override
     public void showEmptyPayments(String message) {
         showRecyclerView(false);
-        tvError.setText(getString(R.string.empty_planned_payments));
-        showMessage(getString(R.string.empty_planned_payments));
+        showFineractEmptyUI(getString(R.string.planned_payments),
+                getString(R.string.planned_payments), R.drawable.ic_payment_black_24dp);
     }
 
     @Override
     public void showRecyclerView(boolean visible) {
         if (visible) {
             rvPlannedPayment.setVisibility(View.VISIBLE);
-            rlError.setVisibility(View.GONE);
+            layoutError.setVisibility(View.GONE);
         } else {
             rvPlannedPayment.setVisibility(View.GONE);
-            rlError.setVisibility(View.VISIBLE);
+            layoutError.setVisibility(View.VISIBLE);
         }
     }
 
@@ -236,10 +239,19 @@ public class PlannedPaymentFragment extends FineractBaseFragment
     }
 
     @Override
-    public void showError() {
+    public void showNoInternetConnection() {
         showRecyclerView(false);
-        tvError.setText(getString(R.string.error_loading_planned_payment));
-        showMessage(getString(R.string.error_loading_planned_payment));
+        showFineractNoInternetUI();
+    }
+
+    @Override
+    public void showError(String message) {
+        if (plannedPaymentAdapter.getItemCount() != 0) {
+            showMessage(message);
+        } else {
+            showRecyclerView(false);
+            showFineractErrorUI(getString(R.string.planned_payments));
+        }
     }
 
     @Override

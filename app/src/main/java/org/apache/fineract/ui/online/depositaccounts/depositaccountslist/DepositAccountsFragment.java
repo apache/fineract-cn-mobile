@@ -134,6 +134,12 @@ public class DepositAccountsFragment extends FineractBaseFragment
     }
 
     @Override
+    public void showNoInternetConnection() {
+        showRecyclerView(false);
+        showFineractNoInternetUI();
+    }
+
+    @Override
     public void showError(String errorMessage) {
         showRecyclerView(false);
         showFineractErrorUI(getString(R.string.deposit_accounts));

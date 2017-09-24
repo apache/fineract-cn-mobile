@@ -13,6 +13,8 @@ public interface IdentificationDetailsContract {
 
     interface View extends MvpView {
 
+        void fetchIdentificationScanCard();
+
         void showUserInterface();
 
         void initializeRecyclerView();

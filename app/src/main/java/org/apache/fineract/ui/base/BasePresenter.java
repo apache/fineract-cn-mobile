@@ -2,6 +2,9 @@ package org.apache.fineract.ui.base;
 
 import android.content.Context;
 
+import org.apache.fineract.exceptions.NoConnectivityException;
+import org.apache.fineract.utils.MifosErrorUtils;
+
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that
@@ -24,6 +27,14 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
     @Override
     public void detachView() {
         mvpView = null;
+    }
+
+    public void showExceptionError(Throwable throwable, String errorMessage) {
+        if (throwable instanceof NoConnectivityException) {
+            getMvpView().showNoInternetConnection();
+        } else {
+            getMvpView().showError(MifosErrorUtils.getFineractError(throwable, errorMessage));
+        }
     }
 
     public boolean isViewAttached() {

@@ -164,4 +164,12 @@ public class CustomerProfileActivity extends FineractBaseActivity
     public void refreshUI() {
         loadCustomerPortrait();
     }
+
+    @Override
+    public void showNoInternetConnection() {
+    }
+
+    @Override
+    public void showError(String message) {
+    }
 }

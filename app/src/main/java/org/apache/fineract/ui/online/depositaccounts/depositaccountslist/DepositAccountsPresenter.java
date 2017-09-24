@@ -67,9 +67,9 @@ public class DepositAccountsPresenter extends BasePresenter<DepositAccountsContr
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(
+                        showExceptionError(throwable,
                                 context.getString(R.string.error_fetching_deposit_accounts));
                     }
 

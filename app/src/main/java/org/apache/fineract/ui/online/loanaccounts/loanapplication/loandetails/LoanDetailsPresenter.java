@@ -79,9 +79,10 @@ public class LoanDetailsPresenter extends BasePresenter<LoanDetailsContract.View
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(context.getString(R.string.error_loading_products));
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_loading_products));
                     }
 
                     @Override

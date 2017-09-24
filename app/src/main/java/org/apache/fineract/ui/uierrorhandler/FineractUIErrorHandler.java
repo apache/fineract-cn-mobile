@@ -19,6 +19,7 @@ import butterknife.ButterKnife;
 public class FineractUIErrorHandler {
 
     private ImageView ivEmptyFeatureImage;
+    private ImageView ivErrorNoInternet;
     private TextView tvFeatureName;
     private TextView tvSubFeatureName;
     private Button btnTryAgain;
@@ -55,6 +56,7 @@ public class FineractUIErrorHandler {
                 llErrorToLoad.setVisibility(View.VISIBLE);
                 btnTryAgain.setText(context.getString(R.string.try_again));
                 tvErrorFeatureName.setText(featureName);
+                ivErrorNoInternet.setImageResource(R.drawable.ic_cloud_off_black_24dp);
                 break;
             case NO_INTERNET:
                 llEmptyUI.setVisibility(View.GONE);
@@ -62,6 +64,7 @@ public class FineractUIErrorHandler {
                 llNoInternet.setVisibility(View.VISIBLE);
                 llErrorToLoad.setVisibility(View.VISIBLE);
                 btnTryAgain.setText(context.getString(R.string.retry));
+                ivErrorNoInternet.setImageResource(R.drawable.ic_portable_wifi_off_black_24dp);
                 break;
         }
     }
@@ -76,5 +79,6 @@ public class FineractUIErrorHandler {
         llError = ButterKnife.findById(view, R.id.ll_error);
         btnTryAgain = ButterKnife.findById(view, R.id.btn_try_again);
         tvErrorFeatureName = ButterKnife.findById(view, R.id.tv_error_feature_name);
+        ivErrorNoInternet = ButterKnife.findById(view, R.id.iv_error_no_connection);
     }
 }

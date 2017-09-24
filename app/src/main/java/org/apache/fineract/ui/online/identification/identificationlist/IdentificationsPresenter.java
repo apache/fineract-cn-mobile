@@ -61,17 +61,16 @@ public class IdentificationsPresenter extends BasePresenter<IdentificationsContr
                         getMvpView().hideProgressbar();
 
                         if (identifications.size() == 0) {
-                            getMvpView().showMessage(
-                                    context.getString(R.string.empty_identification_list));
+                            getMvpView().showEmptyIdentifications();
                         } else {
                             getMvpView().showIdentification(identifications);
                         }
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showMessage(
+                        showExceptionError(throwable,
                                 context.getString(R.string.error_fetching_identification_list));
                     }
 

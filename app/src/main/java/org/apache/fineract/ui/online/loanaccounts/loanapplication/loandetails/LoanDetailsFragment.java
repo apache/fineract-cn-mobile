@@ -5,8 +5,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -54,8 +54,8 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
 
     public static final String LOG_TAG = LoanDetailsFragment.class.getSimpleName();
 
-    @BindView(R.id.cl_loan_details)
-    CoordinatorLayout clLoanDetails;
+    @BindView(R.id.ncv_loan_details)
+    NestedScrollView ncvLoanDetails;
 
     @BindView(R.id.sp_products)
     AppCompatSpinner spProducts;
@@ -120,6 +120,9 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
     @BindView(R.id.sp_repay_year_month)
     AppCompatSpinner spRepayYearMonth;
 
+    @BindView(R.id.layout_error)
+    View layoutError;
+
     View rootView;
 
     @Inject
@@ -170,6 +173,7 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_loan_details, container, false);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         loanDetailsPresenter.attachView(this);
 
         showUserInterface();
@@ -177,6 +181,13 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
         loanDetailsPresenter.fetchProducts();
 
         return rootView;
+    }
+
+    @OnClick(R.id.btn_try_again)
+    void reloadProducts() {
+        layoutError.setVisibility(View.GONE);
+        ncvLoanDetails.setVisibility(View.GONE);
+        loanDetailsPresenter.fetchProducts();
     }
 
     @Override
@@ -322,7 +333,8 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
 
     @Override
     public void showProducts(List<String> products) {
-        clLoanDetails.setVisibility(View.VISIBLE);
+        ncvLoanDetails.setVisibility(View.VISIBLE);
+        layoutError.setVisibility(View.GONE);
         this.products.addAll(products);
         productsAdapter.notifyDataSetChanged();
     }
@@ -342,6 +354,8 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
 
     @Override
     public void showEmptyProducts() {
+        ncvLoanDetails.setVisibility(View.VISIBLE);
+        layoutError.setVisibility(View.GONE);
         Toaster.show(rootView, getString(R.string.empty_create_loan_products), Toaster.INDEFINITE);
     }
 
@@ -356,8 +370,17 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
     }
 
     @Override
+    public void showNoInternetConnection() {
+        ncvLoanDetails.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractNoInternetUI();
+    }
+
+    @Override
     public void showError(String message) {
-        clLoanDetails.setVisibility(View.VISIBLE);
+        ncvLoanDetails.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractErrorUI(getString(R.string.products));
     }
 
     @Override

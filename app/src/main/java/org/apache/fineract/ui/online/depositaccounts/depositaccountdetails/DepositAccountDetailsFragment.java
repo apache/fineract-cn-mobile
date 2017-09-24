@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.fineract.R;
@@ -18,8 +17,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.DepositAction;
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity
-        .CreateDepositActivity;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.StatusUtils;
 
@@ -54,11 +52,8 @@ public class DepositAccountDetailsFragment extends FineractBaseFragment
     @BindView(R.id.tv_beneficiaries)
     TextView tvBeneficiaries;
 
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
-
-    @BindView(R.id.tv_error)
-    TextView tvError;
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @BindView(R.id.fab_edit_deposit_account)
     FloatingActionButton fabEditDepositAccount;
@@ -93,6 +88,7 @@ public class DepositAccountDetailsFragment extends FineractBaseFragment
         rootView = inflater.inflate(R.layout.fragment_customer_deposit_details, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         customerDepositDetailsPresenter.attachView(this);
         setToolbarTitle(getString(R.string.deposit_account));
 
@@ -106,10 +102,10 @@ public class DepositAccountDetailsFragment extends FineractBaseFragment
         customerDepositDetailsPresenter.fetchDepositAccountDetails(accountIdentifier);
     }
 
-    @OnClick(R.id.iv_retry)
+    @OnClick(R.id.btn_try_again)
     void onRetry() {
         clCustomerDepositDetails.setVisibility(View.GONE);
-        rlError.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
         customerDepositDetailsPresenter.fetchDepositAccountDetails(accountIdentifier);
     }
 
@@ -126,7 +122,7 @@ public class DepositAccountDetailsFragment extends FineractBaseFragment
     public void showDepositDetails(DepositAccount depositAccount) {
         this.depositAccount = depositAccount;
         clCustomerDepositDetails.setVisibility(View.VISIBLE);
-        rlError.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
 
         StatusUtils.setDepositAccountStatusIcon(depositAccount.getState(),
                 ivDepositCurrentStatus, getActivity());
@@ -158,10 +154,17 @@ public class DepositAccountDetailsFragment extends FineractBaseFragment
     }
 
     @Override
+    public void showNoInternetConnection() {
+        clCustomerDepositDetails.setVisibility(View.GONE);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractNoInternetUI();
+    }
+
+    @Override
     public void showError(String message) {
         clCustomerDepositDetails.setVisibility(View.GONE);
-        rlError.setVisibility(View.VISIBLE);
-        tvError.setText(message);
+        layoutError.setVisibility(View.VISIBLE);
+        showFineractErrorUI(getString(R.string.deposit_account));
         Toaster.show(rootView, message);
     }
 

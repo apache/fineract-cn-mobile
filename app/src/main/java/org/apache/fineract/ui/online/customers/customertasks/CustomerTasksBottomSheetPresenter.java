@@ -2,6 +2,7 @@ package org.apache.fineract.ui.online.customers.customertasks;
 
 import android.content.Context;
 
+import org.apache.fineract.R;
 import org.apache.fineract.data.datamanager.DataManagerCustomer;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.injection.ApplicationContext;
@@ -61,9 +62,10 @@ public class CustomerTasksBottomSheetPresenter
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError();
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_updating_status));
                     }
                 })
         );

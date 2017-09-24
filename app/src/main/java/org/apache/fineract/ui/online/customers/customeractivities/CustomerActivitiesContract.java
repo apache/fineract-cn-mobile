@@ -24,8 +24,6 @@ public interface CustomerActivitiesContract {
         void showProgressbar();
 
         void hideProgressbar();
-
-        void showError(String message);
     }
 
     interface Presenter {

@@ -50,9 +50,10 @@ public class CreateCustomerPresenter extends BasePresenter<CreateCustomerContrac
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(context.getString(R.string.error_creating_customer));
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_creating_customer));
                     }
                 })
 
@@ -74,9 +75,10 @@ public class CreateCustomerPresenter extends BasePresenter<CreateCustomerContrac
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(context.getString(R.string.error_updating_customer));
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_updating_customer));
                     }
                 })
         );

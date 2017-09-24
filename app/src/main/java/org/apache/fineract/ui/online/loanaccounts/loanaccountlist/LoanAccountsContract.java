@@ -25,8 +25,6 @@ public interface LoanAccountsContract {
 
         void showMessage(String message);
 
-        void showError();
-
         void showProgressbar();
 
         void hideProgressbar();

@@ -28,8 +28,6 @@ public interface CustomersContract {
         void hideProgressbar();
 
         void showMessage(String message);
-
-        void showError();
     }
 
     interface Presenter {

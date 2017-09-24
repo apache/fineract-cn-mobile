@@ -72,10 +72,10 @@ public class EditCustomerProfilePresenter extends BasePresenter<EditCustomerProf
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressDialog();
-                        getMvpView().showMessage(context.getString(
-                                R.string.error_uploading_customer_portrait));
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_uploading_customer_portrait));
                     }
                 })
         );
@@ -96,10 +96,10 @@ public class EditCustomerProfilePresenter extends BasePresenter<EditCustomerProf
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressDialog();
-                        getMvpView().showMessage(context.getString(
-                                R.string.error_deleting_customer_portrait));
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_deleting_customer_portrait));
                     }
                 })
         );

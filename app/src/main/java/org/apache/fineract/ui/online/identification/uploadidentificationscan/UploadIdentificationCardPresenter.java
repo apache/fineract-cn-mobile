@@ -74,9 +74,9 @@ public class UploadIdentificationCardPresenter extends
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressDialog();
-                        getMvpView().showError(context
+                        showExceptionError(throwable, context
                                 .getString(R.string.error_uploading_identification_scan_card));
                     }
                 })

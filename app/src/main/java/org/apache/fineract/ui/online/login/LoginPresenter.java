@@ -9,6 +9,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.datamanager.DataManagerAuth;
 import org.apache.fineract.data.models.Authentication;
 import org.apache.fineract.data.models.error.MifosError;
+import org.apache.fineract.exceptions.NoConnectivityException;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;
 import org.apache.fineract.ui.base.BasePresenter;
@@ -75,9 +76,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
                     @Override
                     public void onError(Throwable throwable) {
                         getMvpView().hideProgressDialog();
-                        if (throwable instanceof IOException) {
-                            getMvpView().showError(
-                                    context.getString(R.string.no_internet_connection));
+                        if (throwable instanceof NoConnectivityException) {
+                            getMvpView().showNoInternetConnection();
                         }
 
                         MifosError mifosError = new MifosError();

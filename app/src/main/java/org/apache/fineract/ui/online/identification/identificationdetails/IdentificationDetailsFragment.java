@@ -13,7 +13,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +25,9 @@ import org.apache.fineract.ui.adapters.IdentificationScanAdapter;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.online.identification.createidentification.Action;
-import org.apache.fineract.ui.online.identification.createidentification.identificationactivity
-        .CreateIdentificationActivity;
-import org.apache.fineract.ui.online.identification.uploadidentificationscan
-        .AddScanIdentificationListener;
-import org.apache.fineract.ui.online.identification.uploadidentificationscan
-        .UploadIdentificationCardBottomSheet;
+import org.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
+import org.apache.fineract.ui.online.identification.uploadidentificationscan.AddScanIdentificationListener;
+import org.apache.fineract.ui.online.identification.uploadidentificationscan.UploadIdentificationCardBottomSheet;
 import org.apache.fineract.ui.online.identification.viewscancard.ViewScanCardActivity;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.DateUtils;
@@ -75,11 +71,8 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
     @BindView(R.id.rv_scans_uploaded)
     RecyclerView rvScansUploaded;
 
-    @BindView(R.id.rl_error)
-    RelativeLayout rlError;
-
-    @BindView(R.id.tv_error)
-    TextView tvError;
+    @BindView(R.id.layout_error)
+    View layoutError;
 
     @Inject
     IdentificationScanAdapter identificationScanAdapter;
@@ -120,6 +113,7 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
         rootView = inflater.inflate(R.layout.fragment_identification_details, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
+        initializeFineractUIErrorHandler(getActivity(), rootView);
         identificationDetailsPresenter.attachView(this);
 
         showUserInterface();
@@ -139,24 +133,27 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
                 getString(R.string.upload_new_identification_card_scan));
     }
 
-    @OnClick(R.id.iv_retry)
+    @OnClick(R.id.btn_try_again)
     void onRetry() {
-        identificationDetailsPresenter.fetchIdentificationScanCards(customerIdentifier,
-                identificationCard.getNumber());
+        fetchIdentificationScanCard();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        identificationDetailsPresenter.fetchIdentificationScanCards(customerIdentifier,
-                identificationCard.getNumber());
+        fetchIdentificationScanCard();
     }
 
     @Override
     public void updateScanUploadedIdentification() {
+        fetchIdentificationScanCard();
+    }
+
+    @Override
+    public void fetchIdentificationScanCard() {
         tvScansStatus.setVisibility(View.VISIBLE);
         rvScansUploaded.setVisibility(View.GONE);
-        rlError.setVisibility(View.GONE);
+        layoutError.setVisibility(View.GONE);
         identificationDetailsPresenter.fetchIdentificationScanCards(customerIdentifier,
                 identificationCard.getNumber());
     }
@@ -195,10 +192,10 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
     public void showRecyclerView(boolean status) {
         if (status) {
             rvScansUploaded.setVisibility(View.VISIBLE);
-            rlError.setVisibility(View.GONE);
+            layoutError.setVisibility(View.GONE);
         } else {
             rvScansUploaded.setVisibility(View.GONE);
-            rlError.setVisibility(View.VISIBLE);
+            layoutError.setVisibility(View.VISIBLE);
         }
         tvScansStatus.setVisibility(View.GONE);
     }
@@ -206,8 +203,8 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
     @Override
     public void showScansStatus(String message) {
         showRecyclerView(false);
-        rlError.getChildAt(0).setVisibility(View.GONE);
-        tvError.setText(message);
+        showFineractEmptyUI(getString(R.string.identification_card_scans),
+                getString(R.string.identification_card_scan), R.drawable.ic_description_black_24dp);
     }
 
     @Override
@@ -240,9 +237,15 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
     }
 
     @Override
+    public void showNoInternetConnection() {
+        showRecyclerView(false);
+        showFineractNoInternetUI();
+    }
+
+    @Override
     public void showError(String message) {
         showRecyclerView(false);
-        tvError.setText(message);
+        showFineractErrorUI(getString(R.string.identification_card_scans));
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.apache.fineract.ui.online.depositaccounts.createdepositaccount.formd
 
 import android.content.Context;
 
+import org.apache.fineract.R;
 import org.apache.fineract.data.datamanager.DataManagerDeposit;
 import org.apache.fineract.data.models.deposit.ProductDefinition;
 import org.apache.fineract.injection.ApplicationContext;
@@ -66,9 +67,10 @@ public class FormDepositAssignProductPresenter extends
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError("");
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_fetching_deposit_product));
                     }
 
                     @Override

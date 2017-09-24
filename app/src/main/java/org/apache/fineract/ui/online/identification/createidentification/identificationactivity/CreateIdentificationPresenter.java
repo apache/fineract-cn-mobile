@@ -63,11 +63,10 @@ public class CreateIdentificationPresenter extends BasePresenter<CreateIdentific
                             }
 
                             @Override
-                            public void onError(Throwable e) {
+                            public void onError(Throwable throwable) {
                                 getMvpView().hideProgressbar();
-                                getMvpView().showError(
-                                        context.getString(
-                                                R.string.error_creating_identification_card));
+                                showExceptionError(throwable, context.getString(
+                                        R.string.error_creating_identification_card));
                             }
                         })
         );
@@ -90,10 +89,10 @@ public class CreateIdentificationPresenter extends BasePresenter<CreateIdentific
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(
-                                context.getString(R.string.error_editing_identification_card));
+                        showExceptionError(throwable, context.getString(
+                                R.string.error_updating_identification_card));
                     }
                 })
         );

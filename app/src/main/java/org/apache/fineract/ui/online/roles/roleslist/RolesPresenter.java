@@ -56,9 +56,10 @@ public class RolesPresenter extends BasePresenter<RolesContract.View>
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(context.getString(R.string.error_fetching_roles));
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_fetching_roles));
                     }
 
                     @Override

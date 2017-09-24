@@ -63,9 +63,9 @@ public class DepositAccountDetailsPresenter extends
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showError(
+                        showExceptionError(throwable,
                                 context.getString(R.string.error_loading_deposit_details));
                     }
 

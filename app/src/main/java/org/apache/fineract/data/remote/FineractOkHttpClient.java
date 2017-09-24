@@ -99,6 +99,7 @@ public class FineractOkHttpClient {
 
         //Interceptor :> Full Body Logger and ApiRequest Header
         builder.addInterceptor(logger);
+        builder.addInterceptor(new ConnectivityInterceptor(context));
         builder.addInterceptor(new FineractInterceptor(context));
         builder.addInterceptor(new ReceivedCookiesInterceptor(context));
 

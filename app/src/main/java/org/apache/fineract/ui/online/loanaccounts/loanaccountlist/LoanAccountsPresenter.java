@@ -6,6 +6,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.datamanager.DataManagerLoans;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.LoanAccountPage;
+import org.apache.fineract.exceptions.NoConnectivityException;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;
 import org.apache.fineract.ui.base.BasePresenter;
@@ -84,13 +85,17 @@ public class LoanAccountsPresenter extends BasePresenter<LoanAccountsContract.Vi
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(Throwable throwable) {
                         getMvpView().hideProgressbar();
-                        if (loadmore) {
+                        if (loadmore && !(throwable instanceof NoConnectivityException)) {
                             getMvpView().showMessage(
                                     context.getString(R.string.error_loading_customer_loans));
+                        } else if (loadmore && (throwable instanceof NoConnectivityException)) {
+                            getMvpView().showMessage(
+                                    context.getString(R.string.no_internet_connection));
                         } else {
-                            getMvpView().showError();
+                            showExceptionError(throwable,
+                                    context.getString(R.string.error_loading_customer_loans));
                         }
                     }
 

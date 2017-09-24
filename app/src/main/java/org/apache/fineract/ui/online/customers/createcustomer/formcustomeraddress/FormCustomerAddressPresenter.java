@@ -72,8 +72,9 @@ public class FormCustomerAddressPresenter extends BasePresenter<FormCustomerAddr
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        getMvpView().showError(context.getString(R.string.error_loading_countries));
+                    public void onError(Throwable throwable) {
+                        showExceptionError(throwable,
+                                context.getString(R.string.error_loading_countries));
                     }
 
                     @Override

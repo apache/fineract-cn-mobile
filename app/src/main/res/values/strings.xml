@@ -29,6 +29,7 @@
     <string name="current_status">Current status</string>
     <string name="management">Management</string>
     <string name="identification_cards">Identification cards</string>
+    <string name="identification_card">Identification card</string>
     <string name="view_identification_card">View identification cards</string>
     <string name="tasks">Tasks</string>
     <string name="change_customer_status">Change the status of customer</string>
@@ -54,6 +55,7 @@
     <string name="payment_cycle">Payment cycle</string>
     <string name="term">Term</string>
     <string name="planned_payment">Planned Payment</string>
+    <string name="planned_payments">Planned Payments</string>
     <string name="view_payments">View payments</string>
     <string name="debt_income_report">Debt Income Report</string>
     <string name="view_debt_income_report">View debt income report</string>
@@ -70,6 +72,7 @@
     <string name="balance">Balance</string>
     <string name="beneficiaries">Beneficiaries</string>
     <string name="deposit_account">Deposit account</string>
+    <string name="deposit_product">Deposit product</string>
     <string name="remaining_principal">Remaining principal</string>
     <string name="load_payment">Load Payment</string>
     <string name="short_name">Short name</string>
@@ -178,6 +181,12 @@
     <string name="oh_no">Oh no!</string>
     <string name="empty_ui_message">No %1$s Found</string>
     <string name="empty_ui_sub_message">Tap to add %1$s</string>
+    <string name="customer_details">Customer details</string>
+    <string name="create_new_loan">Create new loan</string>
+    <string name="identification_card_scans">Identification card scans</string>
+    <string name="identification_card_scan">Identification card scan</string>
+    <string name="role">Role</string>
+    <string name="customer_name">%1$s %2$s</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>
@@ -239,7 +248,7 @@
     <string name="error_updating_status">Error while updating customer</string>
     <string name="error_fetching_identification_list">Error while fetching identification cards</string>
     <string name="error_creating_identification_card">Error while creating identification card</string>
-    <string name="error_editing_identification_card">Error while editing identification card</string>
+    <string name="error_updating_identification_card">Error while updating identification card</string>
     <string name="error_fetching_scans">Error while fetching scan cards</string>
     <string name="error_uploading_identification_scan_card">Error while uploading identification scan card</string>
     <string name="error_deleting_identification_scan_card">Error while deleting identification scan card</string>
@@ -251,6 +260,9 @@
     <string name="error_fetching_customer_activities">Error fetching customer activities</string>
     <string name="error_fetching_roles">Error fetching roles</string>
     <string name="error_sorry_not_able_to_load">Sorry we weren\'t able to load</string>
+    <string name="error_fetching_customer_details">Failed to fetch customer details</string>
+    <string name="error_fetching_deposit_product">Failed to fetch deposit product</string>
+    <string name="error_failed_to_refresh_customers">Failed to refresh customers</string>
 
 
     <!--Material Dialog-->

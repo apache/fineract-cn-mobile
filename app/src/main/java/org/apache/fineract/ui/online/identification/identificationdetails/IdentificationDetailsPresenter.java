@@ -70,8 +70,8 @@ public class IdentificationDetailsPresenter extends
                     }
 
                     @Override
-                    public void onError(Throwable e) {
-                        getMvpView().showError(
+                    public void onError(Throwable throwable) {
+                        showExceptionError(throwable,
                                 context.getString(R.string.error_fetching_scans));
                     }
 

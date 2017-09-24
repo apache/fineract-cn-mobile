@@ -119,6 +119,11 @@ public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step
     }
 
     @Override
+    public void showNoInternetConnection() {
+        Toaster.show(rootView, getString(R.string.no_internet_connection));
+    }
+
+    @Override
     public void showError(String message) {
         Toaster.show(rootView, getString(R.string.error_loading_customers));
     }
