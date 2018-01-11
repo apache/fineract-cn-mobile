@@ -38,6 +38,17 @@ public class RolesPresenter extends BasePresenter<RolesContract.View>
     }
 
     @Override
+    public void attachView(RolesContract.View mvpView) {
+        super.attachView(mvpView);
+    }
+
+    @Override
+    public void detachView() {
+        super.detachView();
+        compositeDisposable.clear();
+    }
+
+    @Override
     public void fetchRoles() {
         checkViewAttached();
         getMvpView().showProgressbar();
