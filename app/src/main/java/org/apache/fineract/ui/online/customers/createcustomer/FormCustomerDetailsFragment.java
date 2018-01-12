@@ -162,7 +162,8 @@ public class FormCustomerDetailsFragment extends FineractBaseFragment implements
 
     @OnClick(R.id.et_date_of_birth)
     void onClickDateOfBirth() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), date, calendar
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                R.style.MaterialDatePickerTheme, date, calendar
                 .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
