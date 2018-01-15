@@ -186,7 +186,6 @@ public class FormCustomerAddressFragment extends FineractBaseFragment implements
             etCountry.post(new Runnable() {
                 @Override
                 public void run() {
-                    etCountry.showDropDown();
                     validateCountry();
                 }
             });
