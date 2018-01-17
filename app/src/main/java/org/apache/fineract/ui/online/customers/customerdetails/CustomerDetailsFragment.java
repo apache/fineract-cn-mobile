@@ -263,7 +263,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
 
         String title = customer.getGivenName() + " " + customer.getSurname();
         String subtitle;
-        if (customer.getAssignedOffice() == null) {
+        if (customer.getAssignedEmployee() == null) {
             subtitle = getString(R.string.assigned_employee) + " " +
                     getString(R.string.not_assigned);
         } else {
