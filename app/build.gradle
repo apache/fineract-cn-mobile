@@ -39,6 +39,9 @@ android {
         test {
             java.srcDir commonTestDir
         }
+        main {
+            java.srcDir commonTestDir
+        }
     }
 
     // Always show the result of every unit test, even if it passes.
