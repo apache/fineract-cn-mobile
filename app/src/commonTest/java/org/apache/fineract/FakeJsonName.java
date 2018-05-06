@@ -6,4 +6,6 @@ package org.apache.fineract;
  */
 public class FakeJsonName {
 
+    public static final String CUSTOMER = "customer.json";
+
 }
