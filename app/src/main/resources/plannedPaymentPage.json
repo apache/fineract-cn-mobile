@@ -1,0 +1,23 @@
+{
+  "chargeNames": [
+    {
+      "identifier": "identifier",
+      "name": "name"
+    }
+  ],
+  "elements": [
+    {
+      "interestRate": 5.10,
+      "costComponents": [
+        {
+          "chargeIdentifier": "chargeIdentifier",
+          "amount": 4500.75
+        }
+      ],
+      "remainingPrincipal": 3400,
+      "data": "date"
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 1
+}

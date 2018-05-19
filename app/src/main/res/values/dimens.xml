@@ -22,10 +22,11 @@
     <dimen name="header_view_end_margin_right">14dp</dimen>
     <dimen name="header_view_start_margin_bottom">14dp</dimen>
 
-
+    <dimen name="view_line_height">1dp</dimen>
 
     <dimen name="text_size_12sp">12sp</dimen>
     <dimen name="text_size_14sp">14sp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
     <dimen name="text_size_20sp">20sp</dimen>
     <!-- Dimen values for text size -->
     <dimen name="text_headline">24sp</dimen>

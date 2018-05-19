@@ -187,7 +187,7 @@ public class FormCustomerDetailsFragment extends FineractBaseFragment implements
                     etFirstName.getText().toString().trim(),
                     etLastName.getText().toString().trim(),
                     etMiddleName.getText().toString().trim(), dateOfBirth,
-                    cbIsmember.isEnabled());
+                    cbIsmember.isChecked());
         }
         return null;
     }

@@ -1,5 +1,6 @@
 package org.apache.fineract.data.datamanager;
 
+import org.apache.fineract.FakeRemoteDataSource;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.LoanAccountPage;
@@ -11,6 +12,8 @@ import javax.inject.Singleton;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
 
 /**
  * @author Rajan Maurya
@@ -33,13 +36,29 @@ public class DataManagerLoans extends FineractBaseDataManager {
     public Observable<LoanAccountPage> fetchCustomerLoanAccounts(
             String customeridentifier, Integer pageIndex, Integer size) {
         return authenticatedObservableApi(baseApiManager.getLoanApi()
-                .fetchCustomerLoanAccounts(customeridentifier, pageIndex, size));
+                .fetchCustomerLoanAccounts(customeridentifier, pageIndex, size))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<LoanAccountPage>>() {
+                            @Override
+                            public ObservableSource<LoanAccountPage> apply(
+                                    Throwable throwable) throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getloanAccountPage());
+                            }
+                        });
     }
 
     public Observable<LoanAccount> fetchCustomerLoanDetails(
             String productIdentifier, String caseIdentifier) {
         return authenticatedObservableApi(baseApiManager.getLoanApi()
-                .fetchCustomerLoanDetails(productIdentifier, caseIdentifier));
+                .fetchCustomerLoanDetails(productIdentifier, caseIdentifier))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<LoanAccount>>() {
+                            @Override
+                            public ObservableSource<LoanAccount> apply(
+                                    Throwable throwable) throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getloanAccount());
+                            }
+                        });
     }
 
     public Observable<ProductPage> getProducts(Integer pageIndex, Integer size) {
