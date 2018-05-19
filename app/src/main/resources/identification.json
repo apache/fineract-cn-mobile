@@ -1,0 +1,16 @@
+[
+  {
+    "type": "type",
+    "number": "number",
+    "expirationDate": {
+      "year": 1985,
+      "month": 11,
+      "day": 27
+    },
+    "issuer": "issuer",
+    "createdBy": "createdBy",
+    "createdOn": "createdOn",
+    "lastModifiedBy": "lastModifiedBy",
+    "lastModifiedOn": "lastModifiedOn"
+  }
+]

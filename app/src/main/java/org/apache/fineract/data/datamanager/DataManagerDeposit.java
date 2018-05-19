@@ -1,5 +1,6 @@
 package org.apache.fineract.data.datamanager;
 
+import org.apache.fineract.FakeRemoteDataSource;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.deposit.DepositAccount;
 import org.apache.fineract.data.models.deposit.ProductDefinition;
@@ -12,6 +13,8 @@ import javax.inject.Singleton;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
 
 /**
  * @author Rajan Maurya
@@ -34,13 +37,33 @@ public class DataManagerDeposit extends FineractBaseDataManager {
     public Observable<List<DepositAccount>> getCustomerDepositAccounts(
             String customerIdentifier) {
         return authenticatedObservableApi(baseApiManager.getDepositApi()
-                .fetchCustomersDeposits(customerIdentifier));
+                .fetchCustomersDeposits(customerIdentifier))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<List<DepositAccount>>>
+                                () {
+                            @Override
+                            public ObservableSource<List<DepositAccount>> apply(
+                                    Throwable throwable)
+                                    throws Exception {
+                                return Observable.just(FakeRemoteDataSource
+                                        .getCustomerDepositAccounts());
+                            }
+                        });
     }
 
     public Observable<DepositAccount> getCustomerDepositAccountDetails(
             String accountIdentifier) {
         return authenticatedObservableApi(baseApiManager.getDepositApi()
-                .fetchCustomerDepositDetails(accountIdentifier));
+                .fetchCustomerDepositDetails(accountIdentifier))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<DepositAccount>>() {
+                            @Override
+                            public ObservableSource<DepositAccount> apply(
+                                    Throwable throwable) throws Exception {
+                                return Observable.just(FakeRemoteDataSource
+                                        .getCustomerDepositAccounts().get(0));
+                            }
+                        });
     }
 
     public Observable<List<ProductDefinition>> fetchProductDefinitions() {

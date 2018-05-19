@@ -1,0 +1,7 @@
+{
+  "tokenType": "tokenType",
+  "accessToken": "accessToken",
+  "accessTokenExpiration": "accessTokenExpiration",
+  "refreshTokenExpiration": "refreshTokenExpiration",
+  "passwordExpiration": "passwordExpiration"
+}
