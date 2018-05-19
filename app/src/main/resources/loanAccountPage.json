@@ -1,0 +1,60 @@
+{
+  "elements": [
+    {
+      "identifier": "identifier",
+      "productIdentifier": "productIdentifier",
+      "parameters" : "{}",
+      "accountAssignments": [
+        {
+          "designator": "designator",
+          "accountIdentifier": "accountIdentifier",
+          "ledgerIdentifier": "ledgerIdentifier"
+        }
+      ],
+      "currentState": "CREATED",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy",
+      "loanParameters": {
+        "customerIdentifier": "customerIdentifier",
+        "creditWorthinessSnapshots": [
+          {
+            "forCustomer": "forCustomer",
+            "incomeSources": [
+              {
+                "description": "description",
+                "amount": 45.45
+              }
+            ],
+            "assets": [
+              {
+                "description": "description",
+                "amount": 45.45
+              }
+            ],
+            "debts": [
+              {
+                "description": "description",
+                "amount": 45.45
+              }
+            ]
+          }
+        ],
+        "maximumBalance": 4500.50,
+        "termRange": {
+          "temporalUnit": "WEEKS",
+          "maximum": 45
+        },
+        "paymentCycle": {
+          "temporalUnit": "WEEKS",
+          "period": 1,
+          "alignmentDay": 1,
+          "alignmentWeek": 1,
+          "alignmentMonth": 1
+        }
+      }
+    }
+  ],
+  "totalElements": 1
+}

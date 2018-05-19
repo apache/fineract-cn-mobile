@@ -1,0 +1,28 @@
+[
+  {
+    "identifier": "identifier1",
+    "permissions": [
+      {
+        "permittableEndpointGroupIdentifier": "permittableEndpointGroupIdentifier",
+        "allowedOperations": ["READ", "DELETE"]
+      },
+      {
+        "permittableEndpointGroupIdentifier": "permittableEndpointGroupIdentifier",
+        "allowedOperations": ["READ", "DELETE"]
+      }
+    ]
+  },
+  {
+    "identifier": "identifier2",
+    "permissions": [
+      {
+        "permittableEndpointGroupIdentifier": "permittableEndpointGroupIdentifier",
+        "allowedOperations": ["READ", "DELETE"]
+      },
+      {
+        "permittableEndpointGroupIdentifier": "permittableEndpointGroupIdentifier",
+        "allowedOperations": ["READ", "DELETE"]
+      }
+    ]
+  }
+]

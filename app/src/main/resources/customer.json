@@ -1,3 +1,46 @@
 {
-
+  "identifier": "identifier",
+  "type": "type",
+  "givenName": "givenName",
+  "middleName": "middleName",
+  "surname": "surname",
+  "dateOfBirth": {
+    "year": 1985,
+    "month": 11,
+    "day": 27
+  },
+  "member": false,
+  "accountBeneficiary": "accountBeneficiary",
+  "referenceCustomer": "referenceCustomer",
+  "assignedOffice": "assignedOffice",
+  "assignedEmployee": "assignedEmployee",
+  "address": {
+    "street": "street",
+    "city": "city",
+    "region": "region",
+    "postalCode": "postalCode",
+    "countryCode": "countryCode",
+    "country": "country"
+  },
+  "contactDetails": [
+    {
+      "type": "EMAIL",
+      "group": "BUSINESS",
+      "value": "value",
+      "preferenceLevel": 1,
+      "validated": false
+    },
+    {
+      "type": "EMAIL",
+      "group": "BUSINESS",
+      "value": "value",
+      "preferenceLevel": 1,
+      "validated": false
+    }
+  ],
+  "currentState": "ACTIVE",
+  "createdBy": "createdBy",
+  "createdOn": "createdOn",
+  "lastModifiedBy": "lastModifiedBy",
+  "lastModifiedOn": "lastModifiedOn"
 }

@@ -1,5 +1,6 @@
 package org.apache.fineract.data.datamanager;
 
+import org.apache.fineract.FakeRemoteDataSource;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.customer.Customer;
@@ -15,6 +16,8 @@ import javax.inject.Singleton;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
 import okhttp3.MultipartBody;
 
 /**
@@ -37,12 +40,28 @@ public class DataManagerCustomer extends FineractBaseDataManager {
 
     public Observable<CustomerPage> fetchCustomers(Integer pageIndex, Integer size) {
         return authenticatedObservableApi(baseApiManager.getCustomerApi()
-                .fetchCustomers(pageIndex, size));
+                .fetchCustomers(pageIndex, size))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<CustomerPage>>() {
+                            @Override
+                            public ObservableSource<CustomerPage> apply(
+                                    Throwable throwable) throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getCustomerPage());
+                            }
+                        });
     }
 
     public Observable<Customer> fetchCustomer(String identifier) {
         return authenticatedObservableApi(baseApiManager.getCustomerApi()
-                .fetchCustomer(identifier));
+                .fetchCustomer(identifier))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<Customer>>() {
+                            @Override
+                            public ObservableSource<Customer> apply(
+                                    Throwable throwable) throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getCustomer());
+                            }
+                        });
     }
 
     public Completable updateCustomer(String customerIdentifier, Customer customer) {
@@ -67,12 +86,30 @@ public class DataManagerCustomer extends FineractBaseDataManager {
 
     public Observable<List<Command>> fetchCustomerCommands(String customerIdentifier) {
         return authenticatedObservableApi(baseApiManager.getCustomerApi()
-                .fetchCustomerCommands(customerIdentifier));
+                .fetchCustomerCommands(customerIdentifier))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<List<Command>>>() {
+                            @Override
+                            public ObservableSource<List<Command>> apply(
+                                    Throwable throwable) throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getCustomerCommands());
+                            }
+                        });
     }
 
     public Observable<List<Identification>> fetchIdentifications(String customerIdentifier) {
         return authenticatedObservableApi(baseApiManager.getCustomerApi()
-                .fetchIdentification(customerIdentifier));
+                .fetchIdentification(customerIdentifier))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<List<Identification>>>
+                                () {
+                            @Override
+                            public ObservableSource<List<Identification>> apply(
+                                    Throwable throwable)
+                                    throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getIdentifications());
+                            }
+                        });
     }
 
     public Completable createIdentificationCard(String identifier, Identification identification) {
@@ -89,7 +126,15 @@ public class DataManagerCustomer extends FineractBaseDataManager {
     public Observable<List<ScanCard>> fetchIdentificationScanCards(String customerIdentifier,
             String identificationNumber) {
         return authenticatedObservableApi(baseApiManager.getCustomerApi()
-                .fetchIdentificationScanCards(customerIdentifier, identificationNumber));
+                .fetchIdentificationScanCards(customerIdentifier, identificationNumber))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<List<ScanCard>>>() {
+                            @Override
+                            public ObservableSource<List<ScanCard>> apply(
+                                    Throwable throwable) throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getScanCards());
+                            }
+                        });
     }
 
     public Completable uploadIdentificationCardScan(String customerIdentifier,

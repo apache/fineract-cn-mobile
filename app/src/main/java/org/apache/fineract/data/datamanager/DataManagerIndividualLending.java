@@ -1,5 +1,6 @@
 package org.apache.fineract.data.datamanager;
 
+import org.apache.fineract.FakeRemoteDataSource;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.payment.PlannedPaymentPage;
 import org.apache.fineract.data.remote.BaseApiManager;
@@ -8,6 +9,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
 
 /**
  * @author Rajan Maurya
@@ -31,6 +34,16 @@ public class DataManagerIndividualLending extends FineractBaseDataManager {
             String caseIdentifier, Integer pageIndex, Integer size, String initialDisbursalDate) {
         return authenticatedObservableApi(baseApiManager
                 .getIndividualLendingService().getPaymentScheduleForCase(
-                        productIdentifier, caseIdentifier, pageIndex, size, initialDisbursalDate));
+                        productIdentifier, caseIdentifier, pageIndex, size, initialDisbursalDate))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<PlannedPaymentPage>>() {
+                            @Override
+                            public ObservableSource<PlannedPaymentPage> apply(
+                                    Throwable throwable)
+                                    throws Exception {
+                                return Observable.just(
+                                        FakeRemoteDataSource.getPlannedPaymentPage());
+                            }
+                        });
     }
 }
