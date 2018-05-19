@@ -16,6 +16,7 @@ import org.apache.fineract.ui.online.customers.createcustomer.FormCustomerContac
 import org.apache.fineract.ui.online.customers.createcustomer.FormCustomerDetailsFragment;
 import org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress
         .FormCustomerAddressFragment;
+import org.apache.fineract.ui.online.review.CreateCustomerReviewFragment;
 
 /**
  * @author Rajan Maurya
@@ -52,6 +53,8 @@ public class CreateCustomerStepAdapter extends AbstractFragmentStepAdapter {
                 return FormCustomerAddressFragment.newInstance(customer, customerAction);
             case 2:
                 return FormCustomerContactFragment.newInstance(customer, customerAction);
+            case 3:
+                return CreateCustomerReviewFragment.newInstance();
 
         }
         return null;

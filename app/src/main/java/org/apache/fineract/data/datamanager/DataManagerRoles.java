@@ -1,5 +1,6 @@
 package org.apache.fineract.data.datamanager;
 
+import org.apache.fineract.FakeRemoteDataSource;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.rolesandpermission.Role;
 import org.apache.fineract.data.remote.BaseApiManager;
@@ -10,6 +11,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.functions.Function;
 
 /**
  * @author Rajan Maurya
@@ -31,6 +34,14 @@ public class DataManagerRoles extends FineractBaseDataManager {
 
     public Observable<List<Role>> getRoles() {
         return authenticatedObservableApi(
-                baseApiManager.getRolesAndPermissionsService().getRoles());
+                baseApiManager.getRolesAndPermissionsService().getRoles())
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<List<Role>>>() {
+                            @Override
+                            public ObservableSource<List<Role>> apply(Throwable throwable)
+                                    throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getRoles());
+                            }
+                        });
     }
 }

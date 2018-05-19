@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This project is licensed under the open source MPL V2.
+  ~ See https://github.com/openMF/android-client/blob/master/LICENSE.md
+  -->
+
+<resources>
+
+    <style name="TextViewReview" parent="TextAppearance.Design.Hint">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextViewReview.Head">
+        <item name="android:paddingTop">@dimen/layout_padding_16dp</item>
+    </style>
+
+    <style name="TextViewReview.Input">
+        <item name="android:textSize">@dimen/text_size_18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingTop">@dimen/layout_padding_8dp</item>
+    </style>
+
+</resources>
