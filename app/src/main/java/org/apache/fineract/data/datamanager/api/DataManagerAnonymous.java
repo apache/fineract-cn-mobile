@@ -1,4 +1,4 @@
-package org.apache.fineract.data.datamanager;
+package org.apache.fineract.data.datamanager.api;
 
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.customer.Country;

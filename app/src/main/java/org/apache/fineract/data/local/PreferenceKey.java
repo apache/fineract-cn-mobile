@@ -14,4 +14,6 @@ public class PreferenceKey {
     public static final String PREF_KEY_USER_NAME = "PREF_KEY_USER_NAME";
     public static final String PREF_KEY_REFRESH_ACCESS_TOKEN = "PREF_KEY_REFRESH_ACCESS_TOKEN";
     public static final String PREF_KEY_COOKIES = "PREF_KEY_COOKIES";
+    public static final String PREF_IS_FETCHING = "PREF_IS_FETCHING";
+    public static final String PREF_IS_FIRST_TIME = "PREF_IS_FIRST_TIME";
 }

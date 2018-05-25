@@ -20,7 +20,7 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <include
-        layout="@layout/layout_exception_handler"
+        layout="@layout/layout_sweet_exception_handler"
         android:id="@+id/layout_error"
         android:visibility="gone"/>
 

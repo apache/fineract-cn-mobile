@@ -14,7 +14,9 @@ import android.view.View;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
+import org.apache.fineract.jobs.StartSyncJob;
 import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
@@ -54,6 +56,11 @@ public class DashboardActivity extends FineractBaseActivity implements
         replaceFragment(DashboardFragment.newInstance(), false, R.id.container);
 
         setupNavigationBar();
+
+        if (preferencesHelper.isFirstTime()) {
+            StartSyncJob.scheduleItNow();
+            preferencesHelper.setFetching(false);
+        }
     }
 
     public void setupNavigationBar() {
@@ -98,6 +105,10 @@ public class DashboardActivity extends FineractBaseActivity implements
                 break;
             case R.id.item_customer:
                 replaceFragment(CustomersFragment.newInstance(), true, R.id.container);
+                break;
+            case R.id.item_customer_payload:
+                replaceFragment(CustomerPayloadFragment.newInstance(), true,
+                        R.id.container);
                 break;
             case R.id.item_logout:
                 logout();

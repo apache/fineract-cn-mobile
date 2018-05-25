@@ -5,7 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerAnonymous;
+import org.apache.fineract.data.datamanager.api.DataManagerAnonymous;
 import org.apache.fineract.data.models.customer.Country;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;

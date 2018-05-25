@@ -2,7 +2,7 @@ package org.apache.fineract.ui.online.launcher;
 
 import android.content.Context;
 
-import org.apache.fineract.data.datamanager.DataManagerAuth;
+import org.apache.fineract.data.datamanager.api.DataManagerAuth;
 import org.apache.fineract.data.models.Authentication;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;

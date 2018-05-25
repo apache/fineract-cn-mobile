@@ -4,10 +4,16 @@ import android.app.Application;
 import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
+import com.evernote.android.job.JobManager;
+import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.apache.fineract.injection.component.ApplicationComponent;
 import org.apache.fineract.injection.component.DaggerApplicationComponent;
 import org.apache.fineract.injection.module.ApplicationModule;
+import org.apache.fineract.jobs.StartSyncJob;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -22,11 +28,15 @@ public class FineractApplication extends Application {
 
     private static FineractApplication instance;
 
+    @Inject
+    JobManager jobManager;
+
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         Fabric.with(this, new Crashlytics());
+        FlowManager.init(this);
     }
 
     public static Context getContext() {
@@ -42,6 +52,7 @@ public class FineractApplication extends Application {
             applicationComponent = DaggerApplicationComponent.builder()
                     .applicationModule(new ApplicationModule(this))
                     .build();
+            applicationComponent.inject(this);
         }
         return applicationComponent;
     }

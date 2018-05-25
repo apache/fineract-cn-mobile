@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.loanaccounts.plannedpayment;
 import android.content.Context;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerIndividualLending;
+import org.apache.fineract.data.datamanager.api.DataManagerIndividualLending;
 import org.apache.fineract.data.models.payment.PlannedPayment;
 import org.apache.fineract.data.models.payment.PlannedPaymentPage;
 import org.apache.fineract.exceptions.NoConnectivityException;

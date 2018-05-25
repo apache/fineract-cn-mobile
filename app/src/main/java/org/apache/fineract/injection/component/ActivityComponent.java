@@ -2,6 +2,7 @@ package org.apache.fineract.injection.component;
 
 import org.apache.fineract.injection.PerActivity;
 import org.apache.fineract.injection.module.ActivityModule;
+import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.DashboardActivity;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
 import org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
@@ -97,4 +98,7 @@ public interface ActivityComponent {
     void inject(DashboardActivity dashboardActivity);
 
     void inject(RolesFragment rolesFragment);
+
+    void inject(CustomerPayloadFragment customerPayloadFragment);
+
 }

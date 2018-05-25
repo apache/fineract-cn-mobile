@@ -3,7 +3,8 @@ package org.apache.fineract.ui.online.customers.createcustomer.customeractivity;
 import android.content.Context;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerCustomer;
+import org.apache.fineract.data.datamanager.contracts.ManagerCustomer;
+import org.apache.fineract.data.datamanager.database.DbManagerCustomer;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;
@@ -24,14 +25,14 @@ import io.reactivex.schedulers.Schedulers;
 public class CreateCustomerPresenter extends BasePresenter<CreateCustomerContract.View>
         implements CreateCustomerContract.Presenter {
 
-    private DataManagerCustomer dataManagerCustomer;
+    private ManagerCustomer dbManagerCustomer;
     private final CompositeDisposable compositeDisposable;
 
     @Inject
     public CreateCustomerPresenter(@ApplicationContext Context context,
-            DataManagerCustomer dataManagerCustomer) {
+            DbManagerCustomer dataManagerCustomer) {
         super(context);
-        this.dataManagerCustomer = dataManagerCustomer;
+        this.dbManagerCustomer = dataManagerCustomer;
         compositeDisposable = new CompositeDisposable();
     }
 
@@ -39,7 +40,7 @@ public class CreateCustomerPresenter extends BasePresenter<CreateCustomerContrac
     public void createCustomer(final Customer customer) {
         checkViewAttached();
         getMvpView().showProgressbar();
-        compositeDisposable.add(dataManagerCustomer.createCustomer(customer)
+        compositeDisposable.add(dbManagerCustomer.createCustomer(customer)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableCompletableObserver() {
@@ -64,7 +65,7 @@ public class CreateCustomerPresenter extends BasePresenter<CreateCustomerContrac
     public void updateCustomer(String customerIdentifier, Customer customer) {
         checkViewAttached();
         getMvpView().showProgressbar();
-        compositeDisposable.add(dataManagerCustomer.updateCustomer(customerIdentifier, customer)
+        compositeDisposable.add(dbManagerCustomer.updateCustomer(customerIdentifier, customer)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableCompletableObserver() {

@@ -1,9 +1,11 @@
 package org.apache.fineract.ui.online.customers.customerlist;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerCustomer;
+import org.apache.fineract.data.datamanager.contracts.ManagerCustomer;
+import org.apache.fineract.data.datamanager.database.DbManagerCustomer;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.customer.CustomerPage;
 import org.apache.fineract.injection.ApplicationContext;
@@ -27,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 public class CustomersPresenter extends BasePresenter<CustomersContract.View>
         implements CustomersContract.Presenter {
 
-    private final DataManagerCustomer dataManagerCustomer;
+    private final ManagerCustomer dataManagerCustomer;
     private CompositeDisposable compositeDisposable;
 
     private int customerListSize = 50;
@@ -35,7 +37,7 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
 
     @Inject
     public CustomersPresenter(@ApplicationContext Context context,
-            DataManagerCustomer dataManager) {
+            DbManagerCustomer dataManager) {
         super(context);
         dataManagerCustomer = dataManager;
         compositeDisposable = new CompositeDisposable();
@@ -70,7 +72,7 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
                     public void onNext(CustomerPage customerPage) {
                         getMvpView().hideProgressbar();
 
-                        if (!loadmore && customerPage.getTotalElements() == 0) {
+                        if (!loadmore && customerPage.getTotalPages() == 0) {
                             getMvpView().showEmptyCustomers(
                                     context.getString(R.string.empty_customer_list));
                         } else if (loadmore && customerPage.getCustomers().size() == 0) {
@@ -83,6 +85,7 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
 
                     @Override
                     public void onError(Throwable throwable) {
+                        Log.d("mytag", throwable.toString());
                         getMvpView().hideProgressbar();
                         if (loadmore) {
                             getMvpView().showMessage(

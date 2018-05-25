@@ -67,6 +67,8 @@
     <string name="payment_cycle_week">Repay every %1$d %2$s on %3$s</string>
     <string name="payment_cycle_year_day">Repay every %1$d %2$s on the %3$s day in %4$s</string>
     <string name="payment_cycle_year_day_week">Repay every %1$d %2$s on the %3$s %4$s in %5$s</string>
+    <string name="syncing_please_wait">Please wait while we fetch data from server, will update you once its done</string>
+    <string name="no_customer_sync">No Customers to Sync</string>
 
     <string name="account">Account</string>
     <string name="balance">Balance</string>
@@ -444,4 +446,7 @@
         <item>29.</item>
         <item>30.</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
