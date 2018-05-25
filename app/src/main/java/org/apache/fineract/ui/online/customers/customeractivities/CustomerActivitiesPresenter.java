@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.customers.customeractivities;
 import android.content.Context;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerCustomer;
+import org.apache.fineract.data.datamanager.api.DataManagerCustomer;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;

@@ -11,7 +11,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerCustomer;
+import org.apache.fineract.data.datamanager.api.DataManagerCustomer;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.customer.CustomerPage;
 import org.apache.fineract.injection.ApplicationContext;

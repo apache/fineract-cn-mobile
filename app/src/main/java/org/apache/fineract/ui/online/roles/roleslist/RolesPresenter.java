@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.roles.roleslist;
 import android.content.Context;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerRoles;
+import org.apache.fineract.data.datamanager.api.DataManagerRoles;
 import org.apache.fineract.data.models.rolesandpermission.Role;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;

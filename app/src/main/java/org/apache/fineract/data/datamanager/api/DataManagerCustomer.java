@@ -1,7 +1,9 @@
-package org.apache.fineract.data.datamanager;
+package org.apache.fineract.data.datamanager.api;
 
 import org.apache.fineract.FakeRemoteDataSource;
+import org.apache.fineract.data.datamanager.contracts.ManagerCustomer;
 import org.apache.fineract.data.local.PreferencesHelper;
+import org.apache.fineract.data.local.database.helpers.DatabaseHelperCustomer;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.customer.CustomerPage;
@@ -15,6 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Completable;
+import io.reactivex.CompletableObserver;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
@@ -25,17 +28,19 @@ import okhttp3.MultipartBody;
  *         On 20/06/17.
  */
 @Singleton
-public class DataManagerCustomer extends FineractBaseDataManager {
+public class DataManagerCustomer extends FineractBaseDataManager implements ManagerCustomer {
 
     private final BaseApiManager baseApiManager;
     private final PreferencesHelper preferencesHelper;
+    private final DatabaseHelperCustomer databaseHelper;
 
     @Inject
     public DataManagerCustomer(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper,
-            DataManagerAuth dataManagerAuth) {
+                           DataManagerAuth dataManagerAuth, DatabaseHelperCustomer databaseHelper) {
         super(dataManagerAuth, preferencesHelper);
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
+        this.databaseHelper = databaseHelper;
     }
 
     public Observable<CustomerPage> fetchCustomers(Integer pageIndex, Integer size) {
@@ -48,7 +53,7 @@ public class DataManagerCustomer extends FineractBaseDataManager {
                                     Throwable throwable) throws Exception {
                                 return Observable.just(FakeRemoteDataSource.getCustomerPage());
                             }
-                        });
+                });
     }
 
     public Observable<Customer> fetchCustomer(String identifier) {
@@ -61,7 +66,7 @@ public class DataManagerCustomer extends FineractBaseDataManager {
                                     Throwable throwable) throws Exception {
                                 return Observable.just(FakeRemoteDataSource.getCustomer());
                             }
-                        });
+                });
     }
 
     public Completable updateCustomer(String customerIdentifier, Customer customer) {
@@ -74,9 +79,15 @@ public class DataManagerCustomer extends FineractBaseDataManager {
                 .searchCustomer(pageIndex, size, term));
     }
 
-    public Completable createCustomer(Customer customer) {
+    public Completable createCustomer(final Customer customer) {
         return authenticatedCompletableApi(
-                baseApiManager.getCustomerApi().createCustomer(customer));
+                baseApiManager.getCustomerApi().createCustomer(customer))
+                .andThen(new Completable() {
+                    @Override
+                    protected void subscribeActual(CompletableObserver s) {
+                        databaseHelper.deleteCustomerPayload(customer);
+                    }
+                });
     }
 
     public Completable customerCommand(String identifier, Command command) {

@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.identification.identificationlist;
 import android.content.Context;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerCustomer;
+import org.apache.fineract.data.datamanager.api.DataManagerCustomer;
 import org.apache.fineract.data.models.customer.identification.Identification;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;

@@ -72,6 +72,12 @@
 
         <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
 
+        <receiver android:name=".jobs.JobsReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="org.apache.fineract.JobsReceiver"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

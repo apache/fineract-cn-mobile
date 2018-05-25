@@ -67,7 +67,12 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
                 customer.getIdentifier()), holder.ivCustomerImage,
                 R.drawable.ic_account_circle_black_24dp);
 
-        StatusUtils.setCustomerStatus(customer.getCurrentState(), holder.ivStausIndicator, context);
+        if (customer.getCurrentState() != null) {
+            StatusUtils.setCustomerStatus(customer.getCurrentState(), holder.ivStausIndicator,
+                    context);
+        } else {
+            holder.ivStausIndicator.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -115,12 +120,16 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
-            onItemClickListener.onItemClick(v, getAdapterPosition());
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, getAdapterPosition());
+            }
         }
 
         @Override
         public boolean onLongClick(View v) {
-            onItemClickListener.onItemLongPress(v, getAdapterPosition());
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemLongPress(v, getAdapterPosition());
+            }
             return true;
         }
     }

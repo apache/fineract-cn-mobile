@@ -3,7 +3,8 @@ package org.apache.fineract.ui.online.customers.customerdetails;
 import android.content.Context;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerCustomer;
+import org.apache.fineract.data.datamanager.contracts.ManagerCustomer;
+import org.apache.fineract.data.datamanager.database.DbManagerCustomer;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;
@@ -24,12 +25,12 @@ import io.reactivex.schedulers.Schedulers;
 public class CustomerDetailsPresenter extends BasePresenter<CustomerDetailsContract.View>
         implements CustomerDetailsContract.Presenter {
 
-    private DataManagerCustomer dataManagerCustomer;
+    private ManagerCustomer dataManagerCustomer;
     private final CompositeDisposable compositeDisposable;
 
     @Inject
     public CustomerDetailsPresenter(@ApplicationContext Context context,
-            DataManagerCustomer dataManager) {
+            DbManagerCustomer dataManager) {
         super(context);
         dataManagerCustomer = dataManager;
         compositeDisposable = new CompositeDisposable();
@@ -57,7 +58,7 @@ public class CustomerDetailsPresenter extends BasePresenter<CustomerDetailsContr
                     @Override
                     public void onNext(Customer customer) {
                         getMvpView().hideProgressbar();
-                        getMvpView().showCustomerDetails(customer);
+                        getMvpView().savedCustomerDataForSyncing();
                     }
 
                     @Override

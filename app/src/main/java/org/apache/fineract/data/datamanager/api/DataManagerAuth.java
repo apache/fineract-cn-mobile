@@ -1,4 +1,4 @@
-package org.apache.fineract.data.datamanager;
+package org.apache.fineract.data.datamanager.api;
 
 import android.util.Base64;
 

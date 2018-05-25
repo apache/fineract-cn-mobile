@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
@@ -82,6 +83,17 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
+    //android-job
+    implementation "com.evernote:android-job:$androidJobVersion"
+
+    implementation 'com.github.therajanmaurya:Sweet-Error:1.0.0'
+
+    implementation 'com.android.support:support-v4:26.1.0'
+    kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflowVersion}"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-rx2:${dbflowVersion}"
+
     // Rx Dependencies
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
@@ -101,13 +113,13 @@ dependencies {
     // Dagger 2 Dependencies
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
-    annotationProcessor daggerCompiler
-    testAnnotationProcessor daggerCompiler
-    androidTestAnnotationProcessor daggerCompiler
+    kapt daggerCompiler
+//    testkapt daggerCompiler
+//    androidTestkapt daggerCompiler
 
     // ButterKnife Dependencies
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
     // Fabric Crashlytics Dependencies
     implementation('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
@@ -147,35 +159,34 @@ dependencies {
 
 }
 
-    // Log out test results to console
-    tasks.matching { it instanceof Test }.all {
-        testLogging.events = ["failed", "passed", "skipped"]
-    }
+// Log out test results to console
+tasks.matching { it instanceof Test }.all {
+    testLogging.events = ["failed", "passed", "skipped"]
+}
 
-    /*
+/*
     Resolves dependency versions across test and production APKs, specifically, transitive
     dependencies. This is required since Espresso internally has a dependency on support-annotations.
     */
-    configurations.all {
-        resolutionStrategy {
-            force 'com.android.support:support-annotations:23.1.1'
-            force 'com.google.code.findbugs:jsr305:1.3.9'
-        }
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-annotations:23.1.1'
+        force 'com.google.code.findbugs:jsr305:1.3.9'
     }
+}
 
-
-    /*
+/*
     All direct/transitive dependencies shared between your test and production APKs need to be
     excluded from the test APK! This is necessary because both APKs will contain the same classes. Not
     excluding these dependencies from your test configuration will result in an dex pre-verifier error
     at runtime. More info in this tools bug: (https://code.google.com/p/android/issues/detail?id=192497)
     */
-    configurations.compile.dependencies.each { compileDependency ->
-        println "Excluding compile dependency: ${compileDependency.getName()}"
-        configurations.androidTestCompile.dependencies.each { androidTestCompileDependency ->
-            configurations.androidTestCompile.exclude module: "${compileDependency.getName()}"
-        }
+configurations.compile.dependencies.each { compileDependency ->
+    println "Excluding compile dependency: ${compileDependency.getName()}"
+    configurations.androidTestCompile.dependencies.each { androidTestCompileDependency ->
+        configurations.androidTestCompile.exclude module: "${compileDependency.getName()}"
     }
+}
 repositories {
     mavenCentral()
 }

@@ -21,6 +21,7 @@ allprojects {
         jcenter()
         google()
         maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://www.jitpack.io" }
     }
 }
 
@@ -30,7 +31,7 @@ task clean(type: Delete) {
 
 ext {
     // Sdk and tools
-    minSdkVersion = 14
+    minSdkVersion = 15
     targetSdkVersion = 26
     compileSdkVersion = 26
     buildToolsVersion = '26.0.2'
@@ -45,6 +46,12 @@ ext {
     // rxjava dependencies
     rxjavaVersion = '2.0.1'
     rxandroidVersion = '2.0.1'
+
+    //android-job
+    androidJobVersion = '1.2.5'
+
+    //db-flow
+    dbflowVersion = "4.2.4"
 
     junitVersion = '4.12'
     mockitoVersion = '2.6.2'

@@ -3,29 +3,48 @@ package org.apache.fineract.data.models.customer
 import android.os.Parcelable
 
 import com.google.gson.annotations.SerializedName
+import com.raizlabs.android.dbflow.annotation.*
+import com.raizlabs.android.dbflow.sql.language.SQLite.select
+import com.raizlabs.android.dbflow.structure.BaseModel
 import kotlinx.android.parcel.Parcelize
+import org.apache.fineract.data.local.database.AppDatabase
 
 @Parcelize
+@Table(database = AppDatabase::class, useBooleanGetterSetters = false)
 data class Customer(
-    @SerializedName("identifier") var identifier: String? = null,
-    @SerializedName("type") var type: String? = null,
-    @SerializedName("givenName") var givenName: String? = null,
-    @SerializedName("middleName") var middleName: String? = null,
-    @SerializedName("surname") var surname: String? = null,
-    @SerializedName("dateOfBirth") var dateOfBirth: DateOfBirth? = null,
-    @SerializedName("member") var member: Boolean? = null,
-    @SerializedName("accountBeneficiary") var accountBeneficiary: String? = null,
-    @SerializedName("referenceCustomer") var referenceCustomer: String? = null,
-    @SerializedName("assignedOffice") var assignedOffice: String? = null,
-    @SerializedName("assignedEmployee") var assignedEmployee: String? = null,
-    @SerializedName("address") var address: Address? = null,
-    @SerializedName("contactDetails") var contactDetails: List<ContactDetail>? = null,
-    @SerializedName("currentState") var currentState: State? = null,
-    @SerializedName("createdBy") var createdBy: String? = null,
-    @SerializedName("createdOn") var createdOn: String? = null,
-    @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null,
-    @SerializedName("lastModifiedOn") var lastModifiedOn: String? = null
-) : Parcelable {
+    @PrimaryKey
+    @Column var identifier: String? = null,
+    @Column var type: String? = null,
+    @Column var givenName: String? = null,
+    @Column var middleName: String? = null,
+    @Column var surname: String? = null,
+    @ForeignKey(saveForeignKeyModel = true)
+    @Column var dateOfBirth: DateOfBirth? = null,
+    @Column var member: Boolean? = null,
+    @Column var accountBeneficiary: String? = null,
+    @Column var referenceCustomer: String? = null,
+    @Column var assignedOffice: String? = null,
+    @Column var assignedEmployee: String? = null,
+    @ForeignKey(saveForeignKeyModel = true)
+    @Column var address: Address? = null,
+    var contactDetails: List<ContactDetail>? = null,
+    @Column var currentState: State? = null,
+    @Column var createdBy: String? = null,
+    @Column var createdOn: String? = null,
+    @Column var lastModifiedBy: String? = null,
+    @Column var lastModifiedOn: String? = null
+) : BaseModel(), Parcelable {
+
+    var isUpdate: Boolean? = null
+
+    @OneToMany(methods = arrayOf(OneToMany.Method.ALL), variableName = "contactDetails")
+    fun getContactDetail() : List<ContactDetail>? {
+        contactDetails = select()
+                .from(ContactDetail::class.java)
+                .where(ContactDetail_Table.customer_identifier.eq(identifier))
+                .queryList()
+        return contactDetails
+    }
 
     enum class Type {
 
@@ -49,5 +68,16 @@ data class Customer(
 
         @SerializedName("CLOSED")
         CLOSED
+    }
+
+    override fun save(): Boolean {
+        val res = super.save()
+        if (contactDetails != null) {
+            contactDetails!!.forEach {
+                it.customer = this
+                it.save()
+            }
+        }
+        return res
     }
 }

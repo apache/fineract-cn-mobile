@@ -12,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.therajanmaurya.sweeterror.SweetUIErrorHandler;
+
 import org.apache.fineract.R;
+import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.adapters.CustomerAdapter;
 import org.apache.fineract.ui.base.EndlessRecyclerViewScrollListener;
@@ -60,9 +63,13 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     @Inject
     CustomerAdapter customerAdapter;
 
+    @Inject
+    PreferencesHelper preferencesHelper;
+
     private List<Customer> customers;
     private Integer detailsCustomerPosition;
     private boolean isNewCustomer = false;
+    private SweetUIErrorHandler sweetUIErrorHandler;
 
     public static CustomersFragment newInstance() {
         CustomersFragment fragment = new CustomersFragment();
@@ -88,9 +95,13 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         setToolbarTitle(getString(R.string.customers));
 
         showUserInterface();
-
-        customerPresenter.fetchCustomers(0, false);
-
+        sweetUIErrorHandler = new SweetUIErrorHandler(getActivity(), rootView);
+        if (preferencesHelper.isFetching()) {
+            sweetUIErrorHandler.showSweetCustomErrorUI(getString(R.string.syncing_please_wait),
+                    R.drawable.ic_error_black_24dp, swipeRefreshLayout, layoutError);
+        } else {
+            customerPresenter.fetchCustomers(0, false);
+        }
         return rootView;
     }
 
@@ -125,12 +136,6 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
                 .getResources().getIntArray(R.array.swipeRefreshColors));
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        rvCustomers.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
-            @Override
-            public void onLoadMore(int page, int totalItemsCount) {
-                customerPresenter.fetchCustomers(page, true);
-            }
-        });
     }
 
     @OnClick(R.id.fab_add_customer)

@@ -14,7 +14,7 @@ public interface CustomerDetailsContract {
 
         void showUserInterface();
 
-        void showCustomerDetails(Customer customer);
+        void savedCustomerDataForSyncing();
 
         void showContactDetails(ContactDetail contactDetail);
 

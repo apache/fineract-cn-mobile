@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.depositaccounts.depositaccountdetails;
 import android.content.Context;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerDeposit;
+import org.apache.fineract.data.datamanager.api.DataManagerDeposit;
 import org.apache.fineract.data.models.deposit.DepositAccount;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;

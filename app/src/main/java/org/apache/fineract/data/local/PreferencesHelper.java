@@ -120,4 +120,20 @@ public class PreferencesHelper {
     public String getUserName() {
         return getPreferences().getString(PreferenceKey.PREF_KEY_USER_NAME, null);
     }
+
+    public void setFetching(boolean isFetching) {
+        getPreferences().edit().putBoolean(PreferenceKey.PREF_IS_FETCHING, isFetching).apply();
+    }
+
+    public boolean isFetching() {
+        return getPreferences().getBoolean(PreferenceKey.PREF_IS_FETCHING, true);
+    }
+
+    public void setFirstTime(boolean isFirstTime) {
+        getPreferences().edit().putBoolean(PreferenceKey.PREF_IS_FIRST_TIME, isFirstTime).apply();
+    }
+
+    public boolean isFirstTime() {
+        return getPreferences().getBoolean(PreferenceKey.PREF_IS_FIRST_TIME, true);
+    }
 }

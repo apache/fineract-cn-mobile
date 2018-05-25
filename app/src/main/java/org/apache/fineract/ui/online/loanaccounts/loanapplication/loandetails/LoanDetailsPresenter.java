@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails;
 import android.content.Context;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.DataManagerLoans;
+import org.apache.fineract.data.datamanager.api.DataManagerLoans;
 import org.apache.fineract.data.models.product.Product;
 import org.apache.fineract.data.models.product.ProductPage;
 import org.apache.fineract.injection.ApplicationContext;

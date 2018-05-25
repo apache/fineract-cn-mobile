@@ -1,4 +1,4 @@
-package org.apache.fineract.data.datamanager;
+package org.apache.fineract.data.datamanager.api;
 
 import org.apache.fineract.FakeRemoteDataSource;
 import org.apache.fineract.data.local.PreferencesHelper;
@@ -39,8 +39,7 @@ public class DataManagerDeposit extends FineractBaseDataManager {
         return authenticatedObservableApi(baseApiManager.getDepositApi()
                 .fetchCustomersDeposits(customerIdentifier))
                 .onErrorResumeNext(
-                        new Function<Throwable, ObservableSource<List<DepositAccount>>>
-                                () {
+                        new Function<Throwable, ObservableSource<List<DepositAccount>>>() {
                             @Override
                             public ObservableSource<List<DepositAccount>> apply(
                                     Throwable throwable)
