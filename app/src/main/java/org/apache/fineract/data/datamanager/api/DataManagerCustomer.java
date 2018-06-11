@@ -111,15 +111,15 @@ public class DataManagerCustomer extends FineractBaseDataManager implements Mana
     public Observable<List<Identification>> fetchIdentifications(String customerIdentifier) {
         return authenticatedObservableApi(baseApiManager.getCustomerApi()
                 .fetchIdentification(customerIdentifier))
-                .onErrorResumeNext(
-                        new Function<Throwable, ObservableSource<List<Identification>>> () {
-                            @Override
-                            public ObservableSource<List<Identification>> apply(
-                                    Throwable throwable)
-                                    throws Exception {
-                                return Observable.just(FakeRemoteDataSource.getIdentifications());
-                            }
-                        });
+                .onErrorResumeNext(new Function<Throwable,
+                        ObservableSource<List<Identification>>>() {
+                    @Override
+                    public ObservableSource<List<Identification>> apply(
+                            Throwable throwable)
+                            throws Exception {
+                        return Observable.just(FakeRemoteDataSource.getIdentifications());
+                    }
+                });
     }
 
     public Observable<Identification> searchIdentifications(String identifier, String number) {

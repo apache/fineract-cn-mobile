@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cl_customer_review"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <android.support.v4.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ncv_customer_review"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_light"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cv_customer_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_padding_8dp"
+            android:layout_marginTop="@dimen/layout_padding_8dp"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/layout_padding_16dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_step_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/one"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_reviewNameOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/required_account" />
+
+                <TextView
+                    android:id="@+id/tv_account"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/required_first_name" />
+
+                <TextView
+                    android:id="@+id/tv_first_name"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:id="@+id/ll_middle_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/optional_middle_name" />
+
+                    <TextView
+                        android:id="@+id/tv_middle_name"
+                        style="@style/TextViewReview.Input" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/required_last_name" />
+
+                <TextView
+                    android:id="@+id/tv_last_name"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/required_date_of_birth" />
+
+                <TextView
+                    android:id="@+id/tv_dob"
+                    style="@style/TextViewReview.Input"
+                    android:drawableLeft="@drawable/ic_cake_black_24dp"
+                    android:drawablePadding="@dimen/layout_padding_16dp"
+                    android:drawableStart="@drawable/ic_cake_black_24dp" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <CheckBox
+                    android:id="@+id/cb_is_member"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:clickable="false"
+                    android:paddingLeft="@dimen/layout_padding_8dp"
+                    android:paddingRight="@dimen/layout_padding_8dp"
+                    android:paddingStart="@dimen/layout_padding_8dp"
+                    android:text="@string/is_member" />
+
+                <LinearLayout
+                    android:id="@+id/ll_step_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/two"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_reviewNameTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/required_street" />
+
+                <TextView
+                    android:id="@+id/tv_street"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/required_city" />
+
+                <TextView
+                    android:id="@+id/tv_city"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:id="@+id/ll_postal_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/optional_postal_code" />
+
+                    <TextView
+                        android:id="@+id/tv_postal_code"
+                        style="@style/TextViewReview.Input" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/required_country" />
+
+                <TextView
+                    android:id="@+id/tv_country"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:id="@+id/ll_region"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/optional_region" />
+
+                    <TextView
+                        android:id="@+id/tv_region"
+                        style="@style/TextViewReview.Input" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_step_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/three"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_reviewNameThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/optional_email" />
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        style="@style/TextViewReview.Input" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/optional_phone" />
+
+                    <TextView
+                        android:id="@+id/tv_phone"
+                        style="@style/TextViewReview.Input" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_mobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/optional_mobile" />
+
+                    <TextView
+                        android:id="@+id/tv_mobile"
+                        style="@style/TextViewReview.Input" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

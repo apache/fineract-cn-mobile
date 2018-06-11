@@ -30,71 +30,45 @@
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:orientation="vertical"
-                android:padding="@dimen/layout_padding_30dp">
+                android:padding="@dimen/layout_padding_16dp">
 
                 <LinearLayout
                     android:id="@+id/ll_product_overview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/Base.TextAppearance.AppCompat.Small"
+                        style="@style/TextViewReview.Head"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
-                        android:paddingEnd="@dimen/layout_padding_16dp"
-                        android:paddingLeft="@dimen/layout_padding_16dp"
-                        android:paddingStart="@dimen/layout_padding_16dp"
                         android:text="@string/select_product"/>
 
                     <TextView
-                        style="@style/Base.TextAppearance.AppCompat.Medium"
+                        style="@style/TextViewReview.Input"
                         android:id="@+id/tv_product"
-                        android:layout_height="match_parent"
-                        android:layout_width="match_parent"
-                        android:paddingEnd="@dimen/layout_padding_16dp"
-                        android:paddingLeft="@dimen/layout_padding_16dp"
-                        android:paddingStart="@dimen/layout_padding_16dp"
-                        android:text="@string/products"
-                        android:textColor="@color/black"/>
+                        android:text="@string/products"/>
 
-                    <View
-                        android:background="@color/grey_500"
-                        android:layout_height="0.2dp"
-                        android:layout_marginLeft="@dimen/layout_padding_16dp"
-                        android:layout_marginRight="@dimen/layout_padding_16dp"
-                        android:layout_width="wrap_content"/>
+                    <View style="@style/TextViewUnderline.Grey"/>
 
                 </LinearLayout>
 
-
                 <TextView
-                    style="@style/Base.TextAppearance.AppCompat.Small"
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:paddingEnd="@dimen/layout_padding_16dp"
-                    android:paddingLeft="@dimen/layout_padding_16dp"
-                    android:paddingStart="@dimen/layout_padding_16dp"
-                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    style="@style/TextViewReview.Head"
                     android:text="@string/beneficiaries"/>
 
                 <TextView
-                    style="@style/Base.TextAppearance.AppCompat.Medium"
+                    style="@style/TextViewReview.Input"
                     android:id="@+id/tv_no_beneficiary"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    android:paddingEnd="@dimen/layout_padding_16dp"
-                    android:paddingLeft="@dimen/layout_padding_16dp"
-                    android:paddingStart="@dimen/layout_padding_16dp"
                     android:text="@string/no_beneficiary"
-                    android:visibility="gone"
-                    android:textColor="@color/black"/>
+                    android:visibility="gone"/>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_beneficiary"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent"/>
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"/>
 
                 <View
                     android:layout_height="300dp"

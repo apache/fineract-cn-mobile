@@ -63,7 +63,15 @@ public class DataManagerLoans extends FineractBaseDataManager {
 
     public Observable<ProductPage> getProducts(Integer pageIndex, Integer size) {
         return authenticatedObservableApi(baseApiManager.getLoanApi()
-                .getProducts(pageIndex, size, false));
+                .getProducts(pageIndex, size, false))
+                .onErrorResumeNext(
+                        new Function<Throwable, ObservableSource<? extends ProductPage>>() {
+                            @Override
+                            public ObservableSource<? extends ProductPage> apply(
+                                    Throwable throwable) throws Exception {
+                                return Observable.just(FakeRemoteDataSource.getProductPage());
+                            }
+                        });
     }
 
     public Completable createLoan(String productIdentifier, LoanAccount loanAccount) {

@@ -1,0 +1,39 @@
+{
+  "elements": [
+    {
+      "identifier": "identifier",
+      "name": "name",
+      "termRange": {
+        "temporalUnit": "temporalUnit",
+        "maximum": 2
+      },
+      "balanceRange": {
+        "minimum": 1000,
+        "maximum": 15000
+      },
+      "interestRange": {
+        "minimum": 3,
+        "maximum": 7.5
+      },
+      "interestBasis": "CURRENT_BALANCE",
+      "patternPackage": "patternPackage",
+      "description": "description",
+      "currencyCode": "currencyCode",
+      "minorCurrencyUnitDigits": 2,
+      "accountAssignments": [
+        {
+          "designator": "designator",
+          "accountIdentifier": "accountIdentifier",
+          "ledgerIdentifier": "ledgerIdentifier"
+        }
+      ],
+      "parameters": "parameters",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 1
+}

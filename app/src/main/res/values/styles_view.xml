@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ This project is licensed under the open source MPL V2.
+  ~ See https://github.com/openMF/android-client/blob/master/LICENSE.md
+  -->
+
+<resources>
+
+    <style name="TextViewUnderline" parent="Widget.Design.TextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/view_line_height</item>
+        <item name="android:layout_marginBottom">@dimen/layout_padding_16dp</item>
+    </style>
+
+    <style name="TextViewUnderline.Grey" parent="TextViewUnderline">
+        <item name="android:background">@color/light_grey</item>
+    </style>
+</resources>

@@ -143,6 +143,11 @@ public class CreateCustomerActivity extends FineractBaseActivity
     }
 
     @Override
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    @Override
     public void setAddress(Address address) {
         customer.setAddress(address);
     }
