@@ -40,6 +40,7 @@ public class DashboardFragment extends FineractBaseFragment {
             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
         ButterKnife.bind(this, rootView);
+        setToolbarTitle(getString(R.string.dashboard));
         return rootView;
     }
 
