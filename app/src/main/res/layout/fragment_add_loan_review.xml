@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cl_loan_review"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible">
+
+    <android.support.v4.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ncv_loan_review"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_light"
+        android:visibility="visible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/cv_loan_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_padding_8dp"
+            android:layout_marginTop="@dimen/layout_padding_8dp"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/layout_padding_16dp">
+
+                <LinearLayout
+                    android:id="@+id/llHeadOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/one"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeadOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/products" />
+
+                <TextView
+                    android:id="@+id/tvProduct"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/short_name" />
+
+                <TextView
+                    android:id="@+id/tvShortName"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/principal_amount" />
+
+                <TextView
+                    android:id="@+id/tvPrincipalAmount"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/term" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvTerm"
+                            style="@style/TextViewReview.Input" />
+
+                        <View style="@style/TextViewUnderline.Grey" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/layout_padding_8dp"
+                        android:layout_marginStart="@dimen/layout_padding_8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvTermUnitType"
+                            style="@style/TextViewReview.Input" />
+
+                        <View style="@style/TextViewUnderline.Grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/repay_every" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvRepay"
+                            style="@style/TextViewReview.Input" />
+
+                        <View style="@style/TextViewUnderline.Grey" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/layout_padding_8dp"
+                        android:layout_marginStart="@dimen/layout_padding_8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvRepayUnitType"
+                            style="@style/TextViewReview.Input" />
+
+                        <View style="@style/TextViewUnderline.Grey" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llOn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/on" />
+
+                    <TextView
+                        android:id="@+id/tvRepayUnitWeek"
+                        style="@style/TextViewReview.Input" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llOnThe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/on_the" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/layout_padding_8dp"
+                            android:layout_marginRight="@dimen/layout_padding_8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvOnThe"
+                                style="@style/TextViewReview.Input" />
+
+                            <View style="@style/TextViewUnderline.Grey" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvOnType"
+                                style="@style/TextViewReview.Input"
+                                android:text="@string/day" />
+
+                            <View style="@style/TextViewUnderline.Grey" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/in" />
+
+                    <TextView
+                        android:id="@+id/tvRepayYearMonth"
+                        style="@style/TextViewReview.Input" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llHeadTwo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/two"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeadTwo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDebts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvTotalDebt"
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/total_debt" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvDebt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/layout_padding_16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvTotalIncome"
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/total_income" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/layout_padding_16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llHeadThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/three"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:id="@+id/tvHeadThree"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/customer" />
+
+                <TextView
+                    android:id="@+id/tvCoSignerName"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:id="@+id/llCosignerDebts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvCosignerTotalDebt"
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/total_debt" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCosignerDebt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/layout_padding_16dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llCosignerIncome"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tvCosignerTotalIncome"
+                        style="@style/TextViewReview.Head"
+                        android:text="@string/total_income" />
+
+                    <View style="@style/TextViewUnderline.Grey" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCosignerIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/layout_padding_16dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

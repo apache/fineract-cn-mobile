@@ -11,9 +11,11 @@ import org.apache.fineract.data.models.customer.CustomerPage;
 import org.apache.fineract.data.models.customer.identification.Identification;
 import org.apache.fineract.data.models.customer.identification.ScanCard;
 import org.apache.fineract.data.models.deposit.DepositAccount;
+import org.apache.fineract.data.models.deposit.ProductDefinition;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.LoanAccountPage;
 import org.apache.fineract.data.models.payment.PlannedPaymentPage;
+import org.apache.fineract.data.models.product.ProductPage;
 import org.apache.fineract.data.models.rolesandpermission.Role;
 import org.apache.fineract.data.models.teller.Teller;
 
@@ -93,5 +95,15 @@ public class FakeRemoteDataSource {
     public static List<Teller> getTeller() {
         return testDataFactory.getListTypePojo(new TypeToken<List<Teller>>() {
         }, FakeJsonName.TELLER);
+    }
+
+    public static ProductPage getProductPage() {
+        return testDataFactory.getObjectTypePojo(ProductPage.class,
+                FakeJsonName.PRODUCT_PAGE);
+    }
+
+    public static List<ProductDefinition> getProductDefinition() {
+            return testDataFactory.getListTypePojo(new TypeToken<List<ProductDefinition>>() {
+            }, FakeJsonName.PRODUCT_DEFINITION);
     }
 }

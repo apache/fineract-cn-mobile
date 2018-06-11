@@ -13,6 +13,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanDebtIncomeFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loancosigner.LoanCoSignerFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails.LoanDetailsFragment;
+import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
 
 /**
  * @author Rajan Maurya
@@ -45,6 +46,8 @@ public class LoanApplicationStepAdapter extends AbstractFragmentStepAdapter {
                 return LoanDebtIncomeFragment.newInstance();
             case 2:
                 return LoanCoSignerFragment.newInstance();
+            case 3:
+                return AddLoanReviewFragment.Companion.newInstance();
         }
         return null;
     }

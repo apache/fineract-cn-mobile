@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
+import android.widget.TextView;
 
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
@@ -31,17 +31,17 @@ public class FormOverViewIdentificationFragment extends FineractBaseFragment imp
 
     public static final String DATE_FORMAT = "dd MMM yyyy";
 
-    @BindView(R.id.et_number)
-    EditText etNumber;
+    @BindView(R.id.tv_number)
+    TextView tvNumber;
 
-    @BindView(R.id.et_type)
-    EditText etType;
+    @BindView(R.id.tv_type)
+    TextView tvType;
 
-    @BindView(R.id.et_expiration_date)
-    EditText etExpirationDate;
+    @BindView(R.id.tv_expiration_date)
+    TextView tvExpirationDate;
 
-    @BindView(R.id.et_issuer)
-    EditText etIssuer;
+    @BindView(R.id.tv_issuer)
+    TextView tvIssuer;
 
     View rootView;
 
@@ -66,21 +66,17 @@ public class FormOverViewIdentificationFragment extends FineractBaseFragment imp
 
     @Override
     public void setIdentification(Identification identification) {
-        etIssuer.setText(identification.getIssuer());
-        etNumber.setText(identification.getNumber());
-        etType.setText(identification.getType());
+
+        tvIssuer.setText(identification.getIssuer());
+        tvNumber.setText(identification.getNumber());
+        tvType.setText(identification.getType());
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, identification.getExpirationDate().getYear());
         calendar.set(Calendar.MONTH, identification.getExpirationDate().getMonth());
         calendar.set(Calendar.DAY_OF_MONTH, identification.getExpirationDate().getDay());
 
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
-        etExpirationDate.setText(sdf.format(calendar.getTime()));
-
-        etIssuer.setEnabled(false);
-        etNumber.setEnabled(false);
-        etType.setEnabled(false);
-        etExpirationDate.setEnabled(false);
+        tvExpirationDate.setText(sdf.format(calendar.getTime()));
     }
 
 

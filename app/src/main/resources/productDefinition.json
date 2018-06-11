@@ -1,0 +1,34 @@
+[
+  {
+    "identifier": "identifier",
+    "name": "name",
+    "description": "description",
+    "currency": {
+      "code": "code",
+      "name": "name",
+      "sign": "sign",
+      "scale": 1
+    },
+    "minimumBalance": 1000,
+    "equityLedgerIdentifier": "equityLedgerIdentifier",
+    "cashAccountIdentifier": "cashAccountIdentifier",
+    "expenseAccountIdentifier": "expenseAccountIdentifier",
+    "accrueAccountIdentifier": "accrueAccountIdentifier",
+    "interest": 2.45,
+    "term": {
+      "period": 1
+    },
+    "charges": [
+      {
+        "actionIdentifier": "actionIdentifier",
+        "incomeAccountIdentifier": "incomeAccountIdentifier",
+        "name": "name",
+        "description": "description",
+        "proportional": true,
+        "amount": 4345
+      }
+    ],
+    "flexible": true,
+    "active": true
+  }
+]

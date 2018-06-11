@@ -35,7 +35,7 @@ import butterknife.ButterKnife;
 public class LoanApplicationActivity extends FineractBaseActivity
         implements StepperLayout.StepperListener, OnNavigationBarListener.LoanDetailsData,
         OnNavigationBarListener.LoanDebtIncomeData, OnNavigationBarListener.LoanCoSignerData,
-        LoanApplicationContract.View {
+        LoanApplicationContract.View, OnNavigationBarListener.ReviewLoan {
 
     private static final String CURRENT_STEP_POSITION = "position";
     private static final String LOG_TAG = LoanApplicationActivity.class.getSimpleName();
@@ -52,6 +52,7 @@ public class LoanApplicationActivity extends FineractBaseActivity
     private List<CreditWorthinessSnapshot> creditWorthinessSnapshots;
     private String customerIdentifier;
     private LoanParameters loanParameters;
+    private String selectedProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +94,6 @@ public class LoanApplicationActivity extends FineractBaseActivity
     @Override
     public void onCompleted(View completeButton) {
         loanParameters.setCreditWorthinessSnapshots(creditWorthinessSnapshots);
-        loanAccount.setParameters(new Gson().toJson(loanParameters));
         loanApplicationPresenter.createLoan(loanAccount.getProductIdentifier(), loanAccount);
     }
 
@@ -142,7 +142,9 @@ public class LoanApplicationActivity extends FineractBaseActivity
     @Override
     public void setLoanDetails(LoanAccount.State currentState, String identifier,
             String productIdentifier, Double maximumBalance, PaymentCycle paymentCycle,
-            TermRange termRange) {
+            TermRange termRange, String selectedProduct) {
+        this.selectedProduct = selectedProduct;
+
         loanAccount.setCurrentState(currentState);
         loanAccount.setIdentifier(identifier);
         loanAccount.setProductIdentifier(productIdentifier);
@@ -151,6 +153,7 @@ public class LoanApplicationActivity extends FineractBaseActivity
         loanParameters.setMaximumBalance(maximumBalance);
         loanParameters.setPaymentCycle(paymentCycle);
         loanParameters.setTermRange(termRange);
+        loanAccount.setParameters(new Gson().toJson(loanParameters));
     }
 
     @Override
@@ -165,6 +168,21 @@ public class LoanApplicationActivity extends FineractBaseActivity
             coSignerDebtIncome.setForCustomer(customerIdentifier);
         }
         creditWorthinessSnapshots.add(coSignerDebtIncome);
+    }
+
+    @Override
+    public LoanAccount getLoanAccount() {
+        return loanAccount;
+    }
+
+    @Override
+    public String getSelectedProduct() {
+        return selectedProduct;
+    }
+
+    @Override
+    public List<CreditWorthinessSnapshot> getCreditWorthinessSnapshot() {
+        return creditWorthinessSnapshots;
     }
 
     @Override

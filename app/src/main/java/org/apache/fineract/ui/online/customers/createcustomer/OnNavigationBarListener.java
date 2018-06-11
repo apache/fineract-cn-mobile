@@ -2,6 +2,7 @@ package org.apache.fineract.ui.online.customers.createcustomer;
 
 import org.apache.fineract.data.models.customer.Address;
 import org.apache.fineract.data.models.customer.ContactDetail;
+import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.customer.DateOfBirth;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public interface OnNavigationBarListener {
     interface CustomerDetails {
         void setCustomerDetails(String identifier, String firstName, String surname,
                 String middleName, DateOfBirth dateOfBirth, boolean isMember);
+
+        Customer getCustomer();
     }
 
     interface CustomerAddress {

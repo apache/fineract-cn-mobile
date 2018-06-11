@@ -66,7 +66,16 @@ public class DataManagerDeposit extends FineractBaseDataManager {
     }
 
     public Observable<List<ProductDefinition>> fetchProductDefinitions() {
-        return authenticatedObservableApi(baseApiManager.getDepositApi().fetchProductDefinitions());
+        return authenticatedObservableApi
+                (baseApiManager.getDepositApi().fetchProductDefinitions()).onErrorResumeNext(
+                new Function<Throwable,
+                        ObservableSource<List<ProductDefinition>>>() {
+                        @Override
+                    public ObservableSource<List<ProductDefinition>> apply(
+                                Throwable throwable) throws Exception {
+                            return Observable.just(FakeRemoteDataSource.getProductDefinition());
+                        }
+                        });
     }
 
     public Completable createDepositAccount(DepositAccount depositAccount) {

@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.apache.fineract.R;
@@ -28,6 +29,7 @@ public class LoanDebtIncomeAdapter extends RecyclerView.Adapter<LoanDebtIncomeAd
     private List<CreditWorthinessFactor> creditWorthinessFactors;
     private OnClickEditDeleteListener onClickEditDeleteListener;
     private CreditWorthinessSource creditWorthinessSource;
+    private boolean isReviewAdapter = false;
 
     @Inject
     public LoanDebtIncomeAdapter() {
@@ -46,6 +48,10 @@ public class LoanDebtIncomeAdapter extends RecyclerView.Adapter<LoanDebtIncomeAd
         CreditWorthinessFactor creditWorthinessFactor = creditWorthinessFactors.get(position);
         holder.tvAmount.setText(String.valueOf(creditWorthinessFactor.getAmount()));
         holder.tvDescription.setText(creditWorthinessFactor.getDescription());
+    }
+
+    public void isReview(boolean isReviewAdapter) {
+        this.isReviewAdapter = isReviewAdapter;
     }
 
     @Override
@@ -73,9 +79,20 @@ public class LoanDebtIncomeAdapter extends RecyclerView.Adapter<LoanDebtIncomeAd
         @BindView(R.id.tv_description)
         TextView tvDescription;
 
+        @BindView(R.id.iv_edit)
+        ImageView ivEdit;
+
+        @BindView(R.id.iv_delete)
+        ImageView ivDelete;
+
         public ViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
+
+            if (isReviewAdapter) {
+                ivEdit.setVisibility(View.GONE);
+                ivDelete.setVisibility(View.GONE);
+            }
         }
 
         @OnClick(R.id.iv_edit)

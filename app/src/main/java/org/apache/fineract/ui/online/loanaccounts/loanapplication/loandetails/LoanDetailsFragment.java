@@ -230,7 +230,8 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
                     etShortName.getText().toString().trim(), product.getIdentifier(),
                     Double.parseDouble(etPrincipalAmount.getText().toString().trim()),
                     paymentCycle, new TermRange(product.getTermRange().getTemporalUnit(),
-                            Double.parseDouble(etTerm.getText().toString().trim())));
+                            Double.parseDouble(etTerm.getText().toString().trim()))
+                    , spProducts.getSelectedItem().toString());
 
 
             return null;
