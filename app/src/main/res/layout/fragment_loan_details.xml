@@ -125,7 +125,7 @@
                         <EditText
                             android:hint="@string/repay_every"
                             android:id="@+id/et_repay"
-                            android:inputType="numberDecimal"
+                            android:inputType="number"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"/>
                     </android.support.design.widget.TextInputLayout>
