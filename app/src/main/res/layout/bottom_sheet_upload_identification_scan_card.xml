@@ -63,7 +63,8 @@
                     <EditText
                         android:hint="@string/description"
                         android:id="@+id/et_description"
-                        android:inputType="textMultiLine"
+                        android:inputType="text"
+                        android:imeOptions="actionDone"
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:scrollHorizontally="false"
