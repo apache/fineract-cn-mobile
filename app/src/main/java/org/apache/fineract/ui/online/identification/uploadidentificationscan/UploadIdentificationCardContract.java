@@ -1,7 +1,5 @@
 package org.apache.fineract.ui.online.identification.uploadidentificationscan;
 
-import android.graphics.Bitmap;
-
 import org.apache.fineract.ui.base.MvpView;
 
 import java.io.File;
@@ -21,8 +19,6 @@ public interface UploadIdentificationCardContract {
         void openCamera();
 
         void requestPermission();
-
-        void saveImageInCache(Bitmap bitmap);
 
         void showScanUploadedSuccessfully();
 
