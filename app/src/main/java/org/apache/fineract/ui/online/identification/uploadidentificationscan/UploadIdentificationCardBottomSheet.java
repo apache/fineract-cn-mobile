@@ -8,7 +8,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -16,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.FileProvider;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -32,7 +33,6 @@ import org.apache.fineract.utils.ValidateIdentifierUtil;
 import org.apache.fineract.utils.ValidationUtil;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.inject.Inject;
@@ -40,10 +40,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import id.zelory.compressor.Compressor;
 
 /**
  * @author Rajan Maurya
- *         On 01/08/17.
+ * On 01/08/17.
  */
 public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheetDialogFragment
         implements UploadIdentificationCardContract.View, TextWatcher {
@@ -73,10 +74,12 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
     @Inject
     UploadIdentificationCardPresenter uploadIdentificationCardPresenter;
 
+    private Compressor imageCompressor;
+
     View rootView;
 
     private BottomSheetBehavior behavior;
-    private File cachePath;
+    private File cameraImage, compressedImage;
     private String customerIdentifier;
     private String identificationNumber;
 
@@ -92,6 +95,7 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
         behavior = BottomSheetBehavior.from((View) rootView.getParent());
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         uploadIdentificationCardPresenter.attachView(this);
+        imageCompressor = new Compressor(getActivity());
         ButterKnife.bind(this, rootView);
 
         showUserInterface();
@@ -112,7 +116,7 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
 
             uploadIdentificationCardPresenter.uploadIdentificationCardScan(customerIdentifier,
                     identificationNumber, etIdentifier.getText().toString().trim(),
-                    etDescription.getText().toString().trim(), cachePath);
+                    etDescription.getText().toString().trim(), compressedImage);
         }
     }
 
@@ -138,8 +142,22 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
 
     @Override
     public void openCamera() {
+
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
         if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+
+            cameraImage = new File(getActivity().getExternalCacheDir() +
+                    File.separator + "scan.png");
+
+            if (cameraImage.exists()) {
+                cameraImage.delete();
+            }
+
+            Uri photoURI = FileProvider.getUriForFile(getActivity(),
+                    "org.apache.fineract.fileprovider", cameraImage);
+
+            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
@@ -147,10 +165,12 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
             etSelectFile.setText(getString(R.string.scan_file));
-            saveImageInCache(imageBitmap);
+            try {
+                compressedImage = imageCompressor.compressToFile(cameraImage);
+            } catch (IOException e) {
+                Log.d(UploadIdentificationCardBottomSheet.class.getSimpleName(), e.toString());
+            }
         }
     }
 
@@ -165,22 +185,6 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
                         R.string.dialog_message_camera_permission_denied_prompt),
                 getResources().getString(R.string.dialog_message_camera_permission_never_ask_again),
                 ConstantKeys.PERMISSIONS_CAMERA_STATUS);
-    }
-
-    @Override
-    public void saveImageInCache(Bitmap bitmap) {
-        try {
-            File outputDir = getActivity().getCacheDir();
-            File outputFile = File.createTempFile("scan", "png", outputDir);
-            cachePath = outputFile;
-
-            // overwrites this image every time
-            FileOutputStream stream = new FileOutputStream(outputFile);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            stream.close();
-        } catch (IOException e) {
-            Log.d(LOG_TAG, e.getLocalizedMessage());
-        }
     }
 
     @Override
