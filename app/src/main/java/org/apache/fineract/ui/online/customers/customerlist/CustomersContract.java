@@ -28,6 +28,8 @@ public interface CustomersContract {
         void hideProgressbar();
 
         void showMessage(String message);
+
+        void searchCustomerList(Customer searchedCustomer);
     }
 
     interface Presenter {
@@ -37,5 +39,7 @@ public interface CustomersContract {
         void fetchCustomers(Integer pageIndex, Integer size);
 
         void showCustomers(List<Customer> customers);
+
+        void searchCustomerOnline(String query);
     }
 }

@@ -3,9 +3,101 @@
     {
       "identifier": "identifier",
       "type": "type",
-      "givenName": "givenName",
-      "middleName": "middleName",
-      "surname": "surname",
+      "givenName": "givenName1",
+      "middleName": "middleName1",
+      "surname": "surname1",
+      "dateOfBirth": {
+        "year": 1985,
+        "month": 11,
+        "day": 27
+      },
+      "member": false,
+      "accountBeneficiary": "accountBeneficiary",
+      "referenceCustomer": "referenceCustomer",
+      "assignedOffice": "assignedOffice",
+      "assignedEmployee": "assignedEmployee",
+      "address": {
+        "street": "street",
+        "city": "city",
+        "region": "region",
+        "postalCode": "postalCode",
+        "countryCode": "countryCode",
+        "country": "country"
+      },
+      "contactDetails": [
+        {
+          "type": "EMAIL",
+          "group": "BUSINESS",
+          "value": "value",
+          "preferenceLevel": 1,
+          "validated": false
+        },
+        {
+          "type": "EMAIL",
+          "group": "BUSINESS",
+          "value": "value",
+          "preferenceLevel": 1,
+          "validated": false
+        }
+      ],
+      "currentState": "ACTIVE",
+      "createdBy": "createdBy",
+      "createdOn": "createdOn",
+      "lastModifiedBy": "lastModifiedBy",
+      "lastModifiedOn": "lastModifiedOn"
+    },
+    {
+      "identifier": "identifier2",
+      "type": "type",
+      "givenName": "givenName2",
+      "middleName": "middleName2",
+      "surname": "surname2",
+      "dateOfBirth": {
+        "year": 1985,
+        "month": 11,
+        "day": 27
+      },
+      "member": false,
+      "accountBeneficiary": "accountBeneficiary",
+      "referenceCustomer": "referenceCustomer",
+      "assignedOffice": "assignedOffice",
+      "assignedEmployee": "assignedEmployee",
+      "address": {
+        "street": "street",
+        "city": "city",
+        "region": "region",
+        "postalCode": "postalCode",
+        "countryCode": "countryCode",
+        "country": "country"
+      },
+      "contactDetails": [
+        {
+          "type": "EMAIL",
+          "group": "BUSINESS",
+          "value": "value",
+          "preferenceLevel": 1,
+          "validated": false
+        },
+        {
+          "type": "EMAIL",
+          "group": "BUSINESS",
+          "value": "value",
+          "preferenceLevel": 1,
+          "validated": false
+        }
+      ],
+      "currentState": "ACTIVE",
+      "createdBy": "createdBy",
+      "createdOn": "createdOn",
+      "lastModifiedBy": "lastModifiedBy",
+      "lastModifiedOn": "lastModifiedOn"
+    },
+    {
+      "identifier": "identifier3",
+      "type": "type",
+      "givenName": "givenName3",
+      "middleName": "middleName3",
+      "surname": "surname3",
       "dateOfBirth": {
         "year": 1985,
         "month": 11,
@@ -48,5 +140,5 @@
     }
   ],
   "totalPages": 1,
-  "totalElements": 1
+  "totalElements": 3
 }
