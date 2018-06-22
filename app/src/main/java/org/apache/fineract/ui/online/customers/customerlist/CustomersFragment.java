@@ -2,15 +2,26 @@ package org.apache.fineract.ui.online.customers.customerlist;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.transition.TransitionManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.github.therajanmaurya.sweeterror.SweetUIErrorHandler;
 
@@ -28,6 +39,7 @@ import org.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsAc
 import org.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,7 +50,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 20/06/17.
+ * On 20/06/17.
  */
 public class CustomersFragment extends FineractBaseFragment implements CustomersContract.View,
         SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
@@ -65,6 +77,21 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     @Inject
     PreferencesHelper preferencesHelper;
 
+    @BindView(R.id.rb_offline)
+    RadioButton rbOffline;
+
+    @BindView(R.id.rb_online)
+    RadioButton rbOnline;
+
+    @BindView(R.id.rg_search)
+    RadioGroup rgSearch;
+
+    @BindView(R.id.coordinator)
+    CoordinatorLayout coordinator;
+
+    @BindView(R.id.ll_search)
+    LinearLayout llSearch;
+
     private List<Customer> customers;
     private Integer detailsCustomerPosition;
     private boolean isNewCustomer = false;
@@ -81,6 +108,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         customers = new ArrayList<>();
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -193,6 +221,11 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     }
 
     @Override
+    public void searchCustomerList(Customer customer) {
+        customerAdapter.setCustomers(Collections.singletonList(customer));
+    }
+
+    @Override
     public void showNoInternetConnection() {
         showRecyclerView(false);
         showFineractNoInternetUI();
@@ -213,6 +246,67 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         super.onDestroyView();
         customerPresenter.detachView();
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_customer, menu);
+        setUpSearchInterface(menu);
+    }
+
+    private void setUpSearchInterface(Menu menu) {
+
+        SearchManager manager = (SearchManager) getActivity().
+                getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(
+                R.id.menu_customer_search).getActionView();
+        searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                findCustomer(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(TextUtils.isEmpty(newText)){
+                    customerAdapter.setCustomers(customers);
+                }
+
+                return false;
+            }
+        });
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TransitionManager.beginDelayedTransition(coordinator);
+                llSearch.setVisibility(View.VISIBLE);
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                rgSearch.clearCheck();
+                TransitionManager.beginDelayedTransition(coordinator);
+                llSearch.setVisibility(View.GONE);
+                return false;
+            }
+        });
+    }
+
+    private void findCustomer(String query) {
+
+        if (rgSearch.getCheckedRadioButtonId() == -1) {
+            Toaster.show(swipeRefreshLayout,getString(R.string.error_finding_customer_options), Toaster.SHORT);
+        }else if (rbOnline.isChecked()) {
+            customerPresenter.searchCustomerOnline(query);
+        }
+    }
+
 
     @Override
     public void onItemClick(View childView, int position) {

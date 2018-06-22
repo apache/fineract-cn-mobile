@@ -111,4 +111,31 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
             getMvpView().showCustomers(customers);
         }
     }
+
+    @Override
+    public void searchCustomerOnline(String query) {
+        checkViewAttached();
+        getMvpView().showProgressbar();
+        compositeDisposable.add(
+                dataManagerCustomer.fetchCustomer(query)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Customer>(){
+                    @Override
+                    public void onNext(Customer value) {
+                        getMvpView().hideProgressbar();
+                        getMvpView().searchCustomerList(value);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showExceptionError(e,context.getString(R.string.error_finding_customer));
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                }));
+    }
 }
