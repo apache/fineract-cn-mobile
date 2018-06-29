@@ -101,8 +101,7 @@ public class DataManagerCustomer extends FineractBaseDataManager {
         return authenticatedObservableApi(baseApiManager.getCustomerApi()
                 .fetchIdentification(customerIdentifier))
                 .onErrorResumeNext(
-                        new Function<Throwable, ObservableSource<List<Identification>>>
-                                () {
+                        new Function<Throwable, ObservableSource<List<Identification>>> () {
                             @Override
                             public ObservableSource<List<Identification>> apply(
                                     Throwable throwable)
@@ -110,6 +109,20 @@ public class DataManagerCustomer extends FineractBaseDataManager {
                                 return Observable.just(FakeRemoteDataSource.getIdentifications());
                             }
                         });
+    }
+
+    public Observable<Identification> searchIdentifications(String identifier, String number) {
+        return authenticatedObservableApi(baseApiManager.getCustomerApi()
+                    .searchIdentification(identifier, number))
+                    .onErrorResumeNext(
+                            new Function<Throwable, ObservableSource<Identification>>() {
+                                @Override
+                                public ObservableSource<Identification> apply(
+                                        Throwable throwable) throws Exception {
+                                    return Observable.just(FakeRemoteDataSource
+                                            .getIdentifications().get(0));
+                                }
+                            });
     }
 
     public Completable createIdentificationCard(String identifier, Identification identification) {

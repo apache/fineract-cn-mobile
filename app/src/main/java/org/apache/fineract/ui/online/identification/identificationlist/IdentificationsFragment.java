@@ -1,12 +1,18 @@
 package org.apache.fineract.ui.online.identification.identificationlist;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,6 +29,7 @@ import org.apache.fineract.ui.online.identification.identificationdetails.Identi
 import org.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -73,6 +80,8 @@ public class IdentificationsFragment extends FineractBaseFragment implements
         if (getArguments() != null) {
             customerIdentifier = getArguments().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
         }
+
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -128,6 +137,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
     @Override
     public void showIdentification(List<Identification> identifications) {
         showRecyclerView(true);
+        this.identifications = identifications;
         identificationAdapter.setIdentifications(identifications);
     }
 
@@ -165,6 +175,11 @@ public class IdentificationsFragment extends FineractBaseFragment implements
     }
 
     @Override
+    public void searchIdentificationList(Identification identification) {
+        identificationAdapter.setIdentifications(Collections.singletonList(identification));
+    }
+
+    @Override
     public void showNoInternetConnection() {
         showRecyclerView(false);
         showFineractNoInternetUI();
@@ -174,6 +189,40 @@ public class IdentificationsFragment extends FineractBaseFragment implements
     public void showError(String message) {
         showRecyclerView(false);
         showFineractErrorUI(getString(R.string.identification_cards));
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_identification_search, menu);
+        setUpSearchInterface(menu);
+    }
+
+    private void setUpSearchInterface(Menu menu) {
+
+        SearchManager manager = (SearchManager) getActivity().
+                getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView = (SearchView) menu.findItem(
+                R.id.identification_search).getActionView();
+        searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                identificationsPresenter.searchIdentifications(customerIdentifier, query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    identificationAdapter.setIdentifications(identifications);
+                }
+
+                return false;
+            }
+        });
+
     }
 
     @Override
