@@ -26,10 +26,14 @@ public interface IdentificationsContract {
         void showEmptyIdentifications();
 
         void showMessage(String message);
+
+        void searchIdentificationList(Identification identification);
     }
 
     interface Presenter {
 
         void fetchIdentifications(String customerIdentifier);
+
+        void searchIdentifications(String identifier, String number);
     }
 }

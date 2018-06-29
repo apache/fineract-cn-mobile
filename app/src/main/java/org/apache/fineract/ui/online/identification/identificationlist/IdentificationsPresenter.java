@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Rajan Maurya
- *         On 31/07/17.
+ * On 31/07/17.
  */
 @ConfigPersistent
 public class IdentificationsPresenter extends BasePresenter<IdentificationsContract.View>
@@ -81,4 +81,36 @@ public class IdentificationsPresenter extends BasePresenter<IdentificationsContr
                 })
         );
     }
+
+    @Override
+    public void searchIdentifications(String identifier, String number) {
+        checkViewAttached();
+        getMvpView().showProgressbar();
+
+        compositeDisposable.add(dataManagerCustomer.searchIdentifications(identifier, number)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableObserver<Identification>() {
+
+                    @Override
+                    public void onNext(Identification identification) {
+                        getMvpView().hideProgressbar();
+                        getMvpView().searchIdentificationList(identification);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        showExceptionError(e, context.getString
+                                (R.string.error_finding_identification));
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                }));
+    }
+
+
 }

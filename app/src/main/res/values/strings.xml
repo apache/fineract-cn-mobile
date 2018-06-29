@@ -168,6 +168,7 @@
     <string name="customer_updated_successfully">%1$s updated successfully</string>
     <string name="created_by">Created by</string>
     <string name="no_deposit_account">No deposit account</string>
+    <string name="identification_search">Search identification card</string>
     <string name="loan_last_modified_by">%1$s %2$s</string>
     <string name="loan_created_by">%1$s %2$s</string>
     <string name="search_beneficiary">Search beneficiary</string>
@@ -213,11 +214,13 @@
     <!--Empty data-->
     <string name="empty_create_loan_products">Oops there are no products, please create at least one to apply for loan</string>
     <string name="empty_identification_list">Oops there is no identification cards to show</string>
+    <string name="empty_identification_number">Identification number cannot be empty</string>
     <string name="empty_debts_to_show">There is no debts to show</string>
     <string name="empty_income_to_show">There is no income to show</string>
     <string name="empty_scans_to_show">There is no scans to show</string>
     <string name="empty_customer_activities">There is no activities to show</string>
     <string name="empty_roles">There is no roles to show</string>
+    <string name="empty_search">Search cannot be empty</string>
 
     <!--Edit Text validations-->
     <string name="value_must_greater_or_equal_to">Value must be greater than or equal to&#160; %1$s</string>
@@ -249,6 +252,7 @@
     <string name="error_fetching_identification_list">Error while fetching identification cards</string>
     <string name="error_creating_identification_card">Error while creating identification card</string>
     <string name="error_updating_identification_card">Error while updating identification card</string>
+    <string name="error_finding_identification">Error find identification</string>
     <string name="error_fetching_scans">Error while fetching scan cards</string>
     <string name="error_uploading_identification_scan_card">Error while uploading identification scan card</string>
     <string name="error_deleting_identification_scan_card">Error while deleting identification scan card</string>
