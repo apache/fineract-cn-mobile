@@ -10,6 +10,7 @@ import org.apache.fineract.data.services.DepositService;
 import org.apache.fineract.data.services.IndividualLendingService;
 import org.apache.fineract.data.services.LoanService;
 import org.apache.fineract.data.services.RolesService;
+import org.apache.fineract.data.services.TellersService;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -35,6 +36,7 @@ public class BaseApiManager {
     private static AnonymousService anonymousService;
     private static RolesService rolesService;
     private static AccountingService accountingService;
+    private static TellersService tellerService;
 
     public BaseApiManager(Context context) {
         createService(context);
@@ -49,6 +51,7 @@ public class BaseApiManager {
         individualLendingService = createApi(IndividualLendingService.class);
         rolesService = createApi(RolesService.class);
         accountingService = createApi(AccountingService.class);
+        tellerService = createApi(TellersService.class);
     }
 
     private static void initAnonymous() {
@@ -120,5 +123,9 @@ public class BaseApiManager {
 
     public  AccountingService getAccountingService() {
         return accountingService;
+    }
+
+    public TellersService getTellerService() {
+        return tellerService;
     }
 }

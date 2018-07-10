@@ -15,6 +15,7 @@ import org.apache.fineract.data.datamanager.api.DataManagerLoans;
 import org.apache.fineract.data.datamanager.api.DataManagerRoles;
 import org.apache.fineract.data.datamanager.database.DbManagerCustomer;
 import org.apache.fineract.data.datamanager.DataManagerAccounting;
+import org.apache.fineract.data.datamanager.DataManagerTeller;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.local.database.helpers.DatabaseHelperCustomer;
 import org.apache.fineract.data.remote.BaseApiManager;
@@ -46,6 +47,7 @@ public interface ApplicationComponent {
     DataManagerAnonymous dataManagerAnonymous();
     DataManagerRoles dataManagerRolesAndPermissions();
     DataManagerAccounting dataManagerAccounting();
+    DataManagerTeller dataManagerTeller();
     BaseApiManager baseApiManager();
     PreferencesHelper preferencesHelper();
 

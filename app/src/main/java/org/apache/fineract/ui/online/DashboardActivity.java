@@ -23,6 +23,7 @@ import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
+import org.apache.fineract.ui.online.teller.TellerFragment;
 import org.apache.fineract.utils.MaterialDialog;
 
 import javax.inject.Inject;
@@ -120,6 +121,9 @@ public class DashboardActivity extends FineractBaseActivity implements
                 break;
             case R.id.item_accounts:
                 replaceFragment(AccountsFragment.Companion.newInstance(), true, R.id.container);
+            case R.id.item_teller:
+                replaceFragment(TellerFragment.Companion.newInstance(), true, R.id.container);
+                break;
         }
 
         drawerLayout.closeDrawer(Gravity.START);
