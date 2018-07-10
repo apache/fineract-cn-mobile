@@ -44,6 +44,7 @@ import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentF
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
+import org.apache.fineract.ui.online.teller.TellerFragment;
 
 import dagger.Subcomponent;
 
@@ -115,4 +116,6 @@ public interface ActivityComponent {
     void inject(LedgerFragment ledgerFragment);
 
     void inject(AccountsFragment accountsFragment);
+
+    void inject(TellerFragment tellerFragment);
 }

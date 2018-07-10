@@ -13,10 +13,11 @@ import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.deposit.DepositAccount;
 import org.apache.fineract.data.models.loan.LoanAccount;
+import org.apache.fineract.data.models.teller.Teller;
 
 /**
  * @author Rajan Maurya
- *         On 05/08/17.
+ * On 05/08/17.
  */
 public class StatusUtils {
 
@@ -36,6 +37,28 @@ public class StatusUtils {
                         ContextCompat.getColor(context, R.color.red_dark));
                 break;
             case PENDING:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.light_yellow));
+                break;
+        }
+    }
+
+    public static void setTellerStatus(Teller.State state, AppCompatImageView imageView,
+            Context context) {
+        switch (state) {
+            case ACTIVE:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.deposit_green));
+                break;
+            case CLOSED:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+            case OPEN:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
+                break;
+            case PAUSED:
                 imageView.setColorFilter(
                         ContextCompat.getColor(context, R.color.light_yellow));
                 break;
