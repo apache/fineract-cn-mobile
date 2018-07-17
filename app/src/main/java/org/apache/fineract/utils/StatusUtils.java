@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.google.gson.annotations.SerializedName;
 
 import org.apache.fineract.R;
+import org.apache.fineract.data.models.accounts.AccountType;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.deposit.DepositAccount;
@@ -229,6 +230,33 @@ public class StatusUtils {
                         R.drawable.ic_lock_open_black_24dp));
                 imageView.setColorFilter(
                         ContextCompat.getColor(context, R.color.status));
+                break;
+
+        }
+    }
+
+    public static void setAccountType(AccountType action, ImageView imageView,
+            Context context) {
+        switch (action) {
+            case ASSET:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.status));
+                break;
+            case LIABILITY:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_dark));
+                break;
+            case EQUITY:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.blue));
+                break;
+            case REVENUE:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.green_dark));
+                break;
+            case EXPENSE:
+                imageView.setColorFilter(
+                        ContextCompat.getColor(context, R.color.red_light));
                 break;
 
         }

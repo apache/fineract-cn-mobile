@@ -2,6 +2,7 @@ package org.apache.fineract.data.remote;
 
 import android.content.Context;
 
+import org.apache.fineract.data.services.AccountingService;
 import org.apache.fineract.data.services.AnonymousService;
 import org.apache.fineract.data.services.AuthService;
 import org.apache.fineract.data.services.CustomerService;
@@ -33,7 +34,7 @@ public class BaseApiManager {
     private static IndividualLendingService individualLendingService;
     private static AnonymousService anonymousService;
     private static RolesService rolesService;
-
+    private static AccountingService accountingService;
 
     public BaseApiManager(Context context) {
         createService(context);
@@ -47,6 +48,7 @@ public class BaseApiManager {
         loanApi = createApi(LoanService.class);
         individualLendingService = createApi(IndividualLendingService.class);
         rolesService = createApi(RolesService.class);
+        accountingService = createApi(AccountingService.class);
     }
 
     private static void initAnonymous() {
@@ -114,5 +116,9 @@ public class BaseApiManager {
 
     public RolesService getRolesAndPermissionsService() {
         return rolesService;
+    }
+
+    public  AccountingService getAccountingService() {
+        return accountingService;
     }
 }

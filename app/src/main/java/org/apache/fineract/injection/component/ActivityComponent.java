@@ -4,34 +4,44 @@ import org.apache.fineract.injection.PerActivity;
 import org.apache.fineract.injection.module.ActivityModule;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.DashboardActivity;
-import org.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
-import org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
-
+import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
+import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
+        .CreateCustomerActivity;
+import org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress
+        .FormCustomerAddressFragment;
 import org.apache.fineract.ui.online.customers.customeractivities.CustomerActivitiesFragment;
-import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
-import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
-import org.apache.fineract.ui.online.customers.customertasks.CustomerTasksBottomSheetFragment;
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.FormDepositOverviewFragment;
-
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity;
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.formdepositassignproduct.FormDepositAssignProductFragment;
-import org.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
 import org.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsFragment;
-import org.apache.fineract.ui.online.loanaccounts.loanaccountlist.LoanAccountsFragment;
-import org.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportFragment;
-import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails.DepositAccountDetailsFragment;
-import org.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
-import org.apache.fineract.ui.online.identification.identificationdetails.IdentificationDetailsFragment;
+import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
+import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet
+        .EditCustomerProfileBottomSheet;
+import org.apache.fineract.ui.online.customers.customertasks.CustomerTasksBottomSheetFragment;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .FormDepositOverviewFragment;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity
+        .CreateDepositActivity;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
+        .formdepositassignproduct.FormDepositAssignProductFragment;
+import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails
+        .DepositAccountDetailsFragment;
+import org.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
+import org.apache.fineract.ui.online.identification.createidentification.identificationactivity
+        .CreateIdentificationActivity;
+import org.apache.fineract.ui.online.identification.identificationdetails
+        .IdentificationDetailsFragment;
 import org.apache.fineract.ui.online.identification.identificationlist.IdentificationsFragment;
-import org.apache.fineract.ui.online.identification.uploadidentificationscan.UploadIdentificationCardBottomSheet;
+import org.apache.fineract.ui.online.identification.uploadidentificationscan
+        .UploadIdentificationCardBottomSheet;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
+import org.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportFragment;
+import org.apache.fineract.ui.online.loanaccounts.loanaccountlist.LoanAccountsFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.BaseFragmentDebtIncome;
-import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity
+        .LoanApplicationActivity;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loancosigner.LoanCoSignerFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails.LoanDetailsFragment;
 import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetailsFragment;
-import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentFragment;
+import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 
 import dagger.Subcomponent;
@@ -101,4 +111,5 @@ public interface ActivityComponent {
 
     void inject(CustomerPayloadFragment customerPayloadFragment);
 
+    void inject(LedgerFragment ledgerFragment);
 }
