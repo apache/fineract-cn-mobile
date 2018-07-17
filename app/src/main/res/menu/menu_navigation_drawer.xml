@@ -29,6 +29,13 @@
             android:id="@+id/item_customer_payload"
             android:title="Customer Payloads"/>
 
+        <item
+            android:checked="true"
+            android:icon="@drawable/ic_customer_black_24dp"
+            android:id="@+id/item_ledger"
+            android:title="@string/ledger"/>
+
+
     </group>
 
     <group

@@ -15,5 +15,6 @@ public class EndPoints {
     public static final String API_CUSTOMER_PATH = "/api/customer/v1";
     public static final String API_DEPOSIT_PATH = "/api/deposit/v1";
     public static final String API_PORTFOLIO_PATH = "/api/portfolio/v1";
+    public static final String API_ACCOUNTING_PATH = "/api/accounting/v1";
 
 }

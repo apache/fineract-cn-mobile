@@ -82,6 +82,7 @@
     <string name="amount">Amount</string>
     <string name="description">Description</string>
     <string name="products">Products</string>
+    <string name="ledger">Ledgers</string>
     <string name="day">Day</string>
     <string name="in">In</string>
     <string name="required">Required</string>
@@ -171,6 +172,7 @@
     <string name="created_by">Created by</string>
     <string name="no_deposit_account">No deposit account</string>
     <string name="identification_search">Search identification card</string>
+    <string name="ledger_search">Ledger Search</string>
     <string name="loan_last_modified_by">%1$s %2$s</string>
     <string name="loan_created_by">%1$s %2$s</string>
     <string name="search_beneficiary">Search beneficiary</string>
@@ -265,6 +267,7 @@
     <string name="error_updating_deposit_account">Error updating deposit account</string>
     <string name="error_fetching_customer_activities">Error fetching customer activities</string>
     <string name="error_fetching_roles">Error fetching roles</string>
+    <string name="error_fetching_ledger">Error fetching ledger</string>
     <string name="error_sorry_not_able_to_load">Sorry we weren\'t able to load</string>
     <string name="error_fetching_customer_details">Failed to fetch customer details</string>
     <string name="error_fetching_deposit_product">Failed to fetch deposit product</string>

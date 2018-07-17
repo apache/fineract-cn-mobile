@@ -17,6 +17,7 @@ import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.jobs.StartSyncJob;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
+import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
@@ -112,6 +113,9 @@ public class DashboardActivity extends FineractBaseActivity implements
                 break;
             case R.id.item_logout:
                 logout();
+                break;
+            case R.id.item_ledger:
+                replaceFragment(LedgerFragment.Companion.newInstance(), true, R.id.container);
                 break;
         }
         drawerLayout.closeDrawer(Gravity.START);

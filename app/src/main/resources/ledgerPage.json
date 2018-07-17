@@ -1,0 +1,62 @@
+{
+  "ledgers": [
+    {
+      "type": "ASSET",
+      "identifier": "identifier1",
+      "name": "name",
+      "description": "description",
+      "parentLedgerIdentifier": "parentLedgerIdentifier",
+      "subLedgers": [],
+      "totalValue": 1200,
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy",
+      "showAccountsInChart": false
+    },
+    {
+      "type": "LIABILITY",
+      "identifier": "identifier2",
+      "name": "name",
+      "description": "description",
+      "parentLedgerIdentifier": "parentLedgerIdentifier",
+      "subLedgers": [],
+      "totalValue": 1500,
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy",
+      "showAccountsInChart": false
+    },
+    {
+      "type": "EQUITY",
+      "identifier": "identifier3",
+      "name": "name",
+      "description": "description",
+      "parentLedgerIdentifier": "parentLedgerIdentifier",
+      "subLedgers": [],
+      "totalValue": 1800,
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy",
+      "showAccountsInChart": false
+    },
+    {
+      "type": "REVENUE",
+      "identifier": "identifier4",
+      "name": "name",
+      "description": "description",
+      "parentLedgerIdentifier": "parentLedgerIdentifier",
+      "subLedgers": [],
+      "totalValue": 2100,
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy",
+      "showAccountsInChart": false
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 4
+}
