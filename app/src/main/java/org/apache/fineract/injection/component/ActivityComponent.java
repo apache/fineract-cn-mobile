@@ -43,6 +43,7 @@ import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetail
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentFragment;
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
+import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
 
 import dagger.Subcomponent;
 
@@ -112,4 +113,6 @@ public interface ActivityComponent {
     void inject(CustomerPayloadFragment customerPayloadFragment);
 
     void inject(LedgerFragment ledgerFragment);
+
+    void inject(AccountsFragment accountsFragment);
 }

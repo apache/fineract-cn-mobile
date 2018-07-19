@@ -4,6 +4,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.apache.fineract.data.models.Authentication;
 import org.apache.fineract.data.models.accounts.LedgerPage;
+import org.apache.fineract.data.models.accounts.AccountPage;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.customer.CustomerPage;
@@ -82,6 +83,10 @@ public class FakeRemoteDataSource {
 
     public static LedgerPage getLedgerPage() {
         return testDataFactory.getObjectTypePojo(LedgerPage.class, FakeJsonName.LEDGER_PAGE);
+    }
+
+    public static AccountPage getAccountPage() {
+        return testDataFactory.getObjectTypePojo(AccountPage.class, FakeJsonName.ACCOUNT_PAGE);
     }
 
 }
