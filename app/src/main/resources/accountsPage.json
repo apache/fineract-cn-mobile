@@ -1,0 +1,94 @@
+{
+  "accounts": [
+    {
+      "type": "ASSET",
+      "identifier": "identifier1",
+      "name": "name1",
+      "holders": [
+        "holders1",
+        "holders2"
+      ],
+      "signatureAuthorities": [
+        "signatureAuthorities1",
+        "signatureAuthorities2"
+      ],
+      "balance": 1200,
+      "referenceAccount": "referenceAccount",
+      "ledger": "ledger",
+      "state": "OPEN",
+      "alternativeAccountNumber": "alternativeAccountNumber",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    },
+    {
+      "type": "LIABILITY",
+      "identifier": "identifier2",
+      "name": "name2",
+      "holders": [
+        "holders1",
+        "holders2"
+      ],
+      "signatureAuthorities": [
+        "signatureAuthorities1",
+        "signatureAuthorities2"
+      ],
+      "balance": 1500,
+      "referenceAccount": "referenceAccount",
+      "ledger": "ledger",
+      "state": "LOCKED",
+      "alternativeAccountNumber": "alternativeAccountNumber",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    },
+    {
+      "type": "EQUITY",
+      "identifier": "identifier3",
+      "name": "name3",
+      "holders": [
+        "holders1",
+        "holders2"
+      ],
+      "signatureAuthorities": [
+        "signatureAuthorities1",
+        "signatureAuthorities2"
+      ],
+      "balance": 1500,
+      "referenceAccount": "referenceAccount",
+      "ledger": "ledger",
+      "state": "CLOSE",
+      "alternativeAccountNumber": "alternativeAccountNumber",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    },
+    {
+      "type": "REVENUE",
+      "identifier": "identifier4",
+      "name": "name4",
+      "holders": [
+        "holders1",
+        "holders2"
+      ],
+      "signatureAuthorities": [
+        "signatureAuthorities1",
+        "signatureAuthorities2"
+      ],
+      "balance": 1500,
+      "referenceAccount": "referenceAccount",
+      "ledger": "ledger",
+      "state": "OPEN",
+      "alternativeAccountNumber": "alternativeAccountNumber",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 4
+}

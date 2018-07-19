@@ -83,6 +83,7 @@
     <string name="description">Description</string>
     <string name="products">Products</string>
     <string name="ledger">Ledgers</string>
+    <string name="accounts">Accounts</string>
     <string name="day">Day</string>
     <string name="in">In</string>
     <string name="required">Required</string>
@@ -268,6 +269,7 @@
     <string name="error_fetching_customer_activities">Error fetching customer activities</string>
     <string name="error_fetching_roles">Error fetching roles</string>
     <string name="error_fetching_ledger">Error fetching ledger</string>
+    <string name="error_fetching_accounts">Error fetching accounts</string>
     <string name="error_sorry_not_able_to_load">Sorry we weren\'t able to load</string>
     <string name="error_fetching_customer_details">Failed to fetch customer details</string>
     <string name="error_fetching_deposit_product">Failed to fetch deposit product</string>

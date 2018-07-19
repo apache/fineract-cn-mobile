@@ -9,6 +9,8 @@ import javax.inject.Inject
 import org.apache.fineract.FakeRemoteDataSource
 import org.apache.fineract.data.datamanager.api.DataManagerAuth
 import org.apache.fineract.data.datamanager.api.FineractBaseDataManager
+import org.apache.fineract.data.models.accounts.Account
+import org.apache.fineract.data.models.accounts.AccountPage
 import org.apache.fineract.data.models.accounts.Ledger
 import org.apache.fineract.data.models.accounts.LedgerPage
 import javax.inject.Singleton
@@ -28,4 +30,16 @@ class DataManagerAccounting @Inject constructor(val baseManagerApi: BaseApiManag
             baseManagerApi.accountingService.findLedger(identifier)
                     .onErrorResumeNext(Function<Throwable, ObservableSource<Ledger>>
                     { Observable.just(FakeRemoteDataSource.getLedgerPage()!!.ledgers!![0]) })
+
+    fun getAccounts(): Observable<AccountPage> =
+            baseManagerApi.accountingService.fetchAccounts()
+                    .onErrorResumeNext(Function<Throwable, ObservableSource<AccountPage>>
+                    { Observable.just(FakeRemoteDataSource.getAccountPage()) })
+
+
+    fun findAccount(identifier: String): Observable<Account> =
+            baseManagerApi.accountingService.findAccount(identifier)
+                    .onErrorResumeNext(Function<Throwable, ObservableSource<Account>>
+                    { Observable.just(FakeRemoteDataSource.getAccountPage()!!.accounts!![0]) })
+
 }

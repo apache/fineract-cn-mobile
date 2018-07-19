@@ -18,4 +18,5 @@ public class FakeJsonName {
     public static final String PLANNED_PAYMENT_PAGE = "plannedPaymentPage.json";
     public static final String ROLES = "role.json";
     public static final String LEDGER_PAGE = "ledgerPage.json";
+    public static final String ACCOUNT_PAGE = "accountsPage.json";
 }
