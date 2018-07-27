@@ -82,6 +82,12 @@ public class FakeRemoteDataSource {
     public static PlannedPaymentPage getPlannedPaymentPage() {
         return testDataFactory.getObjectTypePojo(PlannedPaymentPage.class,
                 FakeJsonName.PLANNED_PAYMENT_PAGE);
+
+    }
+
+    public static ProductPage getProductPage() {
+        return testDataFactory.getObjectTypePojo(ProductPage.class,
+                FakeJsonName.PRODUCT_PAGE);
     }
 
     public static LedgerPage getLedgerPage() {
@@ -97,13 +103,8 @@ public class FakeRemoteDataSource {
         }, FakeJsonName.TELLER);
     }
 
-    public static ProductPage getProductPage() {
-        return testDataFactory.getObjectTypePojo(ProductPage.class,
-                FakeJsonName.PRODUCT_PAGE);
-    }
-
     public static List<ProductDefinition> getProductDefinition() {
-            return testDataFactory.getListTypePojo(new TypeToken<List<ProductDefinition>>() {
-            }, FakeJsonName.PRODUCT_DEFINITION);
+        return testDataFactory.getListTypePojo(new TypeToken<List<ProductDefinition>>() {
+        }, FakeJsonName.PRODUCT_DEFINITION);
     }
 }

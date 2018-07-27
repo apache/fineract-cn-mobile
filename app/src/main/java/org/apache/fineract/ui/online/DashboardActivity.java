@@ -24,6 +24,7 @@ import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
+import org.apache.fineract.ui.product.ProductFragment;
 import org.apache.fineract.utils.MaterialDialog;
 
 import javax.inject.Inject;
@@ -111,6 +112,10 @@ public class DashboardActivity extends FineractBaseActivity implements
                 break;
             case R.id.item_customer_payload:
                 replaceFragment(CustomerPayloadFragment.newInstance(), true,
+                        R.id.container);
+                break;
+            case R.id.item_product:
+                replaceFragment(ProductFragment.Companion.newInstance(), true,
                         R.id.container);
                 break;
             case R.id.item_logout:
