@@ -1,0 +1,138 @@
+{
+  "elements": [
+    {
+      "identifier": "identifier1",
+      "name": "name1",
+      "termRange": {
+        "temporalUnit": "WEEKS",
+        "maximum": 45
+      },
+      "balanceRange": {
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "interestRange": {
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "interestBasis": "CURRENT_BALANCE",
+      "patternPackage": "patternPackage",
+      "description": "description",
+      "currencyCode": "currencyCode",
+      "minorCurrencyUnitDigits": 0,
+      "accountAssignments": [
+        {
+          "designator": "designator",
+          "accountIdentifier": "accountIdentifier",
+          "ledgerIdentifier": "ledgerIdentifier"
+        }
+      ],
+      "parameters": "parameters",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    },
+    {
+      "identifier": "identifier2",
+      "name": "name2",
+      "termRange": {
+        "temporalUnit": "WEEKS",
+        "maximum": 45
+      },
+      "balanceRange": {
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "interestRange": {
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "interestBasis": "CURRENT_BALANCE",
+      "patternPackage": "patternPackage",
+      "description": "description",
+      "currencyCode": "currencyCode",
+      "minorCurrencyUnitDigits": 0,
+      "accountAssignments": [
+        {
+          "designator": "designator",
+          "accountIdentifier": "accountIdentifier",
+          "ledgerIdentifier": "ledgerIdentifier"
+        }
+      ],
+      "parameters": "parameters",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    },
+    {
+      "identifier": "identifier3",
+      "name": "name3",
+      "termRange": {
+        "temporalUnit": "WEEKS",
+        "maximum": 45
+      },
+      "balanceRange": {
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "interestRange": {
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "interestBasis": "CURRENT_BALANCE",
+      "patternPackage": "patternPackage",
+      "description": "description",
+      "currencyCode": "currencyCode",
+      "minorCurrencyUnitDigits": 0,
+      "accountAssignments": [
+        {
+          "designator": "designator",
+          "accountIdentifier": "accountIdentifier",
+          "ledgerIdentifier": "ledgerIdentifier"
+        }
+      ],
+      "parameters": "parameters",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    },
+    {
+      "identifier": "identifier4",
+      "name": "name4",
+      "termRange": {
+        "temporalUnit": "WEEKS",
+        "maximum": 45
+      },
+      "balanceRange": {
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "interestRange": {
+        "minimum": 0,
+        "maximum": 1000
+      },
+      "interestBasis": "CURRENT_BALANCE",
+      "patternPackage": "patternPackage",
+      "description": "description",
+      "currencyCode": "currencyCode",
+      "minorCurrencyUnitDigits": 0,
+      "accountAssignments": [
+        {
+          "designator": "designator",
+          "accountIdentifier": "accountIdentifier",
+          "ledgerIdentifier": "ledgerIdentifier"
+        }
+      ],
+      "parameters": "parameters",
+      "createdOn": "createdOn",
+      "createdBy": "createdBy",
+      "lastModifiedOn": "lastModifiedOn",
+      "lastModifiedBy": "lastModifiedBy"
+    }
+  ],
+  "totalPages": 1,
+  "totalElements": 4
+}

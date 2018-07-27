@@ -45,6 +45,7 @@ import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
+import org.apache.fineract.ui.product.ProductFragment;
 
 import dagger.Subcomponent;
 
@@ -118,4 +119,6 @@ public interface ActivityComponent {
     void inject(AccountsFragment accountsFragment);
 
     void inject(TellerFragment tellerFragment);
+
+    void inject(ProductFragment productFragment);
 }
