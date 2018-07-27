@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.models.customer.Address;
 import org.apache.fineract.data.models.customer.ContactDetail;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.base.FineractBaseActivity;

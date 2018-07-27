@@ -53,7 +53,7 @@ public class DataManagerCustomer extends FineractBaseDataManager implements Mana
                                     Throwable throwable) throws Exception {
                                 return Observable.just(FakeRemoteDataSource.getCustomerPage());
                             }
-                });
+                    });
     }
 
     public Observable<Customer> fetchCustomer(String identifier) {
@@ -66,7 +66,7 @@ public class DataManagerCustomer extends FineractBaseDataManager implements Mana
                                     Throwable throwable) throws Exception {
                                 return Observable.just(FakeRemoteDataSource.getCustomer());
                             }
-                });
+                    });
     }
 
     public Completable updateCustomer(String customerIdentifier, Customer customer) {

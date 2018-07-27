@@ -18,7 +18,6 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.adapters.CustomerAdapter;
-import org.apache.fineract.ui.base.EndlessRecyclerViewScrollListener;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
