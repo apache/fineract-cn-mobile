@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.github.therajanmaurya.sweeterror.SweetUIErrorHandler;
+
 import org.apache.fineract.R;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
@@ -35,7 +36,7 @@ import butterknife.ButterKnife;
 
 /**
  * @author Rajan Maurya
- *         On 06/08/17.
+ * On 06/08/17.
  */
 public class CustomerProfileActivity extends FineractBaseActivity
         implements CustomerProfileContract.View, RefreshProfileImage {
@@ -150,7 +151,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
+                                           @NonNull int[] grantResults) {
         switch (requestCode) {
             case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {
                 if (grantResults.length > 0
@@ -167,15 +168,17 @@ public class CustomerProfileActivity extends FineractBaseActivity
     @Override
     public void refreshUI() {
         loadCustomerPortrait();
-        sweetUIErrorHandler.hideSweetErrorLayoutUI(ivCustomerProfile,errorView);
+        sweetUIErrorHandler.hideSweetErrorLayoutUI(ivCustomerProfile, errorView);
     }
 
     @Override
-    public void showNoInternetConnection() {sweetUIErrorHandler.showSweetNoInternetUI(ivCustomerProfile,errorView);
+    public void showNoInternetConnection() {
+        sweetUIErrorHandler.showSweetNoInternetUI(ivCustomerProfile, errorView);
     }
 
     @Override
-    public void showError(String message) {sweetUIErrorHandler.showSweetCustomErrorUI(message,
-            R.drawable.ic_error_black_24dp,ivCustomerProfile,errorView);
+    public void showError(String message) {
+        sweetUIErrorHandler.showSweetCustomErrorUI(message,
+                R.drawable.ic_error_black_24dp, ivCustomerProfile, errorView);
     }
 }

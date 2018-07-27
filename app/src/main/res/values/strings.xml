@@ -182,6 +182,7 @@
     <string name="search_customer">Search customer</string>
     <string name="online">Online</string>
     <string name="offline">Offline</string>
+    <string name="search_product">Search product</string>
     <string name="select_product">Select product</string>
     <string name="no_beneficiary">No beneficiaries</string>
     <string name="activities_created_by_on">%1$s, %2$s</string>
@@ -279,6 +280,7 @@
     <string name="error_fetching_ledger">Error fetching ledger</string>
     <string name="error_fetching_accounts">Error fetching accounts</string>
     <string name="error_fetching_teller">Error fetching teller</string>
+    <string name="error_fetching_products">Error fetching products</string>
     <string name="error_sorry_not_able_to_load">Sorry we weren\'t able to load</string>
     <string name="error_fetching_customer_details">Failed to fetch customer details</string>
     <string name="error_fetching_deposit_product">Failed to fetch deposit product</string>

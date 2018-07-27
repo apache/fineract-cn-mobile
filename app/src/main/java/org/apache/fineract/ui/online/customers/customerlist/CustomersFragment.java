@@ -113,7 +113,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_list, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
@@ -144,13 +144,13 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     @Override
     public void onRefresh() {
         customerPresenter.fetchCustomers(0, false);
-        sweetUIErrorHandler.hideSweetErrorLayoutUI(rvCustomers,layoutError);
+        sweetUIErrorHandler.hideSweetErrorLayoutUI(rvCustomers, layoutError);
     }
 
     @OnClick(R.id.btn_try_again)
     void onRetry() {
         customerPresenter.fetchCustomers(0, false);
-        sweetUIErrorHandler.hideSweetErrorLayoutUI(rvCustomers,layoutError);
+        sweetUIErrorHandler.hideSweetErrorLayoutUI(rvCustomers, layoutError);
     }
 
     @Override
@@ -164,7 +164,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         swipeRefreshLayout.setColorSchemeColors(getActivity()
                 .getResources().getIntArray(R.array.swipeRefreshColors));
         swipeRefreshLayout.setOnRefreshListener(this);
-        sweetUIErrorHandler = new SweetUIErrorHandler(getActivity(),rootView);
+        sweetUIErrorHandler = new SweetUIErrorHandler(getActivity(), rootView);
     }
 
     @OnClick(R.id.fab_add_customer)
@@ -193,7 +193,8 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     public void showEmptyCustomers(String message) {
         showRecyclerView(false);
         sweetUIErrorHandler.showSweetCustomErrorUI(getString(R.string.customer),
-                getString(Integer.parseInt(message)),R.drawable.ic_customer_black_24dp,rvCustomers,layoutError);
+                getString(Integer.parseInt(message)),
+                R.drawable.ic_customer_black_24dp, rvCustomers, layoutError);
     }
 
     @Override
@@ -231,18 +232,18 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     public void showNoInternetConnection() {
         showRecyclerView(false);
         showFineractNoInternetUI();
-        sweetUIErrorHandler.showSweetNoInternetUI(swipeRefreshLayout,layoutError);
+        sweetUIErrorHandler.showSweetNoInternetUI(swipeRefreshLayout, layoutError);
     }
 
     @Override
     public void showError(String message) {
         if (customerAdapter.getItemCount() != 0) {
             sweetUIErrorHandler.showSweetCustomErrorUI(message,
-                    R.drawable.ic_error_black_24dp,swipeRefreshLayout,layoutError);
+                    R.drawable.ic_error_black_24dp, swipeRefreshLayout, layoutError);
         } else {
             showRecyclerView(false);
             sweetUIErrorHandler.showSweetCustomErrorUI(getString(R.string.customers),
-                    R.drawable.ic_error_black_24dp,swipeRefreshLayout,layoutError);
+                    R.drawable.ic_error_black_24dp, swipeRefreshLayout, layoutError);
         }
     }
 
@@ -276,7 +277,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(TextUtils.isEmpty(newText)){
+                if (TextUtils.isEmpty(newText)) {
                     customerAdapter.setCustomers(customers);
                 }
 
@@ -306,8 +307,9 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     private void findCustomer(String query) {
 
         if (rgSearch.getCheckedRadioButtonId() == -1) {
-            Toaster.show(swipeRefreshLayout,getString(R.string.error_finding_customer_options), Toaster.SHORT);
-        }else if (rbOnline.isChecked()) {
+            Toaster.show(swipeRefreshLayout, getString(R.string.error_finding_customer_options),
+                    Toaster.SHORT);
+        } else if (rbOnline.isChecked()) {
             customerPresenter.searchCustomerOnline(query);
         }
     }
