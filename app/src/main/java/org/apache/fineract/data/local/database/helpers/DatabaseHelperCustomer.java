@@ -1,5 +1,7 @@
 package org.apache.fineract.data.local.database.helpers;
 
+import static com.raizlabs.android.dbflow.sql.language.SQLite.select;
+
 import com.google.gson.Gson;
 
 import org.apache.fineract.data.local.database.syncmodels.customer.CustomerPayload;
@@ -17,11 +19,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
-
-import static com.raizlabs.android.dbflow.sql.language.SQLite.select;
 
 @Singleton
 public class DatabaseHelperCustomer {

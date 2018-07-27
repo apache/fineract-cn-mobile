@@ -52,13 +52,13 @@ public class CreationUpdationCustomerJob extends Job {
         databaseHelper.fetchCustomerPayload()
                 .flatMap(new Function<List<Customer>, ObservableSource<Customer>>() {
                     @Override
-                    public ObservableSource<Customer> apply(List<Customer> customers) throws Exception {
+                    public ObservableSource<Customer> apply(List<Customer> customers) {
                         return Observable.fromIterable(customers);
                     }
                 })
                 .flatMapCompletable(new Function<Customer, CompletableSource>() {
                     @Override
-                    public CompletableSource apply(Customer customer) throws Exception {
+                    public CompletableSource apply(Customer customer) {
                         return dataManagerCustomer.createCustomer(customer);
                     }
                 })

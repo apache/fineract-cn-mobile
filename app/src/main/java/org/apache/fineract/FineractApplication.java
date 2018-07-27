@@ -10,10 +10,8 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.apache.fineract.injection.component.ApplicationComponent;
 import org.apache.fineract.injection.component.DaggerApplicationComponent;
 import org.apache.fineract.injection.module.ApplicationModule;
-import org.apache.fineract.jobs.StartSyncJob;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import io.fabric.sdk.android.Fabric;
 

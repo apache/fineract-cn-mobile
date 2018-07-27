@@ -26,7 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class CustomerPayloadFragment extends FineractBaseFragment implements
-        CustomerPayloadContract.View{
+        CustomerPayloadContract.View {
 
     public static CustomerPayloadFragment newInstance() {
         CustomerPayloadFragment fragment = new CustomerPayloadFragment();
