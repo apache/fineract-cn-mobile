@@ -16,6 +16,7 @@ import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.LoanAccountPage;
 import org.apache.fineract.data.models.payment.PlannedPaymentPage;
 import org.apache.fineract.data.models.product.ProductPage;
+import org.apache.fineract.data.models.payroll.PayrollConfiguration;
 import org.apache.fineract.data.models.rolesandpermission.Role;
 import org.apache.fineract.data.models.teller.Teller;
 
@@ -106,5 +107,10 @@ public class FakeRemoteDataSource {
     public static List<ProductDefinition> getProductDefinition() {
         return testDataFactory.getListTypePojo(new TypeToken<List<ProductDefinition>>() {
         }, FakeJsonName.PRODUCT_DEFINITION);
+    }
+
+    public static PayrollConfiguration getPayrollConfig() {
+        return testDataFactory.getObjectTypePojo(PayrollConfiguration.class,
+                FakeJsonName.PAYROLL_CONFIG);
     }
 }

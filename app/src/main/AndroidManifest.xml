@@ -1,29 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="org.apache.fineract">
+    package="org.apache.fineract">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
+        android:name=".FineractApplication"
         android:allowBackup="true"
         android:icon="@drawable/launcher_image"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".FineractApplication"
         android:theme="@style/AppTheme">
 
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="org.apache.fineract.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
@@ -31,18 +33,21 @@
 
         <activity android:name=".ui.online.launcher.LauncherActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.online.login.LoginActivity"
+        <activity
+            android:name=".ui.online.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
 
         <activity android:name=".ui.online.DashboardActivity" />
 
         <activity android:name=".ui.online.customers.customerdetails.CustomerDetailsActivity" />
+
+        <activity android:name=".ui.online.customers.customerpayroll.PayrollActivity" />
 
         <activity android:name=".ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity" />
 
@@ -66,17 +71,19 @@
 
         <activity
             android:name=".ui.online.customers.customerprofile.CustomerProfileActivity"
-            android:theme="@style/AppTheme.Black"/>
+            android:theme="@style/AppTheme.Black" />
 
-        <activity android:name=".ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity"
-                  android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity"
+            android:windowSoftInputMode="adjustPan" />
 
         <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
 
-        <receiver android:name=".jobs.JobsReceiver"
+        <receiver
+            android:name=".jobs.JobsReceiver"
             android:exported="false">
             <intent-filter>
-                <action android:name="org.apache.fineract.JobsReceiver"/>
+                <action android:name="org.apache.fineract.JobsReceiver" />
             </intent-filter>
         </receiver>
     </application>

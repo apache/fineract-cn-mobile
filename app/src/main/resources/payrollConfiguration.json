@@ -1,0 +1,19 @@
+{
+  "mainAccountNumber": "mainAccountNumber",
+  "payrollAllocations": [
+    {
+      "accountNumber": "accountNumber1",
+      "amount": 500,
+      "proportional": false
+    },
+    {
+      "accountNumber": "accountNumber2",
+      "amount": 1500,
+      "proportional": true
+    }
+  ],
+  "createdBy": "createdBy",
+  "createdOn": "createdOn",
+  "lastModifiedBy": "lastModifiedBy",
+  "lastModifiedOn": "lastModifiedOn"
+}
