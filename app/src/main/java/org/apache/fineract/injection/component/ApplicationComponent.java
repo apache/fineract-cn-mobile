@@ -12,6 +12,7 @@ import org.apache.fineract.data.datamanager.api.DataManagerCustomer;
 import org.apache.fineract.data.datamanager.api.DataManagerDeposit;
 import org.apache.fineract.data.datamanager.api.DataManagerIndividualLending;
 import org.apache.fineract.data.datamanager.api.DataManagerLoans;
+import org.apache.fineract.data.datamanager.api.DataManagerPayroll;
 import org.apache.fineract.data.datamanager.api.DataManagerRoles;
 import org.apache.fineract.data.datamanager.database.DbManagerCustomer;
 import org.apache.fineract.data.datamanager.DataManagerAccounting;
@@ -48,6 +49,7 @@ public interface ApplicationComponent {
     DataManagerRoles dataManagerRolesAndPermissions();
     DataManagerAccounting dataManagerAccounting();
     DataManagerTeller dataManagerTeller();
+    DataManagerPayroll dataManagerPayroll();
     BaseApiManager baseApiManager();
     PreferencesHelper preferencesHelper();
 

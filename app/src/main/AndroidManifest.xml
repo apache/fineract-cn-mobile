@@ -43,6 +43,8 @@
 
         <activity android:name=".ui.online.customers.customerdetails.CustomerDetailsActivity" />
 
+        <activity android:name=".ui.online.customers.customerpayroll.PayrollActivity"/>
+
         <activity android:name=".ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity" />
 
         <activity android:name=".ui.online.loanaccounts.loanaccountlist.LoanAccountsActivity" />

@@ -472,6 +472,51 @@
 
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            android:id="@+id/ll_payroll"
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:orientation="horizontal"
+                            android:padding="16dp">
+
+                            <LinearLayout
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    style="@style/circleLayout"
+                                    android:layout_height="35dp"
+                                    android:layout_width="35dp"
+                                    app:srcCompat="@drawable/ic_payment_black_24dp"/>
+
+                                <LinearLayout
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/layout_padding_8dp"
+                                    android:layout_marginStart="@dimen/layout_padding_8dp"
+                                    android:layout_width="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="wrap_content"
+                                        android:text="@string/payroll"/>
+
+                                    <TextView
+                                        android:layout_height="match_parent"
+                                        android:layout_width="wrap_content"
+                                        android:text="@string/manage_payroll"
+                                        android:textSize="@dimen/text_size_12sp"/>
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
