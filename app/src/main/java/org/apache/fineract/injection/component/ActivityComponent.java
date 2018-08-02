@@ -4,6 +4,7 @@ import org.apache.fineract.injection.PerActivity;
 import org.apache.fineract.injection.module.ActivityModule;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.DashboardActivity;
+import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
 import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
         .CreateCustomerActivity;
@@ -12,6 +13,11 @@ import org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddres
 import org.apache.fineract.ui.online.customers.customeractivities.CustomerActivitiesFragment;
 import org.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsFragment;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
+import org.apache.fineract.ui.online.customers.customerpayroll.PayrollFragment;
+import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
+        .EditPayrollActivity;
+import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
+        .EditPayrollAllocationFragment;
 import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet
         .EditCustomerProfileBottomSheet;
 import org.apache.fineract.ui.online.customers.customertasks.CustomerTasksBottomSheetFragment;
@@ -42,9 +48,7 @@ import org.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails.Lo
 import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetailsFragment;
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentFragment;
 import org.apache.fineract.ui.online.login.LoginActivity;
-import org.apache.fineract.ui.online.customers.customerpayroll.PayrollFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
-import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
 
 import dagger.Subcomponent;
@@ -121,4 +125,8 @@ public interface ActivityComponent {
     void inject(TellerFragment tellerFragment);
 
     void inject(PayrollFragment payrollFragment);
+
+    void inject(EditPayrollAllocationFragment editPayrollAllocationFragment);
+
+    void inject(EditPayrollActivity editPayrollActivity);
 }

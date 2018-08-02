@@ -75,6 +75,7 @@
     <string name="account">Account</string>
     <string name="balance">Balance</string>
     <string name="beneficiaries">Beneficiaries</string>
+    <string name="proportional">Proportional</string>
     <string name="payroll_configuration">Payroll Configuration</string>
     <string name="payroll_allocation">Payroll Allocation</string>
     <string name="no_payroll_allocation">No Payroll Allocation</string>
@@ -92,6 +93,8 @@
     <string name="day">Day</string>
     <string name="in">In</string>
     <string name="required">Required</string>
+    <string name="edit">Edit</string>
+    <string name="add">Add</string>
     <string name="add_debt">Add Debt</string>
     <string name="add_document">Add Document</string>
     <string name="add_income">Add Income</string>
@@ -120,6 +123,7 @@
     <string name="is_member">Is member?</string>
     <string name="create_customer">Create Customer</string>
     <string name="edit_customer">Edit customer</string>
+    <string name="edit_payroll">Edit payroll</string>
     <string name="create_new_identification">Create new Identification</string>
     <string name="create_new_deposit">Create new deposit</string>
     <string name="update_deposit">Update deposit</string>
@@ -176,6 +180,7 @@
     <string name="customer_created_successfully">%1$s created successfully</string>
     <string name="customer_updated_successfully">%1$s updated successfully</string>
     <string name="created_by">Created by</string>
+    <string name="created_on">Created on</string>
     <string name="no_deposit_account">No deposit account</string>
     <string name="identification_search">Search identification card</string>
     <string name="ledger_search">Ledger Search</string>
@@ -260,6 +265,7 @@
     <string name="error_loading_countries">Error while fetching countries</string>
     <string name="error_creating_customer">Error while creating customer</string>
     <string name="error_updating_customer">Error while updating customer</string>
+    <string name="error_updating_payroll">Error while updating payroll</string>
     <string name="error_updating_status">Error while updating customer</string>
     <string name="error_fetching_identification_list">Error while fetching identification cards</string>
     <string name="error_creating_identification_card">Error while creating identification card</string>
@@ -388,6 +394,11 @@
     <string-array name="create_deposit_steps">
         <item>Assign product</item>
         <item>Overview</item>
+    </string-array>
+
+    <string-array name="edit_payroll_steps">
+        <item>Customer payroll</item>
+        <item>Payroll allocations</item>
     </string-array>
 
     <string-array name="repay_unit_type">

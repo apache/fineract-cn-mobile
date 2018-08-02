@@ -201,5 +201,15 @@
         layout="@layout/layout_exception_handler"
         android:visibility="gone" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/fabEditPayroll"
+        android:layout_gravity="bottom|end"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_width="wrap_content"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_edit_black_24dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

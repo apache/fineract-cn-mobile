@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/layout_padding_24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/layout_padding_30dp"
+                android:paddingLeft="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_24dp"
+                android:paddingStart="@dimen/layout_padding_24dp"
+                android:paddingTop="@dimen/layout_padding_24dp"
+                android:text="@string/payroll_allocation"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_24dp">
+
+                <EditText
+                    android:id="@+id/etAccount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text"
+                    android:hint="@string/account" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_24dp"
+                android:paddingTop="@dimen/layout_padding_16dp">
+
+                <EditText
+                    android:id="@+id/etAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/amount"
+                    android:inputType="numberDecimal"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cbProportional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/layout_padding_16dp"
+            android:layout_marginStart="@dimen/layout_padding_16dp"
+            android:layout_marginTop="@dimen/layout_padding_16dp"
+            android:checked="false"
+            android:text="@string/proportional" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/layout_padding_30dp"
+            android:paddingEnd="@dimen/layout_padding_24dp"
+            android:paddingLeft="@dimen/layout_padding_30dp"
+            android:paddingRight="@dimen/layout_padding_24dp"
+            android:paddingStart="@dimen/layout_padding_30dp"
+            android:paddingTop="@dimen/layout_padding_16dp">
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                android:layout_marginRight="@dimen/layout_padding_16dp"
+                android:text="@string/cancel"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnAddAllocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Add"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
+
+
+
