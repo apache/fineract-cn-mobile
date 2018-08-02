@@ -26,6 +26,7 @@ public class ConstantKeys {
     public static final String DEPOSIT_ACCOUNT = "deposit";
     public static final String COUNTRIES = "countries";
 
+    public static final String PAYROLL_CONFIG = "payrollConfiguration";
 
     public static final int REQUEST_PERMISSION_SETTING = 254;
 

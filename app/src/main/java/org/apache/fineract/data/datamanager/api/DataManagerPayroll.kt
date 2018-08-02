@@ -1,5 +1,6 @@
 package org.apache.fineract.data.datamanager.api
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
@@ -20,5 +21,10 @@ class DataManagerPayroll @Inject constructor(val baseManagerApi: BaseApiManager,
             baseManagerApi.payrollService.getPayrollConfig(identifier)
                     .onErrorResumeNext(Function<Throwable, ObservableSource<PayrollConfiguration>>
                     { Observable.just(FakeRemoteDataSource.getPayrollConfig()) })
+
+    fun editPayrollConfig(identifier: String, payrollConfiguration: PayrollConfiguration)
+            : Completable = baseManagerApi
+            .payrollService.updatePayrollConfig(identifier, payrollConfiguration)
+
 
 }

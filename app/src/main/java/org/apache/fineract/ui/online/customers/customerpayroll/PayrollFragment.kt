@@ -1,6 +1,7 @@
 package org.apache.fineract.ui.online.customers.customerpayroll
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import org.apache.fineract.R
 import org.apache.fineract.data.models.payroll.PayrollConfiguration
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll.EditPayrollActivity
 import org.apache.fineract.utils.ConstantKeys
 import javax.inject.Inject
 
@@ -21,6 +23,8 @@ class PayrollFragment : FineractBaseFragment(), PayrollContract.View {
     lateinit var payrollPresenter: PayrollPresenter
 
     lateinit var customerIdentifier: String
+
+    lateinit var payrollConfiguration: PayrollConfiguration
 
     companion object {
         fun newInstance(customerIdentifier: String) =
@@ -57,6 +61,13 @@ class PayrollFragment : FineractBaseFragment(), PayrollContract.View {
             payrollPresenter.getPayrollConfiguration(customerIdentifier)
         }
 
+        fabEditPayroll.setOnClickListener{
+            val intent = Intent(activity,EditPayrollActivity::class.java)
+            intent.putExtra(ConstantKeys.PAYROLL_CONFIG, payrollConfiguration)
+            intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER,customerIdentifier)
+            startActivity(intent)
+        }
+
         payrollPresenter.getPayrollConfiguration(customerIdentifier)
     }
 
@@ -67,6 +78,7 @@ class PayrollFragment : FineractBaseFragment(), PayrollContract.View {
 
     override fun showPayrollConfiguration(payrollConfiguration: PayrollConfiguration) {
 
+        this.payrollConfiguration = payrollConfiguration
         clPayroll.visibility = View.VISIBLE
         tvAccount.text = payrollConfiguration.mainAccountNumber
         tvCreatedBy.text = payrollConfiguration.createdBy
