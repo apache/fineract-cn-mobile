@@ -39,9 +39,9 @@ class LedgerPresenter @Inject constructor(@ApplicationContext context: Context,
                         if (ledgerPage.ledgers != null) {
 
                             if (ledgerPage.ledgers.isEmpty()) {
-                                mvpView.showLedgers(ledgerPage.ledgers)
-                            } else {
                                 mvpView.showEmptyLedgers()
+                            } else {
+                                mvpView.showLedgers(ledgerPage.ledgers)
                             }
                         }
 
