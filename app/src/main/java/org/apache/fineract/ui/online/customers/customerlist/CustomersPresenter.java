@@ -1,7 +1,6 @@
 package org.apache.fineract.ui.online.customers.customerlist;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.datamanager.contracts.ManagerCustomer;
@@ -85,7 +84,6 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.d("mytag", throwable.toString());
                         getMvpView().hideProgressbar();
                         if (loadmore) {
                             getMvpView().showMessage(

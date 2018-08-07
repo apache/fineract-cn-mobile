@@ -100,6 +100,7 @@ public class IdentificationsPresenter extends BasePresenter<IdentificationsContr
 
                     @Override
                     public void onError(Throwable e) {
+                        getMvpView().hideProgressbar();
                         showExceptionError(e, context.getString
                                 (R.string.error_finding_identification));
                     }
