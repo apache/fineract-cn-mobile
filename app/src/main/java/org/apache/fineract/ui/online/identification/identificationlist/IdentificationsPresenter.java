@@ -33,7 +33,7 @@ public class IdentificationsPresenter extends BasePresenter<IdentificationsContr
 
     @Inject
     public IdentificationsPresenter(@ApplicationContext Context context,
-            DataManagerCustomer dataManagerCustomer) {
+                                    DataManagerCustomer dataManagerCustomer) {
         super(context);
         this.dataManagerCustomer = dataManagerCustomer;
         compositeDisposable = new CompositeDisposable();

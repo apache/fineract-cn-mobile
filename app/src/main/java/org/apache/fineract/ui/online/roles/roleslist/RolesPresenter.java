@@ -30,7 +30,7 @@ public class RolesPresenter extends BasePresenter<RolesContract.View>
     private CompositeDisposable compositeDisposable;
 
     @Inject
-    protected RolesPresenter(@ApplicationContext Context context,
+    public RolesPresenter(@ApplicationContext Context context,
             DataManagerRoles dataManagerRoles) {
         super(context);
         this.dataManagerRoles = dataManagerRoles;

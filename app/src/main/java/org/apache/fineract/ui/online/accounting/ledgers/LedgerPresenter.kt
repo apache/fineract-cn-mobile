@@ -60,15 +60,12 @@ class LedgerPresenter @Inject constructor(@ApplicationContext context: Context,
 
     override fun searchLedger(ledgerList: List<Ledger>, identifier: String) {
         checkViewAttached()
-
         mvpView.searchedLedger(Observable.fromIterable(ledgerList)
-                .filter(object: Predicate<Ledger> {
+                .filter(object : Predicate<Ledger> {
                     override fun test(ledger: Ledger): Boolean {
                         return ledger.identifier?.toLowerCase()
                                 ?.contains(identifier.toLowerCase()).toString().toBoolean()
                     }
                 }).toList().blockingGet())
     }
-
-
 }
