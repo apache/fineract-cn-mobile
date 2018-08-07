@@ -1,7 +1,6 @@
 package org.apache.fineract.ui.online.customers.customerlist;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.datamanager.contracts.ManagerCustomer;
@@ -23,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Rajan Maurya
- *         On 20/06/17.
+ * On 20/06/17.
  */
 @ConfigPersistent
 public class CustomersPresenter extends BasePresenter<CustomersContract.View>
@@ -37,7 +36,7 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
 
     @Inject
     public CustomersPresenter(@ApplicationContext Context context,
-            DbManagerCustomer dataManager) {
+                              DbManagerCustomer dataManager) {
         super(context);
         dataManagerCustomer = dataManager;
         compositeDisposable = new CompositeDisposable();
@@ -85,7 +84,6 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Log.d("mytag", throwable.toString());
                         getMvpView().hideProgressbar();
                         if (loadmore) {
                             getMvpView().showMessage(
@@ -118,24 +116,25 @@ public class CustomersPresenter extends BasePresenter<CustomersContract.View>
         getMvpView().showProgressbar();
         compositeDisposable.add(
                 dataManagerCustomer.fetchCustomer(query)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<Customer>(){
-                    @Override
-                    public void onNext(Customer value) {
-                        getMvpView().hideProgressbar();
-                        getMvpView().searchCustomerList(value);
-                    }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableObserver<Customer>() {
+                            @Override
+                            public void onNext(Customer value) {
+                                getMvpView().hideProgressbar();
+                                getMvpView().searchCustomerList(value);
+                            }
 
-                    @Override
-                    public void onError(Throwable e) {
-                        showExceptionError(e,context.getString(R.string.error_finding_customer));
-                    }
+                            @Override
+                            public void onError(Throwable e) {
+                                showExceptionError(e,
+                                        context.getString(R.string.error_finding_customer));
+                            }
 
-                    @Override
-                    public void onComplete() {
+                            @Override
+                            public void onComplete() {
 
-                    }
-                }));
+                            }
+                        }));
     }
 }

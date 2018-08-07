@@ -34,6 +34,7 @@ public class CustomerPayloadFragment extends FineractBaseFragment implements
         fragment.setArguments(args);
         return fragment;
     }
+
     @BindView(R.id.rv_customers)
     RecyclerView rvCustomers;
 
@@ -85,12 +86,12 @@ public class CustomerPayloadFragment extends FineractBaseFragment implements
 
     @Override
     public void showNoInternetConnection() {
-        sweetUIErrorHandler.showSweetNoInternetUI(swipeRefreshLayout,layoutError);
+        sweetUIErrorHandler.showSweetNoInternetUI(swipeRefreshLayout, layoutError);
     }
 
     @Override
     public void showError(String message) {
         sweetUIErrorHandler.showSweetCustomErrorUI(message,
-                R.drawable.ic_error_black_24dp,swipeRefreshLayout,layoutError);
+                R.drawable.ic_error_black_24dp, swipeRefreshLayout, layoutError);
     }
 }

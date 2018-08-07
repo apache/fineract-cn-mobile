@@ -30,7 +30,7 @@ import retrofit2.Response;
 
 /**
  * @author Rajan Maurya
- *         On 17/06/17.
+ * On 17/06/17.
  */
 @ConfigPersistent
 public class LoginPresenter extends BasePresenter<LoginContract.View>
@@ -78,28 +78,30 @@ public class LoginPresenter extends BasePresenter<LoginContract.View>
                         getMvpView().hideProgressDialog();
                         if (throwable instanceof NoConnectivityException) {
                             getMvpView().showNoInternetConnection();
-                        }
+                        } else {
 
-                        MifosError mifosError = new MifosError();
-                        Converter<ResponseBody, MifosError> errorConverter =
-                                retrofit.responseBodyConverter(MifosError.class, new Annotation[0]);
-                        if (throwable instanceof HttpException) {
-                            HttpException httpException = (HttpException) throwable;
-                            Response response = httpException.response();
+                            MifosError mifosError = new MifosError();
+                            Converter<ResponseBody, MifosError> errorConverter =
+                                    retrofit.responseBodyConverter(MifosError.class,
+                                            new Annotation[0]);
+                            if (throwable instanceof HttpException) {
+                                HttpException httpException = (HttpException) throwable;
+                                Response response = httpException.response();
 
-                            if (response.errorBody() != null) {
-                                try {
-                                    mifosError = errorConverter.convert(response.errorBody());
-                                } catch (IOException e) {
-                                    Log.d(LOG_TAG, e.getLocalizedMessage());
+                                if (response.errorBody() != null) {
+                                    try {
+                                        mifosError = errorConverter.convert(response.errorBody());
+                                    } catch (IOException e) {
+                                        Log.d(LOG_TAG, e.getLocalizedMessage());
+                                    }
                                 }
-                            }
 
-                            if (mifosError.getMessage() == null) {
-                                getMvpView().showError(
-                                        context.getString(R.string.wrong_username_or_password));
-                            } else {
-                                getMvpView().showError(mifosError.getMessage());
+                                if (mifosError.getMessage() == null) {
+                                    getMvpView().showError(
+                                            context.getString(R.string.wrong_username_or_password));
+                                } else {
+                                    getMvpView().showError(mifosError.getMessage());
+                                }
                             }
                         }
                     }

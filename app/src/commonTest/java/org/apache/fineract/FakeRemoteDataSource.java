@@ -103,7 +103,7 @@ public class FakeRemoteDataSource {
     }
 
     public static List<ProductDefinition> getProductDefinition() {
-            return testDataFactory.getListTypePojo(new TypeToken<List<ProductDefinition>>() {
-            }, FakeJsonName.PRODUCT_DEFINITION);
+        return testDataFactory.getListTypePojo(new TypeToken<List<ProductDefinition>>() {
+        }, FakeJsonName.PRODUCT_DEFINITION);
     }
 }
