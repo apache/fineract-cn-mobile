@@ -58,7 +58,7 @@ public class CustomerDetailsPresenter extends BasePresenter<CustomerDetailsContr
                     @Override
                     public void onNext(Customer customer) {
                         getMvpView().hideProgressbar();
-                        getMvpView().savedCustomerDataForSyncing();
+                        getMvpView().showCustomerDetails(customer);
                     }
 
                     @Override
