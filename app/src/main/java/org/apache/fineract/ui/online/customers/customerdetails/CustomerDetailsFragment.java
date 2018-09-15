@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.apache.fineract.R;
+import org.apache.fineract.data.models.customer.Address;
 import org.apache.fineract.data.models.customer.ContactDetail;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.base.FineractBaseActivity;
@@ -223,8 +224,52 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     }
 
     @Override
-    public void savedCustomerDataForSyncing() {
-        getActivity().finish();
+    public void showCustomerDetails(Customer customer) {
+        this.customer = customer;
+        clCustomerDetails.setVisibility(View.VISIBLE);
+        layoutError.setVisibility(View.GONE);
+
+        loadCustomerPortrait();
+
+        tvCurrentStatus.setText(customer.getCurrentState().name());
+        StatusUtils.setCustomerStatusIcon(customer.getCurrentState(),
+                ivCurrentStatus, getActivity());
+
+        Address address = customer.getAddress();
+        StringBuilder addressBuilder = new StringBuilder();
+        addressBuilder
+                .append(address.getStreet()).append(", ")
+                .append(address.getCity()).append(", ");
+        if (address.getPostalCode() != null) {
+            addressBuilder.append(address.getPostalCode());
+            addressBuilder.append(", ");
+        }
+        addressBuilder.append(address.getCountry());
+        tvAddress.setText(addressBuilder);
+
+        if (customer.getContactDetails().size() == 0) {
+            tvNoContactDetailsAvailable.setVisibility(View.VISIBLE);
+            tvEmail.setVisibility(View.GONE);
+            tvPhoneNo.setVisibility(View.GONE);
+            tvMobileNo.setVisibility(View.GONE);
+        } else {
+            for (ContactDetail contactDetail : customer.getContactDetails()) {
+                showContactDetails(contactDetail);
+            }
+        }
+
+        tvBirthDay.setText(customer.getDateOfBirth().getYear() + "-" +
+                customer.getDateOfBirth().getMonth() + "-" + customer.getDateOfBirth().getDay());
+
+        String title = customer.getGivenName() + " " + customer.getSurname();
+        String subtitle;
+        if (customer.getAssignedEmployee() == null) {
+            subtitle = getString(R.string.assigned_employee) + " " +
+                    getString(R.string.not_assigned);
+        } else {
+            subtitle = getString(R.string.assigned_employee) + " " + customer.getAssignedEmployee();
+        }
+        showToolbarTitleSubtitle(title, subtitle);
     }
 
     @Override

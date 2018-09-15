@@ -121,6 +121,7 @@ public class DashboardActivity extends FineractBaseActivity implements
                 break;
             case R.id.item_accounts:
                 replaceFragment(AccountsFragment.Companion.newInstance(), true, R.id.container);
+                break;
             case R.id.item_teller:
                 replaceFragment(TellerFragment.Companion.newInstance(), true, R.id.container);
                 break;

@@ -19,6 +19,10 @@ class AccountsPresenter @Inject constructor(@ApplicationContext context: Context
 
     val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
+    override fun attachView(mvpView: AccountContract.View?) {
+        super.attachView(mvpView)
+    }
+
     override fun getAccountsPage() {
         checkViewAttached()
         mvpView.showProgressbar()
@@ -78,5 +82,8 @@ class AccountsPresenter @Inject constructor(@ApplicationContext context: Context
                 }))
     }
 
-
+    override fun detachView() {
+        super.detachView()
+        compositeDisposable.clear()
+    }
 }
