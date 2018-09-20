@@ -81,6 +81,8 @@ dependencies {
     implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
     implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
 
+    // Kotlin Dependencies
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 
     //android-job
@@ -88,7 +90,7 @@ dependencies {
 
     implementation 'com.github.therajanmaurya:Sweet-Error:1.0.0'
 
-    implementation 'com.android.support:support-v4:26.1.0'
+    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
     kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflowVersion}"
     implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflowVersion}"
     implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflowVersion}"
@@ -97,6 +99,7 @@ dependencies {
     // Rx Dependencies
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxKotlinVersion"
 
     // Square Dependencies
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
@@ -112,7 +115,7 @@ dependencies {
 
     // Dagger 2 Dependencies
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
-    provided 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
     kapt daggerCompiler
 //    testkapt daggerCompiler
 //    androidTestkapt daggerCompiler
@@ -123,7 +126,7 @@ dependencies {
 
     // Fabric Crashlytics Dependencies
     implementation('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
-        transitive = true;
+        transitive = true
     }
 
     //Sticky header RecyclerView
