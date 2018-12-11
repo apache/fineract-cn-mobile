@@ -21,7 +21,7 @@ class TellerAdapter @Inject constructor(@ApplicationContext val context: Context
 
     var tellers: List<Teller> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_teller,
                 parent, false)
         return ViewHolder(view)

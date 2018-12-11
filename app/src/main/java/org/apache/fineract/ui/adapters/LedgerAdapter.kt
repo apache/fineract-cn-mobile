@@ -20,7 +20,7 @@ class LedgerAdapter @Inject constructor(@ApplicationContext val context: Context
 
     private var ledgers: List<Ledger> = ArrayList()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_ledger, parent, false)
         return ViewHolder(view)
