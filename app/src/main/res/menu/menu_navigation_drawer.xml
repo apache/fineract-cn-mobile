@@ -27,7 +27,7 @@
             android:checked="true"
             android:icon="@drawable/ic_customer_black_24dp"
             android:id="@+id/item_customer_payload"
-            android:title="Customer Payloads"/>
+            android:title="@string/customer_payloads"/>
 
         <item
             android:checked="true"
