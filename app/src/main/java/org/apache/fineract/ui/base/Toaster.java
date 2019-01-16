@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import org.apache.fineract.FineractApplication;
+import org.apache.fineract.R;
 
 public class Toaster {
 
@@ -25,7 +26,7 @@ public class Toaster {
                 .snackbar_text);
         textView.setTextColor(Color.WHITE);
         textView.setTextSize(12);
-        snackbar.setAction("OK", new View.OnClickListener() {
+        snackbar.setAction(R.string.OK, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 snackbar.dismiss();

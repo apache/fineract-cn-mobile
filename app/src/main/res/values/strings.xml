@@ -457,4 +457,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Under_construction">Under construction</string>
+    <string name="OK">OK</string>
+    <string name="Documents">Documents(Total: 0)</string>
+    <string name="no_documents_to_show_add_documents">No documents to show. add documents</string>
+    <string name="customer_payloads">Customer Payloads</string>
 </resources>

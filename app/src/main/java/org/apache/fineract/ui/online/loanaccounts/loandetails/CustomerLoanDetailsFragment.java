@@ -272,7 +272,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_loan_account_edit:
-                Toaster.show(rootView, "Under construction");
+                Toaster.show(rootView, R.string.Under_construction);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
