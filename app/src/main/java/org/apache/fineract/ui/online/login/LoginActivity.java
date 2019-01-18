@@ -3,6 +3,7 @@ package org.apache.fineract.ui.online.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
         loginPresenter.attachView(this);
         setActionBarTitle(getString(R.string.fineract_account));
         preferencesHelper.clear();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     @OnClick(R.id.btn_login)
