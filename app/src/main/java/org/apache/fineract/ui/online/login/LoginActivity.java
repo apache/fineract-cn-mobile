@@ -56,7 +56,7 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
     void onLogin() {
 
         String tenantIdentifier = etTenant.getEditableText().toString();
-        if (!TextUtils.isEmpty(tenantIdentifier)) {
+        if (!TextUtils.isEmpty(tenantIdentifier.trim())) {
             preferencesHelper.putTenantIdentifier(tenantIdentifier);
         } else {
             etTenant.setError(getString(R.string.error_tenant_identifier_required));
@@ -64,7 +64,7 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
         }
 
         String username = etUsername.getEditableText().toString();
-        if (TextUtils.isEmpty(username)) {
+        if (TextUtils.isEmpty(username.trim())) {
             etUsername.setError(getString(R.string.error_username_required));
             return;
         }
