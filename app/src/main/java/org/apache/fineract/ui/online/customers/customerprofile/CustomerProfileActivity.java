@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.github.therajanmaurya.sweeterror.SweetUIErrorHandler;
 import org.apache.fineract.R;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
@@ -38,10 +39,12 @@ import butterknife.ButterKnife;
  */
 public class CustomerProfileActivity extends FineractBaseActivity
         implements CustomerProfileContract.View, RefreshProfileImage {
-
+    private SweetUIErrorHandler sweetUIErrorHandler;
     @BindView(R.id.iv_customer_picture)
     ImageView ivCustomerProfile;
 
+    @BindView(R.id.layout_error)
+    ImageView errorView;
     private String customerIdentifier;
 
     @Override
@@ -52,6 +55,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
 
         customerIdentifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
 
+        sweetUIErrorHandler = new SweetUIErrorHandler(this, findViewById(android.R.id.content));
         loadCustomerPortrait();
 
         showBackButton();
@@ -163,13 +167,15 @@ public class CustomerProfileActivity extends FineractBaseActivity
     @Override
     public void refreshUI() {
         loadCustomerPortrait();
+        sweetUIErrorHandler.hideSweetErrorLayoutUI(ivCustomerProfile,errorView);
     }
 
     @Override
-    public void showNoInternetConnection() {
+    public void showNoInternetConnection() {sweetUIErrorHandler.showSweetNoInternetUI(ivCustomerProfile,errorView);
     }
 
     @Override
-    public void showError(String message) {
+    public void showError(String message) {sweetUIErrorHandler.showSweetCustomErrorUI(message,
+            R.drawable.ic_error_black_24dp,ivCustomerProfile,errorView);
     }
 }
