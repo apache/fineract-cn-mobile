@@ -25,5 +25,9 @@
 
     </LinearLayout>
 
+    <include
+        layout="@layout/layout_sweet_exception_handler"
+        android:id="@+id/layout_error"
+        android:visibility="gone"/>
 </RelativeLayout>
 
