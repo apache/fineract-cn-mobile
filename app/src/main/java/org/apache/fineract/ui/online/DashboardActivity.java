@@ -3,6 +3,7 @@ package org.apache.fineract.ui.online;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
@@ -39,6 +41,8 @@ public class DashboardActivity extends FineractBaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
     public static final String LOG_TAG = DashboardActivity.class.getSimpleName();
+    boolean doubleBackToExitPressedOnce = false;
+    private Toast toast = null;
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
@@ -140,6 +144,19 @@ public class DashboardActivity extends FineractBaseActivity implements
         } else {
             super.onBackPressed();
         }
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+        this.doubleBackToExitPressedOnce = true;
+        toast = Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT);
+        toast.show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
     public void logout() {
