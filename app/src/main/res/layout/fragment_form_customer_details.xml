@@ -48,6 +48,7 @@
                             android:hint="@string/required_account"
                             android:id="@+id/et_account"
                             android:inputType="text"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"/>
                     </android.support.design.widget.TextInputLayout>
@@ -62,6 +63,7 @@
                             android:hint="@string/required_first_name"
                             android:id="@+id/et_first_name"
                             android:inputType="text"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"/>
                     </android.support.design.widget.TextInputLayout>
@@ -76,6 +78,7 @@
                             android:hint="@string/optional_middle_name"
                             android:id="@+id/et_middle_name"
                             android:inputType="text"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"/>
                     </android.support.design.widget.TextInputLayout>
@@ -90,6 +93,7 @@
                             android:hint="@string/required_last_name"
                             android:id="@+id/et_last_name"
                             android:inputType="text"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"/>
                     </android.support.design.widget.TextInputLayout>
