@@ -19,6 +19,7 @@
                 android:id="@+id/tv_header"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/roboto"
                 android:paddingLeft="@dimen/layout_padding_24dp"
                 android:paddingRight="@dimen/layout_padding_24dp"
                 android:paddingStart="@dimen/layout_padding_24dp"
@@ -38,6 +39,7 @@
                     android:hint="@string/amount"
                     android:id="@+id/et_amount"
                     android:inputType="numberDecimal"
+                    android:fontFamily="@font/roboto"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"/>
             </android.support.design.widget.TextInputLayout>
@@ -54,6 +56,7 @@
                     android:id="@+id/et_description"
                     android:scrollbars="vertical"
                     android:scrollHorizontally="false"
+                    android:fontFamily="@font/roboto"
                     android:inputType="textMultiLine"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"/>

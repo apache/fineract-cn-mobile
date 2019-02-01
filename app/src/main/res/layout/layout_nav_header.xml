@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:fontFamily="@font/roboto"
         android:text="Rajan Maurya"
         android:textColor="@color/white"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
         android:text="rajanmaurya154@gmail.com"/>
 
 </LinearLayout>

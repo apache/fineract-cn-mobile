@@ -63,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/roboto"
                     tools:text="Customer Name"/>
 
                 <TextView
@@ -73,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:paddingEnd="@dimen/layout_padding_16dp"
                     android:paddingStart="@dimen/layout_padding_16dp"
+                    android:fontFamily="@font/roboto"
                     tools:text="Expiration Date"
                     android:paddingRight="@dimen/layout_padding_16dp"/>
 
@@ -85,6 +87,7 @@
                 android:layout_width="wrap_content"
                 android:paddingTop="@dimen/layout_padding_4dp"
                 android:textColor="@color/gray_dark"
+                android:fontFamily="@font/roboto"
                 tools:text="Issuer: Government"/>
 
             <View

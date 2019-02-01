@@ -11,6 +11,7 @@
         android:layout_marginTop="48dp"
         android:background="@color/colorPrimary"
         android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
         android:text="@string/disburse_loan"
         android:layout_alignParentBottom="true"
         android:gravity="center" />

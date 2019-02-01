@@ -101,6 +101,7 @@
                             <TextView
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
+                                android:fontFamily="@font/roboto"
                                 android:text="@string/current_status"
                                 android:textColor="@color/colorSecondaryText"
                                 android:textSize="@dimen/text_size_12sp"/>
@@ -131,6 +132,7 @@
                                     android:layout_gravity="center"
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:paddingEnd="0dp"
                                     android:paddingLeft="@dimen/layout_padding_8dp"
                                     android:paddingRight="0dp"
@@ -152,6 +154,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:text="@string/address"
+                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/colorSecondaryText"
                                 android:textSize="@dimen/text_size_12sp"/>
 
@@ -176,6 +179,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_toEndOf="@+id/iv_address"
                                     android:layout_toRightOf="@+id/iv_address"
+                                    android:fontFamily="@font/roboto"
                                     android:layout_width="match_parent"
                                     android:paddingEnd="0dp"
                                     android:paddingLeft="@dimen/layout_padding_8dp"
@@ -198,6 +202,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:text="@string/contact_information"
+                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/colorSecondaryText"
                                 android:textSize="@dimen/text_size_12sp"/>
 
@@ -207,6 +212,7 @@
                                 android:layout_width="wrap_content"
                                 android:paddingBottom="@dimen/layout_padding_4dp"
                                 android:paddingTop="@dimen/layout_padding_4dp"
+                                android:fontFamily="@font/roboto"
                                 android:text="@string/no_contact_details_available"
                                 android:visibility="gone"/>
 
@@ -232,6 +238,7 @@
                                     android:layout_centerInParent="true"
                                     android:layout_height="match_parent"
                                     android:layout_toEndOf="@+id/iv_email"
+                                    android:fontFamily="@font/roboto"
                                     android:layout_toRightOf="@+id/iv_email"
                                     android:layout_width="match_parent"
                                     android:paddingEnd="0dp"
@@ -265,6 +272,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_toEndOf="@+id/iv_phone_no"
                                     android:layout_toRightOf="@+id/iv_phone_no"
+                                    android:fontFamily="@font/roboto"
                                     android:layout_width="match_parent"
                                     android:paddingEnd="0dp"
                                     android:paddingLeft="@dimen/layout_padding_8dp"
@@ -295,6 +303,7 @@
                                     android:isScrollContainer="false"
                                     android:layout_centerInParent="true"
                                     android:layout_height="match_parent"
+                                    android:fontFamily="@font/roboto"
                                     android:layout_toEndOf="@+id/iv_mobile_no"
                                     android:layout_toRightOf="@+id/iv_mobile_no"
                                     android:layout_width="match_parent"
@@ -319,6 +328,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
                                 android:text="@string/birthday"
+                                android:fontFamily="@font/roboto"
                                 android:textColor="@color/colorSecondaryText"
                                 android:textSize="@dimen/text_size_12sp"/>
 
@@ -344,6 +354,7 @@
                                     android:layout_toEndOf="@+id/iv_birthday"
                                     android:layout_toRightOf="@+id/iv_birthday"
                                     android:layout_width="match_parent"
+                                    android:fontFamily="@font/roboto"
                                     android:paddingEnd="0dp"
                                     android:paddingLeft="@dimen/layout_padding_8dp"
                                     android:paddingRight="0dp"
@@ -367,6 +378,7 @@
                     android:paddingRight="0dp"
                     android:paddingStart="@dimen/layout_padding_8dp"
                     android:paddingTop="@dimen/layout_padding_16dp"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/financial_products"/>
 
                 <android.support.v7.widget.CardView
@@ -413,11 +425,13 @@
                                     <TextView
                                         android:layout_height="wrap_content"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/loan_accounts"/>
 
                                     <TextView
                                         android:layout_height="match_parent"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/manage_loan_accounts"
                                         android:textSize="@dimen/text_size_12sp"/>
 
@@ -458,11 +472,13 @@
                                     <TextView
                                         android:layout_height="wrap_content"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/deposit_accounts"/>
 
                                     <TextView
                                         android:layout_height="match_parent"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/manage_deposit_accounts"
                                         android:textSize="@dimen/text_size_12sp"/>
 
@@ -485,6 +501,7 @@
                     android:paddingRight="0dp"
                     android:paddingStart="@dimen/layout_padding_8dp"
                     android:paddingTop="@dimen/layout_padding_16dp"
+                    android:fontFamily="@font/roboto"
                     android:text="@string/management"/>
 
                 <android.support.v7.widget.CardView
@@ -531,11 +548,13 @@
                                     <TextView
                                         android:layout_height="wrap_content"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/identification_cards"/>
 
                                     <TextView
                                         android:layout_height="match_parent"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/view_identification_card"
                                         android:textSize="@dimen/text_size_12sp"/>
 
@@ -575,11 +594,13 @@
                                     <TextView
                                         android:layout_height="wrap_content"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/tasks"/>
 
                                     <TextView
                                         android:layout_height="match_parent"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/change_customer_status"
                                         android:textSize="@dimen/text_size_12sp"/>
 
@@ -620,11 +641,13 @@
                                     <TextView
                                         android:layout_height="wrap_content"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/activities"/>
 
                                     <TextView
                                         android:layout_height="match_parent"
                                         android:layout_width="wrap_content"
+                                        android:fontFamily="@font/roboto"
                                         android:text="@string/recent_activities"
                                         android:textSize="@dimen/text_size_12sp"/>
 

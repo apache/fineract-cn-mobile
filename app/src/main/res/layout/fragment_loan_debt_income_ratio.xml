@@ -25,6 +25,7 @@
                 style="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/roboto"
                 android:paddingBottom="@dimen/layout_padding_8dp"
                 android:paddingEnd="0dp"
                 android:paddingLeft="@dimen/layout_padding_8dp"
@@ -60,6 +61,7 @@
                         <TextView
                             android:id="@+id/tv_total_debt"
                             style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:fontFamily="@font/roboto"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/layout_padding_16dp"
                             android:layout_marginStart="@dimen/layout_padding_16dp"
@@ -71,6 +73,7 @@
                             android:id="@+id/btn_add_debt"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentRight="true"
+                            android:fontFamily="@font/roboto"
                             android:layout_height="match_parent"
                             android:layout_width="wrap_content"
                             android:text="@string/add_debt"
@@ -94,6 +97,7 @@
                             android:layout_gravity="center"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:padding="@dimen/layout_padding_24dp"
                             android:text="@string/no_debt_to_show"
                             android:textSize="@dimen/text_small"
@@ -145,6 +149,7 @@
                             android:layout_marginStart="@dimen/layout_padding_16dp"
                             android:layout_marginTop="@dimen/layout_padding_16dp"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/total_income"/>
 
                         <Button
@@ -153,6 +158,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_height="match_parent"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/add_income"
                             android:textAllCaps="false"
                             android:textSize="12sp" />
@@ -176,6 +182,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:padding="@dimen/layout_padding_24dp"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/no_income_to_show"
                             android:textSize="@dimen/text_small"
                             android:visibility="visible"/>

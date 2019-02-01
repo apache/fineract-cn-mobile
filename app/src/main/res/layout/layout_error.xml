@@ -22,6 +22,7 @@
         android:layout_below="@+id/iv_retry"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:fontFamily="@font/roboto"
         android:textSize="@dimen/text_medium"
         android:text="@string/error_message_server"/>
 

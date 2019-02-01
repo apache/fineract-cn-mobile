@@ -50,6 +50,7 @@
                         <TextView
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/number"
                             android:textColor="@color/colorSecondaryText"
                             android:textSize="@dimen/text_size_12sp"/>
@@ -58,6 +59,7 @@
                             android:id="@+id/tv_number"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:paddingTop="@dimen/layout_padding_4dp"
                             tools:text="132244"/>
 
@@ -78,6 +80,7 @@
                         <TextView
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/type"
                             android:textColor="@color/colorSecondaryText"
                             android:textSize="@dimen/text_size_12sp"/>
@@ -87,6 +90,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:paddingTop="@dimen/layout_padding_4dp"
+                            android:fontFamily="@font/roboto"
                             tools:text="Aadhaar"/>
 
                         <View
@@ -129,6 +133,7 @@
                                     style="@style/Base.TextAppearance.AppCompat.Small"
                                     android:layout_height="match_parent"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:textSize="@dimen/text_size_12sp"
                                     android:text="@string/expiration_date"/>
 
@@ -136,6 +141,7 @@
                                     android:id="@+id/tv_expiration_date"
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     tools:text="1 Aug 2017"/>
 
                             </LinearLayout>
@@ -160,6 +166,7 @@
                         <TextView
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/issuer"
                             android:textColor="@color/colorSecondaryText"
                             android:textSize="@dimen/text_size_12sp"/>
@@ -168,6 +175,7 @@
                             android:id="@+id/tv_issuer"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:paddingTop="@dimen/layout_padding_4dp"
                             tools:text="Government"/>
 
@@ -186,6 +194,7 @@
                 android:paddingRight="0dp"
                 android:paddingStart="@dimen/layout_padding_8dp"
                 android:paddingTop="@dimen/layout_padding_16dp"
+                android:fontFamily="@font/roboto"
                 android:text="@string/scans_uploaded"/>
 
             <android.support.v7.widget.CardView
@@ -214,6 +223,7 @@
                         android:textSize="@dimen/text_size_12sp"
                         android:clickable="true"
                         android:focusable="true"
+                        android:fontFamily="@font/roboto"
                         android:foreground="?android:attr/selectableItemBackground"
                         android:text="@string/loading_scans_please_wait"/>
 

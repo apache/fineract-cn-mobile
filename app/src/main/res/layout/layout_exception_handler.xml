@@ -36,6 +36,7 @@
                 style="@style/Base.TextAppearance.AppCompat.Medium"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:text="@string/error_sorry_not_able_to_load"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/text_size_14sp"
@@ -46,6 +47,7 @@
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/text_size_14sp"
                 tools:text="Deposit Accounts"/>
@@ -65,6 +67,7 @@
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:text="@string/oh_no"
                 android:textColor="@color/grey_500"
                 android:typeface="monospace"/>
@@ -73,6 +76,7 @@
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:text="@string/no_internet_connection"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/text_size_14sp"/>
@@ -81,6 +85,7 @@
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:text="@string/or_try_again"
                 android:textColor="@color/grey_500"
                 android:textSize="@dimen/text_size_14sp"/>
@@ -95,6 +100,7 @@
             android:layout_width="wrap_content"
             android:paddingLeft="@dimen/layout_padding_24dp"
             android:paddingRight="@dimen/layout_padding_24dp"
+            android:fontFamily="@font/roboto"
             android:text="@string/try_again"/>
 
     </LinearLayout>
@@ -125,6 +131,7 @@
             android:textColor="@color/grey_500"
             android:textSize="@dimen/text_size_20sp"
             android:typeface="monospace"
+            android:fontFamily="@font/roboto"
             tools:text="No Deposit accounts Found"/>
 
         <TextView
@@ -133,6 +140,7 @@
             android:layout_width="wrap_content"
             android:textColor="@color/grey_500"
             android:textSize="@dimen/text_size_14sp"
+            android:fontFamily="@font/roboto"
             tools:text="Top to add Deposit account"/>
 
 

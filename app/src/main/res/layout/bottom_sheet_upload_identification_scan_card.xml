@@ -35,7 +35,8 @@
                     android:paddingTop="@dimen/layout_padding_24dp"
                     android:text="@string/upload_new_identification_card_scan"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto"/>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/til_identifier"
@@ -49,7 +50,8 @@
                         android:id="@+id/et_identifier"
                         android:inputType="text"
                         android:layout_height="match_parent"
-                        android:layout_width="match_parent"/>
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/roboto"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -67,7 +69,8 @@
                         android:layout_height="match_parent"
                         android:layout_width="match_parent"
                         android:scrollHorizontally="false"
-                        android:scrollbars="vertical"/>
+                        android:scrollbars="vertical"
+                        android:fontFamily="@font/roboto"/>
                 </android.support.design.widget.TextInputLayout>
 
 
@@ -100,7 +103,8 @@
                             android:layout_width="match_parent"
                             android:scrollHorizontally="false"
                             android:enabled="false"
-                            android:scrollbars="vertical"/>
+                            android:scrollbars="vertical"
+                            android:fontFamily="@font/roboto"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <Button
@@ -111,7 +115,8 @@
                         android:layout_weight=".3"
                         android:layout_width="wrap_content"
                         android:text="@string/browse"
-                        android:textAllCaps="true"/>
+                        android:textAllCaps="true"
+                        android:fontFamily="@font/roboto"/>
 
                 </LinearLayout>
 
@@ -137,7 +142,8 @@
                     android:layout_weight=".5"
                     android:layout_width="wrap_content"
                     android:text="@string/cancel"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/roboto"/>
 
                 <Button
                     android:id="@+id/btn_upload_identification_card_scan"
@@ -146,6 +152,7 @@
                     android:layout_width="wrap_content"
                     android:text="@string/upload"
                     android:textAllCaps="false"
+                    android:fontFamily="@font/roboto"
                 />
 
             </LinearLayout>

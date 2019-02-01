@@ -40,6 +40,7 @@
                     app:errorEnabled="true">
 
                     <EditText
+                        android:fontFamily="@font/roboto"
                         android:hint="@string/required_number"
                         android:id="@+id/et_number"
                         android:inputType="text"
@@ -54,6 +55,7 @@
                     app:errorEnabled="true">
 
                     <EditText
+                        android:fontFamily="@font/roboto"
                         android:hint="@string/required_type"
                         android:id="@+id/et_type"
                         android:inputType="text"
@@ -71,6 +73,7 @@
                         android:drawableLeft="@drawable/ic_event_black_24dp"
                         android:drawablePadding="@dimen/layout_padding_16dp"
                         android:drawableStart="@drawable/ic_event_black_24dp"
+                        android:fontFamily="@font/roboto"
                         android:hint="@string/required_expiration_date"
                         android:id="@+id/et_expiration_date"
                         android:inputType="date"
@@ -86,6 +89,7 @@
                     app:errorEnabled="true">
 
                     <EditText
+                        android:fontFamily="@font/roboto"
                         android:hint="@string/required_issuer"
                         android:id="@+id/et_issuer"
                         android:inputType="text"

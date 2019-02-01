@@ -60,6 +60,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_height="match_parent"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/add_document"
                             android:textAllCaps="false"
                             android:textSize="12sp"/>
@@ -80,6 +81,7 @@
                             android:layout_gravity="center"
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:padding="@dimen/layout_padding_24dp"
                             android:text="@string/no_documents_to_show_add_documents"
                             android:textSize="@dimen/text_small"

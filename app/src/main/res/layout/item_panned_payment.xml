@@ -38,11 +38,13 @@
                 android:layout_marginLeft="@dimen/layout_padding_8dp"
                 android:layout_marginStart="@dimen/layout_padding_8dp"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
                 tools:text="Processing fee"/>
 
             <TextView
                 android:id="@+id/tv_charge_value"
                 android:gravity="end"
+                android:fontFamily="@font/roboto"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/layout_padding_8dp"
                 android:layout_marginStart="@dimen/layout_padding_8dp"

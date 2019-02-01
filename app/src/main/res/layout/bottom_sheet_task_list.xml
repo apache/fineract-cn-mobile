@@ -30,7 +30,8 @@
                     android:padding="@dimen/layout_padding_24dp"
                     android:text="@string/tasks"
                     android:textColor="@color/gray_dark"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto"/>
 
                 <View
                     android:background="@color/grey_500"
@@ -62,7 +63,7 @@
                             android:layout_height="35dp"
                             android:layout_width="35dp"
                             android:tint="@color/red_dark"
-                            app:srcCompat="@drawable/ic_lock_black_24dp"/>
+                            app:srcCompat="@drawable/ic_lock_black_24dp" />
 
                     </LinearLayout>
 
@@ -73,7 +74,8 @@
                         android:layout_width="wrap_content"
                         android:paddingTop="@dimen/layout_padding_8dp"
                         android:textSize="@dimen/text_medium"
-                        tools:text="Lock"/>
+                        tools:text="Lock"
+                        android:fontFamily="@font/roboto"/>
 
                 </LinearLayout>
 
@@ -105,7 +107,8 @@
                         android:layout_width="wrap_content"
                         android:paddingTop="@dimen/layout_padding_8dp"
                         android:textSize="@dimen/text_medium"
-                        tools:text="Close"/>
+                        tools:text="Close"
+                        android:fontFamily="@font/roboto"/>
 
                 </LinearLayout>
 
@@ -141,7 +144,8 @@
                     android:text="@string/tasks"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="@dimen/text_large"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto"/>
 
                 <TextView
                     android:id="@+id/tv_sub_header"
@@ -149,7 +153,8 @@
                     android:layout_width="match_parent"
                     android:paddingTop="@dimen/layout_padding_8dp"
                     android:text="@string/please_verify_following_task"
-                    android:textSize="@dimen/text_size_12sp"/>
+                    android:textSize="@dimen/text_size_12sp"
+                    android:fontFamily="@font/roboto"/>
 
 
             </LinearLayout>
@@ -168,7 +173,8 @@
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     android:scrollHorizontally="false"
-                    android:scrollbars="vertical"/>
+                    android:scrollbars="vertical"
+                    android:fontFamily="@font/roboto"/>
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
@@ -193,7 +199,8 @@
                 android:layout_marginRight="@dimen/layout_padding_16dp"
                 android:layout_width="wrap_content"
                 android:text="@string/cancel"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:fontFamily="@font/roboto"/>
 
             <Button
                 android:id="@+id/btn_submit_task"
@@ -202,6 +209,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/tasks"
                 android:textAllCaps="false"
+                android:fontFamily="@font/roboto"
             />
 
         </LinearLayout>

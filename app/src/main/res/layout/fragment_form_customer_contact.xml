@@ -46,6 +46,7 @@
 
                         <EditText
                             android:hint="@string/optional_email"
+                            android:fontFamily="@font/roboto"
                             android:id="@+id/et_email"
                             android:inputType="textEmailAddress"
                             android:layout_height="wrap_content"
@@ -60,6 +61,7 @@
 
                         <EditText
                             android:hint="@string/optional_phone"
+                            android:fontFamily="@font/roboto"
                             android:id="@+id/et_phone_number"
                             android:inputType="text"
                             android:layout_height="wrap_content"
@@ -74,6 +76,7 @@
 
                         <EditText
                             android:hint="@string/optional_mobile"
+                            android:fontFamily="@font/roboto"
                             android:id="@+id/et_mobile"
                             android:inputType="text"
                             android:layout_height="wrap_content"

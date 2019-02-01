@@ -66,6 +66,7 @@
                     android:layout_width="match_parent"
                     android:textColor="@color/black"
                     android:layout_weight="1"
+                    android:fontFamily="@font/roboto"
                     tools:text="Scan card"/>
 
                 <LinearLayout
@@ -102,6 +103,7 @@
                 android:paddingRight="@dimen/layout_padding_24dp"
                 android:paddingStart="0dp"
                 android:paddingTop="@dimen/layout_padding_4dp"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/gray_dark"
                 tools:text="This is my passport"/>
 

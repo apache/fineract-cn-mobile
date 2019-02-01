@@ -45,6 +45,7 @@
                         app:errorEnabled="true">
 
                         <EditText
+                            android:fontFamily="@font/roboto"
                             android:hint="@string/required_street"
                             android:id="@+id/et_street"
                             android:inputType="text"
@@ -59,6 +60,7 @@
                         app:errorEnabled="true">
 
                         <EditText
+                            android:fontFamily="@font/roboto"
                             android:hint="@string/required_city"
                             android:id="@+id/et_city"
                             android:inputType="text"
@@ -73,6 +75,7 @@
                         app:errorEnabled="true">
 
                         <EditText
+                            android:fontFamily="@font/roboto"
                             android:hint="@string/optional_postal_code"
                             android:id="@+id/et_postal_code"
                             android:inputType="text"
@@ -87,6 +90,7 @@
                         app:errorEnabled="true">
 
                         <AutoCompleteTextView
+                            android:fontFamily="@font/roboto"
                             android:hint="@string/required_country"
                             android:id="@+id/et_country"
                             android:inputType="text"
@@ -101,6 +105,7 @@
                         app:errorEnabled="true">
 
                         <EditText
+                            android:fontFamily="@font/roboto"
                             android:hint="@string/optional_region"
                             android:id="@+id/et_region"
                             android:inputType="text"

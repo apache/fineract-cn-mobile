@@ -38,7 +38,8 @@
                     android:text="@string/add_document"
                     android:textColor="@color/colorPrimaryDark"
                     android:layout_weight="1"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto"/>
 
                 <Button
                     android:id="@+id/btn_browse_document"
@@ -50,7 +51,8 @@
                     android:layout_marginTop="@dimen/layout_padding_16dp"
                     android:drawableStart="@drawable/ic_folder_black_24dp"
                     android:drawableLeft="@drawable/ic_folder_black_24dp"
-                    android:textAllCaps="false" />
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/roboto"/>
 
             </LinearLayout>
 
@@ -67,7 +69,8 @@
                     android:scrollHorizontally="false"
                     android:inputType="textMultiLine"
                     android:layout_height="match_parent"
-                    android:layout_width="match_parent"/>
+                    android:layout_width="match_parent"
+                    android:fontFamily="@font/roboto"/>
             </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
@@ -86,7 +89,8 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:text="@string/name"
-                    android:textSize="@dimen/text_size_12sp"/>
+                    android:textSize="@dimen/text_size_12sp"
+                    android:fontFamily="@font/roboto"/>
 
                 <TextView
                     android:id="@+id/tv_document_name"
@@ -120,7 +124,8 @@
                 android:layout_marginRight="@dimen/layout_padding_16dp"
                 android:layout_width="wrap_content"
                 android:text="@string/cancel"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+                android:fontFamily="@font/roboto"/>
 
             <Button
                 android:id="@+id/btn_add_debt_income"
@@ -129,6 +134,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/add_document"
                 android:textAllCaps="false"
+                android:fontFamily="@font/roboto"
             />
 
         </LinearLayout>

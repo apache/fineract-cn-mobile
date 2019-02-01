@@ -53,6 +53,7 @@
                 style="@style/Base.TextAppearance.AppCompat.Medium"
                 android:ellipsize="end"
                 android:id="@+id/tv_customer_name"
+                android:fontFamily="@font/roboto"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:lines="1"
@@ -64,6 +65,7 @@
                 android:id="@+id/tv_assigned_employee"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/roboto"
                 android:textColor="@color/gray_dark"
                 android:textSize="@dimen/text_size_12sp"
                 tools:text="Status"/>

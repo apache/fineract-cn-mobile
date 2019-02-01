@@ -41,6 +41,7 @@
                     app:errorEnabled="true">
 
                     <EditText
+                        android:fontFamily="@font/roboto"
                         android:hint="@string/number"
                         android:id="@+id/et_number"
                         android:inputType="text"
@@ -57,6 +58,7 @@
                     app:errorEnabled="true">
 
                     <EditText
+                        android:fontFamily="@font/roboto"
                         android:hint="@string/type"
                         android:id="@+id/et_type"
                         android:inputType="text"
@@ -73,6 +75,7 @@
                     app:errorEnabled="true">
 
                     <EditText
+                        android:fontFamily="@font/roboto"
                         android:drawableLeft="@drawable/ic_event_black_24dp"
                         android:drawablePadding="@dimen/layout_padding_16dp"
                         android:drawableStart="@drawable/ic_event_black_24dp"
@@ -94,6 +97,7 @@
 
                     <EditText
                         android:hint="@string/issuer"
+                        android:fontFamily="@font/roboto"
                         android:id="@+id/et_issuer"
                         android:inputType="text"
                         android:textColor="@color/black"

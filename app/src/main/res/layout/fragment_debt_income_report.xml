@@ -29,6 +29,7 @@
                 android:paddingRight="0dp"
                 android:paddingStart="@dimen/layout_padding_8dp"
                 android:paddingTop="@dimen/layout_padding_16dp"
+                android:fontFamily="@font/roboto"
                 android:text="@string/total_debt"/>
 
             <android.support.v7.widget.CardView
@@ -79,6 +80,7 @@
                                     android:layout_width="wrap_content"
                                     android:textStyle="bold"
                                     android:textColor="@color/gray_dark"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/description"/>
 
                             </LinearLayout>
@@ -90,6 +92,7 @@
                                 android:layout_width="wrap_content"
                                 android:textStyle="bold"
                                 android:textColor="@color/gray_dark"
+                                android:fontFamily="@font/roboto"
                                 android:text="@string/amount"/>
 
                         </LinearLayout>
@@ -123,6 +126,7 @@
                 android:id="@+id/tv_income_ratio"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:fontFamily="@font/roboto"
                 android:paddingBottom="@dimen/layout_padding_8dp"
                 android:paddingEnd="0dp"
                 android:paddingLeft="@dimen/layout_padding_8dp"
@@ -176,6 +180,7 @@
                                     android:layout_width="wrap_content"
                                     android:textStyle="bold"
                                     android:textColor="@color/gray_dark"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/description"/>
 
                             </LinearLayout>
@@ -186,6 +191,7 @@
                                 android:layout_width="wrap_content"
                                 android:textStyle="bold"
                                 android:textColor="@color/gray_dark"
+                                android:fontFamily="@font/roboto"
                                 android:text="@string/amount"/>
 
                         </LinearLayout>

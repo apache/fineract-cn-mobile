@@ -36,6 +36,7 @@
                     <TextView
                         android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
                         android:drawableRight="@drawable/ic_arrow_drop_down_black_24dp"
+                        android:fontFamily="@font/roboto"
                         android:gravity="center"
                         android:id="@+id/tv_toolbar_date"
                         android:layout_gravity="center"

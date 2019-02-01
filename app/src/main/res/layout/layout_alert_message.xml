@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="@color/blue"
+                android:fontFamily="@font/roboto"
                 android:textSize="@dimen/text_medium"
                 tools:text="@string/customer_loan_approved"/>
 
@@ -50,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:textColor="@color/blue"
+                android:fontFamily="@font/roboto"
                 android:textSize="@dimen/text_medium"
                 tools:text="@string/to_activate_loan_disburse"/>
 

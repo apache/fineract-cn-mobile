@@ -55,6 +55,7 @@
                         <TextView
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/current_status"
                             android:textColor="@color/colorSecondaryText"
                             android:textSize="@dimen/text_size_12sp"/>
@@ -83,6 +84,7 @@
                                 android:layout_toEndOf="@+id/iv_loan_current_status"
                                 android:layout_toRightOf="@+id/iv_loan_current_status"
                                 android:layout_width="match_parent"
+                                android:fontFamily="@font/roboto"
                                 android:paddingEnd="0dp"
                                 android:paddingLeft="@dimen/layout_padding_8dp"
                                 android:paddingRight="0dp"
@@ -104,6 +106,7 @@
                             android:layout_height="wrap_content"
                             android:layout_width="wrap_content"
                             android:paddingBottom="@dimen/layout_padding_4dp"
+                            android:fontFamily="@font/roboto"
                             android:text="@string/details"
                             android:textColor="@color/colorSecondaryText"
                             android:textSize="@dimen/text_size_12sp"/>
@@ -133,6 +136,7 @@
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/principal_amount"/>
 
                                 <TextView
@@ -140,6 +144,7 @@
                                     android:id="@+id/tv_principal_amount"
                                     android:layout_height="match_parent"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:textSize="@dimen/text_size_12sp"
                                     tools:text="1400"/>
 
@@ -172,6 +177,7 @@
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/payment_cycle"/>
 
                                 <TextView
@@ -180,6 +186,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_width="wrap_content"
                                     android:textSize="@dimen/text_size_12sp"
+                                    android:fontFamily="@font/roboto"
                                     tools:text="Repay every 1 months on the 1. day"/>
 
                             </LinearLayout>
@@ -210,6 +217,7 @@
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/term"/>
 
                                 <TextView
@@ -218,6 +226,7 @@
                                     android:layout_height="match_parent"
                                     android:layout_width="wrap_content"
                                     android:textSize="@dimen/text_size_12sp"
+                                    android:fontFamily="@font/roboto"
                                     tools:text="12 MONTHS"/>
 
                             </LinearLayout>
@@ -251,6 +260,7 @@
                             <TextView
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
+                                android:fontFamily="@font/roboto"
                                 android:text="@string/customer_deposit_account"/>
 
                             <TextView
@@ -258,6 +268,7 @@
                                 android:id="@+id/tv_customer_deposit_account"
                                 android:layout_height="match_parent"
                                 android:layout_width="wrap_content"
+                                android:fontFamily="@font/roboto"
                                 android:textSize="@dimen/text_size_12sp"
                                 tools:text="8766106.9100.00001"/>
 
@@ -282,6 +293,7 @@
                             <TextView
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
+                                android:fontFamily="@font/roboto"
                                 android:text="@string/created_by"/>
 
                             <TextView
@@ -289,6 +301,7 @@
                                 android:id="@+id/tv_create_by"
                                 android:layout_height="match_parent"
                                 android:layout_width="wrap_content"
+                                android:fontFamily="@font/roboto"
                                 android:textSize="@dimen/text_size_12sp"
                                 tools:text="Dharp - Aug 3, 2017, 6:41:21 PM"/>
 
@@ -313,6 +326,7 @@
                             <TextView
                                 android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
+                                android:fontFamily="@font/roboto"
                                 android:text="@string/last_modified_by"/>
 
                             <TextView
@@ -320,6 +334,7 @@
                                 android:id="@+id/tv_last_modified_by"
                                 android:layout_height="match_parent"
                                 android:layout_width="wrap_content"
+                                android:fontFamily="@font/roboto"
                                 android:textSize="@dimen/text_size_12sp"
                                 tools:text="Dharp - Aug 3, 2017, 6:41:21 PM"/>
 
@@ -341,6 +356,7 @@
                 android:paddingRight="0dp"
                 android:paddingStart="@dimen/layout_padding_8dp"
                 android:paddingTop="@dimen/layout_padding_16dp"
+                android:fontFamily="@font/roboto"
                 android:text="@string/management"/>
 
             <android.support.v7.widget.CardView
@@ -387,12 +403,14 @@
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/planned_payment"/>
 
                                 <TextView
                                     style="@style/Base.TextAppearance.AppCompat.Small"
                                     android:layout_height="match_parent"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/view_payments"
                                     android:textSize="@dimen/text_size_12sp"/>
 
@@ -433,12 +451,14 @@
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/tasks"/>
 
                                 <TextView
                                     style="@style/Base.TextAppearance.AppCompat.Small"
                                     android:layout_height="match_parent"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/change_customer_status"
                                     android:textSize="@dimen/text_size_12sp"/>
 
@@ -479,12 +499,14 @@
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/debt_income_report"/>
 
                                 <TextView
                                     style="@style/Base.TextAppearance.AppCompat.Small"
                                     android:layout_height="match_parent"
                                     android:layout_width="wrap_content"
+                                    android:fontFamily="@font/roboto"
                                     android:text="@string/view_debt_income_report"
                                     android:textSize="@dimen/text_size_12sp"/>
 

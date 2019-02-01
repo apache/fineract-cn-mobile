@@ -41,6 +41,7 @@
                             android:layout_width="match_parent"
                             android:padding="@dimen/layout_padding_16dp"
                             android:text="@string/customer_image"
+                            android:fontFamily="@font/roboto"
                             android:textColor="@color/gray_dark"
                             android:textStyle="bold"/>
 
@@ -84,7 +85,8 @@
                                 android:layout_width="wrap_content"
                                 android:paddingTop="@dimen/layout_padding_8dp"
                                 android:text="@string/camera"
-                                android:textSize="@dimen/text_medium"/>
+                                android:textSize="@dimen/text_medium"
+                                android:fontFamily="@font/roboto"/>
 
                         </LinearLayout>
 
@@ -116,7 +118,8 @@
                                 android:layout_width="wrap_content"
                                 android:paddingTop="@dimen/layout_padding_8dp"
                                 android:text="@string/gallery"
-                                android:textSize="@dimen/text_medium"/>
+                                android:textSize="@dimen/text_medium"
+                                android:fontFamily="@font/roboto"/>
 
                         </LinearLayout>
 
@@ -148,7 +151,8 @@
                                 android:layout_width="wrap_content"
                                 android:paddingTop="@dimen/layout_padding_8dp"
                                 android:text="@string/delete"
-                                android:textSize="@dimen/text_medium"/>
+                                android:textSize="@dimen/text_medium"
+                                android:fontFamily="@font/roboto"/>
 
                         </LinearLayout>
 
@@ -174,7 +178,8 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:paddingBottom="@dimen/layout_padding_16dp"
                     android:textStyle="bold"
-                    tools:text="Camera"/>
+                    tools:text="Camera"
+                    android:fontFamily="@font/roboto"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/iv_customer_picture"
@@ -194,7 +199,8 @@
                     android:textStyle="bold"
                     android:layout_marginTop="@dimen/layout_padding_4dp"
                     android:textColor="@color/colorPrimary"
-                    android:text="@string/edit_selected_file"/>
+                    android:text="@string/edit_selected_file"
+                    android:fontFamily="@font/roboto"/>
 
                 <TextView
                     android:id="@+id/tv_image_name"
@@ -204,7 +210,8 @@
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:text="@string/no_file_selected_yet"
-                    android:layout_marginBottom="@dimen/layout_padding_16dp"/>
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:fontFamily="@font/roboto"/>
 
                 <Button
                     android:drawableLeft="@drawable/ic_attach_file_black_24dp"
@@ -229,7 +236,8 @@
                     android:text="@string/portrait_size_can_not_exceed"
                     android:layout_marginTop="@dimen/layout_padding_8dp"
                     android:visibility="gone"
-                    android:layout_marginBottom="@dimen/layout_padding_8dp"/>
+                    android:layout_marginBottom="@dimen/layout_padding_8dp"
+                    android:fontFamily="@font/roboto"/>
 
                 <LinearLayout
                     android:layout_gravity="end"
@@ -248,7 +256,8 @@
                         android:layout_width="wrap_content"
                         android:text="@string/cancel"
                         android:theme="@style/AppTheme"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false"
+                        android:fontFamily="@font/roboto"/>
 
                     <Button
                         android:id="@+id/btn_upload_photo"
@@ -258,6 +267,7 @@
                         android:text="@string/upload"
                         android:theme="@style/AppTheme"
                         android:textAllCaps="false"
+                        android:fontFamily="@font/roboto"
                     />
 
                 </LinearLayout>
