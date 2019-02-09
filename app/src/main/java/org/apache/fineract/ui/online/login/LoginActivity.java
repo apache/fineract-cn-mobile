@@ -1,7 +1,9 @@
 package org.apache.fineract.ui.online.login;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -41,12 +43,23 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
     @Inject
     PreferencesHelper preferencesHelper;
 
+    private void setDrawableLeftOfEditText(EditText editText, int drawableResource) {
+        VectorDrawableCompat vdc =
+                VectorDrawableCompat.create(getResources(), drawableResource, null);
+        editText.setCompoundDrawables(vdc, null, null, null);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            editText.setCompoundDrawablesRelativeWithIntrinsicBounds(vdc, null, null, null);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivityComponent().inject(this);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        setDrawableLeftOfEditText(etTenant, R.drawable.ic_tenant_black_24dp);
+        setDrawableLeftOfEditText(etUsername, R.drawable.ic_person_black_24dp);
+        setDrawableLeftOfEditText(etPassword, R.drawable.ic_password_black_24dp);
         loginPresenter.attachView(this);
         setActionBarTitle(getString(R.string.fineract_account));
         preferencesHelper.clear();

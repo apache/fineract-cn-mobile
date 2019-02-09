@@ -52,8 +52,6 @@
 
                     <EditText
                         style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:drawableLeft="@drawable/ic_tenant_black_24dp"
-                        android:drawableStart="@drawable/ic_tenant_black_24dp"
                         android:drawablePadding="@dimen/layout_padding_8dp"
                         android:hint="@string/tenant"
                         android:id="@+id/et_tenant"
@@ -69,8 +67,6 @@
 
                     <EditText
                         style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:drawableLeft="@drawable/ic_person_black_24dp"
-                        android:drawableStart="@drawable/ic_person_black_24dp"
                         android:drawablePadding="@dimen/layout_padding_8dp"
                         android:hint="@string/username"
                         android:id="@+id/et_username"
@@ -87,8 +83,6 @@
 
                     <EditText
                         style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:drawableLeft="@drawable/ic_password_black_24dp"
-                        android:drawableStart="@drawable/ic_password_black_24dp"
                         android:drawablePadding="@dimen/layout_padding_8dp"
                         android:hint="@string/password"
                         android:id="@+id/et_password"
