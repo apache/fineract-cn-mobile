@@ -1,6 +1,7 @@
 package org.apache.fineract.ui.online.login;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -54,24 +55,25 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
 
     @OnClick(R.id.btn_login)
     void onLogin() {
-
+        Drawable customErrorDrawable = getResources().getDrawable(R.drawable.ic_error_required_24dp);
+        customErrorDrawable.setBounds(20, 0, customErrorDrawable.getIntrinsicWidth(), customErrorDrawable.getIntrinsicHeight());
         String tenantIdentifier = etTenant.getEditableText().toString();
         if (!TextUtils.isEmpty(tenantIdentifier)) {
             preferencesHelper.putTenantIdentifier(tenantIdentifier);
         } else {
-            etTenant.setError(getString(R.string.error_tenant_identifier_required));
+            etTenant.setError(getString(R.string.error_tenant_identifier_required),customErrorDrawable);
             return;
         }
 
         String username = etUsername.getEditableText().toString();
         if (TextUtils.isEmpty(username)) {
-            etUsername.setError(getString(R.string.error_username_required));
+            etUsername.setError(getString(R.string.error_username_required),customErrorDrawable);
             return;
         }
 
         String password = etPassword.getEditableText().toString();
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError(getString(R.string.error_password_required));
+            etPassword.setError(getString(R.string.error_password_required),customErrorDrawable);
             return;
         }
 
