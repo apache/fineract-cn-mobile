@@ -5,107 +5,99 @@
     android:id="@+id/cl_customer_deposit_details"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark">
 
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
         android:id="@+id/cv_customer_deposit_details"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:foreground="?android:attr/selectableItemBackground"
         android:visibility="visible"
         app:cardBackgroundColor="@color/colorPrimaryDark"
-        app:cardElevation="4dp">
+        >
 
         <LinearLayout
-            android:layout_height="match_parent"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="16dp">
+            >
 
             <LinearLayout
-                android:gravity="center"
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/layout_padding_24dp">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/layout_padding_24dp">
 
                 <ImageView
-                    android:layout_height="48dp"
-                    android:layout_width="48dp"
-                    android:tint="@color/white"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
                     android:contentDescription="@string/customer_image"
-                    app:srcCompat="@drawable/ic_customer_black_24dp"/>
+                    android:tint="@color/white"
+                    app:srcCompat="@drawable/ic_customer_black_24dp" />
 
                 <TextView
-                    android:gravity="center"
-                    android:layout_height="match_parent"
                     android:layout_width="wrap_content"
-                    android:paddingEnd="0dp"
-                    android:paddingLeft="@dimen/layout_padding_16dp"
-                    android:paddingRight="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:paddingStart="@dimen/layout_padding_16dp"
+                    android:paddingLeft="@dimen/layout_padding_16dp"
+                    android:paddingEnd="0dp"
+                    android:paddingRight="0dp"
                     android:text="@string/customer"
                     android:textColor="@color/white"
                     android:textSize="32sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
             <LinearLayout
-                android:gravity="center"
-                android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/layout_padding_8dp">
+                android:paddingBottom="@dimen/layout_padding_24dp">
 
                 <TextView
-                    android:gravity="center"
-                    android:layout_height="match_parent"
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:text="@string/create_edit_customer_for_offices"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_medium"/>
-
-                <View
-                    android:background="@color/white"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/layout_padding_30dp"
-                    android:layout_marginRight="@dimen/layout_padding_30dp"
-                    android:layout_width="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:gravity="center"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:paddingTop="@dimen/layout_padding_16dp"
-                android:weightSum="2">
-
+                    android:textSize="@dimen/text_medium"
+                    android:paddingBottom="@dimen/layout_padding_50dp"/>
                 <Button
                     android:id="@+id/btn_view_customer"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:background="@color/colorPrimary"
                     android:text="@string/view_customer"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="@dimen/layout_padding_10dp"
+                    android:layout_marginLeft="@dimen/layout_padding_24dp"
+                    android:layout_marginRight="@dimen/layout_padding_24dp"/>
 
                 <Button
                     android:id="@+id/btn_create_customer"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_width="match_parent"
+                    android:background="@color/colorPrimary"
                     android:text="@string/create_customer"
-                    android:textAllCaps="false"/>
+                    android:textAllCaps="false"
+                    android:layout_marginBottom="@dimen/layout_padding_10dp"
+                    android:layout_marginLeft="@dimen/layout_padding_24dp"
+                    android:layout_marginRight="@dimen/layout_padding_24dp"/>
+
 
             </LinearLayout>
+
 
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
-
 </android.support.design.widget.CoordinatorLayout>
