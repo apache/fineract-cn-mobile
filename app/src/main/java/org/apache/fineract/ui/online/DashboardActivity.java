@@ -3,14 +3,15 @@ package org.apache.fineract.ui.online;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
@@ -39,6 +40,8 @@ public class DashboardActivity extends FineractBaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
 
     public static final String LOG_TAG = DashboardActivity.class.getSimpleName();
+        private boolean doubleBackToExitPressedOnce = false;
+
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
@@ -134,12 +137,20 @@ public class DashboardActivity extends FineractBaseActivity implements
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+        if (doubleBackToExitPressedOnce) {
             super.onBackPressed();
+            return;
         }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT)
+                .show();
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
     public void logout() {
