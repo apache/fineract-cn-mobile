@@ -462,4 +462,5 @@
     <string name="Documents">Documents(Total: 0)</string>
     <string name="no_documents_to_show_add_documents">No documents to show. add documents</string>
     <string name="customer_payloads">Customer Payloads</string>
+    <string name="logged_out_successfully">Logged out successfully.</string>
 </resources>

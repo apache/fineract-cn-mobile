@@ -3,6 +3,7 @@ package org.apache.fineract.ui.online;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
@@ -22,6 +24,7 @@ import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
+import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
 import org.apache.fineract.utils.MaterialDialog;
@@ -157,6 +160,16 @@ public class DashboardActivity extends FineractBaseActivity implements
                                         LauncherActivity.class);
                                 startActivity(intent);
                                 finish();
+                                new Handler().postDelayed(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(DashboardActivity.this,
+                                                R.string.logged_out_successfully,
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                }, 500);
+
                             }
                         })
                 .setNegativeButton(getString(R.string.dialog_action_cancel))
