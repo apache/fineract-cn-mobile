@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
@@ -34,7 +35,7 @@ import butterknife.ButterKnife;
 
 /**
  * @author Rajan Maurya
- *         On 19/06/17.
+ * On 19/06/17.
  */
 public class DashboardActivity extends FineractBaseActivity implements
         NavigationView.OnNavigationItemSelectedListener {
@@ -139,7 +140,7 @@ public class DashboardActivity extends FineractBaseActivity implements
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -162,6 +163,10 @@ public class DashboardActivity extends FineractBaseActivity implements
                                         LauncherActivity.class);
                                 startActivity(intent);
                                 finish();
+                                Toast.makeText(DashboardActivity.this,
+                                        R.string.logged_out_successfully, Toast.LENGTH_SHORT)
+                                        .show();
+
                             }
                         })
                 .setNegativeButton(getString(R.string.dialog_action_cancel))
