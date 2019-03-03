@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+        <item
+            android:checked="true"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:id="@+id/item_dashboard"
+            android:title="@string/client"/>
+
+        <item
+            android:checked="true"
+            android:icon="@drawable/ic_lock_black_24dp"
+            android:id="@+id/item_roles"
+            android:title="@string/center"/>
+
+        <item
+            android:checked="true"
+            android:icon="@drawable/ic_customer_black_24dp"
+            android:id="@+id/item_customer"
+            android:title="@string/group"/>
+
+        <item
+            android:checked="true"
+            android:icon="@drawable/ic_customer_black_24dp"
+            android:id="@+id/item_customer_payload"
+            android:title="@string/log"/>
+
+
+</menu>
