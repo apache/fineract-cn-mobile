@@ -25,24 +25,24 @@
 
         <item
             android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
+            android:icon="@drawable/ic_business_center_black_24dp"
             android:id="@+id/item_customer_payload"
             android:title="@string/customer_payloads"/>
 
         <item
             android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
+            android:icon="@drawable/ic_book_black_24dp"
             android:id="@+id/item_ledger"
             android:title="@string/ledger"/>
 
         <item
             android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
+            android:icon="@drawable/ic_account_balance_black_24dp"
             android:id="@+id/item_accounts"
             android:title="@string/accounts"/>
         <item
             android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
             android:id="@+id/item_teller"
             android:title="@string/teller"/>
 
