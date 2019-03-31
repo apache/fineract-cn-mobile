@@ -241,6 +241,7 @@ public class FormCustomerAddressFragment extends FineractBaseFragment implements
 
     @Override
     public void showCounties(List<String> countries) {
+        validateCountry();
         this.countries = countries.toArray(new String[0]);
         ArrayAdapter<String> customerAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, this.countries);
