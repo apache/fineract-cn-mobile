@@ -4,11 +4,18 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'io.fabric'
 apply from: '../config/quality/quality.gradle'
+apply plugin: 'com.github.triplet.play'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
+    playAccountConfigs {
+        defaultAccountConfig {
+            serviceAccountEmail = "service_account_email_here"
+            jsonFile = file("someDirectory/my_json_key.json")
+        }
+    }
     defaultConfig {
         applicationId "org.apache.fineract"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -17,6 +24,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
 
     buildTypes {
@@ -65,8 +73,21 @@ android {
     androidExtensions {
         experimental = true
     }
+    signingConfigs {
+        release {
+            storeFile file("someDirectory/my_keystore.jks")
+            storePassword "my_store_pass_here"
+            keyAlias "my_key_alias_here"
+            keyPassword "my_key_pass_here"
+        }
+    }
+
+
 }
 
+play {
+    track = 'production'
+}
 dependencies {
 
     def daggerCompiler = "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
