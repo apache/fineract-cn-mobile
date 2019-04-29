@@ -19,11 +19,13 @@ interface TellerContract {
 
         fun hideProgressbar()
 
-        fun searchedTeller(teller: Teller)
+        fun searchedTeller(tellers: List<Teller>)
     }
 
     interface Presenter {
 
         fun fetchTellers()
+
+        fun searchTeller(tellers: List<Teller>, query: String)
     }
 }
