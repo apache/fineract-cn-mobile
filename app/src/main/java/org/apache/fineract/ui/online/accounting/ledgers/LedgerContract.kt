@@ -22,7 +22,6 @@ interface LedgerContract {
         fun searchedLedger(ledger: Ledger)
 
     }
-
     interface Presenter {
 
         fun getLedgersPage()
