@@ -1,8 +1,10 @@
 package org.apache.fineract.ui.online.teller
 
 import android.content.Context
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Predicate
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.apache.fineract.R
@@ -49,31 +51,15 @@ class TellerPresenter @Inject constructor(@ApplicationContext context: Context,
                 }))
     }
 
-    fun searchTeller(query: String) {
-
+    override fun searchTeller(tellers: List<Teller>, query: String) {
         checkViewAttached()
-        mvpView.showProgressbar()
-
-        compositeDisposable.add(dataManagerTeller.findTeller(query)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<Teller>() {
-                    override fun onComplete() {
-
+        mvpView.searchedTeller(Observable.fromIterable(tellers)
+                .filter(object: Predicate<Teller> {
+                    override fun test(teller: Teller): Boolean {
+                        return teller.tellerAccountIdentifier?.toLowerCase()
+                                ?.contains(query.toLowerCase()).toString().toBoolean()
                     }
-
-                    override fun onNext(teller: Teller) {
-                        mvpView.hideProgressbar()
-                        mvpView.searchedTeller(teller)
-
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        mvpView.hideProgressbar()
-                        showExceptionError(throwable,
-                                context.getString(R.string.error_fetching_teller))
-                    }
-                }))
+                }).toList().blockingGet())
     }
 
 

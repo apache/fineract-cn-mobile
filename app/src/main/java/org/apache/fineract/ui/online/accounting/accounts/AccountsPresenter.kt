@@ -1,8 +1,10 @@
 package org.apache.fineract.ui.online.accounting.accounts
 
 import android.content.Context
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Predicate
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.apache.fineract.R
@@ -55,31 +57,17 @@ class AccountsPresenter @Inject constructor(@ApplicationContext context: Context
                 }))
     }
 
-    override fun searchAccount(query: String) {
+    override fun searchAccount(account: List<Account>, query: String) {
         checkViewAttached()
-        mvpView.showProgressbar()
-
-        compositeDisposable.add(dataManagerAccounting
-                .findAccount(query)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<Account>() {
-                    override fun onComplete() {
-
+        mvpView.searchedAccount(Observable.fromIterable(account)
+                .filter(object: Predicate<Account> {
+                    override fun test(account: Account): Boolean {
+                        return account.identifier?.toLowerCase()
+                                ?.contains(query.toLowerCase()).toString().toBoolean()
                     }
+                }).toList().blockingGet())
 
-                    override fun onNext(account: Account) {
-                        mvpView.hideProgressbar()
-                        mvpView.searchedAccount(account)
 
-                    }
-
-                    override fun onError(e: Throwable) {
-
-                        mvpView.hideProgressbar()
-                        showExceptionError(e, context.getString(R.string.error_fetching_accounts))
-                    }
-                }))
     }
 
     override fun detachView() {

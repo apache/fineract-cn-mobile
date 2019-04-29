@@ -17,7 +17,6 @@ import org.apache.fineract.ui.adapters.LedgerAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.online.accounting.accounts.LedgerContract
-import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
@@ -112,7 +111,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                ledgerPresenter.searchLedger(query)
+                ledgerPresenter.searchLedger(ledgerList, query)
                 return false
             }
 
@@ -121,16 +120,16 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
                     showRecyclerView(true)
                     ledgerAdapter.setLedgerList(ledgerList)
                 }
-
+                ledgerPresenter.searchLedger(ledgerList, newText)
                 return false
             }
         })
 
     }
 
-    override fun searchedLedger(ledger: Ledger) {
+    override fun searchedLedger(ledgers: List<Ledger>) {
         showRecyclerView(true)
-        ledgerAdapter.setLedgerList(Collections.singletonList(ledger))
+        ledgerAdapter.setLedgerList(ledgers)
     }
 
     override fun showRecyclerView(status: Boolean) {

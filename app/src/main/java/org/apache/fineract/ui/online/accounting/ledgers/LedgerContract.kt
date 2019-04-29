@@ -19,7 +19,7 @@ interface LedgerContract {
 
         fun hideProgressbar()
 
-        fun searchedLedger(ledger: Ledger)
+        fun searchedLedger(ledgers: List<Ledger>)
 
     }
 
@@ -27,6 +27,6 @@ interface LedgerContract {
 
         fun getLedgersPage()
 
-        fun searchLedger(identifier: String)
+        fun searchLedger(legderList: List<Ledger>, identifier: String)
     }
 }

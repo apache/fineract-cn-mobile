@@ -92,7 +92,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                accountsPresenter.searchAccount(query)
+                accountsPresenter.searchAccount(accountList, query)
                 return false
             }
 
@@ -101,16 +101,16 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
                     showRecyclerView(true)
                     accountsAdapter.setAccountsList(accountList)
                 }
-
+                accountsPresenter.searchAccount(accountList, newText)
                 return false
             }
         })
 
     }
 
-    override fun searchedAccount(account: Account) {
+    override fun searchedAccount(accounts: List<Account>) {
         showRecyclerView(true)
-        accountsAdapter.setAccountsList(Collections.singletonList(account))
+        accountsAdapter.setAccountsList(accounts)
     }
 
     override fun onRefresh() {

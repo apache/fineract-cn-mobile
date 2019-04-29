@@ -111,7 +111,7 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                tellPresenter.searchTeller(query)
+                tellPresenter.searchTeller(tellerList, query)
                 return false
             }
 
@@ -120,16 +120,16 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
                     showRecyclerView(true)
                     tellerAdapter.setTellerList(tellerList)
                 }
-
+                tellPresenter.searchTeller(tellerList, newText)
                 return false
             }
         })
 
     }
 
-    override fun searchedTeller(teller: Teller) {
+    override fun searchedTeller(tellers: List<Teller>) {
         showRecyclerView(true)
-        tellerAdapter.setTellerList(Collections.singletonList(teller))
+        tellerAdapter.setTellerList(tellers)
     }
 
     override fun showRecyclerView(status: Boolean) {
