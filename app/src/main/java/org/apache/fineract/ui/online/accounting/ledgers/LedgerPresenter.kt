@@ -1,8 +1,10 @@
 package org.apache.fineract.ui.online.accounting.ledgers
 
 import android.content.Context
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Predicate
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.apache.fineract.R
@@ -56,31 +58,16 @@ class LedgerPresenter @Inject constructor(@ApplicationContext context: Context,
         )
     }
 
-    override fun searchLedger(identifier: String) {
+    override fun searchLedger(ledgerList: List<Ledger>, identifier: String) {
         checkViewAttached()
-        mvpView.showProgressbar()
 
-        compositeDisposable.add(dataManagerAccounting.findLedger(identifier)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<Ledger>() {
-                    override fun onComplete() {
-
+        mvpView.searchedLedger(Observable.fromIterable(ledgerList)
+                .filter(object : Predicate<Ledger> {
+                    override fun test(ledger: Ledger): Boolean {
+                        return ledger.identifier?.toLowerCase()
+                                ?.contains(identifier.toLowerCase()).toString().toBoolean()
                     }
-
-                    override fun onNext(ledger: Ledger) {
-                        mvpView.hideProgressbar()
-                        mvpView.searchedLedger(ledger)
-
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        mvpView.hideProgressbar()
-                        showExceptionError(throwable,
-                                context.getString(R.string.error_fetching_ledger))
-                    }
-                })
-        )
+                }).toList().blockingGet())
     }
 
 

@@ -19,7 +19,7 @@ interface AccountContract {
 
         fun hideProgressbar()
 
-        fun searchedAccount(account: Account)
+        fun searchedAccount(accounts: List<Account>)
 
 
     }
@@ -28,6 +28,6 @@ interface AccountContract {
 
         fun getAccountsPage()
 
-        fun searchAccount(query: String)
+        fun searchAccount(account : List<Account>, query: String)
     }
 }
