@@ -1,12 +1,18 @@
 package org.apache.fineract.ui.online.loanaccounts.loanaccountlist;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -86,6 +92,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
         setToolbarTitle(getString(R.string.loan_accounts));
 
         showUserInterface();
+        setHasOptionsMenu(true);
 
         return rootView;
     }
@@ -212,5 +219,45 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
     @Override
     public void onItemLongPress(View childView, int position) {
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_loan_account_search, menu);
+        setUpSearchInterface(menu);
+    }
+
+    private void setUpSearchInterface(Menu menu) {
+        SearchManager searchManager = (SearchManager) getActivity().
+                getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.loan_account_search)
+                .getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity()
+                .getComponentName()));
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                customerLoansPresenter.searchLoanAccounts(loanAccounts, query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (TextUtils.isEmpty(newText)) {
+                    searchedLoanAccounts(loanAccounts);
+                }
+                customerLoansPresenter.searchLoanAccounts(loanAccounts, newText);
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    public void searchedLoanAccounts(List<LoanAccount> loanAccountList) {
+        customerLoanAdapter.setCustomerLoanAccounts(loanAccountList);
     }
 }

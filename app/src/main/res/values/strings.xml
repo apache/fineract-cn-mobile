@@ -175,6 +175,7 @@
     <string name="identification_search">Search identification card</string>
     <string name="ledger_search">Ledger Search</string>
     <string name="teller_search">Search teller</string>
+    <string name="loan_account_search">Loan Account Search</string>
     <string name="loan_last_modified_by">%1$s %2$s</string>
     <string name="loan_created_by">%1$s %2$s</string>
     <string name="search_beneficiary">Search beneficiary</string>

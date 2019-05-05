@@ -28,9 +28,13 @@ public interface LoanAccountsContract {
         void showProgressbar();
 
         void hideProgressbar();
+
+        void searchedLoanAccounts(List<LoanAccount> loanAccountList);
     }
 
     interface Presenter {
+
+        void searchLoanAccounts(List<LoanAccount> loanAccountList, String query);
 
         void fetchCustomerLoanAccounts(String customerIdentifier, Integer pageIndex,
                 Boolean loadmore);

@@ -15,8 +15,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Predicate;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -114,5 +116,17 @@ public class LoanAccountsPresenter extends BasePresenter<LoanAccountsContract.Vi
         } else {
             getMvpView().showLoanAccounts(loanAccounts);
         }
+    }
+
+    @Override
+    public void searchLoanAccounts(List<LoanAccount> loanAccountList, final String query) {
+        getMvpView().searchedLoanAccounts(Observable.fromIterable(loanAccountList)
+                .filter(new Predicate<LoanAccount>() {
+                    @Override
+                    public boolean test(LoanAccount loanAccount) {
+                        return loanAccount.getIdentifier().toLowerCase()
+                                .contains(query.toLowerCase());
+                    }
+                }).toList().blockingGet());
     }
 }
