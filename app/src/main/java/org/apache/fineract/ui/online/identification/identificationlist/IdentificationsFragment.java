@@ -29,7 +29,6 @@ import org.apache.fineract.ui.online.identification.identificationdetails.Identi
 import org.apache.fineract.utils.ConstantKeys;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -175,8 +174,8 @@ public class IdentificationsFragment extends FineractBaseFragment implements
     }
 
     @Override
-    public void searchIdentificationList(Identification identification) {
-        identificationAdapter.setIdentifications(Collections.singletonList(identification));
+    public void searchedIdentifications(List<Identification> identification) {
+        identificationAdapter.setIdentifications(identification);
     }
 
     @Override
@@ -209,7 +208,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                identificationsPresenter.searchIdentifications(customerIdentifier, query);
+                identificationsPresenter.searchIdentifications(identifications, query);
                 return false;
             }
 
@@ -218,7 +217,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
                 if (TextUtils.isEmpty(newText)) {
                     identificationAdapter.setIdentifications(identifications);
                 }
-
+                identificationsPresenter.searchIdentifications(identifications, newText);
                 return false;
             }
         });

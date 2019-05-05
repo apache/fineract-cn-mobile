@@ -27,13 +27,13 @@ public interface IdentificationsContract {
 
         void showMessage(String message);
 
-        void searchIdentificationList(Identification identification);
+        void searchedIdentifications(List<Identification> identification);
     }
 
     interface Presenter {
 
         void fetchIdentifications(String customerIdentifier);
 
-        void searchIdentifications(String identifier, String number);
+        void searchIdentifications(List<Identification> identificationList, String query);
     }
 }

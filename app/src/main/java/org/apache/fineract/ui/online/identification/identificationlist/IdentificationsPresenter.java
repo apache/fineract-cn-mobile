@@ -13,8 +13,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Predicate;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -83,33 +85,15 @@ public class IdentificationsPresenter extends BasePresenter<IdentificationsContr
     }
 
     @Override
-    public void searchIdentifications(String identifier, String number) {
+    public void searchIdentifications(List<Identification> identificationList, final String query) {
         checkViewAttached();
-        getMvpView().showProgressbar();
-
-        compositeDisposable.add(dataManagerCustomer.searchIdentifications(identifier, number)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<Identification>() {
-
+        getMvpView().searchedIdentifications(Observable.fromIterable(identificationList).
+                filter(new Predicate<Identification>() {
                     @Override
-                    public void onNext(Identification identification) {
-                        getMvpView().hideProgressbar();
-                        getMvpView().searchIdentificationList(identification);
+                    public boolean test(Identification identification) {
+                        return identification.getType().toLowerCase().contains(query.toLowerCase());
                     }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        showExceptionError(e, context.getString
-                                (R.string.error_finding_identification));
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-
-                }));
+                }).toList().blockingGet());
     }
 
 
