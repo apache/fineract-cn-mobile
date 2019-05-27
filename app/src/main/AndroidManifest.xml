@@ -37,7 +37,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.online.login.LoginActivity" />
+        <activity android:name=".ui.online.login.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity android:name=".ui.online.DashboardActivity" />
 
