@@ -62,8 +62,8 @@
     <style name="MaterialDatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="Toolbar.Titile" parent="@style/TextAppearance.AppCompat.Title">
-        <item name="android:textSize">25sp</item>
+    <style name="Toolbar.Title" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">@dimen/text_headline</item>
     </style>
 
 </resources>

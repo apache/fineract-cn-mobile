@@ -14,6 +14,6 @@
         android:layout_width="match_parent"
         app:layout_scrollFlags="scroll|enterAlways|snap"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:titleTextAppearance="@style/Toolbar.Titile"/>
+        app:titleTextAppearance="@style/Toolbar.Title"/>
 
 </android.support.design.widget.AppBarLayout>
