@@ -63,7 +63,8 @@
                             android:id="@+id/et_city"
                             android:inputType="text"
                             android:layout_height="wrap_content"
-                            android:layout_width="match_parent"/>
+                            android:layout_width="match_parent"
+                            android:digits="@string/restrict_a_zA_Z"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -91,7 +92,8 @@
                             android:id="@+id/et_country"
                             android:inputType="text"
                             android:layout_height="wrap_content"
-                            android:layout_width="match_parent"/>
+                            android:layout_width="match_parent"
+                            android:digits="@string/restrict_a_zA_Z"/>
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -105,7 +107,8 @@
                             android:id="@+id/et_region"
                             android:inputType="text"
                             android:layout_height="wrap_content"
-                            android:layout_width="match_parent"/>
+                            android:layout_width="match_parent"
+                            android:digits="@string/restrict_a_zA_Z"/>
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
