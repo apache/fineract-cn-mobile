@@ -2,6 +2,7 @@ package org.apache.fineract;
 
 /**
  * This class contains the Fake data json file names.
+ *
  * @author Rajan Maurya on 25/6/17.
  */
 public class FakeJsonName {
@@ -22,4 +23,5 @@ public class FakeJsonName {
     public static final String TELLER = "teller.json";
     public static final String PRODUCT_PAGE = "productPage.json";
     public static final String PRODUCT_DEFINITION = "productDefinition.json";
+    public static final String PAYROLL_CONFIG = "payrollConfiguration.json";
 }

@@ -10,6 +10,7 @@ import org.apache.fineract.data.services.DepositService;
 import org.apache.fineract.data.services.IndividualLendingService;
 import org.apache.fineract.data.services.LoanService;
 import org.apache.fineract.data.services.ProductService;
+import org.apache.fineract.data.services.PayrollService;
 import org.apache.fineract.data.services.RolesService;
 import org.apache.fineract.data.services.TellersService;
 
@@ -39,6 +40,7 @@ public class BaseApiManager {
     private static AccountingService accountingService;
     private static TellersService tellerService;
     private static ProductService productService;
+    private static PayrollService payrollService;
 
     public BaseApiManager(Context context) {
         createService(context);
@@ -55,6 +57,7 @@ public class BaseApiManager {
         accountingService = createApi(AccountingService.class);
         tellerService = createApi(TellersService.class);
         productService = createApi(ProductService.class);
+        payrollService = createApi(PayrollService.class);
     }
 
     private static void initAnonymous() {
@@ -124,7 +127,7 @@ public class BaseApiManager {
         return rolesService;
     }
 
-    public  AccountingService getAccountingService() {
+    public AccountingService getAccountingService() {
         return accountingService;
     }
 
@@ -134,5 +137,9 @@ public class BaseApiManager {
 
     public ProductService getProductService() {
         return productService;
+    }
+
+    public PayrollService getPayrollService() {
+        return payrollService;
     }
 }

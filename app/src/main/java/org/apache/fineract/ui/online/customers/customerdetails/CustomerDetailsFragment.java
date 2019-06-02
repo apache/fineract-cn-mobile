@@ -24,6 +24,7 @@ import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
 import org.apache.fineract.ui.online.customers.customeractivities.CustomerActivitiesActivity;
+import org.apache.fineract.ui.online.customers.customerpayroll.PayrollActivity;
 import org.apache.fineract.ui.online.customers.customerprofile.CustomerProfileActivity;
 import org.apache.fineract.ui.online.customers.customertasks.CustomerTasksBottomSheetFragment;
 import org.apache.fineract.ui.online.customers.customertasks.OnTasksChangeListener;
@@ -202,6 +203,14 @@ public class CustomerDetailsFragment extends FineractBaseFragment
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         startActivity(intent);
     }
+
+    @OnClick(R.id.ll_payroll)
+    void showPayrollActivity() {
+        Intent intent = new Intent(getActivity(), PayrollActivity.class);
+        intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        startActivity(intent);
+    }
+
 
     @OnClick(R.id.fab_edit_customer)
     void editCustomer() {
