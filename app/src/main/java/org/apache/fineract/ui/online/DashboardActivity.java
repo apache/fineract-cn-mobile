@@ -3,8 +3,10 @@ package org.apache.fineract.ui.online;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +19,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.jobs.StartSyncJob;
 import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
@@ -50,6 +53,8 @@ public class DashboardActivity extends FineractBaseActivity implements
 
     @Inject
     PreferencesHelper preferencesHelper;
+
+    private boolean isBackPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,12 +145,21 @@ public class DashboardActivity extends FineractBaseActivity implements
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
         }
+        if (isBackPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+        this.isBackPressedOnce = true;
+        Toaster.show(drawerLayout, R.string.please_click_back_again_to_exit, Snackbar.LENGTH_SHORT);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                isBackPressedOnce = false;
+            }
+        }, 2000);
     }
 
     public void logout() {
