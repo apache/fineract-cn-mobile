@@ -2,65 +2,64 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
-        android:checkableBehavior="single"
-        android:id="@+id/group1">
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
 
         <item
+            android:id="@+id/item_dashboard"
             android:checked="true"
             android:icon="@drawable/ic_dashboard_black_24dp"
-            android:id="@+id/item_dashboard"
-            android:title="@string/dashboard"/>
+            android:title="@string/dashboard" />
 
         <item
+            android:id="@+id/item_roles"
             android:checked="true"
             android:icon="@drawable/ic_lock_black_24dp"
-            android:id="@+id/item_roles"
-            android:title="@string/roles_and_permissions"/>
+            android:title="@string/roles_and_permissions" />
 
         <item
-            android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
             android:id="@+id/item_customer"
-            android:title="@string/customer"/>
-
-        <item
             android:checked="true"
             android:icon="@drawable/ic_customer_black_24dp"
+            android:title="@string/customer" />
+
+        <item
             android:id="@+id/item_customer_payload"
-            android:title="@string/customer_payloads"/>
+            android:checked="true"
+            android:icon="@drawable/ic_business_center_black_24dp"
+            android:title="@string/customer_payloads" />
 
         <item
-            android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
             android:id="@+id/item_ledger"
-            android:title="@string/ledger"/>
+            android:checked="true"
+            android:icon="@drawable/ic_book_black_24dp"
+            android:title="@string/ledger" />
 
         <item
-            android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
             android:id="@+id/item_accounts"
-            android:title="@string/accounts"/>
-        <item
             android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
+            android:icon="@drawable/ic_account_balance_black_24dp"
+            android:title="@string/accounts" />
+        <item
             android:id="@+id/item_teller"
-            android:title="@string/teller"/>
+            android:checked="true"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
+            android:title="@string/teller" />
 
         <item
-            android:checked="true"
-            android:icon="@drawable/ic_customer_black_24dp"
             android:id="@+id/item_product"
-            android:title="@string/products"/>
+            android:checked="true"
+            android:icon="@drawable/ic_products_black_24dp"
+            android:title="@string/products" />
 
     </group>
 
-    <group
-        android:id="@+id/group2">
+    <group android:id="@+id/group2">
 
         <item
             android:id="@+id/item_logout"
             android:icon="@drawable/ic_input_black_24dp"
-            android:title="@string/logout"/>
+            android:title="@string/logout" />
 
     </group>
 
