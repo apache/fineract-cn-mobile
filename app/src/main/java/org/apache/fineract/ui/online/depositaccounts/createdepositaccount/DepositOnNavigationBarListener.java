@@ -1,6 +1,6 @@
 package org.apache.fineract.ui.online.depositaccounts.createdepositaccount;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import org.apache.fineract.data.models.deposit.DepositAccount;
 

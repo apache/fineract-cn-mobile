@@ -15,7 +15,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -65,6 +65,11 @@ android {
     androidExtensions {
         experimental = true
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -74,12 +79,12 @@ dependencies {
     def mockito = "org.mockito:mockito-core:$rootProject.mockitoVersion"
 
     // Support Dependencies
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support.test.espresso:espresso-idling-resource:$rootProject.espressoVersion"
-    implementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+    implementation "com.google.android.material:material:$supportLibraryVersion"
+    implementation "androidx.recyclerview:recyclerview:$supportLibraryVersion"
+    implementation "androidx.cardview:cardview:$supportLibraryVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+    implementation "androidx.annotation:annotation:$supportLibraryVersion"
 
     // Kotlin Dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -88,41 +93,41 @@ dependencies {
     //android-job
     implementation "com.evernote:android-job:$androidJobVersion"
 
-    implementation "com.github.therajanmaurya:Sweet-Error:$rootProject.sweetErrorVersion"
+    implementation "com.github.therajanmaurya:Sweet-Error:$sweetErrorVersion"
 
-    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    kapt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflowVersion}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow-core:${dbflowVersion}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow:${dbflowVersion}"
-    implementation "com.github.Raizlabs.DBFlow:dbflow-rx2:${dbflowVersion}"
+    implementation "androidx.legacy:legacy-support-v4:$supportLibraryVersion"
+    kapt "com.github.Raizlabs.DBFlow:dbflow-processor:$dbflowVersion"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:$dbflowVersion"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:$dbflowVersion"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-rx2:$dbflowVersion"
 
     // Rx Dependencies
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.rxKotlinVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
 
     // Square Dependencies
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-scalars:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.okHttp3Version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttp3Version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3Version"
 
     //Glide for loading the images
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
-    implementation "de.hdodenhof:circleimageview:$rootProject.circleImageviewVersion"
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    implementation "de.hdodenhof:circleimageview:$circleImageviewVersion"
 
     // Dagger 2 Dependencies
-    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger:$daggerVersion"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28' //Required by Dagger2
     kapt daggerCompiler
 //    testkapt daggerCompiler
 //    androidTestkapt daggerCompiler
 
     // ButterKnife Dependencies
-    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
-    kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
     // Fabric Crashlytics Dependencies
     implementation('com.crashlytics.sdk.android:crashlytics:2.6.8@aar') {
@@ -130,38 +135,38 @@ dependencies {
     }
 
     //Sticky header RecyclerView
-    implementation "org.zakariya.stickyheaders:stickyheaders:$rootProject.sticyHeaderVersion"
+    implementation "org.zakariya.stickyheaders:stickyheaders:$sticyHeaderVersion"
 
     // Compressor for Image Compression
-    implementation "id.zelory:compressor:$rootProject.compressorVersion"
+    implementation "id.zelory:compressor:$compressorVersion"
 
     //Material Stepper UI library
-    implementation "com.stepstone.stepper:material-stepper:$rootProject.materialStepperVersion"
+    implementation "com.stepstone.stepper:material-stepper:$materialStepperVersion"
 
     // Instrumentation test dependencies
     androidTestImplementation jUnit
     androidTestImplementation mockito
-    androidTestImplementation "org.mockito:mockito-android:$rootProject.mockitoVersion"
-    androidTestImplementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
-    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion") {
+    androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+    androidTestImplementation "androidx.annotation:annotation:$supportLibraryVersion"
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:$espressoVersion") {
         exclude group: 'com.android.support', module: 'appcompat'
         exclude group: 'com.android.support', module: 'support-v4'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'support-annotations'
     }
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
-    androidTestImplementation "com.android.support.test:rules:$rootProject.rulesVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation "androidx.test:runner:$runnerVersion"
+    androidTestImplementation "androidx.test:rules:$rulesVersion"
 
     // Unit tests dependencies
     testImplementation jUnit
     testImplementation mockito
-    testImplementation "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
-    testImplementation "org.hamcrest:hamcrest-core:$rootProject.hamcrestVersion"
-    testImplementation "org.hamcrest:hamcrest-library:$rootProject.hamcrestVersion"
-    testImplementation "org.hamcrest:hamcrest-integration:$rootProject.hamcrestVersion"
-    testImplementation "org.robolectric:robolectric:$rootProject.roboElectricVersion"
+    testImplementation "androidx.annotation:annotation:$supportLibraryVersion"
+    testImplementation "org.hamcrest:hamcrest-core:$hamcrestVersion"
+    testImplementation "org.hamcrest:hamcrest-library:$hamcrestVersion"
+    testImplementation "org.hamcrest:hamcrest-integration:$hamcrestVersion"
+    testImplementation "org.robolectric:robolectric:$roboElectricVersion"
 
 }
 

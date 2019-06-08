@@ -3,11 +3,12 @@ package org.apache.fineract.ui.product
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.SearchView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_product.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
@@ -70,7 +71,7 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
 
         setToolbarTitle(getString(R.string.products))
         val layoutManager = LinearLayoutManager(activity)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        layoutManager.orientation = RecyclerView.VERTICAL
         rvProduct.layoutManager = layoutManager
         rvProduct.setHasFixedSize(true)
         rvProduct.adapter = productAdapter

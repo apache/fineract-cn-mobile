@@ -1,7 +1,7 @@
 package org.apache.fineract.ui.adapters
 
 import android.content.Context
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter
 import com.stepstone.stepper.viewmodel.StepViewModel

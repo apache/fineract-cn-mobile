@@ -1,7 +1,7 @@
 package org.apache.fineract.ui.base;
 
 import android.graphics.Color;
-import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -22,8 +22,7 @@ public class Toaster {
     public static void show(View view, String text, int duration) {
         final Snackbar snackbar = Snackbar.make(view, text, duration);
         View sbView = snackbar.getView();
-        TextView textView =  sbView.findViewById(android.support.design.R.id
-                .snackbar_text);
+        TextView textView =  sbView.findViewById(com.google.android.material.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
         textView.setTextSize(12);
         snackbar.setAction(R.string.OK, new View.OnClickListener() {
@@ -38,8 +37,7 @@ public class Toaster {
     public static void showProgressMessage(View view, String text, int duration) {
         final Snackbar snackbar = Snackbar.make(view, text, duration);
         View sbView = snackbar.getView();
-        TextView textView = sbView.findViewById(android.support.design.R.id
-                .snackbar_text);
+        TextView textView = sbView.findViewById(com.google.android.material.R.id.snackbar_text);
         textView.setTextColor(Color.WHITE);
         textView.setTextSize(12);
         snackbar.show();

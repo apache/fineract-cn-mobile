@@ -1,7 +1,7 @@
 package org.apache.fineract.jobs;
 
 import android.annotation.SuppressLint;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.evernote.android.job.Job;

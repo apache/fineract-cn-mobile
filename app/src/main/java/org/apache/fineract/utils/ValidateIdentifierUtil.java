@@ -1,7 +1,7 @@
 package org.apache.fineract.utils;
 
 import android.content.Context;
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputLayout;
 import android.text.TextUtils;
 
 import org.apache.fineract.R;
