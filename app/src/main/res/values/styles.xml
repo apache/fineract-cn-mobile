@@ -36,14 +36,14 @@
     </style>
 
 
-
     <style name="AppTheme.Text" parent="android:Widget.TextView">
         <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/colorPrimaryText</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="circleLayout">
         <item name="android:layout_height">wrap_content</item>
@@ -62,6 +62,10 @@
 
     <style name="MaterialDatePickerTheme" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 
 </resources>
