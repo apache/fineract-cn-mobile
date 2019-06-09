@@ -1,16 +1,19 @@
 package org.apache.fineract.ui.online;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import android.view.Gravity;
+import androidx.fragment.app.Fragment;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -138,7 +141,7 @@ public class DashboardActivity extends FineractBaseActivity implements
                 break;
         }
 
-        drawerLayout.closeDrawer(Gravity.START);
+        drawerLayout.closeDrawer(GravityCompat.START);
         setTitle(item.getTitle());
         return true;
     }
@@ -147,19 +150,25 @@ public class DashboardActivity extends FineractBaseActivity implements
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        if (isBackPressedOnce) {
-            finish();
             return;
         }
-        this.isBackPressedOnce = true;
-        Toaster.show(drawerLayout, R.string.please_click_back_again_to_exit, Snackbar.LENGTH_SHORT);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                isBackPressedOnce = false;
-            }
-        }, 2000);
+
+        if (isBackPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        if (fragment instanceof DashboardFragment) {
+            this.isBackPressedOnce = true;
+            Toaster.show(drawerLayout, R.string.please_click_back_again_to_exit,
+                    Snackbar.LENGTH_SHORT);
+            new Handler().postDelayed(
+                    () -> isBackPressedOnce = false
+                    , 2000);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public void logout() {
@@ -169,19 +178,16 @@ public class DashboardActivity extends FineractBaseActivity implements
                 .setMessage(getString(
                         R.string.dialog_message_confirmation_logout))
                 .setPositiveButton(getString(R.string.dialog_action_logout),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                preferencesHelper.clear();
-                                Intent intent = new Intent(DashboardActivity.this,
-                                        LauncherActivity.class);
-                                startActivity(intent);
-                                finish();
-                                Toast.makeText(DashboardActivity.this,
-                                        R.string.logged_out_successfully, Toast.LENGTH_SHORT)
-                                        .show();
+                        (dialog, which) -> {
+                            preferencesHelper.clear();
+                            Intent intent = new Intent(DashboardActivity.this,
+                                    LauncherActivity.class);
+                            startActivity(intent);
+                            finish();
+                            Toast.makeText(DashboardActivity.this,
+                                    R.string.logged_out_successfully, Toast.LENGTH_SHORT)
+                                    .show();
 
-                            }
                         })
                 .setNegativeButton(getString(R.string.dialog_action_cancel))
                 .createMaterialDialog()
