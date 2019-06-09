@@ -12,6 +12,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -45,7 +47,8 @@ public class CustomerProfileActivity extends FineractBaseActivity
     ImageView ivCustomerProfile;
 
     @BindView(R.id.layout_error)
-    ImageView errorView;
+    CoordinatorLayout errorView;
+
     private String customerIdentifier;
 
     @Override
