@@ -19,13 +19,13 @@ interface ProductContract {
 
         fun hideProgressbar()
 
-        fun searchedProduct(product: Product)
+        fun searchedProduct(products: List<Product>)
     }
 
     interface Presenter {
 
         fun getProductsPage()
 
-        fun searchProduct(identifier: String)
+        fun searchProduct(products : List<Product>, identifier: String)
     }
 }

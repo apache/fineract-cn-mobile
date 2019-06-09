@@ -1,8 +1,10 @@
 package org.apache.fineract.ui.product
 
 import android.content.Context
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Predicate
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import org.apache.fineract.R
@@ -53,28 +55,14 @@ class ProductPresenter @Inject constructor(@ApplicationContext context: Context,
         )
     }
 
-    override fun searchProduct(identifier: String) {
+    override fun searchProduct(products: List<Product>, query: String) {
         checkViewAttached()
-        mvpView.showProgressbar()
-
-        compositeDisposable.add(dataManagerProduct.searchProduct(identifier)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableObserver<Product>() {
-                    override fun onComplete() {
-
+        mvpView.searchedProduct(Observable.fromIterable(products)
+                .filter(object : Predicate<Product> {
+                    override fun test(product: Product): Boolean {
+                        return product.identifier?.toLowerCase()?.contains(query.toLowerCase())
+                                .toString().toBoolean()
                     }
-
-                    override fun onNext(product: Product) {
-                        mvpView.hideProgressbar()
-                        mvpView.searchedProduct(product)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        mvpView.hideProgressbar()
-                        showExceptionError(e, context.getString(R.string.products))
-                    }
-                })
-        )
+                }).toList().blockingGet())
     }
 }

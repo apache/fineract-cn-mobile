@@ -108,7 +108,7 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                productPresenter.searchProduct(query)
+                productPresenter.searchProduct(productList, query)
                 return false
             }
 
@@ -116,6 +116,9 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
                 if (TextUtils.isEmpty(newText)) {
                     showRecyclerView(true)
                     productAdapter.setProductsList(productList)
+
+                } else {
+                    productPresenter.searchProduct(productList, newText)
                 }
 
                 return false
@@ -148,9 +151,9 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
         swipeContainer.isRefreshing = false
     }
 
-    override fun searchedProduct(product: Product) {
-        showRecyclerView(true)
-        productAdapter.setProductsList(Collections.singletonList(product))
+    override fun searchedProduct(products: List<Product>) {
+        //showRecyclerView(true)
+        productAdapter.setProductsList(products)
     }
 
     override fun showNoInternetConnection() {
