@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.apache.fineract.R;
-import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
+import org.apache.fineract.ui.online.DashboardActivity;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
         .CreateCustomerActivity;
@@ -46,7 +46,8 @@ public class DashboardFragment extends FineractBaseFragment {
 
     @OnClick(R.id.btn_view_customer)
     void viewCustomer() {
-        ((FineractBaseActivity) getActivity()).replaceFragment(CustomersFragment.newInstance(),
+        ((DashboardActivity) getActivity()).setNavigationViewSelectedItem(R.id.item_customer);
+        ((DashboardActivity) getActivity()).replaceFragment(CustomersFragment.newInstance(),
                 true,
                 R.id.container);
     }

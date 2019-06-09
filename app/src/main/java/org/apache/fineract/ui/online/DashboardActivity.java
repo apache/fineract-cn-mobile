@@ -192,4 +192,8 @@ public class DashboardActivity extends FineractBaseActivity implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    public void setNavigationViewSelectedItem(int id) {
+        navigationView.setCheckedItem(id);
+    }
 }
