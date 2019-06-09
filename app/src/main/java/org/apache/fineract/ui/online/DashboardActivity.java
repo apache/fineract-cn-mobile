@@ -149,7 +149,7 @@ public class DashboardActivity extends FineractBaseActivity implements
             drawerLayout.closeDrawer(GravityCompat.START);
         }
         if (isBackPressedOnce) {
-            super.onBackPressed();
+            finish();
             return;
         }
         this.isBackPressedOnce = true;
