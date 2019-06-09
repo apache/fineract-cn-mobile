@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/gray_light"
@@ -29,7 +29,7 @@
                 android:id="@+id/cl_alert_message"
                 android:visibility="gone"/>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="@color/white"
@@ -330,7 +330,7 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:layout_height="match_parent"
@@ -343,7 +343,7 @@
                 android:paddingTop="@dimen/layout_padding_16dp"
                 android:text="@string/management"/>
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:background="@color/white"
@@ -496,11 +496,11 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <include
         layout="@layout/layout_bottom_content"
@@ -515,4 +515,4 @@
         android:id="@+id/layout_error"
         android:visibility="gone"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

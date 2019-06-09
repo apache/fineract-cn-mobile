@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/clEditPayroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ncvEditPayroll"
@@ -16,7 +16,7 @@
         android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/cvEditPayroll"
@@ -37,7 +37,7 @@
                     android:orientation="vertical"
                     android:padding="@dimen/layout_padding_16dp">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilAccount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -50,9 +50,9 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/account"
                             android:inputType="text" />
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilCreatedBy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -64,9 +64,9 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/created_by"
                             android:inputType="text" />
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilCreatedOn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -79,9 +79,9 @@
                             android:focusable="false"
                             android:hint="@string/created_on"
                             android:inputType="date" />
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilLastModifiedBy"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -93,9 +93,9 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/last_modified_by"
                             android:inputType="text" />
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilLastModifiedOn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -108,14 +108,14 @@
                             android:focusable="false"
                             android:hint="@string/last_modified_by"
                             android:inputType="text" />
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

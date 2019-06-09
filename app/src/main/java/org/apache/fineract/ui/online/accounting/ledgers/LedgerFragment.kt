@@ -4,11 +4,12 @@ package org.apache.fineract.ui.online.accounting.ledgers
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.SearchView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_ledger.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
@@ -69,7 +70,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
 
         setToolbarTitle(getString(R.string.ledger))
         val layoutManager = LinearLayoutManager(activity)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        layoutManager.orientation = RecyclerView.VERTICAL
         rvLedger.layoutManager = layoutManager
         rvLedger.setHasFixedSize(true)
 

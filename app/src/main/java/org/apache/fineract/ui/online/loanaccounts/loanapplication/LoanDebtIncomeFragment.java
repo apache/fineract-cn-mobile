@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.loanaccounts.loanapplication;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;

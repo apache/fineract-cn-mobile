@@ -3,7 +3,7 @@ package org.apache.fineract.utils;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.view.Menu;
 
 import com.google.gson.Gson;

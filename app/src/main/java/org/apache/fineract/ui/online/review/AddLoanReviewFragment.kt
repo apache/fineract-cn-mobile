@@ -2,10 +2,11 @@ package org.apache.fineract.ui.online.review
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import butterknife.ButterKnife
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
@@ -81,25 +82,25 @@ class AddLoanReviewFragment : FineractBaseFragment(), Step {
 
     private fun showUserInterface() {
         val layoutManagerDebt = LinearLayoutManager(activity)
-        layoutManagerDebt.orientation = LinearLayoutManager.VERTICAL
+        layoutManagerDebt.orientation = RecyclerView.VERTICAL
         rvDebt.layoutManager = layoutManagerDebt
         rvDebt.setHasFixedSize(true)
         rvDebt.adapter = debtAdapter
 
         val layoutManagerIncome = LinearLayoutManager(activity)
-        layoutManagerIncome.orientation = LinearLayoutManager.VERTICAL
+        layoutManagerIncome.orientation = RecyclerView.VERTICAL
         rvIncome.layoutManager = layoutManagerIncome
         rvIncome.setHasFixedSize(true)
         rvIncome.adapter = incomeAdapter
 
         val layoutManagerCoSignerDebt = LinearLayoutManager(activity)
-        layoutManagerCoSignerDebt.orientation = LinearLayoutManager.VERTICAL
+        layoutManagerCoSignerDebt.orientation = RecyclerView.VERTICAL
         rvCosignerDebt.layoutManager = layoutManagerCoSignerDebt
         rvCosignerDebt.setHasFixedSize(true)
         rvCosignerDebt.adapter = debtCoSignerAdapter
 
         val layoutManagerCoSignerIncome = LinearLayoutManager(activity)
-        layoutManagerCoSignerIncome.orientation = LinearLayoutManager.VERTICAL
+        layoutManagerCoSignerIncome.orientation = RecyclerView.VERTICAL
         rvCosignerIncome.layoutManager = layoutManagerCoSignerIncome
         rvCosignerIncome.setHasFixedSize(true)
         rvCosignerIncome.adapter = incomeCoSignerAdapter

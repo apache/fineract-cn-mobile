@@ -2,10 +2,11 @@ package org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayr
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
 import kotlinx.android.synthetic.main.fragment_edit_payroll_allocation.*
@@ -83,7 +84,7 @@ class EditPayrollAllocationFragment : FineractBaseFragment(), Step,
     fun showUserInterface() {
 
         val layoutManager = LinearLayoutManager(activity)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        layoutManager.orientation = RecyclerView.VERTICAL
         rvPayrollAllocation.layoutManager = layoutManager
         rvPayrollAllocation.setHasFixedSize(true)
 

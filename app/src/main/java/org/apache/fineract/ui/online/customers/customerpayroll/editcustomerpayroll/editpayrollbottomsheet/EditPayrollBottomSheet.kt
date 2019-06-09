@@ -2,7 +2,7 @@ package org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayr
 
 import android.app.Dialog
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialogFragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import android.view.View
 import kotlinx.android.synthetic.main.bottom_sheet_edit_payroll_allocations.view.*
 import org.apache.fineract.R

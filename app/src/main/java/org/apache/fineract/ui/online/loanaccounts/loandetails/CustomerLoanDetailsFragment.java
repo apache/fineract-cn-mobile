@@ -2,9 +2,9 @@ package org.apache.fineract.ui.online.loanaccounts.loandetails;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v4.widget.NestedScrollView;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;

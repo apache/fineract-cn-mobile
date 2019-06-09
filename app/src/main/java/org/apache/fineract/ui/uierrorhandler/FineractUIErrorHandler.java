@@ -1,7 +1,7 @@
 package org.apache.fineract.ui.uierrorhandler;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -9,8 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.apache.fineract.R;
-
-import butterknife.ButterKnife;
 
 /**
  * @author Rajan Maurya
@@ -70,15 +68,15 @@ public class FineractUIErrorHandler {
     }
 
     private void initializeUI() {
-        ivEmptyFeatureImage = ButterKnife.findById(view, R.id.iv_empty_feature_image);
-        tvFeatureName = ButterKnife.findById(view, R.id.tv_empty_feature_name);
-        tvSubFeatureName = ButterKnife.findById(view, R.id.tv_empty_sub_feature_name);
-        llEmptyUI = ButterKnife.findById(view, R.id.ll_empty_ui);
-        llErrorToLoad = ButterKnife.findById(view, R.id.ll_error_to_load);
-        llNoInternet = ButterKnife.findById(view, R.id.ll_no_internet);
-        llError = ButterKnife.findById(view, R.id.ll_error);
-        btnTryAgain = ButterKnife.findById(view, R.id.btn_try_again);
-        tvErrorFeatureName = ButterKnife.findById(view, R.id.tv_error_feature_name);
-        ivErrorNoInternet = ButterKnife.findById(view, R.id.iv_error_no_connection);
+        ivEmptyFeatureImage = view.findViewById(R.id.iv_empty_feature_image);
+        tvFeatureName = view.findViewById(R.id.tv_empty_feature_name);
+        tvSubFeatureName = view.findViewById(R.id.tv_empty_sub_feature_name);
+        llEmptyUI = view.findViewById(R.id.ll_empty_ui);
+        llErrorToLoad = view.findViewById(R.id.ll_error_to_load);
+        llNoInternet = view.findViewById(R.id.ll_no_internet);
+        llError = view.findViewById(R.id.ll_error);
+        btnTryAgain = view.findViewById(R.id.btn_try_again);
+        tvErrorFeatureName = view.findViewById(R.id.tv_error_feature_name);
+        ivErrorNoInternet = view.findViewById(R.id.iv_error_no_connection);
     }
 }

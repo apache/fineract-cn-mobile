@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/cl_loan_details"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:visibility="visible">
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:background="@color/gray_light"
@@ -16,7 +16,7 @@
         android:visibility="invisible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/cv_financial_products"
@@ -40,14 +40,14 @@
                     android:layout_width="match_parent"
                     android:text="@string/products"/>
 
-                <android.support.v7.widget.AppCompatSpinner
+                <androidx.appcompat.widget.AppCompatSpinner
                     style="@style/Widget.AppCompat.Spinner.Underlined"
                     android:entries="@array/loan_application_steps"
                     android:id="@+id/sp_products"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"/>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_short_name"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_padding_16dp"
@@ -60,9 +60,9 @@
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"
                         android:inputType="text"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_principal_amount"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_padding_4dp"
@@ -74,7 +74,7 @@
                         android:inputType="numberDecimal"
                         android:layout_height="wrap_content"
                         android:layout_width="match_parent"/>
-                </android.support.design.widget.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
                     android:layout_height="match_parent"
@@ -83,7 +83,7 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_term"
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/layout_padding_4dp"
@@ -96,9 +96,9 @@
                             android:inputType="numberDecimal"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"/>
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         style="@style/Widget.AppCompat.Spinner.Underlined"
                         android:entries="@array/loan_application_steps"
                         android:id="@+id/sp_term_unit_type"
@@ -115,7 +115,7 @@
                     android:orientation="horizontal"
                     android:weightSum="2">
 
-                    <android.support.design.widget.TextInputLayout
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/til_repay"
                         android:layout_height="match_parent"
                         android:layout_marginTop="@dimen/layout_padding_4dp"
@@ -128,9 +128,9 @@
                             android:inputType="number"
                             android:layout_height="wrap_content"
                             android:layout_width="match_parent"/>
-                    </android.support.design.widget.TextInputLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         style="@style/Widget.AppCompat.Spinner.Underlined"
                         android:entries="@array/loan_application_steps"
                         android:id="@+id/sp_repay_unit_type"
@@ -157,7 +157,7 @@
                         android:layout_width="match_parent"
                         android:text="@string/on"/>
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         style="@style/Widget.AppCompat.Spinner.Underlined"
                         android:entries="@array/loan_application_steps"
                         android:id="@+id/sp_repay_unit_week"
@@ -219,7 +219,7 @@
                             android:orientation="horizontal"
                             android:weightSum="2">
 
-                            <android.support.v7.widget.AppCompatSpinner
+                            <androidx.appcompat.widget.AppCompatSpinner
                                 android:id="@+id/sp_repay_month_day_in_number"
                                 style="@style/Widget.AppCompat.Spinner.Underlined"
                                 android:entries="@array/loan_application_steps"
@@ -251,7 +251,7 @@
                             android:orientation="horizontal"
                             android:weightSum="2">
 
-                            <android.support.v7.widget.AppCompatSpinner
+                            <androidx.appcompat.widget.AppCompatSpinner
                                 android:id="@+id/sp_repay_time_slots"
                                 style="@style/Widget.AppCompat.Spinner.Underlined"
                                 android:entries="@array/loan_application_steps"
@@ -260,7 +260,7 @@
                                 android:layout_weight="1"
                                 android:layout_width="match_parent"/>
 
-                            <android.support.v7.widget.AppCompatSpinner
+                            <androidx.appcompat.widget.AppCompatSpinner
                                 android:id="@+id/sp_repay_week_days"
                                 style="@style/Widget.AppCompat.Spinner.Underlined"
                                 android:entries="@array/loan_application_steps"
@@ -291,7 +291,7 @@
                         android:layout_width="wrap_content"
                         android:text="@string/in"/>
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/sp_repay_year_month"
                         style="@style/Widget.AppCompat.Spinner.Underlined"
                         android:entries="@array/loan_application_steps"
@@ -303,13 +303,13 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <include
         layout="@layout/layout_exception_handler"
         android:id="@+id/layout_error"
         android:visibility="gone"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

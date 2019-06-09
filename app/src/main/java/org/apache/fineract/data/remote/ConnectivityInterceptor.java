@@ -1,7 +1,7 @@
 package org.apache.fineract.data.remote;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import org.apache.fineract.exceptions.NoConnectivityException;
 import org.apache.fineract.utils.NetworkUtil;
