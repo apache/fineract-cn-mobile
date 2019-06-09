@@ -41,6 +41,7 @@ public class DashboardFragment extends FineractBaseFragment {
         rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
         ButterKnife.bind(this, rootView);
         setToolbarTitle(getString(R.string.dashboard));
+        ((DashboardActivity) getActivity()).setNavigationViewSelectedItem(R.id.item_dashboard);
         return rootView;
     }
 
