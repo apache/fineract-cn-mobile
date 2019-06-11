@@ -93,9 +93,9 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu_product_search, menu)
+        inflater.inflate(R.menu.menu_product_search, menu)
         setUpSearchInterface(menu)
     }
 

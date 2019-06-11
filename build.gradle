@@ -68,4 +68,5 @@ ext {
     roboElectricVersion = '3.1'
     circleImageviewVersion = '2.1.0'
     compressorVersion = '2.1.0'
+    mifosPasscodeVersion = '1.0.0'
 }

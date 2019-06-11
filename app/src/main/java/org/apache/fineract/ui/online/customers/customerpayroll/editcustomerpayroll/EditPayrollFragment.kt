@@ -38,7 +38,7 @@ class EditPayrollFragment : FineractBaseFragment(), Step {
         const val DATE_FORMAT = "dd MMM yyyy"
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnNavigationBarListener.Payroll) {
             listener = context

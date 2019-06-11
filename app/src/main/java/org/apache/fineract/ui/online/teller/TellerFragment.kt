@@ -97,9 +97,9 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
                 R.drawable.ic_person_outline_black_24dp)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu_teller_search, menu)
+        inflater.inflate(R.menu.menu_teller_search, menu)
         setUpSearchInterface(menu)
     }
 
