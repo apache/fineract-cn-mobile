@@ -44,12 +44,12 @@ class AddLoanReviewFragment : FineractBaseFragment(), Step {
     @Inject
     lateinit var debtCoSignerAdapter: LoanDebtIncomeAdapter
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         if (context is OnNavigationBarListener.ReviewLoan) {
             onNavigationBarListener = context
         } else {
-            throw RuntimeException(context!!.toString() + " must implement OnNavigationBarListener.ReviewLoan")
+            throw RuntimeException("$context must implement OnNavigationBarListener.ReviewLoan")
         }
     }
 

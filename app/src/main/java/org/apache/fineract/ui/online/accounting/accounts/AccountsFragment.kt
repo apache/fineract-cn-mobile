@@ -78,9 +78,9 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu_account_search, menu)
+        inflater.inflate(R.menu.menu_account_search, menu)
         setUpSearchInterface(menu)
     }
 

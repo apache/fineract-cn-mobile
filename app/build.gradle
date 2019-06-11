@@ -143,6 +143,8 @@ dependencies {
     //Material Stepper UI library
     implementation "com.stepstone.stepper:material-stepper:$materialStepperVersion"
 
+    implementation "com.mifos.mobile:mifos-passcode:$mifosPasscodeVersion"
+
     // Instrumentation test dependencies
     androidTestImplementation jUnit
     androidTestImplementation mockito

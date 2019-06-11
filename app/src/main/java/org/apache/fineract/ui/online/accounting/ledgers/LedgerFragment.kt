@@ -97,9 +97,9 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
                 R.drawable.ic_person_outline_black_24dp)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.menu_ledger_search, menu)
+        inflater.inflate(R.menu.menu_ledger_search, menu)
         setUpSearchInterface(menu)
     }
 
