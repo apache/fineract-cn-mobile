@@ -15,7 +15,9 @@ public interface LauncherContract {
 
         void checkRefreshAccessToken();
 
-        void startActivity(Class aClass);
+        void startLoginActivity();
+
+        void startPasscodeActivity();
 
         void refreshAccessTokenSuccessfully(Authentication authentication);
 

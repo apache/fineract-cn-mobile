@@ -6,11 +6,12 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import com.mifos.mobile.passcode.BasePassCodeActivity;
 
 import org.apache.fineract.FineractApplication;
 import org.apache.fineract.R;
@@ -18,6 +19,7 @@ import org.apache.fineract.injection.component.ActivityComponent;
 import org.apache.fineract.injection.component.ConfigPersistentComponent;
 import org.apache.fineract.injection.component.DaggerConfigPersistentComponent;
 import org.apache.fineract.injection.module.ActivityModule;
+import org.apache.fineract.ui.online.PassCodeActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,7 +31,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * creation of Dagger components and makes sure that instances of ConfigPersistentComponent survive
  * across configuration changes.
  */
-public class FineractBaseActivity extends AppCompatActivity implements BaseActivityCallback {
+public class FineractBaseActivity extends BasePassCodeActivity implements BaseActivityCallback {
 
     private static final String KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID";
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
@@ -186,5 +188,10 @@ public class FineractBaseActivity extends AppCompatActivity implements BaseActiv
     }
     public int stackCount() {
         return getSupportFragmentManager().getBackStackEntryCount();
+    }
+
+    @Override
+    public Class getPassCodeClass() {
+        return PassCodeActivity.class;
     }
 }

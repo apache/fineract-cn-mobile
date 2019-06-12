@@ -34,7 +34,7 @@ public class DataManagerRoles extends FineractBaseDataManager {
 
     public Observable<List<Role>> getRoles() {
         return authenticatedObservableApi(
-                baseApiManager.getRolesAndPermissionsService().getRoles())
+                baseApiManager.rolesService.getRoles())
                 .onErrorResumeNext(
                         new Function<Throwable, ObservableSource<List<Role>>>() {
                             @Override

@@ -6,12 +6,14 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.mifos.mobile.passcode.utils.PassCodeConstants;
+
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.Authentication;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
-import org.apache.fineract.ui.online.DashboardActivity;
+import org.apache.fineract.ui.online.PassCodeActivity;
 
 import javax.inject.Inject;
 
@@ -83,7 +85,9 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
         preferencesHelper.putAccessToken(user.getAccessToken());
         preferencesHelper.putSignInUser(user);
         preferencesHelper.putUserName(etUsername.getEditableText().toString().trim());
-        startActivity(new Intent(this, DashboardActivity.class));
+        Intent intent = new Intent(this, PassCodeActivity.class);
+        intent.putExtra(PassCodeConstants.PASSCODE_INITIAL_LOGIN, true);
+        startActivity(intent);
         finish();
         Toast.makeText(this, getString(R.string.welcome), Toast.LENGTH_LONG).show();
     }
