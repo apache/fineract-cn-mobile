@@ -3,12 +3,14 @@ package org.apache.fineract.ui.online.launcher;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.mifos.mobile.passcode.utils.PassCodeConstants;
+
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferenceKey;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.Authentication;
 import org.apache.fineract.ui.base.FineractBaseActivity;
-import org.apache.fineract.ui.online.DashboardActivity;
+import org.apache.fineract.ui.online.PassCodeActivity;
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.utils.DateUtils;
 
@@ -46,18 +48,19 @@ public class LauncherActivity extends FineractBaseActivity implements LauncherCo
             if (DateUtils.isTokenExpired(authentication.getAccessTokenExpiration())) {
                 checkRefreshAccessToken();
             } else {
-                startActivity(DashboardActivity.class);
+                startPasscodeActivity();
             }
         } else {
-            startActivity(LoginActivity.class);
+            startLoginActivity();
         }
+        finish();
     }
 
     @Override
     public void checkRefreshAccessToken() {
         Authentication authentication = preferencesHelper.getSignedInUser();
         if (DateUtils.isTokenExpired(authentication.getRefreshTokenExpiration())) {
-            startActivity(LoginActivity.class);
+            startLoginActivity();
         } else {
             //Refresh access token
             preferencesHelper.putBoolean(PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, true);
@@ -66,10 +69,16 @@ public class LauncherActivity extends FineractBaseActivity implements LauncherCo
     }
 
     @Override
-    public void startActivity(Class aClass) {
-        Intent intent = new Intent(this, aClass);
+    public void startLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void startPasscodeActivity() {
+        Intent intent = new Intent(this, PassCodeActivity.class);
+        intent.putExtra(PassCodeConstants.PASSCODE_INITIAL_LOGIN, true);
+        startActivity(intent);
     }
 
     @Override
@@ -77,13 +86,13 @@ public class LauncherActivity extends FineractBaseActivity implements LauncherCo
         preferencesHelper.putBoolean(PreferenceKey.PREF_KEY_REFRESH_ACCESS_TOKEN, false);
         preferencesHelper.putAccessToken(authentication.getAccessToken());
         preferencesHelper.putSignInUser(authentication);
-        startActivity(DashboardActivity.class);
+        startPasscodeActivity();
     }
 
     @Override
     public void refreshAccessTokenFailed() {
         clearCredentials();
-        startActivity(LoginActivity.class);
+        startLoginActivity();
     }
 
     @Override

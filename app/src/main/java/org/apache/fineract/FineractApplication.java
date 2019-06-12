@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.crashlytics.android.Crashlytics;
 import com.evernote.android.job.JobManager;
+import com.mifos.mobile.passcode.utils.ForegroundChecker;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
 import org.apache.fineract.injection.component.ApplicationComponent;
@@ -35,6 +36,7 @@ public class FineractApplication extends Application {
         instance = this;
         Fabric.with(this, new Crashlytics());
         FlowManager.init(this);
+        ForegroundChecker.init(this);
     }
 
     public static Context getContext() {
