@@ -7,6 +7,7 @@ import org.apache.fineract.data.services.AnonymousService;
 import org.apache.fineract.data.services.AuthService;
 import org.apache.fineract.data.services.CustomerService;
 import org.apache.fineract.data.services.DepositService;
+import org.apache.fineract.data.services.GroupsService;
 import org.apache.fineract.data.services.IndividualLendingService;
 import org.apache.fineract.data.services.LoanService;
 import org.apache.fineract.data.services.ProductService;
@@ -41,6 +42,7 @@ public class BaseApiManager {
     private static TellersService tellerService;
     private static ProductService productService;
     private static PayrollService payrollService;
+    private static GroupsService groupsService;
 
     public BaseApiManager(Context context) {
         createService(context);
@@ -58,6 +60,7 @@ public class BaseApiManager {
         tellerService = createApi(TellersService.class);
         productService = createApi(ProductService.class);
         payrollService = createApi(PayrollService.class);
+        groupsService = createApi(GroupsService.class);
     }
 
     private static void initAnonymous() {
@@ -141,5 +144,9 @@ public class BaseApiManager {
 
     public PayrollService getPayrollService() {
         return payrollService;
+    }
+
+    public GroupsService getGroupsService() {
+        return groupsService;
     }
 }
