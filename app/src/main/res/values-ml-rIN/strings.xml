@@ -220,7 +220,7 @@
     <string name="amount_should_be_not_empty">തുക ശൂന്യമായി ഇടരുത്</string>
     <string name="description_should_not_be_empty">വിവരണം ശൂന്യമായിരിക്കരുത്</string>
     <string name="customer_name_should_not_be_empty">ഉപഭോക്താവിന്റെ പേര് ശൂന്യമായിരിക്കരുത്</string>
-    <string name="must_be_at_least_three_characters">കുറഞ്ഞത്% 1 $ d പ്രതീകങ്ങൾ ഉണ്ടായിരിക്കണം</string>
+    <string name="must_be_at_least_n_characters">കുറഞ്ഞത്% 1 $ d പ്രതീകങ്ങൾ ഉണ്ടായിരിക്കണം</string>
     <string name="only_thirty_two_character_allowed">32 പ്രതീകങ്ങൾ മാത്രം അനുവദനീയം</string>
     <string name="only_alphabetic_decimal_digits_characters_allowed">അക്ഷരമാല, ദശാംശ സംഖ്യകൾ മാത്രം, \'-\' _ \'\'. \' \'!\' \'~\' \'*\' \'(\' \')\' പ്രതീകങ്ങൾ അനുവദിച്ചു</string>
     <string name="invalid_country">അസാധുവായ രാജ്യം</string>

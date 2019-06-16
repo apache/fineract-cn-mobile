@@ -27,7 +27,7 @@ public class ValidateIdentifierUtil {
             TextInputLayout textInputLayout) {
         if (string.length() < 3) {
             showTextInputLayoutError(textInputLayout,
-                    context.getString(R.string.must_be_at_least_three_characters, 3));
+                    context.getString(R.string.must_be_at_least_n_characters, 3));
             return false;
         }
 
