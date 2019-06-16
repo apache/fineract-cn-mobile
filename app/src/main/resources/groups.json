@@ -1,0 +1,212 @@
+[
+  {
+    "identifier": "group001",
+    "groupDefinitionIdentifier": "grpDef001",
+    "name": "SDLE Group",
+    "leaders": [
+      "Ndi",
+      "Mele"
+    ],
+    "members": [
+      "Awasom",
+      "Kamgue",
+      "Etta"
+    ],
+    "office": "Bambui",
+    "assignedEmployee": "Tabah Tih",
+    "weekday": 6,
+    "status": "PENDING",
+    "address": {
+      "street": "Ghana Street",
+      "city": "Bamenda",
+      "region": "NWR",
+      "postalCode": "8050",
+      "countryCode": "CM",
+      "country": "Cameroon"
+    },
+    "createdOn": "2018-06-26T15:09:36.672Z",
+    "createdBy": "ranefer",
+    "lastModifiedOn": "lastModifiedOn",
+    "lastModifiedBy": "lastModifiedBy"
+  },
+  {
+    "identifier": "group002",
+    "groupDefinitionIdentifier": "grpDef202",
+    "name": "SDLE Group",
+    "leaders": [
+      "Ndi",
+      "Mele"
+    ],
+    "members": [
+      "Awasom",
+      "Kamgue",
+      "Etta"
+    ],
+    "office": "Bambui",
+    "assignedEmployee": "Tabah Tih",
+    "weekday": 6,
+    "status": "ACTIVE",
+    "address": {
+      "street": "Ghana Street",
+      "city": "Bamenda",
+      "region": "NWR",
+      "postalCode": "8050",
+      "countryCode": "CM",
+      "country": "Cameroon"
+    },
+    "createdOn": "2018-06-26T15:09:36.672Z",
+    "createdBy": "ranefer",
+    "lastModifiedOn": "lastModifiedOn",
+    "lastModifiedBy": "lastModifiedBy"
+  },
+  {
+    "identifier": "group003",
+    "groupDefinitionIdentifier": "grpDef003",
+    "name": "SDLE Group",
+    "leaders": [
+      "Ndi",
+      "Mele"
+    ],
+    "members": [
+      "Awasom",
+      "Kamgue",
+      "Etta"
+    ],
+    "office": "Bambui",
+    "assignedEmployee": "Tabah Tih",
+    "weekday": 6,
+    "status": "CLOSED",
+    "address": {
+      "street": "Ghana Street",
+      "city": "Bamenda",
+      "region": "NWR",
+      "postalCode": "8050",
+      "countryCode": "CM",
+      "country": "Cameroon"
+    },
+    "createdOn": "2018-06-26T15:09:36.672Z",
+    "createdBy": "ranefer",
+    "lastModifiedOn": "lastModifiedOn",
+    "lastModifiedBy": "lastModifiedBy"
+  },
+  {
+    "identifier": "group004",
+    "groupDefinitionIdentifier": "grpDef004",
+    "name": "SDLE Group",
+    "leaders": [
+      "Ndi",
+      "Mele"
+    ],
+    "members": [
+      "Awasom",
+      "Kamgue",
+      "Etta"
+    ],
+    "office": "Bambui",
+    "assignedEmployee": "Tabah Tih",
+    "weekday": 6,
+    "status": "PENDING",
+    "address": {
+      "street": "Ghana Street",
+      "city": "Bamenda",
+      "region": "NWR",
+      "postalCode": "8050",
+      "countryCode": "CM",
+      "country": "Cameroon"
+    },
+    "createdOn": "2018-06-26T15:09:36.672Z",
+    "createdBy": "ranefer",
+    "lastModifiedOn": "lastModifiedOn",
+    "lastModifiedBy": "lastModifiedBy"
+  },
+  {
+    "identifier": "group005",
+    "groupDefinitionIdentifier": "grpDef005",
+    "name": "SDLE Group",
+    "leaders": [
+      "Ndi",
+      "Mele"
+    ],
+    "members": [
+      "Awasom",
+      "Kamgue",
+      "Etta"
+    ],
+    "office": "Bambui",
+    "assignedEmployee": "Tabah Tih",
+    "weekday": 4,
+    "status": "ACTIVE",
+    "address": {
+      "street": "Ghana Street",
+      "city": "Bamenda",
+      "region": "NWR",
+      "postalCode": "8050",
+      "countryCode": "CM",
+      "country": "Cameroon"
+    },
+    "createdOn": "2018-06-26T15:09:36.672Z",
+    "createdBy": "ranefer",
+    "lastModifiedOn": "lastModifiedOn",
+    "lastModifiedBy": "lastModifiedBy"
+  },
+  {
+    "identifier": "group006",
+    "groupDefinitionIdentifier": "grpDef006",
+    "name": "SDLE Group",
+    "leaders": [
+      "Ndi",
+      "Mele"
+    ],
+    "members": [
+      "Awasom",
+      "Kamgue",
+      "Etta"
+    ],
+    "office": "Bambui",
+    "assignedEmployee": "Tabah Tih",
+    "weekday": 1,
+    "status": "ACTIVE",
+    "address": {
+      "street": "Ghana Street",
+      "city": "Bamenda",
+      "region": "NWR",
+      "postalCode": "8050",
+      "countryCode": "CM",
+      "country": "Cameroon"
+    },
+    "createdOn": "2018-06-26T15:09:36.672Z",
+    "createdBy": "ranefer",
+    "lastModifiedOn": "lastModifiedOn",
+    "lastModifiedBy": "lastModifiedBy"
+  },
+  {
+    "identifier": "group007",
+    "groupDefinitionIdentifier": "grpDef007",
+    "name": "SDLE Group",
+    "leaders": [
+      "Ndi",
+      "Mele"
+    ],
+    "members": [
+      "Awasom",
+      "Kamgue",
+      "Etta"
+    ],
+    "office": "Bambui",
+    "assignedEmployee": "Tabah Tih",
+    "weekday": 3,
+    "status": "CLOSED",
+    "address": {
+      "street": "Ghana Street",
+      "city": "Bamenda",
+      "region": "NWR",
+      "postalCode": "8050",
+      "countryCode": "CM",
+      "country": "Cameroon"
+    },
+    "createdOn": "2018-06-26T15:09:36.672Z",
+    "createdBy": "ranefer",
+    "lastModifiedOn": "lastModifiedOn",
+    "lastModifiedBy": "lastModifiedBy"
+  }
+]

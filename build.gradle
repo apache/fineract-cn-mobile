@@ -42,6 +42,7 @@ ext {
     retrofitVersion = '2.4.0'
     okHttp3Version = '3.11.0'
     butterKnifeVersion = '10.1.0'
+    lifecycleExtension = '2.0.0'
 
     // rxjava dependencies
     rxjavaVersion = '2.2.1'

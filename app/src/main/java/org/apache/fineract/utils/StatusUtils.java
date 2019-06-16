@@ -1,13 +1,16 @@
 package org.apache.fineract.utils;
 
 import android.content.Context;
+
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.widget.AppCompatImageView;
+
 import android.widget.ImageView;
 
 import com.google.gson.annotations.SerializedName;
 
 import org.apache.fineract.R;
+import org.apache.fineract.data.models.Group;
 import org.apache.fineract.data.models.accounts.AccountType;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.customer.Customer;
@@ -22,7 +25,7 @@ import org.apache.fineract.data.models.teller.Teller;
 public class StatusUtils {
 
     public static void setCustomerStatus(Customer.State state, AppCompatImageView imageView,
-            Context context) {
+                                         Context context) {
         switch (state) {
             case ACTIVE:
                 imageView.setColorFilter(
@@ -44,7 +47,7 @@ public class StatusUtils {
     }
 
     public static void setTellerStatus(Teller.State state, AppCompatImageView imageView,
-            Context context) {
+                                       Context context) {
         switch (state) {
             case ACTIVE:
                 imageView.setColorFilter(
@@ -66,7 +69,7 @@ public class StatusUtils {
     }
 
     public static void setCustomerStatusIcon(Customer.State state, ImageView imageView,
-            Context context) {
+                                             Context context) {
         switch (state) {
             case ACTIVE:
                 imageView.setImageDrawable(ContextCompat.getDrawable(context,
@@ -96,7 +99,7 @@ public class StatusUtils {
     }
 
     public static void setLoanAccountStatus(LoanAccount.State state, AppCompatImageView imageView,
-            Context context) {
+                                            Context context) {
         switch (state) {
             case CREATED:
                 imageView.setColorFilter(
@@ -125,8 +128,23 @@ public class StatusUtils {
         }
     }
 
+    public static void setGroupsStatusIcon(Group.Status state, ImageView imageView,
+                                           Context context) {
+        switch (state) {
+            case PENDING:
+                imageView.setColorFilter(ContextCompat.getColor(context, R.color.blue));
+                break;
+            case ACTIVE:
+                imageView.setColorFilter(ContextCompat.getColor(context, R.color.deposit_green));
+                break;
+            case CLOSED:
+                imageView.setColorFilter(ContextCompat.getColor(context, R.color.red_dark));
+                break;
+        }
+    }
+
     public static void setLoanAccountStatusIcon(LoanAccount.State state, ImageView imageView,
-            Context context) {
+                                                Context context) {
         switch (state) {
             case ACTIVE:
                 imageView.setImageDrawable(ContextCompat.getDrawable(context,
@@ -162,7 +180,7 @@ public class StatusUtils {
     }
 
     public static void setDepositAccountStatusIcon(DepositAccount.State state, ImageView imageView,
-            Context context) {
+                                                   Context context) {
         switch (state) {
             case ACTIVE:
                 imageView.setImageDrawable(ContextCompat.getDrawable(context,
@@ -222,7 +240,7 @@ public class StatusUtils {
     }
 
     public static void setCustomerActivitiesStatusIcon(Command.Action action, ImageView imageView,
-            Context context) {
+                                                       Context context) {
         switch (action) {
             case ACTIVATE:
                 imageView.setImageDrawable(ContextCompat.getDrawable(context,
@@ -259,7 +277,7 @@ public class StatusUtils {
     }
 
     public static void setAccountType(AccountType action, ImageView imageView,
-            Context context) {
+                                      Context context) {
         switch (action) {
             case ASSET:
                 imageView.setColorFilter(

@@ -3,6 +3,7 @@ package org.apache.fineract;
 import com.google.gson.reflect.TypeToken;
 
 import org.apache.fineract.data.models.Authentication;
+import org.apache.fineract.data.models.Group;
 import org.apache.fineract.data.models.accounts.LedgerPage;
 import org.apache.fineract.data.models.accounts.AccountPage;
 import org.apache.fineract.data.models.customer.Command;
@@ -112,5 +113,10 @@ public class FakeRemoteDataSource {
     public static PayrollConfiguration getPayrollConfig() {
         return testDataFactory.getObjectTypePojo(PayrollConfiguration.class,
                 FakeJsonName.PAYROLL_CONFIG);
+    }
+
+    public static List<Group> getGroups() {
+        return testDataFactory.getListTypePojo(new TypeToken<List<Group>>() {
+        }, FakeJsonName.GROUPS);
     }
 }
