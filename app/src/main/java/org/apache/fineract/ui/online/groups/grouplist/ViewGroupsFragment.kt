@@ -1,9 +1,11 @@
-package org.apache.fineract.ui.online.groups
+package org.apache.fineract.ui.online.groups.grouplist
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
@@ -16,6 +18,8 @@ import org.apache.fineract.ui.adapters.GroupsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.groups.groupdetails.GroupDetailsActivity
+import org.apache.fineract.utils.Constants
 import javax.inject.Inject
 
 
@@ -102,7 +106,9 @@ class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
     }
 
     override fun onItemClick(childView: View?, position: Int) {
-
+        var intent = Intent(context, GroupDetailsActivity::class.java)
+        intent.putExtra(Constants.GROUP, groupList[position])
+        startActivity(intent)
     }
 
     override fun onItemLongPress(childView: View?, position: Int) {

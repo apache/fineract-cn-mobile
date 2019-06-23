@@ -38,7 +38,7 @@
     <string name="activities">Activities</string>
     <string name="recent_activities">Recent activities</string>
     <string name="birthday">Birthday</string>
-    <string name="assigned_employee">Assigned Employee: </string>
+    <string name="assigned_employee">Assigned Employee </string>
     <string name="assigned_employee_list">Assigned Employee: %1$s</string>
     <string name="not_assigned">Not assigned</string>
     <string name="no_contact_details_available">No Contact details available</string>
@@ -212,6 +212,22 @@
     <string name="role">Role</string>
     <string name="customer_name">%1$s %2$s</string>
     <string name="groups">Groups</string>
+    <string name="group_id">Group Id</string>
+    <string name="leaders">Leaders</string>
+    <string name="members">Members</string>
+    <string name="office">Office</string>
+    <string name="weekday">Weekday</string>
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="region">Region</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="country">Country</string>
+    <string name="status">Status</string>
+
+    <!--Placeholder text-->
+    <string name="small_text" translatable="false">Small Text</string>
+    <string name="medium_text" translatable="false">Medium Text</string>
+    <string name="large_text" translatable="false">Large Text</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>

@@ -86,6 +86,8 @@
 
         <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
 
+        <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity"/>
+
         <receiver
             android:name=".jobs.JobsReceiver"
             android:exported="false">

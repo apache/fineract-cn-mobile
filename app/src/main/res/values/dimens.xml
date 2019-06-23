@@ -45,4 +45,8 @@
     <dimen name="side_bar_width">5dp</dimen>
 
     <dimen name="default_fab_button_size">56dp</dimen>
+
+    <!--Dimen values for Status-->
+    <dimen name="status_height">25dp</dimen>
+    <dimen name="status_width">25dp</dimen>
 </resources>

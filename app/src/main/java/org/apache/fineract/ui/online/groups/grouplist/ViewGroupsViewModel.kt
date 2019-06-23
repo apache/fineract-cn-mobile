@@ -1,4 +1,4 @@
-package org.apache.fineract.ui.online.groups
+package org.apache.fineract.ui.online.groups.grouplist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

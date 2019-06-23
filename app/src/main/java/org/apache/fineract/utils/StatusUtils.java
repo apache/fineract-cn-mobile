@@ -131,6 +131,7 @@ public class StatusUtils {
     public static void setGroupsStatusIcon(Group.Status state, ImageView imageView,
                                            Context context) {
         switch (state) {
+
             case PENDING:
                 imageView.setColorFilter(ContextCompat.getColor(context, R.color.blue));
                 break;
