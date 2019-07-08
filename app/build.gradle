@@ -17,6 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -85,6 +86,9 @@ dependencies {
     implementation "androidx.cardview:cardview:$supportLibraryVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     implementation "androidx.annotation:annotation:$supportLibraryVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtension"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleExtension"
+
 
     // Kotlin Dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -144,6 +148,10 @@ dependencies {
     implementation "com.stepstone.stepper:material-stepper:$materialStepperVersion"
 
     implementation "com.mifos.mobile:mifos-passcode:$mifosPasscodeVersion"
+
+    //Easy Validation Library
+    implementation "com.wajahatkarim3.easyvalidation:easyvalidation-core:$easyValidationVersion"
+
 
     // Instrumentation test dependencies
     androidTestImplementation jUnit

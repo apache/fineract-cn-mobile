@@ -23,6 +23,7 @@
     <dimen name="header_view_start_margin_bottom">14dp</dimen>
 
     <dimen name="view_line_height">1dp</dimen>
+    <dimen name="view_line_width">1dp</dimen>
 
     <dimen name="text_size_12sp">12sp</dimen>
     <dimen name="text_size_14sp">14sp</dimen>
@@ -45,4 +46,8 @@
     <dimen name="side_bar_width">5dp</dimen>
 
     <dimen name="default_fab_button_size">56dp</dimen>
+
+    <!--Dimen values for Status-->
+    <dimen name="status_height">25dp</dimen>
+    <dimen name="status_width">25dp</dimen>
 </resources>

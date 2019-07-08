@@ -86,6 +86,12 @@
 
         <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
 
+        <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity" />
+
+        <activity
+            android:name=".ui.online.groups.creategroup.CreateGroupActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
         <receiver
             android:name=".jobs.JobsReceiver"
             android:exported="false">
