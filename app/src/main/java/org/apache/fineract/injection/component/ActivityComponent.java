@@ -30,6 +30,8 @@ import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
 import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails
         .DepositAccountDetailsFragment;
 import org.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
+import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity;
+import org.apache.fineract.ui.online.groups.creategroup.GroupAddressStepFragment;
 import org.apache.fineract.ui.online.groups.grouplist.ViewGroupsFragment;
 import org.apache.fineract.ui.online.identification.createidentification.identificationactivity
         .CreateIdentificationActivity;
@@ -138,5 +140,9 @@ public interface ActivityComponent {
     void inject(EditPayrollActivity editPayrollActivity);
 
     void inject(ViewGroupsFragment viewGroupsFragment);
+
+    void inject(GroupAddressStepFragment groupAddressStepFragment);
+
+    void inject(CreateGroupActivity createGroupActivity);
 }
 

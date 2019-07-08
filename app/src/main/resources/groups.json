@@ -14,7 +14,7 @@
     ],
     "office": "Bambui",
     "assignedEmployee": "Tabah Tih",
-    "weekday": 6,
+    "weekday": 4,
     "status": "PENDING",
     "address": {
       "street": "Ghana Street",
@@ -44,7 +44,7 @@
     ],
     "office": "Bambui",
     "assignedEmployee": "Tabah Tih",
-    "weekday": 6,
+    "weekday": 1,
     "status": "ACTIVE",
     "address": {
       "street": "Ghana Street",
@@ -74,7 +74,7 @@
     ],
     "office": "Bambui",
     "assignedEmployee": "Tabah Tih",
-    "weekday": 6,
+    "weekday": 5,
     "status": "CLOSED",
     "address": {
       "street": "Ghana Street",
@@ -104,7 +104,7 @@
     ],
     "office": "Bambui",
     "assignedEmployee": "Tabah Tih",
-    "weekday": 6,
+    "weekday": 5,
     "status": "PENDING",
     "address": {
       "street": "Ghana Street",

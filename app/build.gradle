@@ -17,6 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -147,6 +148,10 @@ dependencies {
     implementation "com.stepstone.stepper:material-stepper:$materialStepperVersion"
 
     implementation "com.mifos.mobile:mifos-passcode:$mifosPasscodeVersion"
+
+    //Easy Validation Library
+    implementation "com.wajahatkarim3.easyvalidation:easyvalidation-core:$easyValidationVersion"
+
 
     // Instrumentation test dependencies
     androidTestImplementation jUnit

@@ -23,6 +23,7 @@
     <dimen name="header_view_start_margin_bottom">14dp</dimen>
 
     <dimen name="view_line_height">1dp</dimen>
+    <dimen name="view_line_width">1dp</dimen>
 
     <dimen name="text_size_12sp">12sp</dimen>
     <dimen name="text_size_14sp">14sp</dimen>

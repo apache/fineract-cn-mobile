@@ -4,14 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
+import okhttp3.MediaType
+import okhttp3.ResponseBody
 import org.apache.fineract.data.local.PreferencesHelper
 import org.apache.fineract.data.models.Group
 import org.apache.fineract.data.remote.BaseApiManager
 import org.apache.fineract.FakeRemoteDataSource
-import org.apache.fineract.data.datamanager.api.DataManagerAuth
-import org.apache.fineract.data.datamanager.api.FineractBaseDataManager
 import javax.inject.Inject
-import javax.inject.Singleton
 
 
 /*
@@ -31,5 +30,16 @@ class DataManagerGroups @Inject constructor(val baseManagerApi: BaseApiManager,
                     Observable.just(FakeRemoteDataSource.getGroups())
                 }).blockingFirst())
         return groups
+    }
+
+    fun createGroup(): MutableLiveData<Observable<ResponseBody>> {
+        val response = MutableLiveData<Observable<ResponseBody>>()
+
+        response.value = baseManagerApi.groupsService.createGroup()
+                .onErrorResumeNext(Function<Throwable, ObservableSource<ResponseBody>> {
+                    Observable.just(ResponseBody.create(MediaType.parse("text/plain"), "Successfully created Group"))
+                })
+
+        return response
     }
 }

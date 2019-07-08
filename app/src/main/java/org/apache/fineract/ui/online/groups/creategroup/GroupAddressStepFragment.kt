@@ -1,0 +1,135 @@
+package org.apache.fineract.ui.online.groups.creategroup
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.stepstone.stepper.Step
+import com.stepstone.stepper.VerificationError
+import com.wajahatkarim3.easyvalidation.core.rules.BaseRule
+import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
+import kotlinx.android.synthetic.main.fragment_step_group_address.*
+import org.apache.fineract.R
+import org.apache.fineract.data.models.customer.Country
+import org.apache.fineract.ui.base.FineractBaseActivity
+import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
+import org.apache.fineract.ui.online.groups.grouplist.GroupsViewModel
+import javax.inject.Inject
+
+
+/*
+ * Created by saksham on 03/July/2019
+*/
+
+class GroupAddressStepFragment : FineractBaseFragment(), Step {
+
+    lateinit var rootView: View
+
+    lateinit var countries: List<Country>
+
+    lateinit var viewModel: GroupsViewModel
+
+    @Inject
+    lateinit var groupViewModelFactory: GroupViewModelFactory
+
+    companion object {
+        fun newInstance(): GroupAddressStepFragment {
+            return GroupAddressStepFragment()
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        rootView = inflater.inflate(R.layout.fragment_step_group_address, container, false)
+        (activity as FineractBaseActivity).activityComponent.inject(this)
+        viewModel = ViewModelProviders.of(this,
+                groupViewModelFactory).get(GroupsViewModel::class.java)
+        return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.getCountries().observe(this, Observer {
+            countries = it
+            etCountry.setAdapter(ArrayAdapter(context, android.R.layout.simple_list_item_1, viewModel.getCountryNames(it)))
+        })
+        etCountry.threshold = 1
+    }
+
+    override fun onSelected() {
+
+    }
+
+    override fun verifyStep(): VerificationError? {
+        if (!validateStreet() || !validateCity() || !validateRegion() || !validatePostalCode() || !validateCountry()) {
+            return VerificationError("")
+        }
+        (activity as CreateGroupActivity).setGroupAddress(etStreet.text.toString(), etCity.text.toString(), etRegion.text.toString(),
+                etPostalCode.text.toString(), etCountry.text.toString(), viewModel.getCountryCode(countries, etCountry.text.toString()))
+        return null
+    }
+
+    override fun onError(error: VerificationError) {
+
+    }
+
+    private fun validateStreet(): Boolean {
+        return etStreet.validator()
+                .nonEmpty()
+                .addErrorCallback {
+                    etStreet.error = it
+                }
+                .check()
+    }
+
+    private fun validateCity(): Boolean {
+        return etCity.validator()
+                .nonEmpty()
+                .addErrorCallback {
+                    etCity.error = it
+                }.check()
+    }
+
+    private fun validateRegion(): Boolean {
+        return etRegion.validator()
+                .nonEmpty()
+                .addErrorCallback {
+                    etRegion.error = it
+                }.check()
+    }
+
+    private fun validatePostalCode(): Boolean {
+        return etPostalCode.validator()
+                .nonEmpty()
+                .onlyNumbers()
+                .addErrorCallback {
+                    etPostalCode.error = it
+                }.check()
+    }
+
+    private fun validateCountry(): Boolean {
+        return etCountry.validator()
+                .nonEmpty()
+                .noNumbers()
+                .addRule(object : BaseRule {
+                    override fun validate(text: String): Boolean {
+                        return viewModel.isCountryValid(countries, etCountry.text.toString())
+                    }
+
+                    override fun getErrorMessage(): String {
+                        return getString(R.string.invalid_country)
+                    }
+                })
+                .addErrorCallback {
+                    Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                }.check()
+    }
+}

@@ -179,6 +179,7 @@
     <string name="customer_deposit_account">Customer deposit account</string>
     <string name="customer_created_successfully">%1$s created successfully</string>
     <string name="customer_updated_successfully">%1$s updated successfully</string>
+    <string name="group_identifier_created_successfully">Group %1$s created successfully</string>
     <string name="created_by">Created by</string>
     <string name="created_on">Created on</string>
     <string name="no_deposit_account">No deposit account</string>
@@ -223,6 +224,10 @@
     <string name="postal_code">Postal Code</string>
     <string name="country">Country</string>
     <string name="status">Status</string>
+    <string name="group_definition_identifier">Group Definition Identifier</string>
+    <string name="create_group">Create Group</string>
+    <string name="no_group_member_added">No Group Member Added</string>
+    <string name="no_group_leader_added">No Group Leader Added</string>
 
     <!--Placeholder text-->
     <string name="small_text" translatable="false">Small Text</string>
@@ -268,7 +273,7 @@
     <string name="amount_should_be_not_empty">Amount should not be empty</string>
     <string name="description_should_not_be_empty">Description should not be empty</string>
     <string name="customer_name_should_not_be_empty">Customer name should not be empty</string>
-    <string name="must_be_at_least_three_characters">Must be at least %1$d characters</string>
+    <string name="must_be_at_least_n_characters">Must be at least %1$d characters</string>
     <string name="only_thirty_two_character_allowed">Only 32 character allowed</string>
     <string name="only_alphabetic_decimal_digits_characters_allowed">Only alphabetic, decimal digits,\'-\' \'_\' \'.\' \'!\' \'~\' \'*\' \'(\' \')\' characters allowed</string>
     <string name="two_warning_message">%1$s \n %1$s</string>
@@ -315,7 +320,8 @@
     <string name="error_fetching_customer_details">Failed to fetch customer details</string>
     <string name="error_fetching_deposit_product">Failed to fetch deposit product</string>
     <string name="error_failed_to_refresh_customers">Failed to refresh customers</string>
-
+    <string name="error_group_atleast_1_member">Group should have atleast 1 Member</string>
+    <string name="error_group_atleast_1_leader">Group should have atleast 1 Leader</string>
 
     <!--Material Dialog-->
     <string name="dialog_action_ok">OK</string>
@@ -429,6 +435,14 @@
 
     <string-array name="create_deposit_steps">
         <item>Assign product</item>
+        <item>Review</item>
+    </string-array>
+
+    <string-array name="create_group_steps">
+        <item>Group Details</item>
+        <item>Add Members</item>
+        <item>Add Leaders</item>
+        <item>Group Address</item>
         <item>Review</item>
     </string-array>
 

@@ -3,6 +3,7 @@ package org.apache.fineract.ui.online.groups.grouplist
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import org.apache.fineract.data.datamanager.api.DataManagerAnonymous
 import org.apache.fineract.data.datamanager.api.DataManagerGroups
 import org.apache.fineract.injection.ApplicationContext
 import javax.inject.Inject
@@ -14,10 +15,11 @@ import javax.inject.Inject
 
 
 class GroupViewModelFactory @Inject constructor(@ApplicationContext var context: Context,
-                                                private val dataManagerGroups: DataManagerGroups)
+                                                private val dataManagerGroups: DataManagerGroups,
+                                                private val dataManagerAnonymous: DataManagerAnonymous)
     : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return ViewGroupsViewModel(dataManagerGroups) as T
+        return GroupsViewModel(dataManagerGroups, dataManagerAnonymous) as T
     }
 }

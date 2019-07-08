@@ -5,12 +5,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import butterknife.ButterKnife
+import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_view_groups.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.Group
@@ -18,6 +19,7 @@ import org.apache.fineract.ui.adapters.GroupsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity
 import org.apache.fineract.ui.online.groups.groupdetails.GroupDetailsActivity
 import org.apache.fineract.utils.Constants
 import javax.inject.Inject
@@ -31,7 +33,7 @@ class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
 
     lateinit var rootView: View
 
-    lateinit var viewModel: ViewGroupsViewModel
+    lateinit var viewModel: GroupsViewModel
 
     @Inject
     lateinit var adapter: GroupsAdapter
@@ -61,13 +63,17 @@ class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
         rootView = inflater.inflate(R.layout.fragment_view_groups, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
         viewModel = ViewModelProviders.of(this,
-                groupViewModelFactory).get(ViewGroupsViewModel::class.java)
+                groupViewModelFactory).get(GroupsViewModel::class.java)
         return rootView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        ButterKnife.bind(this, rootView)
         adapter.setItemClickListener(this)
 
         rvGroups.adapter = adapter
@@ -113,4 +119,10 @@ class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
 
     override fun onItemLongPress(childView: View?, position: Int) {
     }
+
+    @OnClick(R.id.fabAddGroup)
+    fun addGroup() {
+        startActivity(Intent(context, CreateGroupActivity::class.java))
+    }
+
 }

@@ -10,20 +10,20 @@ import org.apache.fineract.data.models.customer.Address
 
 @Parcelize
 data class Group(
-        val identifier: String,
-        val groupDefinitionIdentifier: String,
-        val name: String,
-        val leaders: List<String>,
-        val members: List<String>,
-        val office: String,
-        val assignedEmployee: String,
-        val weekday: Int,
-        val status: Status,
-        val address: Address,
-        val createdOn: String,
-        val createdBy: String,
-        val lastModifiedBy: String,
-        val lastModifiedOn: String) : Parcelable {
+        var identifier: String? = null,
+        var groupDefinitionIdentifier: String? = null,
+        var name: String? = null,
+        var leaders: List<String>? = null,
+        var members: List<String>? = null,
+        var office: String? = null,
+        var assignedEmployee: String? = null,
+        var weekday: Int? = null,
+        var status: Status? = null,
+        var address: Address? = null,
+        var createdOn: String? = null,
+        var createdBy: String? = null,
+        var lastModifiedBy: String? = null,
+        var lastModifiedOn: String? = null) : Parcelable {
 
     enum class Status {
         PENDING,

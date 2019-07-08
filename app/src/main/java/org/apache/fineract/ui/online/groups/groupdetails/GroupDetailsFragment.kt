@@ -10,6 +10,7 @@ import org.apache.fineract.data.models.Group
 import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.views.CircularImageView
 import org.apache.fineract.utils.Constants
+import org.apache.fineract.utils.DateUtils
 import org.apache.fineract.utils.Utils
 
 
@@ -48,25 +49,25 @@ class GroupDetailsFragment : FineractBaseFragment() {
         tvIdentifier.text = group.identifier
         tvGroupId.text = group.groupDefinitionIdentifier
         tvName.text = group.name
-        tvStatus.text = group.status.name
+        tvStatus.text = group.status?.name
         setGroupStatusCircularIcon(group.status, civStatus)
-        group.leaders.forEach {
+        group.leaders?.forEach {
             tvLeaders.append("$it\n")
         }
-        group.members.forEach {
+        group.members?.forEach {
             tvMembers.append("$it\n")
         }
         tvOffice.text = group.office
         tvAssignedEmployee.text = group.assignedEmployee
-        tvWeekday.text = group.weekday.toString()
-        tvStreet.text = group.address.street
-        tvCity.text = group.address.city
-        tvRegion.text = group.address.region
-        tvPostalCode.text = group.address.postalCode
-        tvCountry.text = group.address.country
+        tvWeekday.text = DateUtils.getWeekDay(group.weekday!!)
+        tvStreet.text = group.address?.street
+        tvCity.text = group.address?.city
+        tvRegion.text = group.address?.region
+        tvPostalCode.text = group.address?.postalCode
+        tvCountry.text = group.address?.country
     }
 
-    private fun setGroupStatusCircularIcon(status: Group.Status, civStatus: CircularImageView) {
+    private fun setGroupStatusCircularIcon(status: Group.Status?, civStatus: CircularImageView) {
 
         when (status) {
             Group.Status.PENDING -> {
