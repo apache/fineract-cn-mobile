@@ -4,7 +4,7 @@ import org.apache.fineract.injection.PerActivity;
 import org.apache.fineract.injection.module.ActivityModule;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.DashboardActivity;
-import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
+import org.apache.fineract.ui.online.accounting.accounts.accountList.AccountsFragment;
 import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
         .CreateCustomerActivity;

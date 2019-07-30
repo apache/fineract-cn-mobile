@@ -1,13 +1,15 @@
-package org.apache.fineract.ui.online.accounting.accounts
+package org.apache.fineract.ui.online.accounting.accounts.accountList
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_accounts.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
@@ -16,11 +18,14 @@ import org.apache.fineract.data.models.accounts.Account
 import org.apache.fineract.ui.adapters.AccountsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.accounting.accounts.accountdetails.AccountDetailActivity
+import org.apache.fineract.utils.ConstantKeys
 import java.util.*
 import javax.inject.Inject
 
 
-class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefreshLayout.OnRefreshListener {
+class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @Inject
     lateinit var accountsPresenter: AccountsPresenter
@@ -28,7 +33,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     @Inject
     lateinit var accountsAdapter: AccountsAdapter
 
-    lateinit var accountList : List<Account>
+    lateinit var accountList: List<Account>
 
     companion object {
         fun newInstance() = AccountsFragment()
@@ -37,7 +42,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        accountList= ArrayList()
+        accountList = ArrayList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -71,6 +76,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
         rvAccount.setHasFixedSize(true)
 
         rvAccount.adapter = accountsAdapter
+        accountsAdapter.setItemClickListener(this)
 
         swipeContainer.setColorSchemeColors(*activity!!
                 .resources.getIntArray(R.array.swipeRefreshColors))
@@ -157,6 +163,16 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     override fun showError(message: String) {
         showRecyclerView(false)
         showFineractErrorUI(getString(R.string.accounts))
+    }
+
+    override fun onItemClick(childView: View?, position: Int) {
+        var intent = Intent(context, AccountDetailActivity::class.java)
+        intent.putExtra(ConstantKeys.ACCOUNT, accountList.get(position))
+        startActivity(intent)
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {
+
     }
 
     override fun onDestroyView() {

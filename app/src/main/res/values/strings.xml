@@ -210,6 +210,14 @@
     <string name="identification_card_scan">Identification card scan</string>
     <string name="role">Role</string>
     <string name="customer_name">%1$s %2$s</string>
+    <string name="state">State</string>
+    <string name="reference_amount">Reference Amount</string>
+    <string name="alternative_account_number">Alternative Account Number</string>
+    <string name="holders">Holders</string>
+    <string name="signature_authorities">Signature Authorities</string>
+    <string name="account_details">Account Details</string>
+    <string name="no_holder_found">No Holder Found</string>
+    <string name="no_signature_authorities_found">No Signature Authorities Found</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>

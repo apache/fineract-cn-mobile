@@ -25,7 +25,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
-import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
+import org.apache.fineract.ui.online.accounting.accounts.accountList.AccountsFragment;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;

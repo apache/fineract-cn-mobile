@@ -1,4 +1,4 @@
-package org.apache.fineract.ui.online.accounting.accounts
+package org.apache.fineract.ui.online.accounting.accounts.accountList
 
 import android.content.Context
 import io.reactivex.Observable

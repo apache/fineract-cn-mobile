@@ -1,4 +1,4 @@
-package org.apache.fineract.ui.online.accounting.accounts
+package org.apache.fineract.ui.online.accounting.accounts.accountList
 
 import org.apache.fineract.data.models.accounts.Account
 import org.apache.fineract.ui.base.MvpView
