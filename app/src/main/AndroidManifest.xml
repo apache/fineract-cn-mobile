@@ -88,6 +88,8 @@
 
         <activity android:name=".ui.online.accounting.accounts.accountdetails.AccountDetailActivity" />
 
+        <activity android:name=".ui.online.accounting.ledgers.ledgerdetails.LedgerDetailActivity" />
+
         <receiver
             android:name=".jobs.JobsReceiver"
             android:exported="false">

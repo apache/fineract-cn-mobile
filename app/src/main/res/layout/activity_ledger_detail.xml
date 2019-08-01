@@ -95,36 +95,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_margin"
-                            android:text="@string/ledger" />
+                            android:text="@string/parent_ledger_identifier" />
 
                         <TextView
-                            android:id="@+id/tvLedger"
+                            android:id="@+id/tvParentLedgerIdentifier"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/start_margin"
                             android:textStyle="bold" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/grey_500" />
-
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/top_margin"
-                            android:text="@string/state" />
-
-                        <TextView
-                            android:id="@+id/tvState"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/start_margin"
-                            android:textStyle="bold" />
-
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -144,10 +123,10 @@
                             style="@style/Base.TextAppearance.AppCompat.Small"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/alternative_account_number" />
+                            android:text="@string/description" />
 
                         <TextView
-                            android:id="@+id/tvAlternativeAccountNumber"
+                            android:id="@+id/tvDescription"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -164,10 +143,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_margin"
-                            android:text="@string/balance" />
+                            android:text="@string/total_value" />
 
                         <TextView
-                            android:id="@+id/tvBalance"
+                            android:id="@+id/tvTotalValue"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -184,38 +163,30 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_margin"
-                            android:text="@string/reference_amount" />
+                            android:text="@string/sub_ledger" />
 
                         <TextView
-                            android:id="@+id/tvReferenceAmount"
+                            android:id="@+id/tvSubLedger"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/start_margin"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/top_margin">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/default_padding">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey_500" />
 
                         <TextView
                             style="@style/Base.TextAppearance.AppCompat.Small"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/holders" />
+                            android:layout_marginTop="@dimen/top_margin"
+                            android:text="@string/show_account_in_chart" />
 
                         <TextView
-                            android:id="@+id/tvHolders"
+                            android:id="@+id/tvShowAccountInChart"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -223,34 +194,7 @@
                             android:textStyle="bold" />
 
                     </LinearLayout>
-                </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/top_margin">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/default_padding">
-
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/signature_authorities" />
-
-                        <TextView
-                            android:id="@+id/tvSignatureAuthorities"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/start_margin"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView

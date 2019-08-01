@@ -21,7 +21,7 @@ class AccountDetailActivity : FineractBaseActivity() {
         populateUserInterface()
     }
 
-    fun populateUserInterface() {
+    private fun populateUserInterface() {
         tvType.text = account.type.toString()
         tvIdentifier.text = account.identifier
         tvName.text = account.name

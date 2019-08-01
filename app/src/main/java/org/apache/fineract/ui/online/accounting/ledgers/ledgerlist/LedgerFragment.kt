@@ -3,12 +3,14 @@ package org.apache.fineract.ui.online.accounting.ledgers
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_ledger.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
@@ -17,13 +19,16 @@ import org.apache.fineract.data.models.accounts.Ledger
 import org.apache.fineract.ui.adapters.LedgerAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnItemClickListener
 import org.apache.fineract.ui.online.accounting.accounts.LedgerContract
+import org.apache.fineract.ui.online.accounting.ledgers.ledgerdetails.LedgerDetailActivity
+import org.apache.fineract.utils.ConstantKeys
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 
 class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @Inject
     lateinit var ledgerAdapter: LedgerAdapter
@@ -75,6 +80,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
         rvLedger.setHasFixedSize(true)
 
         rvLedger.adapter = ledgerAdapter
+        ledgerAdapter.setItemClickListener(this)
 
         swipeContainer.setColorSchemeColors(*activity!!
                 .resources.getIntArray(R.array.swipeRefreshColors))
@@ -159,6 +165,16 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     override fun showError(message: String) {
         showRecyclerView(false)
         showFineractErrorUI(getString(R.string.ledger))
+    }
+
+    override fun onItemClick(childView: View?, position: Int) {
+        var intent = Intent(context, LedgerDetailActivity::class.java)
+        intent.putExtra(ConstantKeys.LEDGER, ledgerList[position])
+        startActivity(intent)
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {
+
     }
 
     override fun onDestroyView() {

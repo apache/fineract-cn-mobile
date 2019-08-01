@@ -218,6 +218,12 @@
     <string name="account_details">Account Details</string>
     <string name="no_holder_found">No Holder Found</string>
     <string name="no_signature_authorities_found">No Signature Authorities Found</string>
+    <string name="parent_ledger_identifier">Parent Ledger Identifier</string>
+    <string name="total_value">Total Value</string>
+    <string name="sub_ledger">Sub Ledger</string>
+    <string name="show_account_in_chart">Show Account in Chart</string>
+    <string name="ledger_details">Ledger Details</string>
+    <string name="no_sub_ledger_available">No Sub-ledger available</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>
