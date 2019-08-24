@@ -30,7 +30,7 @@ import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
-import org.apache.fineract.ui.online.teller.TellerFragment;
+import org.apache.fineract.ui.online.teller.tellerList.TellerFragment;
 import org.apache.fineract.ui.product.ProductFragment;
 import org.apache.fineract.utils.MaterialDialog;
 

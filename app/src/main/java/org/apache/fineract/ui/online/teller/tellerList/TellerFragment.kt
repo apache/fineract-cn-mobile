@@ -1,7 +1,8 @@
-package org.apache.fineract.ui.online.teller
+package org.apache.fineract.ui.online.teller.tellerList
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,11 +17,14 @@ import org.apache.fineract.data.models.teller.Teller
 import org.apache.fineract.ui.adapters.TellerAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.teller.tellerDetails.TellerDetailActivity
+import org.apache.fineract.utils.ConstantKeys
 import java.util.*
 import javax.inject.Inject
 
 
-class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefreshLayout.OnRefreshListener {
+class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @Inject
     lateinit var tellPresenter: TellerPresenter
@@ -74,6 +78,7 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
         llManager.orientation = RecyclerView.VERTICAL
         rvTellers.layoutManager = llManager
         rvTellers.setHasFixedSize(true)
+        tellerAdapter.setItemClickListener(this)
         rvTellers.adapter = tellerAdapter
 
         swipeContainer.setColorSchemeColors(*activity!!
@@ -159,6 +164,16 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     override fun showNoInternetConnection() {
         showRecyclerView(false)
         showFineractNoInternetUI()
+    }
+
+    override fun onItemClick(childView: View?, position: Int) {
+        var intent = Intent(context, TellerDetailActivity::class.java)
+        intent.putExtra(ConstantKeys.TELLER, tellerList.get(position))
+        startActivity(intent)
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {
+
     }
 
     override fun onDestroyView() {

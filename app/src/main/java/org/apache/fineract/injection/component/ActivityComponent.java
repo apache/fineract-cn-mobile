@@ -50,7 +50,7 @@ import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentF
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
-import org.apache.fineract.ui.online.teller.TellerFragment;
+import org.apache.fineract.ui.online.teller.tellerList.TellerFragment;
 import org.apache.fineract.ui.product.ProductFragment;
 
 import dagger.Subcomponent;

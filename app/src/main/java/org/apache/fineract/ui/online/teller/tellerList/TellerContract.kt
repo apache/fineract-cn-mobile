@@ -1,4 +1,4 @@
-package org.apache.fineract.ui.online.teller
+package org.apache.fineract.ui.online.teller.tellerList
 
 import org.apache.fineract.data.models.teller.Teller
 import org.apache.fineract.ui.base.MvpView

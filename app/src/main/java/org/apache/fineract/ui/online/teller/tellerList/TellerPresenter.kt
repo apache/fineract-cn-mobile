@@ -1,4 +1,4 @@
-package org.apache.fineract.ui.online.teller
+package org.apache.fineract.ui.online.teller.tellerList
 
 import android.content.Context
 import io.reactivex.Observable

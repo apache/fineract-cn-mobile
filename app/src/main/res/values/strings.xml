@@ -199,6 +199,14 @@
     <string name="logout">Logout</string>
     <string name="manage_roles">Manage roles</string>
     <string name="teller">Tellers</string>
+    <string name="teller_account_identifier">Teller Account Identifier</string>
+    <string name="vault_account_identifier">Vault Account Identifier</string>
+    <string name="cheques_receivable_account">Cheques Receivable Account</string>
+    <string name="cash_over_short_account">Cash overshort Account</string>
+    <string name="cash_draw_limit">Cash Drawlimit</string>
+    <string name="denomination_required">Denomination Required</string>
+    <string name="last_opened_by">Last Opened By</string>
+    <string name="last_opened_on">Last Opened On</string>
     <string name="try_again">Try Again</string>
     <string name="retry">Retry</string>
     <string name="oh_no">Oh no!</string>
@@ -224,6 +232,7 @@
     <string name="show_account_in_chart">Show Account in Chart</string>
     <string name="ledger_details">Ledger Details</string>
     <string name="no_sub_ledger_available">No Sub-ledger available</string>
+    <string name="code">Code</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>

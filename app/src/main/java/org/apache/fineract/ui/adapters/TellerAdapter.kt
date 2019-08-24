@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_teller.view.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.teller.Teller
 import org.apache.fineract.injection.ApplicationContext
+import org.apache.fineract.ui.base.OnItemClickListener
 import org.apache.fineract.utils.DateUtils
 import org.apache.fineract.utils.StatusUtils
 import javax.inject.Inject
@@ -20,6 +21,8 @@ class TellerAdapter @Inject constructor(@ApplicationContext val context: Context
     : RecyclerView.Adapter<TellerAdapter.ViewHolder>() {
 
     var tellers: List<Teller> = ArrayList()
+
+    lateinit var onItemClickListener: OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_teller,
@@ -56,12 +59,26 @@ class TellerAdapter @Inject constructor(@ApplicationContext val context: Context
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.onItemClickListener = onItemClickListener
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val tellerIdentifier: TextView = itemView.tv_teller_identifier
         val tvModifiedBy: TextView = itemView.tv_modified_by
         val tvModifiedOn: TextView = itemView.tv_modified_on
         val withDrawLimit: TextView = itemView.tv_cashWithdraw_limit
         val statusIndicator: AppCompatImageView = itemView.iv_status_indicator
+
+        init {
+            itemView.ll_loan_accounts.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, adapterPosition)
+            }
+        }
     }
 }
