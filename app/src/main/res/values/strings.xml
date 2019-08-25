@@ -233,6 +233,15 @@
     <string name="ledger_details">Ledger Details</string>
     <string name="no_sub_ledger_available">No Sub-ledger available</string>
     <string name="code">Code</string>
+    <string name="pattern_package">Pattern Package</string>
+    <string name="interest_basic">Interest Basic</string>
+    <string name="term_range">Term Range</string>
+    <string name="balance_range">Balance Range</string>
+    <string name="minor_currency_unit_digits">Minor Currency Unit Digits</string>
+    <string name="currency_code">Currency Code</string>
+    <string name="parameters">Parameters</string>
+    <string name="designator">Designator</string>
+    <string name="ledger_identifier">Ledger Identifier</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>

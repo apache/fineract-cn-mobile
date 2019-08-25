@@ -92,6 +92,8 @@
 
         <activity android:name=".ui.online.teller.tellerDetails.TellerDetailActivity" />
 
+        <activity android:name=".ui.product.productDetails.ProductDetailActivity" />
+
         <receiver
             android:name=".jobs.JobsReceiver"
             android:exported="false">

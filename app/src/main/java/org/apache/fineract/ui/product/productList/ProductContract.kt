@@ -1,4 +1,4 @@
-package org.apache.fineract.ui.product
+package org.apache.fineract.ui.product.productList
 
 import org.apache.fineract.data.models.product.Product
 import org.apache.fineract.ui.base.MvpView

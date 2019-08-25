@@ -43,4 +43,5 @@ public class ConstantKeys {
     public static final String ACCOUNT = "account";
     public static final String LEDGER = "ledger";
     public static final String TELLER = "teller";
+    public static final String PRODUCT = "product";
 }

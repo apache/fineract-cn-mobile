@@ -11,16 +11,17 @@
         <include layout="@layout/toolbar" />
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsvProduct"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/default_margin">
+            <!--android:nestedScrollingEnabled="true"-->
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/default_padding">
-
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -36,26 +37,6 @@
                             style="@style/Base.TextAppearance.AppCompat.Small"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/type" />
-
-                        <TextView
-                            android:id="@+id/tvType"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/start_margin"
-                            android:textStyle="bold" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/grey_500" />
-
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/top_margin"
                             android:text="@string/identifier" />
 
                         <TextView
@@ -96,10 +77,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_margin"
-                            android:text="@string/ledger" />
+                            android:text="@string/description" />
 
                         <TextView
-                            android:id="@+id/tvLedger"
+                            android:id="@+id/tvDescription"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -116,18 +97,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_margin"
-                            android:text="@string/state" />
+                            android:text="@string/pattern_package" />
 
                         <TextView
-                            android:id="@+id/tvState"
+                            android:id="@+id/tvPatternPackage"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/start_margin"
                             android:textStyle="bold" />
-
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -145,10 +124,10 @@
                             style="@style/Base.TextAppearance.AppCompat.Small"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/alternative_account_number" />
+                            android:text="@string/interest_basic" />
 
                         <TextView
-                            android:id="@+id/tvAlternativeAccountNumber"
+                            android:id="@+id/tvInterestBasic"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -165,10 +144,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_margin"
-                            android:text="@string/balance" />
+                            android:text="@string/term_range" />
 
                         <TextView
-                            android:id="@+id/tvBalance"
+                            android:id="@+id/tvTermRange"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -185,10 +164,50 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_margin"
-                            android:text="@string/reference_amount" />
+                            android:text="@string/balance_range" />
 
                         <TextView
-                            android:id="@+id/tvReferenceAmount"
+                            android:id="@+id/tvBalanceRange"
+                            style="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/start_margin"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey_500" />
+
+                        <TextView
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/top_margin"
+                            android:text="@string/minor_currency_unit_digits" />
+
+                        <TextView
+                            android:id="@+id/tvMinorCurrencyUnitDigits"
+                            style="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/start_margin"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey_500" />
+
+                        <TextView
+                            style="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/top_margin"
+                            android:text="@string/currency_code" />
+
+                        <TextView
+                            android:id="@+id/tvCurrencyCode"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -213,66 +232,30 @@
                             style="@style/Base.TextAppearance.AppCompat.Small"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/holders" />
+                            android:text="@string/parameters" />
 
                         <TextView
-                            android:id="@+id/tvHolders"
+                            android:id="@+id/tvParameters"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/start_margin"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/top_margin">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/default_padding">
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey_500" />
 
                         <TextView
                             style="@style/Base.TextAppearance.AppCompat.Small"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/signature_authorities" />
-
-                        <TextView
-                            android:id="@+id/tvSignatureAuthorities"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/start_margin"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/top_margin">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="@dimen/default_padding">
-
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/top_margin"
                             android:text="@string/created_on" />
 
                         <TextView
-                            android:id="@+id/tvCreateOn"
+                            android:id="@+id/tvCreatedOn"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -283,6 +266,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@color/grey_500" />
+
 
                         <TextView
                             style="@style/Base.TextAppearance.AppCompat.Small"
@@ -338,9 +322,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/start_margin"
                             android:textStyle="bold" />
-
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

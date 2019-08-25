@@ -31,7 +31,7 @@ import org.apache.fineract.ui.online.dashboard.DashboardFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.tellerList.TellerFragment;
-import org.apache.fineract.ui.product.ProductFragment;
+import org.apache.fineract.ui.product.productList.ProductFragment;
 import org.apache.fineract.utils.MaterialDialog;
 
 import javax.inject.Inject;
