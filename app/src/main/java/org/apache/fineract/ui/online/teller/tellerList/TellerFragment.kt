@@ -1,8 +1,8 @@
-package org.apache.fineract.ui.online.accounting.ledgers
-
+package org.apache.fineract.ui.online.teller.tellerList
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,45 +10,50 @@ import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_ledger.*
+import kotlinx.android.synthetic.main.fragment_teller.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
-import org.apache.fineract.data.models.accounts.Ledger
-import org.apache.fineract.ui.adapters.LedgerAdapter
+import org.apache.fineract.data.models.teller.Teller
+import org.apache.fineract.ui.adapters.TellerAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
-import org.apache.fineract.ui.online.accounting.accounts.LedgerContract
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.teller.tellerDetails.TellerDetailActivity
+import org.apache.fineract.utils.ConstantKeys
+import java.util.*
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 
-class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
-        SwipeRefreshLayout.OnRefreshListener {
+class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @Inject
-    lateinit var ledgerAdapter: LedgerAdapter
+    lateinit var tellPresenter: TellerPresenter
 
     @Inject
-    lateinit var ledgerPresenter: LedgerPresenter
+    lateinit var tellerAdapter: TellerAdapter
 
-    lateinit var ledgerList: List<Ledger>
+    lateinit var tellerList: List<Teller>
 
     companion object {
-        fun newInstance(): LedgerFragment = LedgerFragment()
+        fun newInstance(): TellerFragment = TellerFragment().apply {
+            val args = Bundle()
+            this.arguments = args
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        ledgerList = ArrayList()
+        tellerList = ArrayList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_ledger, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_teller, container, false)
+
         (activity as FineractBaseActivity).activityComponent.inject(this)
-        ledgerPresenter.attachView(this)
+        tellPresenter.attachView(this)
         initializeFineractUIErrorHandler(activity, rootView)
 
         return rootView
@@ -56,89 +61,89 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         showUserInterface()
+        tellPresenter.fetchTellers()
 
         btn_try_again.setOnClickListener {
             layoutError.visibility = View.GONE
-            ledgerPresenter.getLedgersPage()
+            tellPresenter.fetchTellers()
         }
-
-        ledgerPresenter.getLedgersPage()
     }
 
     override fun showUserInterface() {
 
-        setToolbarTitle(getString(R.string.ledger))
-        val layoutManager = LinearLayoutManager(activity)
-        layoutManager.orientation = RecyclerView.VERTICAL
-        rvLedger.layoutManager = layoutManager
-        rvLedger.setHasFixedSize(true)
-
-        rvLedger.adapter = ledgerAdapter
+        setToolbarTitle(getString(R.string.teller))
+        val llManager = LinearLayoutManager(activity)
+        llManager.orientation = RecyclerView.VERTICAL
+        rvTellers.layoutManager = llManager
+        rvTellers.setHasFixedSize(true)
+        tellerAdapter.setItemClickListener(this)
+        rvTellers.adapter = tellerAdapter
 
         swipeContainer.setColorSchemeColors(*activity!!
                 .resources.getIntArray(R.array.swipeRefreshColors))
         swipeContainer.setOnRefreshListener(this)
     }
 
-    override fun onRefresh() {
-        ledgerPresenter.getLedgersPage()
-    }
-
-    override fun showLedgers(ledgers: List<Ledger>) {
+    override fun showTellers(tellers: List<Teller>) {
         showRecyclerView(true)
-        this.ledgerList = ledgers
-        ledgerAdapter.setLedgerList(ledgers)
+        tellerList = tellers
+        tellerAdapter.setTellerList(tellers)
     }
 
-    override fun showEmptyLedgers() {
+    override fun onRefresh() {
+        tellPresenter.fetchTellers()
+    }
+
+    override fun showEmptyTellers() {
         showRecyclerView(false)
-        showFineractEmptyUI(getString(R.string.ledger), getString(R.string.ledger),
+        showFineractEmptyUI(getString(R.string.teller), getString(R.string.teller),
                 R.drawable.ic_person_outline_black_24dp)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_ledger_search, menu)
+        inflater.inflate(R.menu.menu_teller_search, menu)
         setUpSearchInterface(menu)
     }
 
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.ledger_search)?.actionView as? SearchView
+        val searchView = menu?.findItem(R.id.teller_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                ledgerPresenter.searchLedger(ledgerList, query)
+                tellPresenter.searchTeller(tellerList, query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if (TextUtils.isEmpty(newText)) {
                     showRecyclerView(true)
-                    ledgerAdapter.setLedgerList(ledgerList)
+                    tellerAdapter.setTellerList(tellerList)
                 }
-                ledgerPresenter.searchLedger(ledgerList, newText)
+                tellPresenter.searchTeller(tellerList, newText)
                 return false
             }
         })
 
     }
 
-    override fun searchedLedger(ledgers: List<Ledger>) {
+    override fun searchedTeller(tellers: List<Teller>) {
         showRecyclerView(true)
-        ledgerAdapter.setLedgerList(ledgers)
+        tellerAdapter.setTellerList(tellers)
     }
 
     override fun showRecyclerView(status: Boolean) {
         if (status) {
-            rvLedger.visibility = View.VISIBLE
+            rvTellers.visibility = View.VISIBLE
             layoutError.visibility = View.GONE
         } else {
-            rvLedger.visibility = View.GONE
+            rvTellers.visibility = View.GONE
             layoutError.visibility = View.VISIBLE
         }
     }
@@ -151,18 +156,28 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
         swipeContainer.isRefreshing = false
     }
 
+    override fun showError(message: String) {
+        showRecyclerView(false)
+        showFineractErrorUI(getString(R.string.teller))
+    }
+
     override fun showNoInternetConnection() {
         showRecyclerView(false)
         showFineractNoInternetUI()
     }
 
-    override fun showError(message: String) {
-        showRecyclerView(false)
-        showFineractErrorUI(getString(R.string.ledger))
+    override fun onItemClick(childView: View?, position: Int) {
+        var intent = Intent(context, TellerDetailActivity::class.java)
+        intent.putExtra(ConstantKeys.TELLER, tellerList.get(position))
+        startActivity(intent)
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        ledgerPresenter.detachView()
+        tellPresenter.detachView()
     }
 }

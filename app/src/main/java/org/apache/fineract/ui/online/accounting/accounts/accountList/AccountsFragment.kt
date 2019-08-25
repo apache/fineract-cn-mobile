@@ -1,55 +1,56 @@
-package org.apache.fineract.ui.online.teller
+package org.apache.fineract.ui.online.accounting.accounts.accountList
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_teller.*
+import kotlinx.android.synthetic.main.fragment_accounts.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
-import org.apache.fineract.data.models.teller.Teller
-import org.apache.fineract.ui.adapters.TellerAdapter
+import org.apache.fineract.data.models.accounts.Account
+import org.apache.fineract.ui.adapters.AccountsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.accounting.accounts.accountdetails.AccountDetailActivity
+import org.apache.fineract.utils.ConstantKeys
 import java.util.*
 import javax.inject.Inject
 
 
-class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefreshLayout.OnRefreshListener {
+class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @Inject
-    lateinit var tellPresenter: TellerPresenter
+    lateinit var accountsPresenter: AccountsPresenter
 
     @Inject
-    lateinit var tellerAdapter: TellerAdapter
+    lateinit var accountsAdapter: AccountsAdapter
 
-    lateinit var tellerList: List<Teller>
+    lateinit var accountList: List<Account>
 
     companion object {
-        fun newInstance(): TellerFragment = TellerFragment().apply {
-            val args = Bundle()
-            this.arguments = args
-        }
+        fun newInstance() = AccountsFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        tellerList = ArrayList()
+        accountList = ArrayList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_teller, container, false)
-
+        val rootView = inflater.inflate(R.layout.fragment_accounts, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
-        tellPresenter.attachView(this)
+        accountsPresenter.attachView(this)
         initializeFineractUIErrorHandler(activity, rootView)
 
         return rootView
@@ -57,88 +58,91 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         showUserInterface()
-        tellPresenter.fetchTellers()
 
         btn_try_again.setOnClickListener {
             layoutError.visibility = View.GONE
-            tellPresenter.fetchTellers()
+            accountsPresenter.getAccountsPage()
         }
+
+        accountsPresenter.getAccountsPage()
     }
 
     override fun showUserInterface() {
+        setToolbarTitle(getString(R.string.accounts))
+        val layoutManager = LinearLayoutManager(activity)
+        layoutManager.orientation = RecyclerView.VERTICAL
+        rvAccount.layoutManager = layoutManager
+        rvAccount.setHasFixedSize(true)
 
-        setToolbarTitle(getString(R.string.teller))
-        val llManager = LinearLayoutManager(activity)
-        llManager.orientation = RecyclerView.VERTICAL
-        rvTellers.layoutManager = llManager
-        rvTellers.setHasFixedSize(true)
-        rvTellers.adapter = tellerAdapter
+        rvAccount.adapter = accountsAdapter
+        accountsAdapter.setItemClickListener(this)
 
         swipeContainer.setColorSchemeColors(*activity!!
                 .resources.getIntArray(R.array.swipeRefreshColors))
         swipeContainer.setOnRefreshListener(this)
     }
 
-    override fun showTellers(tellers: List<Teller>) {
-        showRecyclerView(true)
-        tellerList = tellers
-        tellerAdapter.setTellerList(tellers)
-    }
-
-    override fun onRefresh() {
-        tellPresenter.fetchTellers()
-    }
-
-    override fun showEmptyTellers() {
-        showRecyclerView(false)
-        showFineractEmptyUI(getString(R.string.teller), getString(R.string.teller),
-                R.drawable.ic_person_outline_black_24dp)
-    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_teller_search, menu)
+        inflater.inflate(R.menu.menu_account_search, menu)
         setUpSearchInterface(menu)
     }
 
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.teller_search)?.actionView as? SearchView
+        val searchView = menu?.findItem(R.id.account_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                tellPresenter.searchTeller(tellerList, query)
+                accountsPresenter.searchAccount(accountList, query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if (TextUtils.isEmpty(newText)) {
                     showRecyclerView(true)
-                    tellerAdapter.setTellerList(tellerList)
+                    accountsAdapter.setAccountsList(accountList)
                 }
-                tellPresenter.searchTeller(tellerList, newText)
+                accountsPresenter.searchAccount(accountList, newText)
                 return false
             }
         })
 
     }
 
-    override fun searchedTeller(tellers: List<Teller>) {
+    override fun searchedAccount(accounts: List<Account>) {
         showRecyclerView(true)
-        tellerAdapter.setTellerList(tellers)
+        accountsAdapter.setAccountsList(accounts)
+    }
+
+    override fun onRefresh() {
+        accountsPresenter.getAccountsPage()
+    }
+
+
+    override fun showAccounts(accounts: List<Account>) {
+        showRecyclerView(true)
+        accountList = accounts
+        accountsAdapter.setAccountsList(accountList)
+    }
+
+    override fun showEmptyAccounts() {
+        showRecyclerView(false)
+        showFineractEmptyUI(getString(R.string.accounts), getString(R.string.accounts),
+                R.drawable.ic_person_outline_black_24dp)
     }
 
     override fun showRecyclerView(status: Boolean) {
         if (status) {
-            rvTellers.visibility = View.VISIBLE
+            rvAccount.visibility = View.VISIBLE
             layoutError.visibility = View.GONE
         } else {
-            rvTellers.visibility = View.GONE
+            rvAccount.visibility = View.GONE
             layoutError.visibility = View.VISIBLE
         }
     }
@@ -151,18 +155,29 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
         swipeContainer.isRefreshing = false
     }
 
-    override fun showError(message: String) {
-        showRecyclerView(false)
-        showFineractErrorUI(getString(R.string.teller))
-    }
-
     override fun showNoInternetConnection() {
         showRecyclerView(false)
         showFineractNoInternetUI()
     }
 
+    override fun showError(message: String) {
+        showRecyclerView(false)
+        showFineractErrorUI(getString(R.string.accounts))
+    }
+
+    override fun onItemClick(childView: View?, position: Int) {
+        var intent = Intent(context, AccountDetailActivity::class.java)
+        intent.putExtra(ConstantKeys.ACCOUNT, accountList.get(position))
+        startActivity(intent)
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
-        tellPresenter.detachView()
+        accountsPresenter.detachView()
     }
+
 }

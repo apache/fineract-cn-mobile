@@ -4,7 +4,7 @@ import org.apache.fineract.injection.PerActivity;
 import org.apache.fineract.injection.module.ActivityModule;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.DashboardActivity;
-import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
+import org.apache.fineract.ui.online.accounting.accounts.accountList.AccountsFragment;
 import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
         .CreateCustomerActivity;
@@ -50,8 +50,8 @@ import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentF
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
-import org.apache.fineract.ui.online.teller.TellerFragment;
-import org.apache.fineract.ui.product.ProductFragment;
+import org.apache.fineract.ui.online.teller.tellerList.TellerFragment;
+import org.apache.fineract.ui.product.productList.ProductFragment;
 
 import dagger.Subcomponent;
 

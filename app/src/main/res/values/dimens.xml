@@ -38,6 +38,8 @@
     <dimen name="nav_header_height">180dp</dimen>
 
     <dimen name="default_margin">8dp</dimen>
+    <dimen name="start_margin">16dp</dimen>
+    <dimen name="top_margin">8dp</dimen>
 
     <dimen name="app_bar_height">225dp</dimen>
     <dimen name="detail_backdrop_height">256dp</dimen>

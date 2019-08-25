@@ -6,11 +6,10 @@ import org.apache.fineract.FakeRemoteDataSource
 import org.apache.fineract.data.datamanager.DataManagerAccounting
 import org.apache.fineract.data.models.accounts.AccountPage
 import org.apache.fineract.exceptions.NoConnectivityException
-import org.apache.fineract.ui.online.accounting.accounts.AccountContract
-import org.apache.fineract.ui.online.accounting.accounts.AccountsPresenter
+import org.apache.fineract.ui.online.accounting.accounts.accountList.AccountContract
+import org.apache.fineract.ui.online.accounting.accounts.accountList.AccountsPresenter
 import org.apache.fineract.util.RxSchedulersOverrideRule
 import org.junit.After
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

@@ -25,6 +25,11 @@
           "designator": "designator",
           "accountIdentifier": "accountIdentifier",
           "ledgerIdentifier": "ledgerIdentifier"
+        },
+        {
+          "designator": "designator2",
+          "accountIdentifier": "accountIdentifier2",
+          "ledgerIdentifier": "ledgerIdentifier2"
         }
       ],
       "parameters": "parameters",

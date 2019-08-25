@@ -1,51 +1,59 @@
-package org.apache.fineract.ui.online.accounting.accounts
+package org.apache.fineract.ui.online.accounting.ledgers
+
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_accounts.*
+import kotlinx.android.synthetic.main.fragment_ledger.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
-import org.apache.fineract.data.models.accounts.Account
-import org.apache.fineract.ui.adapters.AccountsAdapter
+import org.apache.fineract.data.models.accounts.Ledger
+import org.apache.fineract.ui.adapters.LedgerAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
-import java.util.*
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.accounting.accounts.LedgerContract
+import org.apache.fineract.ui.online.accounting.ledgers.ledgerdetails.LedgerDetailActivity
+import org.apache.fineract.utils.ConstantKeys
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 
-class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefreshLayout.OnRefreshListener {
+class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
+        SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @Inject
-    lateinit var accountsPresenter: AccountsPresenter
+    lateinit var ledgerAdapter: LedgerAdapter
 
     @Inject
-    lateinit var accountsAdapter: AccountsAdapter
+    lateinit var ledgerPresenter: LedgerPresenter
 
-    lateinit var accountList : List<Account>
+    lateinit var ledgerList: List<Ledger>
 
     companion object {
-        fun newInstance() = AccountsFragment()
+        fun newInstance(): LedgerFragment = LedgerFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        accountList= ArrayList()
+        ledgerList = ArrayList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_accounts, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_ledger, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
-        accountsPresenter.attachView(this)
+        ledgerPresenter.attachView(this)
         initializeFineractUIErrorHandler(activity, rootView)
 
         return rootView
@@ -57,86 +65,86 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
 
         btn_try_again.setOnClickListener {
             layoutError.visibility = View.GONE
-            accountsPresenter.getAccountsPage()
+            ledgerPresenter.getLedgersPage()
         }
 
-        accountsPresenter.getAccountsPage()
+        ledgerPresenter.getLedgersPage()
     }
 
     override fun showUserInterface() {
-        setToolbarTitle(getString(R.string.accounts))
+
+        setToolbarTitle(getString(R.string.ledger))
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = RecyclerView.VERTICAL
-        rvAccount.layoutManager = layoutManager
-        rvAccount.setHasFixedSize(true)
+        rvLedger.layoutManager = layoutManager
+        rvLedger.setHasFixedSize(true)
 
-        rvAccount.adapter = accountsAdapter
+        rvLedger.adapter = ledgerAdapter
+        ledgerAdapter.setItemClickListener(this)
 
         swipeContainer.setColorSchemeColors(*activity!!
                 .resources.getIntArray(R.array.swipeRefreshColors))
         swipeContainer.setOnRefreshListener(this)
     }
 
+    override fun onRefresh() {
+        ledgerPresenter.getLedgersPage()
+    }
+
+    override fun showLedgers(ledgers: List<Ledger>) {
+        showRecyclerView(true)
+        this.ledgerList = ledgers
+        ledgerAdapter.setLedgerList(ledgers)
+    }
+
+    override fun showEmptyLedgers() {
+        showRecyclerView(false)
+        showFineractEmptyUI(getString(R.string.ledger), getString(R.string.ledger),
+                R.drawable.ic_person_outline_black_24dp)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_account_search, menu)
+        inflater.inflate(R.menu.menu_ledger_search, menu)
         setUpSearchInterface(menu)
     }
 
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.account_search)?.actionView as? SearchView
+        val searchView = menu?.findItem(R.id.ledger_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                accountsPresenter.searchAccount(accountList, query)
+                ledgerPresenter.searchLedger(ledgerList, query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if (TextUtils.isEmpty(newText)) {
                     showRecyclerView(true)
-                    accountsAdapter.setAccountsList(accountList)
+                    ledgerAdapter.setLedgerList(ledgerList)
                 }
-                accountsPresenter.searchAccount(accountList, newText)
+                ledgerPresenter.searchLedger(ledgerList, newText)
                 return false
             }
         })
 
     }
 
-    override fun searchedAccount(accounts: List<Account>) {
+    override fun searchedLedger(ledgers: List<Ledger>) {
         showRecyclerView(true)
-        accountsAdapter.setAccountsList(accounts)
-    }
-
-    override fun onRefresh() {
-        accountsPresenter.getAccountsPage()
-    }
-
-
-    override fun showAccounts(accounts: List<Account>) {
-        showRecyclerView(true)
-        accountList = accounts
-        accountsAdapter.setAccountsList(accountList)
-    }
-
-    override fun showEmptyAccounts() {
-        showRecyclerView(false)
-        showFineractEmptyUI(getString(R.string.accounts), getString(R.string.accounts),
-                R.drawable.ic_person_outline_black_24dp)
+        ledgerAdapter.setLedgerList(ledgers)
     }
 
     override fun showRecyclerView(status: Boolean) {
         if (status) {
-            rvAccount.visibility = View.VISIBLE
+            rvLedger.visibility = View.VISIBLE
             layoutError.visibility = View.GONE
         } else {
-            rvAccount.visibility = View.GONE
+            rvLedger.visibility = View.GONE
             layoutError.visibility = View.VISIBLE
         }
     }
@@ -156,12 +164,21 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
 
     override fun showError(message: String) {
         showRecyclerView(false)
-        showFineractErrorUI(getString(R.string.accounts))
+        showFineractErrorUI(getString(R.string.ledger))
+    }
+
+    override fun onItemClick(childView: View?, position: Int) {
+        var intent = Intent(context, LedgerDetailActivity::class.java)
+        intent.putExtra(ConstantKeys.LEDGER, ledgerList[position])
+        startActivity(intent)
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {
+
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        accountsPresenter.detachView()
+        ledgerPresenter.detachView()
     }
-
 }

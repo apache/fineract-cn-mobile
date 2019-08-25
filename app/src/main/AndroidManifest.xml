@@ -86,6 +86,14 @@
 
         <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
 
+        <activity android:name=".ui.online.accounting.accounts.accountdetails.AccountDetailActivity" />
+
+        <activity android:name=".ui.online.accounting.ledgers.ledgerdetails.LedgerDetailActivity" />
+
+        <activity android:name=".ui.online.teller.tellerDetails.TellerDetailActivity" />
+
+        <activity android:name=".ui.product.productDetails.ProductDetailActivity" />
+
         <receiver
             android:name=".jobs.JobsReceiver"
             android:exported="false">

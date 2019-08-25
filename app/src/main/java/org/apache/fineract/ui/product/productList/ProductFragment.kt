@@ -1,7 +1,8 @@
-package org.apache.fineract.ui.product
+package org.apache.fineract.ui.product.productList
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,12 +17,15 @@ import org.apache.fineract.data.models.product.Product
 import org.apache.fineract.ui.adapters.ProductAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.product.productDetails.ProductDetailActivity
+import org.apache.fineract.utils.ConstantKeys
 import java.util.*
 import javax.inject.Inject
 
 
 class ProductFragment : FineractBaseFragment(), ProductContract.View,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @Inject
     lateinit var productPresenter: ProductPresenter
@@ -74,7 +78,9 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
         layoutManager.orientation = RecyclerView.VERTICAL
         rvProduct.layoutManager = layoutManager
         rvProduct.setHasFixedSize(true)
+
         rvProduct.adapter = productAdapter
+        productAdapter.setItemClickListener(this)
 
         swipeContainer.setColorSchemeColors(*activity!!
                 .resources.getIntArray(R.array.swipeRefreshColors))
@@ -164,6 +170,16 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     override fun showError(message: String) {
         showRecyclerView(false)
         showFineractErrorUI(getString(R.string.products))
+    }
+
+    override fun onItemClick(childView: View?, position: Int) {
+        var intent = Intent(context, ProductDetailActivity::class.java)
+        intent.putExtra(ConstantKeys.PRODUCT, productList.get(position))
+        startActivity(intent)
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {
+
     }
 
     override fun onDestroyView() {

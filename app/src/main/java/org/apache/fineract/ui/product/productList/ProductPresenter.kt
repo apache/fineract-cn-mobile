@@ -1,4 +1,4 @@
-package org.apache.fineract.ui.product
+package org.apache.fineract.ui.product.productList
 
 import android.content.Context
 import io.reactivex.Observable

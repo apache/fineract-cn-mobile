@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.item_ledger.view.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.accounts.Ledger
 import org.apache.fineract.injection.ApplicationContext
+import org.apache.fineract.ui.base.OnItemClickListener
 import org.apache.fineract.utils.DateUtils
 import org.apache.fineract.utils.StatusUtils
 import javax.inject.Inject
@@ -19,6 +20,7 @@ class LedgerAdapter @Inject constructor(@ApplicationContext val context: Context
     : RecyclerView.Adapter<LedgerAdapter.ViewHolder>() {
 
     private var ledgers: List<Ledger> = ArrayList()
+    private lateinit var onItemClickListener: OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -54,12 +56,26 @@ class LedgerAdapter @Inject constructor(@ApplicationContext val context: Context
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.onItemClickListener = onItemClickListener
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val tvLedgerIdentifier: TextView = itemView.tv_ledger_identifier
         val tvModifiedBy: TextView = itemView.tv_modified_by
         val tvModifiedOn: TextView = itemView.tv_modified_on
         val tvTotalValue: TextView = itemView.tv_total_value
         val ivAccountTypeIndicator: AppCompatImageView = itemView.iv_type_indicator
+
+        init {
+            itemView.ll_ledger.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(v, adapterPosition)
+            }
+        }
     }
 }
