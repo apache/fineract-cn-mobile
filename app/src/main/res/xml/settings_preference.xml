@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/account">
+
+        <Preference
+            android:icon="@drawable/ic_lock_black_24dp"
+            android:key="@string/password"
+            android:persistent="false"
+            android:summary="@string/change_account_password"
+            android:title="@string/change_password" />
+
+        <Preference
+            android:icon="@drawable/ic_passcode"
+            android:key="@string/passcode"
+            android:summary="@string/change_account_passcode"
+            android:title="@string/change_passcode">
+
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/others">
+        <ListPreference
+            android:defaultValue="en"
+            android:entries="@array/languages"
+            android:entryValues="@array/languages_value"
+            android:key="@string/language"
+            android:icon="@drawable/ic_language"
+            android:title="@string/language" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

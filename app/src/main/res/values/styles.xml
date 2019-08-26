@@ -11,6 +11,7 @@
         <item name="buttonStyle">@style/AppTheme.Button</item>
         <item name="android:textViewStyle">@style/AppTheme.Text</item>
         <item name="android:fontFamily">@font/roboto</item>
+        <item name="alertDialogTheme">@style/MaterialAlertDialogStyle</item>
     </style>
 
 

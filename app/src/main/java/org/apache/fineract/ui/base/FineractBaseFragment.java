@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 
 import org.apache.fineract.ui.uierrorhandler.FineractUIErrorHandler;
 import org.apache.fineract.ui.uierrorhandler.UIType;
+import org.apache.fineract.utils.LanguageUtils;
 import org.apache.fineract.utils.ProgressBarHandler;
 
 public class FineractBaseFragment extends Fragment {
@@ -78,7 +79,7 @@ public class FineractBaseFragment extends Fragment {
 
     @Override
     public void onAttach(Context context) {
-        super.onAttach(context);
+        super.onAttach(LanguageUtils.onAttach(context));
         Activity activity = context instanceof Activity ? (Activity) context : null;
         try {
             callback = (BaseActivityCallback) activity;
