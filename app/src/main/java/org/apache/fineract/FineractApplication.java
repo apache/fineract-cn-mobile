@@ -2,6 +2,8 @@ package org.apache.fineract;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.evernote.android.job.JobManager;
@@ -55,6 +57,12 @@ public class FineractApplication extends Application {
             applicationComponent.inject(this);
         }
         return applicationComponent;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d("TAG", "configuration changes=d");
     }
 
     // Needed to replace the component with a test specific one
