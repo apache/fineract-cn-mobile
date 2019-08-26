@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">french</string>
+
+    <string name="enter_you_credentials">french</string>
+    <string name="tenant">french</string>
+    <string name="fineract">french</string>
+    <string name="username">french</string>
+    <string name="password">french</string>
+    <string name="login">french</string>
+    <string name="fineract_account">french</string>
+    <string name="welcome">french</string>
+    <string name="no_internet_connection">french</string>
+    <string name="or_try_again">french</string>
+    <string name="wrong_username_or_password">french</string>
+    <string name="customer">french</string>
+    <string name="dashboard">french</string>
+    <string name="open_drawer">french</string>
+    <string name="close_drawer">french</string>
+    <string name="customers">french</string>
+    <string name="financial_products">french</string>
+    <string name="manage_loan_accounts">french</string>
+    <string name="loan_accounts">french</string>
+    <string name="loan_account">french</string>
+    <string name="settings">french</string>
+    <string name="others">french</string>
+    <string name="passcode" translatable="false">french</string>
+    <string name="change_passcode">french</string>
+    <string name="change_account_passcode">french</string>
+    <string name="language" translatable="false">french</string>
+    <string name="choose_language">french</string>///
+
+</resources>
