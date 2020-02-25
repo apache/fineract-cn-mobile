@@ -271,7 +271,6 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                findCustomer(query);
                 return false;
             }
 
@@ -279,6 +278,8 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
             public boolean onQueryTextChange(String newText) {
                 if (TextUtils.isEmpty(newText)) {
                     customerAdapter.setCustomers(customers);
+                } else {
+                   findCustomer(newText);
                 }
 
                 return false;
@@ -311,6 +312,9 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
                     Toaster.SHORT);
         } else if (rbOnline.isChecked()) {
             customerPresenter.searchCustomerOnline(query);
+        } else {
+            Toaster.show(swipeRefreshLayout, getString(R.string.error_searching_offline_customers),
+                    Toaster.SHORT);
         }
     }
 
