@@ -279,7 +279,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
                 if (TextUtils.isEmpty(newText)) {
                     customerAdapter.setCustomers(customers);
                 } else {
-                   findCustomer(newText);
+                    findCustomer(newText);
                 }
 
                 return false;
