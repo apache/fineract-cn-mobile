@@ -48,7 +48,8 @@
             android:name=".ui.online.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name=".ui.online.DashboardActivity" />
+        <activity android:name=".ui.online.DashboardActivity"
+            android:theme="@style/AppTheme.TransparentStatusBar" />
 
         <activity android:name=".ui.online.customers.customerdetails.CustomerDetailsActivity" />
 
