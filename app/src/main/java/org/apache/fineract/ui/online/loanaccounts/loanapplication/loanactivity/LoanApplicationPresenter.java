@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Rajan Maurya
- *         On 24/07/17.
+ * On 24/07/17.
  */
 @ConfigPersistent
 public class LoanApplicationPresenter extends BasePresenter<LoanApplicationContract.View>
@@ -29,7 +29,7 @@ public class LoanApplicationPresenter extends BasePresenter<LoanApplicationContr
 
     @Inject
     public LoanApplicationPresenter(@ApplicationContext Context context,
-            DataManagerLoans dataManagerLoans) {
+                                    DataManagerLoans dataManagerLoans) {
         super(context);
         this.dataManagerLoans = dataManagerLoans;
         compositeDisposable = new CompositeDisposable();
@@ -69,4 +69,34 @@ public class LoanApplicationPresenter extends BasePresenter<LoanApplicationContr
                 })
         );
     }
+
+    @Override
+    public void updateLoan(String productIdentifier,
+                           LoanAccount loanAccount,
+                           String caseIdentifier) {
+        checkViewAttached();
+        getMvpView().showProgressbar(context.getString(R.string.updating_loan_please_wait));
+        compositeDisposable.add(dataManagerLoans.updateLoan(
+                productIdentifier,
+                loanAccount,
+                caseIdentifier
+                ).subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(new DisposableCompletableObserver() {
+                            @Override
+                            public void onComplete() {
+                                getMvpView().hideProgressbar();
+                                getMvpView().applicationUpdatedSuccessfully();
+                            }
+
+                            @Override
+                            public void onError(Throwable throwable) {
+                                getMvpView().hideProgressbar();
+                                showExceptionError(throwable,
+                                        context.getString(R.string.error_while_updating_loan));
+                            }
+                        })
+        );
+    }
+
 }
