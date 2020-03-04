@@ -13,6 +13,8 @@ public interface LoanApplicationContract {
 
         void applicationCreatedSuccessfully();
 
+        void applicationUpdatedSuccessfully();
+
         void showProgressbar(String message);
 
         void hideProgressbar();
@@ -23,5 +25,7 @@ public interface LoanApplicationContract {
     interface Presenter {
 
         void createLoan(String productIdentifier, LoanAccount loanAccount);
+
+        void updateLoan(String productIdentifier, LoanAccount loanAccount, String caseIdentifier);
     }
 }
