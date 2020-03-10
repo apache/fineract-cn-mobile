@@ -125,13 +125,13 @@ public class CustomerProfileActivity extends FineractBaseActivity
 
     @Override
     public void checkCameraPermission() {
-        if (CheckSelfPermissionAndRequest.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            shareImage();
-        } else {
-            requestPermission();
+            if (CheckSelfPermissionAndRequest.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                shareImage();
+            } else {
+                requestPermission();
+            }
         }
-    }
 
     @Override
     public void requestPermission() {
@@ -156,18 +156,19 @@ public class CustomerProfileActivity extends FineractBaseActivity
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         switch (requestCode) {
-            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    shareImage();
-                } else {
-                    Toaster.show(findViewById(android.R.id.content),
-                            getString(R.string.permission_denied_write));
-                }
+            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {switch (requestCode) {
+                case ConstantKeys.PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                    if (grantResults.length > 0
+                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        shareImage();
+                    } else {
+                        Toaster.show(findViewById(android.R.id.content),
+                                getString(R.string.permission_denied_write));
+                    }
+                }}
             }
         }
     }
-
     @Override
     public void refreshUI() {
         loadCustomerPortrait();
