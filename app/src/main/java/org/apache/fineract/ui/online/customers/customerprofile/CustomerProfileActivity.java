@@ -123,13 +123,19 @@ public class CustomerProfileActivity extends FineractBaseActivity
         return Uri.parse(path);
     }
 
-    @Override
+  @Override
     public void checkCameraPermission() {
         if (CheckSelfPermissionAndRequest.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             shareImage();
         } else {
             requestPermission();
+            if (CheckSelfPermissionAndRequest.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                shareImage();
+            } else {
+                requestPermission();
+            }
         }
     }
 
@@ -144,14 +150,12 @@ public class CustomerProfileActivity extends FineractBaseActivity
                         R.string.dialog_message_write_permission_for_share_never_ask_again),
                 ConstantKeys.PERMISSIONS_WRITE_EXTERNAL_STORAGE_STATUS);
     }
-
     @Override
     public void loadCustomerPortrait() {
         ImageLoaderUtils imageLoaderUtils = new ImageLoaderUtils(this);
         imageLoaderUtils.loadImage(imageLoaderUtils.buildCustomerPortraitImageUrl(
                 customerIdentifier), ivCustomerProfile, R.drawable.mifos_logo_new);
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -164,6 +168,16 @@ public class CustomerProfileActivity extends FineractBaseActivity
                     Toaster.show(findViewById(android.R.id.content),
                             getString(R.string.permission_denied_write));
                 }
+            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {switch (requestCode) {
+                case ConstantKeys.PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE: {
+                    if (grantResults.length > 0
+                            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                        shareImage();
+                    } else {
+                        Toaster.show(findViewById(android.R.id.content),
+                                getString(R.string.permission_denied_write));
+                    }
+                }}
             }
         }
     }
@@ -173,12 +187,10 @@ public class CustomerProfileActivity extends FineractBaseActivity
         loadCustomerPortrait();
         sweetUIErrorHandler.hideSweetErrorLayoutUI(ivCustomerProfile, errorView);
     }
-
     @Override
     public void showNoInternetConnection() {
         sweetUIErrorHandler.showSweetNoInternetUI(ivCustomerProfile, errorView);
     }
-
     @Override
     public void showError(String message) {
         sweetUIErrorHandler.showSweetCustomErrorUI(message,
