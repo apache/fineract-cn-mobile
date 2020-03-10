@@ -137,7 +137,10 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
         rvCustomerLoans.addOnScrollListener(new EndlessRecyclerViewScrollListener(layoutManager) {
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
-                customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, page, true);
+                if (!loanAccounts.get(0).isFakeData()) {
+                    customerLoansPresenter.fetchCustomerLoanAccounts(
+                            customerIdentifier, page, true);
+                }
             }
         });
     }

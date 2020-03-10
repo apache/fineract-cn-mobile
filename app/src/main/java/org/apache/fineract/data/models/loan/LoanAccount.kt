@@ -19,7 +19,8 @@ data class LoanAccount(
     @SerializedName("createdOn") var createdOn: String? = null,
     @SerializedName("createdBy") var createdBy: String? = null,
     @SerializedName("lastModifiedOn") var lastModifiedOn: String? = null,
-    @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null
+    @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null,
+    @SerializedName("isFakeData") var isFakeData: Boolean? = false
 ) {
 
     private val loanParameters: LoanParameters? = null
