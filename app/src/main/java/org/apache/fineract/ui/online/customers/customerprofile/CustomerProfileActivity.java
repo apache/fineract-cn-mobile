@@ -168,7 +168,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
                     Toaster.show(findViewById(android.R.id.content),
                             getString(R.string.permission_denied_write));
                 }
-            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {switch (requestCode) {
+           
                 case ConstantKeys.PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE: {
                     if (grantResults.length > 0
                             && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -178,8 +178,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
                                 getString(R.string.permission_denied_write));
                     }
                 }}
-            }
-        }
+            
     }
 
     @Override
