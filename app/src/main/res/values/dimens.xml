@@ -17,6 +17,9 @@
     <dimen name="layout_padding_64dp">64dp</dimen>
     <dimen name="layout_padding_75dp">75dp</dimen>
 
+    <dimen name="dashboard_item_height">120dp</dimen>
+    <dimen name="recycler_view_item_margin">12dp</dimen>
+
     <dimen name="header_view_start_margin_left">16dp</dimen>
     <dimen name="header_view_end_margin_left">40dp</dimen>
     <dimen name="header_view_end_margin_right">14dp</dimen>
@@ -45,4 +48,5 @@
     <dimen name="side_bar_width">5dp</dimen>
 
     <dimen name="default_fab_button_size">56dp</dimen>
+    <dimen name="image_height_48dp">48dp</dimen>
 </resources>
