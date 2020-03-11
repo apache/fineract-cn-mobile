@@ -297,6 +297,7 @@
     <string name="error_fetching_customer_details">Failed to fetch customer details</string>
     <string name="error_fetching_deposit_product">Failed to fetch deposit product</string>
     <string name="error_failed_to_refresh_customers">Failed to refresh customers</string>
+    <string name="error_searching_offline_customers">Offline Search is not Supported as of now</string>
 
 
     <!--Material Dialog-->
