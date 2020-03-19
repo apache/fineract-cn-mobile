@@ -49,6 +49,9 @@ import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetail
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentFragment;
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
+import org.apache.fineract.ui.online.roles.createrole.CreateRoleFragment;
+import org.apache.fineract.ui.online.roles.roledetails.RolesActivity;
+import org.apache.fineract.ui.online.roles.roledetails.RolesDetailsFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
 import org.apache.fineract.ui.product.ProductFragment;
@@ -135,5 +138,11 @@ public interface ActivityComponent {
     void inject(EditPayrollAllocationFragment editPayrollAllocationFragment);
 
     void inject(EditPayrollActivity editPayrollActivity);
+
+    void inject(RolesDetailsFragment rolesDetailsFragment);
+
+    void inject(CreateRoleFragment createRoleFragment);
+
+    void inject(RolesActivity rolesActivity);
 }
 

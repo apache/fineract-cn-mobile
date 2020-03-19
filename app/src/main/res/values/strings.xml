@@ -500,4 +500,24 @@
     <string name="email">Email</string>
     <string name="logged_out_successfully">Logged out successfully.</string>
     <string name="please_click_back_again_to_exit">Please click BACK again to exit</string>
+    <string name="allowed_operations">Allowed Operations</string>
+    <string name="permittable_end_group_identifier">Permittable End Group Identifier</string>
+    <string name="change">Change</string>
+    <string name="read">Read</string>
+    <string name="create_role">Create Role</string>
+    <string name="edit_role">Edit Role</string>
+    <string name="add_permission">Add Permission</string>
+    <string name="select_allowed_operations">Select allowed Operations</string>
+    <string name="edit_permission">Edit Permission</string>
+    <string name="update_permission">Update Permission</string>
+    <string name="permission">Permissions</string>
+    <string name="no_permission_added">No permission added</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="error_creating_role">Error creating role</string>
+    <string name="error_updating_role">Error updating role</string>
+    <string name="error_deleting_role">Error deleting role</string>
+    <string name="role_created_successfuly">Role created successfully</string>
+    <string name="role_updated_successfuly">Role updated successfully</string>
+    <string name="role_delete_successfuly">Role deleted successfully</string>
+
 </resources>
