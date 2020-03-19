@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="org.apache.fineract">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,8 +19,10 @@
         android:allowBackup="true"
         android:icon="@drawable/launcher_image"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.online.roles.roledetails.RolesActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -36,55 +39,43 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.online.launcher.LauncherActivity" />
-
         <activity android:name=".ui.online.PassCodeActivity" />
-
         <activity
             android:name=".ui.online.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
-
         <activity android:name=".ui.online.DashboardActivity" />
-
         <activity android:name=".ui.online.customers.customerdetails.CustomerDetailsActivity" />
-
         <activity android:name=".ui.online.customers.customerpayroll.PayrollActivity" />
-
         <activity android:name=".ui.online.customers.customerpayroll.editcustomerpayroll.EditPayrollActivity" />
-
         <activity android:name=".ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity" />
-
         <activity android:name=".ui.online.loanaccounts.loanaccountlist.LoanAccountsActivity" />
-
         <activity android:name=".ui.online.loanaccounts.plannedpayment.PlannedPaymentActivity" />
-
         <activity android:name=".ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity" />
-
         <activity
             android:name=".ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-
         <activity android:name=".ui.online.loanaccounts.debtincomereport.DebtIncomeReportActivity" />
-
         <activity android:name=".ui.online.identification.identificationlist.IdentificationsActivity" />
-
         <activity android:name=".ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity" />
-
         <activity android:name=".ui.online.identification.viewscancard.ViewScanCardActivity" />
-
         <activity
             android:name=".ui.online.customers.customerprofile.CustomerProfileActivity"
             android:theme="@style/AppTheme.Black" />
-
         <activity
             android:name=".ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
+
+        <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity" />
+
+        <activity
+            android:name=".ui.online.groups.creategroup.CreateGroupActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <receiver
             android:name=".jobs.JobsReceiver"
@@ -93,6 +84,7 @@
                 <action android:name="org.apache.fineract.JobsReceiver" />
             </intent-filter>
         </receiver>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

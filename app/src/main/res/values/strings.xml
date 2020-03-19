@@ -38,7 +38,7 @@
     <string name="activities">Activities</string>
     <string name="recent_activities">Recent activities</string>
     <string name="birthday">Birthday</string>
-    <string name="assigned_employee">Assigned Employee: </string>
+    <string name="assigned_employee">Assigned Employee </string>
     <string name="assigned_employee_list">Assigned Employee: %1$s</string>
     <string name="not_assigned">Not assigned</string>
     <string name="no_contact_details_available">No Contact details available</string>
@@ -179,12 +179,15 @@
     <string name="customer_deposit_account">Customer deposit account</string>
     <string name="customer_created_successfully">%1$s created successfully</string>
     <string name="customer_updated_successfully">%1$s updated successfully</string>
+    <string name="group_identifier_created_successfully">Group %1$s created successfully</string>
+    <string name="group_identifier_updated_successfully">Group %1$s updated successfully</string>
     <string name="created_by">Created by</string>
     <string name="created_on">Created on</string>
     <string name="no_deposit_account">No deposit account</string>
     <string name="identification_search">Search identification card</string>
     <string name="ledger_search">Ledger Search</string>
     <string name="teller_search">Search teller</string>
+    <string name="group_search">Search Group</string>
     <string name="loan_account_search">Loan Account Search</string>
     <string name="loan_last_modified_by">%1$s %2$s</string>
     <string name="loan_created_by">%1$s %2$s</string>
@@ -210,6 +213,27 @@
     <string name="identification_card_scan">Identification card scan</string>
     <string name="role">Role</string>
     <string name="customer_name">%1$s %2$s</string>
+    <string name="groups">Groups</string>
+    <string name="group_id">Group Id</string>
+    <string name="leaders">Leaders</string>
+    <string name="members">Members</string>
+    <string name="office">Office</string>
+    <string name="weekday">Weekday</string>
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="region">Region</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="country">Country</string>
+    <string name="status">Status</string>
+    <string name="group_definition_identifier">Group Definition Identifier</string>
+    <string name="create_group">Create Group</string>
+    <string name="no_group_member_added">No Group Member Added</string>
+    <string name="no_group_leader_added">No Group Leader Added</string>
+
+    <!--Placeholder text-->
+    <string name="small_text" translatable="false">Small Text</string>
+    <string name="medium_text" translatable="false">Medium Text</string>
+    <string name="large_text" translatable="false">Large Text</string>
 
     <!--Edit Text hint required-->
     <string name="required_account">Account*</string>
@@ -250,7 +274,7 @@
     <string name="amount_should_be_not_empty">Amount should not be empty</string>
     <string name="description_should_not_be_empty">Description should not be empty</string>
     <string name="customer_name_should_not_be_empty">Customer name should not be empty</string>
-    <string name="must_be_at_least_three_characters">Must be at least %1$d characters</string>
+    <string name="must_be_at_least_n_characters">Must be at least %1$d characters</string>
     <string name="only_thirty_two_character_allowed">Only 32 character allowed</string>
     <string name="only_alphabetic_decimal_digits_characters_allowed">Only alphabetic, decimal digits,\'-\' \'_\' \'.\' \'!\' \'~\' \'*\' \'(\' \')\' characters allowed</string>
     <string name="two_warning_message">%1$s \n %1$s</string>
@@ -297,7 +321,8 @@
     <string name="error_fetching_customer_details">Failed to fetch customer details</string>
     <string name="error_fetching_deposit_product">Failed to fetch deposit product</string>
     <string name="error_failed_to_refresh_customers">Failed to refresh customers</string>
-
+    <string name="error_group_atleast_1_member">Group should have atleast 1 Member</string>
+    <string name="error_group_atleast_1_leader">Group should have atleast 1 Leader</string>
 
     <!--Material Dialog-->
     <string name="dialog_action_ok">OK</string>
@@ -414,6 +439,14 @@
         <item>Review</item>
     </string-array>
 
+    <string-array name="create_group_steps">
+        <item>Group Details</item>
+        <item>Add Members</item>
+        <item>Add Leaders</item>
+        <item>Group Address</item>
+        <item>Review</item>
+    </string-array>
+
     <string-array name="edit_payroll_steps">
         <item>Customer payroll</item>
         <item>Payroll allocations</item>
@@ -500,4 +533,34 @@
     <string name="email">Email</string>
     <string name="logged_out_successfully">Logged out successfully.</string>
     <string name="please_click_back_again_to_exit">Please click BACK again to exit</string>
+    <string name="update">Update</string>
+    <string name="dialog_message_confirm_name_deletion">Do you want to delete %s?</string>
+    <string name="edit_group">Edit Group</string>
+    <string name="updating_group_please_wait">Updating Group, please wait...</string>
+    <string name="please_verify_following_group_task">Please verify the following tasks before you can %1$s this group</string>
+    <string name="change_group_status">Change the status of group</string>
+    <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
+    <string name="error_while_updating_group_status">Error while updating group status</string>
+    <string name="error_while_creating_group">Error while creating group</string>
+    <string name="allowed_operations">Allowed Operations</string>
+    <string name="permittable_end_group_identifier">Permittable End Group Identifier</string>
+    <string name="change">Change</string>
+    <string name="read">Read</string>
+    <string name="create_role">Create Role</string>
+    <string name="edit_role">Edit Role</string>
+    <string name="add_permission">Add Permission</string>
+    <string name="select_allowed_operations">Select allowed Operations</string>
+    <string name="edit_permission">Edit Permission</string>
+    <string name="update_permission">Update Permission</string>
+    <string name="permission">Permissions</string>
+    <string name="no_permission_added">No permission added</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="error_creating_role">Error creating role</string>
+    <string name="error_updating_role">Error updating role</string>
+    <string name="error_deleting_role">Error deleting role</string>
+    <string name="role_created_successfuly">Role created successfully</string>
+    <string name="role_updated_successfuly">Role updated successfully</string>
+    <string name="role_delete_successfuly">Role deleted successfully</string>
+    <string name="do_you_want_to_delete">Do you want to delete %s ?</string>
+
 </resources>

@@ -30,6 +30,14 @@ import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
 import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails
         .DepositAccountDetailsFragment;
 import org.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
+import org.apache.fineract.ui.online.groups.creategroup.AddGroupLeaderStepFragment;
+import org.apache.fineract.ui.online.groups.creategroup.AddGroupMemberStepFragment;
+import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity;
+import org.apache.fineract.ui.online.groups.creategroup.GroupAddressStepFragment;
+import org.apache.fineract.ui.online.groups.creategroup.GroupReviewStepFragment;
+import org.apache.fineract.ui.online.groups.groupdetails.GroupDetailsFragment;
+import org.apache.fineract.ui.online.groups.grouplist.GroupListFragment;
+import org.apache.fineract.ui.online.groups.grouptasks.GroupTasksBottomSheetFragment;
 import org.apache.fineract.ui.online.identification.createidentification.identificationactivity
         .CreateIdentificationActivity;
 import org.apache.fineract.ui.online.identification.identificationdetails
@@ -49,6 +57,9 @@ import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetail
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentFragment;
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
+import org.apache.fineract.ui.online.roles.createrole.CreateRoleFragment;
+import org.apache.fineract.ui.online.roles.roledetails.RolesActivity;
+import org.apache.fineract.ui.online.roles.roledetails.RolesDetailsFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
 import org.apache.fineract.ui.product.ProductFragment;
@@ -135,5 +146,27 @@ public interface ActivityComponent {
     void inject(EditPayrollAllocationFragment editPayrollAllocationFragment);
 
     void inject(EditPayrollActivity editPayrollActivity);
+
+    void inject(GroupListFragment groupListFragment);
+
+    void inject(GroupAddressStepFragment groupAddressStepFragment);
+
+    void inject(CreateGroupActivity createGroupActivity);
+
+    void inject(AddGroupMemberStepFragment addGroupMemberStepFragment);
+
+    void inject(AddGroupLeaderStepFragment addGroupLeaderStepFragment);
+
+    void inject(GroupReviewStepFragment groupReviewStepFragment);
+
+    void inject(GroupDetailsFragment groupDetailsFragment);
+
+    void inject(GroupTasksBottomSheetFragment groupTasksBottomSheetFragment);
+
+    void inject(RolesDetailsFragment rolesDetailsFragment);
+
+    void inject(CreateRoleFragment createRoleFragment);
+
+    void inject(RolesActivity rolesActivity);
 }
 
