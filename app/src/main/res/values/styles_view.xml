@@ -14,4 +14,9 @@
     <style name="TextViewUnderline.Grey" parent="TextViewUnderline">
         <item name="android:background">@color/light_grey</item>
     </style>
+
+    <declare-styleable name="DashboardItem">
+        <attr name="title" format="string"/>
+        <attr name="itemIcon" format="integer"/>
+    </declare-styleable>
 </resources>

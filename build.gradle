@@ -69,4 +69,6 @@ ext {
     circleImageviewVersion = '2.1.0'
     compressorVersion = '2.1.0'
     mifosPasscodeVersion = '1.0.0'
+    constraintLayoutVersion ='2.0.0-beta4'
+    multidexVersion ='2.0.1'
 }

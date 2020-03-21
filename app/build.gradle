@@ -17,6 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -85,6 +86,8 @@ dependencies {
     implementation "androidx.cardview:cardview:$supportLibraryVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     implementation "androidx.annotation:annotation:$supportLibraryVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.multidex:multidex:$multidexVersion"
 
     // Kotlin Dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
