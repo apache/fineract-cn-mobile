@@ -17,6 +17,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         final NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo == null)
-            Toast.makeText(context, context.getString(R.string.toast_internet_offline), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.toast_internet_offline),
+                    Toast.LENGTH_LONG).show();
     }
 }
