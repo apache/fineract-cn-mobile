@@ -10,7 +10,6 @@ import android.widget.Toast;
 import org.apache.fineract.R;
 
 
-
 public class NetworkChangeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
