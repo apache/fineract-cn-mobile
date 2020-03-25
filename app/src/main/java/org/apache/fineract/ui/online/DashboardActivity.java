@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.mifos.mobile.passcode.utils.PasscodePreferencesHelper;
 
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -32,6 +33,7 @@ import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
 import org.apache.fineract.ui.product.ProductFragment;
+import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.MaterialDialog;
 
 import javax.inject.Inject;
@@ -56,7 +58,7 @@ public class DashboardActivity extends FineractBaseActivity implements
 
     @Inject
     PreferencesHelper preferencesHelper;
-
+    private PasscodePreferencesHelper passcodePreferencesHelper;
     private boolean isBackPressedOnce = false;
 
     @Override
@@ -130,6 +132,9 @@ public class DashboardActivity extends FineractBaseActivity implements
             case R.id.item_logout:
                 logout();
                 break;
+            case R.id.passcode:
+                passcode();
+                break;
             case R.id.item_ledger:
                 replaceFragment(LedgerFragment.Companion.newInstance(), true, R.id.container);
                 break;
@@ -144,6 +149,18 @@ public class DashboardActivity extends FineractBaseActivity implements
         drawerLayout.closeDrawer(GravityCompat.START);
         setTitle(item.getTitle());
         return true;
+    }
+
+    private void passcode() {
+        if (this != null) {
+            passcodePreferencesHelper = new PasscodePreferencesHelper(this);
+            String currentPass = passcodePreferencesHelper.getPassCode();
+            passcodePreferencesHelper.savePassCode("");
+            Intent intent = new Intent(this, PassCodeActivity.class );
+            intent.putExtra(ConstantKeys.CURR_PASSWORD, currentPass);
+            intent.putExtra(ConstantKeys.IS_TO_UPDATE_PASS_CODE, true);
+            startActivity(intent);
+        }
     }
 
     @Override

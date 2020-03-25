@@ -40,4 +40,6 @@ public class ConstantKeys {
     public static final int PERMISSION_REQUEST_READ_EXTERNAL_STORAGE = 3;
     public static final String PERMISSIONS_READ_EXTERNAL_STORAGE_STATUS = "read_status";
 
+    public static final String CURR_PASSWORD = "currentPassword";
+    public static final String IS_TO_UPDATE_PASS_CODE = "updatePassCode";
 }

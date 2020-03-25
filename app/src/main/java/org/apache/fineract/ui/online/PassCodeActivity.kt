@@ -2,13 +2,13 @@ package org.apache.fineract.ui.online
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import com.mifos.mobile.passcode.MifosPassCodeActivity
 import com.mifos.mobile.passcode.utils.EncryptionUtil
 import org.apache.fineract.R
 import org.apache.fineract.ui.base.Toaster
 import org.apache.fineract.ui.online.login.LoginActivity
+import org.apache.fineract.utils.ConstantKeys
 
 
 /*
@@ -17,8 +17,15 @@ import org.apache.fineract.ui.online.login.LoginActivity
 
 class PassCodeActivity : MifosPassCodeActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    private var currPassCode: String? = null
+    private var isToUpdatePassCode: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        intent?.let {
+            currPassCode = it.getStringExtra(ConstantKeys.CURR_PASSWORD)
+            isToUpdatePassCode = it.getBooleanExtra(ConstantKeys.IS_TO_UPDATE_PASS_CODE, false)
+        }
     }
 
     override fun showToaster(view: View?, msg: Int) {
