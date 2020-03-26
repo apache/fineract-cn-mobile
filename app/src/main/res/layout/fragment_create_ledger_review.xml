@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:clipToPadding="false">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layout_padding_8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="@dimen/layout_padding_16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_type"
+                    android:textColor="@color/gray_dark" />
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_8dp"
+                    tools:text="LOAN" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:text="@string/identifier"
+                    android:textColor="@color/gray_dark" />
+
+                <TextView
+                    android:id="@+id/tv_identifier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_8dp"
+                    tools:text="YUEY48343" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:text="@string/name"
+                    android:textColor="@color/gray_dark" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_8dp"
+                    tools:text="Cash" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:text="@string/description"
+                    android:textColor="@color/gray_dark" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_8dp"
+                    tools:text="Description about this" />
+
+                <CheckBox
+                    android:id="@+id/cb_show_acc_in_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:clickable="false"
+                    android:paddingStart="@dimen/layout_padding_16dp"
+                    android:paddingLeft="@dimen/layout_padding_16dp"
+                    android:paddingEnd="@dimen/layout_padding_16dp"
+                    android:text="@string/show_account_in_chart" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:text="@string/sub_ledger"
+                    android:textColor="@color/gray_dark" />
+
+                <TextView
+                    android:id="@+id/tv_empty_sub_ledger"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_8dp"
+                    android:text="@string/no_sub_ledger" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_sub_ledgers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="1"
+                tools:listitem="@layout/sub_ledger_item" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.core.widget.NestedScrollView>

@@ -3,16 +3,45 @@
     {
       "type": "ASSET",
       "identifier": "identifier1",
-      "name": "name",
-      "description": "description",
+      "name": "cash",
+      "description": "this ledger belong to cash transactions only",
       "parentLedgerIdentifier": "parentLedgerIdentifier",
-      "subLedgers": [],
-      "totalValue": 1200,
-      "createdOn": "createdOn",
-      "createdBy": "createdBy",
-      "lastModifiedOn": "lastModifiedOn",
-      "lastModifiedBy": "lastModifiedBy",
-      "showAccountsInChart": false
+      "subLedgers": [
+        {
+          "type": "ASSET",
+          "identifier": "identifier1",
+          "name": "Cash",
+          "description": "this ledger belong to cash transactions only",
+          "parentLedgerIdentifier": "parentLedgerIdentifier",
+          "subLedgers": [],
+          "totalValue": 34000,
+          "createdOn": "12 Mar 2019 ",
+          "createdBy": "12 Mar 2019",
+          "lastModifiedOn": "Ahmad Jawid",
+          "lastModifiedBy": "Karim",
+          "showAccountsInChart": true
+        },
+        {
+          "type": "LIABILITY",
+          "identifier": "identifier2",
+          "name": "name",
+          "description": "description",
+          "parentLedgerIdentifier": "parentLedgerIdentifier",
+          "subLedgers": [],
+          "totalValue": 1500,
+          "createdOn": "createdOn",
+          "createdBy": "createdBy",
+          "lastModifiedOn": "lastModifiedOn",
+          "lastModifiedBy": "lastModifiedBy",
+          "showAccountsInChart": false
+        }
+      ],
+      "totalValue": 34000,
+      "createdOn": "12 Mar 2019 ",
+      "createdBy": "Ahmad Jawid",
+      "lastModifiedOn": "12 Feb 2020",
+      "lastModifiedBy": "Karim",
+      "showAccountsInChart": true
     },
     {
       "type": "LIABILITY",

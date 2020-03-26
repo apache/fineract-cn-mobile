@@ -15,10 +15,11 @@ import org.apache.fineract.utils.DateUtils
 import org.apache.fineract.utils.StatusUtils
 import javax.inject.Inject
 
-class LedgerAdapter @Inject constructor(@ApplicationContext val context: Context)
-    : RecyclerView.Adapter<LedgerAdapter.ViewHolder>() {
+class LedgerListAdapter @Inject constructor(@ApplicationContext val context: Context)
+    : RecyclerView.Adapter<LedgerListAdapter.ViewHolder>() {
 
     private var ledgers: List<Ledger> = ArrayList()
+    private var onItemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -27,6 +28,10 @@ class LedgerAdapter @Inject constructor(@ApplicationContext val context: Context
     }
 
     override fun getItemCount(): Int = ledgers.size
+
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.onItemClickListener = onItemClickListener
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
@@ -47,6 +52,9 @@ class LedgerAdapter @Inject constructor(@ApplicationContext val context: Context
 
         holder.tvModifiedOn.text = lastModifiedOn
         holder.tvTotalValue.text = ledger.totalValue.toString()
+        holder.itemView.setOnClickListener {
+            onItemClickListener?.onItemClick(position)
+        }
     }
 
     fun setLedgerList(ledgers: List<Ledger>) {
@@ -61,5 +69,10 @@ class LedgerAdapter @Inject constructor(@ApplicationContext val context: Context
         val tvModifiedOn: TextView = itemView.tv_modified_on
         val tvTotalValue: TextView = itemView.tv_total_value
         val ivAccountTypeIndicator: AppCompatImageView = itemView.iv_type_indicator
+
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
     }
 }

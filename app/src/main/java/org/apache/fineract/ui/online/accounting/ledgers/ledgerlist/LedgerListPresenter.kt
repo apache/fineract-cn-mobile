@@ -1,4 +1,4 @@
-package org.apache.fineract.ui.online.accounting.ledgers
+package org.apache.fineract.ui.online.accounting.ledgers.ledgerlist
 
 import android.content.Context
 import io.reactivex.Observable
@@ -13,12 +13,12 @@ import org.apache.fineract.data.models.accounts.Ledger
 import org.apache.fineract.data.models.accounts.LedgerPage
 import org.apache.fineract.injection.ApplicationContext
 import org.apache.fineract.ui.base.BasePresenter
-import org.apache.fineract.ui.online.accounting.accounts.LedgerContract
+import org.apache.fineract.ui.online.accounting.accounts.LedgerListContract
 import javax.inject.Inject
 
-class LedgerPresenter @Inject constructor(@ApplicationContext context: Context,
-                                          val dataManagerAccounting: DataManagerAccounting)
-    : BasePresenter<LedgerContract.View>(context), LedgerContract.Presenter {
+class LedgerListPresenter @Inject constructor(@ApplicationContext context: Context,
+                                              val dataManagerAccounting: DataManagerAccounting)
+    : BasePresenter<LedgerListContract.View>(context), LedgerListContract.Presenter {
 
     private val compositeDisposable = CompositeDisposable()
 

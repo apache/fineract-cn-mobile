@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 /**
  * @author Rajan Maurya
- *         On 26/07/17.
+ * On 26/07/17.
  */
 public interface AnonymousService {
 

@@ -5,7 +5,13 @@ import org.apache.fineract.injection.module.ActivityModule;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.DashboardActivity;
 import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
-import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
+import org.apache.fineract.ui.online.accounting.ledgers.createledger.CreateLedgerDetailsFragment;
+import org.apache.fineract.ui.online.accounting.ledgers.createledger.CreateLedgerReviewFragment;
+import org.apache.fineract.ui.online.accounting.ledgers.createledger.CreateLedgerSubLedgerFragment;
+import org.apache.fineract.ui.online.accounting.ledgers.createledger.createledgeractivity.CreateLedgerActivity;
+import org.apache.fineract.ui.online.accounting.ledgers.ledgerdetails.LedgerDetailsActivity;
+import org.apache.fineract.ui.online.accounting.ledgers.ledgerlist.LedgerListFragment;
+import org.apache.fineract.ui.online.accounting.ledgers.subledger.SubLedgerListActivity;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
         .CreateCustomerActivity;
 import org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress
@@ -120,7 +126,7 @@ public interface ActivityComponent {
 
     void inject(CustomerPayloadFragment customerPayloadFragment);
 
-    void inject(LedgerFragment ledgerFragment);
+    void inject(LedgerListFragment ledgerListFragment);
 
     void inject(AccountsFragment accountsFragment);
 
@@ -135,5 +141,17 @@ public interface ActivityComponent {
     void inject(EditPayrollAllocationFragment editPayrollAllocationFragment);
 
     void inject(EditPayrollActivity editPayrollActivity);
+
+    void inject(LedgerDetailsActivity ledgerDetailsActivity);
+
+    void inject(CreateLedgerActivity createLedgerActivity);
+
+    void inject(CreateLedgerDetailsFragment createLedgerDetailsFragment);
+
+    void inject(CreateLedgerReviewFragment createLedgerReviewFragment);
+
+    void inject(CreateLedgerSubLedgerFragment createLedgerSubLedgerFragment);
+
+    void inject(SubLedgerListActivity subLedgerListActivity);
 }
 

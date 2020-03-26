@@ -2,11 +2,11 @@ package org.apache.fineract.utils;
 
 /**
  * @author Rajan Maurya
- *         On 27/06/17.
+ * On 27/06/17.
  */
 public class ConstantKeys {
 
-    public static final String CUSTOMER_IDENTIFIER  = "customer_identifier";
+    public static final String CUSTOMER_IDENTIFIER = "customer_identifier";
     public static final String CUSTOMER_STATUS = "customer_status";
     public static final String IS_NEW_CUSTOMER = "is_new_customer";
     public static final String CUSTOMER_ACTION = "customer_action";
@@ -40,4 +40,6 @@ public class ConstantKeys {
     public static final int PERMISSION_REQUEST_READ_EXTERNAL_STORAGE = 3;
     public static final String PERMISSIONS_READ_EXTERNAL_STORAGE_STATUS = "read_status";
 
+    public static final String LEDGER = "ledger";
+    public static final String LEDGER_ACTION = "ledger_action";
 }
