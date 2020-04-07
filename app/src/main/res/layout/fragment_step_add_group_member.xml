@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/default_margin">
@@ -19,6 +20,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:padding="@dimen/default_padding">
 
                 <LinearLayout
@@ -34,11 +36,12 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Large"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:text="@string/members" />
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="3"
+                            android:text="@string/members"
+                            android:textColor="@color/gray_dark" />
 
                         <ImageButton
                             android:id="@+id/ibAddMember"
@@ -50,23 +53,23 @@
 
                     </LinearLayout>
 
-                    <TextView xmlns:tools="http://schemas.android.com/tools"
+                    <TextView
                         android:id="@+id/tvAddedMember"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/default_margin"
-                        android:background="@drawable/border"
                         android:gravity="center"
-                        tools:text="@string/medium_text" />
+                        android:padding="@dimen/layout_padding_16dp"
+                        android:text="@string/no_group_member_added"
+                        android:visibility="visible" />
 
                     <LinearLayout
                         android:id="@+id/llAddMember"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/default_margin"
+                        android:layout_marginTop="@dimen/layout_padding_12dp"
                         android:background="@drawable/border"
                         android:orientation="vertical"
-                        android:padding="@dimen/default_padding"
+                        android:padding="@dimen/layout_padding_16dp"
                         android:visibility="gone">
 
                         <com.google.android.material.textfield.TextInputLayout
@@ -77,40 +80,48 @@
                                 android:id="@+id/etNewMember"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="@string/members" />
+                                android:hint="@string/name" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <View
-                                android:layout_width="@dimen/view_line_width"
-                                android:layout_height="0dp"
-                                android:layout_weight="1" />
-
-                            <Button
-                                android:id="@+id/btnAddMember"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/add" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/layout_padding_16dp"
+                            android:gravity="right">
 
                             <Button
                                 android:id="@+id/btnCancelAddMember"
-                                android:layout_width="0dp"
+                                style="@style/Widget.MaterialComponents.Button.TextButton"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/cancel" />
+                                android:text="@string/cancel"
+                                android:textSize="@dimen/text_size_14sp" />
+
+                            <Button
+                                android:id="@+id/btnAddMember"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/add" />
 
                         </LinearLayout>
+
                     </LinearLayout>
+
 
                 </LinearLayout>
 
-
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingTop="@dimen/layout_padding_16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/item_name_list" />
             </LinearLayout>
+
         </androidx.cardview.widget.CardView>
 
     </androidx.core.widget.NestedScrollView>

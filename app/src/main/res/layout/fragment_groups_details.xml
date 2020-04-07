@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,54 +15,44 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_margin"
-                android:orientation="vertical"
-                android:padding="@dimen/default_padding">
+                android:layout_marginTop="@dimen/layout_padding_8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:orientation="vertical"
+                    android:padding="@dimen/layout_padding_16dp">
 
                     <TextView
-                        style="@style/Base.TextAppearance.AppCompat.Small"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/identifier" />
+                        android:text="@string/identifier"
+                        android:textColor="@color/gray_dark" />
 
                     <TextView
                         android:id="@+id/tvIdentifier"
-                        style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
                         android:textColor="@color/black"
                         tools:text="@string/medium_text" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
 
                     <TextView
-                        style="@style/Base.TextAppearance.AppCompat.Small"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/status" />
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/status"
+                        android:textColor="@color/gray_dark" />
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:orientation="horizontal">
 
                         <org.apache.fineract.ui.views.CircularImageView
                             android:id="@+id/civStatus"
@@ -78,125 +69,106 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
 
                     <TextView
-                        style="@style/Base.TextAppearance.AppCompat.Small"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/group_id" />
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/group_id"
+                        android:textColor="@color/gray_dark" />
+
 
                     <TextView
                         android:id="@+id/tvGroupId"
-                        style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
                         android:textColor="@color/black"
                         tools:text="@string/medium_text" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
 
                     <TextView
-                        style="@style/Base.TextAppearance.AppCompat.Small"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/name" />
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/name"
+                        android:textColor="@color/gray_dark" />
 
                     <TextView
                         android:id="@+id/tvName"
-                        style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
                         android:textColor="@color/black"
                         tools:text="@string/medium_text" />
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/layout_padding_16dp"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:paddingEnd="@dimen/layout_padding_16dp"
+                android:paddingRight="@dimen/layout_padding_16dp"
+                android:paddingBottom="@dimen/layout_padding_8dp"
+                android:text="@string/leaders"
+                android:textColor="@color/gray_dark" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_margin">
+                android:padding="@dimen/layout_padding_16dp">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_leaders"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/default_padding"
-                    android:weightSum="2">
-
-                    <TextView
-                        style="@style/Base.TextAppearance.AppCompat.Small"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/leaders" />
-
-                    <TextView
-                        android:id="@+id/tvLeaders"
-                        style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        tools:text="@string/medium_text" />
-
-
-                </LinearLayout>
+                    android:paddingStart="@dimen/layout_padding_16dp"
+                    android:paddingTop="@dimen/layout_padding_16dp"
+                    android:paddingEnd="@dimen/layout_padding_16dp"
+                    android:paddingBottom="@dimen/layout_padding_8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_name_list" />
             </androidx.cardview.widget.CardView>
 
 
-            <androidx.cardview.widget.CardView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_margin">
+                android:paddingStart="@dimen/layout_padding_16dp"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:paddingEnd="@dimen/layout_padding_16dp"
+                android:paddingRight="@dimen/layout_padding_16dp"
+                android:paddingBottom="@dimen/layout_padding_8dp"
+                android:text="@string/members"
+                android:textColor="@color/gray_dark" />
 
-                <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_members"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/default_padding"
-                    android:weightSum="2">
+                    android:paddingStart="@dimen/layout_padding_16dp"
+                    android:paddingTop="@dimen/layout_padding_16dp"
+                    android:paddingEnd="@dimen/layout_padding_16dp"
+                    android:paddingBottom="@dimen/layout_padding_8dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_name_list" />
 
-                    <TextView
-                        style="@style/Base.TextAppearance.AppCompat.Small"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/members" />
-
-                    <TextView
-                        android:id="@+id/tvMembers"
-                        style="@style/Base.TextAppearance.AppCompat.Medium"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        tools:text="@string/medium_text" />
-
-                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_margin">
+                android:layout_marginTop="@dimen/layout_padding_16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -204,83 +176,118 @@
                     android:orientation="vertical"
                     android:padding="@dimen/default_padding">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:weightSum="2">
+                        android:text="@string/office"
+                        android:textColor="@color/gray_dark" />
 
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/office" />
-
-                        <TextView
-                            android:id="@+id/tvOffice"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            tools:text="@string/medium_text" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tvOffice"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:weightSum="2">
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
 
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/assigned_employee" />
 
-                        <TextView
-                            android:id="@+id/tvAssignedEmployee"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            tools:text="@string/medium_text" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:weightSum="2">
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/assigned_employee"
+                        android:textColor="@color/gray_dark" />
 
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/weekday" />
+                    <TextView
+                        android:id="@+id/tvAssignedEmployee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
 
-                        <TextView
-                            android:id="@+id/tvWeekday"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            tools:text="@string/medium_text" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/weekday"
+                        android:textColor="@color/gray_dark" />
 
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvWeekday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
 
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_tasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_margin">
+                android:layout_marginTop="@dimen/layout_padding_12dp"
+                tools:targetApi="lollipop">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_16dp">
+
+                        <ImageView
+                            style="@style/circleLayout"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            app:srcCompat="@drawable/ic_task_black_24dp" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tasks" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/change_group_status"
+                                android:textColor="@color/gray_dark"
+                                android:textSize="@dimen/text_size_12sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/layout_padding_16dp"
+                android:paddingTop="@dimen/layout_padding_16dp"
+                android:paddingEnd="@dimen/layout_padding_16dp"
+                android:paddingRight="@dimen/layout_padding_16dp"
+                android:paddingBottom="@dimen/layout_padding_8dp"
+                android:text="@string/address"
+                android:textColor="@color/gray_dark" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -288,125 +295,81 @@
                     android:orientation="vertical"
                     android:padding="@dimen/default_padding">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:text="@string/street"
+                        android:textColor="@color/gray_dark" />
 
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/street" />
-
-                        <TextView
-                            android:id="@+id/tvStreet"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            tools:text="@string/medium_text" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tvStreet"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
 
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/city" />
-
-                        <TextView
-                            android:id="@+id/tvCity"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            tools:text="@string/medium_text" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/city"
+                        android:textColor="@color/gray_dark" />
 
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/region" />
-
-                        <TextView
-                            android:id="@+id/tvRegion"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            tools:text="@string/medium_text" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tvCity"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
 
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/postal_code" />
 
-                        <TextView
-                            android:id="@+id/tvPostalCode"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            tools:text="@string/medium_text" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/region"
+                        android:textColor="@color/gray_dark" />
 
-                        <TextView
-                            style="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/country" />
+                    <TextView
+                        android:id="@+id/tvRegion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
 
-                        <TextView
-                            android:id="@+id/tvCountry"
-                            style="@style/Base.TextAppearance.AppCompat.Medium"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            tools:text="@string/medium_text" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/postal_code"
+                        android:textColor="@color/gray_dark" />
 
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvPostalCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/country"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/tvCountry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

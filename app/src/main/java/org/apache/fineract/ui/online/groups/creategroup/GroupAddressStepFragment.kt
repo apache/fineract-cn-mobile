@@ -17,8 +17,10 @@ import org.apache.fineract.R
 import org.apache.fineract.data.models.customer.Country
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.online.groups.GroupAction
 import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
-import org.apache.fineract.ui.online.groups.grouplist.GroupsViewModel
+import org.apache.fineract.ui.online.groups.grouplist.GroupViewModel
+import org.apache.fineract.utils.Constants
 import javax.inject.Inject
 
 
@@ -29,29 +31,33 @@ import javax.inject.Inject
 class GroupAddressStepFragment : FineractBaseFragment(), Step {
 
     lateinit var rootView: View
-
     lateinit var countries: List<Country>
-
-    lateinit var viewModel: GroupsViewModel
+    lateinit var viewModel: GroupViewModel
+    private lateinit var groupAction: GroupAction
 
     @Inject
     lateinit var groupViewModelFactory: GroupViewModelFactory
 
     companion object {
-        fun newInstance(): GroupAddressStepFragment {
-            return GroupAddressStepFragment()
+        fun newInstance(groupAction: GroupAction) = GroupAddressStepFragment().apply {
+            arguments = Bundle().apply {
+                putSerializable(Constants.GROUP_ACTION, groupAction)
+            }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.getSerializable(Constants.GROUP_ACTION)?.let {
+            groupAction = it as GroupAction
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_step_group_address, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
         viewModel = ViewModelProviders.of(this,
-                groupViewModelFactory).get(GroupsViewModel::class.java)
+                groupViewModelFactory).get(GroupViewModel::class.java)
         return rootView
     }
 
@@ -62,6 +68,19 @@ class GroupAddressStepFragment : FineractBaseFragment(), Step {
             etCountry.setAdapter(ArrayAdapter(context, android.R.layout.simple_list_item_1, viewModel.getCountryNames(it)))
         })
         etCountry.threshold = 1
+
+        if (groupAction == GroupAction.EDIT) {
+            showDataOnViews()
+        }
+    }
+
+    private fun showDataOnViews() {
+        val group = (activity as CreateGroupActivity).getGroup()
+        etStreet.setText(group.address?.street)
+        etCity.setText(group.address?.city)
+        etRegion.setText(group.address?.region)
+        etPostalCode.setText(group.address?.postalCode)
+        etCountry.setText(group.address?.country)
     }
 
     override fun onSelected() {

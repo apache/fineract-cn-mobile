@@ -30,9 +30,14 @@ import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
 import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails
         .DepositAccountDetailsFragment;
 import org.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
+import org.apache.fineract.ui.online.groups.creategroup.AddGroupLeaderStepFragment;
+import org.apache.fineract.ui.online.groups.creategroup.AddGroupMemberStepFragment;
 import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity;
 import org.apache.fineract.ui.online.groups.creategroup.GroupAddressStepFragment;
-import org.apache.fineract.ui.online.groups.grouplist.ViewGroupsFragment;
+import org.apache.fineract.ui.online.groups.creategroup.GroupReviewStepFragment;
+import org.apache.fineract.ui.online.groups.groupdetails.GroupDetailsFragment;
+import org.apache.fineract.ui.online.groups.grouplist.GroupListFragment;
+import org.apache.fineract.ui.online.groups.grouptasks.GroupTasksBottomSheetFragment;
 import org.apache.fineract.ui.online.identification.createidentification.identificationactivity
         .CreateIdentificationActivity;
 import org.apache.fineract.ui.online.identification.identificationdetails
@@ -139,10 +144,20 @@ public interface ActivityComponent {
 
     void inject(EditPayrollActivity editPayrollActivity);
 
-    void inject(ViewGroupsFragment viewGroupsFragment);
+    void inject(GroupListFragment groupListFragment);
 
     void inject(GroupAddressStepFragment groupAddressStepFragment);
 
     void inject(CreateGroupActivity createGroupActivity);
+
+    void inject(AddGroupMemberStepFragment addGroupMemberStepFragment);
+
+    void inject(AddGroupLeaderStepFragment addGroupLeaderStepFragment);
+
+    void inject(GroupReviewStepFragment groupReviewStepFragment);
+
+    void inject(GroupDetailsFragment groupDetailsFragment);
+
+    void inject(GroupTasksBottomSheetFragment groupTasksBottomSheetFragment);
 }
 

@@ -12,13 +12,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import butterknife.OnClick
-import kotlinx.android.synthetic.main.fragment_view_groups.*
+import kotlinx.android.synthetic.main.fragment_group_list.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.Group
 import org.apache.fineract.ui.adapters.GroupsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.groups.GroupAction
 import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity
 import org.apache.fineract.ui.online.groups.groupdetails.GroupDetailsActivity
 import org.apache.fineract.utils.Constants
@@ -29,11 +30,11 @@ import javax.inject.Inject
  * Created by saksham on 15/June/2019
 */
 
-class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
+class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
 
     lateinit var rootView: View
 
-    lateinit var viewModel: GroupsViewModel
+    lateinit var viewModel: GroupViewModel
 
     @Inject
     lateinit var adapter: GroupsAdapter
@@ -48,8 +49,8 @@ class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
     }
 
     companion object {
-        fun newInstance(): ViewGroupsFragment {
-            return ViewGroupsFragment()
+        fun newInstance(): GroupListFragment {
+            return GroupListFragment()
         }
     }
 
@@ -60,10 +61,10 @@ class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        rootView = inflater.inflate(R.layout.fragment_view_groups, container, false)
+        rootView = inflater.inflate(R.layout.fragment_group_list, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
         viewModel = ViewModelProviders.of(this,
-                groupViewModelFactory).get(GroupsViewModel::class.java)
+                groupViewModelFactory).get(GroupViewModel::class.java)
         return rootView
     }
 
@@ -112,8 +113,9 @@ class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
     }
 
     override fun onItemClick(childView: View?, position: Int) {
-        var intent = Intent(context, GroupDetailsActivity::class.java)
-        intent.putExtra(Constants.GROUP, groupList[position])
+        val intent = Intent(context, GroupDetailsActivity::class.java).apply {
+            putExtra(Constants.GROUP, groupList[position])
+        }
         startActivity(intent)
     }
 
@@ -122,7 +124,10 @@ class ViewGroupsFragment : FineractBaseFragment(), OnItemClickListener {
 
     @OnClick(R.id.fabAddGroup)
     fun addGroup() {
-        startActivity(Intent(context, CreateGroupActivity::class.java))
+        val intent = Intent(activity, CreateGroupActivity::class.java).apply {
+            putExtra(Constants.GROUP_ACTION, GroupAction.CREATE)
+        }
+        startActivity(intent)
     }
 
 }

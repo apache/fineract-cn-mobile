@@ -6,19 +6,19 @@ import com.stepstone.stepper.Step
 import com.stepstone.stepper.adapter.AbstractFragmentStepAdapter
 import com.stepstone.stepper.viewmodel.StepViewModel
 import org.apache.fineract.R
+import org.apache.fineract.ui.online.groups.GroupAction
 
 
 /*
  * Created by saksham on 02/July/2019
 */
 
-class CreateGroupAdapter : AbstractFragmentStepAdapter {
+class CreateGroupAdapter constructor(fm: FragmentManager,
+                                     context: Context,
+                                     val groupAction: GroupAction)
+    : AbstractFragmentStepAdapter(fm, context) {
 
-    lateinit var createGroupSteps: Array<String>
-
-    constructor(fm: FragmentManager, context: Context) : super(fm, context) {
-        createGroupSteps = context.resources.getStringArray(R.array.create_group_steps)
-    }
+    private var createGroupSteps = context.resources.getStringArray(R.array.create_group_steps)
 
     override fun getCount(): Int {
         return createGroupSteps.size
@@ -26,10 +26,10 @@ class CreateGroupAdapter : AbstractFragmentStepAdapter {
 
     override fun createStep(position: Int): Step? {
         when (position) {
-            0 -> return GroupDetailsStepFragment.newInstance()
-            1 -> return AddGroupMemberStepFragment.newInstance()
-            2 -> return AddGroupLeaderStepFragment.newInstance()
-            3 -> return GroupAddressStepFragment.newInstance()
+            0 -> return GroupDetailsStepFragment.newInstance(groupAction)
+            1 -> return AddGroupMemberStepFragment.newInstance(groupAction)
+            2 -> return AddGroupLeaderStepFragment.newInstance(groupAction)
+            3 -> return GroupAddressStepFragment.newInstance(groupAction)
             4 -> return GroupReviewStepFragment.newInstance()
         }
         return null

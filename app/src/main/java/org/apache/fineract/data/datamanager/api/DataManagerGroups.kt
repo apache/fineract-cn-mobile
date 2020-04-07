@@ -4,12 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
-import okhttp3.MediaType
+import kotlinx.coroutines.Deferred
 import okhttp3.ResponseBody
+import org.apache.fineract.FakeRemoteDataSource
 import org.apache.fineract.data.local.PreferencesHelper
 import org.apache.fineract.data.models.Group
+import org.apache.fineract.data.models.customer.Command
 import org.apache.fineract.data.remote.BaseApiManager
-import org.apache.fineract.FakeRemoteDataSource
 import javax.inject.Inject
 
 
@@ -17,7 +18,7 @@ import javax.inject.Inject
  * Created by saksham on 15/June/2019
 */
 
-class DataManagerGroups @Inject constructor(val baseManagerApi: BaseApiManager,
+class DataManagerGroups @Inject constructor(private val baseManagerApi: BaseApiManager,
                                             val dataManagerAuth: DataManagerAuth,
                                             val preferencesHelper: PreferencesHelper)
     : FineractBaseDataManager(dataManagerAuth, preferencesHelper) {
@@ -32,14 +33,13 @@ class DataManagerGroups @Inject constructor(val baseManagerApi: BaseApiManager,
         return groups
     }
 
-    fun createGroup(): MutableLiveData<Observable<ResponseBody>> {
-        val response = MutableLiveData<Observable<ResponseBody>>()
+    fun createGroup(group: Group): Deferred<ResponseBody> = baseManagerApi.groupsService.createGroup(group)
 
-        response.value = baseManagerApi.groupsService.createGroup()
-                .onErrorResumeNext(Function<Throwable, ObservableSource<ResponseBody>> {
-                    Observable.just(ResponseBody.create(MediaType.parse("text/plain"), "Successfully created Group"))
-                })
+    fun updateGroup(identifier: String, group: Group): Deferred<ResponseBody> {
+        return baseManagerApi.groupsService.updateGroup(identifier, group)
+    }
 
-        return response
+    fun changeGroupStatus(identifier: String, command: Command): Deferred<ResponseBody> {
+        return baseManagerApi.groupsService.changeGroupStatus(identifier, command)
     }
 }

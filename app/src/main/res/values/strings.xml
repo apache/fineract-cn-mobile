@@ -180,6 +180,7 @@
     <string name="customer_created_successfully">%1$s created successfully</string>
     <string name="customer_updated_successfully">%1$s updated successfully</string>
     <string name="group_identifier_created_successfully">Group %1$s created successfully</string>
+    <string name="group_identifier_updated_successfully">Group %1$s updated successfully</string>
     <string name="created_by">Created by</string>
     <string name="created_on">Created on</string>
     <string name="no_deposit_account">No deposit account</string>
@@ -532,4 +533,13 @@
     <string name="email">Email</string>
     <string name="logged_out_successfully">Logged out successfully.</string>
     <string name="please_click_back_again_to_exit">Please click BACK again to exit</string>
+    <string name="update">Update</string>
+    <string name="dialog_message_confirm_name_deletion">Do you want to delete %s?</string>
+    <string name="edit_group">Edit Group</string>
+    <string name="updating_group_please_wait">Updating Group, please wait...</string>
+    <string name="please_verify_following_group_task">Please verify the following tasks before you can %1$s this group</string>
+    <string name="change_group_status">Change the status of group</string>
+    <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
+    <string name="error_while_updating_group_status">Error while updating group status</string>
+    <string name="error_while_creating_group">Error while creating group</string>
 </resources>

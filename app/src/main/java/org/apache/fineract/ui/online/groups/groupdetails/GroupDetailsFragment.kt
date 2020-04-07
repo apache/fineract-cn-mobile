@@ -1,17 +1,25 @@
 package org.apache.fineract.ui.online.groups.groupdetails
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import butterknife.ButterKnife
+import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_groups_details.*
+import kotlinx.android.synthetic.main.fragment_groups_details.view.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.Group
+import org.apache.fineract.ui.adapters.NameListAdapter
+import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.online.groups.GroupAction
+import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity
+import org.apache.fineract.ui.online.groups.grouptasks.GroupTasksBottomSheetFragment
 import org.apache.fineract.ui.views.CircularImageView
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.DateUtils
 import org.apache.fineract.utils.Utils
+import javax.inject.Inject
 
 
 /*
@@ -23,10 +31,16 @@ class GroupDetailsFragment : FineractBaseFragment() {
     lateinit var rootView: View
     lateinit var group: Group
 
+    @Inject
+    lateinit var membersNameAdapter: NameListAdapter
+
+    @Inject
+    lateinit var leadersNameAdapter: NameListAdapter
+
     companion object {
         fun newInstance(group: Group): GroupDetailsFragment {
-            var fragment = GroupDetailsFragment()
-            var args = Bundle()
+            val fragment = GroupDetailsFragment()
+            val args = Bundle()
             args.putParcelable(Constants.GROUP, group)
             fragment.arguments = args
             return fragment
@@ -40,8 +54,38 @@ class GroupDetailsFragment : FineractBaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_groups_details, container, false)
+        (activity as FineractBaseActivity).activityComponent.inject(this)
+        ButterKnife.bind(this, rootView)
+        rootView.rv_members.adapter = membersNameAdapter
+        membersNameAdapter.setReview(true)
+        rootView.rv_leaders.adapter = leadersNameAdapter
+        leadersNameAdapter.setReview(true)
         setToolbarTitle(group.identifier)
+        setHasOptionsMenu(true)
         return rootView
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        super.onPrepareOptionsMenu(menu)
+        Utils.setToolbarIconColor(context, menu, R.color.white)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_group_detials, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_edit_group -> {
+                val intent = Intent(activity, CreateGroupActivity::class.java).apply {
+                    putExtra(Constants.GROUP, group)
+                    putExtra(Constants.GROUP_ACTION, GroupAction.EDIT)
+                }
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -51,11 +95,11 @@ class GroupDetailsFragment : FineractBaseFragment() {
         tvName.text = group.name
         tvStatus.text = group.status?.name
         setGroupStatusCircularIcon(group.status, civStatus)
-        group.leaders?.forEach {
-            tvLeaders.append("$it\n")
+        group.leaders?.let {
+            leadersNameAdapter.submitList(it as ArrayList<String>)
         }
-        group.members?.forEach {
-            tvMembers.append("$it\n")
+        group.members?.let {
+            membersNameAdapter.submitList(it as ArrayList<String>)
         }
         tvOffice.text = group.office
         tvAssignedEmployee.text = group.assignedEmployee
@@ -67,8 +111,13 @@ class GroupDetailsFragment : FineractBaseFragment() {
         tvCountry.text = group.address?.country
     }
 
-    private fun setGroupStatusCircularIcon(status: Group.Status?, civStatus: CircularImageView) {
+    @OnClick(R.id.cv_tasks)
+    fun onTasksCardViewClicked() {
+        val bottomSheet = GroupTasksBottomSheetFragment(group)
+        bottomSheet.show(childFragmentManager, getString(R.string.tasks))
+    }
 
+    private fun setGroupStatusCircularIcon(status: Group.Status?, civStatus: CircularImageView) {
         when (status) {
             Group.Status.PENDING -> {
                 civStatus.setImageDrawable(Utils.setCircularBackground(R.color.blue, context))

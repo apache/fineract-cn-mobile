@@ -87,6 +87,7 @@ dependencies {
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     implementation "androidx.annotation:annotation:$supportLibraryVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtension"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleExtension"
 
 
@@ -151,6 +152,10 @@ dependencies {
 
     //Easy Validation Library
     implementation "com.wajahatkarim3.easyvalidation:easyvalidation-core:$easyValidationVersion"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
 
 
     // Instrumentation test dependencies

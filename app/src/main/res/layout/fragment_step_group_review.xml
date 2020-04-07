@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/default_margin">
@@ -131,14 +132,18 @@
 
                 <TextView
                     style="@style/TextViewReview.Head"
+                    android:paddingTop="@dimen/layout_padding_8dp"
                     android:text="@string/members" />
 
-                <LinearLayout
-                    android:id="@+id/llMembers"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_members"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" />
+                    android:layout_marginTop="@dimen/layout_padding_12dp"
+                    android:layout_marginBottom="@dimen/layout_padding_12dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_name_list" />
 
                 <View style="@style/TextViewUnderline.Grey" />
 
@@ -172,14 +177,18 @@
 
                 <TextView
                     style="@style/TextViewReview.Head"
+                    android:paddingTop="@dimen/layout_padding_8dp"
                     android:text="@string/leaders" />
 
-                <LinearLayout
-                    android:id="@+id/llLeaders"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_leaders"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical" />
+                    android:layout_marginTop="@dimen/layout_padding_12dp"
+                    android:layout_marginBottom="@dimen/layout_padding_12dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_name_list" />
 
                 <View style="@style/TextViewUnderline.Grey" />
 

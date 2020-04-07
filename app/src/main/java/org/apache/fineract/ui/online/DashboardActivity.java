@@ -28,7 +28,7 @@ import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
-import org.apache.fineract.ui.online.groups.grouplist.ViewGroupsFragment;
+import org.apache.fineract.ui.online.groups.grouplist.GroupListFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
@@ -141,7 +141,7 @@ public class DashboardActivity extends FineractBaseActivity implements
                 replaceFragment(TellerFragment.Companion.newInstance(), true, R.id.container);
                 break;
             case R.id.item_groups:
-                replaceFragment(ViewGroupsFragment.Companion.newInstance(), true, R.id.container);
+                replaceFragment(GroupListFragment.Companion.newInstance(), true, R.id.container);
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);

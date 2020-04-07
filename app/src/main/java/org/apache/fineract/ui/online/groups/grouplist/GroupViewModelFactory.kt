@@ -20,6 +20,6 @@ class GroupViewModelFactory @Inject constructor(@ApplicationContext var context:
     : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return GroupsViewModel(dataManagerGroups, dataManagerAnonymous) as T
+        return GroupViewModel(dataManagerGroups, dataManagerAnonymous) as T
     }
 }
