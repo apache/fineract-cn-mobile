@@ -26,7 +26,9 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Rajan Maurya"
         android:textColor="@color/white"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="bold"
+        android:typeface="monospace"/>
 
     <TextView
         android:id="@+id/textView"
