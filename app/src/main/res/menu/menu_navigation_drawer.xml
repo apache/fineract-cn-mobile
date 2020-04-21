@@ -7,50 +7,52 @@
 
         <item
             android:id="@+id/item_dashboard"
-            android:checked="true"
             android:icon="@drawable/ic_dashboard_black_24dp"
             android:title="@string/dashboard" />
 
         <item
             android:id="@+id/item_roles"
-            android:checked="true"
             android:icon="@drawable/ic_lock_black_24dp"
             android:title="@string/roles_and_permissions" />
 
         <item
             android:id="@+id/item_customer"
-            android:checked="true"
             android:icon="@drawable/ic_customer_black_24dp"
             android:title="@string/customer" />
 
         <item
             android:id="@+id/item_customer_payload"
-            android:checked="true"
             android:icon="@drawable/ic_business_center_black_24dp"
             android:title="@string/customer_payloads" />
 
         <item
             android:id="@+id/item_ledger"
-            android:checked="true"
             android:icon="@drawable/ic_book_black_24dp"
             android:title="@string/ledger" />
 
         <item
             android:id="@+id/item_accounts"
-            android:checked="true"
             android:icon="@drawable/ic_account_balance_black_24dp"
             android:title="@string/accounts" />
         <item
             android:id="@+id/item_teller"
-            android:checked="true"
-            android:icon="@drawable/ic_supervisor_account_black_24dp"
+            android:icon="@drawable/ic_teller_black_24dp"
             android:title="@string/teller" />
 
         <item
             android:id="@+id/item_product"
-            android:checked="true"
             android:icon="@drawable/ic_products_black_24dp"
             android:title="@string/products" />
+
+        <item
+            android:id="@+id/item_groups"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
+            android:title="@string/groups" />
+
+        <item
+            android:id="@+id/item_location"
+            android:icon="@drawable/ic_baseline_location_on_24"
+            android:title="@string/path_traker" />
 
     </group>
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.online.geo_location.visited_customer_list.VisitedClientLocationListFragment">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVisitedClient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/layout_padding_12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_client_location" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVisitCustomer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/layout_padding_16dp"
+        android:layout_marginStart="@dimen/layout_padding_12dp"
+        android:layout_marginLeft="@dimen/layout_padding_12dp"
+        android:layout_marginTop="@dimen/layout_padding_12dp"
+        style="@style/Widget.MaterialComponents.Button"
+        android:text="@string/visit_customer"
+        android:textAllCaps="false"
+        app:cornerRadius="@dimen/layout_padding_24dp"
+        app:icon="@drawable/ic_baseline_navigation_24" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,10 +7,12 @@ import org.apache.fineract.data.services.AnonymousService;
 import org.apache.fineract.data.services.AuthService;
 import org.apache.fineract.data.services.CustomerService;
 import org.apache.fineract.data.services.DepositService;
+import org.apache.fineract.data.services.GeolocationService;
+import org.apache.fineract.data.services.GroupsService;
 import org.apache.fineract.data.services.IndividualLendingService;
 import org.apache.fineract.data.services.LoanService;
-import org.apache.fineract.data.services.ProductService;
 import org.apache.fineract.data.services.PayrollService;
+import org.apache.fineract.data.services.ProductService;
 import org.apache.fineract.data.services.RolesService;
 import org.apache.fineract.data.services.TellersService;
 
@@ -41,6 +43,8 @@ public class BaseApiManager {
     private static TellersService tellerService;
     private static ProductService productService;
     private static PayrollService payrollService;
+    private static GroupsService groupsService;
+    private static GeolocationService geolocationService;
 
     public BaseApiManager(Context context) {
         createService(context);
@@ -58,6 +62,8 @@ public class BaseApiManager {
         tellerService = createApi(TellersService.class);
         productService = createApi(ProductService.class);
         payrollService = createApi(PayrollService.class);
+        groupsService = createApi(GroupsService.class);
+        geolocationService = createApi(GeolocationService.class);
     }
 
     private static void initAnonymous() {
@@ -141,5 +147,13 @@ public class BaseApiManager {
 
     public PayrollService getPayrollService() {
         return payrollService;
+    }
+
+    public GroupsService getGroupsService() {
+        return groupsService;
+    }
+
+    public GeolocationService getGeolocationService() {
+        return geolocationService;
     }
 }

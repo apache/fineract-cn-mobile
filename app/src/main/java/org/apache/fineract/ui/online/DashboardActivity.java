@@ -3,20 +3,18 @@ package org.apache.fineract.ui.online;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.fragment.app.Fragment;
-
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
@@ -24,10 +22,12 @@ import org.apache.fineract.jobs.StartSyncJob;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
-import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
+import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.dashboard.DashboardFragment;
+import org.apache.fineract.ui.online.geo_location.visited_customer_list.VisitedClientLocationListFragment;
+import org.apache.fineract.ui.online.groups.grouplist.GroupListFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
@@ -138,6 +138,13 @@ public class DashboardActivity extends FineractBaseActivity implements
                 break;
             case R.id.item_teller:
                 replaceFragment(TellerFragment.Companion.newInstance(), true, R.id.container);
+                break;
+            case R.id.item_groups:
+                replaceFragment(GroupListFragment.Companion.newInstance(), true, R.id.container);
+                break;
+            case R.id.item_location:
+                replaceFragment(VisitedClientLocationListFragment.newInstance(),
+                        true, R.id.container);
                 break;
         }
 

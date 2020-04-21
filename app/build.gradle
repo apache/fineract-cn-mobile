@@ -17,6 +17,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -70,10 +71,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
 
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     def daggerCompiler = "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     def jUnit = "junit:junit:$rootProject.junitVersion"
     def mockito = "org.mockito:mockito-core:$rootProject.mockitoVersion"
@@ -85,6 +91,10 @@ dependencies {
     implementation "androidx.cardview:cardview:$supportLibraryVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     implementation "androidx.annotation:annotation:$supportLibraryVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleExtension"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleExtension"
+
 
     // Kotlin Dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -144,6 +154,29 @@ dependencies {
     implementation "com.stepstone.stepper:material-stepper:$materialStepperVersion"
 
     implementation "com.mifos.mobile:mifos-passcode:$mifosPasscodeVersion"
+
+    //Easy Validation Library
+    implementation "com.wajahatkarim3.easyvalidation:easyvalidation-core:$easyValidationVersion"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+
+    //geo_location
+    implementation "com.google.android.gms:play-services-location:$location"
+    implementation "com.google.maps.android:android-maps-utils:$map_utils"
+    implementation "com.google.android.gms:play-services-maps:$location"
+
+    // Google Maps Services (needed for directions)
+    implementation "com.google.maps:google-maps-services:$map_services"
+    implementation "org.slf4j:slf4j-nop:1.7.25"
+
+    //Google Maps Places
+    implementation "com.google.android.libraries.places:places:$places"
+
+
+    //work manager
+    implementation "androidx.work:work-runtime-ktx:$work_version"
 
     // Instrumentation test dependencies
     androidTestImplementation jUnit

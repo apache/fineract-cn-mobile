@@ -6,43 +6,40 @@ import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.DashboardActivity;
 import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
 import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
-import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
-        .CreateCustomerActivity;
-import org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress
-        .FormCustomerAddressFragment;
+import org.apache.fineract.ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity;
+import org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddress.FormCustomerAddressFragment;
 import org.apache.fineract.ui.online.customers.customeractivities.CustomerActivitiesFragment;
 import org.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsFragment;
 import org.apache.fineract.ui.online.customers.customerlist.CustomersFragment;
 import org.apache.fineract.ui.online.customers.customerpayroll.PayrollFragment;
-import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
-        .EditPayrollActivity;
-import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
-        .EditPayrollAllocationFragment;
-import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet
-        .EditCustomerProfileBottomSheet;
+import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll.EditPayrollActivity;
+import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll.EditPayrollAllocationFragment;
+import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet.EditCustomerProfileBottomSheet;
 import org.apache.fineract.ui.online.customers.customertasks.CustomerTasksBottomSheetFragment;
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
-        .FormDepositOverviewFragment;
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity
-        .CreateDepositActivity;
-import org.apache.fineract.ui.online.depositaccounts.createdepositaccount
-        .formdepositassignproduct.FormDepositAssignProductFragment;
-import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails
-        .DepositAccountDetailsFragment;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.FormDepositOverviewFragment;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity;
+import org.apache.fineract.ui.online.depositaccounts.createdepositaccount.formdepositassignproduct.FormDepositAssignProductFragment;
+import org.apache.fineract.ui.online.depositaccounts.depositaccountdetails.DepositAccountDetailsFragment;
 import org.apache.fineract.ui.online.depositaccounts.depositaccountslist.DepositAccountsFragment;
-import org.apache.fineract.ui.online.identification.createidentification.identificationactivity
-        .CreateIdentificationActivity;
-import org.apache.fineract.ui.online.identification.identificationdetails
-        .IdentificationDetailsFragment;
+import org.apache.fineract.ui.online.geo_location.visit_customer.VisitCustomersActivity;
+import org.apache.fineract.ui.online.geo_location.visited_customer_list.VisitedClientLocationListFragment;
+import org.apache.fineract.ui.online.groups.creategroup.AddGroupLeaderStepFragment;
+import org.apache.fineract.ui.online.groups.creategroup.AddGroupMemberStepFragment;
+import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity;
+import org.apache.fineract.ui.online.groups.creategroup.GroupAddressStepFragment;
+import org.apache.fineract.ui.online.groups.creategroup.GroupReviewStepFragment;
+import org.apache.fineract.ui.online.groups.groupdetails.GroupDetailsFragment;
+import org.apache.fineract.ui.online.groups.grouplist.GroupListFragment;
+import org.apache.fineract.ui.online.groups.grouptasks.GroupTasksBottomSheetFragment;
+import org.apache.fineract.ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity;
+import org.apache.fineract.ui.online.identification.identificationdetails.IdentificationDetailsFragment;
 import org.apache.fineract.ui.online.identification.identificationlist.IdentificationsFragment;
-import org.apache.fineract.ui.online.identification.uploadidentificationscan
-        .UploadIdentificationCardBottomSheet;
+import org.apache.fineract.ui.online.identification.uploadidentificationscan.UploadIdentificationCardBottomSheet;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanaccountlist.LoanAccountsFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.BaseFragmentDebtIncome;
-import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity
-        .LoanApplicationActivity;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loancosigner.LoanCoSignerFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails.LoanDetailsFragment;
 import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetailsFragment;
@@ -135,5 +132,25 @@ public interface ActivityComponent {
     void inject(EditPayrollAllocationFragment editPayrollAllocationFragment);
 
     void inject(EditPayrollActivity editPayrollActivity);
+
+    void inject(GroupListFragment groupListFragment);
+
+    void inject(GroupAddressStepFragment groupAddressStepFragment);
+
+    void inject(CreateGroupActivity createGroupActivity);
+
+    void inject(AddGroupMemberStepFragment addGroupMemberStepFragment);
+
+    void inject(AddGroupLeaderStepFragment addGroupLeaderStepFragment);
+
+    void inject(GroupReviewStepFragment groupReviewStepFragment);
+
+    void inject(GroupDetailsFragment groupDetailsFragment);
+
+    void inject(GroupTasksBottomSheetFragment groupTasksBottomSheetFragment);
+
+    void inject(VisitedClientLocationListFragment visitedClientLocationListFragment);
+
+    void inject(VisitCustomersActivity visitCustomersActivity);
 }
 

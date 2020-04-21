@@ -1,0 +1,56 @@
+[
+  {
+    "user_id": 1,
+    "client_name": "Ahmad Jawid1",
+    "geo_point": [
+      {
+        "lat": 18.471012,
+        "lng": 73.890002
+      },
+      {
+        "lat": 18.471012,
+        "lng": 73.890002
+      }
+    ],
+    "start_time": "233939384933",
+    "stop_time": "47599434",
+    "address": "Flat No.13, Block N, Kondhaw, Pune, 411048",
+    "date": "12/05/2005"
+  },
+  {
+    "user_id": 2,
+    "client_name": "Ahmad Jawid2",
+    "geo_point": [
+      {
+        "lat": 18.471012,
+        "lng": 73.890002
+      },
+      {
+        "lat": 18.471012,
+        "lng": 73.890002
+      }
+    ],
+    "start_time": "233939384933",
+    "stop_time": "47599434",
+    "address": "Flat No.13, Block N, Kondhaw, Pune, 411048",
+    "date": "12/05/2005"
+  },
+  {
+    "user_id": 4,
+    "client_name": "Ahmad Jawid4",
+    "geo_point": [
+      {
+        "lat": 18.471012,
+        "lng": 73.890002
+      },
+      {
+        "lat": 18.471012,
+        "lng": 73.890002
+      }
+    ],
+    "start_time": "233939384933",
+    "stop_time": "47599434",
+    "address": "Flat No.13, Block N, Kondhaw, Pune, 411048",
+    "date": "12/05/2005"
+  }
+]

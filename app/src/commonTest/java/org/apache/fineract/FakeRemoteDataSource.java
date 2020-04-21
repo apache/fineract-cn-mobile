@@ -3,8 +3,9 @@ package org.apache.fineract;
 import com.google.gson.reflect.TypeToken;
 
 import org.apache.fineract.data.models.Authentication;
-import org.apache.fineract.data.models.accounts.LedgerPage;
+import org.apache.fineract.data.models.Group;
 import org.apache.fineract.data.models.accounts.AccountPage;
+import org.apache.fineract.data.models.accounts.LedgerPage;
 import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.data.models.customer.CustomerPage;
@@ -12,11 +13,12 @@ import org.apache.fineract.data.models.customer.identification.Identification;
 import org.apache.fineract.data.models.customer.identification.ScanCard;
 import org.apache.fineract.data.models.deposit.DepositAccount;
 import org.apache.fineract.data.models.deposit.ProductDefinition;
+import org.apache.fineract.data.models.geolocation.UserLocation;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.LoanAccountPage;
 import org.apache.fineract.data.models.payment.PlannedPaymentPage;
-import org.apache.fineract.data.models.product.ProductPage;
 import org.apache.fineract.data.models.payroll.PayrollConfiguration;
+import org.apache.fineract.data.models.product.ProductPage;
 import org.apache.fineract.data.models.rolesandpermission.Role;
 import org.apache.fineract.data.models.teller.Teller;
 
@@ -112,5 +114,15 @@ public class FakeRemoteDataSource {
     public static PayrollConfiguration getPayrollConfig() {
         return testDataFactory.getObjectTypePojo(PayrollConfiguration.class,
                 FakeJsonName.PAYROLL_CONFIG);
+    }
+
+    public static List<Group> getGroups() {
+        return testDataFactory.getListTypePojo(new TypeToken<List<Group>>() {
+        }, FakeJsonName.GROUPS);
+    }
+
+    public static List<UserLocation> getVisitedClientLocation() {
+        return testDataFactory.getListTypePojo(new TypeToken<List<UserLocation>>() {
+        }, FakeJsonName.GEOLOCATION);
     }
 }
