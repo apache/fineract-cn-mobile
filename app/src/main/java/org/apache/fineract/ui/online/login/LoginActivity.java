@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.view.View;
 
 import com.mifos.mobile.passcode.utils.PassCodeConstants;
 
@@ -14,6 +15,7 @@ import org.apache.fineract.data.models.Authentication;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.PassCodeActivity;
+import org.apache.fineract.utils.Utils;
 
 import javax.inject.Inject;
 
@@ -78,6 +80,11 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
         }
 
         loginPresenter.login(username, password);
+    }
+
+    @OnClick(R.id.background_screen)
+    public void backgroundTap(View view) {
+        Utils.hideSoftKeyboard(LoginActivity.this);
     }
 
     @Override
