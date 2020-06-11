@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.transition.TransitionManager;
@@ -13,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,6 +33,7 @@ import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.adapters.CustomerAdapter;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
+import org.apache.fineract.ui.base.OnBackPressed;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
@@ -53,7 +56,7 @@ import butterknife.OnClick;
  * On 20/06/17.
  */
 public class CustomersFragment extends FineractBaseFragment implements CustomersContract.View,
-        SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
+        SwipeRefreshLayout.OnRefreshListener, OnItemClickListener, OnBackPressed {
 
     private static final Integer CUSTOMER_STATUS = 1;
 
@@ -67,6 +70,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     View layoutError;
 
     View rootView;
+    SearchView searchView;
 
     @Inject
     CustomersPresenter customerPresenter;
@@ -264,7 +268,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
 
         SearchManager manager = (SearchManager) getActivity().
                 getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(
+        searchView = (SearchView) menu.findItem(
                 R.id.menu_customer_search).getActionView();
         searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
 
@@ -296,9 +300,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
-                rgSearch.clearCheck();
-                TransitionManager.beginDelayedTransition(coordinator);
-                llSearch.setVisibility(View.GONE);
+                closeSearch();
                 return false;
             }
         });
@@ -312,6 +314,12 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         } else if (rbOnline.isChecked()) {
             customerPresenter.searchCustomerOnline(query);
         }
+    }
+
+    private void closeSearch() {
+        rgSearch.clearCheck();
+        TransitionManager.beginDelayedTransition(coordinator);
+        llSearch.setVisibility(View.GONE);
     }
 
 
@@ -337,6 +345,17 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
                     ConstantKeys.CUSTOMER_STATUS);
             customers.get(detailsCustomerPosition).setCurrentState(state);
             customerAdapter.notifyItemChanged(detailsCustomerPosition);
+        }
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (searchView.isIconified()) {
+            return true;
+        } else {
+            searchView.onActionViewCollapsed();
+            closeSearch();
+            return false;
         }
     }
 }

@@ -166,6 +166,21 @@ public class DashboardActivity extends FineractBaseActivity implements
             new Handler().postDelayed(
                     () -> isBackPressedOnce = false
                     , 2000);
+        } else if (fragment instanceof CustomersFragment) {
+            if (((CustomersFragment) fragment).onBackPressed())
+                super.onBackPressed();
+        } else if (fragment instanceof LedgerFragment) {
+            if (((LedgerFragment) fragment).onBackPressed())
+                super.onBackPressed();
+        } else if (fragment instanceof AccountsFragment) {
+            if (((AccountsFragment) fragment).onBackPressed())
+                super.onBackPressed();
+        } else if (fragment instanceof TellerFragment) {
+            if (((TellerFragment) fragment).onBackPressed())
+                super.onBackPressed();
+        } else if (fragment instanceof ProductFragment) {
+            if (((ProductFragment) fragment).onBackPressed())
+                super.onBackPressed();
         } else {
             super.onBackPressed();
         }

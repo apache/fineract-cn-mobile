@@ -17,13 +17,14 @@ import org.apache.fineract.data.models.accounts.Ledger
 import org.apache.fineract.ui.adapters.LedgerAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnBackPressed
 import org.apache.fineract.ui.online.accounting.accounts.LedgerContract
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 
 class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, OnBackPressed {
 
     @Inject
     lateinit var ledgerAdapter: LedgerAdapter
@@ -32,6 +33,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     lateinit var ledgerPresenter: LedgerPresenter
 
     lateinit var ledgerList: List<Ledger>
+    private var searchView: SearchView? = null
 
     companion object {
         fun newInstance(): LedgerFragment = LedgerFragment()
@@ -106,7 +108,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.ledger_search)?.actionView as? SearchView
+        searchView = menu?.findItem(R.id.ledger_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
@@ -164,5 +166,14 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     override fun onDestroyView() {
         super.onDestroyView()
         ledgerPresenter.detachView()
+    }
+
+    override fun onBackPressed(): Boolean {
+        return if (searchView?.isIconified == true)
+            true
+        else {
+            searchView?.onActionViewCollapsed()
+            false
+        }
     }
 }
