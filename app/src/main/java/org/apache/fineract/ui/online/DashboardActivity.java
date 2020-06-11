@@ -1,6 +1,7 @@
 package org.apache.fineract.ui.online;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -33,6 +34,7 @@ import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
 import org.apache.fineract.ui.product.ProductFragment;
 import org.apache.fineract.utils.MaterialDialog;
+import org.apache.fineract.utils.NetworkChangeReceiver;
 
 import javax.inject.Inject;
 
@@ -74,6 +76,8 @@ public class DashboardActivity extends FineractBaseActivity implements
             StartSyncJob.scheduleItNow();
             preferencesHelper.setFetching(false);
         }
+
+        registerNetworkRegister();
     }
 
     public void setupNavigationBar() {
@@ -103,6 +107,12 @@ public class DashboardActivity extends FineractBaseActivity implements
         };
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
+    }
+
+    public void registerNetworkRegister() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(new NetworkChangeReceiver(), filter);
     }
 
     @Override
