@@ -20,6 +20,7 @@ import org.apache.fineract.injection.component.ConfigPersistentComponent;
 import org.apache.fineract.injection.component.DaggerConfigPersistentComponent;
 import org.apache.fineract.injection.module.ActivityModule;
 import org.apache.fineract.ui.online.PassCodeActivity;
+import org.apache.fineract.utils.LanguageUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -177,6 +178,12 @@ public class FineractBaseActivity extends BasePassCodeActivity implements BaseAc
             transaction.commit();
         }
     }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LanguageUtils.onAttach(base));
+    }
+
 
     public void clearFragmentBackStack() {
         FragmentManager fm = getSupportFragmentManager();

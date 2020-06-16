@@ -2,6 +2,8 @@ package org.apache.fineract;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 import com.evernote.android.job.JobManager;
@@ -11,6 +13,9 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 import org.apache.fineract.injection.component.ApplicationComponent;
 import org.apache.fineract.injection.component.DaggerApplicationComponent;
 import org.apache.fineract.injection.module.ApplicationModule;
+import org.apache.fineract.utils.LanguageUtils;
+
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -55,6 +60,17 @@ public class FineractApplication extends Application {
             applicationComponent.inject(this);
         }
         return applicationComponent;
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LanguageUtils.onAttach(base, Locale.getDefault().getLanguage()));
+    }
+    
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.d("TAG", "configuration changes=d");
     }
 
     // Needed to replace the component with a test specific one

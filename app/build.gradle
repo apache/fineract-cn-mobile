@@ -85,6 +85,8 @@ dependencies {
     implementation "androidx.cardview:cardview:$supportLibraryVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     implementation "androidx.annotation:annotation:$supportLibraryVersion"
+    implementation "androidx.preference:preference:$preference"
+
 
     // Kotlin Dependencies
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
