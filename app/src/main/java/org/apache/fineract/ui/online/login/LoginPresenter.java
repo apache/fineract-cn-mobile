@@ -1,6 +1,5 @@
 package org.apache.fineract.ui.online.login;
 
-import static org.apache.fineract.data.remote.BaseApiManager.retrofit;
 
 import android.content.Context;
 import android.util.Log;
@@ -27,6 +26,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.HttpException;
 import retrofit2.Response;
+
+import static org.apache.fineract.data.remote.BaseApiManager.retrofit;
 
 /**
  * @author Rajan Maurya
