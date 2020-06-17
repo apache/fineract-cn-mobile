@@ -2,12 +2,16 @@ package org.apache.fineract.ui.online.customers.customerdetails;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -246,14 +250,16 @@ public class CustomerDetailsFragment extends FineractBaseFragment
 
         Address address = customer.getAddress();
         StringBuilder addressBuilder = new StringBuilder();
-        addressBuilder
-                .append(address.getStreet()).append(", ")
-                .append(address.getCity()).append(", ");
-        if (address.getPostalCode() != null) {
+        if (address != null) {
+            addressBuilder.append(address.getStreet()).append(", ")
+                    .append(address.getCity()).append(", ");
+
             addressBuilder.append(address.getPostalCode());
             addressBuilder.append(", ");
+
+            addressBuilder.append(address.getCountry());
         }
-        addressBuilder.append(address.getCountry());
+
         tvAddress.setText(addressBuilder);
 
         if (customer.getContactDetails().size() == 0) {
