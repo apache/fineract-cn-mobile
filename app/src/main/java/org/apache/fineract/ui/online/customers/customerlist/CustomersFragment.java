@@ -278,10 +278,22 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (TextUtils.isEmpty(newText)) {
+                    showRecyclerView(true);
                     customerAdapter.setCustomers(customers);
+                } else {
+                    findCustomer(newText);
                 }
 
                 return false;
+            }
+        });
+
+        rgSearch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId != -1 && !TextUtils.isEmpty(searchView.getQuery().toString())) {
+                    findCustomer(searchView.getQuery().toString());
+                }
             }
         });
 
@@ -290,12 +302,14 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
             public void onClick(View v) {
                 TransitionManager.beginDelayedTransition(coordinator);
                 llSearch.setVisibility(View.VISIBLE);
+                rgSearch.check(rbOnline.getId());
             }
         });
 
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
+                rgSearch.setOnCheckedChangeListener(null);
                 rgSearch.clearCheck();
                 TransitionManager.beginDelayedTransition(coordinator);
                 llSearch.setVisibility(View.GONE);
@@ -311,6 +325,9 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
                     Toaster.SHORT);
         } else if (rbOnline.isChecked()) {
             customerPresenter.searchCustomerOnline(query);
+        } else {
+            Toaster.show(swipeRefreshLayout, getString(R.string.error_searching_offline_customers),
+                    Toaster.SHORT);
         }
     }
 
