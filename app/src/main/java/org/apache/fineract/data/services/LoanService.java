@@ -1,5 +1,6 @@
 package org.apache.fineract.data.services;
 
+import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.LoanAccountPage;
 import org.apache.fineract.data.models.product.ProductPage;
@@ -15,7 +16,7 @@ import retrofit2.http.Query;
 
 /**
  * @author Rajan Maurya
- *         On 07/07/17.
+ * On 07/07/17.
  */
 public interface LoanService {
 
@@ -40,4 +41,8 @@ public interface LoanService {
     Completable createLoan(
             @Path("productidentifier") String productidentifier,
             @Body LoanAccount loanAccount);
+
+    //APIs not ready yet.
+    Completable loanCommand(@Path("productidentifier") String productidentifier,
+                            @Body Command command);
 }

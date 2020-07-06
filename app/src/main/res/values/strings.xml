@@ -297,7 +297,8 @@
     <string name="error_fetching_customer_details">Failed to fetch customer details</string>
     <string name="error_fetching_deposit_product">Failed to fetch deposit product</string>
     <string name="error_failed_to_refresh_customers">Failed to refresh customers</string>
-
+    <string name="error_updating_loan_status">Error while updating loan status</string>
+    <string name="please_verify_following_loan_task">Please verify the following tasks before you can %s this loan account</string>
 
     <!--Material Dialog-->
     <string name="dialog_action_ok">OK</string>
@@ -500,4 +501,7 @@
     <string name="email">Email</string>
     <string name="logged_out_successfully">Logged out successfully.</string>
     <string name="please_click_back_again_to_exit">Please click BACK again to exit</string>
+    <string name="approve">Approve</string>
+    <string name="reject">Reject</string>
+    <string name="loan_status_changed_successfully">Loan status changed sucessfully</string>
 </resources>

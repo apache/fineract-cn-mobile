@@ -46,6 +46,7 @@ import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loancosigner.LoanCoSignerFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails.LoanDetailsFragment;
 import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetailsFragment;
+import org.apache.fineract.ui.online.loanaccounts.loantasks.LoanTasksBottomSheetFragment;
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentFragment;
 import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
@@ -135,5 +136,7 @@ public interface ActivityComponent {
     void inject(EditPayrollAllocationFragment editPayrollAllocationFragment);
 
     void inject(EditPayrollActivity editPayrollActivity);
+
+    void inject(LoanTasksBottomSheetFragment loanTasksBottomSheetFragment);
 }
 

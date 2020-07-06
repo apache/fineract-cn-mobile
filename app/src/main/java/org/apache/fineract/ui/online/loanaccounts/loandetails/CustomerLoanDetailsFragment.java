@@ -2,9 +2,11 @@ package org.apache.fineract.ui.online.loanaccounts.loandetails;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.widget.NestedScrollView;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +26,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportActivity;
+import org.apache.fineract.ui.online.loanaccounts.loantasks.LoanTasksBottomSheetFragment;
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentActivity;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.DateUtils;
@@ -38,7 +41,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 11/07/17.
+ * On 11/07/17.
  */
 public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         CustomerLoanDetailsContract.View {
@@ -88,6 +91,9 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     @Inject
     CustomerLoanDetailsPresenter customerLoanDetailsPresenter;
 
+    @Inject
+    LoanTasksBottomSheetFragment loanTasksBottomSheetFragment;
+
     View rootView;
 
     private String productIdentifier;
@@ -96,7 +102,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     private String[] weeksName, repayOnMonths, timeSlots, monthsName;
 
     public static CustomerLoanDetailsFragment newInstance(String productIdentifier,
-            String caseIdentifier) {
+                                                          String caseIdentifier) {
         CustomerLoanDetailsFragment fragment = new CustomerLoanDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ConstantKeys.PRODUCT_IDENTIFIER, productIdentifier);
@@ -121,7 +127,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_loan_details, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
@@ -154,6 +160,11 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         intent.putExtra(ConstantKeys.LOAN_CREDITWORTHINESSSNAPSHOTS, (new Gson()).toJson(
                 loanAccount.getLoanParameters().getCreditWorthinessSnapshots()));
         startActivity(intent);
+    }
+
+    @OnClick(R.id.ll_tasks)
+    void showLoanTaskBottomSheetDialog(){
+        loanTasksBottomSheetFragment.show(getChildFragmentManager(), getString(R.string.tasks));
     }
 
     @Override
