@@ -2,11 +2,6 @@ package org.apache.fineract.ui.online.loanaccounts.loandetails;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
 
 import com.google.gson.Gson;
 
@@ -163,7 +162,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     }
 
     @OnClick(R.id.ll_tasks)
-    void showLoanTaskBottomSheetDialog(){
+    void showLoanTaskBottomSheetDialog() {
         loanTasksBottomSheetFragment.show(getChildFragmentManager(), getString(R.string.tasks));
     }
 
