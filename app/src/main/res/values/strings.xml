@@ -562,5 +562,4 @@
     <string name="role_updated_successfuly">Role updated successfully</string>
     <string name="role_delete_successfuly">Role deleted successfully</string>
     <string name="do_you_want_to_delete">Do you want to delete %s ?</string>
-
 </resources>
