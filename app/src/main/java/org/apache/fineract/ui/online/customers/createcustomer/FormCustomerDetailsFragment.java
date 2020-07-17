@@ -234,7 +234,7 @@ public class FormCustomerDetailsFragment extends FineractBaseFragment implements
             return false;
         } else if (account.length() < 3) {
             showTextInputLayoutError(tilAccount,
-                    getString(R.string.must_be_at_least_three_characters, 3));
+                    getString(R.string.must_be_at_least_n_characters, 3));
             return false;
         } else if (account.length() > 32) {
             showTextInputLayoutError(tilAccount,
