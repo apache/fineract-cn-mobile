@@ -16,11 +16,13 @@ import org.apache.fineract.data.models.teller.Teller
 import org.apache.fineract.ui.adapters.TellerAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnBackPressed
 import java.util.*
 import javax.inject.Inject
 
 
-class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefreshLayout.OnRefreshListener {
+class TellerFragment : FineractBaseFragment(), TellerContract.View,
+        SwipeRefreshLayout.OnRefreshListener, OnBackPressed {
 
     @Inject
     lateinit var tellPresenter: TellerPresenter
@@ -29,6 +31,7 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     lateinit var tellerAdapter: TellerAdapter
 
     lateinit var tellerList: List<Teller>
+    private var searchView: SearchView? = null
 
     companion object {
         fun newInstance(): TellerFragment = TellerFragment().apply {
@@ -106,7 +109,7 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.teller_search)?.actionView as? SearchView
+        searchView = menu?.findItem(R.id.teller_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
@@ -164,5 +167,14 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     override fun onDestroyView() {
         super.onDestroyView()
         tellPresenter.detachView()
+    }
+
+    override fun onBackPressed(): Boolean {
+        return if (searchView?.isIconified == true)
+            true
+        else {
+            searchView?.onActionViewCollapsed()
+            false
+        }
     }
 }

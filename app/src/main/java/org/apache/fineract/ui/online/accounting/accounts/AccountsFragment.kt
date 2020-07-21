@@ -16,11 +16,13 @@ import org.apache.fineract.data.models.accounts.Account
 import org.apache.fineract.ui.adapters.AccountsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnBackPressed
 import java.util.*
 import javax.inject.Inject
 
 
-class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefreshLayout.OnRefreshListener {
+class AccountsFragment : FineractBaseFragment(), AccountContract.View,
+        SwipeRefreshLayout.OnRefreshListener, OnBackPressed {
 
     @Inject
     lateinit var accountsPresenter: AccountsPresenter
@@ -28,7 +30,8 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     @Inject
     lateinit var accountsAdapter: AccountsAdapter
 
-    lateinit var accountList : List<Account>
+    lateinit var accountList: List<Account>
+    private var searchView: SearchView? = null
 
     companion object {
         fun newInstance() = AccountsFragment()
@@ -37,7 +40,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        accountList= ArrayList()
+        accountList = ArrayList()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -87,7 +90,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.account_search)?.actionView as? SearchView
+        searchView = menu?.findItem(R.id.account_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
@@ -162,6 +165,15 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     override fun onDestroyView() {
         super.onDestroyView()
         accountsPresenter.detachView()
+    }
+
+    override fun onBackPressed(): Boolean {
+        return if (searchView?.isIconified == true)
+            true
+        else {
+            searchView?.onActionViewCollapsed()
+            false
+        }
     }
 
 }

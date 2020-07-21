@@ -16,12 +16,13 @@ import org.apache.fineract.data.models.product.Product
 import org.apache.fineract.ui.adapters.ProductAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnBackPressed
 import java.util.*
 import javax.inject.Inject
 
 
 class ProductFragment : FineractBaseFragment(), ProductContract.View,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, OnBackPressed {
 
     @Inject
     lateinit var productPresenter: ProductPresenter
@@ -30,6 +31,7 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     lateinit var productAdapter: ProductAdapter
 
     lateinit var productList: List<Product>
+    private var searchView: SearchView? = null
 
     companion object {
         fun newInstance() = ProductFragment().apply {
@@ -102,7 +104,7 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.product_search)?.actionView as? SearchView
+        searchView = menu?.findItem(R.id.product_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
@@ -169,6 +171,15 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     override fun onDestroyView() {
         super.onDestroyView()
         productPresenter.detachView()
+    }
+
+    override fun onBackPressed(): Boolean {
+        return if (searchView?.isIconified == true)
+            true
+        else {
+            searchView?.onActionViewCollapsed()
+            false
+        }
     }
 
 }
