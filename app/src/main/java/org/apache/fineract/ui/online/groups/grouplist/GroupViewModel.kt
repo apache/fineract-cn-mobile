@@ -4,43 +4,58 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.couchbase.lite.Expression
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Predicate
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
+import org.apache.fineract.couchbase.DocumentType
+import org.apache.fineract.couchbase.SynchronizationManager
 import org.apache.fineract.data.Status
 import org.apache.fineract.data.datamanager.api.DataManagerAnonymous
-import org.apache.fineract.data.datamanager.api.DataManagerGroups
+import org.apache.fineract.data.local.PreferencesHelper
 import org.apache.fineract.data.models.Group
 import org.apache.fineract.data.models.customer.Command
 import org.apache.fineract.data.models.customer.Country
+import org.apache.fineract.utils.DateUtils
+import org.apache.fineract.utils.serializeToMap
+import org.apache.fineract.utils.toDataClass
 
 /*
  * Created by saksham on 15/June/2019
 */
 
-class GroupViewModel constructor(val dataManagerGroups: DataManagerGroups, val dataManagerAnonymous: DataManagerAnonymous) : ViewModel() {
+class GroupViewModel constructor(private val synchronizationManager: SynchronizationManager,
+                                 private val dataManagerAnonymous: DataManagerAnonymous,
+                                 private val preferencesHelper: PreferencesHelper) : ViewModel() {
 
-    lateinit var groupsList: MutableLiveData<ArrayList<Group>>
+    var groupsList = MutableLiveData<ArrayList<Group>>()
     private var viewModelJob = Job()
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private val uiScope = CoroutineScope(viewModelJob + Dispatchers.IO)
     private var _status = MutableLiveData<Status>()
     val status: LiveData<Status>
         get() = _status
 
-    fun getGroups(): MutableLiveData<ArrayList<Group>> {
-        groupsList = dataManagerGroups.getGroups()
+    fun getGroups(): MutableLiveData<ArrayList<Group>>? {
+        val expression = Expression.property("documentType")
+                .equalTo(Expression.string(DocumentType.GROUP.value))
+                .and(Expression.property("status").notEqualTo(Expression.string("null")))
+        val hashMapList = synchronizationManager.getDocuments(expression)
+        if (hashMapList?.isEmpty() == null) {
+            return null
+        }
+        val list = arrayListOf<Group>()
+        for (map in hashMapList) {
+            list.add(map.toDataClass())
+        }
+        groupsList.value = list
         return groupsList
     }
 
     fun searchGroup(groups: ArrayList<Group>, query: String, searchedGroup: (ArrayList<Group>) -> Unit) {
-        searchedGroup(ArrayList(Observable.fromIterable(groups).filter(object : Predicate<Group> {
-            override fun test(group: Group): Boolean {
-                return group.identifier?.toLowerCase()?.contains(query.toLowerCase()).toString().toBoolean()
-            }
-        }).toList().blockingGet()))
+        searchedGroup(ArrayList(Observable.fromIterable(groups).filter { group -> group.identifier?.toLowerCase()?.contains(query.toLowerCase()).toString().toBoolean() }.toList().blockingGet()))
     }
 
     @SuppressLint("CheckResult")
@@ -59,7 +74,11 @@ class GroupViewModel constructor(val dataManagerGroups: DataManagerGroups, val d
             withContext(Dispatchers.Main) {
                 try {
                     _status.value = Status.LOADING
-                    dataManagerGroups.createGroup(group).await()
+                    group.createdBy = preferencesHelper.userName
+                    group.createdOn = DateUtils.getCurrentDate()
+                    group.lastModifiedBy = preferencesHelper.userName
+                    group.lastModifiedOn = DateUtils.getCurrentDate()
+                    synchronizationManager.saveDocument(group.identifier!!, group.serializeToMap())
                     _status.value = Status.DONE
                 } catch (e: Exception) {
                     _status.value = Status.ERROR
@@ -68,12 +87,12 @@ class GroupViewModel constructor(val dataManagerGroups: DataManagerGroups, val d
         }
     }
 
-    fun updateGroup(identifier: String, group: Group) {
+    fun updateGroup(group: Group) {
         uiScope.launch {
             withContext(Dispatchers.Main) {
                 try {
                     _status.value = Status.LOADING
-                    dataManagerGroups.updateGroup(identifier, group).await()
+                    synchronizationManager.updateDocument(group.identifier!!, group.serializeToMap())
                     _status.value = Status.DONE
                 } catch (e: Exception) {
                     _status.value = Status.ERROR
@@ -82,12 +101,20 @@ class GroupViewModel constructor(val dataManagerGroups: DataManagerGroups, val d
         }
     }
 
-    fun changeGroupStatus(identifier: String, command: Command) {
+    fun changeGroupStatus(identifier: String, group: Group, command: Command) {
         uiScope.launch {
             withContext(Dispatchers.Main) {
                 try {
                     _status.value = Status.LOADING
-                    dataManagerGroups.changeGroupStatus(identifier, command).await()
+                    when (command.action) {
+                        Command.Action.ACTIVATE -> group.status = Group.Status.ACTIVE
+                        Command.Action.REOPEN -> group.status = Group.Status.PENDING
+                        Command.Action.CLOSE -> group.status = Group.Status.CLOSED
+                        Command.Action.LOCK -> group.status = Group.Status.ACTIVE
+                        else -> group.status = Group.Status.PENDING
+                    }
+                    synchronizationManager.updateDocument(identifier, group.serializeToMap())
+                    //   dataManagerGroups.changeGroupStatus(identifier, command).await()
                     _status.value = Status.DONE
                 } catch (e: Exception) {
                     _status.value = Status.ERROR
@@ -102,7 +129,7 @@ class GroupViewModel constructor(val dataManagerGroups: DataManagerGroups, val d
 
     fun getCountryCode(countries: List<Country>, countryName: String): String? {
         for (country in countries) {
-            if (country.name.equals(countryName)) {
+            if (country.name == countryName) {
                 return country.alphaCode
             }
         }
@@ -111,7 +138,7 @@ class GroupViewModel constructor(val dataManagerGroups: DataManagerGroups, val d
 
     fun isCountryValid(countries: List<Country>, countryName: String): Boolean {
         for (country in countries) {
-            if (country.name.equals(countryName)) {
+            if (country.name == countryName) {
                 return true
             }
         }
@@ -125,6 +152,7 @@ class GroupViewModel constructor(val dataManagerGroups: DataManagerGroups, val d
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+        synchronizationManager.closeDatabase()
     }
 
 }

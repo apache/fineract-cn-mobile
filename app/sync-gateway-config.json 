@@ -1,0 +1,19 @@
+{
+ "interface":"0.0.0.0:4984",
+  "log": ["*"],
+  "databases": {
+    "fineract-cn": {
+      "server": "ws://localhost:8091/",
+      "bucket": "fineract-cn-mobile",
+      "username": "fineract-cn",
+      "password": "password",
+      "enable_shared_bucket_access": true,
+      "import_docs": true,
+      "num_index_replicas": 0,
+      "users": {
+        "GUEST": { "disabled": false, "admin_channels": ["*"] },
+	    "sync_gateway": {"password": "password"}
+      }
+    }
+  }
+}

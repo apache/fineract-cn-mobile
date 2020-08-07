@@ -61,7 +61,8 @@ public class DateUtils {
         SimpleDateFormat dateFormat = new SimpleDateFormat(inputFormat, Locale.ENGLISH);
         Date date = new Date();
         try {
-            date = dateFormat.parse(dateString);
+            if (dateString != null)
+                date = dateFormat.parse(dateString);
         } catch (ParseException e) {
             Log.d(LOG_TAG, e.getLocalizedMessage());
         }
