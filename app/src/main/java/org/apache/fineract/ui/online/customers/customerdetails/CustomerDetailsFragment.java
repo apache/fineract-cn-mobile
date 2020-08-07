@@ -2,18 +2,20 @@ package org.apache.fineract.ui.online.customers.customerdetails;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Address;
@@ -44,7 +46,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 26/06/17.
+ * On 26/06/17.
  */
 public class CustomerDetailsFragment extends FineractBaseFragment
         implements AppBarLayout.OnOffsetChangedListener, CustomerDetailsContract.View,
@@ -133,7 +135,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_details, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
@@ -181,6 +183,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
         tasksBottomSheet.setCustomerIdentifier(customerIdentifier);
         tasksBottomSheet.setCustomerTasksChangeListener(this);
         tasksBottomSheet.show(getChildFragmentManager(), getString(R.string.tasks));
+        tasksBottomSheet.setCustomer(customer);
     }
 
     @OnClick(R.id.ll_identifier_cards)
@@ -246,14 +249,16 @@ public class CustomerDetailsFragment extends FineractBaseFragment
 
         Address address = customer.getAddress();
         StringBuilder addressBuilder = new StringBuilder();
-        addressBuilder
-                .append(address.getStreet()).append(", ")
-                .append(address.getCity()).append(", ");
-        if (address.getPostalCode() != null) {
+        if (address != null) {
+            addressBuilder.append(address.getStreet()).append(", ")
+                    .append(address.getCity()).append(", ");
+
             addressBuilder.append(address.getPostalCode());
             addressBuilder.append(", ");
+
+            addressBuilder.append(address.getCountry());
         }
-        addressBuilder.append(address.getCountry());
+
         tvAddress.setText(addressBuilder);
 
         if (customer.getContactDetails().size() == 0) {

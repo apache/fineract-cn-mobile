@@ -1,39 +1,38 @@
 package org.apache.fineract.ui.online.customers.customertasks;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.api.DataManagerCustomer;
+import org.apache.fineract.couchbase.SynchronizationManager;
 import org.apache.fineract.data.models.customer.Command;
+import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;
 import org.apache.fineract.ui.base.BasePresenter;
+import org.apache.fineract.utils.GsonUtilsKt;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableCompletableObserver;
-import io.reactivex.schedulers.Schedulers;
-
 /**
  * @author Rajan Maurya
- *         On 28/07/17.
+ * On 28/07/17.
  */
 @ConfigPersistent
 public class CustomerTasksBottomSheetPresenter
         extends BasePresenter<CustomerTasksBottomSheetContract.View>
         implements CustomerTasksBottomSheetContract.Presenter {
 
-    private DataManagerCustomer dataManagerCustomer;
-    private final CompositeDisposable compositeDisposable;
+    private SynchronizationManager synchronizationManager;
 
     @Inject
     public CustomerTasksBottomSheetPresenter(@ApplicationContext Context context,
-            DataManagerCustomer dataManagerCustomer) {
+                                             SynchronizationManager synchronizationManager) {
         super(context);
-        this.dataManagerCustomer = dataManagerCustomer;
-        compositeDisposable = new CompositeDisposable();
+
+        this.synchronizationManager = synchronizationManager;
     }
 
     @Override
@@ -44,30 +43,37 @@ public class CustomerTasksBottomSheetPresenter
     @Override
     public void detachView() {
         super.detachView();
-        compositeDisposable.clear();
+        synchronizationManager.closeDatabase();
     }
 
     @Override
-    public void changeCustomerStatus(String identifier, Command command) {
+    public void changeCustomerStatus(String identifier, Customer customer, Command command) {
         checkViewAttached();
         getMvpView().showProgressbar();
-        compositeDisposable.add(dataManagerCustomer.customerCommand(identifier, command)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableCompletableObserver() {
-                    @Override
-                    public void onComplete() {
-                        getMvpView().hideProgressbar();
-                        getMvpView().statusChangedSuccessfully();
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        getMvpView().hideProgressbar();
-                        showExceptionError(throwable,
-                                context.getString(R.string.error_updating_status));
-                    }
-                })
-        );
+        try {
+            switch (Objects.requireNonNull(command.getAction())) {
+                case LOCK:
+                    customer.setCurrentState(Customer.State.LOCKED);
+                    break;
+                case REOPEN:
+                    customer.setCurrentState(Customer.State.PENDING);
+                    break;
+                case ACTIVATE:
+                case UNLOCK:
+                    customer.setCurrentState(Customer.State.ACTIVE);
+                    break;
+                case CLOSE:
+                    customer.setCurrentState(Customer.State.CLOSED);
+                    break;
+            }
+            synchronizationManager.updateDocument(identifier, GsonUtilsKt.serializeToMap(customer));
+            getMvpView().hideProgressbar();
+            getMvpView().statusChangedSuccessfully();
+        } catch (Exception e) {
+            getMvpView().hideProgressbar();
+            showExceptionError(e,
+                    context.getString(R.string.error_updating_status));
+            Log.e("CustomerTasks", e.toString());
+        }
     }
 }

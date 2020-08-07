@@ -134,16 +134,18 @@ public class FormCustomerAddressFragment extends FineractBaseFragment implements
 
     public void showPreviousAddress() {
         Address address = customer.getAddress();
-        etStreet.setText(address.getStreet());
-        etCity.setText(address.getCity());
-        if (address.getPostalCode() != null) {
-            etPostalCode.setText(address.getPostalCode());
+        if (address != null) {
+            etStreet.setText(address.getStreet());
+            etCity.setText(address.getCity());
+            if (address.getPostalCode() != null) {
+                etPostalCode.setText(address.getPostalCode());
+            }
+            etCountry.setText(address.getCountry());
+            if (address.getRegion() != null) {
+                etRegion.setText(address.getRegion());
+            }
         }
-        etCountry.setText(address.getCountry());
         showTextInputLayoutError(tilCountry, null);
-        if (address.getRegion() != null) {
-            etRegion.setText(address.getRegion());
-        }
     }
 
     @Override
