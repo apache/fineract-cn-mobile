@@ -81,6 +81,7 @@ class GroupDetailsFragment : FineractBaseFragment() {
                 val intent = Intent(activity, CreateGroupActivity::class.java).apply {
                     putExtra(Constants.GROUP, group)
                     putExtra(Constants.GROUP_ACTION, GroupAction.EDIT)
+                    flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
                 }
                 startActivity(intent)
             }

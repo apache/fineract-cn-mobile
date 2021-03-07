@@ -115,6 +115,7 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
     override fun onItemClick(childView: View?, position: Int) {
         val intent = Intent(context, GroupDetailsActivity::class.java).apply {
             putExtra(Constants.GROUP, groupList[position])
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         }
         startActivity(intent)
     }
@@ -126,6 +127,7 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
     fun addGroup() {
         val intent = Intent(activity, CreateGroupActivity::class.java).apply {
             putExtra(Constants.GROUP_ACTION, GroupAction.CREATE)
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
         }
         startActivity(intent)
     }

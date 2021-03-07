@@ -57,6 +57,7 @@ public class DashboardFragment extends FineractBaseFragment {
     void createCustomer() {
         Intent intent = new Intent(getActivity(), CreateCustomerActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_ACTION, CustomerAction.CREATE);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 }

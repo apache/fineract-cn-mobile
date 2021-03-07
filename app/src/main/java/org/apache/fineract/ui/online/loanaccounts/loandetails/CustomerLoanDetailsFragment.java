@@ -145,6 +145,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         Intent intent = new Intent(getActivity(), PlannedPaymentActivity.class);
         intent.putExtra(ConstantKeys.PRODUCT_IDENTIFIER, productIdentifier);
         intent.putExtra(ConstantKeys.CASE_IDENTIFIER, caseIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
@@ -153,6 +154,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         Intent intent = new Intent(getActivity(), DebtIncomeReportActivity.class);
         intent.putExtra(ConstantKeys.LOAN_CREDITWORTHINESSSNAPSHOTS, (new Gson()).toJson(
                 loanAccount.getLoanParameters().getCreditWorthinessSnapshots()));
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 

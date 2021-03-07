@@ -103,6 +103,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
         Intent intent = new Intent(getActivity(), CreateIdentificationActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         intent.putExtra(ConstantKeys.IDENTIFICATION_ACTION, Action.CREATE);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 

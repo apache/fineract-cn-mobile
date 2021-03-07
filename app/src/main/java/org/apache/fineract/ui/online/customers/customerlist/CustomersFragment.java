@@ -172,6 +172,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         isNewCustomer = true;
         Intent intent = new Intent(getActivity(), CreateCustomerActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_ACTION, CustomerAction.CREATE);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
@@ -321,6 +322,8 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         Intent customerDetailsIntent = new Intent(getActivity(), CustomerDetailsActivity.class);
         customerDetailsIntent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER,
                 customers.get(position).getIdentifier());
+        customerDetailsIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivityForResult(customerDetailsIntent, CUSTOMER_STATUS);
     }
 
