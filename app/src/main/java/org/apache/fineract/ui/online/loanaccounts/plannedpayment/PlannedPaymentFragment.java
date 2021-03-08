@@ -176,8 +176,7 @@ public class PlannedPaymentFragment extends FineractBaseFragment
 
     @OnClick(R.id.btn_load_planned_payment)
     void loadPlannedPaymentAccordingToDate() {
-        isCalenderVisible = false;
-        cvCalenderPlannedPayment.setVisibility(View.GONE);
+        showCalender();
         plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
                 initialDisbursalDate, false);
     }
