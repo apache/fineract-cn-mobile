@@ -164,6 +164,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     void viewDepositAccounts() {
         Intent intent = new Intent(getActivity(), DepositAccountsActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
@@ -171,6 +172,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     void viewLoanAccounts() {
         Intent intent = new Intent(getActivity(), LoanAccountsActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
@@ -187,6 +189,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     void showIdentificationCards() {
         Intent intent = new Intent(getActivity(), IdentificationsActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
@@ -194,6 +197,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     void showCustomerProfileImage() {
         Intent intent = new Intent(getActivity(), CustomerProfileActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
@@ -201,6 +205,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     void showCustomerActivities() {
         Intent intent = new Intent(getActivity(), CustomerActivitiesActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
@@ -208,6 +213,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     void showPayrollActivity() {
         Intent intent = new Intent(getActivity(), PayrollActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
@@ -218,6 +224,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
         intent.putExtra(ConstantKeys.CUSTOMER_ACTION, CustomerAction.EDIT);
         intent.putExtra(ConstantKeys.CUSTOMER, customer);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 

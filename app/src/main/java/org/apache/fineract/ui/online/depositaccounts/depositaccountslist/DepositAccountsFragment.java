@@ -105,6 +105,7 @@ public class DepositAccountsFragment extends FineractBaseFragment
         Intent intent = new Intent(getActivity(), CreateDepositActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
         intent.putExtra(ConstantKeys.DEPOSIT_ACTION, DepositAction.CREATE);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 

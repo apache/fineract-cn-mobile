@@ -119,6 +119,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
     void createNewLoan() {
         Intent intent = new Intent(getActivity(), LoanApplicationActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }
 
