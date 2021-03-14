@@ -59,7 +59,13 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
         slCreateGroup.setListener(this)
     }
 
-    override fun onStepSelected(newStepPosition: Int) {}
+    override fun onStepSelected(newStepPosition: Int) {
+        if(newStepPosition != 0 || newStepPosition != 2) {
+            if (this.currentFocus != null) {
+                hideKeyboard(this.currentFocus)
+            }
+        }
+    }
 
     override fun onError(verificationError: VerificationError?) {}
 
