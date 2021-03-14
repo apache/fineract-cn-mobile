@@ -23,16 +23,6 @@
         android:id="@+id/layout_error"
         android:visibility="gone"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:clickable="true"
-        android:focusable="true"
-        android:id="@+id/fab_add_role"
-        android:layout_gravity="bottom|end"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/layout_padding_16dp"
-        android:layout_width="wrap_content"
-        app:layout_behavior="org.apache.fineract.utils.ScrollFabBehavior"
-        app:srcCompat="@drawable/ic_add_black_24dp"/>
     <include
         layout="@layout/layout_sweet_exception_handler"
         android:id="@+id/layout_error"
