@@ -110,6 +110,7 @@
     <string name="debt_income">Debt Income</string>
     <string name="name">Name</string>
     <string name="browse">Browse…</string>
+    <string name="take_photo_for_btn">Take Photo</string>
     <string name="fetching_customer_please_wait">Fetching customer please wait…</string>
     <string name="creating_loan_please_wait">Creating loan please wait…</string>
     <string name="updating_customer_please_wait">Updating customer please wait…</string>
