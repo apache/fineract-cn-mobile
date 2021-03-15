@@ -81,6 +81,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password_layout"
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
                     app:passwordToggleEnabled="true">
