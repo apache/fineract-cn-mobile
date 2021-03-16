@@ -14,11 +14,11 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:id="@+id/nav_user_image"
+        android:layout_height="80dp"
+        android:layout_width="80dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@android:drawable/sym_def_app_icon"/>
+        app:srcCompat="@drawable/mifos_logo_new"/>
 
     <TextView
         android:layout_height="wrap_content"
