@@ -1,6 +1,7 @@
 package org.apache.fineract.ui.online.groups.creategroup
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -15,8 +16,8 @@ import org.apache.fineract.data.models.customer.Address
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.Toaster
 import org.apache.fineract.ui.online.groups.GroupAction
-import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
 import org.apache.fineract.ui.online.groups.grouplist.GroupViewModel
+import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.DateUtils
 import javax.inject.Inject
@@ -29,6 +30,8 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
 
     private var group = Group()
     private var groupAction = GroupAction.CREATE
+
+    private var isBackPressedOnce:Boolean = false
 
     @Inject
     lateinit var groupViewModelFactory: GroupViewModelFactory
@@ -60,6 +63,17 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
     }
 
     override fun onStepSelected(newStepPosition: Int) {}
+
+    override fun onBackPressed() {
+        if(!isBackPressedOnce && slCreateGroup.currentStepPosition != 0 ){
+            slCreateGroup.currentStepPosition = 0
+            isBackPressedOnce = true
+            Handler().postDelayed(
+                    { isBackPressedOnce = false }, 2000)
+        }else{
+            super.onBackPressed()
+        }
+    }
 
     override fun onError(verificationError: VerificationError?) {}
 
