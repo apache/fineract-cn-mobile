@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import com.github.therajanmaurya.sweeterror.SweetUIErrorHandler;
 
 import org.apache.fineract.R;
+import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet
@@ -50,6 +51,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
     CoordinatorLayout errorView;
 
     private String customerIdentifier;
+    private Customer customer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
         ButterKnife.bind(this);
 
         customerIdentifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
+        customer = getIntent().getExtras().getParcelable(ConstantKeys.CUSTOMER);
 
         sweetUIErrorHandler = new SweetUIErrorHandler(this, findViewById(android.R.id.content));
         loadCustomerPortrait();
@@ -93,10 +96,14 @@ public class CustomerProfileActivity extends FineractBaseActivity
     }
 
     public void shareImage() {
+        String shareMsgBody = ConstantKeys.PROFILE_SHARING_TEXT_START
+                + customer.getGivenName() + " " + customer.getSurname()
+                + ConstantKeys.PROFILE_SHARING_TEXT_END;
         Uri bitmapUri = getImageUri(this, getBitmapFromView(ivCustomerProfile));
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("image/jpg");
         shareIntent.putExtra(Intent.EXTRA_STREAM, bitmapUri);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareMsgBody);
         startActivity(Intent.createChooser(shareIntent,
                 getString(R.string.share_customer_profile)));
     }
