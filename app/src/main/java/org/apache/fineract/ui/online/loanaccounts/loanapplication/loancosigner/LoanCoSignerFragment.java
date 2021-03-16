@@ -3,13 +3,14 @@ package org.apache.fineract.ui.online.loanaccounts.loanapplication.loancosigner;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
@@ -120,11 +121,17 @@ public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step
 
     @Override
     public void showNoInternetConnection() {
+        if (getActivity().getCurrentFocus() != null) {
+            hideKeyboard(getActivity().getCurrentFocus(), getContext());
+        }
         Toaster.show(rootView, getString(R.string.no_internet_connection));
     }
 
     @Override
     public void showError(String message) {
+        if (getActivity().getCurrentFocus() != null) {
+            hideKeyboard(getActivity().getCurrentFocus(), getContext());
+        }
         Toaster.show(rootView, getString(R.string.error_loading_customers));
     }
 
