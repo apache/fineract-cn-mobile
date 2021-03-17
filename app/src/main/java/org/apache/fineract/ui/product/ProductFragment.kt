@@ -10,6 +10,8 @@ import android.text.TextUtils
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_product.*
+import kotlinx.android.synthetic.main.fragment_product.layoutError
+import kotlinx.android.synthetic.main.fragment_product.swipeContainer
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.product.Product
@@ -30,6 +32,8 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     lateinit var productAdapter: ProductAdapter
 
     lateinit var productList: List<Product>
+
+    private var searchView: SearchView? = null
 
     companion object {
         fun newInstance() = ProductFragment().apply {
@@ -83,7 +87,12 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     }
 
     override fun onRefresh() {
-        productPresenter.getProductsPage()
+        if (searchView!!.query.toString().isEmpty()) {
+            productPresenter.getProductsPage()
+        } else {
+            productPresenter.searchProduct(productList, searchView!!.query.toString())
+        }
+        hideProgressbar()
     }
 
     override fun showProduct(products: List<Product>) {
@@ -102,7 +111,7 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.product_search)?.actionView as? SearchView
+        searchView = menu?.findItem(R.id.product_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
