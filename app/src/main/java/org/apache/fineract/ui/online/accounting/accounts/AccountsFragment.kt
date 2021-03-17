@@ -110,8 +110,12 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     }
 
     override fun searchedAccount(accounts: List<Account>) {
-        showRecyclerView(true)
-        accountsAdapter.setAccountsList(accounts)
+        if (accounts.isEmpty()) {
+            showEmptyAccounts()
+        } else {
+            showRecyclerView(true)
+            accountsAdapter.setAccountsList(accounts)
+        }
     }
 
     override fun onRefresh() {

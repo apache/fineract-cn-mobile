@@ -129,8 +129,12 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     }
 
     override fun searchedLedger(ledgers: List<Ledger>) {
-        showRecyclerView(true)
-        ledgerAdapter.setLedgerList(ledgers)
+        if (ledgers.isEmpty()) {
+            showEmptyLedgers()
+        } else {
+            showRecyclerView(true)
+            ledgerAdapter.setLedgerList(ledgers)
+        }
     }
 
     override fun showRecyclerView(status: Boolean) {

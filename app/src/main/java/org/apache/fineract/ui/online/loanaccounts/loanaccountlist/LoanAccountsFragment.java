@@ -258,6 +258,11 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
 
     @Override
     public void searchedLoanAccounts(List<LoanAccount> loanAccountList) {
-        customerLoanAdapter.setCustomerLoanAccounts(loanAccountList);
+        if (loanAccountList.isEmpty()) {
+            showEmptyLoanAccounts(String.valueOf(R.string.empty_customer_loans));
+        } else {
+            showRecyclerView(true);
+            customerLoanAdapter.setCustomerLoanAccounts(loanAccountList);
+        }
     }
 }
