@@ -6,6 +6,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.transition.TransitionManager;
@@ -13,6 +14,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -193,8 +195,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     public void showEmptyCustomers(String message) {
         showRecyclerView(false);
         sweetUIErrorHandler.showSweetCustomErrorUI(getString(R.string.customer),
-                getString(Integer.parseInt(message)),
-                R.drawable.ic_customer_black_24dp, rvCustomers, layoutError);
+                message, R.drawable.ic_customer_black_24dp, rvCustomers, layoutError);
     }
 
     @Override
@@ -225,7 +226,12 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
 
     @Override
     public void searchCustomerList(Customer customer) {
-        customerAdapter.setCustomers(Collections.singletonList(customer));
+        if (customer.getIdentifier() != null && !customer.getIdentifier().isEmpty()) {
+            customerAdapter.setCustomers(Collections.singletonList(customer));
+        } else {
+            customerAdapter.setCustomers(new ArrayList<Customer>());
+            showEmptyCustomers(getString(R.string.empty_customer_list));
+        }
     }
 
     @Override
@@ -299,6 +305,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
                 rgSearch.clearCheck();
                 TransitionManager.beginDelayedTransition(coordinator);
                 llSearch.setVisibility(View.GONE);
+                sweetUIErrorHandler.hideSweetErrorLayoutUI(rvCustomers, layoutError);
                 return false;
             }
         });
