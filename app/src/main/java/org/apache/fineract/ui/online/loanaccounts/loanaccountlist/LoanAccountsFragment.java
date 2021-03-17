@@ -4,11 +4,13 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -140,6 +142,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
                 customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, page, true);
             }
         });
+        customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, 0, false);
     }
 
     @Override
@@ -152,8 +155,9 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
     @Override
     public void showMoreLoanAccounts(List<LoanAccount> loanAccounts) {
         showRecyclerView(true);
-        this.loanAccounts.addAll(loanAccounts);
-        customerLoanAdapter.setMoreCustomerLoanAccounts(loanAccounts);
+        this.loanAccounts.addAll(checkLoanAccountAlreadySyncedOrNot(loanAccounts));
+        customerLoanAdapter.setMoreCustomerLoanAccounts(
+                checkLoanAccountAlreadySyncedOrNot(loanAccounts));
     }
 
     @Override
@@ -259,5 +263,20 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
     @Override
     public void searchedLoanAccounts(List<LoanAccount> loanAccountList) {
         customerLoanAdapter.setCustomerLoanAccounts(loanAccountList);
+    }
+
+    public List<LoanAccount> checkLoanAccountAlreadySyncedOrNot(List<LoanAccount> fetchedList) {
+        List<LoanAccount> newLoanAccounts = new ArrayList<>();
+        if (newLoanAccounts.size() != 0) {
+
+            for (LoanAccount la : loanAccounts) {
+                for (LoanAccount fl : fetchedList) {
+                    if (la.getIdentifier().equals(fl.getIdentifier())) {
+                        newLoanAccounts.add(fl);
+                    }
+                }
+            }
+        }
+        return newLoanAccounts;
     }
 }
