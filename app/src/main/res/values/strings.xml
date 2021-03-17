@@ -176,6 +176,7 @@
     <string name="portrait_uploaded_successfully">Portrait uploaded successfully</string>
     <string name="portrait_deleted_successfully">Portrait deleted successfully</string>
     <string name="portrait_size_can_not_exceed">Portrait can\'t exceed size of 512KB.</string>
+    <string name="select_photo">Please select photo to upload</string>
     <string name="customer_deposit_account">Customer deposit account</string>
     <string name="customer_created_successfully">%1$s created successfully</string>
     <string name="customer_updated_successfully">%1$s updated successfully</string>
