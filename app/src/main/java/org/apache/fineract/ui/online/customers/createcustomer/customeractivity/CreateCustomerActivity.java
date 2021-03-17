@@ -20,6 +20,7 @@ import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.OnNavigationBarListener;
 import org.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsActivity;
 import org.apache.fineract.utils.ConstantKeys;
+import org.apache.fineract.utils.MaterialDialog;
 
 import java.util.List;
 
@@ -209,5 +210,26 @@ public class CreateCustomerActivity extends FineractBaseActivity
         super.onDestroy();
         stepperLayout.hideProgress();
         createCustomerPresenter.detachView();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (stepperLayout.getCurrentStepPosition() != 0) {
+            stepperLayout.setCurrentStepPosition(
+                    stepperLayout.getCurrentStepPosition() - 1);
+        } else {
+            new MaterialDialog.Builder()
+                    .init(this)
+                    .setTitle(getString(R.string.dialog_title_confirm_exit))
+                    .setMessage(getString(
+                            R.string.dialog_message_confirmation_exit_create_edit_activity))
+                    .setPositiveButton(getString(R.string.dialog_action_exit),
+                            (dialog, which) -> {
+                                super.onBackPressed();
+                            })
+                    .setNegativeButton(getString(R.string.dialog_action_cancel))
+                    .createMaterialDialog()
+                    .show();
+        }
     }
 }
