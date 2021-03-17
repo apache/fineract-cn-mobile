@@ -10,9 +10,11 @@ import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import butterknife.ButterKnife
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_group_list.*
+import kotlinx.android.synthetic.main.fragment_group_list.swipeContainer
 import org.apache.fineract.R
 import org.apache.fineract.data.models.Group
 import org.apache.fineract.ui.adapters.GroupsAdapter
@@ -30,7 +32,8 @@ import javax.inject.Inject
  * Created by saksham on 15/June/2019
 */
 
-class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
+class GroupListFragment : FineractBaseFragment(), SwipeRefreshLayout.OnRefreshListener,
+        OnItemClickListener {
 
     lateinit var rootView: View
 
@@ -43,6 +46,8 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
     lateinit var groupViewModelFactory: GroupViewModelFactory
 
     lateinit var groupList: ArrayList<Group>
+
+    var searchView :SearchView? = null
 
     val searchedGroup: (ArrayList<Group>) -> Unit = { groups ->
         adapter.setGroupList(groups)
@@ -85,6 +90,18 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
                     groupList = it
                     adapter.setGroupList(it)
                 })
+        swipeContainer.setOnRefreshListener(this)
+    }
+
+    override fun onRefresh() {
+        if (searchView!!.query.toString().isEmpty()){
+            viewModel.getGroups()
+            adapter.setGroupList(groupList)
+            adapter.notifyDataSetChanged()
+        } else {
+            viewModel.searchGroup(groupList, searchView?.query.toString(), searchedGroup)
+        }
+        hideProgressbar()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -92,11 +109,11 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
         inflater.inflate(R.menu.menu_group_search, menu)
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
-        val searchView = menu.findItem(R.id.group_search).actionView as SearchView
+        searchView = menu.findItem(R.id.group_search).actionView as SearchView
 
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        searchView!!.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView!!.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.searchGroup(groupList, query, searchedGroup)
                 return false
@@ -128,6 +145,10 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
             putExtra(Constants.GROUP_ACTION, GroupAction.CREATE)
         }
         startActivity(intent)
+    }
+
+    fun hideProgressbar() {
+        rootView.findViewById<SwipeRefreshLayout>(R.id.swipeContainer).isRefreshing = false
     }
 
 }
