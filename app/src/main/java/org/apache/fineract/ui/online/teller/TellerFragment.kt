@@ -3,12 +3,12 @@ package org.apache.fineract.ui.online.teller
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_teller.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
@@ -129,8 +129,12 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     }
 
     override fun searchedTeller(tellers: List<Teller>) {
-        showRecyclerView(true)
-        tellerAdapter.setTellerList(tellers)
+        if (tellers.isEmpty()) {
+            showEmptyTellers()
+        } else {
+            tellerAdapter.setTellerList(tellers)
+            showRecyclerView(true)
+        }
     }
 
     override fun showRecyclerView(status: Boolean) {

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import butterknife.ButterKnife
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_group_list.*
+import kotlinx.android.synthetic.main.fragment_group_list.layoutError
 import org.apache.fineract.R
 import org.apache.fineract.data.models.Group
 import org.apache.fineract.ui.adapters.GroupsAdapter
@@ -65,6 +66,7 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
         (activity as FineractBaseActivity).activityComponent.inject(this)
         viewModel = ViewModelProviders.of(this,
                 groupViewModelFactory).get(GroupViewModel::class.java)
+        initializeFineractUIErrorHandler(activity, rootView)
         return rootView
     }
 
@@ -99,6 +101,7 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.searchGroup(groupList, query, searchedGroup)
+                searchedGroups(adapter.groups)
                 return false
             }
 
@@ -107,7 +110,8 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
                     adapter.setGroupList(groupList)
                 }
                 viewModel.searchGroup(groupList, newText, searchedGroup)
-                return true
+                searchedGroups(adapter.groups)
+                return false
             }
         })
     }
@@ -130,4 +134,27 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
         startActivity(intent)
     }
 
+    private fun showRecyclerView(status: Boolean) {
+        if (status) {
+            rvGroups.visibility = View.VISIBLE
+            layoutError.visibility = View.GONE
+        } else {
+            rvGroups.visibility = View.GONE
+            layoutError.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showEmptyProduct() {
+        showRecyclerView(false)
+        showFineractEmptyUI(getString(R.string.groups), getString(R.string.groups),
+                R.drawable.ic_people_black_24dp)
+    }
+
+    private fun searchedGroups(groups: List<Group>) {
+        if (groups.isEmpty()) {
+            showEmptyProduct()
+        } else {
+            showRecyclerView(true)
+        }
+    }
 }

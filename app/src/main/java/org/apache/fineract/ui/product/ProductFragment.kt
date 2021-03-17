@@ -152,8 +152,12 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
     }
 
     override fun searchedProduct(products: List<Product>) {
-        //showRecyclerView(true)
-        productAdapter.setProductsList(products)
+        if (products.isEmpty()) {
+            showEmptyProduct()
+        } else {
+            showRecyclerView(true)
+            productAdapter.setProductsList(products)
+        }
     }
 
     override fun showNoInternetConnection() {

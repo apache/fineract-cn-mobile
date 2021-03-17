@@ -175,7 +175,12 @@ public class IdentificationsFragment extends FineractBaseFragment implements
 
     @Override
     public void searchedIdentifications(List<Identification> identification) {
-        identificationAdapter.setIdentifications(identification);
+        if (identification.isEmpty()) {
+            showEmptyIdentifications();
+        } else {
+            showRecyclerView(true);
+            identificationAdapter.setIdentifications(identification);
+        }
     }
 
     @Override
