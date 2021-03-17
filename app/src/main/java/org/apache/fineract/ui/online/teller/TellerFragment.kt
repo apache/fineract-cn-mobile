@@ -3,12 +3,12 @@ package org.apache.fineract.ui.online.teller
 import android.app.SearchManager
 import android.content.Context
 import android.os.Bundle
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_teller.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
@@ -29,6 +29,8 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     lateinit var tellerAdapter: TellerAdapter
 
     lateinit var tellerList: List<Teller>
+
+    private var searchView: SearchView? = null
 
     companion object {
         fun newInstance(): TellerFragment = TellerFragment().apply {
@@ -88,7 +90,12 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     }
 
     override fun onRefresh() {
-        tellPresenter.fetchTellers()
+        if (searchView!!.query.toString().isEmpty()) {
+            tellPresenter.fetchTellers()
+        } else {
+            tellPresenter.searchTeller(tellerList, searchView!!.query.toString())
+        }
+        swipeContainer.isRefreshing = !swipeContainer.isRefreshing
     }
 
     override fun showEmptyTellers() {
@@ -106,7 +113,7 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.teller_search)?.actionView as? SearchView
+        searchView = menu?.findItem(R.id.teller_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 

@@ -4,11 +4,13 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -63,6 +65,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
 
     private String customerIdentifier;
     private List<LoanAccount> loanAccounts;
+    private SearchView searchView;
 
     public static LoanAccountsFragment newInstance(String customerIdentifier) {
         LoanAccountsFragment fragment = new LoanAccountsFragment();
@@ -105,7 +108,13 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
 
     @Override
     public void onRefresh() {
-        customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, 0, false);
+        if (searchView.getQuery().toString().isEmpty()) {
+            customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, 0, false);
+        } else {
+            customerLoansPresenter.searchLoanAccounts(loanAccounts,
+                    searchView.getQuery().toString());
+        }
+        swipeRefreshLayout.setRefreshing(!swipeRefreshLayout.isRefreshing());
     }
 
     @OnClick(R.id.btn_try_again)
@@ -232,7 +241,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
         SearchManager searchManager = (SearchManager) getActivity().
                 getSystemService(Context.SEARCH_SERVICE);
 
-        SearchView searchView = (SearchView) menu.findItem(R.id.loan_account_search)
+        searchView = (SearchView) menu.findItem(R.id.loan_account_search)
                 .getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity()
                 .getComponentName()));

@@ -10,7 +10,10 @@ import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.fragment_accounts.*
 import kotlinx.android.synthetic.main.fragment_ledger.*
+import kotlinx.android.synthetic.main.fragment_ledger.layoutError
+import kotlinx.android.synthetic.main.fragment_ledger.swipeContainer
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.accounts.Ledger
@@ -32,6 +35,8 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     lateinit var ledgerPresenter: LedgerPresenter
 
     lateinit var ledgerList: List<Ledger>
+
+    private var searchView: SearchView? = null
 
     companion object {
         fun newInstance(): LedgerFragment = LedgerFragment()
@@ -82,7 +87,12 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     }
 
     override fun onRefresh() {
-        ledgerPresenter.getLedgersPage()
+        if (searchView!!.query.toString().isEmpty()) {
+            ledgerPresenter.getLedgersPage()
+        } else {
+            ledgerPresenter.searchLedger(ledgerList, searchView!!.query.toString())
+        }
+        swipeContainer.isRefreshing = !swipeContainer.isRefreshing
     }
 
     override fun showLedgers(ledgers: List<Ledger>) {
@@ -106,7 +116,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.ledger_search)?.actionView as? SearchView
+        searchView = menu?.findItem(R.id.ledger_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 

@@ -4,11 +4,13 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -63,6 +65,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
 
     private List<Identification> identifications;
     private String customerIdentifier;
+    private SearchView searchView;
 
     public static IdentificationsFragment newInstance(String identifier) {
         IdentificationsFragment fragment = new IdentificationsFragment();
@@ -114,7 +117,13 @@ public class IdentificationsFragment extends FineractBaseFragment implements
 
     @Override
     public void onRefresh() {
-        identificationsPresenter.fetchIdentifications(customerIdentifier);
+        if (searchView.getQuery().toString().isEmpty()) {
+            identificationsPresenter.fetchIdentifications(customerIdentifier);
+        } else {
+            identificationsPresenter.searchIdentifications(identifications,
+                    searchView.getQuery().toString());
+        }
+        swipeRefreshLayout.setRefreshing(!swipeRefreshLayout.isRefreshing());
     }
 
     @Override
@@ -201,7 +210,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
 
         SearchManager manager = (SearchManager) getActivity().
                 getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView = (SearchView) menu.findItem(
+        searchView = (SearchView) menu.findItem(
                 R.id.identification_search).getActionView();
         searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
 
