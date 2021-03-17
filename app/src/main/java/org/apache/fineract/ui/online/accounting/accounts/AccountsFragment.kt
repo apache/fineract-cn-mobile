@@ -30,6 +30,8 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
 
     lateinit var accountList : List<Account>
 
+    private var searchView: SearchView? = null
+
     companion object {
         fun newInstance() = AccountsFragment()
     }
@@ -87,7 +89,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     private fun setUpSearchInterface(menu: Menu?) {
 
         val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as? SearchManager
-        val searchView = menu?.findItem(R.id.account_search)?.actionView as? SearchView
+        searchView = menu?.findItem(R.id.account_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
 
@@ -115,7 +117,12 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
     }
 
     override fun onRefresh() {
-        accountsPresenter.getAccountsPage()
+        if (searchView!!.query.toString().isEmpty()) {
+            accountsPresenter.getAccountsPage()
+        } else {
+            accountsPresenter.searchAccount(accountList, searchView!!.query.toString())
+        }
+        hideProgressbar()
     }
 
 
