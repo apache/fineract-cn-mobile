@@ -302,6 +302,8 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
                 return false;
             }
         });
+
+        baseSearchView = searchView;
     }
 
     private void findCustomer(String query) {
