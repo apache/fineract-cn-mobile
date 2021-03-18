@@ -96,9 +96,13 @@ public class LoanCoSignerPresenter extends BasePresenter<LoanCoSignerContract.Vi
     @Override
     public Boolean findCustomer(final String customer, String[] customers) {
         boolean isCustomerPresent = false;
+        if (customers == null) {
+            return false;
+        }
         for (String s : customers) {
             if (s.equals(customer)) {
                 isCustomerPresent = true;
+                break;
             }
         }
         return isCustomerPresent;
