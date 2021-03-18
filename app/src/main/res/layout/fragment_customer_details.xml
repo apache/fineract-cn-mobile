@@ -401,7 +401,7 @@
                                     style="@style/circleLayout"
                                     android:layout_height="35dp"
                                     android:layout_width="35dp"
-                                    app:srcCompat="@drawable/ic_payment_black_24dp"/>
+                                    app:srcCompat="@drawable/ic_loan_black_24dp"/>
 
                                 <LinearLayout
                                     android:layout_height="wrap_content"
