@@ -25,6 +25,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         fragmentTitles.add(title);
     }
 
+    public Fragment getFragment(Integer position) {
+        if (position < fragments.size()) {
+            return fragments.get(position);
+        }
+        return null;
+    }
+
     @Override
     public Fragment getItem(int position) {
         return fragments.get(position);

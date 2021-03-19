@@ -542,4 +542,7 @@
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+    <string name="download_identification_scan">Download Scan</string>
+    <string name="image_saved">Image Successfully saved at: %s</string>
+    <string name="share_scanned_identifier">Share Scanned Identifier</string>
 </resources>
