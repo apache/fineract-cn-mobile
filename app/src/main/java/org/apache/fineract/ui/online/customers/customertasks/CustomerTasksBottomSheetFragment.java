@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import androidx.core.content.ContextCompat;
+
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -125,6 +127,16 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
                 break;
         }
 
+        dialog.setOnKeyListener((dialog1, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_BACK
+                    && event.getAction() == KeyEvent.ACTION_DOWN
+                    && isTaskFormVisible()) {
+                hideTaskForm();
+                return true;
+            }
+            return false;
+        });
+
         return dialog;
     }
 
@@ -197,7 +209,7 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
 
     @OnClick(R.id.btn_cancel)
     void onCancel() {
-        dismiss();
+        hideTaskForm();
     }
 
     public void setCustomerTasksChangeListener(OnTasksChangeListener onTasksChangeListener) {
@@ -208,7 +220,7 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
     public void statusChangedSuccessfully() {
         Toast.makeText(getActivity(), R.string.task_updated_successfully, Toast.LENGTH_LONG).show();
         onTasksChangeListener.changeCustomerStatus(state);
-        dismiss();
+        hideTaskForm();
     }
 
     @Override
@@ -249,5 +261,15 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
         super.onDestroyView();
         hideMifosProgressDialog();
         tasksBottomSheetPresenter.detachView();
+    }
+
+    private boolean isTaskFormVisible() {
+        return llTaskForm.getVisibility() == View.VISIBLE
+                && llTaskList.getVisibility() == View.GONE;
+    }
+    private void hideTaskForm() {
+        llTaskForm.setVisibility(View.GONE);
+        llTaskList.setVisibility(View.VISIBLE);
+        etComment.getText().clear();
     }
 }

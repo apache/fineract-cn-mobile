@@ -1,7 +1,9 @@
 package org.apache.fineract.ui.online.groups.grouptasks
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -47,6 +49,17 @@ class GroupTasksBottomSheetFragment(val group: Group) : FineractBaseBottomSheetD
         setDataOnViews()
 
         subscribeUI()
+
+        dialog.setOnKeyListener(DialogInterface.OnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_BACK
+                    && event.action == KeyEvent.ACTION_DOWN
+                    && isTaskFormVisible()) {
+                hideTaskForm()
+                return@OnKeyListener true
+            }
+            return@OnKeyListener false
+        })
+
         return dialog
     }
 
@@ -129,7 +142,7 @@ class GroupTasksBottomSheetFragment(val group: Group) : FineractBaseBottomSheetD
 
     @OnClick(R.id.btn_cancel)
     fun onCancel() {
-        dismiss()
+        hideTaskForm()
     }
 
     override fun onStart() {
@@ -140,5 +153,16 @@ class GroupTasksBottomSheetFragment(val group: Group) : FineractBaseBottomSheetD
     override fun onDestroy() {
         super.onDestroy()
         hideMifosProgressBar()
+    }
+
+    private fun isTaskFormVisible(): Boolean {
+        return (rootView.ll_task_form.visibility == View.VISIBLE
+                && rootView.ll_task_list.visibility == View.GONE)
+    }
+
+    private fun hideTaskForm() {
+        rootView.ll_task_list.visibility = View.VISIBLE
+        rootView.ll_task_form.visibility = View.GONE
+        rootView.et_comment.text.clear()
     }
 }
