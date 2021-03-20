@@ -144,7 +144,7 @@ class AddGroupLeaderStepFragment : FineractBaseFragment(), Step, NameListAdapter
 
     override fun verifyStep(): VerificationError? {
         if (leaders.size == 0) {
-            Toast.makeText(context, getString(R.string.error_group_atleast_1_member), Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.error_group_atleast_1_leader), Toast.LENGTH_SHORT).show()
             return VerificationError("")
         }
         (activity as CreateGroupActivity).setLeaders(leaders)
