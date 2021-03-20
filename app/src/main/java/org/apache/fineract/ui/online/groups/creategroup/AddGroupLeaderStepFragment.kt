@@ -14,7 +14,6 @@ import com.stepstone.stepper.VerificationError
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import kotlinx.android.synthetic.main.fragment_step_add_group_leader.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_leader.view.*
-import kotlinx.android.synthetic.main.fragment_step_add_group_member.view.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_member.view.rv_name
 import org.apache.fineract.R
 import org.apache.fineract.ui.adapters.NameListAdapter
@@ -104,14 +103,19 @@ class AddGroupLeaderStepFragment : FineractBaseFragment(), Step, NameListAdapter
     @Optional
     @OnClick(R.id.btnAddLeader)
     fun addLeader() {
+        if (etNewLeader.text.toString().trim().isEmpty()) {
+            etNewLeader.error = getString(R.string.leader_member_empty,
+                    getString(R.string.leaders))
+            return
+        }
         if (etNewLeader.validator()
                         .nonEmpty()
                         .noNumbers()
                         .addErrorCallback { etNewLeader.error = it }.check()) {
             if (currentAction == GroupAction.CREATE) {
-                leaders.add(etNewLeader.text.toString())
+                leaders.add(etNewLeader.text.toString().trim())
             } else {
-                leaders[editItemPosition] = etNewLeader.text.toString()
+                leaders[editItemPosition] = etNewLeader.text.toString().trim()
             }
             etNewLeader.text.clear()
             llAddLeader.visibility = View.GONE
