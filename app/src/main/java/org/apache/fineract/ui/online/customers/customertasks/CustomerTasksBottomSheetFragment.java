@@ -190,6 +190,10 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
 
     @OnClick(R.id.btn_submit_task)
     void submitTask() {
+        if (etComment.getText().toString().isEmpty()) {
+            etComment.setError(getString(R.string.required));
+            return;
+        }
         command.setComment(etComment.getText().toString().trim());
         etComment.setEnabled(false);
         tasksBottomSheetPresenter.changeCustomerStatus(customerIdentifier, command);
