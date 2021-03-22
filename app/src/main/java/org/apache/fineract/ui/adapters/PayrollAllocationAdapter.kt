@@ -1,5 +1,6 @@
 package org.apache.fineract.ui.adapters
 
+import android.opengl.Visibility
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +29,13 @@ class PayrollAllocationAdapter @Inject constructor()
         val (accountNumber, amount, proportional) = payrollAllocation[position]
         holder.tvAccount.text = accountNumber
         holder.tvAmount.text = amount.toString()
-        holder.cbProportional.isChecked = proportional
+        if (proportional) {
+            holder.ivproportional_checked.visibility = View.VISIBLE
+            holder.ivproportional_crossed.visibility= View.GONE
+        }else {
+            holder.ivproportional_checked.visibility = View.GONE
+            holder.ivproportional_crossed.visibility= View.VISIBLE
+        }
     }
 
     override fun getItemCount(): Int {
@@ -50,7 +57,9 @@ class PayrollAllocationAdapter @Inject constructor()
         val ivDelete: ImageView = itemView.iv_delete
         val tvAccount: TextView = itemView.tv_account
         val tvAmount: TextView = itemView.tv_amount
-        val cbProportional: CheckBox = itemView.cb_Proportional
+
+        val ivproportional_checked: ImageView = itemView.iv_proportional_checked
+        val ivproportional_crossed : ImageView = itemView.iv_proportional_crossed
 
         init {
             ivEdit.setOnClickListener {
