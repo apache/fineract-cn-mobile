@@ -45,6 +45,8 @@ class EditPayrollBottomSheet : BottomSheetDialogFragment() {
                 }
 
                 dismiss()
+            }else if(rootView.etAccount.text.isNullOrEmpty()){
+            rootView.etAccount.error = getString(R.string.account_field_cannot_be_empty)
             }
         }
 
