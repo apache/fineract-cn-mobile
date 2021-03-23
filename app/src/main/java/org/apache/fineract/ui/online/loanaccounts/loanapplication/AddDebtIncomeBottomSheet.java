@@ -16,6 +16,7 @@ import android.widget.TextView;
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.CreditWorthinessFactor;
 import org.apache.fineract.ui.base.Toaster;
+import org.apache.fineract.utils.MaterialDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -106,18 +107,17 @@ public class AddDebtIncomeBottomSheet extends BottomSheetDialogFragment {
         switch (creditWorthinessSource) {
             case DEBT:
                 debtListener.addDebt(creditWorthinessFactor);
+                dismiss();
                 break;
             case INCOME:
                 incomeListener.addIncome(creditWorthinessFactor);
+                dismiss();
                 break;
             case EDIT_DEBT:
-                debtListener.editDebt(creditWorthinessFactor, position);
-                break;
             case EDIT_INCOME:
-                incomeListener.editIncome(creditWorthinessFactor, position);
+                showEditDialog(creditWorthinessFactor);
                 break;
         }
-        dismiss();
     }
 
     public void setCreditWorthinessSource(CreditWorthinessSource creditWorthinessSource) {
@@ -149,5 +149,28 @@ public class AddDebtIncomeBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onDismiss(DialogInterface dialog) {
         super.onDismiss(dialog);
+    }
+
+    private void showEditDialog(CreditWorthinessFactor creditWorthinessFactor) {
+        new MaterialDialog.Builder()
+                .init(getContext())
+                .setTitle(getString(R.string.dialog_title_confirm_updation))
+                .setMessage(getString(R.string.dialog_message_confirm_name_updation,
+                        creditWorthinessFactor.getDescription()))
+                .setPositiveButton(getString(R.string.update),
+                        (dialog, which) -> {
+                            switch (creditWorthinessSource) {
+                                case EDIT_DEBT:
+                                    debtListener.editDebt(creditWorthinessFactor, position);
+                                    break;
+                                case EDIT_INCOME:
+                                    incomeListener.editIncome(creditWorthinessFactor, position);
+                                    break;
+                            }
+                            dismiss();
+                        })
+                .setNegativeButton(getString(R.string.dialog_action_cancel))
+                .createMaterialDialog()
+                .show();
     }
 }
