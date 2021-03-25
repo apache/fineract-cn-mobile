@@ -1,6 +1,7 @@
 package org.apache.fineract.ui.adapters;
 
 import android.content.Context;
+
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +59,16 @@ public class IdentificationAdapter extends RecyclerView.Adapter<IdentificationAd
         calendar.set(Calendar.MONTH, identification.getExpirationDate().getMonth() - 1);
         calendar.set(Calendar.DAY_OF_MONTH, identification.getExpirationDate().getDay());
         holder.tvExpirationDate.setText(DateUtils.convertServerDate(calendar));
+
+        if (calendar.getTime().after(Calendar.getInstance().getTime())) {
+            holder.tvExpiryStatus.setText(context.getResources().getString(R.string.active));
+            holder.tvExpiryStatus.setTextColor(
+                    context.getResources().getColor(R.color.deposit_green));
+        } else {
+            holder.tvExpiryStatus.setText(context.getResources().getString(R.string.expired));
+            holder.tvExpiryStatus.setTextColor(
+                    context.getResources().getColor(R.color.red_dark));
+        }
     }
 
     @Override
@@ -92,6 +103,9 @@ public class IdentificationAdapter extends RecyclerView.Adapter<IdentificationAd
 
         @BindView(R.id.ll_identifier_card)
         LinearLayout cvCustomer;
+
+        @BindView(R.id.tv_expiration_status)
+        TextView tvExpiryStatus;
 
         public ViewHolder(View v) {
             super(v);

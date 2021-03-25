@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
@@ -59,6 +60,9 @@ public class FormIdentificationDetailsFragment extends FineractBaseFragment impl
 
     @BindView(R.id.et_expiration_date)
     EditText etExpirationDate;
+
+    @BindView(R.id.tv_expiration_status_for_create)
+    TextView tvExpiryStatus;
 
     @BindView(R.id.til_issuer)
     TextInputLayout tilIssuer;
@@ -153,6 +157,7 @@ public class FormIdentificationDetailsFragment extends FineractBaseFragment impl
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH);
         etExpirationDate.setText(sdf.format(calendar.getTime()));
         validateExpirationDate();
+        showExpiryStatus(calendar);
     }
 
     @Override
@@ -254,6 +259,16 @@ public class FormIdentificationDetailsFragment extends FineractBaseFragment impl
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnNavigationBarListener.IdentificationCard");
+        }
+    }
+
+    private void showExpiryStatus(Calendar calendar) {
+        if (calendar.getTime().after(Calendar.getInstance().getTime())) {
+            tvExpiryStatus.setText(getResources().getString(R.string.active));
+            tvExpiryStatus.setTextColor(getResources().getColor(R.color.deposit_green));
+        } else {
+            tvExpiryStatus.setText(getResources().getString(R.string.expired));
+            tvExpiryStatus.setTextColor(getResources().getColor(R.color.red_dark));
         }
     }
 }
