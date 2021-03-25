@@ -20,6 +20,7 @@ import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.OnNavigationBarListener;
 import org.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsActivity;
 import org.apache.fineract.utils.ConstantKeys;
+import org.apache.fineract.utils.NetworkUtil;
 
 import java.util.List;
 
@@ -103,15 +104,19 @@ public class CreateCustomerActivity extends FineractBaseActivity
 
     @Override
     public void onCompleted(View completeButton) {
-        stepperLayout.setNextButtonEnabled(false);
-        customer.setType(Customer.Type.PERSON.name());
-        switch (customerAction) {
-            case CREATE:
-                createCustomerPresenter.createCustomer(customer);
-                break;
-            case EDIT:
-                createCustomerPresenter.updateCustomer(customerIdentifier, customer);
-                break;
+        if (NetworkUtil.isConnected(CreateCustomerActivity.this)) {
+            stepperLayout.setNextButtonEnabled(false);
+            customer.setType(Customer.Type.PERSON.name());
+            switch (customerAction) {
+                case CREATE:
+                    createCustomerPresenter.createCustomer(customer);
+                    break;
+                case EDIT:
+                    createCustomerPresenter.updateCustomer(customerIdentifier, customer);
+                    break;
+            }
+        } else {
+            Toaster.show(completeButton, getString(R.string.no_internet_connection));
         }
     }
 

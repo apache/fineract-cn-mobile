@@ -15,10 +15,11 @@ import org.apache.fineract.data.models.customer.Address
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.Toaster
 import org.apache.fineract.ui.online.groups.GroupAction
-import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
 import org.apache.fineract.ui.online.groups.grouplist.GroupViewModel
+import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.DateUtils
+import org.apache.fineract.utils.NetworkUtil
 import javax.inject.Inject
 
 /*
@@ -96,11 +97,15 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
     }
 
     override fun onCompleted(completeButton: View?) {
-        when (groupAction) {
-            GroupAction.EDIT -> group.identifier?.let {
-                viewModel.updateGroup(it, group)
+        if (NetworkUtil.isConnected(this)) {
+            when (groupAction) {
+                GroupAction.EDIT -> group.identifier?.let {
+                    viewModel.updateGroup(it, group)
+                }
+                GroupAction.CREATE -> viewModel.createGroup(group)
             }
-            GroupAction.CREATE -> viewModel.createGroup(group)
+        } else {
+            Toaster.show(completeButton, getString(R.string.no_internet_connection))
         }
     }
 
