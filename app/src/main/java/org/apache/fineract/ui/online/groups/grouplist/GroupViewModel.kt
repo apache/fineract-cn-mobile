@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Predicate
+import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
 import org.apache.fineract.data.Status
@@ -44,13 +45,23 @@ class GroupViewModel constructor(val dataManagerGroups: DataManagerGroups, val d
     }
 
     @SuppressLint("CheckResult")
-    fun getCountries(): MutableLiveData<List<Country>> {
-        val countries = MutableLiveData<List<Country>>()
-        dataManagerAnonymous.countries.subscribeOn(Schedulers.io())
+    fun getCountries(): List<Country> {
+        var countries:List<Country> = emptyList()
+
+        dataManagerAnonymous.countries
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    countries.value = it
-                }
+                .subscribeWith(object : DisposableObserver<List<Country>?>() {
+                    override fun onNext(countriesList: List<Country>) {
+                        countries = countriesList
+                    }
+
+                    override fun onError(throwable: Throwable) {
+                        countries = emptyList()
+                    }
+
+                    override fun onComplete() {}
+                })
         return countries
     }
 
