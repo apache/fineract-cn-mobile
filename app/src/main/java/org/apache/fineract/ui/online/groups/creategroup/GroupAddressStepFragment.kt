@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
@@ -63,10 +62,12 @@ class GroupAddressStepFragment : FineractBaseFragment(), Step {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getCountries().observe(this, Observer {
-            countries = it
-            etCountry.setAdapter(ArrayAdapter(context, android.R.layout.simple_list_item_1, viewModel.getCountryNames(it)))
-        })
+
+        countries = viewModel.getCountries()
+        if (countries.isNotEmpty()) {
+            etCountry.setAdapter(ArrayAdapter(context, android.R.layout.simple_list_item_1,
+                    viewModel.getCountryNames(countries)))
+        }
         etCountry.threshold = 1
 
         if (groupAction == GroupAction.EDIT) {
@@ -144,7 +145,9 @@ class GroupAddressStepFragment : FineractBaseFragment(), Step {
                     }
 
                     override fun getErrorMessage(): String {
-                        return getString(R.string.invalid_country)
+                        return if (countries.isEmpty()) {
+                            getString(R.string.error_loading_countries)
+                        } else getString(R.string.invalid_country)
                     }
                 })
                 .addErrorCallback {
