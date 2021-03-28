@@ -335,6 +335,7 @@
     <string name="dialog_action_delete">Delete</string>
     <string name="dialog_action_logout">Logout</string>
     <string name="dialog_title_confirm_deletion">Confirm deletion</string>
+    <string name="dialog_title_confirm_update">Confirm update</string>
     <string name="dialog_title_confirm_logout">Confirm logout</string>
     <string name="dialog_message_confirmation_delete_identification_card">Do you want to delete this identification card?</string>
     <string name="dialog_message_confirmation_delete_identification_card_scan">Do you want to delete this identification card scan?</string>
@@ -535,6 +536,7 @@
     <string name="please_click_back_again_to_exit">Please click BACK again to exit</string>
     <string name="update">Update</string>
     <string name="dialog_message_confirm_name_deletion">Do you want to delete %s?</string>
+    <string name="dialog_message_confirm_name_updation">Do you want to update %s?</string>
     <string name="edit_group">Edit Group</string>
     <string name="updating_group_please_wait">Updating Group, please wait...</string>
     <string name="please_verify_following_group_task">Please verify the following tasks before you can %1$s this group</string>
