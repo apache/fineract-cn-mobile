@@ -31,10 +31,10 @@ class PayrollAllocationAdapter @Inject constructor()
         holder.tvAmount.text = amount.toString()
         if (proportional) {
             holder.ivproportional_checked.visibility = View.VISIBLE
-            holder.ivproportional_crossed.visibility= View.GONE
-        }else {
+            holder.ivproportional_crossed.visibility = View.GONE
+        } else {
             holder.ivproportional_checked.visibility = View.GONE
-            holder.ivproportional_crossed.visibility= View.VISIBLE
+            holder.ivproportional_crossed.visibility = View.VISIBLE
         }
     }
 
@@ -59,7 +59,7 @@ class PayrollAllocationAdapter @Inject constructor()
         val tvAmount: TextView = itemView.tv_amount
 
         val ivproportional_checked: ImageView = itemView.iv_proportional_checked
-        val ivproportional_crossed : ImageView = itemView.iv_proportional_crossed
+        val ivproportional_crossed: ImageView = itemView.iv_proportional_crossed
 
         init {
             ivEdit.setOnClickListener {
