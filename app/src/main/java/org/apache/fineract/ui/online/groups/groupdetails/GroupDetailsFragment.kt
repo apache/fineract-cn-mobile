@@ -3,6 +3,7 @@ package org.apache.fineract.ui.online.groups.groupdetails
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.core.content.ContextCompat
 import butterknife.ButterKnife
 import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_groups_details.*
@@ -15,7 +16,6 @@ import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.online.groups.GroupAction
 import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity
 import org.apache.fineract.ui.online.groups.grouptasks.GroupTasksBottomSheetFragment
-import org.apache.fineract.ui.views.CircularImageView
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.DateUtils
 import org.apache.fineract.utils.Utils
@@ -93,8 +93,8 @@ class GroupDetailsFragment : FineractBaseFragment() {
         tvIdentifier.text = group.identifier
         tvGroupId.text = group.groupDefinitionIdentifier
         tvName.text = group.name
-        tvStatus.text = group.status?.name
-        setGroupStatusCircularIcon(group.status, civStatus)
+        statusChip.text = group.status?.name
+        setGroupStatusChipIcon(group.status)
         group.leaders?.let {
             leadersNameAdapter.submitList(it as ArrayList<String>)
         }
@@ -117,16 +117,22 @@ class GroupDetailsFragment : FineractBaseFragment() {
         bottomSheet.show(childFragmentManager, getString(R.string.tasks))
     }
 
-    private fun setGroupStatusCircularIcon(status: Group.Status?, civStatus: CircularImageView) {
+    private fun setGroupStatusChipIcon(status: Group.Status?) {
         when (status) {
             Group.Status.PENDING -> {
-                civStatus.setImageDrawable(Utils.setCircularBackground(R.color.blue, context))
+                statusChip.chipIcon = ContextCompat.getDrawable(context!!,
+                        R.drawable.ic_hourglass_empty_black_24dp)
+                statusChip.setChipBackgroundColorResource(R.color.pending_blue)
             }
             Group.Status.ACTIVE -> {
-                civStatus.setImageDrawable(Utils.setCircularBackground(R.color.deposit_green, context))
+                statusChip.chipIcon = ContextCompat.getDrawable(context!!,
+                        R.drawable.ms_ic_check)
+                statusChip.setChipBackgroundColorResource(R.color.activate_green)
             }
             Group.Status.CLOSED -> {
-                civStatus.setImageDrawable(Utils.setCircularBackground(R.color.red_dark, context))
+                statusChip.chipIcon = ContextCompat.getDrawable(context!!,
+                        R.drawable.ic_close_black_24dp)
+                statusChip.setChipBackgroundColorResource(R.color.closed_red)
             }
         }
     }
