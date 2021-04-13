@@ -145,6 +145,10 @@ class AddGroupMemberStepFragment : FineractBaseFragment(), Step, NameListAdapter
             Toast.makeText(context, getString(R.string.error_group_atleast_1_member), Toast.LENGTH_SHORT).show()
             return VerificationError("")
         }
+        if (llAddMember.visibility == View.VISIBLE) {
+            etNewMember.text.clear()
+            llAddMember.visibility = View.GONE
+        }
         (activity as CreateGroupActivity).setMembers(members)
         return null
     }
