@@ -1,18 +1,17 @@
 package org.apache.fineract.ui.online.loanaccounts.plannedpayment;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.payment.PlannedPayment;
@@ -39,8 +38,7 @@ import butterknife.OnClick;
  *         On 13/07/17.
  */
 public class PlannedPaymentFragment extends FineractBaseFragment
-        implements PlannedPaymentContract.View, SwipeRefreshLayout.OnRefreshListener,
-        CalendarView.OnDateChangeListener {
+        implements PlannedPaymentContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     public static final String LOG_TAG = PlannedPaymentFragment.class.getSimpleName();
 
@@ -53,17 +51,11 @@ public class PlannedPaymentFragment extends FineractBaseFragment
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.cv_planned_payment)
-    CardView cvCalenderPlannedPayment;
-
     @BindView(R.id.layout_error)
     View layoutError;
 
     @BindView(R.id.tv_toolbar_date)
     TextView tvToolbarDate;
-
-    @BindView(R.id.calender_view_payment)
-    CalendarView calenderViewPayment;
 
     @Inject
     PlannedPaymentAdapter plannedPaymentAdapter;
@@ -75,8 +67,9 @@ public class PlannedPaymentFragment extends FineractBaseFragment
 
     private String productIdentifier;
     private String caseIdentifier;
-    private boolean isCalenderVisible;
     private String initialDisbursalDate = null;
+    private Calendar calendar = Calendar.getInstance();
+    private DatePickerDialog.OnDateSetListener date;
 
     public static PlannedPaymentFragment newInstance(String productIdentifier,
             String caseIdentifier) {
@@ -144,23 +137,30 @@ public class PlannedPaymentFragment extends FineractBaseFragment
                         initialDisbursalDate, true);
             }
         });
-        calenderViewPayment.setOnDateChangeListener(this);
-        tvToolbarDate.setText(DateUtils.getCurrentDate());
+
+        date = (view, year, monthOfYear, dayOfMonth) -> {
+            calendar.set(year, monthOfYear, dayOfMonth);
+
+            tvToolbarDate.setText(DateUtils.getDate(DateUtils.getDateInUTC(calendar),
+                    DateUtils.STANDARD_DATE_TIME_FORMAT, DateUtils.OUTPUT_DATE_FORMAT));
+            initialDisbursalDate = DateUtils.getDateInUTC(calendar);
+
+            plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
+                    initialDisbursalDate, false);
+
+        };
+        tvToolbarDate.setText(DateUtils.getDate(DateUtils.getDateInUTC(calendar),
+                DateUtils.STANDARD_DATE_TIME_FORMAT, DateUtils.OUTPUT_DATE_FORMAT));
     }
 
     @OnClick(R.id.ll_toolbar_date)
     void showCalender() {
-        if (!isCalenderVisible) {
-            cvCalenderPlannedPayment.setVisibility(View.VISIBLE);
-            isCalenderVisible = true;
-            tvToolbarDate.setCompoundDrawablesWithIntrinsicBounds(
-                    0, 0, R.drawable.ic_arrow_drop_up_black_24dp, 0);
-        } else {
-            cvCalenderPlannedPayment.setVisibility(View.GONE);
-            tvToolbarDate.setCompoundDrawablesWithIntrinsicBounds(
-                    0, 0, R.drawable.ic_arrow_drop_down_black_24dp, 0);
-            isCalenderVisible = false;
-        }
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                R.style.MaterialDatePickerTheme, date, calendar
+                .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+        datePickerDialog.show();
     }
 
     @OnClick(R.id.btn_try_again)
@@ -173,25 +173,6 @@ public class PlannedPaymentFragment extends FineractBaseFragment
         plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
                 initialDisbursalDate, false);
     }
-
-    @OnClick(R.id.btn_load_planned_payment)
-    void loadPlannedPaymentAccordingToDate() {
-        isCalenderVisible = false;
-        cvCalenderPlannedPayment.setVisibility(View.GONE);
-        plannedPaymentPresenter.fetchPlannedPayment(productIdentifier, caseIdentifier, 0,
-                initialDisbursalDate, false);
-    }
-
-    @Override
-    public void onSelectedDayChange(@NonNull CalendarView view, int year, int month,
-            int dayOfMonth) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, dayOfMonth);
-        tvToolbarDate.setText(DateUtils.getDate(DateUtils.getDateInUTC(calendar),
-                DateUtils.STANDARD_DATE_TIME_FORMAT, DateUtils.OUTPUT_DATE_FORMAT));
-        initialDisbursalDate = DateUtils.getDateInUTC(calendar);
-    }
-
 
     @Override
     public void showPlannedPayment(List<PlannedPayment> plannedPayments) {
