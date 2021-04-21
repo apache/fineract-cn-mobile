@@ -17,6 +17,7 @@ import org.apache.fineract.ui.base.Toaster
 import org.apache.fineract.ui.online.groups.GroupAction
 import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
 import org.apache.fineract.ui.online.groups.grouplist.GroupViewModel
+import org.apache.fineract.utils.ConstantKeys
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.DateUtils
 import javax.inject.Inject
@@ -29,6 +30,8 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
 
     private var group = Group()
     private var groupAction = GroupAction.CREATE
+
+    private lateinit var initGroupStr: String
 
     @Inject
     lateinit var groupViewModelFactory: GroupViewModelFactory
@@ -49,6 +52,8 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
                 intent?.extras?.getParcelable<Group>(Constants.GROUP)?.let {
                     group = it
                 }
+                initGroupStr = group.toString()
+                        .split(ConstantKeys.STRING_SEPARATOR_FROM_CREATEDON)[0]
             }
         }
         viewModel = ViewModelProviders.of(this, groupViewModelFactory).get(GroupViewModel::class.java)
@@ -97,8 +102,15 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
 
     override fun onCompleted(completeButton: View?) {
         when (groupAction) {
-            GroupAction.EDIT -> group.identifier?.let {
-                viewModel.updateGroup(it, group)
+            GroupAction.EDIT -> {
+                if (group.toString().split(ConstantKeys.STRING_SEPARATOR_FROM_CREATEDON)[0] != initGroupStr) {
+                    group.identifier?.let {
+                        viewModel.updateGroup(it, group)
+                    }
+                } else {
+                    Toaster.show(findViewById(android.R.id.content),
+                            getString(R.string.group_edit_check_msg, group.name))
+                }
             }
             GroupAction.CREATE -> viewModel.createGroup(group)
         }

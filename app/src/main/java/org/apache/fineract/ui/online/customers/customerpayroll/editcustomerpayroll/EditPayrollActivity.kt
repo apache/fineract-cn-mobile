@@ -20,6 +20,7 @@ class EditPayrollActivity : FineractBaseActivity(), StepperLayout.StepperListene
 
     lateinit var payrollConfig: PayrollConfiguration
     lateinit var customerIdentifier: String
+    private lateinit var initPayrollStr: String
 
     @Inject
     lateinit var editPayrollPresenter: EditPayrollPresenter
@@ -35,7 +36,12 @@ class EditPayrollActivity : FineractBaseActivity(), StepperLayout.StepperListene
     }
 
     override fun onCompleted(completeButton: View?) {
-        editPayrollPresenter.updatePayrollConfiguration(customerIdentifier, payrollConfig)
+        if (payrollConfig.toString().split(ConstantKeys.STRING_SEPARATOR_FROM_CREATEDON)[0] != initPayrollStr) {
+            editPayrollPresenter.updatePayrollConfiguration(customerIdentifier, payrollConfig)
+        } else {
+            Toaster.show(findViewById(android.R.id.content),
+                    getString(R.string.payroll_edit_check_msg, customerIdentifier))
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +53,8 @@ class EditPayrollActivity : FineractBaseActivity(), StepperLayout.StepperListene
         editPayrollPresenter.attachView(this)
         val payrollConfig = intent.getParcelableExtra<PayrollConfiguration>(ConstantKeys
                 .PAYROLL_CONFIG)
+        initPayrollStr = payrollConfig.toString()
+                .split(ConstantKeys.STRING_SEPARATOR_FROM_CREATEDON)[0]
 
         customerIdentifier = intent.getStringExtra(ConstantKeys.CUSTOMER_IDENTIFIER)
 
