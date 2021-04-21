@@ -412,6 +412,12 @@
     <string name="please_wait">Please wait &#8230;</string>
     <string name="logging_in">Logging in…</string>
 
+    <!--Edit Check Messages-->
+    <string name="customer_edit_check_msg">Information not edited for the customer %1$s</string>
+    <string name="group_edit_check_msg">Information not edited for the group %1$s</string>
+    <string name="payroll_edit_check_msg">Information not edited for the payroll with customer identifier %1$s</string>
+    <string name="identification_edit_check_msg">Information not edited for the identification type %1$s</string>
+
     <string name="restrict_a_zA_Z" translatable="false">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="restrict_a_zA_Z0_9" translatable="false">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890</string>
 

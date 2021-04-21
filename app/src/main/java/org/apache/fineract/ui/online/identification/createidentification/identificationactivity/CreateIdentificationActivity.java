@@ -47,6 +47,7 @@ public class CreateIdentificationActivity extends FineractBaseActivity
     private CreateIdentificationStepAdapter stepAdapter;
     private String customerIdentifier;
     private Action action;
+    private String initIdentificationStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,8 @@ public class CreateIdentificationActivity extends FineractBaseActivity
                 break;
             case EDIT:
                 setToolbarTitle(getString(R.string.edit_identification));
+                initIdentificationStr = identification.toString()
+                        .split(ConstantKeys.STRING_SEPARATOR_FROM_CREATEDBY)[0];
                 break;
         }
 
@@ -104,8 +107,17 @@ public class CreateIdentificationActivity extends FineractBaseActivity
                         identification);
                 break;
             case EDIT:
-                createIdentificationPresenter.updateIdentificationCard(customerIdentifier,
-                        identification.getNumber(), identification);
+                if (!identification.toString()
+                        .split(ConstantKeys.STRING_SEPARATOR_FROM_CREATEDBY)[0]
+                        .equals(initIdentificationStr)) {
+                    createIdentificationPresenter.updateIdentificationCard(customerIdentifier,
+                            identification.getNumber(), identification);
+                } else {
+                    Toaster.show(findViewById(android.R.id.content),
+                            getString(R.string.identification_edit_check_msg,
+                                    identification.getType()));
+                    return;
+                }
                 break;
         }
         stepperLayout.setNextButtonEnabled(false);

@@ -51,6 +51,7 @@ public class CreateCustomerActivity extends FineractBaseActivity
     private Customer customer;
     private CustomerAction customerAction;
     private String customerIdentifier;
+    private String initCustomerStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +83,8 @@ public class CreateCustomerActivity extends FineractBaseActivity
                 break;
             case EDIT:
                 setToolbarTitle(getString(R.string.edit_customer));
+                initCustomerStr = customer.toString()
+                        .split(ConstantKeys.STRING_SEPARATOR_FROM_CREATEDBY)[0];
                 break;
         }
 
@@ -110,7 +113,14 @@ public class CreateCustomerActivity extends FineractBaseActivity
                 createCustomerPresenter.createCustomer(customer);
                 break;
             case EDIT:
-                createCustomerPresenter.updateCustomer(customerIdentifier, customer);
+                if (customer.toString()
+                        .split(ConstantKeys.STRING_SEPARATOR_FROM_CREATEDBY)[0]
+                        .equals(initCustomerStr)) {
+                    createCustomerPresenter.updateCustomer(customerIdentifier, customer);
+                } else {
+                    Toaster.show(findViewById(android.R.id.content),
+                            getString(R.string.customer_edit_check_msg, customer.getGivenName()));
+                }
                 break;
         }
     }

@@ -307,4 +307,10 @@
     <string name="hello_blank_fragment">ഹലോ ശൂന്യമായ ശകലം</string>
     <string name="dialog_message_camera_permission_never_ask_again">നിങ്ങൾ അനുമതി നിഷേധിച്ചു         ഈ അനുമതിയില്ലാതെ നിങ്ങൾക്ക് ക്യാമറ സ്കാൻ ചെയ്യാൻ കഴിയില്ല.         ഇത് സജ്ജീകരണങ്ങളിൽ പ്രാപ്തമാക്കുകനിങ്ങൾ അനുമതി നിഷേധിച്ചു         ഈ അനുമതിയില്ലാതെ നിങ്ങൾക്ക് ക്യാമറ സ്കാൻ ചെയ്യാൻ കഴിയില്ല.         ഇത് സജ്ജീകരണങ്ങളിൽ പ്രാപ്തമാക്കുക</string>
     <string name="msg_setting_activity_not_found">ക്രമീകരണ പ്രവർത്തനം എന്തോ തെറ്റായി സംഭവിച്ചു.          \'ക്രമീകരണങ്ങൾ\' എന്നതിലേക്ക് പോയി സ്വമേധയാ അനുമതി അനുവദിക്കുക.</string>
+
+    <!--Edit Check Messages-->
+    <string name="customer_edit_check_msg">%1$s ഉപഭോക്താവിനായി വിവരങ്ങൾ എഡിറ്റുചെയ്തിട്ടില്ല</string>
+    <string name="group_edit_check_msg">%1$s ഗ്രൂപ്പിനായി വിവരങ്ങൾ എഡിറ്റുചെയ്തിട്ടില്ല</string>
+    <string name="payroll_edit_check_msg">ഉപഭോക്തൃ ഐഡന്റിഫയർ %1$s ഉപയോഗിച്ച് പേറോളിനായി വിവരങ്ങൾ എഡിറ്റുചെയ്തിട്ടില്ല</string>
+    <string name="identification_edit_check_msg">തിരിച്ചറിയൽ തരം %1$s നായി വിവരങ്ങൾ എഡിറ്റുചെയ്തിട്ടില്ല</string>
 </resources>
