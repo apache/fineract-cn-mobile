@@ -542,4 +542,9 @@
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+
+    <string name="add_new_member">Add New Member</string>
+    <string name="edit_member">Edit Member</string>
+    <string name="add_new_leader">Add New Leader</string>
+    <string name="edit_leader">Edit Leader</string>
 </resources>
