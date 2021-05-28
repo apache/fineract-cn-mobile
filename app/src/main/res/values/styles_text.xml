@@ -11,7 +11,7 @@
     </style>
 
     <style name="TextViewReview.Head">
-        <item name="android:paddingTop">@dimen/layout_padding_16dp</item>
+        <item name="android:paddingTop">@dimen/layout_padding_8dp</item>
     </style>
 
     <style name="TextViewReview.Input">
