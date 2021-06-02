@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            app:titleTextColor="@color/white" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        tools:context=".ui.online.geo_location.visit_customer.VisitCustomersActivity">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="76dp"
+            android:apiKey="@string/google_api_key" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fabNearbyCustomers"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_padding_12dp"
+                android:layout_marginLeft="@dimen/layout_padding_12dp"
+                android:layout_marginTop="@dimen/layout_padding_12dp"
+                android:layout_weight="1"
+                android:text="@string/nearby_customers"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/layout_padding_24dp"
+                app:icon="@drawable/ic_baseline_location_on_24" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/fabEnterManually"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_padding_8dp"
+                android:layout_marginLeft="@dimen/layout_padding_8dp"
+                android:layout_marginTop="@dimen/layout_padding_12dp"
+                android:layout_marginEnd="@dimen/layout_padding_12dp"
+                android:layout_marginRight="@dimen/layout_padding_12dp"
+                android:layout_weight="1"
+                android:text="@string/enter_manually"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/layout_padding_24dp"
+                app:icon="@drawable/ic_edit_black_24dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/fabNavigate"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_margin="@dimen/layout_padding_16dp"
+            android:text="@string/start_tracking_path"
+            app:cornerRadius="@dimen/layout_padding_24dp"
+            app:srcCompat="@drawable/ic_baseline_navigation_24" />
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

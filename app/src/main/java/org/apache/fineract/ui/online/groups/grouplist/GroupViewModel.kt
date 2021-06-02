@@ -4,6 +4,17 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Predicate
+import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.*
+import org.apache.fineract.data.Status
+import org.apache.fineract.data.datamanager.api.DataManagerAnonymous
+import org.apache.fineract.data.datamanager.api.DataManagerGroups
+import org.apache.fineract.data.models.Group
+import org.apache.fineract.data.models.customer.Command
+import org.apache.fineract.data.models.customer.Country
 import com.couchbase.lite.Expression
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -55,7 +66,11 @@ class GroupViewModel constructor(private val synchronizationManager: Synchroniza
     }
 
     fun searchGroup(groups: ArrayList<Group>, query: String, searchedGroup: (ArrayList<Group>) -> Unit) {
-        searchedGroup(ArrayList(Observable.fromIterable(groups).filter { group -> group.identifier?.toLowerCase()?.contains(query.toLowerCase()).toString().toBoolean() }.toList().blockingGet()))
+        searchedGroup(ArrayList(Observable.fromIterable(groups).filter(object : Predicate<Group> {
+            override fun test(group: Group): Boolean {
+                return group.identifier?.toLowerCase()?.contains(query.toLowerCase()).toString().toBoolean()
+            }
+        }).toList().blockingGet()))
     }
 
     @SuppressLint("CheckResult")
@@ -74,6 +89,7 @@ class GroupViewModel constructor(private val synchronizationManager: Synchroniza
             withContext(Dispatchers.Main) {
                 try {
                     _status.value = Status.LOADING
+                    dataManagerGroups.createGroup(group).await()
                     group.createdBy = preferencesHelper.userName
                     group.createdOn = DateUtils.getCurrentDate()
                     group.lastModifiedBy = preferencesHelper.userName
@@ -87,11 +103,12 @@ class GroupViewModel constructor(private val synchronizationManager: Synchroniza
         }
     }
 
-    fun updateGroup(group: Group) {
+    fun updateGroup(identifier: String, group: Group) {
         uiScope.launch {
             withContext(Dispatchers.Main) {
                 try {
                     _status.value = Status.LOADING
+                    dataManagerGroups.updateGroup(identifier, group).await()
                     synchronizationManager.updateDocument(group.identifier!!, group.serializeToMap())
                     _status.value = Status.DONE
                 } catch (e: Exception) {
@@ -101,11 +118,13 @@ class GroupViewModel constructor(private val synchronizationManager: Synchroniza
         }
     }
 
+
     fun changeGroupStatus(identifier: String, group: Group, command: Command) {
         uiScope.launch {
             withContext(Dispatchers.Main) {
                 try {
                     _status.value = Status.LOADING
+                    dataManagerGroups.changeGroupStatus(identifier, command).await()
                     when (command.action) {
                         Command.Action.ACTIVATE -> group.status = Group.Status.ACTIVE
                         Command.Action.REOPEN -> group.status = Group.Status.PENDING
@@ -129,7 +148,7 @@ class GroupViewModel constructor(private val synchronizationManager: Synchroniza
 
     fun getCountryCode(countries: List<Country>, countryName: String): String? {
         for (country in countries) {
-            if (country.name == countryName) {
+            if (country.name.equals(countryName)) {
                 return country.alphaCode
             }
         }
@@ -138,7 +157,7 @@ class GroupViewModel constructor(private val synchronizationManager: Synchroniza
 
     fun isCountryValid(countries: List<Country>, countryName: String): Boolean {
         for (country in countries) {
-            if (country.name == countryName) {
+            if (country.name.equals(countryName)) {
                 return true
             }
         }

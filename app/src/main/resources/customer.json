@@ -20,7 +20,8 @@
     "region": "region",
     "postalCode": "postalCode",
     "countryCode": "countryCode",
-    "country": "India"
+    "country": "India",
+    "geo_point": "{ \"lat\": 18.471012, \"lng\": -74.0078 }"
   },
   "contactDetails": [
     {

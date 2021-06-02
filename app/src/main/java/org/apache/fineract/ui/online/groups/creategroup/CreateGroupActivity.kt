@@ -15,8 +15,8 @@ import org.apache.fineract.data.models.customer.Address
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.Toaster
 import org.apache.fineract.ui.online.groups.GroupAction
-import org.apache.fineract.ui.online.groups.grouplist.GroupViewModel
 import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
+import org.apache.fineract.ui.online.groups.grouplist.GroupViewModel
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.DateUtils
 import javax.inject.Inject
@@ -85,7 +85,7 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
                 Status.DONE -> {
                     hideMifosProgressDialog()
                     if (groupAction == GroupAction.CREATE) {
-                        Toast.makeText(this, getString(R.string.group_identifier_created_successfully, group.identifier), Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, getString(R.string.group_identifier_updated_successfully, group.identifier), Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(this, getString(R.string.group_identifier_updated_successfully, group.identifier), Toast.LENGTH_SHORT).show()
                     }
@@ -98,7 +98,7 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
     override fun onCompleted(completeButton: View?) {
         when (groupAction) {
             GroupAction.EDIT -> group.identifier?.let {
-                viewModel.updateGroup(group)
+                viewModel.updateGroup(it, group)
             }
             GroupAction.CREATE -> viewModel.createGroup(group)
         }

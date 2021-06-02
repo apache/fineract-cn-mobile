@@ -30,7 +30,6 @@ import javax.inject.Inject
  * Created by saksham on 15/June/2019
 */
 
-
 class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
 
     lateinit var rootView: View
@@ -42,8 +41,6 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
 
     @Inject
     lateinit var groupViewModelFactory: GroupViewModelFactory
-
-
     lateinit var groupList: ArrayList<Group>
 
     val searchedGroup: (ArrayList<Group>) -> Unit = { groups ->
@@ -65,9 +62,13 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
                               savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_group_list, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
-        viewModel = ViewModelProviders.of(this, groupViewModelFactory)
-                .get(GroupViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,
+                groupViewModelFactory).get(GroupViewModel::class.java)
         return rootView
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,6 +78,13 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
 
         rvGroups.adapter = adapter
         rvGroups.layoutManager = LinearLayoutManager(context)
+
+        viewModel.getGroups().observe(this,
+
+                Observer {
+                    groupList = it
+                    adapter.setGroupList(it)
+                })
     }
 
     override fun onStart() {

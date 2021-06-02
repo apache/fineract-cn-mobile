@@ -134,7 +134,7 @@ class GroupTasksBottomSheetFragment(val group: Group) : FineractBaseBottomSheetD
 
     override fun onStart() {
         super.onStart()
-        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        behavior?.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
     override fun onDestroy() {
