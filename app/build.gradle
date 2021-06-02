@@ -161,7 +161,6 @@ dependencies {
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
-
     //geo_location
     implementation "com.google.android.gms:play-services-location:$location"
     implementation "com.google.maps.android:android-maps-utils:$map_utils"
@@ -177,6 +176,9 @@ dependencies {
 
     //work manager
     implementation "androidx.work:work-runtime-ktx:$work_version"
+    //couchbase
+    implementation "com.couchbase.lite:couchbase-lite-android:$couchbase"
+
 
     // Instrumentation test dependencies
     androidTestImplementation jUnit
@@ -193,6 +195,9 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     androidTestImplementation "androidx.test:runner:$runnerVersion"
     androidTestImplementation "androidx.test:rules:$rulesVersion"
+    androidTestImplementation "androidx.test.ext:junit:$extJunit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCore"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib: $espressonContribute"
 
     // Unit tests dependencies
     testImplementation jUnit
@@ -202,7 +207,6 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-library:$hamcrestVersion"
     testImplementation "org.hamcrest:hamcrest-integration:$hamcrestVersion"
     testImplementation "org.robolectric:robolectric:$roboElectricVersion"
-
 }
 
 // Log out test results to console

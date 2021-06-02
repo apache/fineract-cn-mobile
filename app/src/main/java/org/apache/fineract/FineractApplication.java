@@ -3,6 +3,7 @@ package org.apache.fineract;
 import android.app.Application;
 import android.content.Context;
 
+import com.couchbase.lite.CouchbaseLite;
 import com.crashlytics.android.Crashlytics;
 import com.evernote.android.job.JobManager;
 import com.google.android.libraries.places.api.Places;
@@ -39,6 +40,7 @@ public class FineractApplication extends Application {
         FlowManager.init(this);
         ForegroundChecker.init(this);
         Places.initialize(this, getString(R.string.google_api_key));
+        CouchbaseLite.init(this);
     }
 
     public static Context getContext() {

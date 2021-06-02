@@ -41,7 +41,6 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
 
     @Inject
     lateinit var groupViewModelFactory: GroupViewModelFactory
-
     lateinit var groupList: ArrayList<Group>
 
     val searchedGroup: (ArrayList<Group>) -> Unit = { groups ->
@@ -79,12 +78,23 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
 
         rvGroups.adapter = adapter
         rvGroups.layoutManager = LinearLayoutManager(context)
+
         viewModel.getGroups().observe(this,
 
                 Observer {
                     groupList = it
                     adapter.setGroupList(it)
                 })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.getGroups()?.observe(this, Observer {
+            it?.let {
+                groupList = it
+                adapter.setGroupList(it)
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -42,7 +42,7 @@
         </provider>
 
         <activity
-            android:name=".ui.online.SplashActivity"
+            android:name=".ui.online.launcher.LauncherActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -55,7 +55,10 @@
         <activity
             android:name=".ui.online.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".ui.online.DashboardActivity" />
+
+        <activity android:name=".ui.online.DashboardActivity"
+            android:theme="@style/AppTheme.TransparentStatusBar" />
+
         <activity android:name=".ui.online.customers.customerdetails.CustomerDetailsActivity" />
         <activity android:name=".ui.online.customers.customerpayroll.PayrollActivity" />
         <activity android:name=".ui.online.customers.customerpayroll.editcustomerpayroll.EditPayrollActivity" />
@@ -78,6 +81,12 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
         <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity" />
+        <activity
+            android:name=".ui.online.groups.creategroup.CreateGroupActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity" />
+
         <activity
             android:name=".ui.online.groups.creategroup.CreateGroupActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />

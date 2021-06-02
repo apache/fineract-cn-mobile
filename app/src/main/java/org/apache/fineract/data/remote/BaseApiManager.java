@@ -64,6 +64,7 @@ public class BaseApiManager {
         payrollService = createApi(PayrollService.class);
         groupsService = createApi(GroupsService.class);
         geolocationService = createApi(GeolocationService.class);
+
     }
 
     private static void initAnonymous() {

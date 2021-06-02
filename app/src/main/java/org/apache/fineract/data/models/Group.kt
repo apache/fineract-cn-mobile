@@ -2,6 +2,7 @@ package org.apache.fineract.data.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
+import org.apache.fineract.couchbase.DocumentType
 import org.apache.fineract.data.models.customer.Address
 
 /*
@@ -18,13 +19,13 @@ data class Group(
         var office: String? = null,
         var assignedEmployee: String? = null,
         var weekday: Int? = null,
-        var status: Status? = null,
+        var status: Status? = Status.PENDING,
         var address: Address? = null,
         var createdOn: String? = null,
         var createdBy: String? = null,
         var lastModifiedBy: String? = null,
-        var lastModifiedOn: String? = null) : Parcelable {
-
+        var lastModifiedOn: String? = null,
+        var documentType: String = DocumentType.GROUP.value) : Parcelable {
     enum class Status {
         PENDING,
         ACTIVE,

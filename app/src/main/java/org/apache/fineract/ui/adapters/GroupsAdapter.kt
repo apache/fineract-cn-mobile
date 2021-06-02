@@ -36,8 +36,9 @@ class GroupsAdapter @Inject constructor(@ApplicationContext var context: Context
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var group: Group = groups[position]
-
-        StatusUtils.setGroupsStatusIcon(group.status, holder.ivTypeIndicator, context)
+        group.status?.let {
+            StatusUtils.setGroupsStatusIcon(group.status, holder.ivTypeIndicator, context)
+        }
 
         holder.tvGroupIdentifier.text = group.identifier
 

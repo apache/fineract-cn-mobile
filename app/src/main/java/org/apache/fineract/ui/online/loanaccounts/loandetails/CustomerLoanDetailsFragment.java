@@ -2,9 +2,6 @@ package org.apache.fineract.ui.online.loanaccounts.loandetails;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,6 +12,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.widget.NestedScrollView;
+
 import com.google.gson.Gson;
 
 import org.apache.fineract.R;
@@ -22,8 +24,9 @@ import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.PaymentCycle;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
-import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportActivity;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity;
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentActivity;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.DateUtils;
@@ -38,7 +41,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 11/07/17.
+ * On 11/07/17.
  */
 public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         CustomerLoanDetailsContract.View {
@@ -94,9 +97,10 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     private String caseIdentifier;
     private LoanAccount loanAccount;
     private String[] weeksName, repayOnMonths, timeSlots, monthsName;
+    private Menu menu;
 
     public static CustomerLoanDetailsFragment newInstance(String productIdentifier,
-            String caseIdentifier) {
+                                                          String caseIdentifier) {
         CustomerLoanDetailsFragment fragment = new CustomerLoanDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ConstantKeys.PRODUCT_IDENTIFIER, productIdentifier);
@@ -121,7 +125,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_loan_details, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
@@ -235,6 +239,11 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         tvLastModifiedBy.setText(getString(R.string.loan_last_modified_by,
                 loanAccount.getLastModifiedBy(),
                 DateUtils.getDateTime(loanAccount.getLastModifiedOn())));
+
+        if (loanAccount.getCurrentState() == LoanAccount.State.APPROVED ||
+                loanAccount.getCurrentState() == LoanAccount.State.CLOSED) {
+            hideEditMenu(menu);
+        }
     }
 
     @Override
@@ -265,14 +274,23 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_loan_account_details, menu);
         Utils.setToolbarIconColor(getActivity(), menu, R.color.white);
+        this.menu = menu;
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    private void hideEditMenu(@NonNull Menu menu) {
+        menu.findItem(R.id.menu_loan_account_edit).setVisible(false);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_loan_account_edit:
-                Toaster.show(rootView, R.string.Under_construction);
+                Intent intent = new Intent(getActivity(), LoanApplicationActivity.class)
+                        .putExtra(ConstantKeys.CASE_IDENTIFIER, caseIdentifier)
+                        .putExtra(ConstantKeys.LOAN_APPLICATION_ACTION, LoanApplicationAction.EDIT)
+                        .putExtra(ConstantKeys.LOAN_ACCOUNT, loanAccount);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
