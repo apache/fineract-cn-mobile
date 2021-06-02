@@ -1,11 +1,12 @@
 package org.apache.fineract.ui.online.customers.customertasks;
 
 import org.apache.fineract.data.models.customer.Command;
+import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.ui.base.MvpView;
 
 /**
  * @author Rajan Maurya
- *         On 27/07/17.
+ * On 27/07/17.
  */
 
 public interface CustomerTasksBottomSheetContract {
@@ -21,6 +22,6 @@ public interface CustomerTasksBottomSheetContract {
 
     interface Presenter {
 
-        void changeCustomerStatus(String identifier, Command command);
+        void changeCustomerStatus(String identifier, Customer customer, Command command);
     }
 }

@@ -2,10 +2,10 @@ package org.apache.fineract.ui.online.review
 
 import android.content.Context
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.ButterKnife
 import com.stepstone.stepper.Step
@@ -239,7 +239,6 @@ class AddLoanReviewFragment : FineractBaseFragment(), Step {
         }
 
     }
-
 
     private fun showTotalIncome(pos: Int): Double {
 

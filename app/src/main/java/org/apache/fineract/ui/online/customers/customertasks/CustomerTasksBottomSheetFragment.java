@@ -3,10 +3,6 @@ package org.apache.fineract.ui.online.customers.customertasks;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Command;
@@ -30,7 +32,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 27/07/17.
+ * On 27/07/17.
  */
 public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDialogFragment
         implements CustomerTasksBottomSheetContract.View {
@@ -71,6 +73,7 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
     @Inject
     CustomerTasksBottomSheetPresenter tasksBottomSheetPresenter;
 
+
     View rootView;
 
     private BottomSheetBehavior behavior;
@@ -78,6 +81,7 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
     private Command command;
     private String customerIdentifier;
     private OnTasksChangeListener onTasksChangeListener;
+    private Customer customer;
 
     @NonNull
     @Override
@@ -188,11 +192,15 @@ public class CustomerTasksBottomSheetFragment extends FineractBaseBottomSheetDia
         customerIdentifier = identifier;
     }
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     @OnClick(R.id.btn_submit_task)
     void submitTask() {
         command.setComment(etComment.getText().toString().trim());
         etComment.setEnabled(false);
-        tasksBottomSheetPresenter.changeCustomerStatus(customerIdentifier, command);
+        tasksBottomSheetPresenter.changeCustomerStatus(customerIdentifier, customer, command);
     }
 
     @OnClick(R.id.btn_cancel)

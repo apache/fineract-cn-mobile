@@ -27,7 +27,8 @@
     "createdOn": "2018-06-26T15:09:36.672Z",
     "createdBy": "ranefer",
     "lastModifiedOn": "lastModifiedOn",
-    "lastModifiedBy": "lastModifiedBy"
+    "lastModifiedBy": "lastModifiedBy",
+    "type": "group"
   },
   {
     "identifier": "group002",
