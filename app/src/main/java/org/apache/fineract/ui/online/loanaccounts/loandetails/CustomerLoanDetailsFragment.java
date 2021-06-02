@@ -25,6 +25,7 @@ import org.apache.fineract.data.models.loan.PaymentCycle;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportActivity;
+import org.apache.fineract.ui.online.loanaccounts.loantasks.LoanTasksBottomSheetFragment;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity;
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentActivity;
@@ -90,6 +91,9 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
 
     @Inject
     CustomerLoanDetailsPresenter customerLoanDetailsPresenter;
+
+    @Inject
+    LoanTasksBottomSheetFragment loanTasksBottomSheetFragment;
 
     View rootView;
 
@@ -158,6 +162,11 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         intent.putExtra(ConstantKeys.LOAN_CREDITWORTHINESSSNAPSHOTS, (new Gson()).toJson(
                 loanAccount.getLoanParameters().getCreditWorthinessSnapshots()));
         startActivity(intent);
+    }
+
+    @OnClick(R.id.ll_tasks)
+    void showLoanTaskBottomSheetDialog() {
+        loanTasksBottomSheetFragment.show(getChildFragmentManager(), getString(R.string.tasks));
     }
 
     @Override

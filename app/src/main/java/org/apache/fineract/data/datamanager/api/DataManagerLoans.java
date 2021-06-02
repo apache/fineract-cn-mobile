@@ -2,10 +2,13 @@ package org.apache.fineract.data.datamanager.api;
 
 import org.apache.fineract.FakeRemoteDataSource;
 import org.apache.fineract.data.local.PreferencesHelper;
+import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.LoanAccountPage;
 import org.apache.fineract.data.models.product.ProductPage;
 import org.apache.fineract.data.remote.BaseApiManager;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -78,6 +81,11 @@ public class DataManagerLoans extends FineractBaseDataManager {
         return authenticatedCompletableApi(baseApiManager.getLoanApi()
                 .createLoan(productIdentifier, loanAccount));
     }
+
+    @NotNull
+    public Completable loanCommand(@Nullable String identifier, @Nullable Command command) {
+        return authenticatedCompletableApi(baseApiManager.getLoanApi()
+                .loanCommand(identifier, command));
 
     public Completable updateLoan(
             String productIdentifier,
