@@ -49,7 +49,6 @@
     <dimen name="default_fab_button_size">56dp</dimen>
 
     <dimen name="step_divider_width">138dp</dimen>
-    <dimen name="layout_padding_12dp">12dp</dimen>
 
     <!--Dimen values for Status-->
     <dimen name="status_height">25dp</dimen>
