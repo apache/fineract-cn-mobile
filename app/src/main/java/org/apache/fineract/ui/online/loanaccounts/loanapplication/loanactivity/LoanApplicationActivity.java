@@ -17,6 +17,7 @@ import org.apache.fineract.data.models.loan.TermRange;
 import org.apache.fineract.ui.adapters.LoanApplicationStepAdapter;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
 import org.apache.fineract.utils.ConstantKeys;
 
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
 
 /**
  * @author Rajan Maurya
- *         On 17/07/17.
+ * On 17/07/17.
  */
 public class LoanApplicationActivity extends FineractBaseActivity
         implements StepperLayout.StepperListener, OnNavigationBarListener.LoanDetailsData,
@@ -53,6 +54,8 @@ public class LoanApplicationActivity extends FineractBaseActivity
     private String customerIdentifier;
     private LoanParameters loanParameters;
     private String selectedProduct;
+    private LoanApplicationAction loanApplicationAction;
+    private String caseIdentifier;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +67,31 @@ public class LoanApplicationActivity extends FineractBaseActivity
         creditWorthinessSnapshots = new ArrayList<>();
         loanAccount = new LoanAccount();
         loanParameters = new LoanParameters();
-
+        loanApplicationAction = (LoanApplicationAction) getIntent()
+                .getSerializableExtra(ConstantKeys.LOAN_APPLICATION_ACTION);
         customerIdentifier = getIntent().getExtras().getString(ConstantKeys.CUSTOMER_IDENTIFIER);
+        switch (loanApplicationAction) {
+            case CREATE:
+                setToolbarTitle(getString(R.string.create_new_loan));
+                break;
+            case EDIT:
+                setToolbarTitle(getString(R.string.edit_loan));
+                caseIdentifier = getIntent().getExtras().getString(ConstantKeys.CASE_IDENTIFIER);
+                loanAccount = getIntent().getExtras().getParcelable(ConstantKeys.LOAN_ACCOUNT);
+                if (loanAccount != null) {
+                    loanParameters = loanAccount.getLoanParameters();
+                }
+        }
 
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(CURRENT_STEP_POSITION);
         }
         LoanApplicationStepAdapter stepAdapter = new LoanApplicationStepAdapter(
-                getSupportFragmentManager(), this);
+                getSupportFragmentManager(), this, loanAccount, loanApplicationAction);
         stepperLayout.setAdapter(stepAdapter, currentPosition);
         stepperLayout.setListener(this);
         stepperLayout.setOffscreenPageLimit(stepAdapter.getCount());
-        setToolbarTitle(getString(R.string.create_new_loan));
+
         showBackButton();
     }
 
@@ -94,7 +110,18 @@ public class LoanApplicationActivity extends FineractBaseActivity
     @Override
     public void onCompleted(View completeButton) {
         loanParameters.setCreditWorthinessSnapshots(creditWorthinessSnapshots);
-        loanApplicationPresenter.createLoan(loanAccount.getProductIdentifier(), loanAccount);
+        switch (loanApplicationAction) {
+            case CREATE:
+                loanApplicationPresenter.createLoan(
+                        loanAccount.getProductIdentifier(),
+                        loanAccount);
+            case EDIT:
+                loanApplicationPresenter.updateLoan(
+                        loanAccount.getProductIdentifier(),
+                        loanAccount,
+                        caseIdentifier);
+        }
+
     }
 
     @Override
@@ -120,6 +147,11 @@ public class LoanApplicationActivity extends FineractBaseActivity
     }
 
     @Override
+    public void applicationUpdatedSuccessfully() {
+        finish();
+    }
+
+    @Override
     public void showProgressbar(String message) {
         stepperLayout.showProgress(message);
     }
@@ -140,9 +172,12 @@ public class LoanApplicationActivity extends FineractBaseActivity
     }
 
     @Override
-    public void setLoanDetails(LoanAccount.State currentState, String identifier,
-            String productIdentifier, Double maximumBalance, PaymentCycle paymentCycle,
-            TermRange termRange, String selectedProduct) {
+    public void setLoanDetails(LoanAccount.State currentState,
+                               String identifier,
+                               String productIdentifier,
+                               Double maximumBalance,
+                               PaymentCycle paymentCycle,
+                               TermRange termRange, String selectedProduct) {
         this.selectedProduct = selectedProduct;
 
         loanAccount.setCurrentState(currentState);

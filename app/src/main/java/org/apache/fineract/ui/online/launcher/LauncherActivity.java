@@ -18,7 +18,7 @@ import javax.inject.Inject;
 
 /**
  * @author Rajan Maurya
- *         On 18/06/17.
+ * On 18/06/17.
  */
 public class LauncherActivity extends FineractBaseActivity implements LauncherContract.View {
 
@@ -33,6 +33,7 @@ public class LauncherActivity extends FineractBaseActivity implements LauncherCo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_launcher);
         getActivityComponent().inject(this);
         launcherPresenter.attachView(this);

@@ -1,87 +1,64 @@
 package org.apache.fineract.ui.online.customers.createcustomer.customeractivity;
 
 import android.content.Context;
+import android.util.Log;
 
-import org.apache.fineract.R;
-import org.apache.fineract.data.datamanager.contracts.ManagerCustomer;
-import org.apache.fineract.data.datamanager.database.DbManagerCustomer;
+import com.couchbase.lite.CouchbaseLiteException;
+
+import org.apache.fineract.couchbase.SynchronizationManager;
+import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.data.models.customer.Customer;
 import org.apache.fineract.injection.ApplicationContext;
 import org.apache.fineract.injection.ConfigPersistent;
 import org.apache.fineract.ui.base.BasePresenter;
+import org.apache.fineract.utils.DateUtils;
+import org.apache.fineract.utils.GsonUtilsKt;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.observers.DisposableCompletableObserver;
-import io.reactivex.schedulers.Schedulers;
-
 /**
  * @author Rajan Maurya
- *         On 27/07/17.
+ * On 27/07/17.
  */
 @ConfigPersistent
 public class CreateCustomerPresenter extends BasePresenter<CreateCustomerContract.View>
         implements CreateCustomerContract.Presenter {
 
-    private ManagerCustomer dbManagerCustomer;
-    private final CompositeDisposable compositeDisposable;
+    private SynchronizationManager synchronizationManager;
+    private PreferencesHelper preferencesHelper;
 
     @Inject
     public CreateCustomerPresenter(@ApplicationContext Context context,
-            DbManagerCustomer dataManagerCustomer) {
+                                   SynchronizationManager synchronizationManager,
+                                   PreferencesHelper preferencesHelper) {
         super(context);
-        this.dbManagerCustomer = dataManagerCustomer;
-        compositeDisposable = new CompositeDisposable();
+        this.synchronizationManager = synchronizationManager;
+        this.preferencesHelper = preferencesHelper;
     }
 
     @Override
-    public void createCustomer(final Customer customer) {
-        checkViewAttached();
-        getMvpView().showProgressbar();
-        compositeDisposable.add(dbManagerCustomer.createCustomer(customer)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableCompletableObserver() {
-                    @Override
-                    public void onComplete() {
-                        getMvpView().hideProgressbar();
-                        getMvpView().customerCreatedSuccessfully();
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        getMvpView().hideProgressbar();
-                        showExceptionError(throwable,
-                                context.getString(R.string.error_creating_customer));
-                    }
-                })
-
-        );
+    public void createCustomer(Customer customer) {
+        try {
+            customer.setCreatedBy(preferencesHelper.getUserName());
+            customer.setCreatedOn(DateUtils.getCurrentDate());
+            customer.setLastModifiedBy(preferencesHelper.getUserName());
+            customer.setLastModifiedOn(DateUtils.getCurrentDate());
+            synchronizationManager.saveDocument(Objects.requireNonNull(customer.getIdentifier()),
+                    GsonUtilsKt.serializeToMap(customer));
+        } catch (CouchbaseLiteException e) {
+            Log.e("CreateCustomerPresenter", e.toString());
+        }
+        getMvpView().customerCreatedSuccessfully();
     }
 
     @Override
     public void updateCustomer(String customerIdentifier, Customer customer) {
-        checkViewAttached();
-        getMvpView().showProgressbar();
-        compositeDisposable.add(dbManagerCustomer.updateCustomer(customerIdentifier, customer)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableCompletableObserver() {
-                    @Override
-                    public void onComplete() {
-                        getMvpView().hideProgressbar();
-                        getMvpView().customerUpdatedSuccessfully();
-                    }
-
-                    @Override
-                    public void onError(Throwable throwable) {
-                        getMvpView().hideProgressbar();
-                        showExceptionError(throwable,
-                                context.getString(R.string.error_updating_customer));
-                    }
-                })
-        );
+        customer.setLastModifiedBy(preferencesHelper.getUserName());
+        customer.setLastModifiedOn(DateUtils.getCurrentDate());
+        synchronizationManager.updateDocument(Objects.requireNonNull(customer.getIdentifier()),
+                GsonUtilsKt.serializeToMap(customer));
+        getMvpView().customerUpdatedSuccessfully();
     }
 }

@@ -25,6 +25,9 @@ public class ConstantKeys {
     public static final String DEPOSIT_ACTION = "deposit_action";
     public static final String DEPOSIT_ACCOUNT = "deposit";
     public static final String COUNTRIES = "countries";
+    public static final String LOAN_ACCOUNT = "loan_account";
+    public static final String LOAN_APPLICATION_ACTION = "loan_application_action";
+
 
     public static final String PAYROLL_CONFIG = "payrollConfiguration";
 
