@@ -3,6 +3,7 @@ package org.apache.fineract;
 import android.app.Application;
 import android.content.Context;
 
+import com.couchbase.lite.CouchbaseLite;
 import com.crashlytics.android.Crashlytics;
 import com.evernote.android.job.JobManager;
 import com.mifos.mobile.passcode.utils.ForegroundChecker;
@@ -37,6 +38,7 @@ public class FineractApplication extends Application {
         Fabric.with(this, new Crashlytics());
         FlowManager.init(this);
         ForegroundChecker.init(this);
+        CouchbaseLite.init(this);
     }
 
     public static Context getContext() {

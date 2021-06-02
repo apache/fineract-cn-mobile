@@ -86,5 +86,13 @@ public class DataManagerLoans extends FineractBaseDataManager {
     public Completable loanCommand(@Nullable String identifier, @Nullable Command command) {
         return authenticatedCompletableApi(baseApiManager.getLoanApi()
                 .loanCommand(identifier, command));
+
+    public Completable updateLoan(
+            String productIdentifier,
+            LoanAccount loanAccount,
+            String caseIdentifier) {
+        return authenticatedCompletableApi(
+                baseApiManager.getLoanApi().
+                        updateLoan(productIdentifier, caseIdentifier, loanAccount));
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author Rajan Maurya
- *         On 20/07/17.
+ * On 20/07/17.
  */
 
 public class LoanDetailsContract {
@@ -46,5 +46,7 @@ public class LoanDetailsContract {
         void setProductPositionAndValidateViews(Integer position);
 
         List<String> getCurrentTermUnitType(List<String> unitTypes, String unitType);
+
+        int getItemIndexFromList(List<String> list, String item);
     }
 }

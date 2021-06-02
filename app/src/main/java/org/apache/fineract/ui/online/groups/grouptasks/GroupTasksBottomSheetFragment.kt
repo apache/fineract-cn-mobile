@@ -123,7 +123,7 @@ class GroupTasksBottomSheetFragment(val group: Group) : FineractBaseBottomSheetD
         command.comment = rootView.et_comment.text.toString().trim { it <= ' ' }
         rootView.et_comment.isEnabled = false
         group.identifier?.let {
-            viewModel.changeGroupStatus(it, command)
+            viewModel.changeGroupStatus(it, group, command)
         }
     }
 
@@ -134,7 +134,7 @@ class GroupTasksBottomSheetFragment(val group: Group) : FineractBaseBottomSheetD
 
     override fun onStart() {
         super.onStart()
-        behavior?.state = BottomSheetBehavior.STATE_EXPANDED
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
     override fun onDestroy() {

@@ -3,23 +3,29 @@ package org.apache.fineract.ui.online.loanaccounts.loanapplication.loancosigner;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.gson.Gson;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
+import org.apache.fineract.data.models.loan.LoanAccount;
+import org.apache.fineract.data.models.loan.LoanParameters;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.BaseFragmentDebtIncome;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
+import org.apache.fineract.utils.ConstantKeys;
 
 import java.util.List;
 
@@ -30,7 +36,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 19/07/17.
+ * On 19/07/17.
  */
 public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step,
         LoanCoSignerContract.View {
@@ -49,10 +55,17 @@ public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step
     String[] customers;
 
     private OnNavigationBarListener.LoanCoSignerData onNavigationBarListener;
+    private LoanAccount loanAccount;
+    private LoanApplicationAction loanApplicationAction;
+    private LoanParameters loanParameters;
 
-    public static LoanCoSignerFragment newInstance() {
+    public static LoanCoSignerFragment newInstance(
+            LoanAccount loanAccount,
+            LoanApplicationAction loanApplicationAction) {
         LoanCoSignerFragment fragment = new LoanCoSignerFragment();
         Bundle args = new Bundle();
+        args.putSerializable(ConstantKeys.LOAN_APPLICATION_ACTION, loanApplicationAction);
+        args.putParcelable(ConstantKeys.LOAN_ACCOUNT, loanAccount);
         fragment.setArguments(args);
         return fragment;
     }
@@ -62,13 +75,23 @@ public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step
         super.onViewCreated(view, savedInstanceState);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         loanCoSignerPresenter.attachView(this);
+        loanApplicationAction = (LoanApplicationAction) getArguments()
+                .getSerializable(ConstantKeys.LOAN_APPLICATION_ACTION);
+        if (loanApplicationAction == LoanApplicationAction.EDIT) {
+            loanAccount = getArguments().getParcelable(ConstantKeys.LOAN_ACCOUNT);
+            loanParameters = new Gson().fromJson(loanAccount.getParameters(), LoanParameters.class);
+            etCustomer.setText(
+                    loanParameters.getCreditWorthinessSnapshots().get(0).getForCustomer()
+            );
+        }
         rootView = view;
     }
 
     @OnClick(R.id.iv_search_customer)
     void searchCustomer() {
         if (TextUtils.isEmpty(etCustomer.getText().toString())) {
-            Toaster.show(rootView, getString(R.string.customer_name_should_not_be_empty));
+            Toaster.show(rootView,
+                    getString(R.string.customer_name_should_not_be_empty));
         } else {
             loanCoSignerPresenter.searchCustomer(etCustomer.getText().toString().trim());
         }

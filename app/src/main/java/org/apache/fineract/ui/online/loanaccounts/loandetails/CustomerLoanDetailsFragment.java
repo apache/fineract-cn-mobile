@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.widget.NestedScrollView;
@@ -23,9 +24,10 @@ import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.PaymentCycle;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
-import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.debtincomereport.DebtIncomeReportActivity;
 import org.apache.fineract.ui.online.loanaccounts.loantasks.LoanTasksBottomSheetFragment;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity;
 import org.apache.fineract.ui.online.loanaccounts.plannedpayment.PlannedPaymentActivity;
 import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.DateUtils;
@@ -99,6 +101,7 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     private String caseIdentifier;
     private LoanAccount loanAccount;
     private String[] weeksName, repayOnMonths, timeSlots, monthsName;
+    private Menu menu;
 
     public static CustomerLoanDetailsFragment newInstance(String productIdentifier,
                                                           String caseIdentifier) {
@@ -245,6 +248,11 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
         tvLastModifiedBy.setText(getString(R.string.loan_last_modified_by,
                 loanAccount.getLastModifiedBy(),
                 DateUtils.getDateTime(loanAccount.getLastModifiedOn())));
+
+        if (loanAccount.getCurrentState() == LoanAccount.State.APPROVED ||
+                loanAccount.getCurrentState() == LoanAccount.State.CLOSED) {
+            hideEditMenu(menu);
+        }
     }
 
     @Override
@@ -275,14 +283,23 @@ public class CustomerLoanDetailsFragment extends FineractBaseFragment implements
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_loan_account_details, menu);
         Utils.setToolbarIconColor(getActivity(), menu, R.color.white);
+        this.menu = menu;
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    private void hideEditMenu(@NonNull Menu menu) {
+        menu.findItem(R.id.menu_loan_account_edit).setVisible(false);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_loan_account_edit:
-                Toaster.show(rootView, R.string.Under_construction);
+                Intent intent = new Intent(getActivity(), LoanApplicationActivity.class)
+                        .putExtra(ConstantKeys.CASE_IDENTIFIER, caseIdentifier)
+                        .putExtra(ConstantKeys.LOAN_APPLICATION_ACTION, LoanApplicationAction.EDIT)
+                        .putExtra(ConstantKeys.LOAN_ACCOUNT, loanAccount);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

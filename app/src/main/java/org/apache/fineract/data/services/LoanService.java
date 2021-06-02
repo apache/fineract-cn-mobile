@@ -11,6 +11,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -45,4 +46,11 @@ public interface LoanService {
     //APIs not ready yet.
     Completable loanCommand(@Path("productidentifier") String productidentifier,
                             @Body Command command);
+
+    @PUT(EndPoints.API_PORTFOLIO_PATH + "/products/{productidentifier}/cases/{caseidentifier}")
+    Completable updateLoan(
+            @Path("productidentifier") String productIdentifier,
+            @Path("caseidentifier") String caseIdentifier,
+            @Body LoanAccount loanAccount);
+
 }

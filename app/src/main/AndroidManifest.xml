@@ -35,7 +35,7 @@
         </provider>
 
         <activity
-            android:name=".ui.online.SplashActivity"
+            android:name=".ui.online.launcher.LauncherActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,15 +43,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.online.launcher.LauncherActivity" />
-
         <activity android:name=".ui.online.PassCodeActivity" />
 
         <activity
             android:name=".ui.online.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name=".ui.online.DashboardActivity" />
+        <activity android:name=".ui.online.DashboardActivity"
+            android:theme="@style/AppTheme.TransparentStatusBar" />
 
         <activity android:name=".ui.online.customers.customerdetails.CustomerDetailsActivity" />
 

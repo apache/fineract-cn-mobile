@@ -1,18 +1,9 @@
 package org.apache.fineract.ui.online.customers.customerlist;
 
-import static android.app.Activity.RESULT_OK;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.transition.TransitionManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SearchView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,6 +13,14 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.transition.TransitionManager;
 
 import com.github.therajanmaurya.sweeterror.SweetUIErrorHandler;
 
@@ -47,6 +46,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * @author Rajan Maurya
@@ -123,18 +124,19 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
 
         showUserInterface();
         sweetUIErrorHandler = new SweetUIErrorHandler(getActivity(), rootView);
-        if (preferencesHelper.isFetching()) {
-            sweetUIErrorHandler.showSweetCustomErrorUI(getString(R.string.syncing_please_wait),
-                    R.drawable.ic_error_black_24dp, swipeRefreshLayout, layoutError);
-        } else {
-            customerPresenter.fetchCustomers(0, false);
-        }
+
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        if (preferencesHelper.isFetching()) {
+            sweetUIErrorHandler.showSweetCustomErrorUI(getString(R.string.syncing_please_wait),
+                    R.drawable.ic_error_black_24dp, swipeRefreshLayout, layoutError);
+        } else {
+            customerPresenter.fetchCustomers(0, false);
+        }
         if (isNewCustomer) {
             isNewCustomer = false;
             customerPresenter.fetchCustomers(0, false);
@@ -192,8 +194,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
     @Override
     public void showEmptyCustomers(String message) {
         showRecyclerView(false);
-        sweetUIErrorHandler.showSweetCustomErrorUI(getString(R.string.customer),
-                getString(Integer.parseInt(message)),
+        sweetUIErrorHandler.showSweetCustomErrorUI(message,
                 R.drawable.ic_customer_black_24dp, rvCustomers, layoutError);
     }
 
