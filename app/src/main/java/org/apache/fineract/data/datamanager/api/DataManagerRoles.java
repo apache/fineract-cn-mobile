@@ -10,13 +10,14 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
 
 /**
  * @author Rajan Maurya
- *         On 24/08/17.
+ * On 24/08/17.
  */
 @Singleton
 public class DataManagerRoles extends FineractBaseDataManager {
@@ -26,7 +27,7 @@ public class DataManagerRoles extends FineractBaseDataManager {
 
     @Inject
     public DataManagerRoles(BaseApiManager baseApiManager,
-            DataManagerAuth dataManagerAuth, PreferencesHelper preferencesHelper) {
+                            DataManagerAuth dataManagerAuth, PreferencesHelper preferencesHelper) {
         super(dataManagerAuth, preferencesHelper);
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
@@ -43,5 +44,24 @@ public class DataManagerRoles extends FineractBaseDataManager {
                                 return Observable.just(FakeRemoteDataSource.getRoles());
                             }
                         });
+    }
+
+    public Completable createRole(Role role) {
+        return authenticatedCompletableApi(
+                baseApiManager.getRolesAndPermissionsService()
+                        .createRole(role));
+    }
+
+    public Completable deleteRole(String identifier) {
+        return authenticatedCompletableApi(
+                baseApiManager.getRolesAndPermissionsService()
+                        .deleteRole(identifier));
+    }
+
+    public Completable updateRole(String identifier, Role role) {
+        return authenticatedCompletableApi(
+                baseApiManager.getRolesAndPermissionsService()
+                        .updateRole(
+                                identifier, role));
     }
 }

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".ui.online.roles.roledetails.RolesDetailsFragment">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_identifier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_padding_24dp"
+            android:paddingLeft="@dimen/layout_padding_16dp"
+            android:paddingRight="@dimen/layout_padding_16dp">
+
+            <EditText
+                android:id="@+id/et_identifier"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/identifier" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_padding_16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="@dimen/layout_padding_16dp"
+                    android:text="@string/permission"
+                    android:textColor="@color/gray_dark" />
+
+                <Button
+                    android:id="@+id/iv_add_permission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/value_42dp"
+                    android:text="@string/add"
+                    android:tint="@color/black"
+                    app:srcCompat="@drawable/ic_add_black_24dp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_empty_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_padding_24dp"
+            android:gravity="center_horizontal"
+            android:text="@string/no_permission_added" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_permission"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/layout_padding_8dp"
+            android:layout_marginEnd="@dimen/layout_padding_8dp"
+            android:clipToPadding="false"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            tools:listitem="@layout/roles_details_item" />
+
+    </LinearLayout>
+
+    <include
+        android:id="@+id/layout_error"
+        layout="@layout/layout_exception_handler"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

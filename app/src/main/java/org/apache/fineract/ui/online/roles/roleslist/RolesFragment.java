@@ -1,13 +1,15 @@
 package org.apache.fineract.ui.online.roles.roleslist;
 
+import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.rolesandpermission.Role;
@@ -15,7 +17,11 @@ import org.apache.fineract.ui.adapters.RolesAdapter;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
+import org.apache.fineract.ui.online.roles.createrole.RoleAction;
+import org.apache.fineract.ui.online.roles.roledetails.RolesActivity;
+import org.apache.fineract.utils.ConstantKeys;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,7 +32,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 24/08/17.
+ * On 24/08/17.
  */
 public class RolesFragment extends FineractBaseFragment implements RolesContract.View,
         OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
@@ -48,6 +54,8 @@ public class RolesFragment extends FineractBaseFragment implements RolesContract
     @Inject
     RolesAdapter rolesAdapter;
 
+    private List<Role> roles = Collections.emptyList();
+
     public static RolesFragment newInstance() {
         RolesFragment fragment = new RolesFragment();
         Bundle args = new Bundle();
@@ -58,7 +66,7 @@ public class RolesFragment extends FineractBaseFragment implements RolesContract
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_roles_list, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
@@ -104,6 +112,7 @@ public class RolesFragment extends FineractBaseFragment implements RolesContract
 
     @Override
     public void showRoles(List<Role> roles) {
+        this.roles = roles;
         showRecyclerView(true);
         rolesAdapter.setRoles(roles);
     }
@@ -150,12 +159,22 @@ public class RolesFragment extends FineractBaseFragment implements RolesContract
 
     @Override
     public void onItemClick(View childView, int position) {
-
+        Intent intent = new Intent(getContext(), RolesActivity.class);
+        intent.putExtra(ConstantKeys.ROLE, roles.get(position));
+        intent.putExtra(ConstantKeys.ROLE_ACTION, RoleAction.VIEW);
+        startActivity(intent);
     }
 
     @Override
     public void onItemLongPress(View childView, int position) {
 
+    }
+
+    @OnClick(R.id.fab_add_role)
+    public void viewCreateRoleFragment() {
+        Intent intent = new Intent(getActivity(), RolesActivity.class);
+        intent.putExtra(ConstantKeys.ROLE_ACTION, RoleAction.CREATE);
+        startActivity(intent);
     }
 
     @Override

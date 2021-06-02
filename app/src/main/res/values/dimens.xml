@@ -51,4 +51,5 @@
     <!--Dimen values for Status-->
     <dimen name="status_height">25dp</dimen>
     <dimen name="status_width">25dp</dimen>
+    <dimen name="value_42dp">42dp</dimen>
 </resources>

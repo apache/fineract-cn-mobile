@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/layout_padding_24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/layout_padding_16dp"
+                android:paddingLeft="@dimen/layout_padding_16dp"
+                android:paddingTop="@dimen/layout_padding_24dp"
+                android:paddingRight="@dimen/layout_padding_16dp"
+                android:paddingBottom="@dimen/layout_padding_16dp"
+                android:text="@string/add_permission"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_permittable_end_group_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/layout_padding_16dp"
+                android:paddingRight="@dimen/layout_padding_16dp">
+
+                <EditText
+                    android:id="@+id/et_permittable_end_group_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/permittable_end_group_identifier"
+                    android:imeOptions="actionDone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_padding_16dp"
+                android:layout_marginLeft="@dimen/layout_padding_16dp"
+                android:layout_marginTop="@dimen/layout_padding_16dp"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                android:text="@string/select_allowed_operations"
+                android:textColor="@color/gray_dark" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_allowed_operation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/layout_padding_16dp"
+                android:layout_marginTop="@dimen/layout_padding_8dp"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                app:singleSelection="false">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/cp_read"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/read"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list"
+                    app:chipIcon="@drawable/ic_done_black_24dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/cp_delete"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delete"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/cp_change"
+                    style="@style/Widget.MaterialComponents.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/change"
+                    app:chipBackgroundColor="@drawable/bg_chip_state_list" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/layout_padding_16dp"
+            android:paddingLeft="@dimen/layout_padding_16dp"
+            android:paddingTop="@dimen/layout_padding_16dp"
+            android:paddingEnd="@dimen/layout_padding_24dp"
+            android:paddingRight="@dimen/layout_padding_24dp"
+            android:paddingBottom="@dimen/layout_padding_16dp">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/layout_padding_16dp"
+                android:layout_marginRight="@dimen/layout_padding_16dp"
+                android:text="@string/cancel"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btn_add_permission"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/add_permission"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
