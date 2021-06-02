@@ -1,5 +1,6 @@
 package org.apache.fineract.ui.online.groups.creategroup
 
+import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,10 +13,9 @@ import butterknife.Optional
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
-import kotlinx.android.synthetic.main.fragment_step_add_group_leader.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_leader.view.*
-import kotlinx.android.synthetic.main.fragment_step_add_group_member.view.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_member.view.rv_name
+import kotlinx.android.synthetic.main.member_leader_layout.view.*
 import org.apache.fineract.R
 import org.apache.fineract.ui.adapters.NameListAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
@@ -89,36 +89,7 @@ class AddGroupLeaderStepFragment : FineractBaseFragment(), Step, NameListAdapter
 
     private fun showAddLeaderView(action: GroupAction, name: String?) {
         currentAction = action
-        llAddLeader.visibility = View.VISIBLE
-        when (action) {
-            GroupAction.CREATE -> {
-                btnAddLeader.text = getString(R.string.add)
-            }
-            GroupAction.EDIT -> {
-                etNewLeader.setText(name)
-                btnAddLeader.text = getString(R.string.update)
-            }
-        }
-    }
-
-    @Optional
-    @OnClick(R.id.btnAddLeader)
-    fun addLeader() {
-        if (etNewLeader.validator()
-                        .nonEmpty()
-                        .noNumbers()
-                        .addErrorCallback { etNewLeader.error = it }.check()) {
-            if (currentAction == GroupAction.CREATE) {
-                leaders.add(etNewLeader.text.toString())
-            } else {
-                leaders[editItemPosition] = etNewLeader.text.toString()
-            }
-            etNewLeader.text.clear()
-            llAddLeader.visibility = View.GONE
-            Utils.hideKeyboard(context, etNewLeader)
-            showRecyclerView(true)
-            nameLisAdapter.submitList(leaders)
-        }
+        showAddEditDialog(action, name)
     }
 
     fun showRecyclerView(isShow: Boolean) {
@@ -130,13 +101,6 @@ class AddGroupLeaderStepFragment : FineractBaseFragment(), Step, NameListAdapter
             rootView.tvAddLeader.visibility = View.VISIBLE
         }
 
-    }
-
-    @Optional
-    @OnClick(R.id.btnCancelAddLeader)
-    fun cancelLeaderAddition() {
-        etNewLeader.text.clear()
-        llAddLeader.visibility = View.GONE
     }
 
     override fun onSelected() {
@@ -178,4 +142,40 @@ class AddGroupLeaderStepFragment : FineractBaseFragment(), Step, NameListAdapter
         }.run { show() }
     }
 
+    private fun showAddEditDialog(action: GroupAction, name: String?) {
+        val layout = layoutInflater.inflate(R.layout.member_leader_layout, null)
+        val dialog = AlertDialog.Builder(context)
+                .setView(layout)
+                .create()
+        dialog.show()
+
+        if (action == GroupAction.CREATE) {
+            layout.btnAddMember.text = getString(R.string.add)
+            layout.tv_member_head.text = getString(R.string.add_new_leader)
+        }
+        else if (action == GroupAction.EDIT) {
+            layout.etNewMember.setText(name)
+            layout.btnAddMember.text = getString(R.string.update)
+            layout.tv_member_head.text = getString(R.string.edit_leader)
+        }
+
+        layout.btnAddMember.setOnClickListener {
+            if (layout.etNewMember.validator()
+                            .nonEmpty()
+                            .noNumbers()
+                            .addErrorCallback { layout.etNewMember.error = it }.check()) {
+                if (currentAction == GroupAction.CREATE) {
+                    leaders.add(layout.etNewMember.text.toString())
+                } else {
+                    leaders[editItemPosition] = layout.etNewMember.text.toString()
+                }
+                Utils.hideKeyboard(context, layout.etNewMember)
+                showRecyclerView(true)
+                nameLisAdapter.submitList(leaders)
+                dialog.dismiss()
+            }
+        }
+
+        layout.btnCancelAddMember.setOnClickListener { dialog.dismiss() }
+    }
 }
