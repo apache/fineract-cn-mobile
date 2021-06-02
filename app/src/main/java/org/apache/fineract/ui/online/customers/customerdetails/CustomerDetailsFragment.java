@@ -19,6 +19,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.customer.Address;
 import org.apache.fineract.data.models.customer.ContactDetail;
@@ -48,7 +56,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 26/06/17.
+ * On 26/06/17.
  */
 public class CustomerDetailsFragment extends FineractBaseFragment
         implements AppBarLayout.OnOffsetChangedListener, CustomerDetailsContract.View,
@@ -137,7 +145,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_details, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
@@ -185,6 +193,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
         tasksBottomSheet.setCustomerIdentifier(customerIdentifier);
         tasksBottomSheet.setCustomerTasksChangeListener(this);
         tasksBottomSheet.show(getChildFragmentManager(), getString(R.string.tasks));
+        tasksBottomSheet.setCustomer(customer);
     }
 
     @OnClick(R.id.ll_identifier_cards)

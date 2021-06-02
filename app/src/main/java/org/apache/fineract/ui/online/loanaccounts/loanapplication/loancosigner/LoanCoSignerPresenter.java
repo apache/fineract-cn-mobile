@@ -23,7 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Rajan Maurya
- *         On 24/07/17.
+ * On 24/07/17.
  */
 @ConfigPersistent
 public class LoanCoSignerPresenter extends BasePresenter<LoanCoSignerContract.View>
@@ -37,7 +37,7 @@ public class LoanCoSignerPresenter extends BasePresenter<LoanCoSignerContract.Vi
 
     @Inject
     public LoanCoSignerPresenter(@ApplicationContext Context context,
-            DataManagerCustomer dataManagerCustomer) {
+                                 DataManagerCustomer dataManagerCustomer) {
         super(context);
         this.dataManagerCustomer = dataManagerCustomer;
         compositeDisposable = new CompositeDisposable();
@@ -96,6 +96,7 @@ public class LoanCoSignerPresenter extends BasePresenter<LoanCoSignerContract.Vi
     @Override
     public Boolean findCustomer(final String customer, String[] customers) {
         boolean isCustomerPresent = false;
+        if (customers == null) return false;
         for (String s : customers) {
             if (s.equals(customer)) {
                 isCustomerPresent = true;

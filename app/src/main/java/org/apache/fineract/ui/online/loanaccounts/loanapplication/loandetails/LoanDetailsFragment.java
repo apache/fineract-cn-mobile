@@ -3,11 +3,6 @@ package org.apache.fineract.ui.online.loanaccounts.loanapplication.loandetails;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.textfield.TextInputLayout;
-import androidx.core.widget.NestedScrollView;
-import androidx.appcompat.widget.AppCompatSpinner;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -19,18 +14,28 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.core.widget.NestedScrollView;
+
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.LoanAccount;
+import org.apache.fineract.data.models.loan.LoanParameters;
 import org.apache.fineract.data.models.loan.PaymentCycle;
 import org.apache.fineract.data.models.loan.TermRange;
 import org.apache.fineract.data.models.product.Product;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
+import org.apache.fineract.utils.ConstantKeys;
 import org.apache.fineract.utils.Utils;
 import org.apache.fineract.utils.ValidateIdentifierUtil;
 import org.apache.fineract.utils.ValidationUtil;
@@ -47,7 +52,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 17/07/17.
+ * On 17/07/17.
  */
 public class LoanDetailsFragment extends FineractBaseFragment implements Step,
         LoanDetailsContract.View, AdapterView.OnItemSelectedListener, TextWatcher {
@@ -141,10 +146,17 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
 
     private ArrayAdapter<String> productsAdapter;
     private ArrayAdapter<String> termUnitTypeAdapter;
+    private LoanAccount loanAccount;
+    private LoanParameters loanParameters;
+    private LoanApplicationAction loanApplicationAction;
 
-    public static LoanDetailsFragment newInstance() {
+    public static LoanDetailsFragment newInstance(
+            LoanAccount loanAccount,
+            LoanApplicationAction loanApplicationAction) {
         LoanDetailsFragment fragment = new LoanDetailsFragment();
         Bundle args = new Bundle();
+        args.putParcelable(ConstantKeys.LOAN_ACCOUNT, loanAccount);
+        args.putSerializable(ConstantKeys.LOAN_APPLICATION_ACTION, loanApplicationAction);
         fragment.setArguments(args);
         return fragment;
     }
@@ -170,11 +182,22 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_loan_details, container, false);
         ButterKnife.bind(this, rootView);
         initializeFineractUIErrorHandler(getActivity(), rootView);
         loanDetailsPresenter.attachView(this);
+
+        if (getArguments() != null) {
+            loanApplicationAction = (LoanApplicationAction) getArguments().getSerializable(
+                    ConstantKeys.LOAN_APPLICATION_ACTION);
+        }
+
+        if (loanApplicationAction == LoanApplicationAction.EDIT) {
+            loanAccount = getArguments().getParcelable(ConstantKeys.LOAN_ACCOUNT);
+            loanParameters = new Gson().fromJson(loanAccount.getParameters(), LoanParameters.class);
+        }
+
 
         showUserInterface();
 
@@ -188,6 +211,65 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
         layoutError.setVisibility(View.GONE);
         ncvLoanDetails.setVisibility(View.GONE);
         loanDetailsPresenter.fetchProducts();
+    }
+
+    public void showPreviousLoanDetails() {
+        spProducts.setSelection(loanDetailsPresenter.getItemIndexFromList(
+                products,
+                loanAccount.getProductIdentifier()
+        ));
+        etRepay.setText(String.valueOf(
+                loanParameters.getPaymentCycle().getPeriod()
+        ));
+        spTermUnitType.setSelection(
+                loanDetailsPresenter.getItemIndexFromList(
+                        repayUnitType,
+                        String.valueOf(loanParameters.getPaymentCycle().getTemporalUnit()))
+        );
+
+
+        int unitType = loanDetailsPresenter.getItemIndexFromList(
+                repayUnitType,
+                String.valueOf(loanParameters.getPaymentCycle().getTemporalUnit()));
+        switch (unitType) {
+            case 0:
+                spRepayUnitType.setSelection(0);
+                spRepayWeekDays.setSelection(loanParameters.getPaymentCycle().getAlignmentDay());
+                break;
+            case 1:
+                spRepayUnitType.setSelection(1);
+                if (loanParameters.getPaymentCycle().getAlignmentMonth() == null) {
+                    spRepayWeekDays.setSelection(
+                            loanParameters.getPaymentCycle().getAlignmentDay());
+                    rbRepayOnSpecificDay.setChecked(true);
+                    spRepayTimeSlots.setSelection(
+                            loanParameters.getPaymentCycle().getAlignmentWeek());
+                } else {
+                    rbRepayOnDay.setChecked(true);
+                    spRepayMonthDayInNumber.setSelection(
+                            loanParameters.getPaymentCycle().getAlignmentDay());
+                }
+                break;
+            case 2:
+                spRepayUnitType.setSelection(2);
+                if (loanParameters.getPaymentCycle().getAlignmentMonth() == null) {
+                    rbRepayOnSpecificDay.setChecked(true);
+                    spRepayWeekDays.setSelection(
+                            loanParameters.getPaymentCycle().getAlignmentDay());
+                    spRepayTimeSlots.setSelection(
+                            loanParameters.getPaymentCycle().getAlignmentWeek());
+                } else {
+                    spRepayMonthDayInNumber.setSelection(
+                            loanParameters.getPaymentCycle().getAlignmentDay());
+                    spRepayYearMonth.setSelection(
+                            loanParameters.getPaymentCycle().getAlignmentMonth());
+                }
+                break;
+        }
+
+        etShortName.setText(loanAccount.getIdentifier());
+        etPrincipalAmount.setText(String.valueOf(loanParameters.getMaximumBalance()));
+        etTerm.setText(String.valueOf(loanParameters.getTermRange().getMaximum()));
     }
 
     @Override
@@ -233,10 +315,11 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
                             Double.parseDouble(etTerm.getText().toString().trim()))
                     , spProducts.getSelectedItem().toString());
 
-
             return null;
         }
+
     }
+
 
     @Override
     public void onSelected() {
@@ -343,14 +426,19 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
     @Override
     public void setComponentsValidations(Product product) {
         this.product = product;
-        etPrincipalAmount.setText(String.valueOf(product.getBalanceRange().getMinimum()));
         ternUnitType.clear();
         ternUnitType.addAll(loanDetailsPresenter.getCurrentTermUnitType(
                 repayUnitType, product.getTermRange().getTemporalUnit()));
         termUnitTypeAdapter.notifyDataSetChanged();
         spTermUnitType.setEnabled(false);
-        etTerm.setText("1");
-        etRepay.setText("1");
+
+        if (loanApplicationAction == LoanApplicationAction.CREATE) {
+            etPrincipalAmount.setText(String.valueOf(product.getBalanceRange().getMinimum()));
+            etTerm.setText("1");
+            etRepay.setText("1");
+        } else {
+            showPreviousLoanDetails();
+        }
     }
 
     @Override
@@ -538,4 +626,6 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
         outState.putStringArrayList("products", (ArrayList<String>) products);
         super.onSaveInstanceState(outState);
     }
+
+
 }

@@ -25,7 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author Rajan Maurya
- *         On 20/07/17.
+ * On 20/07/17.
  */
 @ConfigPersistent
 public class LoanDetailsPresenter extends BasePresenter<LoanDetailsContract.View>
@@ -41,7 +41,7 @@ public class LoanDetailsPresenter extends BasePresenter<LoanDetailsContract.View
 
     @Inject
     public LoanDetailsPresenter(@ApplicationContext Context context,
-            DataManagerLoans dataManagerLoans) {
+                                DataManagerLoans dataManagerLoans) {
         super(context);
         this.dataManagerLoans = dataManagerLoans;
         compositeDisposable = new CompositeDisposable();
@@ -116,5 +116,17 @@ public class LoanDetailsPresenter extends BasePresenter<LoanDetailsContract.View
                 return s.equals(unitType.toLowerCase());
             }
         }).toList().blockingGet();
+    }
+
+    @Override
+    public int getItemIndexFromList(List<String> list, String item) {
+        int index = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(item)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }
