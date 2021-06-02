@@ -1,40 +1,45 @@
-package org.apache.fineract.ui.online.accounting.ledgers
+package org.apache.fineract.ui.online.accounting.ledgers.ledgerlist
 
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.fragment_ledger.*
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import kotlinx.android.synthetic.main.fragment_ledger_list.*
+import kotlinx.android.synthetic.main.fragment_ledger_list.view.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.accounts.Ledger
-import org.apache.fineract.ui.adapters.LedgerAdapter
+import org.apache.fineract.ui.adapters.LedgerListAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
-import org.apache.fineract.ui.online.accounting.accounts.LedgerContract
+import org.apache.fineract.ui.online.accounting.accounts.LedgerListContract
+import org.apache.fineract.ui.online.accounting.ledgers.LedgerAction
+import org.apache.fineract.ui.online.accounting.ledgers.createledger.createledgeractivity.CreateLedgerActivity
+import org.apache.fineract.ui.online.accounting.ledgers.ledgerdetails.LedgerDetailsActivity
+import org.apache.fineract.utils.ConstantKeys
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 
-class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
-        SwipeRefreshLayout.OnRefreshListener {
-
-    @Inject
-    lateinit var ledgerAdapter: LedgerAdapter
+class LedgerListFragment : FineractBaseFragment(), LedgerListContract.View,
+        SwipeRefreshLayout.OnRefreshListener, LedgerListAdapter.OnItemClickListener {
 
     @Inject
-    lateinit var ledgerPresenter: LedgerPresenter
+    lateinit var ledgerListAdapter: LedgerListAdapter
+
+    @Inject
+    lateinit var ledgerListPresenter: LedgerListPresenter
 
     lateinit var ledgerList: List<Ledger>
 
     companion object {
-        fun newInstance(): LedgerFragment = LedgerFragment()
+        fun newInstance(): LedgerListFragment = LedgerListFragment()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,11 +51,16 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_ledger, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_ledger_list, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
-        ledgerPresenter.attachView(this)
+        ledgerListPresenter.attachView(this)
         initializeFineractUIErrorHandler(activity, rootView)
-
+        rootView.fab_create_ledger.setOnClickListener {
+            val intent = Intent(activity, CreateLedgerActivity::class.java).apply {
+                putExtra(ConstantKeys.LEDGER_ACTION, LedgerAction.CREATE)
+            }
+            startActivity(intent)
+        }
         return rootView
     }
 
@@ -60,10 +70,11 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
 
         btn_try_again.setOnClickListener {
             layoutError.visibility = View.GONE
-            ledgerPresenter.getLedgersPage()
+            ledgerListPresenter.getLedgersPage()
         }
 
-        ledgerPresenter.getLedgersPage()
+        ledgerListPresenter.getLedgersPage()
+        ledgerListAdapter.setItemClickListener(this)
     }
 
     override fun showUserInterface() {
@@ -74,7 +85,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
         rvLedger.layoutManager = layoutManager
         rvLedger.setHasFixedSize(true)
 
-        rvLedger.adapter = ledgerAdapter
+        rvLedger.adapter = ledgerListAdapter
 
         swipeContainer.setColorSchemeColors(*activity!!
                 .resources.getIntArray(R.array.swipeRefreshColors))
@@ -82,13 +93,13 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
     }
 
     override fun onRefresh() {
-        ledgerPresenter.getLedgersPage()
+        ledgerListPresenter.getLedgersPage()
     }
 
     override fun showLedgers(ledgers: List<Ledger>) {
         showRecyclerView(true)
         this.ledgerList = ledgers
-        ledgerAdapter.setLedgerList(ledgers)
+        ledgerListAdapter.setLedgerList(ledgers)
     }
 
     override fun showEmptyLedgers() {
@@ -112,16 +123,16 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                ledgerPresenter.searchLedger(ledgerList, query)
+                ledgerListPresenter.searchLedger(ledgerList, query)
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if (TextUtils.isEmpty(newText)) {
                     showRecyclerView(true)
-                    ledgerAdapter.setLedgerList(ledgerList)
+                    ledgerListAdapter.setLedgerList(ledgerList)
                 }
-                ledgerPresenter.searchLedger(ledgerList, newText)
+                ledgerListPresenter.searchLedger(ledgerList, newText)
                 return false
             }
         })
@@ -130,7 +141,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
 
     override fun searchedLedger(ledgers: List<Ledger>) {
         showRecyclerView(true)
-        ledgerAdapter.setLedgerList(ledgers)
+        ledgerListAdapter.setLedgerList(ledgers)
     }
 
     override fun showRecyclerView(status: Boolean) {
@@ -163,6 +174,14 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
 
     override fun onDestroyView() {
         super.onDestroyView()
-        ledgerPresenter.detachView()
+        ledgerListPresenter.detachView()
+    }
+
+    override fun onItemClick(position: Int) {
+        val intent = Intent(activity, LedgerDetailsActivity::class.java).apply {
+            putExtra(ConstantKeys.LEDGER, ledgerList[position])
+            putExtra(ConstantKeys.LEDGER_ACTION, LedgerAction.EDIT)
+        }
+        startActivity(intent)
     }
 }

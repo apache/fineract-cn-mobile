@@ -424,6 +424,14 @@
         <item>Review</item>
     </string-array>
 
+    <string-array name="ledger_account_types">
+        <item>@string/asset</item>
+        <item>@string/liability</item>
+        <item>@string/equity</item>
+        <item>@string/revenue</item>
+        <item>@string/expense</item>
+    </string-array>
+
     <string-array name="create_identification_steps">
         <item>Identification card</item>
         <item>Review</item>
@@ -434,6 +442,12 @@
         <item>Customer address</item>
         <item>Customer contact</item>
         <item>Review</item>
+    </string-array>
+
+    <string-array name="create_ledger_steps">
+        <item>@string/ledger_details</item>
+        <item>@string/sub_ledger</item>
+        <item>@string/review</item>
     </string-array>
 
     <string-array name="create_deposit_steps">
@@ -535,6 +549,41 @@
     <string name="email">Email</string>
     <string name="logged_out_successfully">Logged out successfully.</string>
     <string name="please_click_back_again_to_exit">Please click BACK again to exit</string>
+    <string name="total_value">Total Value</string>
+    <string name="paren_ledger_identifier">Parent Ledger Identifier</string>
+    <string name="sub_ledger">Sub Ledgers</string>
+    <string name="view_sub_ledgers">view sub ledgers (%d)</string>
+    <string name="show_account_in_chart">Show account in chart</string>
+    <string name="no_sub_ledger">No sub ledger</string>
+    <string name="ledger_details">Ledger Details</string>
+    <string name="review">Review</string>
+    <string name="create_ledger">Create Ledger</string>
+    <string name="edit_ledger">Edit Ledger</string>
+    <string name="required_account_type">Account Type*</string>
+    <string name="required_identifier">Identifier*</string>
+    <string name="liability">Liability</string>
+    <string name="equity">Equity</string>
+    <string name="revenue">Revenue</string>
+    <string name="expense">Expense</string>
+    <string name="optional_description">Description (optional)</string>
+    <string name="required_name">Name*</string>
+    <string name="no_sub_ledger_to_show">No sub ledger to show, add sub ledger</string>
+    <string name="account_type">Account Type</string>
+    <string name="asset">Asset</string>
+    <string name="create_sub_ledger">Create Sub Ledger</string>
+    <string name="edit_sub_ledger">Edit Sub Ledger</string>
+    <string name="add_sub_ledger">Add Sub Ledger</string>
+    <string name="update_sub_ledger">Update Sub Ledger</string>
+    <string name="dialog_message_confirmation_delete_ledger">Are you sure you want to delete this ledger?</string>
+    <string name="error_while_creating_ledger">Error while creating ledger</string>
+    <string name="error_while_updating_ledger">Error while updating ledger</string>
+    <string name="error_while_deleting_ledger">Error while deleting ledger</string>
+    <string name="deleting_ledger_please_wait">Deleting ledger please wait…</string>
+    <string name="updating_ledger_please_wait">Updating ledger please wait…</string>
+    <string name="creating_ledger_please_wait">Creating ledger please wait…</string>
+    <string name="ledger_updated_sucessfully">Ledger updated successfully</string>
+    <string name="ledger_created_sucessfully">Ledger created successfully</string>
+    <string name="ledger_deleted_sucessfully">Ledger deleted successfully</string>
     <string name="update">Update</string>
     <string name="dialog_message_confirm_name_deletion">Do you want to delete %s?</string>
     <string name="edit_group">Edit Group</string>

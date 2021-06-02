@@ -8,18 +8,18 @@ import java.math.BigDecimal
 @Parcelize
 data class Ledger(
 
-        @SerializedName("type") val type: AccountType,
-        @SerializedName("identifier") val identifier: String? = null,
-        @SerializedName("name") val name: String? = null,
-        @SerializedName("description") val description: String? = null,
+        @SerializedName("type") var type: AccountType,
+        @SerializedName("identifier") var identifier: String? = null,
+        @SerializedName("name") var name: String? = null,
+        @SerializedName("description") var description: String? = null,
         @SerializedName("parentLedgerIdentifier") val parentLedgerIdentifier: String? = null,
-        @SerializedName("subLedgers") val subLedgers: List<Ledger>? = null,
-        @SerializedName("totalValue") val totalValue: BigDecimal? = null,
-        @SerializedName("createdOn") val createdOn: String? = null,
-        @SerializedName("createdBy") val createdBy: String? = null,
-        @SerializedName("lastModifiedOn") val lastModifiedOn: String? = null,
-        @SerializedName("lastModifiedBy") val lastModifiedBy: String? = null,
-        @SerializedName("showAccountsInChart") val showAccountsInChart: Boolean
+        @SerializedName("subLedgers") var subLedgers: List<Ledger>? = null,
+        @SerializedName("totalValue") var totalValue: BigDecimal? = null,
+        @SerializedName("createdOn") var createdOn: String? = null,
+        @SerializedName("createdBy") var createdBy: String? = null,
+        @SerializedName("lastModifiedOn") var lastModifiedOn: String? = null,
+        @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null,
+        @SerializedName("showAccountsInChart") var showAccountsInChart: Boolean
 
 ) : Parcelable
 

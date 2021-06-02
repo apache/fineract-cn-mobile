@@ -43,4 +43,6 @@ public class ConstantKeys {
     public static final int PERMISSION_REQUEST_READ_EXTERNAL_STORAGE = 3;
     public static final String PERMISSIONS_READ_EXTERNAL_STORAGE_STATUS = "read_status";
 
+    public static final String LEDGER = "ledger";
+    public static final String LEDGER_ACTION = "ledger_action";
 }
