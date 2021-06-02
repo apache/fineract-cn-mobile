@@ -1,14 +1,16 @@
 package org.apache.fineract.data.models.loan
 
+import android.os.Parcelable
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
-
-import java.util.ArrayList
+import kotlinx.android.parcel.Parcelize
+import java.util.*
 
 /**
  * @author Rajan Maurya
  * On 09/07/17.
  */
+@Parcelize
 data class LoanAccount(
     @SerializedName("identifier") var identifier: String? = null,
     @SerializedName("productIdentifier")  var productIdentifier: String? = null,
@@ -20,7 +22,7 @@ data class LoanAccount(
     @SerializedName("createdBy") var createdBy: String? = null,
     @SerializedName("lastModifiedOn") var lastModifiedOn: String? = null,
     @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null
-) {
+):Parcelable {
 
     private val loanParameters: LoanParameters? = null
 

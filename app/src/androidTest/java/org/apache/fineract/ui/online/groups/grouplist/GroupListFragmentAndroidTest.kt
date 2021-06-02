@@ -9,6 +9,8 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.rule.ActivityTestRule
 import androidx.test.runner.AndroidJUnit4
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.rule.ActivityTestRule
 import org.apache.fineract.R
 import org.apache.fineract.ui.adapters.GroupsAdapter
 import org.apache.fineract.ui.online.DashboardActivity
@@ -55,6 +57,9 @@ class GroupListFragmentAndroidTest {
                 .check(matches(withText("grpDef001")))
         onView(withId(R.id.tvName))
                 .check(matches(withText("SDLE Group")))
+        //Assert if thw item has been displayed correctly
+        onView(withId(R.id.tvIdentifier))
+                .check(matches(withText("group")))
     }
 
 }

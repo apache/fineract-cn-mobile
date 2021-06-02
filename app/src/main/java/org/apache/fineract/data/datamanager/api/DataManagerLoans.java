@@ -17,7 +17,7 @@ import io.reactivex.functions.Function;
 
 /**
  * @author Rajan Maurya
- *         On 07/07/17.
+ * On 07/07/17.
  */
 @Singleton
 public class DataManagerLoans extends FineractBaseDataManager {
@@ -27,7 +27,7 @@ public class DataManagerLoans extends FineractBaseDataManager {
 
     @Inject
     public DataManagerLoans(BaseApiManager baseApiManager, PreferencesHelper preferencesHelper,
-            DataManagerAuth dataManagerAuth) {
+                            DataManagerAuth dataManagerAuth) {
         super(dataManagerAuth, preferencesHelper);
         this.baseApiManager = baseApiManager;
         this.preferencesHelper = preferencesHelper;
@@ -77,5 +77,14 @@ public class DataManagerLoans extends FineractBaseDataManager {
     public Completable createLoan(String productIdentifier, LoanAccount loanAccount) {
         return authenticatedCompletableApi(baseApiManager.getLoanApi()
                 .createLoan(productIdentifier, loanAccount));
+    }
+
+    public Completable updateLoan(
+            String productIdentifier,
+            LoanAccount loanAccount,
+            String caseIdentifier) {
+        return authenticatedCompletableApi(
+                baseApiManager.getLoanApi().
+                        updateLoan(productIdentifier, caseIdentifier, loanAccount));
     }
 }

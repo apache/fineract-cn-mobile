@@ -69,8 +69,8 @@ public abstract class BaseFragmentDebtIncome extends FineractBaseFragment implem
     private Double totalIncome = 0.0;
     private Double ratio = 00.00;
 
-    private List<CreditWorthinessFactor> debtCreditWorthinessFactors;
-    private List<CreditWorthinessFactor> incomeCreditWorthinessFactors;
+    protected List<CreditWorthinessFactor> debtCreditWorthinessFactors;
+    protected List<CreditWorthinessFactor> incomeCreditWorthinessFactors;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

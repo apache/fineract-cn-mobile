@@ -112,6 +112,7 @@
     <string name="browse">Browse…</string>
     <string name="fetching_customer_please_wait">Fetching customer please wait…</string>
     <string name="creating_loan_please_wait">Creating loan please wait…</string>
+    <string name="updating_loan_please_wait">Updating loan please wait…</string>
     <string name="updating_customer_please_wait">Updating customer please wait…</string>
     <string name="creating_customer_please_wait">Creating customer please wait…</string>
     <string name="creating_identification_card_please_wait">Creating identification card please wait…</string>
@@ -293,6 +294,7 @@
     <string name="error_should_contain_only">should contain only</string>
     <string name="error_loading_products">Error while fetching products</string>
     <string name="error_while_creating_loan">Error while creating loan</string>
+    <string name="error_while_updating_loan">Error while updating loan</string>
     <string name="error_loading_countries">Error while fetching countries</string>
     <string name="error_creating_customer">Error while creating customer</string>
     <string name="error_updating_customer">Error while updating customer</string>

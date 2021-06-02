@@ -24,6 +24,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
 import org.apache.fineract.ui.base.Toaster;
+import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity;
 import org.apache.fineract.ui.online.loanaccounts.loandetails.CustomerLoanDetailsFragment;
 import org.apache.fineract.utils.ConstantKeys;
@@ -39,7 +40,7 @@ import butterknife.OnClick;
 
 /**
  * @author Rajan Maurya
- *         On 07/07/17.
+ * On 07/07/17.
  */
 public class LoanAccountsFragment extends FineractBaseFragment implements LoanAccountsContract.View,
         SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
@@ -83,7 +84,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_customer_loans, container, false);
         ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         ButterKnife.bind(this, rootView);
@@ -119,6 +120,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
     void createNewLoan() {
         Intent intent = new Intent(getActivity(), LoanApplicationActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.putExtra(ConstantKeys.LOAN_APPLICATION_ACTION, LoanApplicationAction.CREATE);
         startActivity(intent);
     }
 

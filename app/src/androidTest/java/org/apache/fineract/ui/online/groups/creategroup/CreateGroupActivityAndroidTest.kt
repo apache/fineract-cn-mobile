@@ -12,6 +12,19 @@ import org.apache.fineract.R
 import org.apache.fineract.ui.online.groups.GroupAction
 import org.apache.fineract.utils.Constants
 import org.hamcrest.Matchers.not
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.ActivityTestRule
+import org.apache.fineract.R
+import org.apache.fineract.couchbase.SynchronizationManager
+import org.apache.fineract.data.models.Group
+import org.apache.fineract.ui.online.groups.GroupAction
+import org.apache.fineract.utils.Constants
+import org.apache.fineract.utils.toDataClass
+import org.junit.After
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -28,6 +41,9 @@ class CreateGroupActivityAndroidTest {
     var activityTestRule =
             ActivityTestRule<CreateGroupActivity>(CreateGroupActivity::class.java, false, false)
 
+
+    lateinit var synchronizationManager: SynchronizationManager
+
     @Before
     fun before() {
         //Open CreateGroupActivity with an intent by putting  create group action as an extra
@@ -39,6 +55,13 @@ class CreateGroupActivityAndroidTest {
 
     @Test
     fun testCreateGroupItem_allValidData() {
+        synchronizationManager = SynchronizationManager(
+                InstrumentationRegistry.getInstrumentation().context
+        )
+    }
+
+    @Test
+    fun createGroupItem() {
         onView(withId(R.id.etIdentifier))
                 .perform(typeText("testIdentifier"))
         onView(withId(R.id.etGroupDefinitionIdentifier))
@@ -114,3 +137,21 @@ class CreateGroupActivityAndroidTest {
     }
 }
 
+        //Then assert if group item has been created
+        val mapItem = synchronizationManager.getDocumentForTest(
+                "testIdentifier",
+                InstrumentationRegistry.getInstrumentation().context
+        )
+        val groupItem = mapItem.toDataClass<Group>()
+        assertEquals(groupItem.identifier, "testIdentifier")
+        assertEquals(groupItem.name, "group name")
+    }
+
+    @After
+    fun after() {
+        //delete the created document in test
+        synchronizationManager.deleteDocument(
+                "testIdentifier"
+        )
+    }
+}
