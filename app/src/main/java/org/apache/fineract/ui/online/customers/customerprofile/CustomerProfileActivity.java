@@ -85,7 +85,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
                         getString(R.string.customer_image));
                 return true;
             case R.id.menu_customer_profile_share:
-                checkCameraPermission();
+                checkWriteExternalStoragePermission();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -124,7 +124,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
     }
 
     @Override
-    public void checkCameraPermission() {
+    public void checkWriteExternalStoragePermission() {
         if (CheckSelfPermissionAndRequest.checkSelfPermission(this,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             shareImage();
@@ -156,7 +156,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         switch (requestCode) {
-            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {
+            case ConstantKeys.PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE: {
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     shareImage();

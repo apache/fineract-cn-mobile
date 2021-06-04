@@ -10,7 +10,7 @@ public interface CustomerProfileContract {
 
     interface View extends MvpView {
 
-        void checkCameraPermission();
+        void checkWriteExternalStoragePermission();
 
         void requestPermission();
 
