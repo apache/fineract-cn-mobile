@@ -92,6 +92,7 @@ class EditPayrollAllocationFragment : FineractBaseFragment(), Step,
         payrollAllocationAdapter.setPayrollAllocations(payrollAllocations)
         payrollAllocationAdapter.setOnClickEditDeleteListener(this)
         rvPayrollAllocation.adapter = payrollAllocationAdapter
+        showRecyclerView(payrollAllocations.isNotEmpty())
     }
 
     override fun onSelected() {
@@ -109,6 +110,7 @@ class EditPayrollAllocationFragment : FineractBaseFragment(), Step,
     override fun onClickDelete(payrollAllocation: PayrollAllocation, position: Int) {
         payrollAllocations.removeAt(position)
         payrollAllocationAdapter.setPayrollAllocations(payrollAllocations)
+        showRecyclerView(payrollAllocations.isNotEmpty())
     }
 
     override fun editPayrollAllocation(payrollAllocation: PayrollAllocation, position: Int) {
@@ -120,6 +122,7 @@ class EditPayrollAllocationFragment : FineractBaseFragment(), Step,
     override fun addPayrollAllocation(payrollAllocation: PayrollAllocation) {
         payrollAllocations.add(payrollAllocation)
         payrollAllocationAdapter.setPayrollAllocations(payrollAllocations)
+        showRecyclerView(payrollAllocations.isNotEmpty())
     }
 
     override fun verifyStep(): VerificationError? {
@@ -129,6 +132,16 @@ class EditPayrollAllocationFragment : FineractBaseFragment(), Step,
 
     override fun onError(error: VerificationError) {
 
+    }
+
+    fun showRecyclerView(isShow: Boolean) {
+        if (isShow) {
+            rvPayrollAllocation.visibility = View.VISIBLE
+            tv_no_payroll.visibility = View.GONE
+        } else {
+            rvPayrollAllocation.visibility = View.GONE
+            tv_no_payroll.visibility = View.VISIBLE
+        }
     }
 
 }

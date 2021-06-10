@@ -544,4 +544,5 @@
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+    <string name="no_payroll_txt">No Payrolls Available. Tap \'+\' at bottom to create new Payroll</string>
 </resources>
