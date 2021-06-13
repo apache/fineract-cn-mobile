@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_padding_8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/layout_padding_16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/code"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_details_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/password"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_details_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/state"
+                        android:textColor="@color/gray_dark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:orientation="horizontal">
+
+                        <org.apache.fineract.ui.views.CircularImageView
+                            android:id="@+id/teller_details_civ"
+                            android:layout_width="25dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/teller_details_state"
+                            style="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            tools:text="@string/medium_text" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/telleraccountidentifier"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_details_ta_identifier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/vaultaccountidentifier"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_details_vault_identifier"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/teller_details_tasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_padding_12dp"
+                tools:targetApi="lollipop">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/selectableItemBackgroundBorderless">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_16dp">
+
+                        <ImageView
+                            style="@style/circleLayout"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            app:srcCompat="@drawable/ic_task_black_24dp"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/layout_padding_8dp"
+                            android:layout_marginLeft="@dimen/layout_padding_8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/tasks" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/change_teller_status"
+                                android:textColor="@color/gray_dark"
+                                android:textSize="@dimen/text_size_12sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_padding_8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/layout_padding_16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cheaques_recievable_amount"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_cra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/cash_over_short_account"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_details_cos_account"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/assigned_employee"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_details_assigned_employee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/denomination_required"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_details_denomination_req"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="YES" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_16dp"
+                        android:text="@string/cash_withdraw_limit"
+                        android:textColor="@color/gray_dark" />
+
+                    <TextView
+                        android:id="@+id/teller_details_cashdraw_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_padding_8dp"
+                        android:textColor="@color/black"
+                        tools:text="@string/medium_text" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

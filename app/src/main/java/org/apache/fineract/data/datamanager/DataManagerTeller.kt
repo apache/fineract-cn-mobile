@@ -1,5 +1,6 @@
 package org.apache.fineract.data.datamanager
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
@@ -27,4 +28,11 @@ class DataManagerTeller @Inject constructor(val baseManagerApi: BaseApiManager,
             .searchTeller(preferencesHelper.tenantIdentifier, tellerCode)
             .onErrorResumeNext(Function<Throwable, ObservableSource<Teller>>
             { Observable.just(FakeRemoteDataSource.getTeller()[0]) })
+
+    fun createTeller(teller: Teller): Completable =
+        baseManagerApi.tellerService.createTeller(preferencesHelper.tenantIdentifier, teller)
+
+    fun updateTeller(teller: Teller): Completable =
+        baseManagerApi.tellerService.updateTeller(preferencesHelper.tenantIdentifier, teller)
+
 }

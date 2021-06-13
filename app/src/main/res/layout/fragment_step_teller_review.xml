@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/default_margin">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/default_padding">
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/code" />
+
+                <TextView
+                    android:id="@+id/tv_teller_review_code"
+                    style="@style/TextViewReview.Input"
+                    android:textColor="@color/black" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/password" />
+
+                <TextView
+                    android:id="@+id/tv_teller_review_password"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/cash_withdraw_limit" />
+
+                <TextView
+                    android:id="@+id/tv_teller_review_cashwithdraw_limit"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/account_identifier" />
+
+                <TextView
+                    android:id="@+id/tv_teller_review_acc_identifier"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                        android:text="@string/vaultaccountidentifier" />
+
+                <TextView
+                    android:id="@+id/tv_teller_review_vault_acc_identifier"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <CheckBox
+                    android:id="@+id/tv_teller_review_denomination_req"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_16dp"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:checked="false"
+                    android:clickable="false"
+                    android:text="@string/denomination_required" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/cheaques_recievable_amount" />
+
+                <TextView
+                    android:id="@+id/tv_teller_review_cheaques_recievable_amount"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/cash_over_short_account" />
+
+                <TextView
+                    android:id="@+id/tv_teller_review_cashovershortacc"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/assigned_employee" />
+
+                <TextView
+                    android:id="@+id/tv_teller_review_assigned_employee"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
