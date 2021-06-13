@@ -109,15 +109,35 @@
 
         </LinearLayout>
 
-        <CheckBox
-            android:id="@+id/cb_Proportional"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/layout_padding_16dp"
             android:layout_marginStart="@dimen/layout_padding_16dp"
-            android:layout_marginTop="@dimen/layout_padding_16dp"
-            android:clickable="false"
-            android:text="@string/proportional" />
+            android:layout_marginTop="@dimen/layout_padding_16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/proportional"
+                android:textSize="15sp"/>
+
+            <ImageView
+                android:id="@+id/iv_proportional_checked"
+                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:paddingLeft="5dp"
+                app:srcCompat="@drawable/ic_check_circle_black_24dp"/>
+
+            <ImageView
+                android:id="@+id/iv_proportional_crossed"
+                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:paddingLeft="5dp"
+                app:srcCompat="@drawable/ic_cross_cricle_red_24dp"/>
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
