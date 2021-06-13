@@ -307,4 +307,14 @@
     <string name="hello_blank_fragment">ഹലോ ശൂന്യമായ ശകലം</string>
     <string name="dialog_message_camera_permission_never_ask_again">നിങ്ങൾ അനുമതി നിഷേധിച്ചു         ഈ അനുമതിയില്ലാതെ നിങ്ങൾക്ക് ക്യാമറ സ്കാൻ ചെയ്യാൻ കഴിയില്ല.         ഇത് സജ്ജീകരണങ്ങളിൽ പ്രാപ്തമാക്കുകനിങ്ങൾ അനുമതി നിഷേധിച്ചു         ഈ അനുമതിയില്ലാതെ നിങ്ങൾക്ക് ക്യാമറ സ്കാൻ ചെയ്യാൻ കഴിയില്ല.         ഇത് സജ്ജീകരണങ്ങളിൽ പ്രാപ്തമാക്കുക</string>
     <string name="msg_setting_activity_not_found">ക്രമീകരണ പ്രവർത്തനം എന്തോ തെറ്റായി സംഭവിച്ചു.          \'ക്രമീകരണങ്ങൾ\' എന്നതിലേക്ക് പോയി സ്വമേധയാ അനുമതി അനുവദിക്കുക.</string>
+    <string name="teller_identifier_created_successfully">ടെല്ലർ %1$s വിജയകരമായി സൃഷ്ടിച്ചു</string>
+    <string name="teller_identifier_updated_successfully">ടെല്ലർ %1$s വിജയകരമായി അപ്‌ഡേറ്റുചെയ്‌തു</string>
+    <string name="creating_teller">ടെല്ലർ സൃഷ്ടിക്കുന്നു, ദയവായി കാത്തിരിക്കുക ....</string>
+    <string name="updating_teller_please_wait">ടെല്ലർ അപ്‌ഡേറ്റുചെയ്യുന്നു, ദയവായി കാത്തിരിക്കുക …</string>
+    <string name="please_wait_updating_teller_status">ടെല്ലർ നില അപ്‌ഡേറ്റുചെയ്യുന്നു, ദയവായി കാത്തിരിക്കുക …</string>
+    <string name="error_while_updating_teller_status">ടെല്ലർ നില അപ്‌ഡേറ്റുചെയ്യുമ്പോൾ പിശക്</string>
+    <string name="please_verify_following_teller_task">ഈ ടെല്ലർ %1$s നിങ്ങളുടെ മുമ്പാകെ ഇനിപ്പറയുന്ന ജോലികൾ പരിശോധിക്കുക</string>
+    <string name="error_while_creating_teller">ടെല്ലർ സൃഷ്ടിക്കുമ്പോൾ പിശക്</string>
+    <string name="error_while_updating_teller">ടെല്ലർ അപ്‌ഡേറ്റുചെയ്യുമ്പോൾ പിശക്</string>
+
 </resources>
