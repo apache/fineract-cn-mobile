@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,6 +50,12 @@ public class DebtIncomeReportFragment extends FineractBaseFragment {
 
     @BindView(R.id.rl_is_empty_income)
     RelativeLayout rlIsEmptyIncome;
+
+    @BindView(R.id.ll_debt)
+    LinearLayout llDebt;
+
+    @BindView(R.id.ll_income)
+    LinearLayout llIncome;
 
     View rootView;
 
@@ -112,7 +119,7 @@ public class DebtIncomeReportFragment extends FineractBaseFragment {
 
         if (creditWorthinessSnapshot.getDebts().size() == 0) {
             rlIsEmptyDebt.setVisibility(View.VISIBLE);
-            rvDebt.setVisibility(View.GONE);
+            llDebt.setVisibility(View.GONE);
             rlIsEmptyDebt.getChildAt(0).setVisibility(View.GONE);
             TextView message = (TextView) rlIsEmptyDebt.getChildAt(1);
             message.setText(getString(R.string.empty_debts_to_show));
@@ -120,7 +127,7 @@ public class DebtIncomeReportFragment extends FineractBaseFragment {
 
         if (creditWorthinessSnapshot.getIncomeSources().size() == 0) {
             rlIsEmptyIncome.setVisibility(View.VISIBLE);
-            rvIncome.setVisibility(View.GONE);
+            llIncome.setVisibility(View.GONE);
             rlIsEmptyIncome.getChildAt(0).setVisibility(View.GONE);
             TextView message = (TextView) rlIsEmptyIncome.getChildAt(1);
             message.setText(getString(R.string.empty_income_to_show));
