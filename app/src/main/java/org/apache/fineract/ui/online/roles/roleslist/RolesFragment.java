@@ -15,6 +15,7 @@ import org.apache.fineract.ui.adapters.RolesAdapter;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.OnItemClickListener;
+import org.apache.fineract.ui.base.Toaster;
 
 import java.util.List;
 
@@ -87,6 +88,10 @@ public class RolesFragment extends FineractBaseFragment implements RolesContract
         layoutError.setVisibility(View.GONE);
         rvRoles.setVisibility(View.GONE);
         rolesPresenter.fetchRoles();
+    }
+    @OnClick(R.id.fab_add_role)
+    void showMessage() {
+        Toaster.show(rootView, R.string.Under_construction);
     }
 
     @Override
