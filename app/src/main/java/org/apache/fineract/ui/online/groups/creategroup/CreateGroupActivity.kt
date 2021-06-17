@@ -1,5 +1,6 @@
 package org.apache.fineract.ui.online.groups.creategroup
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -19,7 +20,9 @@ import org.apache.fineract.ui.online.groups.grouplist.GroupViewModel
 import org.apache.fineract.ui.online.groups.grouplist.GroupViewModelFactory
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.DateUtils
+import org.apache.fineract.utils.MaterialDialog
 import javax.inject.Inject
+
 
 /*
  * Created by saksham on 02/July/2019
@@ -29,6 +32,8 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
 
     private var group = Group()
     private var groupAction = GroupAction.CREATE
+
+    private var isBackPressedOnce:Boolean = false
 
     @Inject
     lateinit var groupViewModelFactory: GroupViewModelFactory
@@ -60,6 +65,23 @@ class CreateGroupActivity : FineractBaseActivity(), StepperLayout.StepperListene
     }
 
     override fun onStepSelected(newStepPosition: Int) {}
+
+    override fun onBackPressed() {
+        if (slCreateGroup.currentStepPosition !== 0) {
+                    slCreateGroup.currentStepPosition = slCreateGroup.currentStepPosition - 1
+        } else {
+            MaterialDialog.Builder()
+                    .init(this)
+                    .setTitle(getString(R.string.dialog_title_confirm_exit))
+                    .setMessage(getString(
+                            R.string.dialog_message_confirmation_exit_create_edit_activity))
+                    .setPositiveButton(getString(R.string.dialog_action_exit)
+                    ) { dialog: DialogInterface?, which: Int -> super.onBackPressed() }
+                    .setNegativeButton(getString(R.string.dialog_action_cancel))
+                    .createMaterialDialog()
+                    .show()
+        }
+    }
 
     override fun onError(verificationError: VerificationError?) {}
 

@@ -1,9 +1,11 @@
 package org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import com.stepstone.stepper.StepperLayout
 import com.stepstone.stepper.VerificationError
+import kotlinx.android.synthetic.main.activity_create_group.*
 import kotlinx.android.synthetic.main.activity_edit_payroll.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.payroll.PayrollAllocation
@@ -13,6 +15,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.Toaster
 import org.apache.fineract.ui.online.accounting.accounts.EditPayrollContract
 import org.apache.fineract.utils.ConstantKeys
+import org.apache.fineract.utils.MaterialDialog
 import javax.inject.Inject
 
 class EditPayrollActivity : FineractBaseActivity(), StepperLayout.StepperListener,
@@ -57,6 +60,23 @@ class EditPayrollActivity : FineractBaseActivity(), StepperLayout.StepperListene
         stepperLayout.setOffscreenPageLimit(stepAdapter.count)
 
         showBackButton()
+    }
+
+    override fun onBackPressed() {
+        if (slCreateGroup.currentStepPosition !== 0) {
+            slCreateGroup.currentStepPosition = slCreateGroup.currentStepPosition - 1
+        } else {
+            MaterialDialog.Builder()
+                    .init(this)
+                    .setTitle(getString(R.string.dialog_title_confirm_exit))
+                    .setMessage(getString(
+                            R.string.dialog_message_confirmation_exit_create_edit_activity))
+                    .setPositiveButton(getString(R.string.dialog_action_exit)
+                    ) { dialog: DialogInterface?, which: Int -> super.onBackPressed() }
+                    .setNegativeButton(getString(R.string.dialog_action_cancel))
+                    .createMaterialDialog()
+                    .show()
+        }
     }
 
     override fun setPayrollConfig(accountNo: String, lastModifiedBy: String,

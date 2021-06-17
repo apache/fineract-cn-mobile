@@ -258,6 +258,7 @@
     <string name="error_fetching_customer_details">ഉപഭോക്തൃ വിശദാംശങ്ങൾ ലഭ്യമാക്കുന്നതിൽ പരാജയപ്പെട്ടു</string>
     <string name="error_fetching_deposit_product">ഡെപ്പോസിറ്റ് ഉൽപ്പന്നം ലഭ്യമാക്കുന്നത് പരാജയപ്പെട്ടു</string>
     <string name="error_failed_to_refresh_customers">ഉപയോക്താക്കളെ പുതുക്കുന്നതിന് പരാജയപ്പെട്ടു</string>
+    <string name="dialog_action_exit">പുറത്ത്</string>
     <string name="dialog_action_ok">ശരി</string>
     <string name="dialog_action_cancel">റദ്ദാക്കുക</string>
     <string name="dialog_action_back">തിരികെ</string>
@@ -269,6 +270,8 @@
     <string name="dialog_action_logout">പുറത്തുകടക്കുക</string>
     <string name="dialog_title_confirm_deletion">ഇല്ലാതാക്കൽ സ്ഥിരീകരിക്കുക</string>
     <string name="dialog_title_confirm_logout">ലോഗ്ഔട്ട് സ്ഥിരീകരിക്കുക</string>
+    <string name="dialog_title_confirm_exit">എക്സിറ്റ് സ്ഥിരീകരിക്കുക</string>
+    <string name="dialog_message_confirmation_exit_create_edit_activity">നിങ്ങള്ക്ക് ഉറപ്പാണോ? പുറത്തുകടക്കുന്നത് സാധ്യമായ എല്ലാ മാറ്റങ്ങളും ഉപേക്ഷിക്കും</string>
     <string name="dialog_message_confirmation_delete_identification_card">ഈ തിരിച്ചറിയൽ കാർഡ് ഇല്ലാതാക്കാൻ ആഗ്രഹിക്കുന്നുവോ?</string>
     <string name="dialog_message_confirmation_delete_identification_card_scan">ഈ ഐഡന്റിഫിക്കേഷൻ കാർഡ് സ്കാൻ ഇല്ലാതാക്കാൻ നിങ്ങൾക്ക് താൽപ്പര്യമുണ്ടോ?</string>
     <string name="dialog_message_confirmation_logout">നിങ്ങള്ക്ക് ഉറപ്പാണോ? നിങ്ങൾ പുറത്തുകടക്കാൻ ആഗ്രഹിക്കുന്നു</string>

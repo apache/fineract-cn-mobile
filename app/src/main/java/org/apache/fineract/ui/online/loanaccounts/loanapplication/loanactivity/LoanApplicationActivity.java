@@ -20,6 +20,7 @@ import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
 import org.apache.fineract.utils.ConstantKeys;
+import org.apache.fineract.utils.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +94,27 @@ public class LoanApplicationActivity extends FineractBaseActivity
         stepperLayout.setOffscreenPageLimit(stepAdapter.getCount());
 
         showBackButton();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (stepperLayout.getCurrentStepPosition() != 0) {
+            stepperLayout.setCurrentStepPosition(
+                    stepperLayout.getCurrentStepPosition() - 1);
+        } else {
+            new MaterialDialog.Builder()
+                    .init(this)
+                    .setTitle(getString(R.string.dialog_title_confirm_exit))
+                    .setMessage(getString(
+                            R.string.dialog_message_confirmation_exit_create_edit_activity))
+                    .setPositiveButton(getString(R.string.dialog_action_exit),
+                            (dialog, which) -> {
+                                super.onBackPressed();
+                            })
+                    .setNegativeButton(getString(R.string.dialog_action_cancel))
+                    .createMaterialDialog()
+                    .show();
+        }
     }
 
     @Override
