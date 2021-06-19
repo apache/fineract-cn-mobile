@@ -28,7 +28,7 @@
                     android:text="@string/code" />
 
                 <TextView
-                    android:id="@+id/tv_teller_review_code"
+                    android:id="@+id/tvTellerReviewCode"
                     style="@style/TextViewReview.Input"
                     android:textColor="@color/black" />
 
@@ -39,7 +39,7 @@
                     android:text="@string/password" />
 
                 <TextView
-                    android:id="@+id/tv_teller_review_password"
+                    android:id="@+id/tvTellerReviewPassword"
                     style="@style/TextViewReview.Input" />
 
                 <View style="@style/TextViewUnderline.Grey" />
@@ -49,7 +49,7 @@
                     android:text="@string/cash_withdraw_limit" />
 
                 <TextView
-                    android:id="@+id/tv_teller_review_cashwithdraw_limit"
+                    android:id="@+id/tvTellerReviewCashdrawLimit"
                     style="@style/TextViewReview.Input" />
 
                 <View style="@style/TextViewUnderline.Grey" />
@@ -59,7 +59,7 @@
                     android:text="@string/account_identifier" />
 
                 <TextView
-                    android:id="@+id/tv_teller_review_acc_identifier"
+                    android:id="@+id/tvTellerReviewAccountIdentifier"
                     style="@style/TextViewReview.Input" />
 
                 <View style="@style/TextViewUnderline.Grey" />
@@ -69,13 +69,13 @@
                         android:text="@string/vaultaccountidentifier" />
 
                 <TextView
-                    android:id="@+id/tv_teller_review_vault_acc_identifier"
+                    android:id="@+id/tvTellerReviewVaultAccountIdentifier"
                     style="@style/TextViewReview.Input" />
 
                 <View style="@style/TextViewUnderline.Grey" />
 
                 <CheckBox
-                    android:id="@+id/tv_teller_review_denomination_req"
+                    android:id="@+id/tvTellerReviewDenomination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_padding_16dp"
@@ -89,7 +89,7 @@
                     android:text="@string/cheaques_recievable_amount" />
 
                 <TextView
-                    android:id="@+id/tv_teller_review_cheaques_recievable_amount"
+                    android:id="@+id/tvTellerReviewCra"
                     style="@style/TextViewReview.Input" />
 
                 <View style="@style/TextViewUnderline.Grey" />
@@ -99,7 +99,7 @@
                     android:text="@string/cash_over_short_account" />
 
                 <TextView
-                    android:id="@+id/tv_teller_review_cashovershortacc"
+                    android:id="@+id/tvTellerReviewCashoverShortAccount"
                     style="@style/TextViewReview.Input" />
 
                 <View style="@style/TextViewUnderline.Grey" />
@@ -109,7 +109,7 @@
                     android:text="@string/assigned_employee" />
 
                 <TextView
-                    android:id="@+id/tv_teller_review_assigned_employee"
+                    android:id="@+id/tvTellerReviewAssignedEmployee"
                     style="@style/TextViewReview.Input" />
 
                 <View style="@style/TextViewUnderline.Grey" />

@@ -33,7 +33,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_details_code"
+                        android:id="@+id/tellerDetailsCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"
@@ -48,7 +48,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_details_password"
+                        android:id="@+id/tellerDetailsPassword"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"
@@ -69,12 +69,12 @@
                         android:orientation="horizontal">
 
                         <org.apache.fineract.ui.views.CircularImageView
-                            android:id="@+id/teller_details_civ"
+                            android:id="@+id/tellerDetailsCiv"
                             android:layout_width="25dp"
                             android:layout_height="match_parent" />
 
                         <TextView
-                            android:id="@+id/teller_details_state"
+                            android:id="@+id/tellerDetailsState"
                             style="@style/Base.TextAppearance.AppCompat.Medium"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_details_ta_identifier"
+                        android:id="@+id/tellerDetailsAccountIdentifier"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"
@@ -106,7 +106,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_details_vault_identifier"
+                        android:id="@+id/tellerDetailsVaultIdentifier"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"
@@ -118,7 +118,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/teller_details_tasks"
+                android:id="@+id/tellerDetailsTasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/layout_padding_12dp"
@@ -185,7 +185,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_cra"
+                        android:id="@+id/tellerCra"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"
@@ -200,7 +200,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_details_cos_account"
+                        android:id="@+id/tellerDetailsCosAccount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"
@@ -215,7 +215,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_details_assigned_employee"
+                        android:id="@+id/tellerDetailsAssignedEmployee"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"
@@ -230,7 +230,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_details_denomination_req"
+                        android:id="@+id/tellerDetailsDenominationReq"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"
@@ -245,7 +245,7 @@
                         android:textColor="@color/gray_dark" />
 
                     <TextView
-                        android:id="@+id/teller_details_cashdraw_limit"
+                        android:id="@+id/tellerDetailsCashdrawLimit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/layout_padding_8dp"

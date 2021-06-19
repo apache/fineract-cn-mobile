@@ -56,33 +56,33 @@ class TellerDetailsStepFragment : FineractBaseFragment(), Step {
 
     private fun populateData() {
         val teller = (activity as CreateTellerActivity).getTeller()
-        rootView.et_teller_code.setText(teller.code)
-        rootView.et_teller_password.setText(teller.password)
-        rootView.et_teller_cashdrawlimit.setText(teller.cashdrawLimit.toString())
-        rootView.et_teller_accidentifier.setText(teller.tellerAccountIdentifier)
-        rootView.et_teller_vault_identifer.setText(teller.vaultAccountIdentifier)
-        rootView.cb_teller_denomination_req.isChecked = teller.denominationRequired
-        rootView.et_teller_cheaque.setText(teller.chequesReceivableAccount)
-        rootView.et_teller_cashovershortacc.setText(teller.cashOverShortAccount)
-        rootView.et_teller_assigned_employee.setText(teller.assignedEmployee)
+        rootView.etTellerCode.setText(teller.code)
+        rootView.etTellerPassword.setText(teller.password)
+        rootView.etTellerCashdrawlimit.setText(teller.cashdrawLimit.toString())
+        rootView.etTellerAccountIdentifier.setText(teller.tellerAccountIdentifier)
+        rootView.etTellerVaultIdentifier.setText(teller.vaultAccountIdentifier)
+        rootView.cbTellerDenominationRequired.isChecked = teller.denominationRequired
+        rootView.etTellerCheaque.setText(teller.chequesReceivableAccount)
+        rootView.etTellerCashOverShortAccount.setText(teller.cashOverShortAccount)
+        rootView.etTellerAssignedEmployee.setText(teller.assignedEmployee)
     }
 
     override fun verifyStep(): VerificationError? {
-        if ( !(validateIdentifier(et_teller_code)) || !(validateIdentifier(et_teller_password)) || !(validateIdentifier(et_teller_cashdrawlimit))
-            || !(validateIdentifier(et_teller_accidentifier)) || !(validateIdentifier(et_teller_vault_identifer)) || !(validateIdentifier(et_teller_cheaque))
-            || !(validateIdentifier(et_teller_cashovershortacc)) || !(validateIdentifier(et_teller_assigned_employee))) {
+        if ( !(validateIdentifier(etTellerCode)) || !(validateIdentifier(etTellerPassword)) || !(validateIdentifier(etTellerCashdrawlimit))
+            || !(validateIdentifier(etTellerAccountIdentifier)) || !(validateIdentifier(etTellerVaultIdentifier)) || !(validateIdentifier(etTellerCheaque))
+            || !(validateIdentifier(etTellerCashOverShortAccount)) || !(validateIdentifier(etTellerAssignedEmployee))) {
             return VerificationError(null)
         }
         (activity as CreateTellerActivity).setTellerDetails(
-               et_teller_code.text.toString(),
-            et_teller_password.text.toString(),
-            BigDecimal(et_teller_cashdrawlimit.text.toString()),
-            et_teller_accidentifier.text.toString(),
-            et_teller_vault_identifer.text.toString(),
-            et_teller_cheaque.text.toString(),
-            et_teller_cashovershortacc.text.toString(),
-            cb_teller_denomination_req.isChecked,
-            et_teller_assigned_employee.text.toString()
+               etTellerCode.text.toString(),
+            etTellerPassword.text.toString(),
+            BigDecimal(etTellerCashdrawlimit.text.toString()),
+            etTellerAccountIdentifier.text.toString(),
+            etTellerVaultIdentifier.text.toString(),
+            etTellerCheaque.text.toString(),
+            etTellerCashOverShortAccount.text.toString(),
+            cbTellerDenominationRequired.isChecked,
+            etTellerAssignedEmployee.text.toString()
         )
         return null
     }

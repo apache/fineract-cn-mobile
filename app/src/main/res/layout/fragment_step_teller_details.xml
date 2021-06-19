@@ -24,12 +24,12 @@
                 android:padding="@dimen/default_padding">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_teller_code"
+                    android:id="@+id/tilTellerCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/et_teller_code"
+                        android:id="@+id/etTellerCode"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/code"
@@ -38,12 +38,12 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_teller_password"
+                    android:id="@+id/tilTellerPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/et_teller_password"
+                        android:id="@+id/etTellerPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
@@ -51,13 +51,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_teller_cashdrawlimit"
+                    android:id="@+id/tilTellerCashdrawLimit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
 
                     <EditText
-                        android:id="@+id/et_teller_cashdrawlimit"
+                        android:id="@+id/etTellerCashdrawlimit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/cash_withdraw_limit"
@@ -65,12 +65,12 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_teller_teller_acc_identifier"
+                    android:id="@+id/tilTellerAccountIdentifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/et_teller_accidentifier"
+                        android:id="@+id/etTellerAccountIdentifier"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/account_identifier"
@@ -78,12 +78,12 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_teller_vault_identifier"
+                    android:id="@+id/tilTellerVaultIDentifier"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/et_teller_vault_identifer"
+                        android:id="@+id/etTellerVaultIdentifier"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/vaultaccountidentifier"
@@ -91,7 +91,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <CheckBox
-                    android:id="@+id/cb_teller_denomination_req"
+                    android:id="@+id/cbTellerDenominationRequired"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/layout_padding_16dp"
@@ -100,12 +100,12 @@
                     android:text="@string/denomination_required" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_teller_cheaquesreceivableamount"
+                    android:id="@+id/tilTellerCheaquesRecievableAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/et_teller_cheaque"
+                        android:id="@+id/etTellerCheaque"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/cheaques_recievable_amount"
@@ -113,12 +113,12 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_teller_cashovershortacc"
+                    android:id="@+id/tilTellerCashOverShortAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/et_teller_cashovershortacc"
+                        android:id="@+id/etTellerCashOverShortAccount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/cash_over_short_account"
@@ -126,12 +126,12 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_teller_assigned_employee"
+                    android:id="@+id/tilTellerAssignedEmployee"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/et_teller_assigned_employee"
+                        android:id="@+id/etTellerAssignedEmployee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/assigned_employee"

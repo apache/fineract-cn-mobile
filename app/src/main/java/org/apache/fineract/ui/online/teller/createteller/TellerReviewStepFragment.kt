@@ -37,15 +37,15 @@ class TellerReviewStepFragment : FineractBaseFragment(), Step {
     }
 
     private fun fillViews(teller: Teller) {
-        tv_teller_review_code.text = teller.code
-        tv_teller_review_password.text = teller.password
-        tv_teller_review_cashwithdraw_limit.text = teller.cashdrawLimit.toString()
-        tv_teller_review_acc_identifier.text = teller.tellerAccountIdentifier
-        tv_teller_review_vault_acc_identifier.text = teller.vaultAccountIdentifier
-        tv_teller_review_denomination_req.isChecked = teller.denominationRequired
-        tv_teller_review_cheaques_recievable_amount.text = teller.chequesReceivableAccount
-        tv_teller_review_cashovershortacc.text = teller.cashOverShortAccount
-        tv_teller_review_assigned_employee.text = teller.assignedEmployee
+        tvTellerReviewCode.text = teller.code
+        tvTellerReviewPassword.text = teller.password
+        tvTellerReviewCashdrawLimit.text = teller.cashdrawLimit.toString()
+        tvTellerReviewAccountIdentifier.text = teller.tellerAccountIdentifier
+        tvTellerReviewVaultAccountIdentifier.text = teller.vaultAccountIdentifier
+        tvTellerReviewDenomination.isChecked = teller.denominationRequired
+        tvTellerReviewCra.text = teller.chequesReceivableAccount
+        tvTellerReviewCashoverShortAccount.text = teller.cashOverShortAccount
+        tvTellerReviewAssignedEmployee.text = teller.assignedEmployee
     }
 
     override fun verifyStep(): VerificationError? {

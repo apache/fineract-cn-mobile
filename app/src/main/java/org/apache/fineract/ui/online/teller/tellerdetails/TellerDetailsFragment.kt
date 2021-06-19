@@ -46,17 +46,17 @@ class TellerDetailsFragment : FineractBaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        teller_details_code.text = teller.code
-        teller_details_password.text = teller.password
-        setTellerStatusIcon(teller.state, teller_details_civ)
-        teller_details_state.text = teller.state.toString()
-        teller_details_ta_identifier.text = teller.tellerAccountIdentifier
-        teller_details_vault_identifier.text = teller.vaultAccountIdentifier
-        teller_cra.text = teller.chequesReceivableAccount
-        teller_details_cashdraw_limit.text = teller.cashdrawLimit.toString()
-        teller_details_cos_account.text = teller.cashOverShortAccount
-        teller_details_assigned_employee.text = teller.assignedEmployee
-        teller_details_denomination_req.text = if (teller.denominationRequired) "YES" else "NO"
+        tellerDetailsCode.text = teller.code
+        tellerDetailsPassword.text = teller.password
+        setTellerStatusIcon(teller.state, tellerDetailsCiv)
+        tellerDetailsState.text = teller.state.toString()
+        tellerDetailsAccountIdentifier.text = teller.tellerAccountIdentifier
+        tellerDetailsVaultIdentifier.text = teller.vaultAccountIdentifier
+        tellerCra.text = teller.chequesReceivableAccount
+        tellerDetailsCashdrawLimit.text = teller.cashdrawLimit.toString()
+        tellerDetailsCosAccount.text = teller.cashOverShortAccount
+        tellerDetailsAssignedEmployee.text = teller.assignedEmployee
+        tellerDetailsDenominationReq.text = if (teller.denominationRequired) "YES" else "NO"
 
     }
 
@@ -72,7 +72,7 @@ class TellerDetailsFragment : FineractBaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_edit_teller -> {
+            R.id.menuEditTeller -> {
                 val intent = Intent(activity, CreateTellerActivity::class.java).apply {
                     putExtra(Constants.TELLER, teller)
                     putExtra(Constants.TELLER_ACTION, TellerAction.EDIT)
