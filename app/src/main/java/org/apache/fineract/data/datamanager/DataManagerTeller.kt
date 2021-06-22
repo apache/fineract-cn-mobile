@@ -11,6 +11,7 @@ import javax.inject.Inject
 import org.apache.fineract.FakeRemoteDataSource
 import org.apache.fineract.data.datamanager.api.DataManagerAuth
 import org.apache.fineract.data.datamanager.api.FineractBaseDataManager
+import org.apache.fineract.data.models.teller.TellerCommand
 import javax.inject.Singleton
 
 @Singleton
@@ -33,6 +34,9 @@ class DataManagerTeller @Inject constructor(val baseManagerApi: BaseApiManager,
         baseManagerApi.tellerService.createTeller(preferencesHelper.tenantIdentifier, teller)
 
     fun updateTeller(teller: Teller): Completable =
-        baseManagerApi.tellerService.updateTeller(preferencesHelper.tenantIdentifier, teller)
+        baseManagerApi.tellerService.updateTeller(preferencesHelper.tenantIdentifier, teller.tellerAccountIdentifier!!, teller)
+
+    fun changeTellerStatus(teller: Teller, tellerCommand: TellerCommand): Completable =
+        baseManagerApi.tellerService.changeTellerStatus(preferencesHelper.tenantIdentifier, teller.tellerAccountIdentifier!!, tellerCommand)
 
 }

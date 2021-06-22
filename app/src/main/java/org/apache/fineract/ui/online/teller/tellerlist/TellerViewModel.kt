@@ -14,9 +14,9 @@ import org.apache.fineract.data.Status
 import org.apache.fineract.data.datamanager.DataManagerTeller
 import org.apache.fineract.data.datamanager.api.DataManagerAnonymous
 import org.apache.fineract.data.local.PreferencesHelper
-import org.apache.fineract.data.models.customer.Command
 import org.apache.fineract.data.models.customer.Country
 import org.apache.fineract.data.models.teller.Teller
+import org.apache.fineract.data.models.teller.TellerCommand
 import org.apache.fineract.utils.DateUtils
 import java.lang.Exception
 
@@ -122,6 +122,29 @@ class TellerViewModel(private val synchronizationManager: SynchronizationManager
                             }
                         })
                 } catch (exception: Exception) {
+                    _status.value = Status.ERROR
+                }
+            }
+        }
+    }
+
+    fun changeTellerStatus(teller: Teller, command: TellerCommand) {
+        uiScope.launch {
+            withContext(Dispatchers.Main) {
+                try {
+                    _status.value = Status.LOADING
+                    dataManagerTeller.changeTellerStatus(teller, command).subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(object : DisposableCompletableObserver() {
+                            override fun onComplete() {
+                                _status.value = Status.DONE
+                            }
+
+                            override fun onError(e: Throwable) {
+                                _status.value = Status.ERROR
+                            }
+                        })
+                } catch (e: Exception) {
                     _status.value = Status.ERROR
                 }
             }

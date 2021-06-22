@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import butterknife.ButterKnife
+import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_teller_details.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.teller.Teller
@@ -11,6 +12,7 @@ import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.online.teller.TellerAction
 import org.apache.fineract.ui.online.teller.createteller.CreateTellerActivity
+import org.apache.fineract.ui.online.teller.tellertasks.TellerTasksBottomSheetFragment
 import org.apache.fineract.ui.views.CircularImageView
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.Utils
@@ -81,6 +83,12 @@ class TellerDetailsFragment : FineractBaseFragment() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    @OnClick(R.id.tellerDetailsTasks)
+    fun onTasksCardViewClicked() {
+        val bottomSheet = TellerTasksBottomSheetFragment(teller)
+        bottomSheet.show(childFragmentManager, getString(R.string.tasks))
     }
 
     private fun setTellerStatusIcon(status: Teller.State?, imageView: CircularImageView) {

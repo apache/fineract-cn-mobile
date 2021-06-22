@@ -555,6 +555,9 @@
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+    <string name="please_wait_updating_teller_status" translatable="false">"Updating Teller status, please wait..."</string>
+    <string name="error_while_updating_teller_status" translatable="false">Error while updating teller status</string>
+    <string name="please_verify_following_teller_task" translatable="false">Please verify the following tasks before you %1$s this Teller</string>
     <string name="error_while_creating_teller" translatable="false">Error while creating Teller</string>
     <string name="error_while_updating_teller" translatable="false">Error while updating Teller</string>
     <string name="assigned_employee" translatable="false">Assigned Employee</string>
