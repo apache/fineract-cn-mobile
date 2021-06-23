@@ -18,16 +18,15 @@ interface TellersService {
 
     @POST(EndPoints.API_TELLER_PATH + "/offices/{officeIdentifier}/teller")
     fun createTeller(@Path("officeIdentifier") officeIdentifier: String,
-                    @Body teller: Teller): Completable
+                     @Body teller: Teller): Completable
 
     @PUT(EndPoints.API_TELLER_PATH + "/offices/{officeIdentifier}/teller/{tellerIdentifier}")
     fun updateTeller(@Path("officeIdentifier") officeIdentifier: String,
                      @Path("tellerIdentifier") tellerIdentifier: String,
-                    @Body teller: Teller): Completable
+                     @Body teller: Teller): Completable
 
     @POST(EndPoints.API_TELLER_PATH + "/offices/{officeIdentifier}/teller/{tellerIdentifier}/commands")
     fun changeTellerStatus(@Path("officeIdentifier") officeIdentifier: String,
-                      @Path("tellerIdentifier") tellerIdentifier: String,
-                     @Body tellerCommand: TellerCommand): Completable
-
+                           @Path("tellerIdentifier") tellerIdentifier: String,
+                           @Body tellerCommand: TellerCommand): Completable
 }

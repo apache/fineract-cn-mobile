@@ -95,7 +95,7 @@ class TellerTasksBottomSheetFragment(val teller: Teller) : FineractBaseBottomShe
                     ContextCompat.getDrawable(activity!!, R.drawable.ic_check_circle_black_24dp))
                 rootView.ivTellerTask.setColorFilter(ContextCompat.getColor(activity!!, R.color.status))
                 rootView.tvTellerTask.text = getString(R.string.activate)
-        }
+            }
         }
     }
 
@@ -137,7 +137,7 @@ class TellerTasksBottomSheetFragment(val teller: Teller) : FineractBaseBottomShe
 
     @OnClick(R.id.btnTellerSubmitTask)
     fun submitTask() {
-            viewModel.changeTellerStatus(teller, command)
+        viewModel.changeTellerStatus(teller, command)
     }
 
     @OnClick(R.id.btnTellerCancel)
