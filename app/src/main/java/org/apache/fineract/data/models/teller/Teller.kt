@@ -8,22 +8,22 @@ import java.math.BigDecimal
 @Parcelize
 data class Teller(
 
-        @SerializedName("code") val code: String? = null,
-        @SerializedName("password") val password: String? = null,
-        @SerializedName("cashdrawLimit") val cashdrawLimit: BigDecimal? = null,
-        @SerializedName("tellerAccountIdentifier") val tellerAccountIdentifier: String? = null,
-        @SerializedName("vaultAccountIdentifier") val vaultAccountIdentifier: String? = null,
-        @SerializedName("chequesReceivableAccount") val chequesReceivableAccount: String? = null,
-        @SerializedName("cashOverShortAccount") val cashOverShortAccount: String? = null,
-        @SerializedName("denominationRequired") val denominationRequired: Boolean = false,
-        @SerializedName("assignedEmployee") val assignedEmployee: String? = null,
-        @SerializedName("state") val state: State? = null,
-        @SerializedName("createdBy") val createdBy: String? = null,
-        @SerializedName("createdOn") val createdOn: String? = null,
-        @SerializedName("lastModifiedBy") val lastModifiedBy: String? = null,
-        @SerializedName("lastModifiedOn") val lastModifiedOn: String? = null,
-        @SerializedName("lastOpenedBy") val lastOpenedBy: String? = null,
-        @SerializedName("lastOpenedOn") val lastOpenedOn: String? = null
+        @SerializedName("code") var code: String? = null,
+        @SerializedName("password") var password: String? = null,
+        @SerializedName("cashdrawLimit") var cashdrawLimit: BigDecimal? = null,
+        @SerializedName("tellerAccountIdentifier") var tellerAccountIdentifier: String? = null,
+        @SerializedName("vaultAccountIdentifier") var vaultAccountIdentifier: String? = null,
+        @SerializedName("chequesReceivableAccount") var chequesReceivableAccount: String? = null,
+        @SerializedName("cashOverShortAccount") var cashOverShortAccount: String? = null,
+        @SerializedName("denominationRequired") var denominationRequired: Boolean = false,
+        @SerializedName("assignedEmployee") var assignedEmployee: String? = null,
+        @SerializedName("state") var state: State? = null,
+        @SerializedName("createdBy") var createdBy: String? = null,
+        @SerializedName("createdOn") var createdOn: String? = null,
+        @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null,
+        @SerializedName("lastModifiedOn") var lastModifiedOn: String? = null,
+        @SerializedName("lastOpenedBy") var lastOpenedBy: String? = null,
+        @SerializedName("lastOpenedOn") var lastOpenedOn: String? = null
 
 ) : Parcelable {
 

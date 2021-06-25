@@ -59,6 +59,11 @@ import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
+import org.apache.fineract.ui.online.teller.createteller.CreateTellerActivity;
+import org.apache.fineract.ui.online.teller.createteller.TellerDetailsStepFragment;
+import org.apache.fineract.ui.online.teller.createteller.TellerReviewStepFragment;
+import org.apache.fineract.ui.online.teller.tellerdetails.TellerDetailsFragment;
+import org.apache.fineract.ui.online.teller.tellertasks.TellerTasksBottomSheetFragment;
 import org.apache.fineract.ui.product.ProductFragment;
 
 import dagger.Subcomponent;
@@ -159,5 +164,15 @@ public interface ActivityComponent {
     void inject(GroupDetailsFragment groupDetailsFragment);
 
     void inject(GroupTasksBottomSheetFragment groupTasksBottomSheetFragment);
+
+    void inject(TellerDetailsFragment tellerDetailsFragment);
+
+    void inject(CreateTellerActivity createTellerActivity);
+
+    void inject(TellerDetailsStepFragment tellerDetailsStepFragment);
+
+    void inject(TellerReviewStepFragment tellerReviewStepFragment);
+
+    void inject(TellerTasksBottomSheetFragment tellerTasksBottomSheetFragment);
 }
 
