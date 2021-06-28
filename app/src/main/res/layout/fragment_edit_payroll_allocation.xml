@@ -20,6 +20,6 @@
         android:clickable="true"
         android:focusable="true"
         android:tint="@color/white"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        app:srcCompat="@drawable/ic_add_white_48dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
