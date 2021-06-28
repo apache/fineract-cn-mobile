@@ -108,15 +108,48 @@ class AddGroupMemberStepFragment : FineractBaseFragment(), Step, NameListAdapter
                         .addErrorCallback { etNewMember.error = it }.check()) {
             if (currentAction == GroupAction.CREATE) {
                 members.add(etNewMember.text.toString())
+                hideAddMemberView()
             } else {
-                members[editItemPosition] = etNewMember.text.toString()
+                if (members[editItemPosition] != etNewMember.text.toString()) {
+                    showUpdateDeleteDialog(editItemPosition, getString(R.string.update),
+                            getString(R.string.dialog_title_confirm_updation),
+                            getString(R.string.dialog_message_confirm_name_updation, members[editItemPosition]))
+                } else {
+                    hideAddMemberView()
+                }
             }
-            etNewMember.text.clear()
-            llAddMember.visibility = View.GONE
-            Utils.hideKeyboard(context, etNewMember)
-            showRecyclerView(true)
-            nameLisAdapter.submitList(members)
         }
+    }
+
+    private fun hideAddMemberView() {
+        etNewMember.text.clear()
+        llAddMember.visibility = View.GONE
+        Utils.hideKeyboard(context, etNewMember)
+        showRecyclerView(true)
+        nameLisAdapter.submitList(members)
+    }
+
+    private fun showUpdateDeleteDialog(selectedItem: Int, action: String?, title: String?, msg: String?) {
+        MaterialDialog.Builder().init(context).apply {
+            setTitle(title)
+            setMessage(msg)
+            setPositiveButton(action)
+            { dialog: DialogInterface?, _ ->
+                if (action.equals(getString(R.string.update))) {
+                    members[selectedItem] = etNewMember.text.toString()
+                    hideAddMemberView()
+                } else if (action.equals(getString(R.string.delete))) {
+                    members.removeAt(selectedItem)
+                    nameLisAdapter.submitList(members)
+                    if (members.size == 0) {
+                        showRecyclerView(false)
+                    }
+                }
+                dialog?.dismiss()
+            }
+            setNegativeButton(getString(R.string.dialog_action_cancel))
+            createMaterialDialog()
+        }.run { show() }
     }
 
     fun showRecyclerView(isShow: Boolean) {
@@ -159,20 +192,8 @@ class AddGroupMemberStepFragment : FineractBaseFragment(), Step, NameListAdapter
     }
 
     override fun onDeleteClicked(position: Int) {
-        MaterialDialog.Builder().init(context).apply {
-            setTitle(getString(R.string.dialog_title_confirm_deletion))
-            setMessage(getString(R.string.dialog_message_confirm_name_deletion, members[position]))
-            setPositiveButton(getString(R.string.delete)
-            ) { dialog: DialogInterface?, _ ->
-                members.removeAt(position)
-                nameLisAdapter.submitList(members)
-                if (members.size == 0) {
-                    showRecyclerView(false)
-                }
-                dialog?.dismiss()
-            }
-            setNegativeButton(getString(R.string.dialog_action_cancel))
-            createMaterialDialog()
-        }.run { show() }
+        showUpdateDeleteDialog(position, getString(R.string.delete),
+                getString(R.string.dialog_title_confirm_deletion),
+                getString(R.string.dialog_message_confirm_name_deletion, members[position]))
     }
 }

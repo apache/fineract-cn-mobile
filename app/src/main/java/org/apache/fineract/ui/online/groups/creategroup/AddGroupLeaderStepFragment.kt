@@ -14,7 +14,6 @@ import com.stepstone.stepper.VerificationError
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import kotlinx.android.synthetic.main.fragment_step_add_group_leader.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_leader.view.*
-import kotlinx.android.synthetic.main.fragment_step_add_group_member.view.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_member.view.rv_name
 import org.apache.fineract.R
 import org.apache.fineract.ui.adapters.NameListAdapter
@@ -111,14 +110,46 @@ class AddGroupLeaderStepFragment : FineractBaseFragment(), Step, NameListAdapter
             if (currentAction == GroupAction.CREATE) {
                 leaders.add(etNewLeader.text.toString())
             } else {
-                leaders[editItemPosition] = etNewLeader.text.toString()
+                if (leaders[editItemPosition] != etNewLeader.text.toString()) {
+                    showUpdateDeleteDialog(editItemPosition, getString(R.string.update),
+                            getString(R.string.dialog_title_confirm_updation),
+                            getString(R.string.dialog_message_confirm_name_updation, leaders[editItemPosition]))
+                } else {
+                    hideAddLeaderView()
+                }
             }
-            etNewLeader.text.clear()
-            llAddLeader.visibility = View.GONE
-            Utils.hideKeyboard(context, etNewLeader)
-            showRecyclerView(true)
-            nameLisAdapter.submitList(leaders)
         }
+    }
+
+    private fun hideAddLeaderView() {
+        etNewLeader.text.clear()
+        llAddLeader.visibility = View.GONE
+        Utils.hideKeyboard(context, etNewLeader)
+        showRecyclerView(true)
+        nameLisAdapter.submitList(leaders)
+    }
+
+    private fun showUpdateDeleteDialog(selectedItem: Int, action: String?, title: String?, msg: String?) {
+        MaterialDialog.Builder().init(context).apply {
+            setTitle(title)
+            setMessage(msg)
+            setPositiveButton(action)
+            { dialog: DialogInterface?, _ ->
+                if (action.equals(getString(R.string.update))) {
+                    leaders[selectedItem] = etNewLeader.text.toString()
+                    hideAddLeaderView()
+                } else if (action.equals(getString(R.string.delete))) {
+                    leaders.removeAt(selectedItem)
+                    nameLisAdapter.submitList(leaders)
+                    if (leaders.size == 0) {
+                        showRecyclerView(false)
+                    }
+                }
+                dialog?.dismiss()
+            }
+            setNegativeButton(getString(R.string.dialog_action_cancel))
+            createMaterialDialog()
+        }.run { show() }
     }
 
     fun showRecyclerView(isShow: Boolean) {
@@ -161,21 +192,9 @@ class AddGroupLeaderStepFragment : FineractBaseFragment(), Step, NameListAdapter
     }
 
     override fun onDeleteClicked(position: Int) {
-        MaterialDialog.Builder().init(context).apply {
-            setTitle(getString(R.string.dialog_title_confirm_deletion))
-            setMessage(getString(R.string.dialog_message_confirm_name_deletion, leaders[position]))
-            setPositiveButton(getString(R.string.delete)
-            ) { dialog: DialogInterface?, _ ->
-                leaders.removeAt(position)
-                nameLisAdapter.submitList(leaders)
-                if (leaders.size == 0) {
-                    showRecyclerView(false)
-                }
-                dialog?.dismiss()
-            }
-            setNegativeButton(getString(R.string.dialog_action_cancel))
-            createMaterialDialog()
-        }.run { show() }
+        showUpdateDeleteDialog(position, getString(R.string.delete),
+                getString(R.string.dialog_title_confirm_deletion),
+                getString(R.string.dialog_message_confirm_name_deletion, leaders[position]))
     }
 
 }
