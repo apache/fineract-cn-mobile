@@ -102,14 +102,19 @@ class AddGroupMemberStepFragment : FineractBaseFragment(), Step, NameListAdapter
     @Optional
     @OnClick(R.id.btnAddMember)
     fun addMember() {
+        if (etNewMember.text.toString().trim().isEmpty()) {
+            etNewMember.error = getString(R.string.leader_member_empty,
+                    getString(R.string.members))
+            return
+        }
         if (etNewMember.validator()
                         .nonEmpty()
                         .noNumbers()
                         .addErrorCallback { etNewMember.error = it }.check()) {
             if (currentAction == GroupAction.CREATE) {
-                members.add(etNewMember.text.toString())
+                members.add(etNewMember.text.toString().trim())
             } else {
-                members[editItemPosition] = etNewMember.text.toString()
+                members[editItemPosition] = etNewMember.text.toString().trim()
             }
             etNewMember.text.clear()
             llAddMember.visibility = View.GONE

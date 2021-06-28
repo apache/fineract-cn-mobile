@@ -281,6 +281,7 @@
     <string name="two_warning_message">%1$s \n %1$s</string>
     <string name="invalid_country">Invalid country</string>
     <string name="invalid_email">Invalid email</string>
+    <string name="leader_member_empty">%s name cannot be empty</string>
 
 
     <!--Error Message-->
