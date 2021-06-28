@@ -3,9 +3,11 @@ package org.apache.fineract.ui.online.customers.createcustomer;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.textfield.TextInputLayout;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -16,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.stepstone.stepper.Step;
 import com.stepstone.stepper.VerificationError;
@@ -33,6 +37,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 /**
@@ -75,6 +80,12 @@ public class FormCustomerDetailsFragment extends FineractBaseFragment implements
 
     @BindView(R.id.cb_is_member)
     CheckBox cbIsmember;
+
+    @BindView(R.id.tv_member_status)
+    TextView tvMemberStatus;
+
+    @BindView(R.id.iv_edit_is_member)
+    ImageView ivEditIsMember;
 
     View rootView;
 
@@ -144,6 +155,9 @@ public class FormCustomerDetailsFragment extends FineractBaseFragment implements
     }
 
     public void showPreviousCustomerDetails() {
+        tvMemberStatus.setVisibility(View.VISIBLE);
+        ivEditIsMember.setVisibility(View.VISIBLE);
+        cbIsmember.setVisibility(View.GONE);
         etAccount.setText(customer.getIdentifier());
         etAccount.setEnabled(false);
         etFirstName.setText(customer.getGivenName());
@@ -152,6 +166,7 @@ public class FormCustomerDetailsFragment extends FineractBaseFragment implements
         }
         etLastName.setText(customer.getSurname());
         cbIsmember.setChecked(customer.getMember());
+        setIsMemberStatus();
         dateOfBirth = customer.getDateOfBirth();
 
         calendar.set(Calendar.YEAR, dateOfBirth.getYear());
@@ -296,6 +311,48 @@ public class FormCustomerDetailsFragment extends FineractBaseFragment implements
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnNavigationBarListener.CustomerDetails");
+        }
+    }
+
+    @OnClick(R.id.iv_edit_is_member)
+    void editIsMember() {
+        if (tvMemberStatus.getVisibility() == View.VISIBLE) {
+            tvMemberStatus.setVisibility(View.GONE);
+            cbIsmember.setVisibility(View.VISIBLE);
+            ivEditIsMember.setImageResource(R.drawable.ms_ic_check);
+        } else {
+            tvMemberStatus.setVisibility(View.VISIBLE);
+            cbIsmember.setVisibility(View.GONE);
+            ivEditIsMember.setImageResource(R.drawable.ic_edit_black_24dp);
+        }
+    }
+
+    @OnCheckedChanged(R.id.cb_is_member)
+    void setIsMemberStatus() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (cbIsmember.isChecked()) {
+                tvMemberStatus.
+                        setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.ic_check_circle_black_24dp, 0, 0, 0);
+            } else {
+                tvMemberStatus.
+                        setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        R.drawable.ic_cross_cricle_red_24dp, 0, 0, 0);
+            }
+        } else {
+            if (cbIsmember.isChecked()) {
+                tvMemberStatus.setCompoundDrawables(
+                        getResources().getDrawable(R.drawable.ic_check_circle_black_24dp),
+                        getResources().getDrawable(0),
+                        getResources().getDrawable(0),
+                        getResources().getDrawable(0));
+            } else {
+                tvMemberStatus.setCompoundDrawables(
+                        getResources().getDrawable(R.drawable.ic_cross_cricle_red_24dp),
+                        getResources().getDrawable(0),
+                        getResources().getDrawable(0),
+                        getResources().getDrawable(0));
+            }
         }
     }
 }
