@@ -15,6 +15,7 @@ import org.apache.fineract.data.models.loan.CreditWorthinessSnapshot;
 import org.apache.fineract.ui.adapters.LoanDebtIncomeAdapter;
 import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.FineractBaseFragment;
+import org.apache.fineract.utils.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -194,26 +195,45 @@ public abstract class BaseFragmentDebtIncome extends FineractBaseFragment implem
 
     @Override
     public void onClickDelete(CreditWorthinessSource creditWorthinessSource, int position) {
+        String msg = "";
         switch (creditWorthinessSource) {
             case DEBT:
-                debtCreditWorthinessFactors.remove(position);
-                debtAdapter.notifyDataSetChanged();
-                if (debtAdapter.getItemCount() == 0) {
-                    tvEmptyDebtList.setVisibility(View.VISIBLE);
-                    rvDebt.setVisibility(View.GONE);
-                }
-                updateDebtsAndRatio();
+                msg = debtCreditWorthinessFactors.get(position).getDescription();
                 break;
             case INCOME:
-                incomeCreditWorthinessFactors.remove(position);
-                incomeAdapter.notifyDataSetChanged();
-                if (incomeAdapter.getItemCount() == 0) {
-                    tvEmptyIncomeList.setVisibility(View.VISIBLE);
-                    rvIncome.setVisibility(View.GONE);
-                }
-                updateIncomeAndRatio();
+                msg = incomeCreditWorthinessFactors.get(position).getDescription();
                 break;
         }
+        new MaterialDialog.Builder()
+                .init(getContext())
+                .setTitle(getString(R.string.dialog_title_confirm_deletion))
+                .setMessage(getString(R.string.dialog_message_confirm_name_deletion, msg))
+                .setPositiveButton(getString(R.string.delete),
+                        (dialog, which) -> {
+                            switch (creditWorthinessSource) {
+                                case DEBT:
+                                    debtCreditWorthinessFactors.remove(position);
+                                    debtAdapter.notifyDataSetChanged();
+                                    if (debtAdapter.getItemCount() == 0) {
+                                        tvEmptyDebtList.setVisibility(View.VISIBLE);
+                                        rvDebt.setVisibility(View.GONE);
+                                    }
+                                    updateDebtsAndRatio();
+                                    break;
+                                case INCOME:
+                                    incomeCreditWorthinessFactors.remove(position);
+                                    incomeAdapter.notifyDataSetChanged();
+                                    if (incomeAdapter.getItemCount() == 0) {
+                                        tvEmptyIncomeList.setVisibility(View.VISIBLE);
+                                        rvIncome.setVisibility(View.GONE);
+                                    }
+                                    updateIncomeAndRatio();
+                                    break;
+                            }
+                        })
+                .setNegativeButton(getString(R.string.dialog_action_cancel))
+                .createMaterialDialog()
+                .show();
     }
 
     public void showDebtIncomeBottomSheet(CreditWorthinessSource creditWorthinessSource,
