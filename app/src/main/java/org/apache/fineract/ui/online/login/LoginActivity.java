@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.mifos.mobile.passcode.utils.PassCodeConstants;
 
 import org.apache.fineract.R;
@@ -36,6 +37,9 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
 
     @BindView(R.id.et_password)
     EditText etPassword;
+
+    @BindView(R.id.password_layout)
+    TextInputLayout passwordLayout;
 
     @Inject
     LoginPresenter loginPresenter;
@@ -73,7 +77,7 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
 
         String password = etPassword.getEditableText().toString();
         if (TextUtils.isEmpty(password)) {
-            etPassword.setError(getString(R.string.error_password_required));
+            passwordLayout.setError(getString(R.string.error_password_required));
             return;
         }
 
