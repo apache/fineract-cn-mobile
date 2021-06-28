@@ -101,6 +101,7 @@
     <string name="debt_income">കടം വരുമാനം</string>
     <string name="name">പേര്</string>
     <string name="browse">ബ്രൌസ് ചെയ്യുക...</string>
+    <string name="take_photo_for_btn">ഫോട്ടോ എടുക്കുക</string>
     <string name="fetching_customer_please_wait">ഉപഭോക്താവിനെ ലഭ്യമാക്കൽ ദയവായി കാത്തിരിക്കുക ...</string>
     <string name="creating_loan_please_wait">വായ്പ സൃഷ്ടിക്കുന്നു കാത്തിരിക്കൂ…</string>
     <string name="updating_customer_please_wait">ഉപഭോക്താവിനെ അപ്ഡേറ്റുചെയ്യുന്നത് ദയവായി കാത്തിരിക്കുക ...</string>
