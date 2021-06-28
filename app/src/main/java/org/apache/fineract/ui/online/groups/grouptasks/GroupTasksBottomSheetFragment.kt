@@ -120,6 +120,11 @@ class GroupTasksBottomSheetFragment(val group: Group) : FineractBaseBottomSheetD
 
     @OnClick(R.id.btn_submit_task)
     fun submitTask() {
+        if (rootView.et_comment.text.toString().isEmpty()) {
+            rootView.et_comment.error =
+                    getString(R.string.required)
+            return
+        }
         command.comment = rootView.et_comment.text.toString().trim { it <= ' ' }
         rootView.et_comment.isEnabled = false
         group.identifier?.let {
