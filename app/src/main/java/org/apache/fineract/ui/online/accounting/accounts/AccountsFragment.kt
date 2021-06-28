@@ -90,6 +90,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
         val searchView = menu?.findItem(R.id.account_search)?.actionView as? SearchView
 
         searchView?.setSearchableInfo(searchManager?.getSearchableInfo(activity?.componentName))
+        searchView?.maxWidth = Int.MAX_VALUE
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {

@@ -204,6 +204,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
         final SearchView searchView = (SearchView) menu.findItem(
                 R.id.identification_search).getActionView();
         searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

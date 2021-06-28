@@ -268,6 +268,7 @@ public class CustomersFragment extends FineractBaseFragment implements Customers
         SearchView searchView = (SearchView) menu.findItem(
                 R.id.menu_customer_search).getActionView();
         searchView.setSearchableInfo(manager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
