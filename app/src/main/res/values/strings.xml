@@ -281,6 +281,8 @@
     <string name="two_warning_message">%1$s \n %1$s</string>
     <string name="invalid_country">Invalid country</string>
     <string name="invalid_email">Invalid email</string>
+    <string name="account_should_not_be_empty">Account should not be empty</string>
+    <string name="amount_should_be_greater_than_zero">Amount should be greater than 0</string>
 
 
     <!--Error Message-->

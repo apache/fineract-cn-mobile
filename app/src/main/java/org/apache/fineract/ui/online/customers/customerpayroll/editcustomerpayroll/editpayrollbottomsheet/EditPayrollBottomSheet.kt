@@ -27,9 +27,7 @@ class EditPayrollBottomSheet : BottomSheetDialogFragment() {
 
         rootView.btnAddAllocation.setOnClickListener {
 
-            if (!rootView.etAccount.text.isBlank()
-                    && !rootView.etAmount.text.isBlank()) {
-
+            if (accountValidation(rootView) && amountValidation(rootView)) {
                 val updatedPayrollAllocation = PayrollAllocation(accountNumber =
                 rootView.etAccount.text.toString(),
                         amount = BigDecimal(rootView.etAmount.text.toString()),
@@ -67,6 +65,21 @@ class EditPayrollBottomSheet : BottomSheetDialogFragment() {
 
 
         return bottomSheetDialog
+    }
+
+    private fun accountValidation(rootView: View): Boolean {
+        return if (rootView.etAccount.text.isEmpty()) {
+            rootView.tlEtAccount.error = getString(R.string.account_should_not_be_empty)
+            false
+        } else true
+    }
+
+    private fun amountValidation(rootView: View): Boolean {
+        return if (rootView.etAmount.text.isEmpty() ||
+                rootView.etAmount.text.toString().toBigDecimal() <= BigDecimal.ZERO) {
+            rootView.tlEtAmount.error = getString(R.string.amount_should_be_greater_than_zero)
+            false
+        } else true
     }
 
     fun addPayrollSource(payrollSource: PayrollSource) {
