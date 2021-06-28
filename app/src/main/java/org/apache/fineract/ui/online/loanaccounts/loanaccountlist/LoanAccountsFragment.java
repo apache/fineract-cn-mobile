@@ -4,6 +4,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +17,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.LoanAccount;
@@ -53,6 +57,9 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
 
     @BindView(R.id.layout_error)
     View layoutError;
+
+    @BindView(R.id.fab_add_customer_loan)
+    FloatingActionButton fabAddCustomerLoan;
 
     @Inject
     LoanAccountsPresenter customerLoansPresenter;
@@ -140,6 +147,18 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
                 customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, page, true);
+            }
+        });
+
+        rvCustomerLoans.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    fabAddCustomerLoan.show();
+                } else {
+                    fabAddCustomerLoan.hide();
+                }
             }
         });
     }
