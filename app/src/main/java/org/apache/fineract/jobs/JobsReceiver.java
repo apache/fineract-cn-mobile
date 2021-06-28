@@ -10,7 +10,6 @@ import androidx.core.app.NotificationCompat;
 
 import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
-import org.apache.fineract.ui.online.DashboardActivity;
 
 public class JobsReceiver extends BroadcastReceiver {
 
@@ -48,9 +47,10 @@ public class JobsReceiver extends BroadcastReceiver {
                 .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(msg)
                 .setAutoCancel(true);
-        Intent intent = new Intent(context, DashboardActivity.class);
-        PendingIntent pi = PendingIntent.getActivity(context, 0, intent,
+
+        PendingIntent pi = PendingIntent.getActivity(context, 0, new Intent(),
                 PendingIntent.FLAG_UPDATE_CURRENT);
+
         mBuilder.setContentIntent(pi);
         mNotificationManager.notify(123, mBuilder.build());
     }
