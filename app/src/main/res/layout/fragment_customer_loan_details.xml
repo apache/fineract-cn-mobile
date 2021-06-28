@@ -15,7 +15,7 @@
         android:id="@+id/ncv_customer_loan_details"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:visibility="invisible"
+        android:visibility="visible"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
@@ -121,7 +121,7 @@
                                 android:layout_gravity="center"
                                 android:layout_height="35dp"
                                 android:layout_width="35dp"
-                                app:srcCompat="@drawable/ic_account_balance_black_24dp"/>
+                                app:srcCompat="@drawable/ic_amount_black_24dp"/>
 
                             <LinearLayout
                                 android:layout_height="wrap_content"
@@ -467,7 +467,7 @@
                                 android:layout_gravity="center"
                                 android:layout_height="35dp"
                                 android:layout_width="35dp"
-                                app:srcCompat="@drawable/ic_show_chart_black_24dp"/>
+                                app:srcCompat="@drawable/ic_report_graph_black_24dp"/>
 
                             <LinearLayout
                                 android:layout_height="wrap_content"

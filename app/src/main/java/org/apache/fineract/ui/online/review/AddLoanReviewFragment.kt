@@ -129,7 +129,7 @@ class AddLoanReviewFragment : FineractBaseFragment(), Step {
         tvShortName.text = loanAccount?.identifier
         tvPrincipalAmount.text = loanParameters?.maximumBalance.toString()
         tvTerm.text = loanParameters?.termRange?.maximum.toString()
-        tvTermUnitType.text = loanParameters?.termRange?.temporalUnit
+        tvTermUnitType.text = loanParameters?.termRange?.temporalUnit?.toLowerCase()
         tvRepay.text = loanParameters?.paymentCycle?.period.toString()
         tvRepayUnitType.text = repayUnit
 
