@@ -14,6 +14,7 @@ import com.stepstone.stepper.VerificationError
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
 import kotlinx.android.synthetic.main.fragment_step_add_group_leader.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_leader.view.*
+import kotlinx.android.synthetic.main.fragment_step_add_group_member.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_member.view.*
 import kotlinx.android.synthetic.main.fragment_step_add_group_member.view.rv_name
 import org.apache.fineract.R
@@ -146,6 +147,10 @@ class AddGroupLeaderStepFragment : FineractBaseFragment(), Step, NameListAdapter
         if (leaders.size == 0) {
             Toast.makeText(context, getString(R.string.error_group_atleast_1_member), Toast.LENGTH_SHORT).show()
             return VerificationError("")
+        }
+        if (llAddLeader.visibility == View.VISIBLE) {
+            etNewLeader.text.clear()
+            llAddLeader.visibility = View.GONE
         }
         (activity as CreateGroupActivity).setLeaders(leaders)
         return null
