@@ -13,9 +13,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -280,7 +283,12 @@ public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialo
 
     @OnClick(R.id.btn_cancel)
     void onCancel() {
-        dismiss();
+        llEditActions.setVisibility(View.VISIBLE);
+        llEditActionForm.setVisibility(View.GONE);
+        ivCustomerPicture.setImageDrawable(
+                getResources().getDrawable(R.drawable.ic_account_circle_black_24dp));
+        file = null;
+        tvImageName.setText(R.string.no_file_selected_yet);
     }
 
     @OnClick(R.id.btn_upload_photo)
@@ -319,6 +327,12 @@ public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialo
             ivCustomerPicture.setImageBitmap(imageBitmap);
 
             showImageSizeExceededOrNot();
+            tvHeader.setText(R.string.camera);
+            btnChooseSelectPhoto.setText(R.string.retake_photo);
+            btnChooseSelectPhoto.setCompoundDrawablesWithIntrinsicBounds(
+                    R.drawable.ic_camera_enhance_black_24dp, 0, 0, 0);
+            llEditActions.setVisibility(View.GONE);
+            llEditActionForm.setVisibility(View.VISIBLE);
 
         } else if (requestCode == REQUEST_PHOTO_FROM_GALLERY && resultCode == Activity.RESULT_OK) {
             if (data == null) {
@@ -335,20 +349,17 @@ public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialo
 
     @Override
     public void onClick(View v) {
-        llEditActions.setVisibility(View.GONE);
-        llEditActionForm.setVisibility(View.VISIBLE);
         switch (v.getId()) {
             case R.id.ll_gallery:
                 editAction = EditAction.GALLERY;
                 tvHeader.setText(R.string.gallery);
                 btnChooseSelectPhoto.setText(R.string.choose_file);
+                llEditActions.setVisibility(View.GONE);
+                llEditActionForm.setVisibility(View.VISIBLE);
                 break;
             case R.id.ll_camera:
+                openCamera();
                 editAction = EditAction.CAMERA;
-                tvHeader.setText(R.string.camera);
-                btnChooseSelectPhoto.setText(R.string.take_photo);
-                btnChooseSelectPhoto.setCompoundDrawablesWithIntrinsicBounds(
-                        R.drawable.ic_camera_enhance_black_24dp, 0, 0, 0);
                 break;
             case R.id.ll_delete:
                 editAction = EditAction.DELETE;

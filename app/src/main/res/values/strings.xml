@@ -169,7 +169,7 @@
     <string name="edit_selected_file">Selected file:</string>
     <string name="no_file_selected_yet">No file selected yet.</string>
     <string name="choose_file">Choose a file (max size 512 KB)</string>
-    <string name="take_photo">Take photo (max size 512 KB)</string>
+    <string name="retake_photo">Retake photo (max size 512 KB)</string>
     <string name="are_sure_want_remove_portrait">Are you sure? you want to delete portrait.</string>
     <string name="delete">Delete</string>
     <string name="uploading_portrait">Uploading portrait please wait…</string>
