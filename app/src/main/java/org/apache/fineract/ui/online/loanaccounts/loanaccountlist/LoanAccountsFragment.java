@@ -16,6 +16,8 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import org.apache.fineract.R;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.ui.adapters.LoanAccountListAdapter;
@@ -53,6 +55,9 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
 
     @BindView(R.id.layout_error)
     View layoutError;
+
+    @BindView(R.id.fab_add_customer_loan)
+    FloatingActionButton floatingActionButton;
 
     @Inject
     LoanAccountsPresenter customerLoansPresenter;
@@ -140,6 +145,22 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
             @Override
             public void onLoadMore(int page, int totalItemsCount) {
                 customerLoansPresenter.fetchCustomerLoanAccounts(customerIdentifier, page, true);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView view, int dx, int dy) {
+                if (dy > 0 || dy < 0 && floatingActionButton.isShown()) {
+                    floatingActionButton.hide();
+                }
+                super.onScrolled(view, dx, dy);
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    floatingActionButton.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
             }
         });
     }
