@@ -1,5 +1,6 @@
 package org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import com.stepstone.stepper.StepperLayout
@@ -13,6 +14,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.Toaster
 import org.apache.fineract.ui.online.accounting.accounts.EditPayrollContract
 import org.apache.fineract.utils.ConstantKeys
+import org.apache.fineract.utils.MaterialDialog
 import javax.inject.Inject
 
 class EditPayrollActivity : FineractBaseActivity(), StepperLayout.StepperListener,
@@ -83,6 +85,18 @@ class EditPayrollActivity : FineractBaseActivity(), StepperLayout.StepperListene
 
     override fun showError(message: String?) {
         Toaster.show(findViewById(android.R.id.content), message)
+    }
+
+    override fun onBackPressed() {
+        MaterialDialog.Builder()
+                .init(this)
+                .setTitle(getString(R.string.dialog_title_confirm_back))
+                .setMessage(getString(R.string.dialog_message_confirmation_back))
+                .setPositiveButton(getString(R.string.dialog_action_go_back)
+                ) { _: DialogInterface?, _: Int -> super.onBackPressed() }
+                .setNegativeButton(getString(R.string.dialog_action_stay))
+                .createMaterialDialog()
+                .show()
     }
 
     override fun onDestroy() {

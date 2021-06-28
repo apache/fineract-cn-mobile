@@ -20,6 +20,7 @@ import org.apache.fineract.ui.online.customers.createcustomer.CustomerAction;
 import org.apache.fineract.ui.online.customers.createcustomer.OnNavigationBarListener;
 import org.apache.fineract.ui.online.customers.customerdetails.CustomerDetailsActivity;
 import org.apache.fineract.utils.ConstantKeys;
+import org.apache.fineract.utils.MaterialDialog;
 
 import java.util.List;
 
@@ -202,6 +203,20 @@ public class CreateCustomerActivity extends FineractBaseActivity
     public void showError(String message) {
         stepperLayout.setNextButtonEnabled(true);
         Toaster.show(findViewById(android.R.id.content), message);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new MaterialDialog.Builder()
+                .init(this)
+                .setTitle(getString(R.string.dialog_title_confirm_back))
+                .setMessage(getString(R.string.dialog_message_confirmation_back))
+                .setPositiveButton(getString(R.string.dialog_action_go_back),
+                        (dialog, which) -> super.onBackPressed()
+                )
+                .setNegativeButton(getString(R.string.dialog_action_stay))
+                .createMaterialDialog()
+                .show();
     }
 
     @Override
