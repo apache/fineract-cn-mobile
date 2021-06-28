@@ -17,10 +17,11 @@
         android:id="@+id/imageView"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:paddingTop="@dimen/layout_padding_8dp"
         app:srcCompat="@android:drawable/sym_def_app_icon"/>
 
     <TextView
+        android:id="@+id/nav_user_name"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
@@ -31,10 +32,12 @@
         android:typeface="monospace"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/nav_user_tenant"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:textColor="@color/white"
-        android:text="rajanmaurya154@gmail.com"/>
+        android:paddingTop="@dimen/layout_padding_8dp"
+        android:text="rajanmaurya154@gmail.com"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"/>
 
 </LinearLayout>

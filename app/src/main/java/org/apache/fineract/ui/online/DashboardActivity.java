@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.fineract.R;
@@ -79,6 +80,11 @@ public class DashboardActivity extends FineractBaseActivity implements
 
     public void setupNavigationBar() {
         navigationView.setNavigationItemSelectedListener(this);
+
+        TextView userName = navigationView.getHeaderView(0).findViewById(R.id.nav_user_name);
+        TextView tenantName = navigationView.getHeaderView(0).findViewById(R.id.nav_user_tenant);
+        userName.setText(preferencesHelper.getUserName());
+        tenantName.setText(preferencesHelper.getTenantIdentifier());
 
         // setup drawer layout and sync to toolbar
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,
