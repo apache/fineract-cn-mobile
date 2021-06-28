@@ -1,6 +1,7 @@
 package org.apache.fineract.ui.online.login;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
@@ -56,28 +57,36 @@ public class LoginActivity extends FineractBaseActivity implements LoginContract
 
     @OnClick(R.id.btn_login)
     void onLogin() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        if (cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected()) {
 
-        String tenantIdentifier = etTenant.getEditableText().toString();
-        if (!TextUtils.isEmpty(tenantIdentifier)) {
-            preferencesHelper.putTenantIdentifier(tenantIdentifier);
+            String tenantIdentifier = etTenant.getEditableText().toString();
+            if (!TextUtils.isEmpty(tenantIdentifier)) {
+                preferencesHelper.putTenantIdentifier(tenantIdentifier);
+            } else {
+                etTenant.setError(getString(R.string.error_tenant_identifier_required));
+                return;
+            }
+
+            String username = etUsername.getEditableText().toString();
+            if (TextUtils.isEmpty(username)) {
+                etUsername.setError(getString(R.string.error_username_required));
+                return;
+            }
+
+            String password = etPassword.getEditableText().toString();
+            if (TextUtils.isEmpty(password)) {
+                etPassword.setError(getString(R.string.error_password_required));
+                return;
+            }
+
+            loginPresenter.login(username, password);
         } else {
-            etTenant.setError(getString(R.string.error_tenant_identifier_required));
-            return;
+            if (this.getCurrentFocus() != null) {
+                hideKeyboard(this.getCurrentFocus());
+            }
+            showNoInternetConnection();
         }
-
-        String username = etUsername.getEditableText().toString();
-        if (TextUtils.isEmpty(username)) {
-            etUsername.setError(getString(R.string.error_username_required));
-            return;
-        }
-
-        String password = etPassword.getEditableText().toString();
-        if (TextUtils.isEmpty(password)) {
-            etPassword.setError(getString(R.string.error_password_required));
-            return;
-        }
-
-        loginPresenter.login(username, password);
     }
 
     @Override
