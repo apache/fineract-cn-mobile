@@ -1,11 +1,12 @@
 package org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.stepstone.stepper.Step
 import com.stepstone.stepper.VerificationError
@@ -16,12 +17,11 @@ import org.apache.fineract.data.models.payroll.PayrollConfiguration
 import org.apache.fineract.ui.adapters.PayrollAllocationAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
-import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
-        .editpayrollbottomsheet.EditPayrollBottomSheet
-import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll
-        .editpayrollbottomsheet.OnBottomSheetDialogListener
+import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll.editpayrollbottomsheet.EditPayrollBottomSheet
+import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll.editpayrollbottomsheet.OnBottomSheetDialogListener
 import org.apache.fineract.ui.online.customers.customerpayroll.editcustomerpayroll.editpayrollbottomsheet.PayrollSource
 import org.apache.fineract.utils.ConstantKeys
+import org.apache.fineract.utils.MaterialDialog
 import javax.inject.Inject
 
 
@@ -107,14 +107,15 @@ class EditPayrollAllocationFragment : FineractBaseFragment(), Step,
     }
 
     override fun onClickDelete(payrollAllocation: PayrollAllocation, position: Int) {
-        payrollAllocations.removeAt(position)
-        payrollAllocationAdapter.setPayrollAllocations(payrollAllocations)
+        dialog(position, getString(R.string.dialog_title_confirm_deletion),
+                getString(R.string.dialog_message_confirm_name_deletion, "Payroll"),
+                getString(R.string.delete), null)
     }
 
     override fun editPayrollAllocation(payrollAllocation: PayrollAllocation, position: Int) {
-        payrollAllocations.removeAt(position)
-        payrollAllocations.add(position, payrollAllocation)
-        payrollAllocationAdapter.setPayrollAllocations(payrollAllocations)
+        dialog(position, getString(R.string.dialog_title_confirm_update),
+                getString(R.string.dialog_message_confirm_name_updation, "Payroll"),
+                getString(R.string.update), payrollAllocation)
     }
 
     override fun addPayrollAllocation(payrollAllocation: PayrollAllocation) {
@@ -131,4 +132,20 @@ class EditPayrollAllocationFragment : FineractBaseFragment(), Step,
 
     }
 
+    fun dialog(position: Int, title: String, message: String, btnMessage: String, payrollAllocation: PayrollAllocation?) {
+        MaterialDialog.Builder()
+                .init(context)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(btnMessage) { dialog: DialogInterface?, _: Int ->
+                    payrollAllocations.removeAt(position)
+                    if (payrollAllocation != null) {
+                        payrollAllocations.add(position, payrollAllocation)
+                    }
+                    payrollAllocationAdapter.setPayrollAllocations(payrollAllocations)
+                    dialog?.dismiss()
+                }.setNegativeButton(getString(R.string.dialog_action_cancel))
+                .createMaterialDialog()
+                .show()
+    }
 }

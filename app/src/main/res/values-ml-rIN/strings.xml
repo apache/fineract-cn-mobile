@@ -307,4 +307,6 @@
     <string name="hello_blank_fragment">ഹലോ ശൂന്യമായ ശകലം</string>
     <string name="dialog_message_camera_permission_never_ask_again">നിങ്ങൾ അനുമതി നിഷേധിച്ചു         ഈ അനുമതിയില്ലാതെ നിങ്ങൾക്ക് ക്യാമറ സ്കാൻ ചെയ്യാൻ കഴിയില്ല.         ഇത് സജ്ജീകരണങ്ങളിൽ പ്രാപ്തമാക്കുകനിങ്ങൾ അനുമതി നിഷേധിച്ചു         ഈ അനുമതിയില്ലാതെ നിങ്ങൾക്ക് ക്യാമറ സ്കാൻ ചെയ്യാൻ കഴിയില്ല.         ഇത് സജ്ജീകരണങ്ങളിൽ പ്രാപ്തമാക്കുക</string>
     <string name="msg_setting_activity_not_found">ക്രമീകരണ പ്രവർത്തനം എന്തോ തെറ്റായി സംഭവിച്ചു.          \'ക്രമീകരണങ്ങൾ\' എന്നതിലേക്ക് പോയി സ്വമേധയാ അനുമതി അനുവദിക്കുക.</string>
+    <string name="dialog_message_confirm_name_updation">നിങ്ങൾക്ക് അപ്‌ഡേറ്റ് ചെയ്യണോ %s?</string>
+    <string name="dialog_title_confirm_update">അപ്‌ഡേറ്റ് സ്ഥിരീകരിക്കുക</string>
 </resources>
