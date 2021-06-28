@@ -386,6 +386,9 @@
     <string name="locked">LOCKED</string>
     <string name="closed">CLOSED</string>
 
+    <!--Identification Card status-->
+    <string name="expired">Expired</string>
+
     <!-- Review Screen Count-->
     <string name="one">1</string>
     <string name="two">2</string>

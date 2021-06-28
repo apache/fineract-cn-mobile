@@ -68,6 +68,9 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
     @BindView(R.id.tv_scans_status)
     TextView tvScansStatus;
 
+    @BindView(R.id.tv_expiration_status_for_details)
+    TextView tvExpiryStatus;
+
     @BindView(R.id.rv_scans_uploaded)
     RecyclerView rvScansUploaded;
 
@@ -169,6 +172,7 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
         calendar.set(Calendar.MONTH, identificationCard.getExpirationDate().getMonth() - 1);
         calendar.set(Calendar.DAY_OF_MONTH, identificationCard.getExpirationDate().getDay());
         tvExpirationDate.setText(DateUtils.convertServerDate(calendar));
+        showExpiryStatus(calendar);
     }
 
     @Override
@@ -333,5 +337,15 @@ public class IdentificationDetailsFragment extends FineractBaseFragment
         super.onDestroyView();
         hideMifosProgressDialog();
         identificationDetailsPresenter.detachView();
+    }
+
+    private void showExpiryStatus(Calendar calendar) {
+        if (calendar.getTime().after(Calendar.getInstance().getTime())) {
+            tvExpiryStatus.setText(getResources().getString(R.string.active));
+            tvExpiryStatus.setTextColor(getResources().getColor(R.color.deposit_green));
+        } else {
+            tvExpiryStatus.setText(getResources().getString(R.string.expired));
+            tvExpiryStatus.setTextColor(getResources().getColor(R.color.red_dark));
+        }
     }
 }

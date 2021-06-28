@@ -291,6 +291,7 @@
     <string name="pending">തീരുമാനിക്കപ്പെടാത്ത</string>
     <string name="locked">തടഞ്ഞു</string>
     <string name="closed">അടച്ചു</string>
+    <string name="expired">കാലഹരണപ്പെട്ടു</string>
     <string name="error_tenant_identifier_required">കുടിയാൻ ഐഡന്റിഫയർ ആവശ്യമാണ്</string>
     <string name="error_username_required">ഉപയോക്തൃനാമം ആവശ്യമാണ്</string>
     <string name="error_password_required">പാസ്വേഡ് ആവശ്യമാണ്</string>
