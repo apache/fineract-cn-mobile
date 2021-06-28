@@ -36,6 +36,8 @@ class GroupReviewStepFragment : FineractBaseFragment(), Step {
     @Inject
     lateinit var leaderNameAdapter: NameListAdapter
 
+    private var createGroupSteps : Array<String>? = null
+
     companion object {
         fun newInstance(): GroupReviewStepFragment {
             return GroupReviewStepFragment()
@@ -54,6 +56,7 @@ class GroupReviewStepFragment : FineractBaseFragment(), Step {
     }
 
     private fun populateView(group: Group) {
+        createGroupSteps = context!!.resources.getStringArray(R.array.create_group_steps)
         tvIdentifier.text = group.identifier
         tvGroupDefinitionIdentifier.text = group.groupDefinitionIdentifier
         tvName.text = group.name
@@ -70,6 +73,10 @@ class GroupReviewStepFragment : FineractBaseFragment(), Step {
         tvRegion.text = group.address?.region
         tvPostalCode.text = group.address?.postalCode
         tvCountry.text = group.address?.country
+        tvHeadOne.text = createGroupSteps!![0]
+        tvHeadTwo.text = createGroupSteps!![1]
+        tvHeadThree.text = createGroupSteps!![2]
+        tvHeadFour.text = createGroupSteps!![3]
     }
 
     override fun onSelected() {
