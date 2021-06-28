@@ -10,8 +10,10 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+
 import androidx.annotation.NonNull;
-import android.util.Log;
+
+import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
 
 import java.io.File;
@@ -19,6 +21,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.logging.Logger;
 
 public class FileUtils {
 
@@ -73,13 +76,34 @@ public class FileUtils {
 
                 // DownloadsProvider
             } else if (isDownloadsDocument(uri)) {
-
+                Cursor cursor = null;
+                try {
+                    cursor = context.getContentResolver().query(uri,
+                            new String[]{MediaStore.MediaColumns.DISPLAY_NAME}, null, null, null);
+                    if (cursor != null && cursor.moveToFirst()) {
+                        String fileName = cursor.getString(0);
+                        String path =
+                                Environment.getExternalStorageDirectory().toString() + "/Download/"
+                                        + fileName;
+                        if (!TextUtils.isEmpty(path)) {
+                            return path;
+                        }
+                    }
+                } finally {
+                    if (cursor != null) {
+                        cursor.close();
+                    }
+                }
                 final String id = DocumentsContract.getDocumentId(uri);
-                final Uri contentUri = ContentUris.withAppendedId(
-                        Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));
-
-                return getDataColumn(context, contentUri, null, null);
-
+                try {
+                    final Uri contentUri = ContentUris.withAppendedId(
+                            Uri.parse("content://downloads/public_downloads"), Long.parseLong(id));
+                    return getDataColumn(context, contentUri, null, null);
+                } catch (NumberFormatException e) {
+                    //In Android 8 and Android P the id is not a number
+                    return uri.getPath().replaceFirst("^/document/raw:", "").replaceFirst("^raw:",
+                            "");
+                }
                 // MediaProvider
             } else if (isMediaDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
@@ -224,7 +248,7 @@ public class FileUtils {
             out.close();
             in.close();
         } catch (Exception e) {
-            Log.d(LOG_TAG, e.getLocalizedMessage());
+            Logger.getLogger(e.getLocalizedMessage());
         }
     }
 
@@ -234,14 +258,14 @@ public class FileUtils {
             out = new FileOutputStream(file);
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
         } catch (Exception e) {
-            Log.d(LOG_TAG, e.getLocalizedMessage());
+            Logger.getLogger(e.getLocalizedMessage());
         } finally {
             try {
                 if (out != null) {
                     out.close();
                 }
             } catch (IOException e) {
-                Log.d(LOG_TAG, e.getLocalizedMessage());
+                Logger.getLogger(e.getLocalizedMessage());
             }
         }
     }
