@@ -3,9 +3,12 @@ package org.apache.fineract.ui.online.customers.createcustomer.formcustomeraddre
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.textfield.TextInputLayout;
+
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -78,7 +81,7 @@ public class FormCustomerAddressFragment extends FineractBaseFragment implements
     @Inject
     FormCustomerAddressPresenter formCustomerAddressPresenter;
 
-    private String [] countries;
+    private String[] countries;
     private Customer customer;
     private CustomerAction customerAction;
 
@@ -226,6 +229,9 @@ public class FormCustomerAddressFragment extends FineractBaseFragment implements
     public boolean validateCountry() {
         if (TextUtils.isEmpty(etCountry.getText().toString().trim())) {
             showTextInputLayoutError(tilCountry, getString(R.string.required));
+            return false;
+        } else if (countries == null || countries.length == 0) {
+            showTextInputLayoutError(tilCountry, getString(R.string.error_loading_countries));
             return false;
         } else if (!formCustomerAddressPresenter.isCountryNameValid(
                 etCountry.getText().toString().trim())) {
