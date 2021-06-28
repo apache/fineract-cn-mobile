@@ -519,7 +519,7 @@ public class LoanDetailsFragment extends FineractBaseFragment implements Step,
                 ValidationUtil.isEmpty(getActivity(),
                         etPrincipalAmount.getText().toString().trim(), tilPrincipalAmount);
                 return false;
-            } else if (!(minimum <= value)) {
+            } else if (!(minimum < value)) {
                 ValidationUtil.showTextInputLayoutError(tilPrincipalAmount,
                         getString(R.string.value_must_greater_or_equal_to,
                                 Utils.getPrecision(minimum)));
