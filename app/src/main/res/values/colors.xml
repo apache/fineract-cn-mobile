@@ -55,6 +55,11 @@
     <color name="base10">#eaeaea</color>
     <color name="base30">#c1c1c1</color>
 
+    <!-- Status Chip Colors -->
+
+    <color name="activate_green">#8CFF91</color>
+    <color name="pending_blue">#7489FF</color>
+    <color name="closed_red">#FFA4A4</color>
 
     <!--Swipe Refresh Colors-->
     <array name="swipeRefreshColors">
