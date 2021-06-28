@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_identification_scan_download"
+        android:icon="@drawable/ic_file_download_black_24dp"
+        android:title="@string/download_identification_scan"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/menu_identification_scan_share"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="@string/share_customer_profile"
+        app:showAsAction="ifRoom"/>
+</menu>
