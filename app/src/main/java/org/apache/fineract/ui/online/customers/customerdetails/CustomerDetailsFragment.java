@@ -197,6 +197,7 @@ public class CustomerDetailsFragment extends FineractBaseFragment
     void showCustomerProfileImage() {
         Intent intent = new Intent(getActivity(), CustomerProfileActivity.class);
         intent.putExtra(ConstantKeys.CUSTOMER_IDENTIFIER, customerIdentifier);
+        intent.putExtra(ConstantKeys.CUSTOMER, customer);
         startActivity(intent);
     }
 
