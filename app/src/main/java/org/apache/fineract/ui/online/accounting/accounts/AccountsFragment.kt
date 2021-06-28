@@ -107,6 +107,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
             }
         })
 
+        baseSearchView = searchView
     }
 
     override fun searchedAccount(accounts: List<Account>) {

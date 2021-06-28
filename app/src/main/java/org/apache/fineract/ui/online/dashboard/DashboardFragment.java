@@ -48,9 +48,11 @@ public class DashboardFragment extends FineractBaseFragment {
     @OnClick(R.id.btn_view_customer)
     void viewCustomer() {
         ((DashboardActivity) getActivity()).setNavigationViewSelectedItem(R.id.item_customer);
-        ((DashboardActivity) getActivity()).replaceFragment(CustomersFragment.newInstance(),
+        CustomersFragment customersFragment = CustomersFragment.newInstance();
+        ((DashboardActivity) getActivity()).replaceFragment(customersFragment,
                 true,
                 R.id.container);
+        ((DashboardActivity) getActivity()).assignBaseFragment(customersFragment);
     }
 
     @OnClick(R.id.btn_create_customer)

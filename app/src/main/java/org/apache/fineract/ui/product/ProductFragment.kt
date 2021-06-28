@@ -125,6 +125,7 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
             }
         })
 
+        baseSearchView = searchView
     }
 
     override fun showEmptyProduct() {

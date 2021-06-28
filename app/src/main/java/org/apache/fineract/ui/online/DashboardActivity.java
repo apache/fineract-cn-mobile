@@ -22,6 +22,7 @@ import org.apache.fineract.R;
 import org.apache.fineract.data.local.PreferencesHelper;
 import org.apache.fineract.jobs.StartSyncJob;
 import org.apache.fineract.ui.base.FineractBaseActivity;
+import org.apache.fineract.ui.base.FineractBaseFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
@@ -60,6 +61,8 @@ public class DashboardActivity extends FineractBaseActivity implements
 
     private boolean isBackPressedOnce = false;
 
+    private FineractBaseFragment baseFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +78,10 @@ public class DashboardActivity extends FineractBaseActivity implements
             StartSyncJob.scheduleItNow();
             preferencesHelper.setFetching(false);
         }
+    }
+
+    public void assignBaseFragment(FineractBaseFragment baseFragment) {
+        this.baseFragment = baseFragment;
     }
 
     public void setupNavigationBar() {
@@ -112,36 +119,54 @@ public class DashboardActivity extends FineractBaseActivity implements
 
         switch (item.getItemId()) {
             case R.id.item_dashboard:
-                replaceFragment(DashboardFragment.newInstance(), true, R.id.container);
+                DashboardFragment dashboardFragment = DashboardFragment.newInstance();
+                replaceFragment(dashboardFragment, true, R.id.container);
+                assignBaseFragment(dashboardFragment.newInstance());
                 break;
             case R.id.item_roles:
-                replaceFragment(RolesFragment.newInstance(), true, R.id.container);
+                RolesFragment rolesFragment = RolesFragment.newInstance();
+                replaceFragment(rolesFragment, true, R.id.container);
+                assignBaseFragment(rolesFragment);
                 break;
             case R.id.item_customer:
-                replaceFragment(CustomersFragment.newInstance(), true, R.id.container);
+                CustomersFragment customersFragment = CustomersFragment.newInstance();
+                replaceFragment(customersFragment, true, R.id.container);
+                assignBaseFragment(customersFragment);
                 break;
             case R.id.item_customer_payload:
-                replaceFragment(CustomerPayloadFragment.newInstance(), true,
+                CustomerPayloadFragment payloadFragment =
+                        CustomerPayloadFragment.newInstance();
+                replaceFragment(payloadFragment, true,
                         R.id.container);
                 break;
             case R.id.item_product:
-                replaceFragment(ProductFragment.Companion.newInstance(), true,
+                ProductFragment productFragment = ProductFragment.Companion.newInstance();
+                replaceFragment(productFragment, true,
                         R.id.container);
+                assignBaseFragment(productFragment);
                 break;
             case R.id.item_logout:
                 logout();
                 break;
             case R.id.item_ledger:
-                replaceFragment(LedgerFragment.Companion.newInstance(), true, R.id.container);
+                LedgerFragment ledgerFragment = LedgerFragment.Companion.newInstance();
+                replaceFragment(ledgerFragment, true, R.id.container);
+                assignBaseFragment(ledgerFragment);
                 break;
             case R.id.item_accounts:
-                replaceFragment(AccountsFragment.Companion.newInstance(), true, R.id.container);
+                AccountsFragment accountsFragment = AccountsFragment.Companion.newInstance();
+                replaceFragment(accountsFragment, true, R.id.container);
+                assignBaseFragment(accountsFragment);
                 break;
             case R.id.item_teller:
-                replaceFragment(TellerFragment.Companion.newInstance(), true, R.id.container);
+                TellerFragment tellerFragment = TellerFragment.Companion.newInstance();
+                replaceFragment(tellerFragment, true, R.id.container);
+                assignBaseFragment(tellerFragment);
                 break;
             case R.id.item_groups:
-                replaceFragment(GroupListFragment.Companion.newInstance(), true, R.id.container);
+                GroupListFragment groupListFragment = GroupListFragment.Companion.newInstance();
+                replaceFragment(groupListFragment, true, R.id.container);
+                assignBaseFragment(groupListFragment);
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -151,6 +176,13 @@ public class DashboardActivity extends FineractBaseActivity implements
 
     @Override
     public void onBackPressed() {
+        if (baseFragment != null &&
+                baseFragment.baseSearchView != null &&
+                !baseFragment.baseSearchView.isIconified()) {
+            baseFragment.closeSearchView();
+            return;
+        }
+
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
             return;

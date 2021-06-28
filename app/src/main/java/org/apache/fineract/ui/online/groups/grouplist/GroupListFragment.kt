@@ -112,6 +112,8 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
                 return true
             }
         })
+
+        baseSearchView = searchView
     }
 
     override fun onItemClick(childView: View?, position: Int) {

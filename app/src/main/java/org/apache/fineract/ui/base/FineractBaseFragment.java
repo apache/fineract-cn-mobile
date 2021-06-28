@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -18,6 +19,7 @@ public class FineractBaseFragment extends Fragment {
     private BaseActivityCallback callback;
     private ProgressBarHandler progressBarHandler;
     private FineractUIErrorHandler fineractUIErrorHandler;
+    public SearchView baseSearchView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,10 @@ public class FineractBaseFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         callback = null;
+    }
+
+    public void closeSearchView() {
+        baseSearchView.setIconified(true);
     }
 
 }

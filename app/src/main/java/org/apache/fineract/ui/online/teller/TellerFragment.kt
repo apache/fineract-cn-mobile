@@ -126,6 +126,7 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
             }
         })
 
+        baseSearchView = searchView
     }
 
     override fun searchedTeller(tellers: List<Teller>) {

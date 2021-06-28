@@ -222,6 +222,7 @@ public class IdentificationsFragment extends FineractBaseFragment implements
             }
         });
 
+        baseSearchView = searchView;
     }
 
     @Override
