@@ -13,9 +13,12 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+
 import androidx.annotation.NonNull;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -310,13 +313,11 @@ public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialo
             if (data == null) {
                 return;
             }
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-
+            Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
             file = FileUtils.createFile(getString(R.string.fineract), customerIdentifier + ".png");
             FileUtils.saveBitmap(imageBitmap, file);
             tvImageName.setText(file.getName());
-            ivCustomerPicture.setImageBitmap(imageBitmap);
+            Glide.with(getActivity()).load(file).asBitmap().into(ivCustomerPicture);
 
             showImageSizeExceededOrNot();
 
