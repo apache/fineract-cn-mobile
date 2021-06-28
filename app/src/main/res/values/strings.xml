@@ -544,4 +544,14 @@
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+
+    <!--User Image related strings -->
+    <string name="user_take_photo">Take Photo</string>
+    <string name="user_gallery">Choose from Gallery</string>
+    <string name="user_remove_image">Remove image</string>
+    <string name="user_removed_image_success">Image removed successfully</string>
+    <string name="user_image_not_exist">Image doesn\'t exist on device</string>
+    <string name="user_image_update_success">Image updated successfully</string>
+    <string name="user_image_size">Please select image with smaller size</string>
+    <string name="user_image_error">Some error occurred in selecting image</string>
 </resources>
