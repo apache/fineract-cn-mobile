@@ -25,6 +25,7 @@ import org.apache.fineract.ui.base.FineractBaseActivity;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet
         .EditCustomerProfileBottomSheet;
+import org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet.EditCustomerProfileContract;
 import org.apache.fineract.ui.refreshcallback.RefreshProfileImage;
 import org.apache.fineract.utils.CheckSelfPermissionAndRequest;
 import org.apache.fineract.utils.ConstantKeys;
@@ -50,6 +51,8 @@ public class CustomerProfileActivity extends FineractBaseActivity
     CoordinatorLayout errorView;
 
     private String customerIdentifier;
+
+    EditCustomerProfileContract.View editProfileListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +86,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
                 profileBottomSheet.setRefreshProfileImage(this);
                 profileBottomSheet.show(getSupportFragmentManager(),
                         getString(R.string.customer_image));
+                setEditProfileListener(profileBottomSheet);
                 return true;
             case R.id.menu_customer_profile_share:
                 checkCameraPermission();
@@ -90,6 +94,10 @@ public class CustomerProfileActivity extends FineractBaseActivity
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void setEditProfileListener(EditCustomerProfileContract.View editProfileListener) {
+        this.editProfileListener = editProfileListener;
     }
 
     public void shareImage() {
@@ -156,7 +164,7 @@ public class CustomerProfileActivity extends FineractBaseActivity
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         switch (requestCode) {
-            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {
+            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     shareImage();
@@ -164,7 +172,12 @@ public class CustomerProfileActivity extends FineractBaseActivity
                     Toaster.show(findViewById(android.R.id.content),
                             getString(R.string.permission_denied_write));
                 }
-            }
+                break;
+            case ConstantKeys.PERMISSION_REQUEST_ALL:
+            case ConstantKeys.PERMISSION_REQUEST_READ_EXTERNAL_STORAGE:
+                editProfileListener.requestedPermissionResult(requestCode,
+                        permissions, grantResults);
+                break;
         }
     }
 

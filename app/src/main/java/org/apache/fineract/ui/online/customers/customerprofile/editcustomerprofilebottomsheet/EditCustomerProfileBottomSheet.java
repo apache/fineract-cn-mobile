@@ -118,6 +118,32 @@ public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialo
     }
 
     @Override
+    public void requestedPermissionResult(int requestCode, @NonNull String[] permissions,
+                                          @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case ConstantKeys.PERMISSION_REQUEST_ALL:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openCamera();
+                } else {
+                    String permissionDeniedMessage = getString(R.string.permission_denied_write) +
+                            getString(R.string.permission_denied_camera);
+                    Toaster.show(rootView, permissionDeniedMessage);
+                }
+                break;
+
+            case ConstantKeys.PERMISSION_REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    viewGallery();
+                } else {
+                    Toaster.show(rootView, getString(R.string.permission_denied_read));
+                }
+                break;
+        }
+    }
+
+    @Override
     public void showUserInterface() {
         llCamera.setOnClickListener(this);
         llGallery.setOnClickListener(this);
@@ -250,32 +276,6 @@ public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialo
     @Override
     public void showMessage(String message) {
         Toaster.show(rootView, message);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case ConstantKeys.PERMISSION_REQUEST_ALL:
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openCamera();
-                } else {
-                    String permissionDeniedMessage = getString(R.string.permission_denied_write) +
-                            getString(R.string.permission_denied_camera);
-                    Toaster.show(rootView, permissionDeniedMessage);
-                }
-                break;
-
-            case ConstantKeys.PERMISSION_REQUEST_READ_EXTERNAL_STORAGE:
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    viewGallery();
-                } else {
-                    Toaster.show(rootView, getString(R.string.permission_denied_read));
-                }
-                break;
-        }
     }
 
     @OnClick(R.id.btn_cancel)
