@@ -80,6 +80,7 @@ class TellerDetailsFragment : FineractBaseFragment() {
                     putExtra(Constants.TELLER_ACTION, TellerAction.EDIT)
                 }
                 startActivity(intent)
+                activity!!.finish()
             }
         }
         return super.onOptionsItemSelected(item)

@@ -5,10 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
+import android.util.Log.e
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -84,7 +84,7 @@ class TellerFragment : FineractBaseFragment(), OnItemClickListener, SwipeRefresh
 
     override fun onStart() {
         super.onStart()
-        viewModel.getTellers()?.observe(this, androidx.lifecycle.Observer {
+        viewModel.getTellers()?.observe(this, Observer {
             it?.let {
                 tellerList = it
                 tellerAdapter.setTellerList(it)
@@ -120,7 +120,7 @@ class TellerFragment : FineractBaseFragment(), OnItemClickListener, SwipeRefresh
 
     override fun onRefresh() {
         showProgressbar()
-        viewModel.getTellers()?.observe(this, androidx.lifecycle.Observer {
+        viewModel.getTellers()?.observe(this, Observer {
             it?.let {
                 tellerList = it
                 tellerAdapter.setTellerList(it)

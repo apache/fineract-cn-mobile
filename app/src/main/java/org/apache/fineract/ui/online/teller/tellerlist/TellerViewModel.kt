@@ -1,23 +1,27 @@
 package org.apache.fineract.ui.online.teller.tellerlist
 
 import android.annotation.SuppressLint
+import android.util.Log.e
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.couchbase.lite.Expression
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
+import org.apache.fineract.couchbase.DocumentType
 import org.apache.fineract.couchbase.SynchronizationManager
 import org.apache.fineract.data.Status
-import org.apache.fineract.data.datamanager.DataManagerTeller
 import org.apache.fineract.data.datamanager.api.DataManagerAnonymous
 import org.apache.fineract.data.local.PreferencesHelper
+import org.apache.fineract.data.models.Group
 import org.apache.fineract.data.models.customer.Country
 import org.apache.fineract.data.models.teller.Teller
 import org.apache.fineract.data.models.teller.TellerCommand
 import org.apache.fineract.utils.DateUtils
+import org.apache.fineract.utils.serializeToMap
+import org.apache.fineract.utils.toDataClass
 import java.lang.Exception
 
 /*
@@ -29,8 +33,7 @@ import java.lang.Exception
  */
 class TellerViewModel(private val synchronizationManager: SynchronizationManager,
                       private val dataManagerAnonymous: DataManagerAnonymous,
-                      private val preferencesHelper: PreferencesHelper,
-                      private val dataManagerTeller: DataManagerTeller
+                      private val preferencesHelper: PreferencesHelper
 ) : ViewModel() {
 
     var tellersList = MutableLiveData<ArrayList<Teller>>()
@@ -44,13 +47,18 @@ class TellerViewModel(private val synchronizationManager: SynchronizationManager
 
     @SuppressLint("CheckResult")
     fun getTellers(): MutableLiveData<ArrayList<Teller>>? {
-
-        dataManagerTeller.getTellers().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{
-                tellersList.value = it as ArrayList<Teller>?
-            }
-
+        val expression = Expression.property("documentType")
+            .equalTo(Expression.string(DocumentType.TELLER.value))
+            .and(Expression.property("state").notEqualTo(Expression.string("null")))
+        val hashMapList = synchronizationManager.getDocuments(expression)
+        if (hashMapList?.isEmpty() == null) {
+            return null
+        }
+        val list = arrayListOf<Teller>()
+        for (map in hashMapList) {
+            list.add(map.toDataClass())
+        }
+        tellersList.value = list
         return tellersList
     }
 
@@ -81,17 +89,8 @@ class TellerViewModel(private val synchronizationManager: SynchronizationManager
                     teller.lastModifiedOn = DateUtils.getCurrentDate()
                     teller.lastOpenedBy = preferencesHelper.userName
                     teller.lastOpenedOn = DateUtils.getCurrentDate()
-                    dataManagerTeller.createTeller(teller).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(object : DisposableCompletableObserver() {
-                            override fun onComplete() {
-                                _status.value = Status.DONE
-                            }
-
-                            override fun onError(e: Throwable) {
-                                _status.value = Status.ERROR
-                            }
-                        })
+                    synchronizationManager.saveDocument(teller.tellerAccountIdentifier!!, teller.serializeToMap())
+                    _status.value = Status.DONE
                 } catch (exception: Exception) {
                     _status.value = Status.ERROR
                 }
@@ -110,17 +109,8 @@ class TellerViewModel(private val synchronizationManager: SynchronizationManager
                     teller.lastModifiedOn = DateUtils.getCurrentDate()
                     teller.lastOpenedBy = preferencesHelper.userName
                     teller.lastOpenedOn = DateUtils.getCurrentDate()
-                    dataManagerTeller.updateTeller(teller).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(object : DisposableCompletableObserver() {
-                            override fun onComplete() {
-                                _status.value = Status.DONE
-                            }
-
-                            override fun onError(e: Throwable) {
-                                _status.value = Status.ERROR
-                            }
-                        })
+                    synchronizationManager.updateDocument(teller.tellerAccountIdentifier!!, teller.serializeToMap())
+                    _status.value = Status.DONE
                 } catch (exception: Exception) {
                     _status.value = Status.ERROR
                 }
@@ -133,17 +123,14 @@ class TellerViewModel(private val synchronizationManager: SynchronizationManager
             withContext(Dispatchers.Main) {
                 try {
                     _status.value = Status.LOADING
-                    dataManagerTeller.changeTellerStatus(teller, command).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeWith(object : DisposableCompletableObserver() {
-                            override fun onComplete() {
-                                _status.value = Status.DONE
-                            }
-
-                            override fun onError(e: Throwable) {
-                                _status.value = Status.ERROR
-                            }
-                        })
+                    when (command.action) {
+                        TellerCommand.TellerAction.ACTIVATE -> teller.state = Teller.State.ACTIVE
+                        TellerCommand.TellerAction.CLOSE -> teller.state = Teller.State.CLOSED
+                        TellerCommand.TellerAction.REOPEN -> teller.state = Teller.State.OPEN
+                        else -> teller.state = Teller.State.PAUSED
+                    }
+                    synchronizationManager.updateDocument(teller.tellerAccountIdentifier!!, teller.serializeToMap())
+                    _status.value = Status.DONE
                 } catch (e: Exception) {
                     _status.value = Status.ERROR
                 }
@@ -179,6 +166,7 @@ class TellerViewModel(private val synchronizationManager: SynchronizationManager
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+        synchronizationManager.closeDatabase()
     }
 
 }

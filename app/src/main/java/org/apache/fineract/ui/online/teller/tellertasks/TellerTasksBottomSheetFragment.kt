@@ -103,28 +103,28 @@ class TellerTasksBottomSheetFragment(val teller: Teller) : FineractBaseBottomShe
     fun onTaskImageViewClicked() {
         when (teller.state) {
             Teller.State.ACTIVE -> {
-                command.action = TellerCommand.TellerAction.CLOSE.toString()
+                command.action = TellerCommand.TellerAction.CLOSE
                 command.assignedEmployeeIdentifier = teller.assignedEmployee.toString()
                 rootView.tvTellerHeader.text = getString(R.string.close)
                 rootView.tvTellerSubHeader.text = getString(R.string.please_verify_following_teller_task, getString(R.string.close))
                 rootView.btnTellerSubmitTask.text = getString(R.string.close)
             }
             Teller.State.PAUSED -> {
-                command.action = TellerCommand.TellerAction.ACTIVATE.toString()
+                command.action = TellerCommand.TellerAction.ACTIVATE
                 command.assignedEmployeeIdentifier = teller.assignedEmployee.toString()
                 rootView.tvTellerHeader.text = getString(R.string.activate)
                 rootView.tvTellerSubHeader.text = getString(R.string.please_verify_following_teller_task, getString(R.string.activate))
                 rootView.btnTellerSubmitTask.text = getString(R.string.activate)
             }
             Teller.State.CLOSED -> {
-                command.action = TellerCommand.TellerAction.REOPEN.toString()
+                command.action = TellerCommand.TellerAction.REOPEN
                 command.assignedEmployeeIdentifier = teller.assignedEmployee.toString()
                 rootView.tvTellerHeader.text = getString(R.string.reopen)
                 rootView.tvTellerSubHeader.text = getString(R.string.please_verify_following_teller_task, getString(R.string.reopen))
                 rootView.btnTellerSubmitTask.text = getString(R.string.reopen)
             }
             Teller.State.OPEN -> {
-                command.action = TellerCommand.TellerAction.CLOSE.toString()
+                command.action = TellerCommand.TellerAction.CLOSE
                 command.assignedEmployeeIdentifier = teller.assignedEmployee.toString()
                 rootView.tvTellerHeader.text = getString(R.string.close)
                 rootView.tvTellerSubHeader.text = getString(R.string.please_verify_following_teller_task, getString(R.string.close))
@@ -138,6 +138,7 @@ class TellerTasksBottomSheetFragment(val teller: Teller) : FineractBaseBottomShe
     @OnClick(R.id.btnTellerSubmitTask)
     fun submitTask() {
         viewModel.changeTellerStatus(teller, command)
+        activity!!.finish()
     }
 
     @OnClick(R.id.btnTellerCancel)

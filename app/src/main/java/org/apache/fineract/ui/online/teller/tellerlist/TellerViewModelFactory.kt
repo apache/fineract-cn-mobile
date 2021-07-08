@@ -17,12 +17,11 @@ import javax.inject.Inject
 class TellerViewModelFactory @Inject constructor(@ApplicationContext var context: Context,
                                                  private val synchronizationManager: SynchronizationManager,
                                                  private val dataManagerAnonymous: DataManagerAnonymous,
-                                                 private val preferencesHelper: PreferencesHelper,
-                                                 private val dataManagerTeller: DataManagerTeller
+                                                 private val preferencesHelper: PreferencesHelper
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T: ViewModel?> create(modelClass: Class<T>): T {
-        return TellerViewModel(synchronizationManager, dataManagerAnonymous, preferencesHelper, dataManagerTeller) as T
+        return TellerViewModel(synchronizationManager, dataManagerAnonymous, preferencesHelper) as T
     }
 }

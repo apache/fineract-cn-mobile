@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import com.wajahatkarim3.easyvalidation.core.view_ktx.validator
+import kotlinx.android.synthetic.main.fragment_step_group_details.view.*
 import kotlinx.android.synthetic.main.fragment_step_teller_details.*
 import kotlinx.android.synthetic.main.fragment_step_teller_details.view.*
 import org.apache.fineract.R
@@ -57,6 +58,7 @@ class TellerDetailsStepFragment : FineractBaseFragment(), Step {
     private fun populateData() {
         val teller = (activity as CreateTellerActivity).getTeller()
         rootView.etTellerCode.setText(teller.code)
+        rootView.etTellerAccountIdentifier.isEnabled = false
         rootView.etTellerPassword.setText(teller.password)
         rootView.etTellerCashdrawlimit.setText(teller.cashdrawLimit.toString())
         rootView.etTellerAccountIdentifier.setText(teller.tellerAccountIdentifier)
