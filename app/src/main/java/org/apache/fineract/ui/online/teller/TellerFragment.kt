@@ -2,13 +2,19 @@ package org.apache.fineract.ui.online.teller
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
+import android.util.Log.e
 import android.view.*
+import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import butterknife.ButterKnife
+import butterknife.OnClick
 import kotlinx.android.synthetic.main.fragment_teller.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
@@ -16,17 +22,26 @@ import org.apache.fineract.data.models.teller.Teller
 import org.apache.fineract.ui.adapters.TellerAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
-import java.util.*
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.teller.createteller.CreateTellerActivity
+import org.apache.fineract.ui.online.teller.tellerdetails.TellerDetailsActivity
+import org.apache.fineract.ui.online.teller.tellerlist.TellerViewModel
+import org.apache.fineract.ui.online.teller.tellerlist.TellerViewModelFactory
+import org.apache.fineract.utils.Constants
 import javax.inject.Inject
 
 
-class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefreshLayout.OnRefreshListener {
+class TellerFragment : FineractBaseFragment(), OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
-    @Inject
-    lateinit var tellPresenter: TellerPresenter
+    lateinit var rootView: View
+
+    lateinit var viewModel: TellerViewModel
 
     @Inject
     lateinit var tellerAdapter: TellerAdapter
+
+    @Inject
+    lateinit var tellerViewModelFactory: TellerViewModelFactory
 
     lateinit var tellerList: List<Teller>
 
@@ -46,28 +61,44 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_teller, container, false)
-
+        rootView = inflater.inflate(R.layout.fragment_teller, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
-        tellPresenter.attachView(this)
+        viewModel = ViewModelProviders.of(this, tellerViewModelFactory).get(TellerViewModel::class.java)
         initializeFineractUIErrorHandler(activity, rootView)
-
         return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        ButterKnife.bind(this, rootView)
+        tellerAdapter.setItemClickListener(this)
         showUserInterface()
-        tellPresenter.fetchTellers()
 
         btn_try_again.setOnClickListener {
+            showProgressbar()
             layoutError.visibility = View.GONE
-            tellPresenter.fetchTellers()
+            viewModel.getTellers()
+            hideProgressbar()
         }
     }
 
-    override fun showUserInterface() {
+    override fun onStart() {
+        super.onStart()
+        viewModel.getTellers()?.observe(this, Observer {
+            it?.let {
+                tellerList = it
+                tellerAdapter.setTellerList(it)
+            }
+        })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu_teller_search, menu)
+        setUpSearchInterface(menu)
+    }
+
+    fun showUserInterface() {
 
         setToolbarTitle(getString(R.string.teller))
         val llManager = LinearLayoutManager(activity)
@@ -81,27 +112,29 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
         swipeContainer.setOnRefreshListener(this)
     }
 
-    override fun showTellers(tellers: List<Teller>) {
+    fun showTellers(tellers: List<Teller>) {
         showRecyclerView(true)
         tellerList = tellers
         tellerAdapter.setTellerList(tellers)
     }
 
     override fun onRefresh() {
-        tellPresenter.fetchTellers()
+        showProgressbar()
+        viewModel.getTellers()?.observe(this, Observer {
+            it?.let {
+                tellerList = it
+                tellerAdapter.setTellerList(it)
+            }
+        })
+        hideProgressbar()
     }
 
-    override fun showEmptyTellers() {
+    fun showEmptyTellers() {
         showRecyclerView(false)
         showFineractEmptyUI(getString(R.string.teller), getString(R.string.teller),
                 R.drawable.ic_person_outline_black_24dp)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.menu_teller_search, menu)
-        setUpSearchInterface(menu)
-    }
 
     private fun setUpSearchInterface(menu: Menu?) {
 
@@ -112,7 +145,7 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                tellPresenter.searchTeller(tellerList, query)
+                viewModel.searchTeller(tellerList as ArrayList<Teller>, query, searchedTeller)
                 return false
             }
 
@@ -121,19 +154,18 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
                     showRecyclerView(true)
                     tellerAdapter.setTellerList(tellerList)
                 }
-                tellPresenter.searchTeller(tellerList, newText)
+                viewModel.searchTeller(tellerList as ArrayList<Teller>, newText, searchedTeller)
                 return false
             }
         })
 
     }
 
-    override fun searchedTeller(tellers: List<Teller>) {
-        showRecyclerView(true)
+    val searchedTeller: (ArrayList<Teller>) -> Unit = { tellers ->
         tellerAdapter.setTellerList(tellers)
     }
 
-    override fun showRecyclerView(status: Boolean) {
+    fun showRecyclerView(status: Boolean) {
         if (status) {
             rvTellers.visibility = View.VISIBLE
             layoutError.visibility = View.GONE
@@ -143,26 +175,39 @@ class TellerFragment : FineractBaseFragment(), TellerContract.View, SwipeRefresh
         }
     }
 
-    override fun showProgressbar() {
+    fun showProgressbar() {
         swipeContainer.isRefreshing = true
     }
 
-    override fun hideProgressbar() {
+    fun hideProgressbar() {
         swipeContainer.isRefreshing = false
     }
 
-    override fun showError(message: String) {
+    fun showError(message: String) {
         showRecyclerView(false)
         showFineractErrorUI(getString(R.string.teller))
     }
 
-    override fun showNoInternetConnection() {
+    fun showNoInternetConnection() {
         showRecyclerView(false)
         showFineractNoInternetUI()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        tellPresenter.detachView()
+    override fun onItemClick(childView: View?, position: Int) {
+        val intent = Intent(context, TellerDetailsActivity::class.java).apply {
+            putExtra(Constants.TELLER, tellerList[position])
+        }
+        startActivity(intent)
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {
+    }
+
+    @OnClick(R.id.fabAddTeller)
+    fun addTeller() {
+        val intent = Intent(activity, CreateTellerActivity::class.java).apply {
+            putExtra(Constants.TELLER_ACTION, TellerAction.CREATE)
+        }
+        startActivity(intent)
     }
 }

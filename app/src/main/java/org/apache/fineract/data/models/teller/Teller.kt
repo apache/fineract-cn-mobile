@@ -3,28 +3,29 @@ package org.apache.fineract.data.models.teller
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import org.apache.fineract.couchbase.DocumentType
 import java.math.BigDecimal
 
 @Parcelize
 data class Teller(
 
-        @SerializedName("code") val code: String? = null,
-        @SerializedName("password") val password: String? = null,
-        @SerializedName("cashdrawLimit") val cashdrawLimit: BigDecimal? = null,
-        @SerializedName("tellerAccountIdentifier") val tellerAccountIdentifier: String? = null,
-        @SerializedName("vaultAccountIdentifier") val vaultAccountIdentifier: String? = null,
-        @SerializedName("chequesReceivableAccount") val chequesReceivableAccount: String? = null,
-        @SerializedName("cashOverShortAccount") val cashOverShortAccount: String? = null,
-        @SerializedName("denominationRequired") val denominationRequired: Boolean = false,
-        @SerializedName("assignedEmployee") val assignedEmployee: String? = null,
-        @SerializedName("state") val state: State? = null,
-        @SerializedName("createdBy") val createdBy: String? = null,
-        @SerializedName("createdOn") val createdOn: String? = null,
-        @SerializedName("lastModifiedBy") val lastModifiedBy: String? = null,
-        @SerializedName("lastModifiedOn") val lastModifiedOn: String? = null,
-        @SerializedName("lastOpenedBy") val lastOpenedBy: String? = null,
-        @SerializedName("lastOpenedOn") val lastOpenedOn: String? = null
-
+    var code: String? = null,
+    var password: String? = null,
+    var cashdrawLimit: BigDecimal? = null,
+    var tellerAccountIdentifier: String? = null,
+    var vaultAccountIdentifier: String? = null,
+    var chequesReceivableAccount: String? = null,
+    var cashOverShortAccount: String? = null,
+    var denominationRequired: Boolean = false,
+    var assignedEmployee: String? = null,
+    var state: State? = State.OPEN,
+    var createdBy: String? = null,
+    var createdOn: String? = null,
+    var lastModifiedBy: String? = null,
+    var lastModifiedOn: String? = null,
+    var lastOpenedBy: String? = null,
+    var lastOpenedOn: String? = null,
+    var documentType: String = DocumentType.TELLER.value
 ) : Parcelable {
 
     enum class State {
