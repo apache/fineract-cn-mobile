@@ -4,7 +4,15 @@ import org.apache.fineract.injection.PerActivity;
 import org.apache.fineract.injection.module.ActivityModule;
 import org.apache.fineract.ui.offline.CustomerPayloadFragment;
 import org.apache.fineract.ui.online.DashboardActivity;
+import org.apache.fineract.ui.online.accounting.accounts.accountDetails.AccountDetailsActivity;
+import org.apache.fineract.ui.online.accounting.accounts.accountDetails.AccountDetailsFragment;
 import org.apache.fineract.ui.online.accounting.accounts.AccountsFragment;
+import org.apache.fineract.ui.online.accounting.accounts.accounttasks.AccountTaskBottomSheetFragment;
+import org.apache.fineract.ui.online.accounting.accounts.createaccount.AccountDetailsStepFragment;
+import org.apache.fineract.ui.online.accounting.accounts.createaccount.AccountReviewStepFragment;
+import org.apache.fineract.ui.online.accounting.accounts.createaccount.AddAccountHoldersStepFragment;
+import org.apache.fineract.ui.online.accounting.accounts.createaccount.AddAccountSignAuthoritiesFragment;
+import org.apache.fineract.ui.online.accounting.accounts.createaccount.CreateAccountActivity;
 import org.apache.fineract.ui.online.accounting.ledgers.LedgerFragment;
 import org.apache.fineract.ui.online.customers.createcustomer.customeractivity
         .CreateCustomerActivity;
@@ -159,5 +167,21 @@ public interface ActivityComponent {
     void inject(GroupDetailsFragment groupDetailsFragment);
 
     void inject(GroupTasksBottomSheetFragment groupTasksBottomSheetFragment);
+
+    void inject(AccountDetailsActivity accountDetailsActivity);
+
+    void inject(AccountDetailsFragment accountDetailsFragment);
+
+    void inject(CreateAccountActivity createAccountActivity);
+
+    void inject(AccountDetailsStepFragment accountDetailsStepFragment);
+
+    void inject(AccountReviewStepFragment accountReviewStepFragment);
+
+    void inject(AddAccountSignAuthoritiesFragment addAccountSignAuthoritiesFragment);
+
+    void inject(AddAccountHoldersStepFragment addAccountHoldersStepFragment);
+
+    void inject(AccountTaskBottomSheetFragment accountTaskBottomSheetFragment);
 }
 

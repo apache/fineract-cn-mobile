@@ -1,5 +1,6 @@
 package org.apache.fineract.data.datamanager
 
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
@@ -36,6 +37,11 @@ class DataManagerAccounting @Inject constructor(val baseManagerApi: BaseApiManag
                     .onErrorResumeNext(Function<Throwable, ObservableSource<AccountPage>>
                     { Observable.just(FakeRemoteDataSource.getAccountPage()) })
 
+    fun createAccount(account: Account) : Completable =
+            baseManagerApi.accountingService.createAccount(account)
+
+    fun updateAccount(identifier: String, account: Account) : Completable =
+        baseManagerApi.accountingService.updateAccount(identifier, account)
 
     fun findAccount(identifier: String): Observable<Account> =
             baseManagerApi.accountingService.findAccount(identifier)

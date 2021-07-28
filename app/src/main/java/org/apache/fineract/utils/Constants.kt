@@ -12,4 +12,6 @@ object Constants {
     const val BASIC_AUTH_KEY = "basic_auth_key"
     const val GATEWAY_USER_NAME = "fineract-cn"
     const val GATEWAY_PASSWORD = "password"
+    const val ACCOUNT = "account"
+    const val ACCOUNT_ACTION = "account_Action"
 }

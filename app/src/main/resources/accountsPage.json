@@ -59,7 +59,7 @@
       "balance": 1500,
       "referenceAccount": "referenceAccount",
       "ledger": "ledger",
-      "state": "CLOSE",
+      "state": "CLOSED",
       "alternativeAccountNumber": "alternativeAccountNumber",
       "createdOn": "createdOn",
       "createdBy": "createdBy",
