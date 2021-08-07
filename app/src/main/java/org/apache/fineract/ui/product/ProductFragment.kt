@@ -2,6 +2,7 @@ package org.apache.fineract.ui.product
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,12 +17,17 @@ import org.apache.fineract.data.models.product.Product
 import org.apache.fineract.ui.adapters.ProductAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.groups.groupdetails.GroupDetailsActivity
+import org.apache.fineract.ui.product.productdetails.ProductDetailsActivity
+import org.apache.fineract.ui.product.productdetails.ProductDetailsFragment
+import org.apache.fineract.utils.Constants
 import java.util.*
 import javax.inject.Inject
 
 
 class ProductFragment : FineractBaseFragment(), ProductContract.View,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
 
     @Inject
     lateinit var productPresenter: ProductPresenter
@@ -58,7 +64,7 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
         super.onViewCreated(view, savedInstanceState)
 
         showUserInterface()
-
+        productAdapter.setItemClickListener(this)
         btn_try_again.setOnClickListener {
             layoutError.visibility = View.GONE
             productPresenter.getProductsPage()
@@ -124,7 +130,6 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
                 return false
             }
         })
-
     }
 
     override fun showEmptyProduct() {
@@ -171,4 +176,13 @@ class ProductFragment : FineractBaseFragment(), ProductContract.View,
         productPresenter.detachView()
     }
 
+    override fun onItemClick(childView: View?, position: Int) {
+        val intent = Intent(context, ProductDetailsActivity::class.java).apply {
+            putExtra(Constants.PRODUCT, productList[position])
+        }
+        startActivity(intent)
+
+    }
+
+    override fun onItemLongPress(childView: View?, position: Int) {}
 }

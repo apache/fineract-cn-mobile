@@ -1,6 +1,9 @@
 package org.apache.fineract.data.models.product
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 import org.apache.fineract.data.models.loan.AccountAssignment
 import org.apache.fineract.data.models.loan.TermRange
 import java.util.ArrayList
@@ -10,6 +13,7 @@ import java.util.ArrayList
  * On 20/07/17.
  */
 
+@Parcelize
 data class Product (
     @SerializedName("identifier")  val identifier: String? = null,
     @SerializedName("name") val name: String? = null,
@@ -28,4 +32,4 @@ data class Product (
     @SerializedName("createdBy") val createdBy: String? = null,
     @SerializedName("lastModifiedOn") val lastModifiedOn: String? = null,
     @SerializedName("lastModifiedBy") val lastModifiedBy: String? = null
-)
+) : Parcelable

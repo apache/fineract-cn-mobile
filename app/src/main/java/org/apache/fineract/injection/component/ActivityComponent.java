@@ -60,6 +60,8 @@ import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
 import org.apache.fineract.ui.product.ProductFragment;
+import org.apache.fineract.ui.product.productdetails.ProductDetailsActivity;
+import org.apache.fineract.ui.product.productdetails.ProductDetailsFragment;
 
 import dagger.Subcomponent;
 
@@ -159,5 +161,9 @@ public interface ActivityComponent {
     void inject(GroupDetailsFragment groupDetailsFragment);
 
     void inject(GroupTasksBottomSheetFragment groupTasksBottomSheetFragment);
+
+    void inject(ProductDetailsActivity productDetailsActivity);
+
+    void inject(ProductDetailsFragment productDetailsFragment);
 }
 

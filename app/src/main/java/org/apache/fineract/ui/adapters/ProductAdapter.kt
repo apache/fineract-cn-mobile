@@ -5,11 +5,13 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.item_product.view.*
 import org.apache.fineract.R
 import org.apache.fineract.data.models.product.Product
 import org.apache.fineract.injection.ApplicationContext
+import org.apache.fineract.ui.base.OnItemClickListener
 import org.apache.fineract.utils.DateUtils
 import javax.inject.Inject
 
@@ -17,6 +19,7 @@ class ProductAdapter @Inject constructor(@ApplicationContext val context: Contex
     : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
 
     private var products: List<Product> = ArrayList()
+    lateinit var onItemClickListener: OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -50,11 +53,26 @@ class ProductAdapter @Inject constructor(@ApplicationContext val context: Contex
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.onItemClickListener = onItemClickListener
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val tvProductIdentifier: TextView = itemView.tv_product_identifier
         val tvModifiedBy: TextView = itemView.tv_modified_by
         val tvModifiedOn: TextView = itemView.tv_modified_on
         val tvName: TextView = itemView.tv_name
+        val llProduct: LinearLayout = itemView.ll_product
+
+        init {
+            llProduct.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            if (onItemClickListener != null) {
+                onItemClickListener.onItemClick(p0, adapterPosition)
+            }
+        }
     }
 }

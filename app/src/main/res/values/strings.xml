@@ -544,4 +544,18 @@
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+    <string name="designator">Designator</string>
+    <string name="ledger_identifier">Ledger Identifier</string>
+    <string name="pattern_package">Pattern package</string>
+    <string name="term_range">Term Range</string>
+    <string name="temporal_unit">Temporal Unit</string>
+    <string name="maximum">Maximum</string>
+    <string name="balance_range">Balance Range</string>
+    <string name="minimum">Minimum</string>
+    <string name="interest_range">Interest Range</string>
+    <string name="account_assignments">Account Assignments</string>
+    <string name="currency_code">Currency Code</string>
+    <string name="minor_currency_unit_digits">Minor Currency Unit Digits</string>
+    <string name="parameters">Parameters</string>
+    <string name="interest_basis">Interest Basis</string>
 </resources>
