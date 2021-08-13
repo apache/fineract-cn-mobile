@@ -59,7 +59,7 @@ import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
-import org.apache.fineract.ui.product.ProductFragment;
+import org.apache.fineract.ui.product.productlist.ProductFragment;
 import org.apache.fineract.ui.product.productdetails.ProductDetailsActivity;
 import org.apache.fineract.ui.product.productdetails.ProductDetailsFragment;
 

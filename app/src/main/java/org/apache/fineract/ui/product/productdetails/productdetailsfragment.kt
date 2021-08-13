@@ -14,8 +14,6 @@ import org.apache.fineract.ui.adapters.ProductAccountAssignmentsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.base.Toaster
-import org.apache.fineract.ui.online.groups.GroupAction
-import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.Utils
 import javax.inject.Inject
@@ -74,8 +72,8 @@ class ProductDetailsFragment : FineractBaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_edit_group -> {
-                Toaster.show(rootView, "Under Construction", Toast.LENGTH_SHORT)
+            R.id.menu_product_details -> {
+                Toaster.show(rootView, getString(R.string.Under_construction), Toast.LENGTH_SHORT)
             }
         }
         return super.onOptionsItemSelected(item)
