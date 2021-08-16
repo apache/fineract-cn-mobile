@@ -26,9 +26,13 @@ import org.apache.fineract.utils.Constants
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 import androidx.lifecycle.Observer
+import butterknife.OnClick
+import org.apache.fineract.ui.online.groups.GroupAction
+import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity
+import org.apache.fineract.ui.product.ProductAction
+import org.apache.fineract.ui.product.createproduct.CreateProductActivity
 
-class ProductFragment : FineractBaseFragment(),
-    SwipeRefreshLayout.OnRefreshListener, OnItemClickListener {
+class ProductFragment : FineractBaseFragment(), OnItemClickListener {
 
     lateinit var rootView: View
 
@@ -95,11 +99,6 @@ class ProductFragment : FineractBaseFragment(),
         })
     }
 
-    override fun onRefresh() {
-        viewModel.getProducts()
-    }
-
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu_product_search, menu)
@@ -138,4 +137,12 @@ class ProductFragment : FineractBaseFragment(),
     }
 
     override fun onItemLongPress(childView: View?, position: Int) {}
+
+    @OnClick(R.id.fabAddProduct)
+    fun addGroup() {
+        val intent = Intent(activity, CreateProductActivity::class.java).apply {
+            putExtra(Constants.PRODUCT_ACTION, ProductAction.CREATE)
+        }
+        startActivity(intent)
+    }
 }

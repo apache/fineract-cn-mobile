@@ -15,21 +15,21 @@ import java.util.ArrayList
 
 @Parcelize
 data class Product (
-    @SerializedName("identifier")  val identifier: String? = null,
-    @SerializedName("name") val name: String? = null,
-    @SerializedName("termRange") val termRange: TermRange? = null,
-    @SerializedName("balanceRange") val balanceRange: BalanceRange? = null,
-    @SerializedName("interestRange") val interestRange: InterestRange? = null,
-    @SerializedName("interestBasis") val interestBasis: InterestBasis? = null,
-    @SerializedName("patternPackage") val patternPackage: String? = null,
-    @SerializedName("description") val description: String? = null,
-    @SerializedName("currencyCode") val currencyCode: String? = null,
-    @SerializedName("minorCurrencyUnitDigits") val minorCurrencyUnitDigits: Int = 0,
-    @SerializedName("accountAssignments") val accountAssignments: List<AccountAssignment> =
+    @SerializedName("identifier")  var identifier: String? = null,
+    @SerializedName("name") var name: String? = null,
+    @SerializedName("termRange") var termRange: TermRange? = null,
+    @SerializedName("balanceRange") var balanceRange: BalanceRange? = null,
+    @SerializedName("interestRange") var interestRange: InterestRange? = null,
+    @SerializedName("interestBasis") var interestBasis: InterestBasis? = null,
+    @SerializedName("patternPackage") var patternPackage: String? = null,
+    @SerializedName("description") var description: String? = null,
+    @SerializedName("currencyCode") var currencyCode: String? = null,
+    @SerializedName("minorCurrencyUnitDigits") var minorCurrencyUnitDigits: Int = 0,
+    @SerializedName("accountAssignments") var accountAssignments: List<AccountAssignment> =
             ArrayList(),
-    @SerializedName("parameters") val parameters: String? = null,
-    @SerializedName("createdOn") val createdOn: String? = null,
-    @SerializedName("createdBy") val createdBy: String? = null,
-    @SerializedName("lastModifiedOn") val lastModifiedOn: String? = null,
-    @SerializedName("lastModifiedBy") val lastModifiedBy: String? = null
+    @SerializedName("parameters") var parameters: String? = null,
+    @SerializedName("createdOn") var createdOn: String? = null,
+    @SerializedName("createdBy") var createdBy: String? = null,
+    @SerializedName("lastModifiedOn") var lastModifiedOn: String? = null,
+    @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null
 ) : Parcelable

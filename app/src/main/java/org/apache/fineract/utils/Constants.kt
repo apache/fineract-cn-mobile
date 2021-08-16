@@ -13,4 +13,5 @@ object  Constants {
     const val GATEWAY_USER_NAME = "fineract-cn"
     const val GATEWAY_PASSWORD = "password"
     const val PRODUCT = "product"
+    const val PRODUCT_ACTION = "product_action"
 }

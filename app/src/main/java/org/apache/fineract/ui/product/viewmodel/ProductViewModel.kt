@@ -56,6 +56,62 @@ class ProductViewModel constructor(private val synchronizationManager: Synchroni
     }
 
     @SuppressLint("CheckResult")
+    fun createProduct(product: Product) {
+//        uiScope.launch {
+//            withContext(Dispatchers.Main) {
+//                try {
+//                    _status.value = Status.LOADING
+//                    product.createdBy = preferencesHelper.userName
+//                    product.createdOn = DateUtils.getCurrentDate()
+//                    product.lastModifiedBy = preferencesHelper.userName
+//                    product.lastModifiedOn = DateUtils.getCurrentDate()
+//                    dataManagerProduct.createTeller(teller).subscribeOn(Schedulers.io())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribeWith(object : DisposableCompletableObserver() {
+//                            override fun onComplete() {
+//                                _status.value = Status.DONE
+//                            }
+//
+//                            override fun onError(e: Throwable) {
+//                                _status.value = Status.ERROR
+//                            }
+//                        })
+//                } catch (exception: Exception) {
+//                    _status.value = Status.ERROR
+//                }
+//            }
+//        }
+    }
+
+    @SuppressLint("CheckResult")
+    fun updateProduct(product: Product) {
+//        uiScope.launch {
+//            withContext(Dispatchers.Main) {
+//                try {
+//                    _status.value = Status.LOADING
+//                    product.createdBy = preferencesHelper.userName
+//                    product.createdOn = DateUtils.getCurrentDate()
+//                    product.lastModifiedBy = preferencesHelper.userName
+//                    product.lastModifiedOn = DateUtils.getCurrentDate()
+//                    dataManagerProduct.updateTeller(teller).subscribeOn(Schedulers.io())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribeWith(object : DisposableCompletableObserver() {
+//                            override fun onComplete() {
+//                                _status.value = Status.DONE
+//                            }
+//
+//                            override fun onError(e: Throwable) {
+//                                _status.value = Status.ERROR
+//                            }
+//                        })
+//                } catch (exception: Exception) {
+//                    _status.value = Status.ERROR
+//                }
+//            }
+//        }
+    }
+
+    @SuppressLint("CheckResult")
     fun getCountries(): MutableLiveData<List<Country>> {
         val countries = MutableLiveData<List<Country>>()
         dataManagerAnonymous.countries.subscribeOn(Schedulers.io())

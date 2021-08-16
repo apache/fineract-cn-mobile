@@ -14,6 +14,8 @@ import org.apache.fineract.ui.adapters.ProductAccountAssignmentsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
 import org.apache.fineract.ui.base.Toaster
+import org.apache.fineract.ui.product.ProductAction
+import org.apache.fineract.ui.product.createproduct.CreateProductActivity
 import org.apache.fineract.utils.Constants
 import org.apache.fineract.utils.Utils
 import javax.inject.Inject
@@ -73,7 +75,12 @@ class ProductDetailsFragment : FineractBaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_product_details -> {
-                Toaster.show(rootView, getString(R.string.Under_construction), Toast.LENGTH_SHORT)
+                val intent = Intent(activity, CreateProductActivity::class.java).apply {
+                    putExtra(Constants.PRODUCT, product)
+                    putExtra(Constants.PRODUCT_ACTION, ProductAction.EDIT)
+                }
+                startActivity(intent)
+                activity!!.finish()
             }
         }
         return super.onOptionsItemSelected(item)

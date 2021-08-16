@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProduct"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/layout_padding_30dp"
-            android:layout_weight="1" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_padding_16dp"
+        app:layout_anchor="@id/rvProduct"
+        app:layout_anchorGravity="bottom|right"
+        app:layout_behavior="org.apache.fineract.utils.ScrollFabBehavior"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <include
         android:id="@+id/layoutError"
