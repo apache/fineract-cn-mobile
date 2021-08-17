@@ -4,10 +4,12 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.couchbase.lite.Expression
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.*
+import org.apache.fineract.couchbase.DocumentType
 import org.apache.fineract.couchbase.SynchronizationManager
 import org.apache.fineract.data.Status
 import org.apache.fineract.data.datamanager.api.DataManagerAnonymous
@@ -42,12 +44,18 @@ class ProductViewModel constructor(private val synchronizationManager: Synchroni
 
     @SuppressLint("CheckResult")
     fun getProducts(): MutableLiveData<ArrayList<Product>>? {
-        dataManagerProduct.fetchProductPage().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe{
-                productList.value = it.elements as ArrayList<Product>
-            }
-
+        val expression = Expression.property("documentType")
+            .equalTo(Expression.string(DocumentType.PRODUCT.value))
+            .and(Expression.property("identifier").notEqualTo(Expression.string("null")))
+        val hashMapList = synchronizationManager.getDocuments(expression)
+        if (hashMapList?.isEmpty() == null) {
+            return null
+        }
+        val list = arrayListOf<Product>()
+        for (map in hashMapList){
+            list.add(map.toDataClass())
+        }
+        productList.value = list
         return productList
     }
 
@@ -57,58 +65,39 @@ class ProductViewModel constructor(private val synchronizationManager: Synchroni
 
     @SuppressLint("CheckResult")
     fun createProduct(product: Product) {
-//        uiScope.launch {
-//            withContext(Dispatchers.Main) {
-//                try {
-//                    _status.value = Status.LOADING
-//                    product.createdBy = preferencesHelper.userName
-//                    product.createdOn = DateUtils.getCurrentDate()
-//                    product.lastModifiedBy = preferencesHelper.userName
-//                    product.lastModifiedOn = DateUtils.getCurrentDate()
-//                    dataManagerProduct.createTeller(teller).subscribeOn(Schedulers.io())
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribeWith(object : DisposableCompletableObserver() {
-//                            override fun onComplete() {
-//                                _status.value = Status.DONE
-//                            }
-//
-//                            override fun onError(e: Throwable) {
-//                                _status.value = Status.ERROR
-//                            }
-//                        })
-//                } catch (exception: Exception) {
-//                    _status.value = Status.ERROR
-//                }
-//            }
-//        }
+        uiScope.launch {
+            withContext(Dispatchers.Main) {
+                try {
+                    _status.value = Status.LOADING
+                    product.createdBy = preferencesHelper.userName
+                    product.createdOn = DateUtils.getCurrentDate()
+                    product.lastModifiedBy = preferencesHelper.userName
+                    product.lastModifiedOn = DateUtils.getCurrentDate()
+                    synchronizationManager.saveDocument(product.identifier!!, product.serializeToMap())
+                    _status.value = Status.DONE
+                } catch (exception: Exception) {
+                    _status.value = Status.ERROR
+                }
+            }
+        }
     }
 
-    @SuppressLint("CheckResult")
     fun updateProduct(product: Product) {
-//        uiScope.launch {
-//            withContext(Dispatchers.Main) {
-//                try {
-//                    _status.value = Status.LOADING
-//                    product.createdBy = preferencesHelper.userName
-//                    product.createdOn = DateUtils.getCurrentDate()
-//                    product.lastModifiedBy = preferencesHelper.userName
-//                    product.lastModifiedOn = DateUtils.getCurrentDate()
-//                    dataManagerProduct.updateTeller(teller).subscribeOn(Schedulers.io())
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribeWith(object : DisposableCompletableObserver() {
-//                            override fun onComplete() {
-//                                _status.value = Status.DONE
-//                            }
-//
-//                            override fun onError(e: Throwable) {
-//                                _status.value = Status.ERROR
-//                            }
-//                        })
-//                } catch (exception: Exception) {
-//                    _status.value = Status.ERROR
-//                }
-//            }
-//        }
+        uiScope.launch {
+            withContext(Dispatchers.Main) {
+                try {
+                    _status.value = Status.LOADING
+                    product.createdBy = preferencesHelper.userName
+                    product.createdOn = DateUtils.getCurrentDate()
+                    product.lastModifiedBy = preferencesHelper.userName
+                    product.lastModifiedOn = DateUtils.getCurrentDate()
+                    synchronizationManager.updateDocument(product.identifier!!, product.serializeToMap())
+                    _status.value = Status.DONE
+                } catch (exception: Exception) {
+                    _status.value = Status.ERROR
+                }
+            }
+        }
     }
 
     @SuppressLint("CheckResult")

@@ -126,7 +126,6 @@ class AddAccountAssignmentsFragment : FineractBaseFragment(), Step,
         action: ProductAction,
         accountAssignment: AccountAssignment?
     ) {
-        Log.d("varun", ">>>>>>>>>>>>>>> ${currentAction.toString()}")
         currentAction = action
         llAddProductAccountAssignments.visibility = View.VISIBLE
         when (action) {

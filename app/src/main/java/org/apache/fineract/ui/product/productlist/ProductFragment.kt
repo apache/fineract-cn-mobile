@@ -32,7 +32,7 @@ import org.apache.fineract.ui.online.groups.creategroup.CreateGroupActivity
 import org.apache.fineract.ui.product.ProductAction
 import org.apache.fineract.ui.product.createproduct.CreateProductActivity
 
-class ProductFragment : FineractBaseFragment(), OnItemClickListener {
+class ProductFragment : FineractBaseFragment(), OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     lateinit var rootView: View
 
@@ -84,6 +84,10 @@ class ProductFragment : FineractBaseFragment(), OnItemClickListener {
             layoutError.visibility = View.GONE
             viewModel.getProducts()
         }
+
+        swipeContainer.setColorSchemeColors(*activity!!
+            .resources.getIntArray(R.array.swipeRefreshColors))
+        swipeContainer.setOnRefreshListener(this)
 
         rvProduct.adapter = productAdapter
         rvProduct.layoutManager = LinearLayoutManager(context)
@@ -144,5 +148,24 @@ class ProductFragment : FineractBaseFragment(), OnItemClickListener {
             putExtra(Constants.PRODUCT_ACTION, ProductAction.CREATE)
         }
         startActivity(intent)
+    }
+
+    override fun onRefresh() {
+        hideProgressbar()
+        viewModel.getProducts()?.observe(this, Observer {
+            it?.let {
+                productList = it
+                productAdapter.setProductsList(productList)
+            }
+        })
+//        hideProgressbar()
+    }
+
+    fun showProgressbar() {
+        swipeContainer.isRefreshing = true
+    }
+
+    fun hideProgressbar() {
+        swipeContainer.isRefreshing = false
     }
 }

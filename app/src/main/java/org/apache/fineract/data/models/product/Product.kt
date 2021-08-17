@@ -4,6 +4,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
+import org.apache.fineract.couchbase.DocumentType
 import org.apache.fineract.data.models.loan.AccountAssignment
 import org.apache.fineract.data.models.loan.TermRange
 import java.util.ArrayList
@@ -31,5 +32,6 @@ data class Product (
     @SerializedName("createdOn") var createdOn: String? = null,
     @SerializedName("createdBy") var createdBy: String? = null,
     @SerializedName("lastModifiedOn") var lastModifiedOn: String? = null,
-    @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null
+    @SerializedName("lastModifiedBy") var lastModifiedBy: String? = null,
+    var documentType: String = DocumentType.PRODUCT.value
 ) : Parcelable
