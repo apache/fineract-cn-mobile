@@ -170,6 +170,7 @@
                 tools:targetApi="lollipop">
 
                 <LinearLayout
+                    android:id="@+id/llTasksAccountDetails"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="?android:attr/selectableItemBackgroundBorderless">

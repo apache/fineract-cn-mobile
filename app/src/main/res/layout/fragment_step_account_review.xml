@@ -7,6 +7,7 @@
     android:layout_margin="@dimen/default_margin">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewAccountReviewStep"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
