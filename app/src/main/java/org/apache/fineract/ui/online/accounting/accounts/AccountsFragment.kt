@@ -2,33 +2,52 @@ package org.apache.fineract.ui.online.accounting.accounts
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.SearchView
 import android.text.TextUtils
 import android.view.*
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
+import butterknife.ButterKnife
 import kotlinx.android.synthetic.main.fragment_accounts.*
 import kotlinx.android.synthetic.main.layout_exception_handler.*
 import org.apache.fineract.R
+import androidx.lifecycle.Observer
+import butterknife.OnClick
 import org.apache.fineract.data.models.accounts.Account
 import org.apache.fineract.ui.adapters.AccountsAdapter
 import org.apache.fineract.ui.base.FineractBaseActivity
 import org.apache.fineract.ui.base.FineractBaseFragment
-import java.util.*
+import org.apache.fineract.ui.base.OnItemClickListener
+import org.apache.fineract.ui.online.accounting.accounts.accountDetails.AccountDetailsActivity
+import org.apache.fineract.ui.online.accounting.accounts.createaccount.CreateAccountActivity
+import org.apache.fineract.ui.online.accounting.accounts.viewmodel.AccountsViewModel
+import org.apache.fineract.ui.online.accounting.accounts.viewmodel.AccountsViewModelFactory
+import org.apache.fineract.utils.Constants
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 
-class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefreshLayout.OnRefreshListener {
+class AccountsFragment : FineractBaseFragment(), OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
+
+    lateinit var rootView: View
+
+    lateinit var accountsViewModel: AccountsViewModel
 
     @Inject
-    lateinit var accountsPresenter: AccountsPresenter
+    lateinit var accountsViewModelFactory: AccountsViewModelFactory
 
     @Inject
     lateinit var accountsAdapter: AccountsAdapter
 
     lateinit var accountList : List<Account>
+
+    val searchedAccount: (ArrayList<Account>) -> Unit = { accounts ->
+        accountsAdapter.setAccountsList(accounts)
+    }
 
     companion object {
         fun newInstance() = AccountsFragment()
@@ -45,25 +64,36 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
 
         val rootView = inflater.inflate(R.layout.fragment_accounts, container, false)
         (activity as FineractBaseActivity).activityComponent.inject(this)
-        accountsPresenter.attachView(this)
-        initializeFineractUIErrorHandler(activity, rootView)
-
+        accountsViewModel = ViewModelProviders.of(this, accountsViewModelFactory).get(AccountsViewModel::class.java)
+        ButterKnife.bind(this, rootView)
         return rootView
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        accountsViewModel.getAccounts()?.observe(this, Observer {
+            it?.let {
+                accountList = it
+                accountsAdapter.setAccountsList(it)
+            }
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        accountsAdapter.setItemClickListener(this)
         showUserInterface()
 
         btn_try_again.setOnClickListener {
+            showProgressbar()
             layoutError.visibility = View.GONE
-            accountsPresenter.getAccountsPage()
+            accountsViewModel.getAccounts()
+            hideProgressbar()
         }
-
-        accountsPresenter.getAccountsPage()
     }
 
-    override fun showUserInterface() {
+    fun showUserInterface() {
         setToolbarTitle(getString(R.string.accounts))
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = RecyclerView.VERTICAL
@@ -93,7 +123,7 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
 
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                accountsPresenter.searchAccount(accountList, query)
+                accountsViewModel.searchAccount(accountList as ArrayList<Account>, query, searchedAccount)
                 return false
             }
 
@@ -102,36 +132,43 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
                     showRecyclerView(true)
                     accountsAdapter.setAccountsList(accountList)
                 }
-                accountsPresenter.searchAccount(accountList, newText)
+                accountsViewModel.searchAccount(accountList as ArrayList<Account>, newText, searchedAccount)
                 return false
             }
         })
 
     }
 
-    override fun searchedAccount(accounts: List<Account>) {
+    fun searchedAccount(accounts: List<Account>) {
         showRecyclerView(true)
         accountsAdapter.setAccountsList(accounts)
     }
 
     override fun onRefresh() {
-        accountsPresenter.getAccountsPage()
+        showProgressbar()
+        accountsViewModel.getAccounts()?.observe(this, Observer {
+            it?.let {
+                accountList = it
+                accountsAdapter.setAccountsList(it)
+            }
+        })
+        hideProgressbar()
     }
 
 
-    override fun showAccounts(accounts: List<Account>) {
+    fun showAccounts(accounts: List<Account>) {
         showRecyclerView(true)
         accountList = accounts
         accountsAdapter.setAccountsList(accountList)
     }
 
-    override fun showEmptyAccounts() {
+    fun showEmptyAccounts() {
         showRecyclerView(false)
-        showFineractEmptyUI(getString(R.string.accounts), getString(R.string.accounts),
-                R.drawable.ic_person_outline_black_24dp)
+        showFineractEmptyUI(getString(R.string.account), getString(R.string.account),
+            R.drawable.ic_person_outline_black_24dp)
     }
 
-    override fun showRecyclerView(status: Boolean) {
+    fun showRecyclerView(status: Boolean) {
         if (status) {
             rvAccount.visibility = View.VISIBLE
             layoutError.visibility = View.GONE
@@ -141,27 +178,38 @@ class AccountsFragment : FineractBaseFragment(), AccountContract.View, SwipeRefr
         }
     }
 
-    override fun showProgressbar() {
+    fun showProgressbar() {
         swipeContainer.isRefreshing = true
     }
 
-    override fun hideProgressbar() {
+    fun hideProgressbar() {
         swipeContainer.isRefreshing = false
     }
 
-    override fun showNoInternetConnection() {
+    fun showNoInternetConnection() {
         showRecyclerView(false)
         showFineractNoInternetUI()
     }
 
-    override fun showError(message: String) {
+    fun showError(message: String) {
         showRecyclerView(false)
         showFineractErrorUI(getString(R.string.accounts))
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        accountsPresenter.detachView()
+    override fun onItemClick(childView: View?, position: Int) {
+        val intent = Intent(context, AccountDetailsActivity::class.java).apply {
+            putExtra(Constants.ACCOUNT, accountList[position])
+        }
+        startActivity(intent)
     }
 
+    override fun onItemLongPress(childView: View?, position: Int) {}
+
+    @OnClick(R.id.fabAddAccount)
+    fun addAccount() {
+        val intent = Intent(activity, CreateAccountActivity::class.java).apply {
+            putExtra(Constants.ACCOUNT_ACTION, AccountAction.CREATE)
+        }
+        startActivity(intent)
+    }
 }

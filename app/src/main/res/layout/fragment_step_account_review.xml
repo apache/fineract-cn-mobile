@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/default_margin">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewAccountReviewStep"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/default_padding">
+
+                <LinearLayout
+                    android:id="@+id/llHeadOneAccountsReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/one"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeadOneAccountStepReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/identifier" />
+
+                <TextView
+                    android:id="@+id/tvIdentifierAccountStepReview"
+                    style="@style/TextViewReview.Input"
+                    android:textColor="@color/black" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/type" />
+
+                <TextView
+                    android:id="@+id/tvTypeAccountStepReview"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/name" />
+
+                <TextView
+                    android:id="@+id/tvNameAccountStepReview"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:id="@+id/llHeadTwoAccountsReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/two"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeadTwoAccountStepReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:paddingTop="@dimen/layout_padding_8dp"
+                    android:text="@string/holders" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvHoldersAccountStepReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_12dp"
+                    android:layout_marginBottom="@dimen/layout_padding_12dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_name_list" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:id="@+id/llHeadThreeAccountsReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/three"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeadThreeAccountStepReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:paddingTop="@dimen/layout_padding_8dp"
+                    android:text="@string/signature_authorities" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSignatureAuthoritiesAccountStepReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_12dp"
+                    android:layout_marginBottom="@dimen/layout_padding_12dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_name_list" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:id="@+id/llHeadFourAccountsReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/four"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeadFourAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/balance" />
+
+                <TextView
+                    android:id="@+id/tvBalanceAccountStepReview"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/reference_account" />
+
+                <TextView
+                    android:id="@+id/tvRefAccountStepReview"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/ledger_account" />
+
+                <TextView
+                    android:id="@+id/tvLedgerAccountStepReview"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/alternate_account_number" />
+
+                <TextView
+                    android:id="@+id/tvAltAccountNoAccountStepReview"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
