@@ -126,6 +126,7 @@ class LedgerFragment : FineractBaseFragment(), LedgerContract.View,
             }
         })
 
+        baseSearchView = searchView
     }
 
     override fun searchedLedger(ledgers: List<Ledger>) {

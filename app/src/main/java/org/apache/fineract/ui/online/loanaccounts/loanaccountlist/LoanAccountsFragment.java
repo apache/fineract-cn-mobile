@@ -256,6 +256,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
             }
         });
 
+        baseSearchView = searchView;
     }
 
     @Override
