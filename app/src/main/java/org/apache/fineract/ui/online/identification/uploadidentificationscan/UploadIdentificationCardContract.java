@@ -16,9 +16,15 @@ public interface UploadIdentificationCardContract {
 
         void checkCameraPermission();
 
+        void checkReadExternalStoragePermission();
+
         void openCamera();
 
+        void viewGallery();
+
         void requestPermission();
+
+        void requestReadExternalStoragePermission();
 
         void showScanUploadedSuccessfully();
 

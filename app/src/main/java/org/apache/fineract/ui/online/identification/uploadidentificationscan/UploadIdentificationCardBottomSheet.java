@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import androidx.annotation.NonNull;
+
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
@@ -29,6 +30,7 @@ import org.apache.fineract.ui.base.FineractBaseBottomSheetDialogFragment;
 import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.utils.CheckSelfPermissionAndRequest;
 import org.apache.fineract.utils.ConstantKeys;
+import org.apache.fineract.utils.FileUtils;
 import org.apache.fineract.utils.ValidateIdentifierUtil;
 import org.apache.fineract.utils.ValidationUtil;
 
@@ -52,6 +54,7 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
     public static final String LOG_TAG = UploadIdentificationCardBottomSheet.class.getSimpleName();
 
     public static final int REQUEST_IMAGE_CAPTURE = 1;
+    public static final int REQUEST_PHOTO_FROM_GALLERY = 2;
 
     @BindView(R.id.et_identifier)
     EditText etIdentifier;
@@ -125,9 +128,14 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
         dismiss();
     }
 
-    @OnClick(R.id.btn_browse_document)
+    @OnClick(R.id.btn_take_photo)
     void browseDocument() {
         checkCameraPermission();
+    }
+
+    @OnClick(R.id.btn_browse_document)
+    void takePhotoOfDocument() {
+        checkReadExternalStoragePermission();
     }
 
     @Override
@@ -137,6 +145,16 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
             openCamera();
         } else {
             requestPermission();
+        }
+    }
+
+    @Override
+    public void checkReadExternalStoragePermission() {
+        if (CheckSelfPermissionAndRequest.checkSelfPermission(getActivity(),
+                Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            viewGallery();
+        } else {
+            requestReadExternalStoragePermission();
         }
     }
 
@@ -163,11 +181,31 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
     }
 
     @Override
+    public void viewGallery() {
+        Intent intentDocument = new Intent(Intent.ACTION_GET_CONTENT);
+        intentDocument.setType("image/*");
+        startActivityForResult(intentDocument, REQUEST_PHOTO_FROM_GALLERY);
+    }
+
+
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             etSelectFile.setText(getString(R.string.scan_file));
             try {
                 compressedImage = imageCompressor.compressToFile(cameraImage);
+            } catch (IOException e) {
+                Log.d(UploadIdentificationCardBottomSheet.class.getSimpleName(), e.toString());
+            }
+        } else if (requestCode == REQUEST_PHOTO_FROM_GALLERY && resultCode == RESULT_OK) {
+            if (data == null) {
+                return;
+            }
+            etSelectFile.setText(getString(R.string.scan_file));
+            Uri uri = data.getData();
+            File file = new File(FileUtils.getPathReal(getActivity(), uri));
+            try {
+                compressedImage = imageCompressor.compressToFile(file);
             } catch (IOException e) {
                 Log.d(UploadIdentificationCardBottomSheet.class.getSimpleName(), e.toString());
             }
@@ -187,18 +225,39 @@ public class UploadIdentificationCardBottomSheet extends FineractBaseBottomSheet
                 ConstantKeys.PERMISSIONS_CAMERA_STATUS);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    public void requestReadExternalStoragePermission() {
+        CheckSelfPermissionAndRequest.requestPermission(
+                (FineractBaseActivity) getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE,
+                ConstantKeys.PERMISSION_REQUEST_READ_EXTERNAL_STORAGE,
+                getResources().getString(
+                        R.string.dialog_message_read_permission_denied_prompt),
+                getResources().getString(R.string.dialog_message_read_permission_never_ask_again),
+                ConstantKeys.PERMISSIONS_READ_EXTERNAL_STORAGE_STATUS);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
             @NonNull int[] grantResults) {
         switch (requestCode) {
-            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA: {
+            case ConstantKeys.PERMISSIONS_REQUEST_CAMERA:
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     openCamera();
                 } else {
                     Toaster.show(rootView, getString(R.string.permission_denied_camera));
                 }
-            }
+                break;
+
+            case ConstantKeys.PERMISSION_REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    viewGallery();
+                } else {
+                    Toaster.show(rootView, getString(R.string.permission_denied_read));
+                }
+                break;
         }
     }
 
