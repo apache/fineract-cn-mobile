@@ -7,6 +7,8 @@ import androidx.test.espresso.contrib.DrawerActions
 import androidx.test.espresso.contrib.NavigationViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.rule.ActivityTestRule
+import androidx.test.runner.AndroidJUnit4
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import org.apache.fineract.R
@@ -17,7 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * Created by Ahmad Jawid Muhammadi on 24/8/20.
+ * Created by Ahmad Jawid Muhammadi on 30/8/20.
  */
 
 @RunWith(AndroidJUnit4::class)
@@ -28,7 +30,7 @@ class GroupListFragmentAndroidTest {
             ActivityTestRule<DashboardActivity>(DashboardActivity::class.java)
 
     @Test
-    fun openDrawer_OpenGroupList_ClickOnRecyclerViewItem() {
+    fun testNavDrawer_OpenGroupList_ClickOnRecyclerViewItem() {
 
         //Open drawer
         onView(withId(R.id.drawer_layout))
@@ -41,11 +43,20 @@ class GroupListFragmentAndroidTest {
         //Click on group item
         onView(withId(R.id.rvGroups)).perform(
                 RecyclerViewActions.actionOnItem<GroupsAdapter.ViewHolder>(
-                        hasDescendant(withText("group")),
+                        hasDescendant(withText("group001")),
                         click()
                 )
         )
 
+        //Assert if the item has been displayed correctly
+        onView(withId(R.id.tvIdentifier))
+                .check(matches(withText("group001")))
+        onView(withId(R.id.tvStatus))
+                .check(matches(withText("PENDING")))
+        onView(withId(R.id.tvGroupId))
+                .check(matches(withText("grpDef001")))
+        onView(withId(R.id.tvName))
+                .check(matches(withText("SDLE Group")))
         //Assert if thw item has been displayed correctly
         onView(withId(R.id.tvIdentifier))
                 .check(matches(withText("group")))
