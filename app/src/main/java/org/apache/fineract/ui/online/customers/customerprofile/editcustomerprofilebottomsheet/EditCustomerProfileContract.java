@@ -1,5 +1,7 @@
 package org.apache.fineract.ui.online.customers.customerprofile.editcustomerprofilebottomsheet;
 
+import androidx.annotation.NonNull;
+
 import org.apache.fineract.ui.base.MvpView;
 import org.apache.fineract.ui.refreshcallback.RefreshProfileImage;
 
@@ -12,6 +14,9 @@ import java.io.File;
 public interface EditCustomerProfileContract {
 
     interface View extends MvpView {
+
+        void requestedPermissionResult(int requestCode, @NonNull String[] permissions,
+                                       @NonNull int[] grantResults);
 
         void showUserInterface();
 
