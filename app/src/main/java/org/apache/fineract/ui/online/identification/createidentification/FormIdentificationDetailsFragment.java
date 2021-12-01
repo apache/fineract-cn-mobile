@@ -144,9 +144,11 @@ public class FormIdentificationDetailsFragment extends FineractBaseFragment impl
 
     @OnClick(R.id.et_expiration_date)
     void onClickDateOfBirth() {
-        new DatePickerDialog(getActivity(), date, calendar
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), date, calendar
                 .get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)).show();
+                calendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        datePickerDialog.show();
     }
 
     private void setDateOfBirth() {
@@ -193,8 +195,6 @@ public class FormIdentificationDetailsFragment extends FineractBaseFragment impl
             validateNumber();
         } else if (etType.getText().hashCode() == s.hashCode()) {
             validateType();
-        } else if (etExpirationDate.getText().hashCode() == s.hashCode()) {
-            validateExpirationDate();
         } else if (etIssuer.getText().hashCode() == s.hashCode()) {
             validateIssuer();
         }
