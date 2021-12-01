@@ -145,7 +145,9 @@ public class DashboardActivity extends FineractBaseActivity implements
         }
 
         drawerLayout.closeDrawer(GravityCompat.START);
-        setTitle(item.getTitle());
+        if (item.getItemId() != R.id.item_logout) {
+            setTitle(item.getTitle());
+        }
         return true;
     }
 
