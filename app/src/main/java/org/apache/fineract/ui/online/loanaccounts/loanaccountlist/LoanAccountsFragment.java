@@ -238,6 +238,7 @@ public class LoanAccountsFragment extends FineractBaseFragment implements LoanAc
                 .getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity()
                 .getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

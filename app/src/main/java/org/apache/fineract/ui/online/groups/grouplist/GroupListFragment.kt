@@ -97,6 +97,7 @@ class GroupListFragment : FineractBaseFragment(), OnItemClickListener {
         val searchView = menu.findItem(R.id.group_search).actionView as SearchView
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+        searchView.maxWidth = Int.MAX_VALUE
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
