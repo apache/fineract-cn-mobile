@@ -286,6 +286,10 @@ public class EditCustomerProfileBottomSheet extends FineractBaseBottomSheetDialo
     @OnClick(R.id.btn_upload_photo)
     void uploadPhoto() {
         if (editAction == EditAction.CAMERA || editAction == EditAction.GALLERY) {
+            if (file == null) {
+                Toaster.show(rootView, getString(R.string.select_photo));
+                return;
+            }
             editCustomerProfilePresenter.uploadCustomerPortrait(customerIdentifier, file);
         } else if (editAction == EditAction.DELETE) {
             editCustomerProfilePresenter.deleteCustomerPortrait(customerIdentifier);
