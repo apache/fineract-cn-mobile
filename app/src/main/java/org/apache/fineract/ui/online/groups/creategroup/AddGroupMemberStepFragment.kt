@@ -36,6 +36,7 @@ class AddGroupMemberStepFragment : FineractBaseFragment(), Step, NameListAdapter
     private var currentAction = GroupAction.CREATE
     private var editItemPosition = 0
     private lateinit var groupAction: GroupAction
+    private var editMember: String = ""
 
     @Inject
     lateinit var nameLisAdapter: NameListAdapter
@@ -95,6 +96,9 @@ class AddGroupMemberStepFragment : FineractBaseFragment(), Step, NameListAdapter
             GroupAction.EDIT -> {
                 etNewMember.setText(name)
                 btnAddMember.text = getString(R.string.update)
+                members.removeAt(editItemPosition)
+                nameLisAdapter.submitList(members)
+                editMember = name!!
             }
         }
     }
@@ -109,7 +113,9 @@ class AddGroupMemberStepFragment : FineractBaseFragment(), Step, NameListAdapter
             if (currentAction == GroupAction.CREATE) {
                 members.add(etNewMember.text.toString())
             } else {
+                members.add(editItemPosition, editMember)
                 members[editItemPosition] = etNewMember.text.toString()
+                editMember = ""
             }
             etNewMember.text.clear()
             llAddMember.visibility = View.GONE
@@ -133,8 +139,13 @@ class AddGroupMemberStepFragment : FineractBaseFragment(), Step, NameListAdapter
     @Optional
     @OnClick(R.id.btnCancelAddMember)
     fun cancelMemberAddition() {
-        etNewMember.text.clear()
         llAddMember.visibility = View.GONE
+        etNewMember.text.clear()
+        if (editMember.isNotEmpty()) {
+            members.add(editItemPosition, editMember)
+            nameLisAdapter.submitList(members)
+            editMember = ""
+        }
     }
 
     override fun onSelected() {
