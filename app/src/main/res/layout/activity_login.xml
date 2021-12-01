@@ -83,7 +83,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    app:passwordToggleEnabled="true">
+                    app:endIconMode="password_toggle">
 
                     <EditText
                         style="@style/Base.TextAppearance.AppCompat.Medium"
