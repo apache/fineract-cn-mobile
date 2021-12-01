@@ -6,5 +6,6 @@ package org.apache.fineract.couchbase
 
 enum class DocumentType(val value: String) {
     GROUP("Group"),
-    CUSTOMER("customer")
+    CUSTOMER("customer"),
+    PRODUCT("Product")
 }

@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/default_margin">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewProductReviewStep"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginBottom="@dimen/default_margin">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/default_padding">
+
+                <LinearLayout
+                    android:id="@+id/llHeadOne"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/one"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeadOne"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/identifier" />
+
+                <TextView
+                    android:id="@+id/tvProductIdentifier"
+                    style="@style/TextViewReview.Input"
+                    android:textColor="@color/black" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/name" />
+
+                <TextView
+                    android:id="@+id/tvProductName"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/pattern_package" />
+
+                <TextView
+                    android:id="@+id/tvPatternPackageProduct"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/description" />
+
+                <TextView
+                    android:id="@+id/tvProductDescription"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/currency_code" />
+
+                <TextView
+                    android:id="@+id/tvProductCurrencyCode"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/minor_currency_unit_digits" />
+
+                <TextView
+                    android:id="@+id/tvProductMinorCurrencyUnit"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/parameters" />
+
+                <TextView
+                    android:id="@+id/tvParameters"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/interest_basis" />
+
+                <TextView
+                    android:id="@+id/tvInterestBasis"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:id="@+id/llHeadThree"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/two"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:id="@+id/tvHeadThree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:paddingTop="@dimen/layout_padding_8dp"
+                    android:text="@string/account_assignments" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProductAccountAssignmentsStepReview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/layout_padding_12dp"
+                    android:layout_marginBottom="@dimen/layout_padding_12dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/account_assignments_item" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/three"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/balance_range"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:paddingTop="@dimen/layout_padding_8dp"
+                    android:text="@string/minimum" />
+
+                <TextView
+                    android:id="@+id/tvMinProductBalanceRange"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/maximum" />
+
+                <TextView
+                    android:id="@+id/tvMaxProductBalanceRange"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/five"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/term_range"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:paddingTop="@dimen/layout_padding_8dp"
+                    android:text="@string/temporal_unit" />
+
+                <TextView
+                    android:id="@+id/tvProductTemporalUnit"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/maximum" />
+
+                <TextView
+                    android:id="@+id/tvMaximumTermRange"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/layout_padding_16dp"
+                    android:baselineAligned="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/layout_padding_8dp"
+                        android:layout_marginRight="@dimen/layout_padding_8dp"
+                        android:background="@drawable/review_circle_bg"
+                        android:gravity="center"
+                        android:text="@string/four"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/interest_range"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:paddingTop="@dimen/layout_padding_8dp"
+                    android:text="@string/minimum" />
+
+                <TextView
+                    android:id="@+id/tvMinInterestRange"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+                <TextView
+                    style="@style/TextViewReview.Head"
+                    android:text="@string/maximum" />
+
+                <TextView
+                    android:id="@+id/tvMaxInterestRange"
+                    style="@style/TextViewReview.Input" />
+
+                <View style="@style/TextViewUnderline.Grey" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

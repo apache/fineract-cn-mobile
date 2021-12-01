@@ -59,7 +59,13 @@ import org.apache.fineract.ui.online.login.LoginActivity;
 import org.apache.fineract.ui.online.review.AddLoanReviewFragment;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
-import org.apache.fineract.ui.product.ProductFragment;
+import org.apache.fineract.ui.product.createproduct.AddAccountAssignmentsFragment;
+import org.apache.fineract.ui.product.createproduct.CreateProductActivity;
+import org.apache.fineract.ui.product.createproduct.ProductDetailsStepFragment;
+import org.apache.fineract.ui.product.createproduct.ProductReviewStepFragment;
+import org.apache.fineract.ui.product.productlist.ProductFragment;
+import org.apache.fineract.ui.product.productdetails.ProductDetailsActivity;
+import org.apache.fineract.ui.product.productdetails.ProductDetailsFragment;
 
 import dagger.Subcomponent;
 
@@ -159,5 +165,17 @@ public interface ActivityComponent {
     void inject(GroupDetailsFragment groupDetailsFragment);
 
     void inject(GroupTasksBottomSheetFragment groupTasksBottomSheetFragment);
+
+    void inject(ProductDetailsActivity productDetailsActivity);
+
+    void inject(ProductDetailsFragment productDetailsFragment);
+
+    void inject(CreateProductActivity createProductActivity);
+
+    void inject(ProductDetailsStepFragment productDetailsStepFragment);
+
+    void inject(AddAccountAssignmentsFragment addAccountAssignmentsFragment);
+
+    void inject(ProductReviewStepFragment productReviewStepFragment);
 }
 

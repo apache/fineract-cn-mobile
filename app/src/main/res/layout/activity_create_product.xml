@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout style="@style/LinearLayout.Base">
+
+        <include layout="@layout/toolbar" />
+
+        <com.stepstone.stepper.StepperLayout
+            android:id="@+id/slCreateProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:ms_activeStepColor="?attr/colorPrimary"
+            app:ms_backButtonColor="#FFFFFF"
+            app:ms_bottomNavigationBackground="?attr/colorPrimary"
+            app:ms_completeButtonColor="#FFFFFF"
+            app:ms_inactiveStepColor="#cccccc"
+            app:ms_nextButtonColor="#FFFFFF"
+            app:ms_stepperFeedbackType="tabs|content|disabled_bottom_navigation"
+            app:ms_stepperType="tabs"
+            app:ms_tabNavigationEnabled="false"
+            app:ms_tabStepDividerWidth="138dp" />
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
