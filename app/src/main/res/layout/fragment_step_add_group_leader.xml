@@ -61,53 +61,6 @@
                         android:text="@string/no_group_leader_added"
                         android:visibility="visible" />
 
-                    <LinearLayout
-                        android:id="@+id/llAddLeader"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/layout_padding_12dp"
-                        android:background="@drawable/border"
-                        android:orientation="vertical"
-                        android:padding="@dimen/layout_padding_16dp"
-                        android:visibility="gone">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/etNewLeader"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/name" />
-
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/layout_padding_16dp"
-                            android:gravity="right">
-
-                            <Button
-                                android:id="@+id/btnCancelAddLeader"
-                                style="@style/Widget.MaterialComponents.Button.TextButton"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/cancel"
-                                android:textSize="@dimen/text_size_14sp" />
-
-                            <Button
-                                android:id="@+id/btnAddLeader"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/add" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
