@@ -43,4 +43,7 @@ public class ConstantKeys {
     public static final int PERMISSION_REQUEST_READ_EXTERNAL_STORAGE = 3;
     public static final String PERMISSIONS_READ_EXTERNAL_STORAGE_STATUS = "read_status";
 
+    public static final String PROFILE_SHARING_TEXT_START =
+            "Hey there, here's the profile of a customer ";
+    public static final String PROFILE_SHARING_TEXT_END = " shared with you from fineract mobile.";
 }
