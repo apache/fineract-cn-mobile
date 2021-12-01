@@ -18,6 +18,6 @@
         app:layout_anchor="@id/rvGroups"
         app:layout_anchorGravity="bottom|right"
         app:layout_behavior="org.apache.fineract.utils.ScrollFabBehavior"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        app:srcCompat="@drawable/ic_add_white_48dp" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
