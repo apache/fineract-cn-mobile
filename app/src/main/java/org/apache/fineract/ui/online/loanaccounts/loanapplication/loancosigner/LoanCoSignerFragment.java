@@ -71,9 +71,14 @@ public class LoanCoSignerFragment extends BaseFragmentDebtIncome implements Step
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((FineractBaseActivity) getActivity()).getActivityComponent().inject(this);
         loanCoSignerPresenter.attachView(this);
         loanApplicationAction = (LoanApplicationAction) getArguments()
                 .getSerializable(ConstantKeys.LOAN_APPLICATION_ACTION);
