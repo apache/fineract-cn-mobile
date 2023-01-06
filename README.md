@@ -1,7 +1,5 @@
 ### Status
 
-[![Build Status](https://travis-ci.org/openMF/Fineract-CN-mobile.svg?branch=development)](https://travis-ci.org/openMF/Fineract-CN-mobile)
-
 # Android Client of Apache Fineract CN
 
 Android Client is built on top of the Apache Fineract CN platform. It is the mobile field agent application for its web counterpart
