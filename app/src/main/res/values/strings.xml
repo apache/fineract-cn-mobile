@@ -38,7 +38,6 @@
     <string name="activities">Activities</string>
     <string name="recent_activities">Recent activities</string>
     <string name="birthday">Birthday</string>
-    <string name="assigned_employee">Assigned Employee </string>
     <string name="assigned_employee_list">Assigned Employee: %1$s</string>
     <string name="not_assigned">Not assigned</string>
     <string name="no_contact_details_available">No Contact details available</string>
@@ -182,6 +181,8 @@
     <string name="customer_updated_successfully">%1$s updated successfully</string>
     <string name="group_identifier_created_successfully">Group %1$s created successfully</string>
     <string name="group_identifier_updated_successfully">Group %1$s updated successfully</string>
+    <string name="teller_identifier_created_successfully" translatable="true">Teller %1$s created successfully</string>
+    <string name="teller_identifier_updated_successfully" translatable="true">Teller %1$s updated successfully</string>
     <string name="created_by">Created by</string>
     <string name="created_on">Created on</string>
     <string name="no_deposit_account">No deposit account</string>
@@ -228,6 +229,9 @@
     <string name="status">Status</string>
     <string name="group_definition_identifier">Group Definition Identifier</string>
     <string name="create_group">Create Group</string>
+    <string name="create_teller" translatable="false">Create Teller</string>
+    <string name="creating_teller" translatable="true">Creating Teller, Please wait....</string>
+    <string name="edit_teller" translatable="false">Edit Teller</string>
     <string name="no_group_member_added">No Group Member Added</string>
     <string name="no_group_leader_added">No Group Leader Added</string>
 
@@ -317,7 +321,7 @@
     <string name="error_fetching_ledger">Error fetching ledger</string>
     <string name="error_fetching_payrollConfig">Error fetching payroll configuration</string>
     <string name="error_fetching_accounts">Error fetching accounts</string>
-    <string name="error_fetching_teller">Error fetching teller</string>
+    <string name="error_fetching_teller" translatable="true">Error fetching teller</string>
     <string name="error_fetching_products">Error fetching products</string>
     <string name="error_sorry_not_able_to_load">Sorry we weren\'t able to load</string>
     <string name="error_fetching_customer_details">Failed to fetch customer details</string>
@@ -449,6 +453,11 @@
         <item>Review</item>
     </string-array>
 
+    <string-array name="create_teller_steps" translatable="false">
+        <item>Teller Details</item>
+        <item>Review</item>
+    </string-array>
+
     <string-array name="edit_payroll_steps">
         <item>Customer payroll</item>
         <item>Payroll allocations</item>
@@ -539,9 +548,25 @@
     <string name="dialog_message_confirm_name_deletion">Do you want to delete %s?</string>
     <string name="edit_group">Edit Group</string>
     <string name="updating_group_please_wait">Updating Group, please wait...</string>
+    <string name="updating_teller_please_wait" translatable="true">Updating Teller, please wait...</string>
     <string name="please_verify_following_group_task">Please verify the following tasks before you can %1$s this group</string>
     <string name="change_group_status">Change the status of group</string>
+    <string name="change_teller_status" translatable="false">Change the status of Teller</string>
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+    <string name="please_wait_updating_teller_status" translatable="true">Updating Teller status, please wait...</string>
+    <string name="error_while_updating_teller_status" translatable="true">Error while updating teller status</string>
+    <string name="please_verify_following_teller_task" translatable="true">Please verify the following tasks before you %1$s this Teller</string>
+    <string name="error_while_creating_teller" translatable="true">Error while creating Teller</string>
+    <string name="error_while_updating_teller" translatable="true">Error while updating Teller</string>
+    <string name="assigned_employee" translatable="false">Assigned Employee</string>
+    <string name="cheaques_recievable_amount" translatable="false">Cheaques Recievable Amount</string>
+    <string name="cash_over_short_account" translatable="false">Cash over Short Account</string>
+    <string name="cash_withdraw_limit" translatable="false">Cash Withdraw Limit</string>
+    <string name="denomination_required" translatable="false">Denomination Required?</string>
+    <string name="vaultaccountidentifier" translatable="false">VaultAccountIdentifier</string>
+    <string name="telleraccountidentifier" translatable="false">TellerAccountIdentifier</string>
+    <string name="state" translatable="false">State</string>
+    <string name="code" translatable="false">Code</string>
 </resources>
