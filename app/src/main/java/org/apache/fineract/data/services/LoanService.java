@@ -1,5 +1,6 @@
 package org.apache.fineract.data.services;
 
+import org.apache.fineract.data.models.customer.Command;
 import org.apache.fineract.data.models.loan.LoanAccount;
 import org.apache.fineract.data.models.loan.LoanAccountPage;
 import org.apache.fineract.data.models.product.ProductPage;
@@ -42,9 +43,14 @@ public interface LoanService {
             @Path("productidentifier") String productidentifier,
             @Body LoanAccount loanAccount);
 
+    //APIs not ready yet.
+    Completable loanCommand(@Path("productidentifier") String productidentifier,
+                            @Body Command command);
+
     @PUT(EndPoints.API_PORTFOLIO_PATH + "/products/{productidentifier}/cases/{caseidentifier}")
     Completable updateLoan(
             @Path("productidentifier") String productIdentifier,
             @Path("caseidentifier") String caseIdentifier,
             @Body LoanAccount loanAccount);
+
 }
