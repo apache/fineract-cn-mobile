@@ -6,11 +6,10 @@ import org.apache.fineract.FakeRemoteDataSource
 import org.apache.fineract.data.datamanager.DataManagerAccounting
 import org.apache.fineract.data.models.accounts.LedgerPage
 import org.apache.fineract.exceptions.NoConnectivityException
-import org.apache.fineract.ui.online.accounting.accounts.LedgerContract
-import org.apache.fineract.ui.online.accounting.ledgers.LedgerPresenter
+import org.apache.fineract.ui.online.accounting.accounts.LedgerListContract
+import org.apache.fineract.ui.online.accounting.ledgers.ledgerlist.LedgerListPresenter
 import org.apache.fineract.util.RxSchedulersOverrideRule
 import org.junit.After
-import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -21,14 +20,14 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class LedgerPresenterTest {
+class LedgerListPresenterTest {
 
     @Rule
     @JvmField
     val overrideSchedulersRule = RxSchedulersOverrideRule()
 
     @Mock
-    lateinit var mockedView: LedgerContract.View
+    lateinit var mockedView: LedgerListContract.View
 
     @Mock
     lateinit var mockedAccountingDataManager: DataManagerAccounting
@@ -36,21 +35,21 @@ class LedgerPresenterTest {
     @Mock
     lateinit var mockedContext: Context
 
-    lateinit var ledgerPresenter: LedgerPresenter
+    lateinit var ledgerListPresenter: LedgerListPresenter
 
     lateinit var ledgerPage: LedgerPage
 
     @Before
     fun setup() {
-        ledgerPresenter = LedgerPresenter(mockedContext, mockedAccountingDataManager)
-        ledgerPresenter.attachView(mockedView)
+        ledgerListPresenter = LedgerListPresenter(mockedContext, mockedAccountingDataManager)
+        ledgerListPresenter.attachView(mockedView)
         ledgerPage = FakeRemoteDataSource.getLedgerPage()
     }
 
     @Test
     fun testGetLedgerPage() {
         `when`(mockedAccountingDataManager.fetchLedgers()).thenReturn(Observable.just(ledgerPage))
-        ledgerPresenter.getLedgersPage()
+        ledgerListPresenter.getLedgersPage()
         verify(mockedView).showProgressbar()
         verify(mockedView).hideProgressbar()
         verify(mockedView).showLedgers(ledgerPage.ledgers!!)
@@ -60,7 +59,7 @@ class LedgerPresenterTest {
     fun testGetLedgerPageEmpty() {
         `when`(mockedAccountingDataManager.fetchLedgers())
                 .thenReturn(Observable.just(LedgerPage(ledgers = ArrayList())))
-        ledgerPresenter.getLedgersPage()
+        ledgerListPresenter.getLedgersPage()
         verify(mockedView).showProgressbar()
         verify(mockedView).hideProgressbar()
         verify(mockedView).showEmptyLedgers()
@@ -71,7 +70,7 @@ class LedgerPresenterTest {
         val exception = NoConnectivityException()
         `when`(mockedAccountingDataManager.fetchLedgers())
                 .thenReturn(Observable.error(exception))
-        ledgerPresenter.getLedgersPage()
+        ledgerListPresenter.getLedgersPage()
         verify(mockedView).showProgressbar()
         verify(mockedView).hideProgressbar()
         verify(mockedView).showNoInternetConnection()
@@ -79,7 +78,7 @@ class LedgerPresenterTest {
 
     @After
     fun tearDown() {
-        ledgerPresenter.detachView()
+        ledgerListPresenter.detachView()
     }
 
 }

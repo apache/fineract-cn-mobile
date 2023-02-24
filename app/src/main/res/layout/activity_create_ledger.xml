@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/LinearLayout.Base">
+    <LinearLayout
+        style="@style/LinearLayout.Base"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <include layout="@layout/toolbar" />
 
-        <com.stepstone.stepper.StepperLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.stepstone.stepper.StepperLayout
             android:id="@+id/stepperLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:ms_activeStepColor="?attr/colorPrimary"
-            app:ms_backButtonColor="#FFFFFF"
+            app:ms_backButtonColor="@color/white"
             app:ms_bottomNavigationBackground="?attr/colorPrimary"
-            app:ms_completeButtonColor="#FFFFFF"
+            app:ms_completeButtonColor="@color/white"
             app:ms_inactiveStepColor="#cccccc"
-            app:ms_nextButtonColor="#FFFFFF"
+            app:ms_nextButtonColor="@color/white"
             app:ms_stepperFeedbackType="tabs|content|disabled_bottom_navigation"
             app:ms_stepperType="tabs"
-            app:ms_tabNavigationEnabled="true"
-            app:ms_tabStepDividerWidth="138dp" />
+            app:ms_tabNavigationEnabled="false"
+            app:ms_tabStepDividerWidth="@dimen/step_divider_width" />
 
     </LinearLayout>
 
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-

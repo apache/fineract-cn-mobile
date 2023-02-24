@@ -3,7 +3,7 @@ package org.apache.fineract.ui.online.accounting.accounts
 import org.apache.fineract.data.models.accounts.Ledger
 import org.apache.fineract.ui.base.MvpView
 
-interface LedgerContract {
+interface LedgerListContract {
 
     interface View : MvpView {
 
