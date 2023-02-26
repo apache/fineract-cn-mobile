@@ -13,6 +13,6 @@ import retrofit2.http.GET;
  */
 public interface AnonymousService {
 
-    @GET("http://restcountries.eu/rest/v2/all?fields=name;alpha2Code;translations")
+    @GET("https://restcountries.com/v2/all?fields=name,alpha2Code,translations")
     Observable<List<Country>> getCountries();
 }
