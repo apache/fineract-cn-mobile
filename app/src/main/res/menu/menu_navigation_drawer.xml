@@ -49,6 +49,11 @@
             android:icon="@drawable/ic_supervisor_account_black_24dp"
             android:title="@string/groups" />
 
+        <item
+            android:id="@+id/item_location"
+            android:icon="@drawable/ic_baseline_location_on_24"
+            android:title="@string/path_traker" />
+
     </group>
 
     <group android:id="@+id/group2">

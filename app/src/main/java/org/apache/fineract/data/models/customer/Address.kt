@@ -13,13 +13,14 @@ import org.apache.fineract.data.local.database.AppDatabase
 @Table(name = "Address", database = AppDatabase::class, allFields = true, insertConflict =
 ConflictAction.REPLACE)
 data class Address(
-    @PrimaryKey
-    @SerializedName("street") var street: String? = null,
-    @PrimaryKey
-    @SerializedName("city") var city: String? = null,
-    @PrimaryKey
-    @SerializedName("region") var region: String? = null,
-    @SerializedName("postalCode") var postalCode: String? = null,
-    @SerializedName("countryCode") var countryCode: String? = null,
-    @SerializedName("country") var country: String? = null
+        @PrimaryKey
+        @SerializedName("street") var street: String? = null,
+        @PrimaryKey
+        @SerializedName("city") var city: String? = null,
+        @PrimaryKey
+        @SerializedName("region") var region: String? = null,
+        @SerializedName("postalCode") var postalCode: String? = null,
+        @SerializedName("countryCode") var countryCode: String? = null,
+        @SerializedName("country") var country: String? = null,
+        @SerializedName("geo_point") var geoPoint: String? = null
 ) : BaseModel(), Parcelable

@@ -25,4 +25,5 @@ public class FakeJsonName {
     public static final String PRODUCT_DEFINITION = "productDefinition.json";
     public static final String PAYROLL_CONFIG = "payrollConfiguration.json";
     public static final String GROUPS = "groups.json";
+    public static final String GEOLOCATION = "geolocation.json";
 }

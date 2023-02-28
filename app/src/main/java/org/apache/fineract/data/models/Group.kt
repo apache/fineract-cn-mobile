@@ -26,7 +26,6 @@ data class Group(
         var lastModifiedBy: String? = null,
         var lastModifiedOn: String? = null,
         var documentType: String = DocumentType.GROUP.value) : Parcelable {
-
     enum class Status {
         PENDING,
         ACTIVE,

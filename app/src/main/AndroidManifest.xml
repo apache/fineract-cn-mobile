@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.apache.fineract">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -10,9 +11,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+
 
     <application
         android:name=".FineractApplication"
@@ -23,6 +28,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
+
+        <activity android:name=".ui.online.geo_location.visit_customer.VisitCustomersActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -39,12 +46,12 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.online.launcher.LauncherActivity" />
         <activity android:name=".ui.online.PassCodeActivity" />
-
         <activity
             android:name=".ui.online.login.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -53,40 +60,30 @@
             android:theme="@style/AppTheme.TransparentStatusBar" />
 
         <activity android:name=".ui.online.customers.customerdetails.CustomerDetailsActivity" />
-
         <activity android:name=".ui.online.customers.customerpayroll.PayrollActivity" />
-
         <activity android:name=".ui.online.customers.customerpayroll.editcustomerpayroll.EditPayrollActivity" />
-
         <activity android:name=".ui.online.depositaccounts.depositaccountslist.DepositAccountsActivity" />
-
         <activity android:name=".ui.online.loanaccounts.loanaccountlist.LoanAccountsActivity" />
-
         <activity android:name=".ui.online.loanaccounts.plannedpayment.PlannedPaymentActivity" />
-
         <activity android:name=".ui.online.loanaccounts.loanapplication.loanactivity.LoanApplicationActivity" />
-
         <activity
             android:name=".ui.online.customers.createcustomer.customeractivity.CreateCustomerActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-
         <activity android:name=".ui.online.loanaccounts.debtincomereport.DebtIncomeReportActivity" />
-
         <activity android:name=".ui.online.identification.identificationlist.IdentificationsActivity" />
-
         <activity android:name=".ui.online.identification.createidentification.identificationactivity.CreateIdentificationActivity" />
-
         <activity android:name=".ui.online.identification.viewscancard.ViewScanCardActivity" />
-
         <activity
             android:name=".ui.online.customers.customerprofile.CustomerProfileActivity"
             android:theme="@style/AppTheme.Black" />
-
         <activity
             android:name=".ui.online.depositaccounts.createdepositaccount.createdepositactivity.CreateDepositActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity android:name=".ui.online.customers.customeractivities.CustomerActivitiesActivity" />
+        <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity" />
+        <activity
+            android:name=".ui.online.groups.creategroup.CreateGroupActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity" />
 
@@ -101,9 +98,22 @@
                 <action android:name="org.apache.fineract.JobsReceiver" />
             </intent-filter>
         </receiver>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_api_key" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
     </application>
 
 </manifest>

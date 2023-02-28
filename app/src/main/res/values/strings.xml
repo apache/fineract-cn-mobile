@@ -544,4 +544,23 @@
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+    <string name="google_api_key">AIzaSyAZ0ODgBMsGvFxOjel4FkMB9Rza-1-k438</string>
+    <string name="location">Location</string>
+    <string name="client_name">Client Name</string>
+    <string name="visit_date">Visit Date</string>
+    <string name="visit_customer">Visit Customer</string>
+    <string name="nearby_customers">Nearby Clients</string>
+    <string name="enter_manually">Enter Manually</string>
+    <string name="application_require_gps_msg">This application requires GPS to work properly, do you want to enable it?</string>
+    <string name="yes">Yes</string>
+    <string name="notification_channel_id">notification_channel</string>
+    <string name="notification_title">Location Tracking starts now</string>
+    <string name="navigating_to">Navigating to %s</string>
+    <string name="stop_tracking">Stop Tracking</string>
+    <string name="tracking_user_location">Tracking user location</string>
+    <string name="start_tracking_path">Start Tracking</string>
+    <string name="gmtrip_no">Trip #%d</string>
+    <string name="duration">Duration: %s</string>
+    <string name="visited_customers">Visited Customers</string>
+    <string name="path_traker">Path Tracker</string>
 </resources>
