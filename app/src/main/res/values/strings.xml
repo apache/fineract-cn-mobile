@@ -230,6 +230,7 @@
     <string name="create_group">Create Group</string>
     <string name="no_group_member_added">No Group Member Added</string>
     <string name="no_group_leader_added">No Group Leader Added</string>
+    <string name="no_account_assignments" translatable="false">No Account Assignments</string>
 
     <!--Placeholder text-->
     <string name="small_text" translatable="false">Small Text</string>
@@ -325,6 +326,7 @@
     <string name="error_failed_to_refresh_customers">Failed to refresh customers</string>
     <string name="error_group_atleast_1_member">Group should have atleast 1 Member</string>
     <string name="error_group_atleast_1_leader">Group should have atleast 1 Leader</string>
+    <string name="error_product_atleast_1_account_assignment">Product should have atleast 1 Account assignment</string>
 
     <!--Material Dialog-->
     <string name="dialog_action_ok">OK</string>
@@ -449,9 +451,20 @@
         <item>Review</item>
     </string-array>
 
+    <string-array name="create_product_steps">
+        <item>Product Details</item>
+        <item>Add Account assignments</item>
+        <item>Review</item>
+    </string-array>
+
     <string-array name="edit_payroll_steps">
         <item>Customer payroll</item>
         <item>Payroll allocations</item>
+    </string-array>
+
+    <string-array name="interest_basis">
+        <item>BEGINNING_BALANCE</item>
+        <item>CURRENT_BALANCE</item>
     </string-array>
 
     <string-array name="repay_unit_type">
@@ -544,4 +557,25 @@
     <string name="please_wait_updating_group_status">"Updating group status, please wait... "</string>
     <string name="error_while_updating_group_status">Error while updating group status</string>
     <string name="error_while_creating_group">Error while creating group</string>
+    <string name="designator" translatable="false">Designator</string>
+    <string name="ledger_identifier" translatable="false">Ledger Identifier</string>
+    <string name="pattern_package" translatable="false">Pattern package</string>
+    <string name="term_range" translatable="false">Term Range</string>
+    <string name="temporal_unit" translatable="false">Temporal Unit</string>
+    <string name="maximum" translatable="false">Maximum</string>
+    <string name="balance_range" translatable="false">Balance Range</string>
+    <string name="minimum" translatable="false">Minimum</string>
+    <string name="interest_range" translatable="false">Interest Range</string>
+    <string name="account_assignments" translatable="false">Account Assignments</string>
+    <string name="currency_code" translatable="false">Currency Code</string>
+    <string name="minor_currency_unit_digits" translatable="false">Minor Currency Unit Digits</string>
+    <string name="parameters" translatable="false">Parameters</string>
+    <string name="interest_basis" translatable="false">Interest Basis</string>
+    <string name="create_product" translatable="false">Create Product</string>
+    <string name="edit_product" translatable="false">Edit Product</string>
+    <string name="updating_product_please_wait">Updating Product, please wait...</string>
+    <string name="error_while_creating_product">Error while creating product</string>
+    <string name="error_while_updating_group">Error while updating product</string>
+    <string name="product_identifier_created_successfully">Product %1$s created successfully</string>
+    <string name="product_identifier_updated_successfully">Product %1$s updated successfully</string>
 </resources>

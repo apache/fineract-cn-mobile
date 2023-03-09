@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="@dimen/layout_padding_8dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/layout_padding_12dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextViewReview.Head"
+                android:text="@string/designator" />
+
+            <TextView
+                android:id="@+id/tvDesignator"
+                style="@style/TextViewReview.Input"
+                tools:text="Varun Jain"
+                android:textColor="@color/black" />
+
+            <TextView
+                style="@style/TextViewReview.Head"
+                android:text="@string/account_identifier" />
+
+            <TextView
+                android:id="@+id/tvAccountIdentifier"
+                style="@style/TextViewReview.Input"
+                tools:text="Varun Jain"
+                android:textColor="@color/black" />
+
+            <TextView
+                style="@style/TextViewReview.Head"
+                android:text="@string/ledger_identifier" />
+
+            <TextView
+                android:id="@+id/tvLedgerIdentifier"
+                style="@style/TextViewReview.Input"
+                tools:text="Varun Jain"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivEditProductAccountAss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_edit_black_24dp" />
+
+        <ImageView
+            android:id="@+id/ivDeleteProductAccountAss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_padding_12dp"
+            android:layout_marginLeft="@dimen/layout_padding_12dp"
+            android:tint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_delete_black_24dp" />
+    </LinearLayout>
+
+</LinearLayout>

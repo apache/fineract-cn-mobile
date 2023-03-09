@@ -32,7 +32,7 @@ import org.apache.fineract.ui.online.groups.grouplist.GroupListFragment;
 import org.apache.fineract.ui.online.launcher.LauncherActivity;
 import org.apache.fineract.ui.online.roles.roleslist.RolesFragment;
 import org.apache.fineract.ui.online.teller.TellerFragment;
-import org.apache.fineract.ui.product.ProductFragment;
+import org.apache.fineract.ui.product.productlist.ProductFragment;
 import org.apache.fineract.utils.MaterialDialog;
 
 import javax.inject.Inject;
