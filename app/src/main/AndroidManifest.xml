@@ -90,8 +90,14 @@
 
         <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity" />
 
+        <activity android:name=".ui.online.teller.tellerdetails.TellerDetailsActivity" />
+
         <activity
             android:name=".ui.online.groups.creategroup.CreateGroupActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <activity
+            android:name=".ui.online.teller.createteller.CreateTellerActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <receiver
