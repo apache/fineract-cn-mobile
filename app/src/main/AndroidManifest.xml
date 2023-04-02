@@ -90,6 +90,12 @@
 
         <activity android:name=".ui.online.groups.groupdetails.GroupDetailsActivity" />
 
+        <activity android:name=".ui.online.accounting.accounts.accountDetails.AccountDetailsActivity" />
+
+        <activity
+            android:name=".ui.online.accounting.accounts.createaccount.CreateAccountActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+
         <activity
             android:name=".ui.online.groups.creategroup.CreateGroupActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />

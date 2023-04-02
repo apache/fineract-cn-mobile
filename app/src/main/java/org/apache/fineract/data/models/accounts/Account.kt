@@ -3,25 +3,26 @@ package org.apache.fineract.data.models.accounts
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
+import org.apache.fineract.couchbase.DocumentType
 
 @Parcelize
 data class Account(
 
-        @SerializedName("type") val type: AccountType? = null,
-        @SerializedName("identifier") val identifier: String? = null,
-        @SerializedName("name") val name: String? = null,
-        @SerializedName("holders") val holders: Set<String>? = null,
-        @SerializedName("signatureAuthorities") val signatureAuthorities: Set<String>? = null,
-        @SerializedName("balance") val balance: Double? = null,
-        @SerializedName("referenceAccount") val referenceAccount: String? = null,
-        @SerializedName("ledger") val ledger: String? = null,
-        @SerializedName("state") val state: State? = null,
-        @SerializedName("alternativeAccountNumber") val alternativeAccountNumber: String? = null,
-        @SerializedName("createdOn") val createdOn: String? = null,
-        @SerializedName("createdBy") val createdBy: String? = null,
-        @SerializedName("lastModifiedOn") val lastModifiedOn: String? = null,
-        @SerializedName("lastModifiedBy") val lastModifiedBy: String? = null
-
+        var type: AccountType? = null,
+        var identifier: String? = null,
+        var name: String? = null,
+        var holders: List<String>? = null,
+        var signatureAuthorities: List<String>? = null,
+        var balance: Double? = null,
+        var referenceAccount: String? = null,
+        var ledger: String? = null,
+        var state: State? = null,
+        var alternativeAccountNumber: String? = null,
+        var createdOn: String? = null,
+        var createdBy: String? = null,
+        var lastModifiedOn: String? = null,
+        var lastModifiedBy: String? = null,
+        var documentType: String = DocumentType.ACCOUNT.value
 ) : Parcelable {
 
     enum class State {
