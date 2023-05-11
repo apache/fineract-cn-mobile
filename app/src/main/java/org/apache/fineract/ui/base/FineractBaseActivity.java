@@ -3,10 +3,13 @@ package org.apache.fineract.ui.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.widget.Toolbar;
+import androidx.transition.Fade;
+
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -45,7 +48,7 @@ public class FineractBaseActivity extends BasePassCodeActivity implements BaseAc
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        toolbar =  findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
@@ -157,9 +160,9 @@ public class FineractBaseActivity extends BasePassCodeActivity implements BaseAc
     /**
      * Replace Fragment in FrameLayout Container.
      *
-     * @param fragment Fragment
+     * @param fragment       Fragment
      * @param addToBackStack Add to BackStack
-     * @param containerId Container Id
+     * @param containerId    Container Id
      */
     public void replaceFragment(Fragment fragment, boolean addToBackStack, int containerId) {
         invalidateOptionsMenu();
@@ -169,13 +172,27 @@ public class FineractBaseActivity extends BasePassCodeActivity implements BaseAc
 
         if (!fragmentPopped && getSupportFragmentManager().findFragmentByTag(backStateName) ==
                 null) {
+            Fragment previousFragment = getSupportFragmentManager().findFragmentById(containerId);
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transition(previousFragment, fragment);
             transaction.replace(containerId, fragment, backStateName);
             if (addToBackStack) {
                 transaction.addToBackStack(backStateName);
             }
-            transaction.commit();
+            transaction.commitAllowingStateLoss();
         }
+    }
+
+    public void transition(Fragment previousFragment, Fragment nextFragment) {
+        if (previousFragment != null) {
+            Fade exitFade = new Fade();
+            exitFade.setDuration(android.R.integer.config_shortAnimTime);
+            previousFragment.setExitTransition(exitFade);
+        }
+
+        Fade enterFade = new Fade();
+        enterFade.setDuration(android.R.integer.config_mediumAnimTime);
+        nextFragment.setEnterTransition(enterFade);
     }
 
     public void clearFragmentBackStack() {
@@ -186,6 +203,7 @@ public class FineractBaseActivity extends BasePassCodeActivity implements BaseAc
             fm.popBackStack(backStackId, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
     }
+
     public int stackCount() {
         return getSupportFragmentManager().getBackStackEntryCount();
     }
