@@ -18,6 +18,7 @@ import org.apache.fineract.ui.online.identification.createidentification.Action;
 import org.apache.fineract.ui.online.identification.createidentification.OnNavigationBarListener;
 import org.apache.fineract.ui.online.identification.createidentification.OverViewContract;
 import org.apache.fineract.utils.ConstantKeys;
+import org.apache.fineract.utils.MaterialDialog;
 
 import javax.inject.Inject;
 
@@ -179,6 +180,20 @@ public class CreateIdentificationActivity extends FineractBaseActivity
         stepperLayout.setNextButtonEnabled(true);
         stepperLayout.setBackButtonEnabled(true);
         Toaster.show(findViewById(android.R.id.content), message);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new MaterialDialog.Builder()
+                .init(this)
+                .setTitle(getString(R.string.dialog_title_confirm_back))
+                .setMessage(getString(R.string.dialog_message_confirmation_back))
+                .setPositiveButton(getString(R.string.dialog_action_go_back),
+                        (dialog, which) -> super.onBackPressed()
+                )
+                .setNegativeButton(getString(R.string.dialog_action_stay))
+                .createMaterialDialog()
+                .show();
     }
 
     @Override

@@ -20,6 +20,7 @@ import org.apache.fineract.ui.base.Toaster;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.LoanApplicationAction;
 import org.apache.fineract.ui.online.loanaccounts.loanapplication.OnNavigationBarListener;
 import org.apache.fineract.utils.ConstantKeys;
+import org.apache.fineract.utils.MaterialDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -218,6 +219,20 @@ public class LoanApplicationActivity extends FineractBaseActivity
     @Override
     public List<CreditWorthinessSnapshot> getCreditWorthinessSnapshot() {
         return creditWorthinessSnapshots;
+    }
+
+    @Override
+    public void onBackPressed() {
+        new MaterialDialog.Builder()
+                .init(this)
+                .setTitle(getString(R.string.dialog_title_confirm_back))
+                .setMessage(getString(R.string.dialog_message_confirmation_back))
+                .setPositiveButton(getString(R.string.dialog_action_go_back),
+                        (dialog, which) -> super.onBackPressed()
+                )
+                .setNegativeButton(getString(R.string.dialog_action_stay))
+                .createMaterialDialog()
+                .show();
     }
 
     @Override
