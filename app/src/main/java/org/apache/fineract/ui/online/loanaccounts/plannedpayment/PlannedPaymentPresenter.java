@@ -56,7 +56,7 @@ public class PlannedPaymentPresenter extends BasePresenter<PlannedPaymentContrac
     @Override
     public void fetchPlannedPayment(String productIdentifier, String caseIdentifier,
             Integer pageIndex, String initialDisbursalDate, Boolean loadmore) {
-        this.loadmore = loadmore;
+//        this.loadmore = loadmore;
         fetchPlannedPayment(productIdentifier, caseIdentifier, pageIndex, initialDisbursalDate);
     }
 
