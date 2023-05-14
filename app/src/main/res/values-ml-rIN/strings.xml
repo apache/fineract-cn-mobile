@@ -154,7 +154,7 @@
     <string name="edit_selected_file">തിരഞ്ഞെടുത്ത ഫയൽ:</string>
     <string name="no_file_selected_yet">ഇതുവരെ ഫയൽ തിരഞ്ഞെടുത്തിട്ടില്ല.</string>
     <string name="choose_file">ഒരു ഫയൽ തിരഞ്ഞെടുക്കുക (പരമാവധി വലിപ്പം 512 KB)</string>
-    <string name="take_photo">ഫോട്ടോ എടുക്കുക (പരമാവധി വലുപ്പം 512 KB)</string>
+    <string name="retake_photo">ഫോട്ടോ എടുക്കുക (പരമാവധി വലുപ്പം 512 KB)</string>
     <string name="are_sure_want_remove_portrait">നിങ്ങള്ക്ക് ഉറപ്പാണോ? നിങ്ങൾ പോർട്രെയ്റ്റ് ഇല്ലാതാക്കാൻ ആഗ്രഹിക്കുന്നു.</string>
     <string name="delete">ഇല്ലാതാക്കുക</string>
     <string name="uploading_portrait">പോർട്രെയ്റ്റ് അപ്ലോഡുചെയ്യുന്നത് ദയവായി കാത്തിരിക്കുക ...</string>
