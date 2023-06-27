@@ -221,10 +221,11 @@ public class FileUtils {
             while ((len = in.read(buf)) > 0) {
                 out.write(buf, 0, len);
             }
-            out.close();
-            in.close();
         } catch (Exception e) {
             Log.d(LOG_TAG, e.getLocalizedMessage());
+        } finally {
+            out.close();
+            in.close();
         }
     }
 
