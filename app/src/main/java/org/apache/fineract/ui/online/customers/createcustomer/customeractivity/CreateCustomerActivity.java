@@ -124,6 +124,7 @@ public class CreateCustomerActivity extends FineractBaseActivity
 
     @Override
     public void onStepSelected(int newStepPosition) {
+        hideKeyboard(stepperLayout.getRootView());
     }
 
     @Override
