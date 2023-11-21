@@ -61,23 +61,42 @@
                         android:layout_width="match_parent"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_expiration_date"
-                    android:layout_height="wrap_content"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    app:errorEnabled="true">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <EditText
-                        android:drawableLeft="@drawable/ic_event_black_24dp"
-                        android:drawablePadding="@dimen/layout_padding_16dp"
-                        android:drawableStart="@drawable/ic_event_black_24dp"
-                        android:hint="@string/required_expiration_date"
-                        android:id="@+id/et_expiration_date"
-                        android:inputType="date"
-                        android:focusable="false"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/til_expiration_date"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_width="match_parent"
+                        app:errorEnabled="true"
+                        android:layout_weight="0.5">
+
+                        <EditText
+                            android:drawableLeft="@drawable/ic_event_black_24dp"
+                            android:drawablePadding="@dimen/layout_padding_16dp"
+                            android:drawableStart="@drawable/ic_event_black_24dp"
+                            android:hint="@string/required_expiration_date"
+                            android:id="@+id/et_expiration_date"
+                            android:inputType="date"
+                            android:focusable="false"
+                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/tv_expiration_status_for_create"
+                        style="@style/Base.TextAppearance.AppCompat.Small"
+                        android:gravity="end|center_vertical"
+                        android:layout_height="match_parent"
+                        android:layout_width="match_parent"
+                        android:layout_weight="0.5"
+                        android:paddingEnd="@dimen/layout_padding_16dp"
+                        android:paddingStart="@dimen/layout_padding_16dp"
+                        android:paddingRight="@dimen/layout_padding_16dp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_issuer"

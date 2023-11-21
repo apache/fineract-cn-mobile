@@ -78,14 +78,30 @@
 
             </LinearLayout>
 
-            <TextView
-                style="@style/Base.TextAppearance.AppCompat.Small"
-                android:id="@+id/tv_identification_issuer"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:paddingTop="@dimen/layout_padding_4dp"
-                android:textColor="@color/gray_dark"
-                tools:text="Issuer: Government"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:id="@+id/tv_identification_issuer"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingTop="@dimen/layout_padding_4dp"
+                    android:textColor="@color/gray_dark"
+                    tools:text="Issuer: Government"/>
+
+                <TextView
+                    android:id="@+id/tv_expiration_status"
+                    style="@style/Base.TextAppearance.AppCompat.Small"
+                    android:gravity="end"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:paddingEnd="@dimen/layout_padding_16dp"
+                    android:paddingStart="@dimen/layout_padding_16dp"
+                    android:paddingRight="@dimen/layout_padding_16dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
             <View
                 android:layout_width="wrap_content"
